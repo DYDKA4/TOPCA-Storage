@@ -1,16 +1,22 @@
-# This is a sample Python script.
+from nebula2.gclient.net import ConnectionPool
+from nebula2.Config import Config
+import functions
+import config
+# define a Config
+Config = Config()
+Config.max_connection_pool_size = 10
+# init connection pool
+connection_pool = ConnectionPool()
+# if the given servers are ok, return true, else return false
+ok = connection_pool.init([(config.IP_address, 9669)], Config)
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+# option 2 with session_context, session will be released automatically
+functions.hello_world()
+with connection_pool.session_context(config.UserName, config.UserPassword) as session:
+    result = session.execute('SHOW SPACES')
+    print(result)
+    print(result.keys())
+    print(result.column_values('Name'))
 
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+# close the pool
+connection_pool.close()

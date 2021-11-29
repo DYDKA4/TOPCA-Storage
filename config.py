@@ -1,0 +1,8 @@
+IP_address = '10.100.151.128'
+UserName = 'Administator'
+UserPassword = 'password'
+WorkSpace = 'data_center'
+NameOfUserVertex = 'persons'
+NameOfKeyValueUser = 'name'
+NameOfServerVertex = 'servers'
+NameOfKeyValueServer = 'name, CPU, RAM, memory'

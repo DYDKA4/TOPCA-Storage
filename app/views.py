@@ -18,7 +18,7 @@ def server_add():
     owner = request.args.get('owner')
 
     date = datetime.now()
-
+    communication_with_nebula.add_server(cpu, ram, mem, owner, date)
     # template of usage: http://127.0.0.1:5000/server-add?cpu=4&ram=4&mem=50&owner=Tulin.D.I
     return '''
               <h1>The cpu value is: {}</h1>

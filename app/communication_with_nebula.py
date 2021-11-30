@@ -25,12 +25,12 @@ def chose_of_space():
 
 def number_of_entities(session, vertex_name):
     # return of new index of new entities
+    # not support if this index is unique for this entities!!!
+    # be carefully with erase
     result = session.execute(f'LOOKUP ON {vertex_name}')
     assert result.is_succeeded(), result.error_msg()
-    amount = result.column_values('VertexID')
-    if not amount:
-        return 1
-    return amount[-1].as_int() + 1
+    amount = len(result.column_values('VertexID'))
+    return amount + 1
 
 
 def is_already_recorded(session, vertex_name, name_of_key_value, key_value):
@@ -38,18 +38,24 @@ def is_already_recorded(session, vertex_name, name_of_key_value, key_value):
     result = session.execute(f'LOOKUP ON {vertex_name} WHERE {vertex_name}.{name_of_key_value} == "{key_value}";')
     assert result.is_succeeded(), result.error_msg()
     result = result.column_values('VertexID')
-
     return bool(result)
 
 
 def add_in_vertex(session, vertex_name, name_of_key_value, key_value, amount):
     # add into vertex value
     result = session.execute(f'INSERT VERTEX {vertex_name} ({name_of_key_value}) VALUES {amount}'
-                             f':("{key_value}");')
-    print(f'INSERT VERTEX {vertex_name} ({name_of_key_value}) VALUES {amount}'
                              f':({key_value});')
     assert result.is_succeeded(), result.error_msg()
-    return 0
+    return
+
+
+def add_edge(session, edge_name, edge_params, source_vertex, destination_vertex, data):
+    result = session.execute(f'INSERT EDGE {edge_name}({edge_params})'
+                             f' VALUE {source_vertex}->{destination_vertex}:({data})')
+    print(f'INSERT EDGE {edge_name}({edge_params})'
+          f' VALUE {source_vertex}->{destination_vertex}:{data}')
+    assert result.is_succeeded(), result.error_msg()
+    return
 
 
 def add_server(cpu, ram, mem, owner, date):
@@ -57,10 +63,20 @@ def add_server(cpu, ram, mem, owner, date):
     # search for an existing user
     is_recorded = is_already_recorded(session, config.NameOfUserVertex, config.NameOfKeyValueUser, owner)
     if not is_recorded:
-        amount = number_of_entities(session, config.NameOfUserVertex)
+        source_vertex = number_of_entities(session, config.NameOfUserVertex)
         owner = '"' + owner + '"'
-        add_in_vertex(session, config.NameOfUserVertex, config.NameOfKeyValueUser, owner, amount)
+        source_vertex = f'"{config.NameOfUserVertex}{source_vertex}"'
+        add_in_vertex(session, config.NameOfUserVertex, config.NameOfKeyValueUser, owner, source_vertex)
 
-    amount = number_of_entities(session, config.NameOfServerVertex)
-    add_in_vertex(session, config.NameOfServerVertex, config.NameOfKeyValueServer, f'"NoName",{cpu},{ram},{mem}', amount)
-    # session.release()
+    destination_vertex = number_of_entities(session, config.NameOfServerVertex)
+    destination_vertex = f'"{config.NameOfServerVertex}{destination_vertex}"'
+    add_in_vertex(session, config.NameOfServerVertex, config.NameOfKeyValueServer, f'{cpu},{ram},{mem}',
+                  destination_vertex)
+    date = list(date)
+    date[10] = 'T'
+    date = "".join(date)
+    date = f'datetime("{date}")'
+    print(date)
+    add_edge(session, config.NameOfOwnerEdge, config.NameOfKeyValueOwner, source_vertex, destination_vertex, date)
+
+    session.release()

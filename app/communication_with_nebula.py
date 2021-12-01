@@ -27,7 +27,6 @@ def number_of_entities(session, vertex_name):
     # return of new index of new entities
     result = session.execute(f'LOOKUP ON {vertex_name}')
     assert result.is_succeeded(), result.error_msg()
-    print(result.column_values('VertexID'))
     result = result.column_values('VertexID')
     if result:
         amount = 0
@@ -35,7 +34,7 @@ def number_of_entities(session, vertex_name):
             index = index.as_string()
             if int(index[len(vertex_name):]) > amount:
                 amount = int(index[len(vertex_name):])
-        return amount+1
+        return amount + 1
     else:
         return 1
 
@@ -45,7 +44,8 @@ def is_already_recorded(session, vertex_name, name_of_key_value, key_value):
     result = session.execute(f'LOOKUP ON {vertex_name} WHERE {vertex_name}.{name_of_key_value} == "{key_value}";')
     assert result.is_succeeded(), result.error_msg()
     result = result.column_values('VertexID')
-    result = result[0]
+    if result:
+        result = result[0]
     return result
 
 
@@ -87,3 +87,48 @@ def add_server(cpu, ram, mem, owner, date):
     add_edge(session, config.NameOfOwnerEdge, config.NameOfKeyValueOwner, source_vertex, destination_vertex, date)
 
     session.release()
+
+
+def find_server(cpu, ram, mem, owner):
+    # return list of this servers with owner
+    session = chose_of_space()
+    owner = is_already_recorded(session, config.NameOfUserVertex, config.NameOfKeyValueUser, owner)
+    if not owner:
+        return 0
+    assert owner, "such owner not existed"
+    result = session.execute(f'GO FROM {owner} over owner'
+                             f' WHERE properties($$).cpu == {cpu} AND properties($$).ram == {ram} AND'
+                             f' properties($$).mem == {mem} '
+                             'YIELD properties($^).name as name, properties($$).cpu as cpu,'
+                             ' properties($$).ram as ram, properties($$).mem as mem,'
+                             ' properties(edge).date_of_creation as date_of_creation')
+
+    assert result.is_succeeded(), result.error_msg()
+    answer = []
+    for key in result.keys():
+
+        tmp_answer = []
+        if not result.column_values(key):
+            return 0
+        for j in result.column_values(key):
+            if j.is_int():
+                tmp_answer += [j.as_int()]
+            elif j.is_string():
+                tmp_answer += [j.as_string()]
+            elif j.is_datetime():
+                tmp_answer += [{
+                    'year': j.as_datetime().get_year(),
+                    'month': j.as_datetime().get_month(),
+                    'day': j.as_datetime().get_day(),
+                    'hour': j.as_datetime().get_hour(),
+                    'minute': j.as_datetime().get_minute(),
+                    'sec': j.as_datetime().get_sec(),
+                    'microsecond': j.as_datetime().get_microsec()}]
+        answer += [tmp_answer]
+
+    session.release()
+    return answer
+    # print(result)
+    # print(result.rows())
+    # print(result.keys())
+    # print(type(result.rows()[0]))

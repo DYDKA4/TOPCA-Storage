@@ -112,9 +112,11 @@ def find_server(cpu, ram, mem, owner):
             return 0
         for j in result.column_values(key):
             if j.is_int():
-                tmp_answer += [j.as_int()]
+                tmp_answer += [{
+                    f'{key}': j.as_int()}]
             elif j.is_string():
-                tmp_answer += [j.as_string()]
+                tmp_answer += [{
+                    f'{key}': j.as_string()}]
             elif j.is_datetime():
                 tmp_answer += [{
                     'year': j.as_datetime().get_year(),

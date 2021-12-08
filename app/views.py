@@ -16,8 +16,9 @@ def server_add():
     # if key doesn't exist, returns None
     mem = request.args.get('mem')
 
-    jsonRes = request.get_json(force=True   )
-    print(jsonRes)
+    # some tests with json from file
+    json_results = request.get_json(force=True)
+    print(json_results)
 
     owner = request.args.get('owner')
     print(cpu, ram, mem, owner)

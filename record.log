@@ -1,0 +1,13 @@
+2021-12-08 18:50:13,544 WARNING werkzeug MainThread :  * Debugger is active!
+2021-12-08 18:50:13,544 INFO werkzeug MainThread :  * Debugger PIN: 107-305-531
+2021-12-08 18:50:43,580 INFO werkzeug MainThread :  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2021-12-08 18:50:43,582 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-08 18:50:43,733 WARNING werkzeug MainThread :  * Debugger is active!
+2021-12-08 18:50:43,734 INFO werkzeug MainThread :  * Debugger PIN: 107-305-531
+2021-12-08 18:51:00,544 INFO werkzeug MainThread :  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2021-12-08 18:51:00,546 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-08 18:51:00,697 WARNING werkzeug MainThread :  * Debugger is active!
+2021-12-08 18:51:00,697 INFO werkzeug MainThread :  * Debugger PIN: 107-305-531
+2021-12-08 18:51:11,454 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2021-12-08 18:51:11,481 INFO werkzeug Thread-2 : 127.0.0.1 - - [08/Dec/2021 18:51:11] "[35m[1mPOST /server-add HTTP/1.1[0m" 500 -
+2021-12-08 18:51:17,176 ERROR root MainThread : The connection using by someone, but now want to close it

@@ -1,0 +1,36 @@
+tosca_definitions_version: tosca_simple_yaml_1_0
+
+topology_template:
+  node_templates:
+    node_slaves:
+      type: tosca.nodes.Compute
+      properties:
+        keypair: "{{ os_key_name }}"
+        meta: "hostname={{ item }}-slaves,group={{ cluster_name }}_slaves"
+        boot_from_volume: "{{ boot_from_volume }}"
+      attributes:
+        tosca_name: "{{ cluster_name }}-slave"
+        networks:
+          default:
+            network_name: "{{ virtual_network }}"
+      capabilities:
+        host:
+          properties:
+            tosca_id: "{{ slaves_flavor }}"
+        endpoint:
+          properties:
+            protocol: tcp
+            initiator: target
+            ports:
+              icmp:
+                protocol: icmp
+              udp:
+                protocol: udp
+          attributes:
+            ip_address: 0.0.0.0
+        os:
+          properties:
+            tosca_id: "{{ os_image }}"
+        scalable:
+          properties:
+            min_instances: "{{ n_slaves }}"

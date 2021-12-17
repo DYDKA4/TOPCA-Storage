@@ -23,7 +23,6 @@ def host_parser(d):
     d = d['properties']
     for key in d:
         if key == 'disk_size':
-            print(d[key])
             mem = d[key]
         elif key == 'num_cpus':
             cpu = d[key]
@@ -34,14 +33,18 @@ def host_parser(d):
 
 def compute_parser(d):
     cpu = ram = mem = None
-    print(d.keys())
-    for key in d:
+    # print(d)
+    for key in d['capabilities']:
         if key == 'host':
-            cpu, ram, mem = host_parser(d[key])
-        print(d[key])
-    print(cpu, ram, mem)
+            cpu, ram, mem = host_parser(d['capabilities'][key])
+    print(d['requirements'])
+    print(type(d['requirements']))
+    for elem in d['requirements']:
+        print(elem)
+
+        # in future be able to parse and os properties
     # myprint(d)
-    return cpu, ram, mem
+    return [cpu, ram, mem]
 
 
 def parser(data):
@@ -50,8 +53,16 @@ def parser(data):
     # операцию по ключу сделать в search_dict но пока хз как
     # print(node_templates)
     # print(node_templates.keys())
+    # myprint(node_templates)
+    Computes = []  # compute node characteristics
+    Block_Storage_Counter = 0
     for key in node_templates:
+        # parser of Compute_node
         if node_templates[key]['type'] == 'Compute':
-            cpu, ram, mem = compute_parser(node_templates[key]['capabilities'])
+            Computes += [compute_parser(node_templates[key])]
+        if node_templates[key]['type'] == 'BlockStorage':
+            #костыль
+            #пока что нету адекватного решения
+            Block_Storage_Counter += 1
 
-    return cpu, ram, mem
+    return

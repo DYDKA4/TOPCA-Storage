@@ -10,8 +10,8 @@ def yaml_add():
     json_results = request.get_json(force=True)
     print()
     cpu = ram = mem = None
-    cpu, ram, mem = json_parser.parser(json_results)
-    communication_with_nebula.add_host_jaml(cpu, ram, mem)
+    json_parser.parser(json_results)
+    # communication_with_nebula.add_host_jaml(cpu, ram, mem)
     print()
     return '''
               OK'''

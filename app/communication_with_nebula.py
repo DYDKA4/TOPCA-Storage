@@ -110,22 +110,22 @@ def find_server(cpu, ram, mem, owner):
         tmp_answer = []
         if not result.column_values(key):
             return 0
-        for j in result.column_values(key):
-            if j.is_int():
+        for value in result.column_values(key):
+            if value.is_int():
                 tmp_answer += [{
-                    f'{key}': j.as_int()}]
-            elif j.is_string():
+                    f'{key}': value.as_int()}]
+            elif value.is_string():
                 tmp_answer += [{
-                    f'{key}': j.as_string()}]
-            elif j.is_datetime():
+                    f'{key}': value.as_string()}]
+            elif value.is_datetime():
                 tmp_answer += [{
-                    'year': j.as_datetime().get_year(),
-                    'month': j.as_datetime().get_month(),
-                    'day': j.as_datetime().get_day(),
-                    'hour': j.as_datetime().get_hour(),
-                    'minute': j.as_datetime().get_minute(),
-                    'sec': j.as_datetime().get_sec(),
-                    'microsecond': j.as_datetime().get_microsec()}]
+                    'year': value.as_datetime().get_year(),
+                    'month': value.as_datetime().get_month(),
+                    'day': value.as_datetime().get_day(),
+                    'hour': value.as_datetime().get_hour(),
+                    'minute': value.as_datetime().get_minute(),
+                    'sec': value.as_datetime().get_sec(),
+                    'microsecond': value.as_datetime().get_microsec()}]
         answer += [tmp_answer]
 
     session.release()

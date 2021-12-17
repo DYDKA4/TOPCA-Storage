@@ -1,0 +1,19 @@
+2021-12-17 17:06:10,993 INFO werkzeug MainThread :  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2021-12-17 17:06:10,995 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-17 17:06:11,139 WARNING werkzeug MainThread :  * Debugger is active!
+2021-12-17 17:06:11,139 INFO werkzeug MainThread :  * Debugger PIN: 122-984-268
+2021-12-17 17:06:15,141 INFO werkzeug Thread-2 : 127.0.0.1 - - [17/Dec/2021 17:06:15] "POST /yaml-template HTTP/1.1" 200 -
+2021-12-17 17:06:32,284 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/json_parser.py', reloading
+2021-12-17 17:06:32,309 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-17 17:06:32,465 WARNING werkzeug MainThread :  * Debugger is active!
+2021-12-17 17:06:32,465 INFO werkzeug MainThread :  * Debugger PIN: 122-984-268
+2021-12-17 17:06:38,300 INFO werkzeug Thread-2 : 127.0.0.1 - - [17/Dec/2021 17:06:38] "POST /yaml-template HTTP/1.1" 200 -
+2021-12-17 17:06:56,649 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/json_parser.py', reloading
+2021-12-17 17:06:56,680 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-17 17:06:56,856 WARNING werkzeug MainThread :  * Debugger is active!
+2021-12-17 17:06:56,856 INFO werkzeug MainThread :  * Debugger PIN: 122-984-268
+2021-12-17 17:06:58,896 INFO werkzeug Thread-2 : 127.0.0.1 - - [17/Dec/2021 17:06:58] "POST /yaml-template HTTP/1.1" 200 -
+2021-12-17 17:07:23,032 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/json_parser.py', reloading
+2021-12-17 17:07:23,061 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-17 17:07:45,397 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-17 17:08:08,746 INFO werkzeug MainThread :  * Restarting with stat

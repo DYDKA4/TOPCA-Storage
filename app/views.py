@@ -2,12 +2,19 @@ from flask import request
 from app import app
 from datetime import datetime
 from app import communication_with_nebula
-import json
+from app import json_parser
 
 
 @app.route('/yaml-template', methods=['POST'])
 def yaml_add():
-    print('a')
+    json_results = request.get_json(force=True)
+    print()
+    cpu = ram = mem = None
+    cpu, ram, mem = json_parser.parser(json_results)
+    communication_with_nebula.add_host_jaml(cpu, ram, mem)
+    print()
+    return '''
+              OK'''
 
 
 @app.route('/server-add', methods=['GET', 'POST'])

@@ -130,7 +130,13 @@ def find_server(cpu, ram, mem, owner):
 
     session.release()
     return answer
-    # print(result)
-    # print(result.rows())
-    # print(result.keys())
-    # print(type(result.rows()[0]))
+
+
+def add_host_jaml(cpu, ram, mem):
+    session = chose_of_space()
+    # search for an existing user
+    destination_vertex = number_of_entities(session, config.NameOfComputeVertex)
+    destination_vertex = f'"{config.NameOfComputeVertex}{destination_vertex}"'
+    add_in_vertex(session, config.NameOfComputeVertex, config.NameOfKeyValueServer, f'{cpu},"{ram}","{mem}"',
+                  destination_vertex)
+    session.release()

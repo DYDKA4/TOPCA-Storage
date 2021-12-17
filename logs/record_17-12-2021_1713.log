@@ -1,0 +1,30 @@
+2021-12-17 17:13:05,217 INFO werkzeug MainThread :  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2021-12-17 17:13:05,218 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-17 17:13:05,380 WARNING werkzeug MainThread :  * Debugger is active!
+2021-12-17 17:13:05,380 INFO werkzeug MainThread :  * Debugger PIN: 122-984-268
+2021-12-17 17:13:09,529 INFO werkzeug Thread-2 : 127.0.0.1 - - [17/Dec/2021 17:13:09] "POST /yaml-template HTTP/1.1" 200 -
+2021-12-17 17:13:32,556 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/json_parser.py', reloading
+2021-12-17 17:13:32,582 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-17 17:13:32,736 WARNING werkzeug MainThread :  * Debugger is active!
+2021-12-17 17:13:32,736 INFO werkzeug MainThread :  * Debugger PIN: 122-984-268
+2021-12-17 17:13:35,683 INFO werkzeug Thread-2 : 127.0.0.1 - - [17/Dec/2021 17:13:35] "POST /yaml-template HTTP/1.1" 200 -
+2021-12-17 17:13:58,925 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/json_parser.py', reloading
+2021-12-17 17:13:58,955 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-17 17:13:59,123 WARNING werkzeug MainThread :  * Debugger is active!
+2021-12-17 17:13:59,124 INFO werkzeug MainThread :  * Debugger PIN: 122-984-268
+2021-12-17 17:15:26,712 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/json_parser.py', reloading
+2021-12-17 17:15:26,743 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-17 17:15:32,971 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-17 17:15:54,320 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-17 17:16:07,660 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-17 17:16:20,059 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-17 17:16:29,313 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-17 17:16:52,646 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-17 17:18:14,423 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-17 17:18:47,814 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-17 17:19:51,500 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-17 17:20:42,098 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-17 17:20:49,339 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-17 17:21:15,752 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-17 17:21:39,077 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-17 17:21:48,332 INFO werkzeug MainThread :  * Restarting with stat

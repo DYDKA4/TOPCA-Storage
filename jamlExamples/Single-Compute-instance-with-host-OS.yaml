@@ -10,20 +10,6 @@ description: >
 
 topology_template:
 
-  inputs:
-
-    cpus:
-
-      type: integer
-
-      description: Number of CPUs for the server.
-
-      constraints:
-
-        - valid_values: [ 1, 2, 4, 8 ]
-
-
-
   node_templates:
 
     my_server:
@@ -38,7 +24,7 @@ topology_template:
 
             disk_size: 10 GB
 
-            num_cpus: {  get_input: cpus  }
+            num_cpus: 8
 
             mem_size: 1 GB
 

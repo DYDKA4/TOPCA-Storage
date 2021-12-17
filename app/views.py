@@ -5,6 +5,11 @@ from app import communication_with_nebula
 import json
 
 
+@app.route('/yaml-template', methods=['POST'])
+def yaml_add():
+    print('a')
+
+
 @app.route('/server-add', methods=['GET', 'POST'])
 def server_add():
     # if key doesn't exist, returns a 400, bad request error

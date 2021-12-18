@@ -1,0 +1,20 @@
+2021-12-18 19:44:03,918 WARNING werkzeug MainThread :  * Debugger is active!
+2021-12-18 19:44:03,921 INFO werkzeug MainThread :  * Debugger PIN: 959-477-946
+2021-12-18 19:44:04,420 INFO werkzeug Thread-1 :  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2021-12-18 19:44:05,135 INFO werkzeug Thread-2 : 127.0.0.1 - - [18/Dec/2021 19:44:05] "POST /yaml-template HTTP/1.1" 200 -
+2021-12-18 19:44:18,403 INFO werkzeug MainThread :  * Detected change in 'C:\\Users\\User\\PycharmProjects\\API_COURSE\\app\\json_parser.py', reloading
+2021-12-18 19:44:18,974 WARNING werkzeug MainThread :  * Debugger is active!
+2021-12-18 19:44:18,978 INFO werkzeug MainThread :  * Debugger PIN: 959-477-946
+2021-12-18 19:44:19,422 INFO werkzeug Thread-1 :  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2021-12-18 19:44:19,654 INFO werkzeug Thread-2 : 127.0.0.1 - - [18/Dec/2021 19:44:19] "[35m[1mPOST /yaml-template HTTP/1.1[0m" 500 -
+2021-12-18 19:44:49,447 INFO werkzeug MainThread :  * Detected change in 'C:\\Users\\User\\PycharmProjects\\API_COURSE\\app\\json_parser.py', reloading
+2021-12-18 19:44:50,031 WARNING werkzeug MainThread :  * Debugger is active!
+2021-12-18 19:44:50,036 INFO werkzeug MainThread :  * Debugger PIN: 959-477-946
+2021-12-18 19:44:50,514 INFO werkzeug Thread-1 :  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2021-12-18 19:44:50,693 INFO werkzeug Thread-2 : 127.0.0.1 - - [18/Dec/2021 19:44:50] "POST /yaml-template HTTP/1.1" 200 -
+2021-12-18 19:44:59,181 INFO werkzeug Thread-3 : 127.0.0.1 - - [18/Dec/2021 19:44:59] "[33mPOST /add-jaml HTTP/1.1[0m" 404 -
+2021-12-18 19:45:06,051 INFO werkzeug Thread-4 : 127.0.0.1 - - [18/Dec/2021 19:45:06] "[33mPOST /add-jaml HTTP/1.1[0m" 404 -
+2021-12-18 19:45:17,136 INFO werkzeug Thread-5 : 127.0.0.1 - - [18/Dec/2021 19:45:17] "POST /yaml-template HTTP/1.1" 200 -
+2021-12-18 19:45:22,751 INFO werkzeug Thread-6 : 127.0.0.1 - - [18/Dec/2021 19:45:22] "POST /yaml-template HTTP/1.1" 200 -
+2021-12-18 19:45:29,445 INFO werkzeug Thread-7 : 127.0.0.1 - - [18/Dec/2021 19:45:29] "POST /yaml-template HTTP/1.1" 200 -
+2021-12-18 19:50:51,674 INFO werkzeug MainThread :  * Detected change in 'C:\\Users\\User\\PycharmProjects\\API_COURSE\\app\\json_parser.py', reloading

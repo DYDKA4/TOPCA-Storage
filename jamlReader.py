@@ -13,10 +13,10 @@ def list_dict(dicts):
             print("value:\t" + str(value))
 
 
-with open('jamlExamples/Using-Relationship-Templat-of-type-AttachesTo.yaml') as f:
+with open('jamlExamples/Multiple Block Storage attached to different Servers.yaml', encoding='utf-8') as f:
     templates = yaml.safe_load(f)
 
-with open('jamlExamples/Using-Relationship-Templat-of-type-AttachesTo.json', 'w') as f:
+with open('jamlExamples/Multiple Block Storage attached to different Servers.json', 'w') as f:
     f.write(str(json.dumps(templates)))
 
 print(list_dict(templates))

@@ -53,6 +53,8 @@ def add_in_vertex(session, vertex_name, name_of_key_value, key_value, amount):
     # add into vertex value
     result = session.execute(f'INSERT VERTEX {vertex_name} ({name_of_key_value}) VALUES {amount}'
                              f':({key_value});')
+    print(f'INSERT VERTEX {vertex_name} ({name_of_key_value}) VALUES {amount}'
+          f':({key_value});')
     assert result.is_succeeded(), result.error_msg()
     return
 
@@ -60,7 +62,8 @@ def add_in_vertex(session, vertex_name, name_of_key_value, key_value, amount):
 def add_edge(session, edge_name, edge_params, source_vertex, destination_vertex, data):
     result = session.execute(f'INSERT EDGE {edge_name}({edge_params})'
                              f' VALUE {source_vertex}->{destination_vertex}:({data})')
-
+    print(f'INSERT EDGE {edge_name}({edge_params})'
+                             f' VALUE {source_vertex}->{destination_vertex}:({data})')
     assert result.is_succeeded(), result.error_msg()
     return
 
@@ -132,11 +135,35 @@ def find_server(cpu, ram, mem, owner):
     return answer
 
 
-def add_host_jaml(cpu, ram, mem):
+def name_to_index(rename, data):
+    for node in data:
+        node[0] = rename[node[0]]
+        if len(node) > 2:
+            node[2][0] = rename[node[2][0]]
+    return data
+
+
+def yaml_deploy(data):
+    """ программа за два прохода создает щаблон в бд,
+    за первый проход она размещается все узлы в бд, за второй создаёт соотвествующие связи
+    """
     session = chose_of_space()
-    # search for an existing user
-    destination_vertex = number_of_entities(session, config.NameOfComputeVertex)
-    destination_vertex = f'"{config.NameOfComputeVertex}{destination_vertex}"'
-    add_in_vertex(session, config.NameOfComputeVertex, config.NameOfKeyValueServer, f'{cpu},"{ram}","{mem}"',
-                  destination_vertex)
+    rename = {}
+    for node in data:
+        name = node[0]
+        type = node[1]
+        name = '"' + name + '"'
+        id = number_of_entities(session, 'node')
+        rename[node[0]] = f'node{id}'
+        add_in_vertex(session, 'node', 'name', name, f'"node{id}"')
+
+    data = name_to_index(rename, data)
+
+    for node in data:
+        source = '"' + node[0] + '"'
+        if len(node) > 2:
+            destination = '"' + node[2][0] + '"'
+            link_type = node[2][1]
+            add_edge(session, link_type, '', source, destination, '')
+
     session.release()

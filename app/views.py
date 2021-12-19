@@ -9,7 +9,8 @@ from app import json_parser
 def yaml_add():
     json_results = request.get_json(force=True)
     data = json_parser.parser(json_results)
-    communication_with_nebula.yaml_deploy(data)
+    print(data)
+    # communication_with_nebula.yaml_deploy(data)
     print()
     return '''
               OK'''

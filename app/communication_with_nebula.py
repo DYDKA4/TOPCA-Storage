@@ -139,7 +139,11 @@ def name_to_index(rename, data):
     for node in data:
         node[0] = rename[node[0]]
         if len(node) > 2:
-            node[2][0] = rename[node[2][0]]
+            if type(node[2]) == list:
+                for link in node[2]:
+                    link[0] = rename[link[0]]
+            else:
+                node[2][0] = rename[node[2][0]]
     return data
 
 
@@ -151,19 +155,24 @@ def yaml_deploy(data):
     rename = {}
     for node in data:
         name = node[0]
-        type = node[1]
+        type_of_node = node[1]
         name = '"' + name + '"'
         id = number_of_entities(session, 'node')
         rename[node[0]] = f'node{id}'
         add_in_vertex(session, 'node', 'name', name, f'"node{id}"')
-
     data = name_to_index(rename, data)
-
     for node in data:
         source = '"' + node[0] + '"'
         if len(node) > 2:
-            destination = '"' + node[2][0] + '"'
-            link_type = node[2][1]
-            add_edge(session, link_type, '', source, destination, '')
+            print(node[2])
+            if type(node[2]) == list:
+                for link in node[2]:
+                    destination = '"' + link[0] + '"'
+                    link_type = link[1]
+                    add_edge(session, link_type, '', source, destination, '')
+            else:
+                destination = '"' + node[2][0] + '"'
+                link_type = node[2][1]
+                add_edge(session, link_type, '', source, destination, '')
 
     session.release()

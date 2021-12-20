@@ -49,12 +49,31 @@ def is_already_recorded(session, vertex_name, name_of_key_value, key_value):
     return result
 
 
+def create_vertex_if_nox_exist(session, type_of_node):
+    result = session.execute(f'CREATE TAG IF NOT EXISTS {type_of_node} (name fixed_string(256) NOT NULL)')
+    # print(f'CREATE TAG IF NOT EXISTS {type_of_node} (name fixed_string(256) NOT NULL)')
+    assert result.is_succeeded(), result.error_msg()
+    result = session.execute(f'CREATE TAG INDEX IF NOT EXISTS Index{type_of_node} on {type_of_node}(name)')
+    assert result.is_succeeded(), result.error_msg()
+    return
+
+
 def add_in_vertex(session, vertex_name, name_of_key_value, key_value, amount):
     # add into vertex value
     result = session.execute(f'INSERT VERTEX {vertex_name} ({name_of_key_value}) VALUES {amount}'
                              f':({key_value});')
     print(f'INSERT VERTEX {vertex_name} ({name_of_key_value}) VALUES {amount}'
           f':({key_value});')
+    assert result.is_succeeded(), result.error_msg()
+    return
+
+
+def create_edge_if_nox_exist(session, type_of_link):
+    result = session.execute(f'CREATE EDGE IF NOT EXISTS {type_of_link} ()')
+    # print(f'CREATE TAG IF NOT EXISTS {type_of_link} ()')
+    assert result.is_succeeded(), result.error_msg()
+    result = session.execute(f'CREATE EDGE INDEX IF NOT EXISTS Index{type_of_link} on {type_of_link}()')
+    print(f'CREATE EDGE INDEX IF NOT EXISTS Index{type_of_link} on {type_of_link}()')
     assert result.is_succeeded(), result.error_msg()
     return
 
@@ -141,9 +160,9 @@ def name_to_index(rename, data):
         if len(node) > 2:
             if type(node[2]) == list:
                 for link in node[2]:
-                    link[0] = rename[link[0]]
+                    link[1] = rename[link[1]]
             else:
-                node[2][0] = rename[node[2][0]]
+                node[2][1] = rename[node[2][1]]
     return data
 
 
@@ -157,22 +176,27 @@ def yaml_deploy(data):
         name = node[0]
         type_of_node = node[1]
         name = '"' + name + '"'
-        id = number_of_entities(session, 'node')
-        rename[node[0]] = f'node{id}'
-        # add_in_vertex(session, 'node', 'name', name, f'"node{id}"')
+        vid = number_of_entities(session, type_of_node)
+        rename[node[0]] = type_of_node + str(vid)
+        create_vertex_if_nox_exist(session, type_of_node)
+        add_in_vertex(session, type_of_node, 'name', name, f'"{type_of_node}{vid}"')
+    print(data)
+    print(rename)
     data = name_to_index(rename, data)
+    print(data)
     for node in data:
         source = '"' + node[0] + '"'
         if len(node) > 2:
-            print(node[2])
             if type(node[2]) == list:
                 for link in node[2]:
-                    destination = '"' + link[0] + '"'
-                    link_type = link[1]
-                    # add_edge(session, link_type, '', source, destination, '')
+                    destination = '"' + link[1] + '"'
+                    link_type = link[0]
+                    create_edge_if_nox_exist(session, link_type)
+                    add_edge(session, link_type, '', source, destination, '')
             else:
-                destination = '"' + node[2][0] + '"'
-                link_type = node[2][1]
-                # add_edge(session, link_type, '', source, destination, '')
+                destination = '"' + node[2][1] + '"'
+                link_type = node[2][0]
+                create_edge_if_nox_exist(session, link_type)
+                add_edge(session, link_type, '', source, destination, '')
     print(data)
     session.release()

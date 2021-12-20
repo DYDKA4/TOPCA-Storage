@@ -1,0 +1,39 @@
+2021-12-20 16:51:53,749 WARNING werkzeug MainThread :  * Debugger is active!
+2021-12-20 16:51:53,749 INFO werkzeug MainThread :  * Debugger PIN: 715-912-110
+2021-12-20 16:51:53,927 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2021-12-20 16:51:54,025 INFO werkzeug Thread-2 : 127.0.0.1 - - [20/Dec/2021 16:51:54] "[35m[1mPOST /yaml-template HTTP/1.1[0m" 500 -
+2021-12-20 16:52:02,541 INFO root Thread-3 : Get connection to ('10.100.151.128', 9669)
+2021-12-20 16:52:02,648 INFO werkzeug Thread-3 : 127.0.0.1 - - [20/Dec/2021 16:52:02] "[35m[1mPOST /yaml-template HTTP/1.1[0m" 500 -
+2021-12-20 16:52:37,359 INFO root Thread-4 : Get connection to ('10.100.151.128', 9669)
+2021-12-20 16:52:37,630 INFO werkzeug Thread-4 : 127.0.0.1 - - [20/Dec/2021 16:52:37] "POST /yaml-template HTTP/1.1" 200 -
+2021-12-20 16:57:38,699 INFO root Thread-5 : Get connection to ('10.100.151.128', 9669)
+2021-12-20 16:57:38,755 INFO werkzeug Thread-5 : 127.0.0.1 - - [20/Dec/2021 16:57:38] "[35m[1mPOST /yaml-template HTTP/1.1[0m" 500 -
+2021-12-20 16:57:41,174 INFO root Thread-6 : Get connection to ('10.100.151.128', 9669)
+2021-12-20 16:57:41,213 INFO werkzeug Thread-6 : 127.0.0.1 - - [20/Dec/2021 16:57:41] "[35m[1mPOST /yaml-template HTTP/1.1[0m" 500 -
+2021-12-20 16:57:43,557 INFO root Thread-7 : Get connection to ('10.100.151.128', 9669)
+2021-12-20 16:57:43,646 INFO werkzeug Thread-7 : 127.0.0.1 - - [20/Dec/2021 16:57:43] "[35m[1mPOST /yaml-template HTTP/1.1[0m" 500 -
+2021-12-20 16:57:45,715 INFO root Thread-8 : Get connection to ('10.100.151.128', 9669)
+2021-12-20 16:57:45,802 INFO werkzeug Thread-8 : 127.0.0.1 - - [20/Dec/2021 16:57:45] "[35m[1mPOST /yaml-template HTTP/1.1[0m" 500 -
+2021-12-20 16:57:51,940 INFO root Thread-9 : Get connection to ('10.100.151.128', 9669)
+2021-12-20 16:57:52,031 INFO werkzeug Thread-9 : 127.0.0.1 - - [20/Dec/2021 16:57:52] "[35m[1mPOST /yaml-template HTTP/1.1[0m" 500 -
+2021-12-20 16:57:53,702 INFO root Thread-10 : Get connection to ('10.100.151.128', 9669)
+2021-12-20 16:57:53,838 INFO werkzeug Thread-10 : 127.0.0.1 - - [20/Dec/2021 16:57:53] "[35m[1mPOST /yaml-template HTTP/1.1[0m" 500 -
+2021-12-20 16:57:56,138 INFO root Thread-11 : Get connection to ('10.100.151.128', 9669)
+2021-12-20 16:57:56,259 INFO werkzeug Thread-11 : 127.0.0.1 - - [20/Dec/2021 16:57:56] "[35m[1mPOST /yaml-template HTTP/1.1[0m" 500 -
+2021-12-20 16:58:00,750 INFO root Thread-12 : Get connection to ('10.100.151.128', 9669)
+2021-12-20 16:58:00,863 INFO werkzeug Thread-12 : 127.0.0.1 - - [20/Dec/2021 16:58:00] "[35m[1mPOST /yaml-template HTTP/1.1[0m" 500 -
+2021-12-20 16:58:02,408 INFO werkzeug Thread-13 : 127.0.0.1 - - [20/Dec/2021 16:58:02] "[35m[1mPOST /yaml-template HTTP/1.1[0m" 500 -
+2021-12-20 16:58:03,508 INFO werkzeug Thread-14 : 127.0.0.1 - - [20/Dec/2021 16:58:03] "[35m[1mPOST /yaml-template HTTP/1.1[0m" 500 -
+2021-12-20 16:58:07,257 INFO werkzeug Thread-15 : 127.0.0.1 - - [20/Dec/2021 16:58:07] "[35m[1mPOST /yaml-template HTTP/1.1[0m" 500 -
+2021-12-20 16:58:08,378 INFO werkzeug Thread-16 : 127.0.0.1 - - [20/Dec/2021 16:58:08] "[35m[1mPOST /yaml-template HTTP/1.1[0m" 500 -
+2021-12-20 16:58:56,699 INFO werkzeug Thread-17 : 127.0.0.1 - - [20/Dec/2021 16:58:56] "[35m[1mPOST /yaml-template HTTP/1.1[0m" 500 -
+2021-12-20 16:59:10,266 ERROR root MainThread : The connection using by someone, but now want to close it
+2021-12-20 16:59:10,267 ERROR root MainThread : The connection using by someone, but now want to close it
+2021-12-20 16:59:10,267 ERROR root MainThread : The connection using by someone, but now want to close it
+2021-12-20 16:59:10,267 ERROR root MainThread : The connection using by someone, but now want to close it
+2021-12-20 16:59:10,267 ERROR root MainThread : The connection using by someone, but now want to close it
+2021-12-20 16:59:10,267 ERROR root MainThread : The connection using by someone, but now want to close it
+2021-12-20 16:59:10,267 ERROR root MainThread : The connection using by someone, but now want to close it
+2021-12-20 16:59:10,267 ERROR root MainThread : The connection using by someone, but now want to close it
+2021-12-20 16:59:10,267 ERROR root MainThread : The connection using by someone, but now want to close it
+2021-12-20 16:59:10,267 ERROR root MainThread : The connection using by someone, but now want to close it

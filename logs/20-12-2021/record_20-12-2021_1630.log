@@ -1,0 +1,22 @@
+2021-12-20 16:30:36,648 INFO werkzeug MainThread :  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2021-12-20 16:30:36,650 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-20 16:30:36,810 WARNING werkzeug MainThread :  * Debugger is active!
+2021-12-20 16:30:36,810 INFO werkzeug MainThread :  * Debugger PIN: 715-912-110
+2021-12-20 16:30:38,730 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2021-12-20 16:30:38,803 INFO werkzeug Thread-2 : 127.0.0.1 - - [20/Dec/2021 16:30:38] "POST /yaml-template HTTP/1.1" 200 -
+2021-12-20 16:31:29,270 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/communication_with_nebula.py', reloading
+2021-12-20 16:31:29,294 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-20 16:33:10,306 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-20 16:36:08,053 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-20 16:36:19,350 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-20 16:40:58,965 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-20 16:41:11,226 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-20 16:42:36,188 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-20 16:42:45,431 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-20 16:42:57,725 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-20 16:44:53,957 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-20 16:45:04,431 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-20 16:47:08,652 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-20 16:48:13,378 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-20 16:49:02,022 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-20 16:51:53,599 INFO werkzeug MainThread :  * Restarting with stat

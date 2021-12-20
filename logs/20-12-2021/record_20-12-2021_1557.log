@@ -7,3 +7,8 @@
 2021-12-20 15:57:29,686 INFO werkzeug MainThread :  * Debugger PIN: 715-912-110
 2021-12-20 15:57:39,047 INFO werkzeug Thread-2 : 127.0.0.1 - - [20/Dec/2021 15:57:39] "POST /yaml-template HTTP/1.1" 200 -
 2021-12-20 15:57:54,258 INFO werkzeug Thread-3 : 127.0.0.1 - - [20/Dec/2021 15:57:54] "POST /yaml-template HTTP/1.1" 200 -
+2021-12-20 16:19:54,375 INFO werkzeug Thread-4 : 127.0.0.1 - - [20/Dec/2021 16:19:54] "POST /yaml-template HTTP/1.1" 200 -
+2021-12-20 16:20:56,333 INFO werkzeug Thread-5 : 127.0.0.1 - - [20/Dec/2021 16:20:56] "POST /yaml-template HTTP/1.1" 200 -
+2021-12-20 16:21:10,006 INFO werkzeug Thread-6 : 127.0.0.1 - - [20/Dec/2021 16:21:10] "POST /yaml-template HTTP/1.1" 200 -
+2021-12-20 16:21:32,481 INFO werkzeug Thread-7 : 127.0.0.1 - - [20/Dec/2021 16:21:32] "POST /yaml-template HTTP/1.1" 200 -
+2021-12-20 16:21:32,559 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/views.py', reloading

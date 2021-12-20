@@ -20,3 +20,10 @@
 2021-12-20 17:17:01,952 INFO werkzeug Thread-3 : 127.0.0.1 - - [20/Dec/2021 17:17:01] "POST /yaml-template HTTP/1.1" 200 -
 2021-12-20 17:18:16,371 INFO root Thread-4 : Get connection to ('10.100.151.128', 9669)
 2021-12-20 17:18:16,483 INFO werkzeug Thread-4 : 127.0.0.1 - - [20/Dec/2021 17:18:16] "POST /yaml-template HTTP/1.1" 200 -
+2021-12-20 17:37:48,259 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/jamlReader.py', reloading
+2021-12-20 17:37:48,288 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-20 17:39:55,785 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-20 17:40:23,211 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-20 17:41:27,016 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-20 17:43:16,127 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-20 17:44:31,047 INFO werkzeug MainThread :  * Restarting with stat

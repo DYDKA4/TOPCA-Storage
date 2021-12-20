@@ -13,10 +13,10 @@ def list_dict(dicts):
             print("value:\t" + str(value))
 
 
-with open('jamlExamples/WordPress + MySQL, single instance.yaml', encoding='utf-8') as f:
+with open('jamlExamples/WebServer-DBMS 2: Nodejs with PayPal Sample App and MongoDB on separate instances.yaml', encoding='utf-8') as f:
     templates = yaml.safe_load(f)
 
-with open('jamlExamples/WordPress + MySQL, single instance.json', 'w') as f:
+with open('jamlExamples/WebServer-DBMS 2: Nodejs with PayPal Sample App and MongoDB on separate instances.json', 'w') as f:
     f.write(str(json.dumps(templates)))
 
 print(list_dict(templates))

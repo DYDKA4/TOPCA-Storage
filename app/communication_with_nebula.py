@@ -176,10 +176,11 @@ def yaml_deploy(data):
         name = node[0]
         type_of_node = node[1]
         name = '"' + name + '"'
+        create_vertex_if_nox_exist(session, type_of_node)
         vid = number_of_entities(session, type_of_node)
         rename[node[0]] = type_of_node + str(vid)
-        create_vertex_if_nox_exist(session, type_of_node)
         add_in_vertex(session, type_of_node, 'name', name, f'"{type_of_node}{vid}"')
+
     print(data)
     print(rename)
     data = name_to_index(rename, data)

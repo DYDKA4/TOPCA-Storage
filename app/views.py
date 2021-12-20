@@ -3,6 +3,7 @@ from app import app
 from datetime import datetime
 from app import communication_with_nebula
 from app import json_parser
+import json
 
 
 @app.route('/yaml-template', methods=['POST'])

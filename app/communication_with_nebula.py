@@ -159,7 +159,7 @@ def yaml_deploy(data):
         name = '"' + name + '"'
         id = number_of_entities(session, 'node')
         rename[node[0]] = f'node{id}'
-        add_in_vertex(session, 'node', 'name', name, f'"node{id}"')
+        # add_in_vertex(session, 'node', 'name', name, f'"node{id}"')
     data = name_to_index(rename, data)
     for node in data:
         source = '"' + node[0] + '"'
@@ -169,10 +169,10 @@ def yaml_deploy(data):
                 for link in node[2]:
                     destination = '"' + link[0] + '"'
                     link_type = link[1]
-                    add_edge(session, link_type, '', source, destination, '')
+                    # add_edge(session, link_type, '', source, destination, '')
             else:
                 destination = '"' + node[2][0] + '"'
                 link_type = node[2][1]
-                add_edge(session, link_type, '', source, destination, '')
-
+                # add_edge(session, link_type, '', source, destination, '')
+    print(data)
     session.release()

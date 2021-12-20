@@ -1,0 +1,25 @@
+2021-12-20 15:31:52,855 INFO werkzeug MainThread :  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2021-12-20 15:31:52,857 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-20 15:31:53,013 WARNING werkzeug MainThread :  * Debugger is active!
+2021-12-20 15:31:53,013 INFO werkzeug MainThread :  * Debugger PIN: 715-912-110
+2021-12-20 15:31:54,894 INFO werkzeug Thread-2 : 127.0.0.1 - - [20/Dec/2021 15:31:54] "POST /yaml-template HTTP/1.1" 200 -
+2021-12-20 15:32:01,100 INFO werkzeug Thread-3 : 127.0.0.1 - - [20/Dec/2021 15:32:01] "POST /yaml-template HTTP/1.1" 200 -
+2021-12-20 15:33:37,972 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/json_parser.py', reloading
+2021-12-20 15:33:38,007 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-20 15:34:44,773 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-20 15:35:00,076 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-20 15:35:18,401 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-20 15:37:13,541 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-20 15:37:35,905 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-20 15:38:11,412 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-20 15:38:39,844 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-20 15:38:59,194 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-20 15:39:22,584 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-20 15:39:36,905 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-20 15:41:22,043 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-20 15:42:45,970 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-20 15:42:54,229 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-20 15:43:50,945 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-20 15:49:58,219 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-20 15:52:22,634 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-20 15:52:53,101 INFO werkzeug MainThread :  * Restarting with stat

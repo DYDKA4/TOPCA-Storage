@@ -1,0 +1,1 @@
+[['wordpress', 'WordPress', [['host', 'webserver'], ['database_endpoint', 'mysql_database']]], ['mysql_database', 'Database', [['host', 'mysql_dbms']]], ['mysql_dbms', 'DBMS', [['host', 'server']]], ['webserver', 'WebServer', [['host', 'server']]], ['server', 'Compute']]

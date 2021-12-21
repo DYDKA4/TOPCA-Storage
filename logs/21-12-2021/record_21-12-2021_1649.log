@@ -1229,3 +1229,9 @@
 2021-12-21 16:52:06,014 INFO root Thread-3 : Get connection to ('10.100.151.128', 9669)
 2021-12-21 16:52:06,076 INFO root Thread-3 : Get connection to ('10.100.151.128', 9669)
 2021-12-21 16:52:06,137 INFO werkzeug Thread-3 : 127.0.0.1 - - [21/Dec/2021 16:52:06] "POST /yaml-template HTTP/1.1" 200 -
+2021-12-21 16:54:04,908 INFO root Thread-4 : Get connection to ('10.100.151.128', 9669)
+2021-12-21 16:54:04,981 INFO root Thread-4 : Get connection to ('10.100.151.128', 9669)
+2021-12-21 16:54:06,145 INFO root Thread-4 : Get connection to ('10.100.151.128', 9669)
+2021-12-21 16:54:06,221 INFO root Thread-4 : Get connection to ('10.100.151.128', 9669)
+2021-12-21 16:54:06,345 INFO werkzeug Thread-4 : 127.0.0.1 - - [21/Dec/2021 16:54:06] "POST /yaml-template HTTP/1.1" 200 -
+2021-12-21 17:32:35,140 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/tests/test_yaml_add.py', reloading

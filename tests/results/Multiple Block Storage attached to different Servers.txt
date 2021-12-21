@@ -1,0 +1,1 @@
+[['my_server', 'Compute', ['my_storage', 'AttachesTo']], ['my_storage', 'BlockStorage'], ['my_server2', 'Compute', ['my_storage2', 'AttachesTo']], ['my_storage2', 'BlockStorage']]

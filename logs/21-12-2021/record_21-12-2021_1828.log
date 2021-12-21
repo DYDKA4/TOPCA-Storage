@@ -1,0 +1,3 @@
+2021-12-21 18:28:04,158 WARNING werkzeug MainThread :  * Debugger is active!
+2021-12-21 18:28:04,158 INFO werkzeug MainThread :  * Debugger PIN: 360-797-176
+2021-12-21 18:30:48,554 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/jamlReader.py', reloading

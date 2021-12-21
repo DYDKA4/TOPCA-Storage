@@ -1,0 +1,1 @@
+[['paypal_pizzastore', 'PayPalPizzaStore', [['host', 'nodejs'], ['database_connection', 'mongo_db']]], ['nodejs', 'Nodejs', [['host', 'app_server']]], ['mongo_db', 'Database', [['host', 'mongo_dbms']]], ['mongo_dbms', 'DBMS', [['host', 'mongo_server']]], ['mongo_server', 'Compute'], ['app_server', 'Compute']]

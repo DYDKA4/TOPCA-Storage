@@ -1,0 +1,6 @@
+2021-12-21 18:07:01,505 WARNING werkzeug MainThread :  * Debugger is active!
+2021-12-21 18:07:01,505 INFO werkzeug MainThread :  * Debugger PIN: 360-797-176
+2021-12-21 18:07:10,570 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/tests/make_results.py', reloading
+2021-12-21 18:07:10,845 WARNING werkzeug MainThread :  * Debugger is active!
+2021-12-21 18:07:10,846 INFO werkzeug MainThread :  * Debugger PIN: 360-797-176
+2021-12-21 18:08:19,259 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/tests/make_results.py', reloading

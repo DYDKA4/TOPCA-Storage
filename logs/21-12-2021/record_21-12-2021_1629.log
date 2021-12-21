@@ -1,0 +1,33 @@
+2021-12-21 16:29:47,233 INFO werkzeug MainThread :  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2021-12-21 16:29:47,235 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-21 16:29:47,390 WARNING werkzeug MainThread :  * Debugger is active!
+2021-12-21 16:29:47,390 INFO werkzeug MainThread :  * Debugger PIN: 360-797-176
+2021-12-21 16:29:49,128 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2021-12-21 16:29:49,166 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2021-12-21 16:29:49,184 INFO werkzeug Thread-2 : 127.0.0.1 - - [21/Dec/2021 16:29:49] "[35m[1mPOST /yaml-template HTTP/1.1[0m" 500 -
+2021-12-21 16:29:56,416 INFO root Thread-3 : Get connection to ('10.100.151.128', 9669)
+2021-12-21 16:29:56,444 INFO root Thread-3 : Get connection to ('10.100.151.128', 9669)
+2021-12-21 16:29:57,616 INFO root Thread-3 : Get connection to ('10.100.151.128', 9669)
+2021-12-21 16:29:58,649 INFO root Thread-3 : Get connection to ('10.100.151.128', 9669)
+2021-12-21 16:29:58,670 INFO werkzeug Thread-3 : 127.0.0.1 - - [21/Dec/2021 16:29:58] "POST /yaml-template HTTP/1.1" 200 -
+2021-12-21 16:30:47,986 INFO root Thread-4 : Get connection to ('10.100.151.128', 9669)
+2021-12-21 16:30:48,027 INFO root Thread-4 : Get connection to ('10.100.151.128', 9669)
+2021-12-21 16:30:48,045 INFO werkzeug Thread-4 : 127.0.0.1 - - [21/Dec/2021 16:30:48] "[35m[1mPOST /yaml-template HTTP/1.1[0m" 500 -
+2021-12-21 16:31:21,771 INFO root Thread-5 : Get connection to ('10.100.151.128', 9669)
+2021-12-21 16:31:21,802 INFO root Thread-5 : Get connection to ('10.100.151.128', 9669)
+2021-12-21 16:31:22,956 INFO root Thread-5 : Get connection to ('10.100.151.128', 9669)
+2021-12-21 16:31:23,990 INFO root Thread-5 : Get connection to ('10.100.151.128', 9669)
+2021-12-21 16:31:24,010 INFO werkzeug Thread-5 : 127.0.0.1 - - [21/Dec/2021 16:31:24] "[35m[1mPOST /yaml-template HTTP/1.1[0m" 500 -
+2021-12-21 16:32:15,670 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/communication_with_nebula.py', reloading
+2021-12-21 16:32:15,701 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-21 16:32:53,162 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-21 16:33:16,538 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-21 16:34:11,180 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-21 16:35:24,963 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-21 16:38:45,903 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-21 16:40:05,810 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-21 16:42:12,014 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-21 16:43:55,073 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-21 16:46:00,238 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-21 16:47:43,269 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-21 16:49:30,369 INFO werkzeug MainThread :  * Restarting with stat

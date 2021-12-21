@@ -1,0 +1,12 @@
+2021-12-21 16:26:52,139 WARNING werkzeug MainThread :  * Debugger is active!
+2021-12-21 16:26:52,139 INFO werkzeug MainThread :  * Debugger PIN: 360-797-176
+2021-12-21 16:27:17,409 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2021-12-21 16:27:17,449 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2021-12-21 16:27:17,468 INFO werkzeug Thread-2 : 127.0.0.1 - - [21/Dec/2021 16:27:17] "[35m[1mPOST /yaml-template HTTP/1.1[0m" 500 -
+2021-12-21 16:27:50,917 INFO root Thread-3 : Get connection to ('10.100.151.128', 9669)
+2021-12-21 16:27:50,993 INFO root Thread-3 : Get connection to ('10.100.151.128', 9669)
+2021-12-21 16:27:52,178 INFO root Thread-3 : Get connection to ('10.100.151.128', 9669)
+2021-12-21 16:27:53,214 INFO root Thread-3 : Get connection to ('10.100.151.128', 9669)
+2021-12-21 16:27:53,229 INFO werkzeug Thread-3 : 127.0.0.1 - - [21/Dec/2021 16:27:53] "[35m[1mPOST /yaml-template HTTP/1.1[0m" 500 -
+2021-12-21 16:28:19,926 ERROR root MainThread : The connection using by someone, but now want to close it
+2021-12-21 16:28:19,926 ERROR root MainThread : The connection using by someone, but now want to close it

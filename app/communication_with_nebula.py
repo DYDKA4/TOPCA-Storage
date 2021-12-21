@@ -2,6 +2,7 @@
 from nebula2.gclient.net import ConnectionPool
 from nebula2.Config import Config
 import config
+import time
 
 Config = Config()
 Config.max_connection_pool_size = 10
@@ -37,6 +38,16 @@ def number_of_entities(session, vertex_name):
         return amount + 1
     else:
         return 1
+
+
+def is_updated(session, vertex_name):
+    result = session.execute(f'LOOKUP ON {vertex_name}')
+    while not result.is_succeeded():
+        print(result.is_succeeded(), result.error_msg())
+        result = session.execute(f'LOOKUP ON {vertex_name}')
+        session.release()
+        session = chose_of_space()
+    return session
 
 
 def is_already_recorded(session, vertex_name, name_of_key_value, key_value):
@@ -172,19 +183,40 @@ def yaml_deploy(data):
     """
     session = chose_of_space()
     rename = {}
+
+    for node in data:
+        type_of_node = node[1]
+        create_vertex_if_nox_exist(session, type_of_node)
+    session.release()
+
+    session = chose_of_space()
     for node in data:
         name = node[0]
         type_of_node = node[1]
         name = '"' + name + '"'
-        create_vertex_if_nox_exist(session, type_of_node)
+        session = is_updated(session, type_of_node)
         vid = number_of_entities(session, type_of_node)
         rename[node[0]] = type_of_node + str(vid)
         add_in_vertex(session, type_of_node, 'name', name, f'"{type_of_node}{vid}"')
 
-    print(data)
-    print(rename)
     data = name_to_index(rename, data)
-    print(data)
+    session.release()
+
+    time.sleep(1)
+
+    session = chose_of_space()
+    for node in data:
+        if len(node) > 2:
+            if type(node[2]) == list:
+                for link in node[2]:
+                    link_type = link[0]
+                    create_edge_if_nox_exist(session, link_type)
+            else:
+                link_type = node[2][0]
+                create_edge_if_nox_exist(session, link_type)
+    session.release()
+
+    session = chose_of_space()
     for node in data:
         source = '"' + node[0] + '"'
         if len(node) > 2:
@@ -192,12 +224,12 @@ def yaml_deploy(data):
                 for link in node[2]:
                     destination = '"' + link[1] + '"'
                     link_type = link[0]
-                    create_edge_if_nox_exist(session, link_type)
+                    session = is_updated(session, link_type)
                     add_edge(session, link_type, '', source, destination, '')
             else:
                 destination = '"' + node[2][1] + '"'
                 link_type = node[2][0]
-                create_edge_if_nox_exist(session, link_type)
+                session = is_updated(session, link_type)
                 add_edge(session, link_type, '', source, destination, '')
     print(data)
     session.release()

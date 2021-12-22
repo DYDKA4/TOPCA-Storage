@@ -1,0 +1,4 @@
+2021-12-19 15:01:11,003 WARNING werkzeug MainThread :  * Debugger is active!
+2021-12-19 15:01:11,007 INFO werkzeug MainThread :  * Debugger PIN: 959-477-946
+2021-12-19 15:01:11,528 INFO werkzeug Thread-1 :  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2021-12-19 15:02:17,882 INFO werkzeug MainThread :  * Detected change in 'C:\\Users\\User\\PycharmProjects\\API_COURSE\\app\\communication_with_nebula.py', reloading

@@ -1,0 +1,8 @@
+2021-12-20 00:07:28,980 WARNING werkzeug MainThread :  * Debugger is active!
+2021-12-20 00:07:28,983 INFO werkzeug MainThread :  * Debugger PIN: 959-477-946
+2021-12-20 00:07:29,473 INFO werkzeug Thread-1 :  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2021-12-20 00:07:55,612 INFO werkzeug MainThread :  * Detected change in 'C:\\Users\\User\\PycharmProjects\\API_COURSE\\app\\json_parser.py', reloading
+2021-12-20 00:07:56,141 WARNING werkzeug MainThread :  * Debugger is active!
+2021-12-20 00:07:56,145 INFO werkzeug MainThread :  * Debugger PIN: 959-477-946
+2021-12-20 00:07:56,612 INFO werkzeug Thread-1 :  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2021-12-20 00:08:09,125 INFO werkzeug MainThread :  * Detected change in 'C:\\Users\\User\\PycharmProjects\\API_COURSE\\app\\json_parser.py', reloading

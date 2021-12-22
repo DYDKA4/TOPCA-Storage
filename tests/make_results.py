@@ -2,6 +2,11 @@ import os
 from app import json_parser
 import json
 
+"""
+use to renew output results for unit tests 
+"""
+
+
 dir_name = "/home/tulin/PycharmProjects/pythonProject/jamlExamples/"
 destination = "/home/tulin/PycharmProjects/pythonProject/tests/results/"
 test = os.listdir(dir_name)

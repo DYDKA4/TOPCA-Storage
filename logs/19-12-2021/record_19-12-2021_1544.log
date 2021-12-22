@@ -1,0 +1,29 @@
+2021-12-19 15:44:06,801 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-19 15:44:07,521 WARNING werkzeug MainThread :  * Debugger is active!
+2021-12-19 15:44:07,524 INFO werkzeug MainThread :  * Debugger PIN: 959-477-946
+2021-12-19 15:44:07,990 INFO werkzeug Thread-1 :  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2021-12-19 15:44:18,810 INFO werkzeug MainThread :  * Detected change in 'C:\\Users\\User\\PycharmProjects\\API_COURSE\\app\\communication_with_nebula.py', reloading
+2021-12-19 15:44:18,833 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-19 15:44:19,339 WARNING werkzeug MainThread :  * Debugger is active!
+2021-12-19 15:44:19,343 INFO werkzeug MainThread :  * Debugger PIN: 959-477-946
+2021-12-19 15:44:19,811 INFO werkzeug Thread-1 :  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2021-12-19 15:44:29,031 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2021-12-19 15:44:29,870 INFO werkzeug Thread-2 : 127.0.0.1 - - [19/Dec/2021 15:44:29] "[35m[1mPOST /yaml-template HTTP/1.1[0m" 500 -
+2021-12-19 15:44:48,736 INFO werkzeug MainThread :  * Detected change in 'C:\\Users\\User\\PycharmProjects\\API_COURSE\\app\\communication_with_nebula.py', reloading
+2021-12-19 15:44:48,759 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-19 15:44:49,322 WARNING werkzeug MainThread :  * Debugger is active!
+2021-12-19 15:44:49,326 INFO werkzeug MainThread :  * Debugger PIN: 959-477-946
+2021-12-19 15:44:49,809 INFO werkzeug Thread-1 :  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2021-12-19 15:44:50,531 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2021-12-19 15:44:51,363 INFO werkzeug Thread-2 : 127.0.0.1 - - [19/Dec/2021 15:44:51] "[35m[1mPOST /yaml-template HTTP/1.1[0m" 500 -
+2021-12-19 15:45:12,780 INFO root Thread-3 : Get connection to ('10.100.151.128', 9669)
+2021-12-19 15:45:13,952 INFO werkzeug Thread-3 : 127.0.0.1 - - [19/Dec/2021 15:45:13] "[35m[1mPOST /yaml-template HTTP/1.1[0m" 500 -
+2021-12-19 15:45:54,477 INFO werkzeug MainThread :  * Detected change in 'C:\\Users\\User\\PycharmProjects\\API_COURSE\\app\\communication_with_nebula.py', reloading
+2021-12-19 15:45:54,498 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-19 15:49:05,559 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-19 15:49:14,658 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-19 15:50:26,322 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-19 15:51:17,235 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-19 15:52:47,568 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-19 15:53:02,614 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-19 15:55:11,314 INFO werkzeug MainThread :  * Restarting with stat

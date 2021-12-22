@@ -1,0 +1,12 @@
+2021-12-19 15:20:35,369 WARNING werkzeug MainThread :  * Debugger is active!
+2021-12-19 15:20:35,373 INFO werkzeug MainThread :  * Debugger PIN: 959-477-946
+2021-12-19 15:20:35,853 INFO werkzeug Thread-1 :  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2021-12-19 15:20:37,038 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2021-12-19 15:20:37,502 INFO werkzeug Thread-2 : 127.0.0.1 - - [19/Dec/2021 15:20:37] "[35m[1mPOST /yaml-template HTTP/1.1[0m" 500 -
+2021-12-19 15:20:54,158 INFO werkzeug MainThread :  * Detected change in 'C:\\Users\\User\\PycharmProjects\\API_COURSE\\app\\communication_with_nebula.py', reloading
+2021-12-19 15:20:54,727 WARNING werkzeug MainThread :  * Debugger is active!
+2021-12-19 15:20:54,731 INFO werkzeug MainThread :  * Debugger PIN: 959-477-946
+2021-12-19 15:20:55,255 INFO werkzeug Thread-1 :  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2021-12-19 15:20:56,595 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2021-12-19 15:20:57,044 INFO werkzeug Thread-2 : 127.0.0.1 - - [19/Dec/2021 15:20:57] "POST /yaml-template HTTP/1.1" 200 -
+2021-12-19 15:24:10,619 INFO werkzeug MainThread :  * Detected change in 'C:\\Users\\User\\PycharmProjects\\API_COURSE\\app\\communication_with_nebula.py', reloading

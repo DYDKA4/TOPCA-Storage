@@ -1,0 +1,14 @@
+2021-12-19 15:45:55,021 WARNING werkzeug MainThread :  * Debugger is active!
+2021-12-19 15:45:55,024 INFO werkzeug MainThread :  * Debugger PIN: 959-477-946
+2021-12-19 15:45:55,509 INFO werkzeug Thread-1 :  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2021-12-19 15:45:55,882 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2021-12-19 15:45:56,994 INFO werkzeug Thread-2 : 127.0.0.1 - - [19/Dec/2021 15:45:56] "POST /yaml-template HTTP/1.1" 200 -
+2021-12-19 15:47:48,571 INFO root Thread-4 : Get connection to ('10.100.151.128', 9669)
+2021-12-19 15:47:49,210 INFO werkzeug Thread-4 : 127.0.0.1 - - [19/Dec/2021 15:47:49] "POST /yaml-template HTTP/1.1" 200 -
+2021-12-19 15:47:51,739 INFO root Thread-5 : Get connection to ('10.100.151.128', 9669)
+2021-12-19 15:47:52,373 INFO werkzeug Thread-5 : 127.0.0.1 - - [19/Dec/2021 15:47:52] "POST /yaml-template HTTP/1.1" 200 -
+2021-12-19 15:47:53,869 INFO root Thread-6 : Get connection to ('10.100.151.128', 9669)
+2021-12-19 15:47:54,513 INFO werkzeug Thread-6 : 127.0.0.1 - - [19/Dec/2021 15:47:54] "POST /yaml-template HTTP/1.1" 200 -
+2021-12-19 15:47:55,942 INFO root Thread-7 : Get connection to ('10.100.151.128', 9669)
+2021-12-19 15:47:57,032 INFO werkzeug Thread-7 : 127.0.0.1 - - [19/Dec/2021 15:47:57] "POST /yaml-template HTTP/1.1" 200 -
+2021-12-19 15:49:05,537 INFO werkzeug MainThread :  * Detected change in 'C:\\Users\\User\\PycharmProjects\\API_COURSE\\app\\views.py', reloading

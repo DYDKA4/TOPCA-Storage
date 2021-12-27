@@ -1,0 +1,17 @@
+2021-12-27 16:21:59,744 INFO werkzeug MainThread :  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2021-12-27 16:21:59,745 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-27 16:21:59,900 WARNING werkzeug MainThread :  * Debugger is active!
+2021-12-27 16:21:59,900 INFO werkzeug MainThread :  * Debugger PIN: 123-483-832
+2021-12-27 16:22:01,752 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2021-12-27 16:22:01,778 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2021-12-27 16:22:01,871 INFO werkzeug Thread-2 : 127.0.0.1 - - [27/Dec/2021 16:22:01] "[35m[1mPOST /yaml-template HTTP/1.1[0m" 500 -
+2021-12-27 16:22:34,726 INFO root Thread-3 : Get connection to ('10.100.151.128', 9669)
+2021-12-27 16:22:34,799 INFO root Thread-3 : Get connection to ('10.100.151.128', 9669)
+2021-12-27 16:22:35,898 INFO root Thread-3 : Get connection to ('10.100.151.128', 9669)
+2021-12-27 16:22:35,980 INFO root Thread-3 : Get connection to ('10.100.151.128', 9669)
+2021-12-27 16:22:36,052 INFO werkzeug Thread-3 : 127.0.0.1 - - [27/Dec/2021 16:22:36] "[35m[1mPOST /yaml-template HTTP/1.1[0m" 500 -
+2021-12-27 16:23:07,558 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/yaml_parser.py', reloading
+2021-12-27 16:23:07,589 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-27 16:24:03,339 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-27 16:24:26,729 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-27 16:26:52,473 INFO werkzeug MainThread :  * Restarting with stat

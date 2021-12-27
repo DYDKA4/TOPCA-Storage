@@ -1,0 +1,28 @@
+2021-12-27 15:38:06,683 WARNING werkzeug MainThread :  * Debugger is active!
+2021-12-27 15:38:06,683 INFO werkzeug MainThread :  * Debugger PIN: 123-483-832
+2021-12-27 15:38:06,830 INFO werkzeug Thread-2 : 127.0.0.1 - - [27/Dec/2021 15:38:06] "POST /yaml-template HTTP/1.1" 200 -
+2021-12-27 15:38:17,115 INFO werkzeug MainThread :  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2021-12-27 15:38:17,118 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-27 15:38:17,293 WARNING werkzeug MainThread :  * Debugger is active!
+2021-12-27 15:38:17,294 INFO werkzeug MainThread :  * Debugger PIN: 123-483-832
+2021-12-27 15:38:19,375 INFO werkzeug Thread-2 : 127.0.0.1 - - [27/Dec/2021 15:38:19] "POST /yaml-template HTTP/1.1" 200 -
+2021-12-27 15:38:49,581 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/yaml_parser.py', reloading
+2021-12-27 15:38:49,608 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-27 15:38:49,768 WARNING werkzeug MainThread :  * Debugger is active!
+2021-12-27 15:38:49,768 INFO werkzeug MainThread :  * Debugger PIN: 123-483-832
+2021-12-27 15:38:50,037 INFO werkzeug Thread-2 : 127.0.0.1 - - [27/Dec/2021 15:38:50] "POST /yaml-template HTTP/1.1" 200 -
+2021-12-27 15:39:07,408 INFO werkzeug Thread-3 : 127.0.0.1 - - [27/Dec/2021 15:39:07] "POST /yaml-template HTTP/1.1" 200 -
+2021-12-27 15:40:02,524 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/yaml_parser.py', reloading
+2021-12-27 15:40:02,548 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-27 15:40:43,091 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-27 15:41:29,705 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-27 15:44:15,808 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-27 15:44:39,240 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-27 15:44:54,559 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-27 15:45:08,857 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-27 15:45:29,243 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-27 15:45:41,559 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-27 15:46:37,340 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-27 15:47:13,915 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-27 15:48:07,711 INFO werkzeug MainThread :  * Restarting with stat
+2021-12-27 15:50:25,197 INFO werkzeug MainThread :  * Restarting with stat

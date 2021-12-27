@@ -1,0 +1,8 @@
+2021-12-27 15:31:09,522 WARNING werkzeug MainThread :  * Debugger is active!
+2021-12-27 15:31:09,522 INFO werkzeug MainThread :  * Debugger PIN: 123-483-832
+2021-12-27 15:31:10,632 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2021-12-27 15:31:10,655 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2021-12-27 15:31:11,723 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2021-12-27 15:31:11,793 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2021-12-27 15:31:11,838 INFO werkzeug Thread-2 : 127.0.0.1 - - [27/Dec/2021 15:31:11] "POST /yaml-template HTTP/1.1" 200 -
+2021-12-27 15:32:09,094 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/views.py', reloading

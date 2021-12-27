@@ -1,0 +1,18 @@
+2021-12-27 15:45:09,011 WARNING werkzeug MainThread :  * Debugger is active!
+2021-12-27 15:45:09,012 INFO werkzeug MainThread :  * Debugger PIN: 123-483-832
+2021-12-27 15:45:10,198 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2021-12-27 15:45:10,218 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2021-12-27 15:45:10,300 INFO werkzeug Thread-2 : 127.0.0.1 - - [27/Dec/2021 15:45:10] "[35m[1mPOST /yaml-template HTTP/1.1[0m" 500 -
+2021-12-27 15:45:29,217 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/communication_with_nebula.py', reloading
+2021-12-27 15:45:29,400 WARNING werkzeug MainThread :  * Debugger is active!
+2021-12-27 15:45:29,400 INFO werkzeug MainThread :  * Debugger PIN: 123-483-832
+2021-12-27 15:45:30,084 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2021-12-27 15:45:30,105 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2021-12-27 15:45:30,184 INFO werkzeug Thread-2 : 127.0.0.1 - - [27/Dec/2021 15:45:30] "[35m[1mPOST /yaml-template HTTP/1.1[0m" 500 -
+2021-12-27 15:45:41,526 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/communication_with_nebula.py', reloading
+2021-12-27 15:45:41,717 WARNING werkzeug MainThread :  * Debugger is active!
+2021-12-27 15:45:41,717 INFO werkzeug MainThread :  * Debugger PIN: 123-483-832
+2021-12-27 15:45:42,230 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2021-12-27 15:45:42,252 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2021-12-27 15:45:42,329 INFO werkzeug Thread-2 : 127.0.0.1 - - [27/Dec/2021 15:45:42] "[35m[1mPOST /yaml-template HTTP/1.1[0m" 500 -
+2021-12-27 15:46:37,310 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/communication_with_nebula.py', reloading

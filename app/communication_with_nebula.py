@@ -170,14 +170,10 @@ def name_to_index(rename, data):
         node[0] = rename[node[0]]
         if len(node) > 2:
             print(node)
-            if type(node[2]) == list and node[2]:
+            if type(node[2]) == list and node[2][0]:
                 for link in node[2]:
-                    print(node[2])
-                    print(link, link in rename.keys())
-                    if link in rename.keys():
-                        link = rename[link]
-            else:
-                node[2][1] = rename[node[2][1]]
+                    print(link)
+                    link[1] = rename[link[1]]
     return data
 
 
@@ -189,17 +185,18 @@ def yaml_deploy(data):
     rename = {}
 
     for node in data:
-        type_of_node = node[1]
+        type_of_node = node[0]
         create_vertex_if_nox_exist(session, type_of_node)
     session.release()
 
     session = chose_of_space()
     for node in data:
-        name = node[0]
-        type_of_node = node[1]
+        name = node[0]  # Имя узла
+        type_of_node = node[1] # тип узла
         name = '"' + name + '"'
         session = is_updated(session, type_of_node)
         vid = number_of_entities(session, type_of_node)
+
         rename[node[0]] = type_of_node + str(vid)
         add_in_vertex(session, type_of_node, 'name', name, f'"{type_of_node}{vid}"')
 
@@ -212,29 +209,22 @@ def yaml_deploy(data):
     session = chose_of_space()
     for node in data:
         if len(node) > 2:
-            if type(node[2]) == list:
+            if type(node[2]) == list and node[2][0]:
                 for link in node[2]:
                     link_type = link[0]
                     create_edge_if_nox_exist(session, link_type)
-            else:
-                link_type = node[2][0]
-                create_edge_if_nox_exist(session, link_type)
     session.release()
 
     session = chose_of_space()
     for node in data:
         source = '"' + node[0] + '"'
         if len(node) > 2:
-            if type(node[2]) == list:
+            if type(node[2]) == list and node[2][0]:
                 for link in node[2]:
                     destination = '"' + link[1] + '"'
                     link_type = link[0]
                     session = is_updated(session, link_type)
                     add_edge(session, link_type, '', source, destination, '')
-            else:
-                destination = '"' + node[2][1] + '"'
-                link_type = node[2][0]
-                session = is_updated(session, link_type)
-                add_edge(session, link_type, '', source, destination, '')
+
     print(data)
     session.release()

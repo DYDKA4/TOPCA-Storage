@@ -21,9 +21,9 @@ def local_storage_parser(data):
     node = data.get('node')
     relationship = data.get('relationship')
     if type(relationship) == dict:
-        return [node, relationship.get('type')]
+        return [[relationship.get('type'), node]]
     else:
-        return [node, relationship]
+        return [[relationship, node]]
 
 
 def requirements_parser(data):
@@ -34,6 +34,7 @@ def requirements_parser(data):
     elif type(data) == list:
         for link in data:
             if 'local_storage' in link.keys():
+                print("LOCAL STORAGE")
                 return local_storage_parser(link)
             else:
                 for key in link:
@@ -49,7 +50,6 @@ def find_requirements(data):
     res = data.get('requirements')
     if res:
         # print(data.get('requirements'), '\n')
-
         return requirements_parser(res)
     return
 
@@ -76,16 +76,17 @@ def parser(data):  # возвращает массив где каждый эл�
         node_type = separation(node_type)  # упрощение типа ноды
         requirements = find_requirements(params)
         properties = find_properties(params)
-        print(properties)
+        # print(properties)
         ans += [name_of_node]
         ans += [node_type]
         if requirements:
             ans += [requirements]
         else:
-            ans += [[]]
+            ans += [[[]]]
         if properties:
             ans += [properties]
         else:
-            ans += [[]]
+            ans += [[[]]]
         answer += [ans]
+        print()
     return answer

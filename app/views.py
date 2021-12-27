@@ -13,7 +13,6 @@ def yaml_add():
     d = request.get_data()
     d = d.decode("utf-8")
     d = yaml.safe_load(d)
-    print(type(d))
     data = yaml_parser.parser(d)
     for i in data:
         print(i)

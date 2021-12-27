@@ -3,15 +3,32 @@ from app import app
 from datetime import datetime
 from app import communication_with_nebula
 from app import json_parser
+from app import yaml_parser
 import json
+import yaml
 
 
 @app.route('/yaml-template', methods=['POST'])
 def yaml_add():
+    d = request.get_data()
+    d = d.decode("utf-8")
+    d = yaml.safe_load(d)
+    print(type(d))
+    data = yaml_parser.parser(d)
+    for i in data:
+        print(i)
+    communication_with_nebula.yaml_deploy(data)
+    print()
+    return '''
+              OK'''
+
+
+@app.route('/json-template', methods=['POST'])
+def json_add():
     json_results = request.get_json(force=True)
     data = json_parser.parser(json_results)
     print(data)
-    # communication_with_nebula.yaml_deploy(data)
+    communication_with_nebula.yaml_deploy(data)
     print()
     return '''
               OK'''

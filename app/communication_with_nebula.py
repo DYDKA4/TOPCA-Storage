@@ -169,9 +169,13 @@ def name_to_index(rename, data):
     for node in data:
         node[0] = rename[node[0]]
         if len(node) > 2:
-            if type(node[2]) == list:
+            print(node)
+            if type(node[2]) == list and node[2]:
                 for link in node[2]:
-                    link[1] = rename[link[1]]
+                    print(node[2])
+                    print(link, link in rename.keys())
+                    if link in rename.keys():
+                        link = rename[link]
             else:
                 node[2][1] = rename[node[2][1]]
     return data
@@ -199,6 +203,7 @@ def yaml_deploy(data):
         rename[node[0]] = type_of_node + str(vid)
         add_in_vertex(session, type_of_node, 'name', name, f'"{type_of_node}{vid}"')
 
+    print(rename)
     data = name_to_index(rename, data)
     session.release()
 

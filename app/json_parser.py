@@ -1,14 +1,8 @@
 import dpath.util
 
-list_of_relationship_type = [
-    'DependsOn',
-    'HostedOn',
-    'ConnectsTo',
-    'AttachesTo',
-    'RoutesTo',
-    'binding',
-    'link'
-]
+"""
+json parser since 27 dec 2021 not updating
+"""
 
 
 def paths(some_dict, path=()):

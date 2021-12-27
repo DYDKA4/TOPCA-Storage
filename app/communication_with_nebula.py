@@ -189,6 +189,30 @@ def get_attributes_name(data):
     return result
 
 
+def get_attributes(data):
+    result = []
+    if data[0]:
+        for frame in data:
+            result += [frame[1]]
+    return result
+
+
+def form_name_key_value(data):
+    res = ''
+    for name in data:
+        res += name+', '
+    res = res[:-2]
+    return res
+
+
+def form_key_value(data):
+    result = ''
+    for key in data:
+        result += '"'+key+'"'+', '
+    result = result[:-2]
+    return result
+
+
 def yaml_deploy(data):
     """ программа за четыре прохода создает шаблон в бд,
     за первый проход она размещается все узлы в бд, за второй создаёт соотвествующие связи
@@ -207,12 +231,13 @@ def yaml_deploy(data):
     for node in data:
         name = node[0]  # Имя узла
         type_of_node = node[1]  # тип узла
-        name = '"' + name + '"'
+
         session = is_updated(session, type_of_node)
         vid = number_of_entities(session, type_of_node)
-
         rename[node[0]] = type_of_node + str(vid)
-        add_in_vertex(session, type_of_node, 'name', name, f'"{type_of_node}{vid}"')
+        name_key_value = form_name_key_value(['name']+get_attributes_name(node[3]))
+        key_value = form_key_value([name]+get_attributes(node[3]))
+        add_in_vertex(session, type_of_node, name_key_value, key_value, f'"{type_of_node}{vid}"')
 
     print(rename)
     data = name_to_index(rename, data)

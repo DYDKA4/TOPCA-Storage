@@ -10,3 +10,4 @@
 2021-12-27 16:27:50,513 INFO root Thread-3 : Get connection to ('10.100.151.128', 9669)
 2021-12-27 16:27:50,575 INFO root Thread-3 : Get connection to ('10.100.151.128', 9669)
 2021-12-27 16:27:50,603 INFO werkzeug Thread-3 : 127.0.0.1 - - [27/Dec/2021 16:27:50] "POST /yaml-template HTTP/1.1" 200 -
+2021-12-27 16:53:58,747 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/yaml_parser.py', reloading

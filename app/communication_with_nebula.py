@@ -177,8 +177,16 @@ def name_to_index(rename, data):
     return data
 
 
+def get_attributes_name(data):
+    result = []
+    if data[0]:
+        for frame in data:
+            result += [frame[0]]
+    return result
+
+
 def yaml_deploy(data):
-    """ программа за два прохода создает щаблон в бд,
+    """ программа за четыре прохода создает шаблон в бд,
     за первый проход она размещается все узлы в бд, за второй создаёт соотвествующие связи
     """
     session = chose_of_space()
@@ -186,7 +194,9 @@ def yaml_deploy(data):
 
     for node in data:
         type_of_node = node[0]
-        create_vertex_if_nox_exist(session, type_of_node)
+        attributes = get_attributes_name(node[3])
+        print(attributes)
+        create_vertex_if_nox_exist(session, type_of_node,)
     session.release()
 
     session = chose_of_space()

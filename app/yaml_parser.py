@@ -2,6 +2,13 @@ import dpath.util
 
 """
 yaml parser
+return 
+list of :
+            [name_node, type_node, [list_of_depends],[list_of_properties]]
+list_of_depends can be [] :
+            [type_of_link, connects_to_name_node], ...
+list_of_properties can be []:
+            undefined
 """
 
 

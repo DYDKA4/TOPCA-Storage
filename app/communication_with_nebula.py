@@ -60,10 +60,14 @@ def is_already_recorded(session, vertex_name, name_of_key_value, key_value):
     return result
 
 
-def create_vertex_if_nox_exist(session, type_of_node):
+def create_vertex_if_nox_exist(session, type_of_node, attributes):
     result = session.execute(f'CREATE TAG IF NOT EXISTS {type_of_node} (name fixed_string(256) NOT NULL)')
     # print(f'CREATE TAG IF NOT EXISTS {type_of_node} (name fixed_string(256) NOT NULL)')
     assert result.is_succeeded(), result.error_msg()
+    for attribute in attributes:
+        result = session.execute(f'ALTER TAG {type_of_node} ADD ({attribute} fixed_string(256) NULL)')
+        if result.is_succeeded() or result.error_msg() != 'Existed!':
+            assert result.is_succeeded(), result.error_msg()
     result = session.execute(f'CREATE TAG INDEX IF NOT EXISTS Index{type_of_node} on {type_of_node}(name)')
     assert result.is_succeeded(), result.error_msg()
     return
@@ -93,7 +97,7 @@ def add_edge(session, edge_name, edge_params, source_vertex, destination_vertex,
     result = session.execute(f'INSERT EDGE {edge_name}({edge_params})'
                              f' VALUE {source_vertex}->{destination_vertex}:({data})')
     print(f'INSERT EDGE {edge_name}({edge_params})'
-                             f' VALUE {source_vertex}->{destination_vertex}:({data})')
+          f' VALUE {source_vertex}->{destination_vertex}:({data})')
     assert result.is_succeeded(), result.error_msg()
     return
 
@@ -193,16 +197,16 @@ def yaml_deploy(data):
     rename = {}
 
     for node in data:
-        type_of_node = node[0]
+        type_of_node = node[1]
         attributes = get_attributes_name(node[3])
         print(attributes)
-        create_vertex_if_nox_exist(session, type_of_node,)
+        create_vertex_if_nox_exist(session, type_of_node, attributes)
     session.release()
 
     session = chose_of_space()
     for node in data:
         name = node[0]  # Имя узла
-        type_of_node = node[1] # тип узла
+        type_of_node = node[1]  # тип узла
         name = '"' + name + '"'
         session = is_updated(session, type_of_node)
         vid = number_of_entities(session, type_of_node)

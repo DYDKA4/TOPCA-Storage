@@ -10,11 +10,12 @@ import yaml
 
 @app.route('/yaml-template', methods=['POST'])
 def yaml_add():
+    pure_yaml = ''
     file = request.files['file']
     if file:
         file = file.read().decode("utf-8")
         file = yaml.safe_load(file)
-        print(file)
+        pure_yaml = file
     else:
         return '''
         400 Bad Request 
@@ -26,7 +27,9 @@ def yaml_add():
         for i in file:
             print(i)
         print(cluster_name)
-        communication_with_nebula.yaml_deploy(file)
+        print(pure_yaml)
+
+        communication_with_nebula.yaml_deploy(file, cluster_name, pure_yaml)
         print()
         return '''
         201 Created 

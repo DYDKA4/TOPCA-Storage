@@ -1,0 +1,19 @@
+2022-02-18 18:44:28,274 INFO werkzeug MainThread :  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2022-02-18 18:44:28,276 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-18 18:44:28,445 WARNING werkzeug MainThread :  * Debugger is active!
+2022-02-18 18:44:28,445 INFO werkzeug MainThread :  * Debugger PIN: 138-624-410
+2022-02-18 18:44:30,558 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-02-18 18:44:30,579 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-02-18 18:44:31,620 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-02-18 18:44:31,673 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-02-18 18:44:31,708 INFO werkzeug Thread-2 : 127.0.0.1 - - [18/Feb/2022 18:44:31] "[35m[1mPOST /yaml-template?cluster_name=LOL HTTP/1.1[0m" 500 -
+2022-02-18 18:45:01,811 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/communication_with_nebula.py', reloading
+2022-02-18 18:45:01,838 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-18 18:47:23,524 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-18 18:50:07,472 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-18 18:51:12,501 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-18 18:52:26,433 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-18 18:52:51,900 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-18 18:53:55,748 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-18 18:56:18,460 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-18 19:03:40,603 INFO werkzeug MainThread :  * Restarting with stat

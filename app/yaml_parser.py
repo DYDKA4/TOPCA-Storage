@@ -78,6 +78,11 @@ def find_capabilities(data):
     res = data.get('capabilities')
     if res:
         result = []
+        if type(res) == dict:
+            for key, value in res.items():
+                result += [key, find_properties(value)]
+
+        return result
     return
 
 def parser(data):  # возвращает массив где каждый элдемент сожержимт в себе информаию: имя, тип узла, завимости.
@@ -101,6 +106,10 @@ def parser(data):  # возвращает массив где каждый эл�
             ans += [[[]]]
         if properties:
             ans += [properties]
+        else:
+            ans += [[[]]]
+        if capabilities:
+            ans += [capabilities]
         else:
             ans += [[[]]]
         answer += [ans]

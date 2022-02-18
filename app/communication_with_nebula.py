@@ -40,6 +40,19 @@ def number_of_entities(session, vertex_name):
         return 1
 
 
+def is_unique_VID(session, vertex_name, VID):
+    # return true if unique else false
+    result = session.execute(f'LOOKUP ON {vertex_name}')
+    assert result.is_succeeded(), result.error_msg()
+    result = result.column_values('VertexID')
+    if result:
+        for index in result:
+            print(index.as_string(), VID, index.as_string() == VID)
+            if index.as_string() == VID:
+                return False
+    return True
+
+
 def is_updated(session, vertex_name):
     result = session.execute(f'LOOKUP ON {vertex_name}')
     while not result.is_succeeded():
@@ -229,7 +242,8 @@ def cluster_identification(session, cluster_name, pure_tosca_yaml, data):
     result = session.execute(f'CREATE EDGE INDEX IF NOT EXISTS Index_identification on identification()')
     assert result.is_succeeded(), result.error_msg()
     # проверка уникальности имени кластера
-
+    if not is_unique_VID(session, 'Cluster_name', cluster_name):
+        return session, '400 Bad Request cluster VID is not unique'
     # добавление описания и называния кластера
     result = session.execute(f'INSERT VERTEX Cluster_name (pure_yaml) VALUES "{cluster_name}"'
                              f':("{pure_tosca_yaml}");')
@@ -243,7 +257,7 @@ def cluster_identification(session, cluster_name, pure_tosca_yaml, data):
         link_type = 'identification'
         session = is_updated(session, link_type)
         add_edge(session, link_type, '', source, destination, '')
-    return session
+    return session, None
 
 
 def yaml_deploy(data, cluster_name, pure_tosca_yaml):
@@ -252,6 +266,10 @@ def yaml_deploy(data, cluster_name, pure_tosca_yaml):
     """
     session = chose_of_space()
     rename = {}
+
+    session, status = cluster_identification(session, cluster_name, pure_tosca_yaml, data, )
+    if status:
+        return status
 
     for node in data:
         type_of_node = node[1]
@@ -300,9 +318,6 @@ def yaml_deploy(data, cluster_name, pure_tosca_yaml):
 
     # добавление самой главной вершины, для возможности дальнейшей индескации
 
-    session = cluster_identification(session, cluster_name, pure_tosca_yaml, data,)
 
-
-    print(data)
     session.release()
-
+    return '200 OK'

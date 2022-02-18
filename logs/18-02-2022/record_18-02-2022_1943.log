@@ -1,0 +1,9 @@
+2022-02-18 19:43:07,101 WARNING werkzeug MainThread :  * Debugger is active!
+2022-02-18 19:43:07,101 INFO werkzeug MainThread :  * Debugger PIN: 138-624-410
+2022-02-18 19:43:08,091 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-02-18 19:43:08,107 INFO werkzeug Thread-2 : 127.0.0.1 - - [18/Feb/2022 19:43:08] "POST /yaml-template?cluster_name=LOL100 HTTP/1.1" 200 -
+2022-02-18 19:43:11,453 INFO root Thread-3 : Get connection to ('10.100.151.128', 9669)
+2022-02-18 19:43:11,596 INFO root Thread-3 : Get connection to ('10.100.151.128', 9669)
+2022-02-18 19:43:12,706 INFO root Thread-3 : Get connection to ('10.100.151.128', 9669)
+2022-02-18 19:43:12,784 INFO root Thread-3 : Get connection to ('10.100.151.128', 9669)
+2022-02-18 19:43:12,817 INFO werkzeug Thread-3 : 127.0.0.1 - - [18/Feb/2022 19:43:12] "POST /yaml-template?cluster_name=LOL102323 HTTP/1.1" 200 -

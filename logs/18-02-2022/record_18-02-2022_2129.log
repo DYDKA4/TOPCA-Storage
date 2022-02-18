@@ -1,0 +1,20 @@
+2022-02-18 21:29:04,474 WARNING werkzeug MainThread :  * Debugger is active!
+2022-02-18 21:29:04,475 INFO werkzeug MainThread :  * Debugger PIN: 138-624-410
+2022-02-18 21:29:10,548 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/communication_with_nebula.py', reloading
+2022-02-18 21:29:10,723 WARNING werkzeug MainThread :  * Debugger is active!
+2022-02-18 21:29:10,724 INFO werkzeug MainThread :  * Debugger PIN: 138-624-410
+2022-02-18 21:29:13,699 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-02-18 21:29:13,736 INFO werkzeug Thread-2 : 127.0.0.1 - - [18/Feb/2022 21:29:13] "POST /yaml-template?cluster_name=cluster_tosca_37 HTTP/1.1" 200 -
+2022-02-18 21:29:16,383 INFO root Thread-3 : Get connection to ('10.100.151.128', 9669)
+2022-02-18 21:29:16,495 INFO root Thread-3 : Get connection to ('10.100.151.128', 9669)
+2022-02-18 21:29:16,618 INFO werkzeug Thread-3 : 127.0.0.1 - - [18/Feb/2022 21:29:16] "[35m[1mPOST /yaml-template?cluster_name=cluster_tosca_38 HTTP/1.1[0m" 500 -
+2022-02-18 21:29:34,957 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/communication_with_nebula.py', reloading
+2022-02-18 21:29:35,160 WARNING werkzeug MainThread :  * Debugger is active!
+2022-02-18 21:29:35,160 INFO werkzeug MainThread :  * Debugger PIN: 138-624-410
+2022-02-18 21:29:35,845 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-02-18 21:29:35,961 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-02-18 21:29:36,125 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-02-18 21:29:36,166 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-02-18 21:29:36,184 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-02-18 21:29:36,276 INFO werkzeug Thread-2 : 127.0.0.1 - - [18/Feb/2022 21:29:36] "POST /yaml-template?cluster_name=cluster_tosca_38 HTTP/1.1" 200 -
+2022-02-18 21:32:04,635 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/communication_with_nebula.py', reloading

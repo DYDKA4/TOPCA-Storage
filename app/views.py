@@ -29,9 +29,9 @@ def yaml_add():
         print(cluster_name)
         print(pure_yaml)
 
-        # end_code = communication_with_nebula.yaml_deploy(file, cluster_name, pure_yaml)
+        end_code = communication_with_nebula.yaml_deploy(file, cluster_name, pure_yaml)
         print()
-        return f'end_code = 0'
+        return f'{end_code}'
     return '''
             400 Bad Request 
             '''

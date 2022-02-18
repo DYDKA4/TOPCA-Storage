@@ -47,7 +47,6 @@ def is_unique_VID(session, vertex_name, VID):
     result = result.column_values('VertexID')
     if result:
         for index in result:
-            print(index.as_string(), VID, index.as_string() == VID)
             if index.as_string() == VID:
                 return False
     return True
@@ -75,7 +74,7 @@ def is_already_recorded(session, vertex_name, name_of_key_value, key_value):
 
 def create_vertex_if_nox_exist(session, type_of_node, attributes):
     result = session.execute(f'CREATE TAG IF NOT EXISTS {type_of_node} (name fixed_string(256) NOT NULL)')
-    # print(f'CREATE TAG IF NOT EXISTS {type_of_node} (name fixed_string(256) NOT NULL)')
+    print(f'CREATE TAG IF NOT EXISTS {type_of_node} (name fixed_string(256) NOT NULL)')
     assert result.is_succeeded(), result.error_msg()
     for attribute in attributes:
         result = session.execute(f'ALTER TAG {type_of_node} ADD ({attribute} fixed_string(256) NULL)')
@@ -226,7 +225,7 @@ def form_key_value(data):
     return result
 
 
-def cluster_identification(session, cluster_name, pure_tosca_yaml):
+def cluster_identification(session, cluster_name):
     # проврка есть ли уже такие вершины
     result = session.execute(f'CREATE TAG IF NOT EXISTS Cluster_name (pure_yaml string NULL) ')
     assert result.is_succeeded(), result.error_msg()
@@ -245,17 +244,17 @@ def cluster_identification(session, cluster_name, pure_tosca_yaml):
     if not is_unique_VID(session, 'Cluster_name', cluster_name):
         return session, '400 Bad Request cluster VID is not unique'
     # добавление описания и называния кластера
+
+    return session, None
+
+
+def cluster_linking(session, cluster_name, pure_tosca_yaml, data):
+    # добавление всех связей между индетификатором и всеми узлами
     result = session.execute(f'INSERT VERTEX Cluster_name (pure_yaml) VALUES "{cluster_name}"'
                              f':("{pure_tosca_yaml}");')
     print(f'INSERT VERTEX Cluster_name (pure_yaml) VALUES "{cluster_name}"'
           f':({pure_tosca_yaml});')
     assert result.is_succeeded(), result.error_msg()
-
-    return session, None
-
-
-def cluster_linking(session, cluster_name, data):
-    # добавление всех связей между индетификатором и всеми узлами
     for node in data:
         source = '"' + cluster_name + '"'
         destination = '"' + node[0] + '"'
@@ -264,6 +263,8 @@ def cluster_linking(session, cluster_name, data):
         add_edge(session, link_type, '', source, destination, '')
     return session
 
+
+
 def yaml_deploy(data, cluster_name, pure_tosca_yaml):
     """ программа за четыре прохода создает шаблон в бд,
     за первый проход она размещается все узлы в бд, за второй создаёт соотвествующие связи
@@ -271,17 +272,26 @@ def yaml_deploy(data, cluster_name, pure_tosca_yaml):
     session = chose_of_space()
     rename = {}
 
-    session, status = cluster_identification(session, cluster_name, pure_tosca_yaml)
+    session, status = cluster_identification(session, cluster_name)
     if status:
         return status
-
+    # добавление всех типов вершин в бд
     for node in data:
         type_of_node = node[1]
         attributes = get_attributes_name(node[3])
         print(attributes)
         create_vertex_if_nox_exist(session, type_of_node, attributes)
-    session.release()
+    # добавление всех типов capabilities в бд
+    for node in data:
+        for i in range(len(node[4])):
+            if (i % 2 == 0) and (node[4][i]):
+                print(node[4][i])
+                type_of_node = 'capabilities_' + node[4][i]
+                attributes = get_attributes_name(node[4][i + 1])
+                print(type_of_node, attributes)
+                create_vertex_if_nox_exist(session, type_of_node, attributes)
 
+    # добавление всех вершин в бд
     session = chose_of_space()
     for node in data:
         name = node[0]  # Имя узла
@@ -294,11 +304,26 @@ def yaml_deploy(data, cluster_name, pure_tosca_yaml):
         key_value = form_key_value([name] + get_attributes(node[3]))
         add_in_vertex(session, type_of_node, name_key_value, key_value, f'"{type_of_node}{vid}"')
 
+    # добавление всех capabilities в бд
+    for node in data:
+        for i in range(len(node[4])):
+            if (i % 2 == 0) and (node[4][i]):
+                print(node[4][i])
+                type_of_node = 'capabilities_' + node[4][i]
+                vid = number_of_entities(session, type_of_node)
+                name_key_value = form_name_key_value(['name'] + get_attributes_name(node[4][i+1]))
+                node[4][i] = type_of_node + str(vid)
+                key_value = form_key_value(['no_name'] + get_attributes(node[4][i+1]))
+                add_in_vertex(session, type_of_node, name_key_value, key_value, f'"{type_of_node}{vid}"')
+
+    print(data)
     print(rename)
     data = name_to_index(rename, data)
     session.release()
 
-    time.sleep(1)
+    session = chose_of_space()
+
+    create_edge_if_nox_exist(session, 'capabilities')
 
     session = chose_of_space()
     for node in data:
@@ -308,7 +333,7 @@ def yaml_deploy(data, cluster_name, pure_tosca_yaml):
                     link_type = link[0]
                     create_edge_if_nox_exist(session, link_type)
     session.release()
-
+    # добавление всех связей между узлами
     session = chose_of_space()
     for node in data:
         source = '"' + node[0] + '"'
@@ -319,9 +344,17 @@ def yaml_deploy(data, cluster_name, pure_tosca_yaml):
                     link_type = link[0]
                     session = is_updated(session, link_type)
                     add_edge(session, link_type, '', source, destination, '')
-
+    # добавление всех связей между узлами и capabilities
+    for node in data:
+        source = '"' + node[0] + '"'
+        for i in range(len(node[4])):
+            if (i % 2 == 0) and (node[4][i]):
+                print(node[4][i])
+                destination = node[4][i]
+                session = is_updated(session, 'capabilities')
+                add_edge(session, 'capabilities', '', source, '"'+destination+'"', '')
     # добавление самой главной вершины, для возможности дальнейшей индескации
-    session = cluster_linking(session,cluster_name, data)
+    session = cluster_linking(session, cluster_name, pure_tosca_yaml, data)
     print(data)
     session.release()
     return '200 OK'

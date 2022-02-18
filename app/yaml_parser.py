@@ -10,7 +10,7 @@ list_of_depends can be [[]] :
 list_of_properties can be [[]]:
             [[name, params], ...] 
 list_of_capabilities can be [[]] :
-            [name_of_capabilities, [list_of_properties]]
+            [name_of_capabilities, name_of_capabilities, [list_of_properties]]
 """
 
 

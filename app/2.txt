@@ -1,0 +1,1 @@
+[['Compute35', 'Compute', [['storage_attachesto_1', 'BlockStorage28']], [[]]], ['Compute36', 'Compute', [['storage_attachesto_2', 'BlockStorage28']], [[]]], ['BlockStorage28', 'BlockStorage', [[]], [['size', "{'get_input': 'storage_size'}"], ['snapshot_id', "{'get_input': 'storage_snapshot_id'}"]]]]

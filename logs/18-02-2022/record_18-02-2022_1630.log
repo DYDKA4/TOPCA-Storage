@@ -1,0 +1,9 @@
+2022-02-18 16:30:08,352 WARNING werkzeug MainThread :  * Debugger is active!
+2022-02-18 16:30:08,352 INFO werkzeug MainThread :  * Debugger PIN: 138-624-410
+2022-02-18 16:30:08,359 INFO werkzeug Thread-2 : 127.0.0.1 - - [18/Feb/2022 16:30:08] "POST /yaml-template HTTP/1.1" 200 -
+2022-02-18 16:30:47,748 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/views.py', reloading
+2022-02-18 16:30:47,934 WARNING werkzeug MainThread :  * Debugger is active!
+2022-02-18 16:30:47,934 INFO werkzeug MainThread :  * Debugger PIN: 138-624-410
+2022-02-18 16:30:48,074 INFO werkzeug Thread-2 : 127.0.0.1 - - [18/Feb/2022 16:30:48] "POST /yaml-template HTTP/1.1" 200 -
+2022-02-18 16:42:24,120 INFO werkzeug Thread-3 : 127.0.0.1 - - [18/Feb/2022 16:42:24] "[35m[1mPOST /yaml-template HTTP/1.1[0m" 500 -
+2022-02-18 16:43:47,188 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/views.py', reloading

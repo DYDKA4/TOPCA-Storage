@@ -10,16 +10,31 @@ import yaml
 
 @app.route('/yaml-template', methods=['POST'])
 def yaml_add():
-    d = request.get_data()
-    d = d.decode("utf-8")
-    d = yaml.safe_load(d)
-    data = yaml_parser.parser(d)
-    for i in data:
-        print(i)
-    communication_with_nebula.yaml_deploy(data)
-    print()
+    file = request.files['file']
+    if file:
+        file = file.read().decode("utf-8")
+        file = yaml.safe_load(file)
+        print(file)
+    else:
+        return '''
+        400 Bad Request 
+        '''
+
+    cluster_name = request.args.get('cluster_name')
+    if cluster_name:
+        file = yaml_parser.parser(file)
+        for i in file:
+            print(i)
+        print(cluster_name)
+        communication_with_nebula.yaml_deploy(file)
+        print()
+        return '''
+        201 Created 
+        '''
     return '''
-              OK'''
+            400 Bad Request 
+            '''
+
 
 
 @app.route('/json-template', methods=['POST'])

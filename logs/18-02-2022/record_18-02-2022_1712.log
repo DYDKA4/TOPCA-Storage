@@ -1,0 +1,21 @@
+2022-02-18 17:12:39,245 INFO werkzeug MainThread :  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2022-02-18 17:12:39,247 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-18 17:12:39,419 WARNING werkzeug MainThread :  * Debugger is active!
+2022-02-18 17:12:39,420 INFO werkzeug MainThread :  * Debugger PIN: 138-624-410
+2022-02-18 17:12:45,324 INFO werkzeug Thread-2 : 127.0.0.1 - - [18/Feb/2022 17:12:45] "[35m[1mPOST /yaml-template HTTP/1.1[0m" 500 -
+2022-02-18 17:13:13,802 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/views.py', reloading
+2022-02-18 17:13:13,830 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-18 17:13:18,074 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-18 17:16:23,208 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-18 17:22:37,155 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-18 17:22:51,565 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-18 17:23:08,922 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-18 17:24:48,054 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-18 17:25:37,749 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-18 17:27:23,036 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-18 17:27:31,340 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-18 17:27:48,715 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-18 17:28:10,107 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-18 17:28:17,372 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-18 17:28:39,778 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-18 17:31:35,952 INFO werkzeug MainThread :  * Restarting with stat

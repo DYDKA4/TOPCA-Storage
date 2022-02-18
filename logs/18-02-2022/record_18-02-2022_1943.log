@@ -7,3 +7,9 @@
 2022-02-18 19:43:12,706 INFO root Thread-3 : Get connection to ('10.100.151.128', 9669)
 2022-02-18 19:43:12,784 INFO root Thread-3 : Get connection to ('10.100.151.128', 9669)
 2022-02-18 19:43:12,817 INFO werkzeug Thread-3 : 127.0.0.1 - - [18/Feb/2022 19:43:12] "POST /yaml-template?cluster_name=LOL102323 HTTP/1.1" 200 -
+2022-02-18 19:48:55,070 INFO root Thread-4 : Get connection to ('10.100.151.128', 9669)
+2022-02-18 19:48:55,204 INFO root Thread-4 : Get connection to ('10.100.151.128', 9669)
+2022-02-18 19:48:56,281 INFO root Thread-4 : Get connection to ('10.100.151.128', 9669)
+2022-02-18 19:48:56,300 INFO root Thread-4 : Get connection to ('10.100.151.128', 9669)
+2022-02-18 19:48:56,334 INFO werkzeug Thread-4 : 127.0.0.1 - - [18/Feb/2022 19:48:56] "POST /yaml-template?cluster_name=cluster_tosca HTTP/1.1" 200 -
+2022-02-18 19:49:31,977 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/communication_with_nebula.py', reloading

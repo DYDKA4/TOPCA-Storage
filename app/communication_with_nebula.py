@@ -226,7 +226,7 @@ def form_key_value(data):
     return result
 
 
-def cluster_identification(session, cluster_name, pure_tosca_yaml, data):
+def cluster_identification(session, cluster_name, pure_tosca_yaml):
     # проврка есть ли уже такие вершины
     result = session.execute(f'CREATE TAG IF NOT EXISTS Cluster_name (pure_yaml string NULL) ')
     assert result.is_succeeded(), result.error_msg()
@@ -250,6 +250,11 @@ def cluster_identification(session, cluster_name, pure_tosca_yaml, data):
     print(f'INSERT VERTEX Cluster_name (pure_yaml) VALUES "{cluster_name}"'
           f':({pure_tosca_yaml});')
     assert result.is_succeeded(), result.error_msg()
+
+    return session, None
+
+
+def cluster_linking(session, cluster_name, data):
     # добавление всех связей между индетификатором и всеми узлами
     for node in data:
         source = '"' + cluster_name + '"'
@@ -257,8 +262,7 @@ def cluster_identification(session, cluster_name, pure_tosca_yaml, data):
         link_type = 'identification'
         session = is_updated(session, link_type)
         add_edge(session, link_type, '', source, destination, '')
-    return session, None
-
+    return session
 
 def yaml_deploy(data, cluster_name, pure_tosca_yaml):
     """ программа за четыре прохода создает шаблон в бд,
@@ -267,7 +271,7 @@ def yaml_deploy(data, cluster_name, pure_tosca_yaml):
     session = chose_of_space()
     rename = {}
 
-    session, status = cluster_identification(session, cluster_name, pure_tosca_yaml, data, )
+    session, status = cluster_identification(session, cluster_name, pure_tosca_yaml)
     if status:
         return status
 
@@ -317,7 +321,7 @@ def yaml_deploy(data, cluster_name, pure_tosca_yaml):
                     add_edge(session, link_type, '', source, destination, '')
 
     # добавление самой главной вершины, для возможности дальнейшей индескации
-
+    session = cluster_linking(session,cluster_name, data)
 
     session.release()
     return '200 OK'

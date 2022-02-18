@@ -322,6 +322,6 @@ def yaml_deploy(data, cluster_name, pure_tosca_yaml):
 
     # добавление самой главной вершины, для возможности дальнейшей индескации
     session = cluster_linking(session,cluster_name, data)
-
+    print(data)
     session.release()
     return '200 OK'

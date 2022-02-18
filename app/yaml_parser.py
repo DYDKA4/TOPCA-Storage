@@ -4,11 +4,13 @@ import dpath.util
 yaml parser
 return 
 list of :
-            [name_node, type_node, [list_of_depends],[list_of_properties]]
-list_of_depends can be [] :
-            [type_of_link, connects_to_name_node], ...
-list_of_properties can be []:
-            undefined
+            [name_node, type_node, [list_of_depends],[list_of_properties],[list_of_capabilities]]
+list_of_depends can be [[]] :
+            [[type_of_link, connects_to_name_node], ...]
+list_of_properties can be [[]]:
+            [[name, params], ...] 
+list_of_capabilities can be [[]] :
+            [name_of_capabilities, [list_of_properties]]
 """
 
 
@@ -72,6 +74,12 @@ def find_properties(data):
     return
 
 
+def find_capabilities(data):
+    res = data.get('capabilities')
+    if res:
+        result = []
+    return
+
 def parser(data):  # возвращает массив где каждый элдемент сожержимт в себе информаию: имя, тип узла, завимости.
     # print(json.dumps(data, indent=2))
     node_templates = find_node_templates(data)
@@ -83,7 +91,8 @@ def parser(data):  # возвращает массив где каждый эл�
         node_type = separation(node_type)  # упрощение типа ноды
         requirements = find_requirements(params)
         properties = find_properties(params)
-        # print(properties)
+        capabilities = find_capabilities(params)
+        print(capabilities)
         ans += [name_of_node]
         ans += [node_type]
         if requirements:

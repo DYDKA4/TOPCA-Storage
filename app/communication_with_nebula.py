@@ -213,6 +213,39 @@ def form_key_value(data):
     return result
 
 
+def cluster_identification(session, cluster_name, pure_tosca_yaml, data):
+    # проврка есть ли уже такие вершины
+    result = session.execute(f'CREATE TAG IF NOT EXISTS Cluster_name (pure_yaml string NULL) ')
+    assert result.is_succeeded(), result.error_msg()
+    # проверка настройки индексов
+    result = session.execute(f'CREATE TAG INDEX IF NOT EXISTS Index_cluster_name on Cluster_name() ')
+    assert result.is_succeeded(), result.error_msg()
+    # проверка приняты ли изменения в силу
+    session = is_updated(session, 'Cluster_name')
+    # проверка есть ли уже типы связей такие
+    session.execute(f'CREATE EDGE IF NOT EXISTS identification ()')
+    assert result.is_succeeded(), result.error_msg()
+    # проверка настройки индексов
+    result = session.execute(f'CREATE EDGE INDEX IF NOT EXISTS Index_identification on identification()')
+    assert result.is_succeeded(), result.error_msg()
+    # проверка уникальности имени кластера
+
+    # добавление описания и называния кластера
+    result = session.execute(f'INSERT VERTEX Cluster_name (pure_yaml) VALUES "{cluster_name}"'
+                             f':("{pure_tosca_yaml}");')
+    print(f'INSERT VERTEX Cluster_name (pure_yaml) VALUES "{cluster_name}"'
+          f':({pure_tosca_yaml});')
+    assert result.is_succeeded(), result.error_msg()
+    # добавление всех связей между индетификатором и всеми узлами
+    for node in data:
+        source = '"' + cluster_name + '"'
+        destination = '"' + node[0] + '"'
+        link_type = 'identification'
+        session = is_updated(session, link_type)
+        add_edge(session, link_type, '', source, destination, '')
+    return session
+
+
 def yaml_deploy(data, cluster_name, pure_tosca_yaml):
     """ программа за четыре прохода создает шаблон в бд,
     за первый проход она размещается все узлы в бд, за второй создаёт соотвествующие связи
@@ -266,31 +299,10 @@ def yaml_deploy(data, cluster_name, pure_tosca_yaml):
                     add_edge(session, link_type, '', source, destination, '')
 
     # добавление самой главной вершины, для возможности дальнейшей индескации
-    result = session.execute(f'CREATE TAG IF NOT EXISTS Cluster_name (pure_yaml string NULL) ')
-    assert result.is_succeeded(), result.error_msg()
 
-    result = session.execute(f'CREATE TAG INDEX IF NOT EXISTS Index_cluster_name on Cluster_name() ')
-    assert result.is_succeeded(), result.error_msg()
+    session = cluster_identification(session, cluster_name, pure_tosca_yaml, data,)
 
-    session = is_updated(session, 'Cluster_name')
-
-    session.execute(f'CREATE EDGE IF NOT EXISTS identification ()')
-    assert result.is_succeeded(), result.error_msg()
-
-    result = session.execute(f'CREATE EDGE INDEX IF NOT EXISTS Index_identification on identification()')
-    assert result.is_succeeded(), result.error_msg()
-
-    result = session.execute(f'INSERT VERTEX Cluster_name (pure_yaml) VALUES "{cluster_name}"'
-                             f':("{pure_tosca_yaml}");')
-    print(f'INSERT VERTEX Cluster_name (pure_yaml) VALUES "{cluster_name}"'
-          f':({pure_tosca_yaml});')
-    assert result.is_succeeded(), result.error_msg()
-    for node in data:
-        source = '"' + cluster_name + '"'
-        destination = '"' + node[0] + '"'
-        link_type = 'identification'
-        session = is_updated(session, link_type)
-        add_edge(session, link_type, '', source, destination, '')
 
     print(data)
     session.release()
+

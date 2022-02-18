@@ -12,3 +12,7 @@
 2022-02-18 19:05:56,302 INFO root Thread-3 : Get connection to ('10.100.151.128', 9669)
 2022-02-18 19:05:56,317 INFO root Thread-3 : Get connection to ('10.100.151.128', 9669)
 2022-02-18 19:05:56,384 INFO werkzeug Thread-3 : 127.0.0.1 - - [18/Feb/2022 19:05:56] "POST /yaml-template?cluster_name=LOL5 HTTP/1.1" 200 -
+2022-02-18 19:13:46,919 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/communication_with_nebula.py', reloading
+2022-02-18 19:13:46,949 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-18 19:14:07,367 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-18 19:14:31,994 INFO werkzeug MainThread :  * Restarting with stat

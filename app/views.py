@@ -2,7 +2,7 @@ from flask import request
 from app import app
 from datetime import datetime
 from app import communication_with_nebula
-from app import json_parser
+# from app import json_parser
 from app import yaml_parser
 import json
 import yaml
@@ -10,7 +10,6 @@ import yaml
 
 @app.route('/yaml-template', methods=['POST'])
 def yaml_add():
-    pure_yaml = ''
     file = request.files['file']
     if file:
         file = file.read().decode("utf-8")
@@ -23,13 +22,15 @@ def yaml_add():
 
     cluster_name = request.args.get('cluster_name')
     if cluster_name:
-        file = yaml_parser.parser(file)
-        for i in file:
+        data_assignments, data_defenition_structure = yaml_parser.parser(file)
+        for i in data_assignments:
+            print(i)
+        print()
+        for i in data_defenition_structure:
             print(i)
         print(cluster_name)
-        print(pure_yaml)
-
-        end_code = communication_with_nebula.yaml_deploy(file, cluster_name, pure_yaml)
+        end_code = '400'
+        end_code = communication_with_nebula.yaml_deploy(data_assignments, data_defenition_structure, cluster_name, pure_yaml)
         print()
         return f'{end_code}'
     return '''
@@ -37,16 +38,15 @@ def yaml_add():
             '''
 
 
-
-@app.route('/json-template', methods=['POST'])
-def json_add():
-    json_results = request.get_json(force=True)
-    data = json_parser.parser(json_results)
-    print(data)
-    communication_with_nebula.yaml_deploy(data)
-    print()
-    return '''
-              OK'''
+# @app.route('/json-template', methods=['POST'])
+# def json_add():
+#     json_results = request.get_json(force=True)
+#     data = json_parser.parser(json_results)
+#     print(data)
+#     communication_with_nebula.yaml_deploy(data)
+#     print()
+#     return '''
+#               OK'''
 
 
 @app.route('/server-add', methods=['GET', 'POST'])

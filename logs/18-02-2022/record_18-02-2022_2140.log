@@ -8,3 +8,5 @@
 2022-02-18 21:40:36,814 INFO werkzeug Thread-2 : 127.0.0.1 - - [18/Feb/2022 21:40:36] "POST /yaml-template?cluster_name=cluster_tosca_39 HTTP/1.1" 200 -
 2022-02-18 21:44:13,045 INFO root Thread-3 : Get connection to ('10.100.151.128', 9669)
 2022-02-18 21:44:13,084 INFO werkzeug Thread-3 : 127.0.0.1 - - [18/Feb/2022 21:44:13] "POST /yaml-template?cluster_name=cluster_tosca_39 HTTP/1.1" 200 -
+2022-02-18 22:03:21,666 INFO root Thread-4 : Get connection to ('10.100.151.128', 9669)
+2022-02-18 22:03:21,707 INFO werkzeug Thread-4 : 127.0.0.1 - - [18/Feb/2022 22:03:21] "POST /yaml-template?cluster_name=cluster_tosca_39 HTTP/1.1" 200 -

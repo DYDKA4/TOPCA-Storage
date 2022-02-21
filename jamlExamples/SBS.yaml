@@ -6,6 +6,217 @@ description: >
 
   TOSCA simple profile with a single Block Storage node shared by 2-Tier Application with custom AttachesTo Type and explicit Relationship Templates.
 
+node_types:
+  tosca.nodes.Root:
+    description: >
+      The TOSCA root node all other TOSCA base node types derive from.
+    properties:
+      tosca_id:
+        description: >
+          A unique identifier of the realized instance of a Node Template
+          that derives from any TOSCA normative type.
+        type: string
+        required: false
+      tosca_name:
+        description: >
+          This attribute reflects the name of the Node Template as
+          defined in the TOSCA service template.
+        type: string
+        required: false
+      state:
+        description: >
+          The state of the node instance. See section “Node States” for allowed values.
+        type: string
+        required: false
+    capabilities:
+      feature:
+        type: tosca.capabilities.Node
+    requirements:
+      - dependency:
+          capability: tosca.capabilities.Node
+          node: tosca.nodes.Root
+          relationship: tosca.relationships.DependsOn
+          occurrences: [ 0, UNBOUNDED ]
+    interfaces:
+      Standard:
+        type: tosca.interfaces.node.lifecycle.Standard
+      Prepare:
+        type: tosca.interfaces.node.Prepare
+
+  tosca.nodes.Compute:
+    description: >
+      The TOSCA Compute node represents one or more real or virtual processors of software applications or services
+      along with other essential local resources.
+    derived_from: tosca.nodes.Root
+    properties:
+      meta:
+        type: string
+        required: false
+      private_address:
+        type: string
+        required: false
+      public_address:
+        type: string
+        required: false
+      networks:
+        type: map
+        entry_schema:
+          type: tosca.datatypes.network.NetworkInfo
+        required: false
+      ports:
+        type: map
+        entry_schema:
+          type: tosca.datatypes.network.PortInfo
+        required: false
+    capabilities:
+        host:
+           type: tosca.capabilities.Container
+           valid_source_types: [tosca.nodes.SoftwareComponent]
+        endpoint:
+           type: tosca.capabilities.Endpoint.Admin
+        os:
+           type: tosca.capabilities.OperatingSystem
+        scalable:
+           type: tosca.capabilities.Scalable
+        binding:
+           type: tosca.capabilities.network.Bindable
+    requirements:
+      - local_storage:
+          capability: tosca.capabilities.Attachment
+          node: tosca.nodes.BlockStorage
+          relationship: tosca.relationships.AttachesTo
+          occurrences: [0, UNBOUNDED]
+
+  tosca.nodes.SoftwareComponent:
+    description: >
+      The TOSCA SoftwareComponent node represents a generic software component that can be managed and run
+      by a TOSCA Compute Node Type.
+    derived_from: tosca.nodes.Root
+    properties:
+      # domain-specific software component version
+      component_version:
+        type: version
+        required: false
+        description: >
+          Software component version.
+      admin_credential:
+        type: tosca.datatypes.Credential
+        required: false
+    requirements:
+      - host:
+          capability: tosca.capabilities.Container
+          node: tosca.nodes.Compute
+          relationship: tosca.relationships.HostedOn
+
+  tosca.nodes.WebServer:
+    description: >
+      This TOSCA WebServer Node Type represents an abstract software component or service that is capable of
+      hosting and providing management operations for one or more WebApplication nodes
+    derived_from: tosca.nodes.SoftwareComponent
+    capabilities:
+      data_endpoint:
+        type: tosca.capabilities.Endpoint
+      admin_endpoint:
+        type: tosca.capabilities.Endpoint.Admin
+      host:
+        type: tosca.capabilities.Container
+        valid_source_types: [tosca.nodes.WebApplication]
+
+  tosca.nodes.WebApplication:
+    description: >
+      The TOSCA WebApplication node represents a software application that can be managed and run by a TOSCA
+      WebServer node.
+    derived_from: tosca.nodes.SoftwareComponent
+    properties:
+      context_root:
+        type: string
+        required: false
+    requirements:
+      - host:
+          capability: tosca.capabilities.Container
+          node: tosca.nodes.WebServer
+          relationship: tosca.relationships.HostedOn
+    capabilities:
+      app_endpoint:
+        type: tosca.capabilities.Endpoint
+
+  tosca.nodes.DBMS:
+    description: >
+      The TOSCA DBMS node represents a typical relational, SQL Database Management System software component
+      or service.
+    derived_from: tosca.nodes.SoftwareComponent
+    properties:
+      port:
+        required: false
+        type: integer
+        description: >
+          The port the DBMS service will listen to for data and requests.
+      root_password:
+        required: false
+        type: string
+        description: >
+          The root password for the DBMS service.
+    capabilities:
+      host:
+        type: tosca.capabilities.Container
+        valid_source_types: [tosca.nodes.Database]
+
+  tosca.nodes.Database:
+    description: >
+      The TOSCA Database node represents a logical database that can be managed and hosted by a TOSCA DBMS
+      node.
+    derived_from: tosca.nodes.Root
+    properties:
+      user:
+        required: false
+        type: string
+        description: >
+          User account name for DB administration
+      port:
+        required: false
+        type: integer
+        description:  >
+          The port the database service will use to listen for incoming data and
+          requests.
+      name:
+        required: true
+        type: string
+        description: >
+          The logical name of the database.
+      password:
+        required: false
+        type: string
+        description: >
+          The password for the DB user account
+    requirements:
+      - host:
+          capability: tosca.capabilities.Container
+          node: tosca.nodes.DBMS
+          relationship: tosca.relationships.HostedOn
+    capabilities:
+      database_endpoint:
+        type: tosca.capabilities.Endpoint.Database
+
+  tosca.nodes.BlockStorage:
+    description: >
+      The TOSCA BlockStorage node currently represents a server-local block storage device (i.e., not shared)
+      offering evenly sized blocks of data from which raw storage volumes can be created.
+    derived_from: tosca.nodes.Root
+    properties:
+      size:
+        type: scalar-unit.size
+        constraints:
+          - greater_or_equal: 1 MB
+      volume_id:
+        type: string
+        required: false
+      snapshot_id:
+        type: string
+        required: false
+    capabilities:
+      attachment:
+        type: tosca.capabilities.Attachment
+
 
 relationship_types:
 

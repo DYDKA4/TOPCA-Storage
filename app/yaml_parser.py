@@ -4,13 +4,17 @@ import dpath.util
 yaml parser
 return 
 list of :
-            [name_node, type_node, [list_of_depends],[list_of_properties],[list_of_capabilities]]
+            [name_node, type_node, [list_of_depends],[list_of_properties_assignments],[list_of_capabilities]]
+            [name_node, type_node, [list_of_depends],[list_of_properties_definition],[list_of_capabilities]]
+
 list_of_depends can be [[]] :
             [[type_of_link, connects_to_name_node], ...]
-list_of_properties can be [[]]:
+list_of_properties_assignments can be [[]]:
             [[name, params], ...] 
+list_of_properties_definition can be [[]]:
+            [[name, params_type, params_default_value], ...] 
 list_of_capabilities can be [[]] :
-            [name_of_capabilities, name_of_capabilities, [list_of_properties]]
+            [name_of_capabilities, name_of_capabilities, [list_of_properties_assignments]]
 """
 
 
@@ -55,7 +59,6 @@ def requirements_parser(data):
 
 
 def find_requirements(data):
-
     res = data.get('requirements')
     if res:
         # print(data.get('requirements'), '\n')
@@ -85,11 +88,13 @@ def find_capabilities(data):
         return result
     return
 
+
 def parser(data):  # возвращает массив где каждый элдемент сожержимт в себе информаию: имя, тип узла, завимости.
     # print(json.dumps(data, indent=2))
     node_templates = find_node_templates(data)
     # print(node_templates)
-    answer = []
+    data_assignments = []
+    data_definition = []
     for name_of_node, params in node_templates.items():
         ans = []
         node_type = params.get('type')
@@ -112,6 +117,19 @@ def parser(data):  # возвращает массив где каждый эл�
             ans += [capabilities]
         else:
             ans += [[[]]]
-        answer += [ans]
-        print()
-    return answer
+        data_assignments += [ans]
+    if data.get('node_types'):
+        for name_of_node, params in data.get('node_types').items():
+            ans = [name_of_node.replace('.', '_')]
+            print(name_of_node)
+            if params.get('properties'):
+                for properties, values in params.get('properties').items():
+                    tmp = []
+                    # print(properties, values)
+                    for values_def, values_props in values.items():
+                        tmp += [[properties+"_"+values_def, str(values_props).replace('\n', ' ')]]
+                ans += [tmp]
+            else:
+                ans += [[[]]]
+            data_definition += [ans]
+    return data_assignments, data_definition

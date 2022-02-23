@@ -129,7 +129,7 @@ def parser(data):  # возвращает массив где каждый эл�
     capability_types = []
     for name_of_node, params in node_templates.items():
         ans = []
-        node_type = params.get('type_capabilities')
+        node_type = params.get('type')
         node_type = separation(node_type)  # упрощение типа ноды
         requirements = find_requirements(params)
         properties = find_properties(params)

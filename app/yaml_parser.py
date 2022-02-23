@@ -110,14 +110,13 @@ def forming_capabilities(data, name):
         return answer
 
 
-# def find_name(capability_types, value, converting_literal, converting_literal_into):
-#     for slide in capability_types:
-#         if str(value).replace(converting_literal, converting_literal_into) in slide:
-#             print(True)
-#             return []
-#
-#     print(False)
-#     return []
+def find_name(capability_types, value, converting_literal, converting_literal_into):
+    for index in range(len(capability_types)):
+        if str(value).replace(converting_literal, converting_literal_into) in capability_types[index]:
+            print(capability_types[index][0], hex(id(capability_types[index][0])), 'capability_typex id',
+            hex(id(capability_types)))
+            return capability_types[index][0]
+    return []
 
 
 def parser(data):  # возвращает массив где каждый элдемент сожержимт в себе информаию: имя, тип узла, завимости.
@@ -151,21 +150,24 @@ def parser(data):  # возвращает массив где каждый эл�
             ans += [[[]]]
         data_assignments += [ans]
     # получение списка node_types
+    # возможно пора переходить к классам
     node_types = forming_capabilities(data, 'node_types')
     capability_types = forming_capabilities(data, 'capability_types')
     if node_types:
+        i = 0 # выглядит как костыль
         for name_of_node, params in data.get('node_types').items():
             if params.get('capabilities'):
+                tmp = []
                 for type_capabilities, values in params.get('capabilities').items():
-                    tmp = []
                     print(type_capabilities, values)
-                    # if values.get('type'):
-                        # tmp = find_name(capability_types,values.get('type'), '.', '_')
-            #         for values_def, values_props in values.items():
-            #             tmp += [[properties + "_" + values_def, str(values_props).replace('\n', ' ')]]
-            #         ans += [tmp]
-            # else:
-            #     ans += [[[]]]
-            # answer += [ans]
-
+                    if values.get('type'):
+                        # print('after function', hex(id(find_name(capability_types, values.get('type'), '.', '_'))))
+                        # tmp += [find_name(capability_types,values.get('type'), '.', '_')]
+                        for index in range(len(capability_types)):
+                            if str(values.get('type')).replace('.', '_') in capability_types[index]:
+                                tmp += [[type_capabilities, capability_types[index][0]]]
+                    else:
+                        tmp += [[[]]]
+                node_types[i] += [tmp]
+            i += 1
     return data_assignments, node_types, capability_types

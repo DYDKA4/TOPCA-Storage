@@ -285,7 +285,12 @@ def yaml_deploy(data_assignments, node_types, cluster_name, pure_tosca_yaml):
     session, status = cluster_identification(session, cluster_name)
     if status:
         return status
-    # создание definition узлов
+    # создание node_types узлов
+    for node in node_types:
+        type_of_node = 'definition_'+node[0]
+        attributes = get_attributes_name(node[1])
+        create_vertex_if_nox_exist(session, type_of_node, attributes)
+    # создание node_types узлов
     for node in node_types:
         type_of_node = 'definition_'+node[0]
         attributes = get_attributes_name(node[1])
@@ -296,7 +301,8 @@ def yaml_deploy(data_assignments, node_types, cluster_name, pure_tosca_yaml):
         attributes = get_attributes_name(node[3])
         # print(attributes)
         create_vertex_if_nox_exist(session, type_of_node, attributes)
-    # добавление всех типов capabilities в бд
+
+    # добавление всех node_types в бд
     for node in data_assignments:
         for i in range(len(node[4])):
             if (i % 2 == 0) and (node[4][i]):

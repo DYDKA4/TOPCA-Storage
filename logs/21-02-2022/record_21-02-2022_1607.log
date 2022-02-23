@@ -1,0 +1,28 @@
+2022-02-21 16:07:59,717 INFO werkzeug MainThread :  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2022-02-21 16:07:59,719 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-21 16:07:59,886 WARNING werkzeug MainThread :  * Debugger is active!
+2022-02-21 16:07:59,886 INFO werkzeug MainThread :  * Debugger PIN: 140-795-852
+2022-02-21 16:08:01,826 INFO werkzeug Thread-2 : 127.0.0.1 - - [21/Feb/2022 16:08:01] "[35m[1mPOST /yaml-template?cluster_name=cluster_tosca_40 HTTP/1.1[0m" 500 -
+2022-02-21 16:08:15,050 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/yaml_parser.py', reloading
+2022-02-21 16:08:15,076 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-21 16:14:17,955 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-21 16:14:46,438 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-21 16:15:47,338 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-21 16:16:26,967 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-21 16:16:38,282 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-21 16:19:06,047 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-21 16:19:43,627 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-21 16:19:48,866 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-21 16:19:57,167 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-21 16:22:26,016 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-21 16:22:30,284 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-21 16:24:24,693 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-21 16:25:44,636 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-21 16:26:04,002 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-21 16:26:52,705 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-21 16:27:22,158 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-21 16:27:53,663 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-21 16:28:16,109 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-21 16:28:28,456 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-21 16:28:40,777 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-21 16:31:15,713 INFO werkzeug MainThread :  * Restarting with stat

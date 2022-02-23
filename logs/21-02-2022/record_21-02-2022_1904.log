@@ -1,0 +1,12 @@
+2022-02-21 19:04:40,497 INFO werkzeug MainThread :  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2022-02-21 19:04:40,498 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-21 19:04:40,663 WARNING werkzeug MainThread :  * Debugger is active!
+2022-02-21 19:04:40,664 INFO werkzeug MainThread :  * Debugger PIN: 140-795-852
+2022-02-21 19:04:42,485 INFO werkzeug Thread-2 : 127.0.0.1 - - [21/Feb/2022 19:04:42] "[35m[1mPOST /yaml-template?cluster_name=cluster_tosca_7 HTTP/1.1[0m" 500 -
+2022-02-21 19:05:14,045 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/yaml_parser.py', reloading
+2022-02-21 19:05:14,073 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-21 19:06:12,948 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-21 19:06:18,201 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-21 19:06:40,657 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-21 19:07:07,141 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-21 19:08:17,160 INFO werkzeug MainThread :  * Restarting with stat

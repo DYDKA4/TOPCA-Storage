@@ -1,0 +1,21 @@
+2022-02-21 14:42:15,771 WARNING werkzeug MainThread :  * Debugger is active!
+2022-02-21 14:42:15,772 INFO werkzeug MainThread :  * Debugger PIN: 140-795-852
+2022-02-21 14:42:20,494 INFO werkzeug Thread-2 : 127.0.0.1 - - [21/Feb/2022 14:42:20] "POST /yaml-template?cluster_name=cluster_tosca_39 HTTP/1.1" 200 -
+2022-02-21 14:42:44,024 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/views.py', reloading
+2022-02-21 14:42:44,203 WARNING werkzeug MainThread :  * Debugger is active!
+2022-02-21 14:42:44,204 INFO werkzeug MainThread :  * Debugger PIN: 140-795-852
+2022-02-21 14:42:44,983 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-02-21 14:42:45,096 INFO werkzeug Thread-2 : 127.0.0.1 - - [21/Feb/2022 14:42:45] "POST /yaml-template?cluster_name=cluster_tosca_39 HTTP/1.1" 200 -
+2022-02-21 14:42:50,761 INFO root Thread-3 : Get connection to ('10.100.151.128', 9669)
+2022-02-21 14:42:50,969 INFO root Thread-3 : Get connection to ('10.100.151.128', 9669)
+2022-02-21 14:42:51,150 INFO root Thread-3 : Get connection to ('10.100.151.128', 9669)
+2022-02-21 14:42:51,190 INFO root Thread-3 : Get connection to ('10.100.151.128', 9669)
+2022-02-21 14:42:51,238 INFO root Thread-3 : Get connection to ('10.100.151.128', 9669)
+2022-02-21 14:42:51,357 INFO werkzeug Thread-3 : 127.0.0.1 - - [21/Feb/2022 14:42:51] "[35m[1mPOST /yaml-template?cluster_name=cluster_tosca_40 HTTP/1.1[0m" 500 -
+2022-02-21 14:43:29,090 INFO root Thread-4 : Get connection to ('10.100.151.128', 9669)
+2022-02-21 14:43:29,198 INFO root Thread-4 : Get connection to ('10.100.151.128', 9669)
+2022-02-21 14:43:29,350 INFO root Thread-4 : Get connection to ('10.100.151.128', 9669)
+2022-02-21 14:43:29,393 INFO root Thread-4 : Get connection to ('10.100.151.128', 9669)
+2022-02-21 14:43:29,410 INFO root Thread-4 : Get connection to ('10.100.151.128', 9669)
+2022-02-21 14:43:29,492 INFO werkzeug Thread-4 : 127.0.0.1 - - [21/Feb/2022 14:43:29] "[35m[1mPOST /yaml-template?cluster_name=cluster_tosca_40 HTTP/1.1[0m" 500 -
+2022-02-21 14:46:11,362 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/communication_with_nebula.py', reloading

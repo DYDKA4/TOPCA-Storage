@@ -1,0 +1,6 @@
+2022-02-21 17:34:14,587 WARNING werkzeug MainThread :  * Debugger is active!
+2022-02-21 17:34:14,587 INFO werkzeug MainThread :  * Debugger PIN: 140-795-852
+2022-02-21 17:34:14,802 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-02-21 17:34:15,010 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-02-21 17:34:15,044 INFO werkzeug Thread-2 : 127.0.0.1 - - [21/Feb/2022 17:34:15] "[35m[1mPOST /yaml-template?cluster_name=cluster_tosca_43 HTTP/1.1[0m" 500 -
+2022-02-21 17:36:35,065 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/communication_with_nebula.py', reloading

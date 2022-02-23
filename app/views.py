@@ -22,15 +22,19 @@ def yaml_add():
 
     cluster_name = request.args.get('cluster_name')
     if cluster_name:
-        data_assignments, data_defenition_structure = yaml_parser.parser(file)
+        data_assignments, node_types, capability_types = yaml_parser.parser(file)
         for i in data_assignments:
             print(i)
-        print()
-        for i in data_defenition_structure:
+        print('\nnode_types')
+        for i in node_types:
+            print(i)
+        print('\ncapability_types')
+        for i in capability_types:
             print(i)
         print(cluster_name)
         end_code = '400'
-        end_code = communication_with_nebula.yaml_deploy(data_assignments, data_defenition_structure, cluster_name, pure_yaml)
+        # end_code = communication_with_nebula.yaml_deploy(data_assignments, node_types, cluster_name,
+        #                                                  pure_yaml)
         print()
         return f'{end_code}'
     return '''

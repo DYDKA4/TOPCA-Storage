@@ -275,7 +275,7 @@ def cluster_linking(session, cluster_name, pure_tosca_yaml, data_assignments, da
     return session
 
 
-def yaml_deploy(data_assignments, data_definition_structure, cluster_name, pure_tosca_yaml):
+def yaml_deploy(data_assignments, node_types, cluster_name, pure_tosca_yaml):
     """ программа за четыре прохода создает шаблон в бд,
     за первый проход она размещается все узлы в бд, за второй создаёт соотвествующие связи
     """
@@ -286,7 +286,7 @@ def yaml_deploy(data_assignments, data_definition_structure, cluster_name, pure_
     if status:
         return status
     # создание definition узлов
-    for node in data_definition_structure:
+    for node in node_types:
         type_of_node = 'definition_'+node[0]
         attributes = get_attributes_name(node[1])
         create_vertex_if_nox_exist(session, type_of_node, attributes)
@@ -308,7 +308,7 @@ def yaml_deploy(data_assignments, data_definition_structure, cluster_name, pure_
 
     # добавление всех вершин в бд
     session = chose_of_space()
-    for node in data_definition_structure:
+    for node in node_types:
         name = node[0]
         type_of_node = 'definition_' + node[0]
         session = is_updated(session, type_of_node)
@@ -380,7 +380,7 @@ def yaml_deploy(data_assignments, data_definition_structure, cluster_name, pure_
                 session = is_updated(session, 'capabilities')
                 add_edge(session, 'capabilities', '', source, '"' + destination + '"', '')
     # добавление самой главной вершины, для возможности дальнейшей индескации
-    session = cluster_linking(session, cluster_name, pure_tosca_yaml, data_assignments, data_definition_structure)
+    session = cluster_linking(session, cluster_name, pure_tosca_yaml, data_assignments, node_types)
     # print(data)
     session.release()
     return '200 OK'

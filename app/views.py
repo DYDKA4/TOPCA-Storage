@@ -33,8 +33,8 @@ def yaml_add():
             print(i)
         print(cluster_name)
         end_code = '400'
-        end_code = communication_with_nebula.yaml_deploy(data_assignments, node_types, capability_types, cluster_name,
-                                                         pure_yaml)
+        # end_code = communication_with_nebula.yaml_deploy(data_assignments, node_types, capability_types, cluster_name,
+        #                                                  pure_yaml)
         print()
         return f'{end_code}'
     return '''

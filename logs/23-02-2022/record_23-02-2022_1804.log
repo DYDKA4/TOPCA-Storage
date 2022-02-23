@@ -6,3 +6,4 @@
 2022-02-23 18:04:40,011 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
 2022-02-23 18:04:40,084 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
 2022-02-23 18:04:40,602 INFO werkzeug Thread-2 : 127.0.0.1 - - [23/Feb/2022 18:04:40] "POST /yaml-template?cluster_name=cluster_tosca_9 HTTP/1.1" 200 -
+2022-02-23 18:28:56,913 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/views.py', reloading

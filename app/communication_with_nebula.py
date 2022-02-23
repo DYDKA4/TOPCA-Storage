@@ -107,8 +107,8 @@ def create_edge_if_nox_exist(session, type_of_link):
 def add_edge(session, edge_name, edge_params, source_vertex, destination_vertex, data):
     result = session.execute(f'INSERT EDGE {edge_name}({edge_params})'
                              f' VALUE {source_vertex}->{destination_vertex}:({data})')
-    # print(f'INSERT EDGE {edge_name}({edge_params})'
-    #       f' VALUE {source_vertex}->{destination_vertex}:({data})')
+    print(f'INSERT EDGE {edge_name}({edge_params})'
+          f' VALUE {source_vertex}->{destination_vertex}:({data})')
     assert result.is_succeeded(), result.error_msg()
     return
 
@@ -398,14 +398,15 @@ def yaml_deploy(data_assignments, node_types, capability_types, cluster_name, pu
     for node in node_types:
         source = '"' + node[0] + '"'
         destination = ''
-        for link in node[3]:
-            link_type = link[0]
-            for capability in capability_types:
-                if link[1] in capability[0]:
-                    destination = capability[0]
-                    break
-            session = is_updated(session, link_type)
-            add_edge(session, link_type, '', source, destination, '')
+        for link in node[2]:
+            if link:
+                link_type = link[0]
+                for capability in capability_types:
+                    if link[1] in capability[0]:
+                        destination = '"' + capability[0] + '"'
+                        break
+                session = is_updated(session, link_type)
+                add_edge(session, link_type, '', source, destination, '')
     # добавление самой главной вершины, для возможности дальнейшей индескации
     session = cluster_linking(session, cluster_name, pure_tosca_yaml, data_assignments, node_types)
     # print(data)

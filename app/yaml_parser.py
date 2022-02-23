@@ -151,7 +151,21 @@ def parser(data):  # возвращает массив где каждый эл�
         data_assignments += [ans]
     # получение списка node_types
     # возможно пора переходить к классам
-    node_types = forming_capabilities(data, 'node_types')
+    # node_types = forming_capabilities(data, 'node_types')
+    if data.get('node_types'):
+        for name_of_node, params in data.get('node_types').items():
+            ans = [name_of_node.replace('.', '_')]
+            print(name_of_node)
+            if params.get('properties'):
+                for properties, values in params.get('properties').items():
+                    tmp = []
+                    # print(properties, values)
+                    for values_def, values_props in values.items():
+                        tmp += [[properties+"_"+values_def, str(values_props).replace('\n', ' ')]]
+                ans += [tmp]
+            else:
+                ans += [[[]]]
+            node_types += [ans]
     capability_types = forming_capabilities(data, 'capability_types')
     if node_types:
         i = 0 # выглядит как костыль
@@ -166,8 +180,8 @@ def parser(data):  # возвращает массив где каждый эл�
                         for index in range(len(capability_types)):
                             if str(values.get('type')).replace('.', '_') in capability_types[index]:
                                 tmp += [[type_capabilities, capability_types[index][0]]]
-                    else:
-                        tmp += [[[]]]
-                node_types[i] += [tmp]
+            else:
+                tmp = [[]]
+            node_types[i] += [tmp]
             i += 1
     return data_assignments, node_types, capability_types

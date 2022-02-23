@@ -1,0 +1,17 @@
+2022-02-23 19:03:09,926 INFO werkzeug MainThread :  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2022-02-23 19:03:09,927 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-23 19:03:10,090 WARNING werkzeug MainThread :  * Debugger is active!
+2022-02-23 19:03:10,090 INFO werkzeug MainThread :  * Debugger PIN: 328-217-280
+2022-02-23 19:03:13,324 INFO werkzeug Thread-2 : 127.0.0.1 - - [23/Feb/2022 19:03:13] "POST /yaml-template?cluster_name=cluster_tosca_9 HTTP/1.1" 200 -
+2022-02-23 19:11:12,736 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/preparation_to_deploy_data_in_nebula.py', reloading
+2022-02-23 19:11:12,772 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-23 19:23:42,759 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-23 19:25:35,100 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-23 19:26:50,181 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-23 19:27:00,481 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-23 19:33:06,543 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-23 19:35:58,464 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-23 19:36:17,866 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-23 19:37:03,600 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-23 19:39:03,088 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-23 19:42:23,630 INFO werkzeug MainThread :  * Restarting with stat

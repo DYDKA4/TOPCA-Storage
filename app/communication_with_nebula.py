@@ -75,11 +75,12 @@ def create_vertex_if_nox_exist(session, type_of_node, attributes):
     result = session.execute(f'CREATE TAG IF NOT EXISTS {type_of_node} (name fixed_string(256) NOT NULL)')
     print(f'CREATE TAG IF NOT EXISTS {type_of_node} (name fixed_string(256) NOT NULL)')
     assert result.is_succeeded(), result.error_msg()
-    for attribute in attributes:
-        result = session.execute(f'ALTER TAG {type_of_node} ADD ({attribute} fixed_string(256) NULL)')
-        if result.is_succeeded() or result.error_msg() != 'Existed!':
-            assert result.is_succeeded(), result.error_msg()
-    result = session.execute(f'CREATE TAG INDEX IF NOT EXISTS Index{type_of_node} on {type_of_node}(name)')
+    if attributes:
+        for attribute in attributes:
+            result = session.execute(f'ALTER TAG {type_of_node} ADD ({attribute} fixed_string(256) NULL)')
+            if result.is_succeeded() or result.error_msg() != 'Existed!':
+                assert result.is_succeeded(), result.error_msg()
+    result = session.execute(f'CREATE TAG INDEX IF NOT EXISTS Index_{type_of_node} on {type_of_node}(name)')
     assert result.is_succeeded(), result.error_msg()
     return
 
@@ -219,7 +220,7 @@ def form_name_key_value(data):
 def form_key_value(data):
     result = ''
     for key in data:
-        result += '"' + str(key)+ '"' + ', '
+        result += '"' + str(key) + '"' + ', '
     result = result[:-2]
     return result
 
@@ -237,6 +238,14 @@ def cluster_identification(session, cluster_name):
     session.execute(f'CREATE EDGE IF NOT EXISTS identification ()')
     assert result.is_succeeded(), result.error_msg()
 
+    # проверка наличия базового элемента
+    result = session.execute(f'CREATE TAG Properties (name string NOT NULL  , value string NOT NULL  )')
+    assert result.is_succeeded(), result.error_msg()
+    # проверка настройки индексов
+    result = session.execute(f'CREATE TAG INDEX IF NOT EXISTS Index_properties on Properties() ')
+    assert result.is_succeeded(), result.error_msg()
+    # проверка приняты ли изменения в силу
+    session = is_updated(session, 'Cluster_name')
     session.execute(f'CREATE EDGE IF NOT EXISTS definition ()')
     assert result.is_succeeded(), result.error_msg()
 
@@ -287,18 +296,18 @@ def yaml_deploy(data_assignments, node_types, capability_types, cluster_name, pu
         return status
     # создание node_types узлов
     for node in node_types:
-        type_of_node = 'definition_'+node[0]
+        type_of_node = 'definition_' + node[0]
         attributes = get_attributes_name(node[1])
         create_vertex_if_nox_exist(session, type_of_node, attributes)
     # создание capability_types узлов
     for node in capability_types:
-        type_of_node = 'capability_'+node[0]
+        type_of_node = 'capability_' + node[0]
         attributes = get_attributes_name(node[1])
         create_vertex_if_nox_exist(session, type_of_node, attributes)
     # добавление всех типов data_assignments в бд
     for node in data_assignments:
         type_of_node = node[1]
-        attributes = get_attributes_name(node[3])
+        attributes = None
         # print(attributes)
         create_vertex_if_nox_exist(session, type_of_node, attributes)
 
@@ -309,7 +318,7 @@ def yaml_deploy(data_assignments, node_types, capability_types, cluster_name, pu
         type_of_node = 'definition_' + node[0]
         session = is_updated(session, type_of_node)
         vid = number_of_entities(session, type_of_node)
-        node[0] = type_of_node+str(vid)
+        node[0] = type_of_node + str(vid)
         name_key_value = form_name_key_value(['name'] + get_attributes_name(node[1]))
         key_value = form_key_value(['no_name'] + get_attributes(node[1]))
         # print(key_value)
@@ -371,7 +380,7 @@ def yaml_deploy(data_assignments, node_types, capability_types, cluster_name, pu
     for node in node_types:
         if type(node[2]) == list and node[2][0]:
             for link in node[2]:
-                link[0] = 'capability_'+link[0]
+                link[0] = 'capability_' + link[0]
                 link_type = link[0]
                 create_edge_if_nox_exist(session, link_type)
     session.release()

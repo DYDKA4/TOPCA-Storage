@@ -1,4 +1,5 @@
 import dpath.util
+from app import data_classes
 
 """
 yaml parser
@@ -114,7 +115,7 @@ def find_name(capability_types, value, converting_literal, converting_literal_in
     for index in range(len(capability_types)):
         if str(value).replace(converting_literal, converting_literal_into) in capability_types[index]:
             print(capability_types[index][0], hex(id(capability_types[index][0])), 'capability_typex id',
-            hex(id(capability_types)))
+                  hex(id(capability_types)))
             return capability_types[index][0]
     return []
 
@@ -161,14 +162,14 @@ def parser(data):  # возвращает массив где каждый эл�
                     tmp = []
                     # print(properties, values)
                     for values_def, values_props in values.items():
-                        tmp += [[properties+"_"+values_def, str(values_props).replace('\n', ' ')]]
+                        tmp += [[properties + "_" + values_def, str(values_props).replace('\n', ' ')]]
                 ans += [tmp]
             else:
                 ans += [[[]]]
             node_types += [ans]
     capability_types = forming_capabilities(data, 'capability_types')
     if node_types:
-        i = 0 # выглядит как костыль
+        i = 0  # выглядит как костыль
         for name_of_node, params in data.get('node_types').items():
             if params.get('capabilities'):
                 tmp = []
@@ -184,4 +185,30 @@ def parser(data):  # возвращает массив где каждый эл�
                 tmp = [[]]
             node_types[i] += [tmp]
             i += 1
+
+    node_templates = find_node_templates(data)
+    l = []
+    for name, value in node_templates.items():
+        print(name, value)
+        vertex_type = value.get('type')
+        vertex = data_classes.AssignmentVertex(name, vertex_type)
+        if value.get('capabilities'):
+            for capabilities_name, capabilities in value.get('capabilities').items():
+                vertex_capabilities = data_classes.AssignmentCapabilities(capabilities_name)
+                print('PROPS', capabilities_name, capabilities)
+                if capabilities.get('properties'):
+                    for properties_name, properties_value in capabilities.get('properties').items():
+                        print(properties_name, properties_value)
+                        vertex_properties = data_classes.AssignmentProperties(properties_name, properties_value)
+                        vertex_capabilities.add_properties(vertex_properties)
+                vertex.add_capabilities(vertex_capabilities)
+        if value.get('properties'):
+            for properties_name, properties_value in value.get('properties').items():
+                print(properties_name, properties_value)
+                vertex_properties = data_classes.AssignmentProperties(properties_name, properties_value)
+                vertex.add_properties(vertex_properties)
+        l.append(vertex)
+    print()
+    for i in l:
+        print(i)
     return data_assignments, node_types, capability_types

@@ -120,6 +120,12 @@ def find_name(capability_types, value, converting_literal, converting_literal_in
     return []
 
 
+def find_vertex(name, list_of_vertex):
+    for vertex in list_of_vertex:
+        if vertex.name == name:
+            return vertex
+
+
 def parser(data):  # возвращает массив где каждый элдемент сожержимт в себе информаию: имя, тип узла, завимости.
     # print(json.dumps(data, indent=2))
     node_templates = find_node_templates(data)
@@ -187,28 +193,68 @@ def parser(data):  # возвращает массив где каждый эл�
             i += 1
 
     node_templates = find_node_templates(data)
-    l = []
+
+    # новая классовая система
+    assignments_vertex = []
+    definition_vertex = []
     for name, value in node_templates.items():
-        print(name, value)
+        # print(name, value)
         vertex_type = value.get('type')
         vertex = data_classes.AssignmentVertex(name, vertex_type)
         if value.get('capabilities'):
             for capabilities_name, capabilities in value.get('capabilities').items():
                 vertex_capabilities = data_classes.AssignmentCapabilities(capabilities_name)
-                print('PROPS', capabilities_name, capabilities)
+                # print('PROPS', capabilities_name, capabilities)
                 if capabilities.get('properties'):
                     for properties_name, properties_value in capabilities.get('properties').items():
-                        print(properties_name, properties_value)
+                        # print(properties_name, properties_value)
                         vertex_properties = data_classes.AssignmentProperties(properties_name, properties_value)
                         vertex_capabilities.add_properties(vertex_properties)
                 vertex.add_capabilities(vertex_capabilities)
         if value.get('properties'):
             for properties_name, properties_value in value.get('properties').items():
-                print(properties_name, properties_value)
+                # print(properties_name, properties_value)
                 vertex_properties = data_classes.AssignmentProperties(properties_name, properties_value)
                 vertex.add_properties(vertex_properties)
-        l.append(vertex)
+        assignments_vertex.append(vertex)
+
+    # добавление requirements
+    for name, value in node_templates.items():
+        if value.get('requirements'):
+            if type(value.get('requirements')) is list:
+                for requirement in value.get('requirements'):
+                    print(requirement)
+                    for link in requirement.values():
+                        dest = find_vertex(link['node'], assignments_vertex)
+                        source = find_vertex(name, assignments_vertex)
+                        source.add_requirements(dest, link['relationship'])
+            if type(value.get('requirements')) is dict:
+                print('REQUIREMENTS id DICT')
+
+    # формирование списка definition_vertex
+    # for name, value in data.get('node_types').items():
+    #     # print(name, value)
+    #     vertex = data_classes.DefinitionVertex(name, name)
+    #     if value.get('properties'):
+    #         for properties_name, properties in value.get('capabilities').items():
+    #             print('PROPS', properties_name, properties)
+                #         vertex_capabilities = data_classes.DefinitionCapabilities(capabilities_name)
+        #         if capabilities.get('properties'):
+        #             for properties_name, properties_value in capabilities.get('properties').items():
+        #                 # print(properties_name, properties_value)
+        #                 vertex_properties = data_classes.DefinitionProperties(properties_name, properties_value)
+        #                 vertex_capabilities.add_properties(vertex_properties)
+        #         vertex.add_capabilities(vertex_capabilities)
+        # if value.get('properties'):
+        #     for properties_name, properties_value in value.get('properties').items():
+        #         # print(properties_name, properties_value)
+        #         vertex_properties = data_classes.DefinitionProperties(properties_name, properties_value)
+        #         vertex.add_properties(vertex_properties)
+        # definition_vertex.append(vertex)
+
+    for i in definition_vertex:
+        print(i)
     print()
-    for i in l:
+    for i in assignments_vertex:
         print(i)
     return data_assignments, node_types, capability_types

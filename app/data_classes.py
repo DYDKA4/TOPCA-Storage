@@ -7,7 +7,7 @@ class Vertex:
         self.vertex_type_tosca = vertex_type_tosca
         self.vertex_type_system = 'Vertex'
         self.name = name
-        self.requirements = []
+        self.requirements = {} # хз как сделать лучше
         self.capabilities = []
         self.properties = []
 
@@ -22,7 +22,7 @@ class Vertex:
         self.vid = vid
 
     def __str__(self):
-        return f'{self.vid}, {self.vertex_type_tosca}, {self.vertex_type_system}, {self.name}, {self.requirements}, ' \
+        return f'{hex(id(self))}, {self.vid}, {self.vertex_type_tosca}, {self.vertex_type_system}, {self.name}, {self.requirements}, ' \
                f'{self.capabilities}, {self.properties}'
 
     def __repr__(self):
@@ -34,15 +34,18 @@ class AssignmentVertex(Vertex):
         super().__init__(name, vertex_type)
         self.vertex_type_system = 'AssignmentVertex'
 
-    def add_requirements(self, obj):
+    def add_requirements(self, obj, link_type):
         # проверка condition для дочерних классов
-        self.requirements.append(obj)
+        self.requirements[obj] = link_type
 
     def add_capabilities(self, obj):
         self.capabilities.append(obj)
 
     def add_properties(self, obj):
         self.properties.append(obj)
+
+    def __repr__(self):
+        return hex(id(self))
 
 
 class ClusterName(Vertex):
@@ -65,13 +68,6 @@ class AssignmentCapabilities(Vertex):
                f'{self.capabilities}, {self.properties}'
 
 
-
-class AssignmentRequirements(Vertex):
-    def __init__(self, name, vertex_type='AssignmentRequirements'):
-        super().__init__(name, vertex_type)
-        self.vertex_type_system = 'AssignmentRequirements'
-
-
 class AssignmentProperties(Vertex):
     def __init__(self, value_name, value, name='null', vertex_type='AssignmentProperties'):
         super().__init__(name, vertex_type)
@@ -89,12 +85,27 @@ class DefinitionCapabilities(Vertex):
         super().__init__(name, vertex_type)
         self.vertex_type_system = 'DefinitionCapabilities'
 
+    def add_properties(self, obj):
+        self.properties.append(obj)
 
-class DefinitionRequirements(Vertex):
+
+class DefinitionVertex(Vertex):
     def __init__(self, name, vertex_type='DefinitionRequirements'):
         super().__init__(name, vertex_type)
         self.vertex_type_system = 'DefinitionRequirements'
 
+    def add_requirements(self, obj, link_type):
+        # проверка condition для дочерних классов
+        self.requirements[obj] = link_type
+
+    def add_capabilities(self, obj):
+        self.capabilities.append(obj)
+
+    def add_properties(self, obj):
+        self.properties.append(obj)
+
+    def __repr__(self):
+        return hex(id(self))
 
 class DefinitionProperties(Vertex):
     def __init__(self, name, vertex_type='DefinitionProperties'):

@@ -1,0 +1,3 @@
+2022-02-25 18:09:53,811 WARNING werkzeug MainThread :  * Debugger is active!
+2022-02-25 18:09:53,812 INFO werkzeug MainThread :  * Debugger PIN: 277-721-888
+2022-02-25 18:10:55,501 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/data_classes.py', reloading

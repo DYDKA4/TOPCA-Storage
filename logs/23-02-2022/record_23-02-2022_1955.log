@@ -1,0 +1,12 @@
+2022-02-23 19:55:06,898 WARNING werkzeug MainThread :  * Debugger is active!
+2022-02-23 19:55:06,899 INFO werkzeug MainThread :  * Debugger PIN: 328-217-280
+2022-02-23 19:55:07,228 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-02-23 19:55:07,520 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-02-23 19:55:08,002 INFO werkzeug Thread-2 : 127.0.0.1 - - [23/Feb/2022 19:55:08] "[35m[1mPOST /yaml-template?cluster_name=cluster_tosca_10 HTTP/1.1[0m" 500 -
+2022-02-23 19:55:40,965 INFO root Thread-3 : Get connection to ('10.100.151.128', 9669)
+2022-02-23 19:55:41,239 INFO root Thread-3 : Get connection to ('10.100.151.128', 9669)
+2022-02-23 19:55:41,737 INFO werkzeug Thread-3 : 127.0.0.1 - - [23/Feb/2022 19:55:41] "[35m[1mPOST /yaml-template?cluster_name=cluster_tosca_10 HTTP/1.1[0m" 500 -
+2022-02-23 19:55:43,910 INFO root Thread-4 : Get connection to ('10.100.151.128', 9669)
+2022-02-23 19:55:44,179 INFO root Thread-4 : Get connection to ('10.100.151.128', 9669)
+2022-02-23 19:55:44,668 INFO werkzeug Thread-4 : 127.0.0.1 - - [23/Feb/2022 19:55:44] "[35m[1mPOST /yaml-template?cluster_name=cluster_tosca_10 HTTP/1.1[0m" 500 -
+2022-02-23 19:56:09,643 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/communication_with_nebula.py', reloading

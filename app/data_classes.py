@@ -18,8 +18,9 @@ class Vertex:
             self.vid = self.vertex_type_system + str(
                 cwn.number_of_entities(cwn.chose_of_space(), self.vertex_type_system))
 
-    def set_vid(self, vid):
-        self.vid = vid
+    def set_vid(self, session):
+        identification = cwn.number_of_entities(session, self.vertex_type_system)
+        self.vid = '"' + self.vertex_type_system + str(identification) + '"'
 
     def __str__(self):
         return f'{hex(id(self))}, {self.vid}, {self.vertex_type_tosca}, {self.vertex_type_system}, {self.name}, {self.requirements}, ' \

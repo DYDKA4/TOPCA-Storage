@@ -45,7 +45,7 @@ def is_unique_vid(session, vertex_name, vid):
     result = session.execute(f'LOOKUP ON {vertex_name}')
     assert result.is_succeeded(), result.error_msg()
     result = result.column_values('VertexID')
-    print(result)
+    # print(result)
     if result:
         for index in result:
             if index.as_string() == vid[1:-1]:
@@ -226,16 +226,49 @@ def form_key_value(data):
     result = result[:-2]
     return result
 
+
 def yaml_deploy(cluster_vertex: data_classes.ClusterName):
     """ программа за четыре прохода создает шаблон в бд,
     за первый проход она размещается все узлы в бд, за второй создаёт соотвествующие связи
     """
     session = chose_of_space()
-    print(is_unique_vid(session, cluster_vertex.vertex_type_system, cluster_vertex.vid))
-    if not(is_unique_vid(session, cluster_vertex.vertex_type_system, cluster_vertex.vid)):
+    if not (is_unique_vid(session, cluster_vertex.vertex_type_system, cluster_vertex.vid)):
         return '400 Cluster VID is not unique'
     print(type(cluster_vertex.pure_yaml))
+    definition_vertex: data_classes.DefinitionVertex
+    # добавление всех вершин связанных с definition vertex
+    for definition_vertex in cluster_vertex.assignment_vertex:
+        definition_vertex.set_vid(session)
+        add_in_vertex(session, definition_vertex.vertex_type_system, 'name', '"' + definition_vertex.name + '"',
+                      definition_vertex.vid)
+
+        # добавление property и capability в БД и ребра между defenition_vertex и property_vertex
+        property_vertex: data_classes.AssignmentProperties
+        for property_vertex in definition_vertex.properties:
+            property_vertex.set_vid(session)
+            add_in_vertex(session, property_vertex.vertex_type_system, 'value_name, value',
+                          f'"{property_vertex.value_name}", "{property_vertex.value}"', property_vertex.vid)
+            add_edge(session, 'assignment_property', '', definition_vertex.vid, property_vertex.vid, '')
+
+        capability_vertex: data_classes.AssignmentCapabilities
+        for capability_vertex in definition_vertex.capabilities:
+            capability_vertex.set_vid(session)
+            add_in_vertex(session, capability_vertex.vertex_type_system, 'name',
+                          f'"{capability_vertex.name}"', capability_vertex.vid)
+            add_edge(session, 'assignment_capability', '', definition_vertex.vid, capability_vertex.vid, '')
+            for property_vertex in capability_vertex.properties:
+                property_vertex.set_vid(session)
+                add_in_vertex(session, property_vertex.vertex_type_system, 'value_name, value',
+                              f'"{property_vertex.value_name}", "{property_vertex.value}"', property_vertex.vid)
+                add_edge(session, 'assignment_property', '', capability_vertex.vid, property_vertex.vid, '')
+    for definition_vertex in cluster_vertex.assignment_vertex:
+        for destination_vertex, type_link in definition_vertex.requirements.items():
+            add_edge(session, 'assignment_requirements', 'name', definition_vertex.vid, destination_vertex.vid,
+                     f'"{type_link}"')
     add_in_vertex(session, cluster_vertex.vertex_type_system, 'pure_yaml', '"' + str(cluster_vertex.pure_yaml) + '"',
                   cluster_vertex.vid)
-    session.release()
+    for definition_vertex in cluster_vertex.assignment_vertex:
+        add_edge(session, 'assignment', '', cluster_vertex.vid, definition_vertex.vid, '')
+
+    # session.release()
     return '200 OK'

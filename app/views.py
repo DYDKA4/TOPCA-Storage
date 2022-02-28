@@ -14,7 +14,6 @@ def yaml_add():
     if file:
         file = file.read().decode("utf-8")
         file = yaml.safe_load(file)
-        pure_yaml = file
     else:
         return '''
         400 Bad Request 
@@ -22,19 +21,10 @@ def yaml_add():
 
     cluster_name = request.args.get('cluster_name')
     if cluster_name:
-        data_assignments, node_types, capability_types = yaml_parser.parser(file)
-        # for i in data_assignments:
-        #     print(i)
-        # print('\nnode_types')
-        # for i in node_types:
-        #     print(i)
-        # print('\ncapability_types')
-        # for i in capability_types:
-        #     print(i)
-        # print(cluster_name)
+        cluster_vertex = yaml_parser.parser(file, cluster_name)
+
         end_code = '400'
-        # end_code = communication_with_nebula.yaml_deploy(data_assignments, node_types, capability_types, cluster_name,
-        #                                                  pure_yaml)
+        # end_code = communication_with_nebula.yaml_deploy(cluster_vertex)
         print()
         return f'{end_code}'
     return '''

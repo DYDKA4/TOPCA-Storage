@@ -30,8 +30,8 @@ class Vertex:
 
 
 class AssignmentVertex(Vertex):
-    def __init__(self, name, vertex_type='AssignmentVertex'):
-        super().__init__(name, vertex_type)
+    def __init__(self, name, vertex_type_tosca='AssignmentVertex'):
+        super().__init__(name, vertex_type_tosca)
         self.vertex_type_system = 'AssignmentVertex'
 
     def add_requirements(self, obj, link_type):
@@ -49,15 +49,21 @@ class AssignmentVertex(Vertex):
 
 
 class ClusterName(Vertex):
-    def __init__(self, name, pure_yaml):
+    def __init__(self, name, pure_yaml, list_of_definition_vertex, list_of_assignment_vertex):
         super().__init__(name, 'ClusterName')
+        self.vid = name
         self.vertex_type_system = 'ClusterName'
         self.pure_yaml = pure_yaml
+        self.definition_vertex = list_of_definition_vertex
+        self.assignment_vertex = list_of_assignment_vertex
 
+    def __str__(self):
+        return f'{hex(id(self))}, {self.vid}, {self.vertex_type_tosca}, {self.vertex_type_system}, {self.name}, {self.definition_vertex}, ' \
+               f'{self.assignment_vertex}, {self.pure_yaml}'
 
 class AssignmentCapabilities(Vertex):
-    def __init__(self, name, vertex_type='AssignmentCapabilities'):
-        super().__init__(name, vertex_type)
+    def __init__(self, name, vertex_type_tosca='AssignmentCapabilities'):
+        super().__init__(name, vertex_type_tosca)
         self.vertex_type_system = 'AssignmentCapabilities'
 
     def add_properties(self, obj):
@@ -69,8 +75,8 @@ class AssignmentCapabilities(Vertex):
 
 
 class AssignmentProperties(Vertex):
-    def __init__(self, value_name, value, name='null', vertex_type='AssignmentProperties'):
-        super().__init__(name, vertex_type)
+    def __init__(self, value_name, value, vertex_type_tosca='AssignmentProperties'):
+        super().__init__('noname', vertex_type_tosca)
         self.value_name = value_name
         self.value = value
         self.vertex_type_system = 'AssignmentProperties'
@@ -81,8 +87,8 @@ class AssignmentProperties(Vertex):
 
 
 class DefinitionCapabilities(Vertex):
-    def __init__(self, name, vertex_type='DefinitionCapabilities'):
-        super().__init__(name, vertex_type)
+    def __init__(self, vertex_type_tosca):
+        super().__init__('noname', vertex_type_tosca)
         self.vertex_type_system = 'DefinitionCapabilities'
 
     def add_properties(self, obj):
@@ -90,8 +96,8 @@ class DefinitionCapabilities(Vertex):
 
 
 class DefinitionVertex(Vertex):
-    def __init__(self, name, vertex_type='DefinitionRequirements'):
-        super().__init__(name, vertex_type)
+    def __init__(self, vertex_type_tosca):
+        super().__init__('noname', vertex_type_tosca)
         self.vertex_type_system = 'DefinitionRequirements'
 
     def add_requirements(self, obj, link_type):
@@ -107,15 +113,15 @@ class DefinitionVertex(Vertex):
     def __repr__(self):
         return hex(id(self))
 
-class DefinitionProperties(Vertex):
-    def __init__(self, name, vertex_type='DefinitionProperties'):
-        super().__init__(name, vertex_type)
-        self.vertex_type_system = 'DefinitionProperties'
 
-# a = Vertex('YA', 'BlockStorage')
-# b = Vertex('BB', 'Compute')
-# a.generate_vid()
-# b.generate_vid()
-# a.set_requirements(b)
-#
-# a.print()
+class DefinitionProperties(Vertex):
+    def __init__(self, name, value_name, value, vertex_type_tosca='AssignmentProperties'):
+        super().__init__(name, vertex_type_tosca)
+        self.value_name = value_name
+        self.value = value
+        self.vertex_type_system = 'AssignmentProperties'
+
+    def __str__(self):
+        return f'{self.vid}, {self.vertex_type_tosca}, {self.vertex_type_system}, {self.name}, {self.requirements}, ' \
+               f'{self.capabilities}, {self.properties}'
+

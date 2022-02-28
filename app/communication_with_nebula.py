@@ -284,7 +284,7 @@ def cluster_linking(session, cluster_name, pure_tosca_yaml, data_assignments, da
     return session
 
 
-def yaml_deploy(data_assignments, node_types, capability_types, cluster_name, pure_tosca_yaml):
+def yaml_deploy(cluster_vertex):
     """ программа за четыре прохода создает шаблон в бд,
     за первый проход она размещается все узлы в бд, за второй создаёт соотвествующие связи
     """

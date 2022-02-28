@@ -1,0 +1,4 @@
+2022-02-25 20:35:44,117 WARNING werkzeug MainThread :  * Debugger is active!
+2022-02-25 20:35:44,118 INFO werkzeug MainThread :  * Debugger PIN: 277-721-888
+2022-02-25 20:35:47,013 INFO werkzeug Thread-2 : 127.0.0.1 - - [25/Feb/2022 20:35:47] "POST /yaml-template?cluster_name=cluster_tosca_10 HTTP/1.1" 200 -
+2022-02-25 20:36:10,378 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/yaml_parser.py', reloading

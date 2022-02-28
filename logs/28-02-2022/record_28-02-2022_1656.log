@@ -1,0 +1,16 @@
+2022-02-28 16:56:26,003 WARNING werkzeug MainThread :  * Debugger is active!
+2022-02-28 16:56:26,003 INFO werkzeug MainThread :  * Debugger PIN: 104-682-689
+2022-02-28 16:56:28,409 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-02-28 16:56:28,435 INFO werkzeug Thread-2 : 127.0.0.1 - - [28/Feb/2022 16:56:28] "[35m[1mPOST /yaml-template?cluster_name=cluster_tosca_11 HTTP/1.1[0m" 500 -
+2022-02-28 16:56:45,767 ERROR root MainThread : The connection using by someone, but now want to close it
+2022-02-28 16:56:46,904 INFO werkzeug MainThread :  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2022-02-28 16:56:46,907 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-28 16:56:47,085 WARNING werkzeug MainThread :  * Debugger is active!
+2022-02-28 16:56:47,085 INFO werkzeug MainThread :  * Debugger PIN: 104-682-689
+2022-02-28 16:56:49,441 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-02-28 16:56:49,469 INFO werkzeug Thread-2 : 127.0.0.1 - - [28/Feb/2022 16:56:49] "[35m[1mPOST /yaml-template?cluster_name=cluster_tosca_11 HTTP/1.1[0m" 500 -
+2022-02-28 16:57:36,568 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/data_classes.py', reloading
+2022-02-28 16:57:36,596 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-28 16:58:18,267 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-28 16:59:15,115 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-28 16:59:42,628 INFO werkzeug MainThread :  * Restarting with stat

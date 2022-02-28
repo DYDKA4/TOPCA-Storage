@@ -1,0 +1,21 @@
+2022-02-28 16:30:04,305 WARNING werkzeug MainThread :  * Debugger is active!
+2022-02-28 16:30:04,306 INFO werkzeug MainThread :  * Debugger PIN: 104-682-689
+2022-02-28 16:30:14,415 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/views.py', reloading
+2022-02-28 16:30:14,632 WARNING werkzeug MainThread :  * Debugger is active!
+2022-02-28 16:30:14,632 INFO werkzeug MainThread :  * Debugger PIN: 104-682-689
+2022-02-28 16:30:26,766 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/views.py', reloading
+2022-02-28 16:30:26,956 WARNING werkzeug MainThread :  * Debugger is active!
+2022-02-28 16:30:26,956 INFO werkzeug MainThread :  * Debugger PIN: 104-682-689
+2022-02-28 16:30:27,988 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-02-28 16:30:28,012 INFO werkzeug Thread-2 : 127.0.0.1 - - [28/Feb/2022 16:30:28] "[35m[1mPOST /yaml-template?cluster_name=cluster_tosca_10 HTTP/1.1[0m" 500 -
+2022-02-28 16:30:43,154 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/views.py', reloading
+2022-02-28 16:30:43,347 WARNING werkzeug MainThread :  * Debugger is active!
+2022-02-28 16:30:43,347 INFO werkzeug MainThread :  * Debugger PIN: 104-682-689
+2022-02-28 16:30:44,318 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-02-28 16:30:44,338 INFO werkzeug Thread-2 : 127.0.0.1 - - [28/Feb/2022 16:30:44] "[35m[1mPOST /yaml-template?cluster_name=cluster_tosca_10 HTTP/1.1[0m" 500 -
+2022-02-28 16:30:51,442 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/views.py', reloading
+2022-02-28 16:30:51,668 WARNING werkzeug MainThread :  * Debugger is active!
+2022-02-28 16:30:51,668 INFO werkzeug MainThread :  * Debugger PIN: 104-682-689
+2022-02-28 16:30:53,130 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-02-28 16:30:53,152 INFO werkzeug Thread-2 : 127.0.0.1 - - [28/Feb/2022 16:30:53] "[35m[1mPOST /yaml-template?cluster_name=cluster_tosca_10 HTTP/1.1[0m" 500 -
+2022-02-28 16:31:07,851 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/views.py', reloading

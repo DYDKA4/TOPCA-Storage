@@ -7,7 +7,7 @@ class Vertex:
         self.vertex_type_tosca = vertex_type_tosca
         self.vertex_type_system = 'Vertex'
         self.name = name
-        self.requirements = {} # хз как сделать лучше
+        self.requirements = {}  # хз как сделать лучше
         self.capabilities = []
         self.properties = []
 
@@ -51,7 +51,7 @@ class AssignmentVertex(Vertex):
 class ClusterName(Vertex):
     def __init__(self, name, pure_yaml, list_of_definition_vertex, list_of_assignment_vertex):
         super().__init__(name, 'ClusterName')
-        self.vid = name
+        self.vid = '"' + name + '"'
         self.vertex_type_system = 'ClusterName'
         self.pure_yaml = pure_yaml
         self.definition_vertex = list_of_definition_vertex
@@ -60,6 +60,7 @@ class ClusterName(Vertex):
     def __str__(self):
         return f'{hex(id(self))}, {self.vid}, {self.vertex_type_tosca}, {self.vertex_type_system}, {self.name}, {self.definition_vertex}, ' \
                f'{self.assignment_vertex}, {self.pure_yaml}'
+
 
 class AssignmentCapabilities(Vertex):
     def __init__(self, name, vertex_type_tosca='AssignmentCapabilities'):
@@ -124,4 +125,3 @@ class DefinitionProperties(Vertex):
     def __str__(self):
         return f'{self.vid}, {self.vertex_type_tosca}, {self.vertex_type_system}, {self.name}, {self.requirements}, ' \
                f'{self.capabilities}, {self.properties}'
-

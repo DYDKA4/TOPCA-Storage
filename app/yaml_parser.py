@@ -94,6 +94,9 @@ def parser(data, cluster_name):  # возвращает массив где ка
                 source = find_vertex(name, definition_vertex, search_by_type=True)
                 source.add_capabilities(destination)
 
+
+    # P.S скорее всего можно либо сделать методы в data_classes либо придумать функции для уменьшения частичного повторения кода
+
     # for i in definition_vertex:
     #     print(i)
     #

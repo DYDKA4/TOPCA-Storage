@@ -129,7 +129,7 @@ def yaml_deploy(cluster_vertex: data_classes.ClusterName):
         interface_vertex.set_vid(session)
         add_in_vertex(session, interface_vertex.vertex_type_system, 'vertex_type_tosca',
                       f'"{interface_vertex.vertex_type_tosca}"', interface_vertex.vid)
-
+    # добавление всех definition_vertex
     definition_vertex: data_classes.DefinitionVertex
     for definition_vertex in cluster_vertex.definition_vertex:
         definition_vertex.set_vid(session)
@@ -148,6 +148,11 @@ def yaml_deploy(cluster_vertex: data_classes.ClusterName):
             add_edge(session, 'definition_capability', '', definition_vertex.vid, capability_vertex.vid, '')
         for interface_vertex, type_link in definition_vertex.interfaces.items():
             add_edge(session, 'definition_interface', 'name', definition_vertex.vid, interface_vertex.vid,
+                     f'"{type_link}"')
+    #добавление связей requirement в definition vertex
+    for definition_vertex in cluster_vertex.definition_vertex:
+        for destination_vertex, type_link in definition_vertex.requirements.items():
+            add_edge(session, 'definition_requirements', 'name', definition_vertex.vid, destination_vertex.vid,
                      f'"{type_link}"')
     # добавление связей derived_from
 

@@ -2,3 +2,4 @@
 2022-03-02 18:35:34,811 INFO werkzeug MainThread :  * Debugger PIN: 799-069-225
 2022-03-02 18:35:39,454 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
 2022-03-02 18:35:57,745 INFO werkzeug Thread-2 : 127.0.0.1 - - [02/Mar/2022 18:35:57] "POST /yaml-template?cluster_name=cluster_tosca_30 HTTP/1.1" 200 -
+2022-03-02 18:53:50,065 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/yaml_parser.py', reloading

@@ -11,3 +11,12 @@
 2022-03-02 18:31:35,045 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/communication_with_nebula.py', reloading
 2022-03-02 18:31:35,075 INFO werkzeug MainThread :  * Restarting with stat
 2022-03-02 18:35:34,644 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-02 18:53:50,091 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-02 18:53:56,357 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-02 18:54:41,090 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-02 18:55:28,823 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-02 18:56:33,752 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-02 18:56:38,010 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-02 18:58:16,272 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-02 18:58:21,563 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-02 19:01:18,539 INFO werkzeug MainThread :  * Restarting with stat

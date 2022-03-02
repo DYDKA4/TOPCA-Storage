@@ -91,8 +91,7 @@ def parser(data, cluster_name):  # возвращает массив где ка
     for interface_type, val in data.get('interface_types').items():
         vertex = data_classes.DefinitionInterface(interface_type)
         interfaces_vertex.append(vertex)
-    # формирование связей между capabilities и definition_vertex
-
+    # формирование связей между definition_vertex и другими
     for name, val in data.get('node_types').items():
         if val.get('capabilities'):
             for capabilities in val.get('capabilities').values():
@@ -108,6 +107,16 @@ def parser(data, cluster_name):  # возвращает массив где ка
                 destination = find_vertex(interface.get('type'), interfaces_vertex,search_by_type=True)
                 source = find_vertex(name, definition_vertex, search_by_type=True)
                 source.add_interface(destination, link_type)
+        if val.get('requirements'):
+            if type(val.get('requirements')) is list:
+                for requirement in val.get('requirements'):
+                    # print(requirement)
+                    for link in requirement.values():
+                        dest = find_vertex(link['node'], definition_vertex, search_by_type=True)
+                        source = find_vertex(name, definition_vertex, search_by_type=True)
+                        source.add_requirements(dest, link['relationship'])
+            if type(val.get('requirements')) is dict:
+                print('REQUIREMENTS id DICT')
     # формирование связей между capability
     for name, val in data.get('capability_types').items():
         if val.get('derived_from'):

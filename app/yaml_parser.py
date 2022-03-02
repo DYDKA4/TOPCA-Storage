@@ -86,7 +86,11 @@ def parser(data, cluster_name):  # возвращает массив где ка
                                                                           str(properties_value).replace('\n', ' '))
                     vertex.add_properties(vertex_properties)
         capabilities_vertex.append(vertex)
-
+    # формирование спика interface
+    interfaces_vertex = []
+    for interface_type, val in data.get('interface_types').items():
+        vertex = data_classes.DefinitionInterface(interface_type)
+        interfaces_vertex.append(vertex)
     # формирование связей между capabilities и definition_vertex
 
     for name, val in data.get('node_types').items():
@@ -99,13 +103,23 @@ def parser(data, cluster_name):  # возвращает массив где ка
             source = find_vertex(val.get('derived_from'), definition_vertex, search_by_type=True)
             destination = find_vertex(name, definition_vertex, search_by_type=True)
             source.add_derived_from(destination)
-
+        if val.get('interfaces'):
+            for link_type, interface in val.get('interfaces').items():
+                destination = find_vertex(interface.get('type'), interfaces_vertex,search_by_type=True)
+                source = find_vertex(name, definition_vertex, search_by_type=True)
+                source.add_interface(destination, link_type)
+    # формирование связей между capability
     for name, val in data.get('capability_types').items():
         if val.get('derived_from'):
             source = find_vertex(val.get('derived_from'), capabilities_vertex, search_by_type=True)
             destination = find_vertex(name, capabilities_vertex, search_by_type=True)
             source.add_derived_from(destination)
-
+    # формирование связей между interface
+    for name, val in data.get('interface_types').items():
+        if val.get('derived_from'):
+            source = find_vertex(val.get('derived_from'), interfaces_vertex, search_by_type=True)
+            destination = find_vertex(name, interfaces_vertex, search_by_type=True)
+            source.add_derived_from(destination)
     # P.S скорее всего можно либо сделать методы в data_classes либо придумать функции для уменьшения частичного повторения кода
 
     for i in definition_vertex:
@@ -115,10 +129,14 @@ def parser(data, cluster_name):  # возвращает массив где ка
     for i in capabilities_vertex:
         print(i)
     print()
+    for i in interfaces_vertex:
+        print(i)
+    print()
     for i in assignments_vertex:
         print(i)
-
+    print()
     vertex_cluster = data_classes.ClusterName(cluster_name, data, definition_vertex,
-                                              assignments_vertex, capabilities_vertex)
+                                              assignments_vertex, capabilities_vertex,
+                                              interfaces_vertex)
     print(vertex_cluster)
     return vertex_cluster

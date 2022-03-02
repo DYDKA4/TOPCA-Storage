@@ -416,6 +416,62 @@ capability_types:
       types.
 
 
+
+interface_types:
+  tosca.interfaces.Root:
+    description: >
+      The TOSCA root Interface Type all other TOSCA base Interface Types
+      derive from
+  tosca.interfaces.node.lifecycle.Standard:
+    description: This lifecycle interface defines the essential, normative operations that TOSCA nodes may support.
+    derived_from: tosca.interfaces.Root
+    preconfigure:
+      description: Standard lifecycle preconfigure operation.
+    create:
+      description: Standard lifecycle create operation.
+    configure:
+      description: Standard lifecycle configure operation.
+    start:
+      description: Standard lifecycle start operation.
+    stop:
+      description: Standard lifecycle stop operation.
+    delete:
+      description: Standard lifecycle delete operation.
+
+  tosca.interfaces.relationship.Configure:
+    description: >
+      The lifecycle interfaces define the essential, normative operations that each TOSCA Relationship Types may
+      support.
+    derived_from: tosca.interfaces.Root
+    pre_configure_source:
+      description: Operation to pre-configure the source endpoint.
+    pre_configure_target:
+      description: Operation to pre-configure the target endpoint.
+    post_configure_source:
+      description: Operation to post-configure the source endpoint.
+    post_configure_target:
+      description: Operation to post-configure the target endpoint.
+    add_target:
+      description: Operation to add a target node.
+    remove_target:
+      description: Operation to remove a target node.
+    add_source:
+      description: >
+        Operation to notify the target node of a source node which
+        is now available via a relationship.
+    target_changed:
+      description: >
+        Operation to notify source some property or attribute of the
+        target changed
+  tosca.interfaces.node.Prepare:
+    description: >
+      The lifecycle interfaces define the essential, normative operations that must be executed before Node is created
+    derived_from: tosca.interfaces.Root
+    preconfigure:
+      description: Operation to pre-configure the node.
+    configure:
+      description: Operation to configure the node.
+
 relationship_types:
 
   MyAttachesTo:

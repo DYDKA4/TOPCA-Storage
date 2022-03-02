@@ -72,7 +72,6 @@ def add_edge(session, edge_name, edge_params, source_vertex, destination_vertex,
     return
 
 
-
 def yaml_deploy(cluster_vertex: data_classes.ClusterName):
     """ программа за четыре прохода создает шаблон в бд,
     за первый проход она размещается все узлы в бд, за второй создаёт соотвествующие связи
@@ -124,6 +123,13 @@ def yaml_deploy(cluster_vertex: data_classes.ClusterName):
                           f'"{property_vertex.value_name}", "{property_vertex.value}"', property_vertex.vid)
             add_edge(session, 'definition_property', 'name', capability_vertex.vid, property_vertex.vid,
                      f'"{property_vertex.name}"')
+    interface_vertex: data_classes.DefinitionInterface
+    # добавление всех interface_vertex
+    for interface_vertex in cluster_vertex.interfaces_vertex:
+        interface_vertex.set_vid(session)
+        add_in_vertex(session, interface_vertex.vertex_type_system, 'vertex_type_tosca',
+                      f'"{interface_vertex.vertex_type_tosca}"', interface_vertex.vid)
+
     definition_vertex: data_classes.DefinitionVertex
     for definition_vertex in cluster_vertex.definition_vertex:
         definition_vertex.set_vid(session)
@@ -140,18 +146,25 @@ def yaml_deploy(cluster_vertex: data_classes.ClusterName):
         capability_vertex: data_classes.DefinitionCapabilities
         for capability_vertex in definition_vertex.capabilities:
             add_edge(session, 'definition_capability', '', definition_vertex.vid, capability_vertex.vid, '')
+        for interface_vertex, type_link in definition_vertex.interfaces.items():
+            add_edge(session, 'definition_interface', 'name', definition_vertex.vid, interface_vertex.vid,
+                     f'"{type_link}"')
     # добавление связей derived_from
 
     for definition_vertex in cluster_vertex.definition_vertex:
         for derived in definition_vertex.derived_from:
             add_edge(session, 'derived_from', '', definition_vertex.vid, derived.vid, '')
-    capability_vertex: data_classes.DefinitionCapabilities
     for capability_vertex in cluster_vertex.definition_capabilities:
+        capability_vertex: data_classes.DefinitionCapabilities
         for derived in capability_vertex.derived_from:
             add_edge(session, 'derived_from', '', capability_vertex.vid, derived.vid, '')
+    for interface_vertex in cluster_vertex.interfaces_vertex:
+        for derived in interface_vertex.derived_from:
+            add_edge(session, 'derived_from', '', interface_vertex.vid, derived.vid, '')
+
+    # доавление связей между cluster_vertex и всеми вершинами
     add_in_vertex(session, cluster_vertex.vertex_type_system, 'pure_yaml', '"' + str(cluster_vertex.pure_yaml) + '"',
                   cluster_vertex.vid)
-
     for assignment_vertex in cluster_vertex.assignment_vertex:
         add_edge(session, 'assignment', '', cluster_vertex.vid, assignment_vertex.vid, '')
     for definition_vertex in cluster_vertex.definition_vertex:

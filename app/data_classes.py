@@ -50,7 +50,8 @@ class AssignmentVertex(Vertex):
 
 
 class ClusterName(Vertex):
-    def __init__(self, name, pure_yaml, list_of_definition_vertex, list_of_assignment_vertex, definition_capabilities):
+    def __init__(self, name, pure_yaml, list_of_definition_vertex, list_of_assignment_vertex, definition_capabilities,
+                 interfaces_vertex):
         super().__init__(name, 'ClusterName')
         self.vid = '"' + name + '"'
         self.vertex_type_system = 'ClusterName'
@@ -58,6 +59,7 @@ class ClusterName(Vertex):
         self.definition_vertex = list_of_definition_vertex
         self.assignment_vertex = list_of_assignment_vertex
         self.definition_capabilities = definition_capabilities
+        self.interfaces_vertex = interfaces_vertex
 
     def __str__(self):
         return f'{hex(id(self))}, {self.vid}, {self.vertex_type_tosca}, {self.vertex_type_system}, {self.name}, {self.definition_vertex}, ' \
@@ -110,6 +112,7 @@ class DefinitionVertex(Vertex):
         super().__init__('noname', vertex_type_tosca)
         self.vertex_type_system = 'DefinitionVertex'
         self.derived_from = []
+        self.interfaces = {}
 
     def add_requirements(self, obj, link_type):
         # проверка condition для дочерних классов
@@ -123,6 +126,9 @@ class DefinitionVertex(Vertex):
 
     def add_derived_from(self, obj):
         self.derived_from.append(obj)
+
+    def add_interface(self, obj, link_type):
+        self.interfaces[obj] = link_type
 
     def __repr__(self):
         return hex(id(self))
@@ -138,3 +144,13 @@ class DefinitionProperties(Vertex):
     def __str__(self):
         return f'{self.vid}, {self.vertex_type_tosca}, {self.vertex_type_system}, {self.name}, {self.requirements}, ' \
                f'{self.capabilities}, {self.properties}'
+
+
+class DefinitionInterface(Vertex):
+    def __init__(self, vertex_type_tosca):
+        super().__init__('noname', vertex_type_tosca)
+        self.derived_from = []
+        self.vertex_type_system = 'DefinitionInterface'
+
+    def add_derived_from(self, obj):
+        self.derived_from.append(obj)

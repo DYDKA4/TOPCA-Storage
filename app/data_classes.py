@@ -93,9 +93,13 @@ class DefinitionCapabilities(Vertex):
     def __init__(self, vertex_type_tosca):
         super().__init__('noname', vertex_type_tosca)
         self.vertex_type_system = 'DefinitionCapabilities'
+        self.derived_from = []
 
     def add_properties(self, obj):
         self.properties.append(obj)
+
+    def add_derived_from(self, obj):
+        self.derived_from.append(obj)
 
     def __repr__(self):
         return hex(id(self))
@@ -105,6 +109,7 @@ class DefinitionVertex(Vertex):
     def __init__(self, vertex_type_tosca):
         super().__init__('noname', vertex_type_tosca)
         self.vertex_type_system = 'DefinitionVertex'
+        self.derived_from = []
 
     def add_requirements(self, obj, link_type):
         # проверка condition для дочерних классов
@@ -115,6 +120,9 @@ class DefinitionVertex(Vertex):
 
     def add_properties(self, obj):
         self.properties.append(obj)
+
+    def add_derived_from(self, obj):
+        self.derived_from.append(obj)
 
     def __repr__(self):
         return hex(id(self))

@@ -95,7 +95,16 @@ def parser(data, cluster_name):  # возвращает массив где ка
                 destination = find_vertex(capabilities.get('type'), capabilities_vertex, search_by_type=True)
                 source = find_vertex(name, definition_vertex, search_by_type=True)
                 source.add_capabilities(destination)
+        if val.get('derived_from'):
+            source = find_vertex(val.get('derived_from'), definition_vertex, search_by_type=True)
+            destination = find_vertex(name, definition_vertex, search_by_type=True)
+            source.add_derived_from(destination)
 
+    for name, val in data.get('capability_types').items():
+        if val.get('derived_from'):
+            source = find_vertex(val.get('derived_from'), capabilities_vertex, search_by_type=True)
+            destination = find_vertex(name, capabilities_vertex, search_by_type=True)
+            source.add_derived_from(destination)
 
     # P.S скорее всего можно либо сделать методы в data_classes либо придумать функции для уменьшения частичного повторения кода
 

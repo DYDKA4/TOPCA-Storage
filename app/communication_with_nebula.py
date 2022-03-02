@@ -140,7 +140,15 @@ def yaml_deploy(cluster_vertex: data_classes.ClusterName):
         capability_vertex: data_classes.DefinitionCapabilities
         for capability_vertex in definition_vertex.capabilities:
             add_edge(session, 'definition_capability', '', definition_vertex.vid, capability_vertex.vid, '')
+    # добавление связей derived_from
 
+    for definition_vertex in cluster_vertex.definition_vertex:
+        for derived in definition_vertex.derived_from:
+            add_edge(session, 'derived_from', '', definition_vertex.vid, derived.vid, '')
+    capability_vertex: data_classes.DefinitionCapabilities
+    for capability_vertex in cluster_vertex.definition_capabilities:
+        for derived in capability_vertex.derived_from:
+            add_edge(session, 'derived_from', '', capability_vertex.vid, derived.vid, '')
     add_in_vertex(session, cluster_vertex.vertex_type_system, 'pure_yaml', '"' + str(cluster_vertex.pure_yaml) + '"',
                   cluster_vertex.vid)
 

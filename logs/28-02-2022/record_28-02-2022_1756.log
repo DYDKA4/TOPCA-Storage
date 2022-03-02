@@ -6,3 +6,14 @@
 2022-02-28 17:56:51,349 INFO werkzeug Thread-2 : 127.0.0.1 - - [28/Feb/2022 17:56:51] "[35m[1mPOST /yaml-template?cluster_name=cluster_tosca_16 HTTP/1.1[0m" 500 -
 2022-02-28 17:57:18,012 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/communication_with_nebula.py', reloading
 2022-02-28 17:57:18,041 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-28 18:09:51,957 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-28 18:09:57,208 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-28 18:25:12,261 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-28 18:29:23,285 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-28 18:30:02,935 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-28 18:31:16,990 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-28 18:38:19,681 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-28 18:41:11,031 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-28 18:49:56,869 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-28 18:50:04,153 INFO werkzeug MainThread :  * Restarting with stat
+2022-02-28 18:52:40,090 INFO werkzeug MainThread :  * Restarting with stat

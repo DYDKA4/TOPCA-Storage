@@ -100,7 +100,7 @@ class DefinitionCapabilities(Vertex):
 class DefinitionVertex(Vertex):
     def __init__(self, vertex_type_tosca):
         super().__init__('noname', vertex_type_tosca)
-        self.vertex_type_system = 'DefinitionRequirements'
+        self.vertex_type_system = 'DefinitionVertex'
 
     def add_requirements(self, obj, link_type):
         # проверка condition для дочерних классов
@@ -117,11 +117,11 @@ class DefinitionVertex(Vertex):
 
 
 class DefinitionProperties(Vertex):
-    def __init__(self, name, value_name, value, vertex_type_tosca='AssignmentProperties'):
+    def __init__(self, name, value_name, value, vertex_type_tosca='DefinitionProperties'):
         super().__init__(name, vertex_type_tosca)
-        self.value_name = value_name
-        self.value = value
-        self.vertex_type_system = 'AssignmentProperties'
+        self.value_name = str(value_name)
+        self.value = str(value)
+        self.vertex_type_system = 'DefinitionProperties'
 
     def __str__(self):
         return f'{self.vid}, {self.vertex_type_tosca}, {self.vertex_type_system}, {self.name}, {self.requirements}, ' \

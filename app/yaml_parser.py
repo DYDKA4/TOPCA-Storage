@@ -68,7 +68,8 @@ def parser(data, cluster_name):  # возвращает массив где ка
             for name_value, value in val.get('properties').items():
                 # print(name_value, value)
                 for properties_name, properties_value in value.items():
-                    vertex_properties = data_classes.DefinitionProperties(name_value, properties_name, properties_value)
+                    vertex_properties = data_classes.DefinitionProperties(name_value, properties_name,
+                                                                          str(properties_value).replace('\n', ' '))
                     vertex.add_properties(vertex_properties)
         definition_vertex.append(vertex)
 
@@ -81,7 +82,8 @@ def parser(data, cluster_name):  # возвращает массив где ка
             for name_value, value in val.get('properties').items():
                 # print(name_value, value)
                 for properties_name, properties_value in value.items():
-                    vertex_properties = data_classes.DefinitionProperties(name_value, properties_name, properties_value)
+                    vertex_properties = data_classes.DefinitionProperties(name_value, properties_name,
+                                                                          str(properties_value).replace('\n', ' '))
                     vertex.add_properties(vertex_properties)
         capabilities_vertex.append(vertex)
 
@@ -97,11 +99,13 @@ def parser(data, cluster_name):  # возвращает массив где ка
 
     # P.S скорее всего можно либо сделать методы в data_classes либо придумать функции для уменьшения частичного повторения кода
 
-    # for i in definition_vertex:
-    #     print(i)
+    for i in definition_vertex:
+        print(i)
 
-    # print()
-    #
+    print()
+    for i in capabilities_vertex:
+        print(i)
+    print()
     for i in assignments_vertex:
         print(i)
 

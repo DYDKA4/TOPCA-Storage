@@ -109,6 +109,7 @@ def parser(data, cluster_name):  # возвращает массив где ка
     for i in assignments_vertex:
         print(i)
 
-    vertex_cluster = data_classes.ClusterName(cluster_name, data, definition_vertex, assignments_vertex)
+    vertex_cluster = data_classes.ClusterName(cluster_name, data, definition_vertex,
+                                              assignments_vertex, capabilities_vertex)
     print(vertex_cluster)
     return vertex_cluster

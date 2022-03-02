@@ -50,13 +50,14 @@ class AssignmentVertex(Vertex):
 
 
 class ClusterName(Vertex):
-    def __init__(self, name, pure_yaml, list_of_definition_vertex, list_of_assignment_vertex):
+    def __init__(self, name, pure_yaml, list_of_definition_vertex, list_of_assignment_vertex, definition_capabilities):
         super().__init__(name, 'ClusterName')
         self.vid = '"' + name + '"'
         self.vertex_type_system = 'ClusterName'
         self.pure_yaml = pure_yaml
         self.definition_vertex = list_of_definition_vertex
         self.assignment_vertex = list_of_assignment_vertex
+        self.definition_capabilities = definition_capabilities
 
     def __str__(self):
         return f'{hex(id(self))}, {self.vid}, {self.vertex_type_tosca}, {self.vertex_type_system}, {self.name}, {self.definition_vertex}, ' \
@@ -95,6 +96,9 @@ class DefinitionCapabilities(Vertex):
 
     def add_properties(self, obj):
         self.properties.append(obj)
+
+    def __repr__(self):
+        return hex(id(self))
 
 
 class DefinitionVertex(Vertex):

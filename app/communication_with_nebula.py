@@ -113,6 +113,17 @@ def yaml_deploy(cluster_vertex: data_classes.ClusterName):
                      f'"{type_link}"')
 
     # обработка defenition части
+    capability_vertex: data_classes.DefinitionCapabilities
+    for capability_vertex in cluster_vertex.definition_capabilities:
+        capability_vertex.set_vid(session)
+        add_in_vertex(session, capability_vertex.vertex_type_system, 'vertex_type_tosca',
+                      f'"{capability_vertex.vertex_type_tosca}"', capability_vertex.vid)
+        for property_vertex in capability_vertex.properties:
+            property_vertex.set_vid(session)
+            add_in_vertex(session, property_vertex.vertex_type_system, 'value_name, value',
+                          f'"{property_vertex.value_name}", "{property_vertex.value}"', property_vertex.vid)
+            add_edge(session, 'definition_property', 'name', capability_vertex.vid, property_vertex.vid,
+                     f'"{property_vertex.name}"')
     definition_vertex: data_classes.DefinitionVertex
     for definition_vertex in cluster_vertex.definition_vertex:
         definition_vertex.set_vid(session)
@@ -128,16 +139,7 @@ def yaml_deploy(cluster_vertex: data_classes.ClusterName):
                      f'"{property_vertex.name}"')
         capability_vertex: data_classes.DefinitionCapabilities
         for capability_vertex in definition_vertex.capabilities:
-            capability_vertex.set_vid(session)
-            add_in_vertex(session, capability_vertex.vertex_type_system, 'vertex_type_tosca',
-                          f'"{capability_vertex.vertex_type_tosca}"', capability_vertex.vid)
             add_edge(session, 'definition_capability', '', definition_vertex.vid, capability_vertex.vid, '')
-            for property_vertex in capability_vertex.properties:
-                property_vertex.set_vid(session)
-                add_in_vertex(session, property_vertex.vertex_type_system, 'value_name, value',
-                              f'"{property_vertex.value_name}", "{property_vertex.value}"', property_vertex.vid)
-                add_edge(session, 'definition_property', 'name', capability_vertex.vid, property_vertex.vid,
-                         f'"{property_vertex.name}"')
 
     add_in_vertex(session, cluster_vertex.vertex_type_system, 'pure_yaml', '"' + str(cluster_vertex.pure_yaml) + '"',
                   cluster_vertex.vid)

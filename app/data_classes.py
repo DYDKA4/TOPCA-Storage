@@ -101,6 +101,18 @@ class DefinitionCapabilities(Vertex):
         return hex(id(self))
 
 
+class DefinitionPropertyIntermediateLayer(Vertex):
+    def __init__(self, name):
+        super().__init__(name, 'not_defined')
+        self.vertex_type_system = 'DefinitionPropertyIntermediateLayer'
+
+    def add_properties(self, obj):
+        self.properties.append(obj)
+
+    def __repr__(self):
+        return hex(id(self))
+
+
 class DefinitionVertex(Vertex):
     def __init__(self, vertex_type_tosca):
         super().__init__('noname', vertex_type_tosca)

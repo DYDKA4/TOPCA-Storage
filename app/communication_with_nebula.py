@@ -72,7 +72,6 @@ def add_edge(session, edge_name, edge_params, source_vertex, destination_vertex,
     return
 
 
-
 def yaml_deploy(cluster_vertex: data_classes.ClusterName):
     """ программа за четыре прохода создает шаблон в бд,
     за первый проход она размещается все узлы в бд, за второй создаёт соотвествующие связи
@@ -118,12 +117,18 @@ def yaml_deploy(cluster_vertex: data_classes.ClusterName):
         capability_vertex.set_vid(session)
         add_in_vertex(session, capability_vertex.vertex_type_system, 'vertex_type_tosca',
                       f'"{capability_vertex.vertex_type_tosca}"', capability_vertex.vid)
-        for property_vertex in capability_vertex.properties:
-            property_vertex.set_vid(session)
-            add_in_vertex(session, property_vertex.vertex_type_system, 'value_name, value',
-                          f'"{property_vertex.value_name}", "{property_vertex.value}"', property_vertex.vid)
-            add_edge(session, 'definition_property', 'name', capability_vertex.vid, property_vertex.vid,
-                     f'"{property_vertex.name}"')
+        for Intermediate_property_vertex in capability_vertex.properties:
+            Intermediate_property_vertex.set_vid(session)
+            add_in_vertex(session, Intermediate_property_vertex.vertex_type_system, 'name',
+                          f'"{Intermediate_property_vertex.name}"', Intermediate_property_vertex.vid)
+            add_edge(session, 'definition_property_Intermediate', '', capability_vertex.vid,
+                     Intermediate_property_vertex.vid, '')
+            for property_vertex in Intermediate_property_vertex.properties:
+                property_vertex.set_vid(session)
+                add_in_vertex(session, property_vertex.vertex_type_system, 'value_name, value',
+                              f'"{property_vertex.value_name}", "{property_vertex.value}"', property_vertex.vid)
+                add_edge(session, 'definition_property', 'name', Intermediate_property_vertex.vid, property_vertex.vid,
+                         f'"{property_vertex.name}"')
     definition_vertex: data_classes.DefinitionVertex
     for definition_vertex in cluster_vertex.definition_vertex:
         definition_vertex.set_vid(session)
@@ -131,12 +136,18 @@ def yaml_deploy(cluster_vertex: data_classes.ClusterName):
         add_in_vertex(session, definition_vertex.vertex_type_system, 'vertex_type_tosca',
                       f'"{definition_vertex.vertex_type_tosca}"', definition_vertex.vid)
         property_vertex: data_classes.DefinitionProperties
-        for property_vertex in definition_vertex.properties:
-            property_vertex.set_vid(session)
-            add_in_vertex(session, property_vertex.vertex_type_system, 'value_name, value',
-                          f'"{property_vertex.value_name}", "{property_vertex.value}"', property_vertex.vid)
-            add_edge(session, 'definition_property', 'name', definition_vertex.vid, property_vertex.vid,
-                     f'"{property_vertex.name}"')
+        for Intermediate_property_vertex in definition_vertex.properties:
+            Intermediate_property_vertex.set_vid(session)
+            add_in_vertex(session, Intermediate_property_vertex.vertex_type_system, 'name',
+                          f'"{Intermediate_property_vertex.name}"', Intermediate_property_vertex.vid)
+            add_edge(session, 'definition_property_Intermediate', '', definition_vertex.vid,
+                     Intermediate_property_vertex.vid, '')
+            for property_vertex in Intermediate_property_vertex.properties:
+                property_vertex.set_vid(session)
+                add_in_vertex(session, property_vertex.vertex_type_system, 'value_name, value',
+                              f'"{property_vertex.value_name}", "{property_vertex.value}"', property_vertex.vid)
+                add_edge(session, 'definition_property', 'name', Intermediate_property_vertex.vid, property_vertex.vid,
+                         f'"{property_vertex.name}"')
         capability_vertex: data_classes.DefinitionCapabilities
         for capability_vertex in definition_vertex.capabilities:
             add_edge(session, 'definition_capability', '', definition_vertex.vid, capability_vertex.vid, '')

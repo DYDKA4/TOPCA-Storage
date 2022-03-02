@@ -67,10 +67,12 @@ def parser(data, cluster_name):  # возвращает массив где ка
         if val.get('properties'):
             for name_value, value in val.get('properties').items():
                 # print(name_value, value)
+                intermediate_vertex_property = data_classes.DefinitionPropertyIntermediateLayer(name_value)
+                vertex.add_properties(intermediate_vertex_property)
                 for properties_name, properties_value in value.items():
                     vertex_properties = data_classes.DefinitionProperties(name_value, properties_name,
                                                                           str(properties_value).replace('\n', ' '))
-                    vertex.add_properties(vertex_properties)
+                    intermediate_vertex_property.add_properties(vertex_properties)
         definition_vertex.append(vertex)
 
     # формирование списка capabilities
@@ -81,10 +83,12 @@ def parser(data, cluster_name):  # возвращает массив где ка
         if val.get('properties'):
             for name_value, value in val.get('properties').items():
                 # print(name_value, value)
+                intermediate_vertex_property = data_classes.DefinitionPropertyIntermediateLayer(name_value)
+                vertex.add_properties(intermediate_vertex_property)
                 for properties_name, properties_value in value.items():
                     vertex_properties = data_classes.DefinitionProperties(name_value, properties_name,
                                                                           str(properties_value).replace('\n', ' '))
-                    vertex.add_properties(vertex_properties)
+                    intermediate_vertex_property.add_properties(vertex_properties)
         capabilities_vertex.append(vertex)
 
     # формирование связей между capabilities и definition_vertex

@@ -141,6 +141,17 @@ def yaml_deploy(cluster_vertex: data_classes.ClusterName):
                           f'"{property_vertex.value_name}", "{property_vertex.value}"', property_vertex.vid)
             add_edge(session, 'definition_property', 'name', relationship_vertex.vid, property_vertex.vid,
                      f'"{property_vertex.name}"')
+    # добавление всех relationship_templates
+    relationship_template: data_classes.RelationshipTemplate
+    for relationship_template in cluster_vertex.relationship_templates:
+        relationship_template.set_vid(session)
+        add_in_vertex(session, relationship_template.vertex_type_system, '', '', relationship_template.vid)
+        for property_vertex in relationship_template.properties:
+            property_vertex.set_vid(session)
+            add_in_vertex(session, property_vertex.vertex_type_system, 'value_name, value',
+                          f'"{property_vertex.value_name}", "{property_vertex.value}"', property_vertex.vid)
+            add_edge(session, 'definition_property', 'name', relationship_template.vid, property_vertex.vid,
+                     f'"{property_vertex.name}"')
     # добавление всех definition_vertex
     definition_vertex: data_classes.DefinitionVertex
     for definition_vertex in cluster_vertex.definition_vertex:
@@ -184,6 +195,9 @@ def yaml_deploy(cluster_vertex: data_classes.ClusterName):
             add_edge(session, 'derived_from', '', relationship_vertex.vid, derived.vid, '')
         for target in relationship_vertex.valid_target_types:
             add_edge(session, 'valid_target_types', '', relationship_vertex.vid, target.vid, '')
+    for relationship_template in cluster_vertex.relationship_templates:
+        for type_relationship in relationship_template.type_relationship:
+            add_edge(session, 'type_relationship', '', type_relationship.vid, relationship_template.vid, '')
 
     # доавление связей между cluster_vertex и всеми вершинами
     add_in_vertex(session, cluster_vertex.vertex_type_system, 'pure_yaml', '"' + str(cluster_vertex.pure_yaml) + '"',
@@ -194,5 +208,7 @@ def yaml_deploy(cluster_vertex: data_classes.ClusterName):
         add_edge(session, 'definition', '', cluster_vertex.vid, definition_vertex.vid, '')
     for relationship_vertex in cluster_vertex.relationship_type:
         add_edge(session, 'definition', '', cluster_vertex.vid, relationship_vertex.vid, '')
+    for relationship_template in cluster_vertex.relationship_templates:
+        add_edge(session, 'assignment', '', cluster_vertex.vid, relationship_template.vid, '')
     # session.release()
     return '200 OK'

@@ -104,6 +104,20 @@ def parser(data, cluster_name):  # возвращает массив где ка
                                                                           str(properties_value).replace('\n', ' '))
                     vertex.add_properties(vertex_properties)
         relationship_vertex.append(vertex)
+    # формирование списка relationship_templates
+    relationship_templates = []
+    templates_data = dpath.util.get(data, "topology_template/relationship_templates")
+    print(templates_data)
+    for relationship_template, val in templates_data.items():
+        vertex = data_classes.RelationshipTemplate(relationship_template)
+        print(relationship_template, val)
+        if val.get('properties'):
+            for name_value, value in val.get('properties').items():
+                print(name_value, value)
+                vertex_properties = data_classes.DefinitionProperties(name_value, name_value,
+                                                                          str(value).replace('\n', ' '))
+                vertex.add_properties(vertex_properties)
+        relationship_templates.append(vertex)
     # формирование связей между definition_vertex и другими
     for name, val in data.get('node_types').items():
         if val.get('capabilities'):
@@ -155,6 +169,16 @@ def parser(data, cluster_name):  # возвращает массив где ка
                 source = find_vertex(name, relationship_vertex, search_by_type=True)
                 destination = find_vertex(capabilities_type, capabilities_vertex, search_by_type=True)
                 source.add_valid_target_types(destination)
+    # формирование связей между relationship_templates
+    for name, val in templates_data.items():
+        src: data_classes.RelationshipTemplate
+        if val.get('type'):
+            print(name)
+            src = find_vertex(name, relationship_templates)
+            print(src)
+            destination = find_vertex(val.get('type'), relationship_vertex, search_by_type=True)
+            print('DESTINATION', destination)
+            src.add_type_relationship(destination)
     # P.S скорее всего можно либо сделать методы в data_classes либо придумать функции для уменьшения частичного повторения кода
     for i in definition_vertex:
         print(i)
@@ -174,6 +198,7 @@ def parser(data, cluster_name):  # возвращает массив где ка
     print()
     vertex_cluster = data_classes.ClusterName(cluster_name, data, definition_vertex,
                                               assignments_vertex, capabilities_vertex,
-                                              interfaces_vertex, relationship_vertex)
+                                              interfaces_vertex, relationship_vertex,
+                                              relationship_templates)
     print(vertex_cluster)
     return vertex_cluster

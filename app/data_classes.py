@@ -51,7 +51,7 @@ class AssignmentVertex(Vertex):
 
 class ClusterName(Vertex):
     def __init__(self, name, pure_yaml, list_of_definition_vertex, list_of_assignment_vertex, definition_capabilities,
-                 interfaces_vertex, relationship_type):
+                 interfaces_vertex, relationship_type, relationship_templates):
         super().__init__(name, 'ClusterName')
         self.vid = '"' + name + '"'
         self.vertex_type_system = 'ClusterName'
@@ -61,9 +61,11 @@ class ClusterName(Vertex):
         self.definition_capabilities = definition_capabilities
         self.interfaces_vertex = interfaces_vertex
         self.relationship_type = relationship_type
+        self.relationship_templates = relationship_templates
 
     def __str__(self):
-        return f'{hex(id(self))}, {self.vid}, {self.vertex_type_tosca}, {self.vertex_type_system}, {self.name}, {self.definition_vertex}, ' \
+        return f'{hex(id(self))}, {self.vid}, {self.vertex_type_tosca}, {self.vertex_type_system}, {self.name}, ' \
+               f'{self.definition_vertex}, ' \
                f'{self.assignment_vertex}, {self.pure_yaml}'
 
 
@@ -174,3 +176,16 @@ class RelationshipType(Vertex):
     def add_valid_target_types(self, obj):
         self.valid_target_types.append(obj)
 
+
+class RelationshipTemplate(Vertex):
+    def __init__(self, name, vertex_type_tosca='relationship_templates'):
+        super().__init__(name, vertex_type_tosca)
+        self.type_relationship = []
+        self.properties = []
+        self.vertex_type_system = 'RelationshipTemplate'
+
+    def add_type_relationship(self, obj):
+        self.type_relationship.append(obj)
+
+    def add_properties(self, obj):
+        self.properties.append(obj)

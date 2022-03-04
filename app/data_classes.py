@@ -162,6 +162,15 @@ class RelationshipType(Vertex):
         super().__init__('noname', vertex_type_tosca)
         self.derived_from = []
         self.vertex_type_system = 'RelationshipType'
+        self.properties = []
+        self.valid_target_types = []
 
     def add_derived_from(self, obj):
         self.derived_from.append(obj)
+
+    def add_properties(self, obj):
+        self.properties.append(obj)
+
+    def add_valid_target_types(self, obj):
+        self.valid_target_types.append(obj)
+

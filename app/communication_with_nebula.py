@@ -130,11 +130,17 @@ def yaml_deploy(cluster_vertex: data_classes.ClusterName):
         add_in_vertex(session, interface_vertex.vertex_type_system, 'vertex_type_tosca',
                       f'"{interface_vertex.vertex_type_tosca}"', interface_vertex.vid)
     # добавление всех relationship_vertex
-    relationship_vertex : data_classes.RelationshipType
+    relationship_vertex: data_classes.RelationshipType
     for relationship_vertex in cluster_vertex.relationship_type:
         relationship_vertex.set_vid(session)
         add_in_vertex(session, relationship_vertex.vertex_type_system, 'vertex_type_tosca',
                       f'"{relationship_vertex.vertex_type_tosca}"', relationship_vertex.vid)
+        for property_vertex in relationship_vertex.properties:
+            property_vertex.set_vid(session)
+            add_in_vertex(session, property_vertex.vertex_type_system, 'value_name, value',
+                          f'"{property_vertex.value_name}", "{property_vertex.value}"', property_vertex.vid)
+            add_edge(session, 'definition_property', 'name', relationship_vertex.vid, property_vertex.vid,
+                     f'"{property_vertex.name}"')
     # добавление всех definition_vertex
     definition_vertex: data_classes.DefinitionVertex
     for definition_vertex in cluster_vertex.definition_vertex:
@@ -156,15 +162,16 @@ def yaml_deploy(cluster_vertex: data_classes.ClusterName):
             add_edge(session, 'definition_interface', 'name', definition_vertex.vid, interface_vertex.vid,
                      f'"{type_link}"')
     #добавление связей requirement в definition vertex
-    for definition_vertex in cluster_vertex.definition_vertex:
-        for destination_vertex, type_link in definition_vertex.requirements.items():
-            add_edge(session, 'definition_requirements', 'name', definition_vertex.vid, destination_vertex.vid,
-                     f'"{type_link}"')
+
     # добавление связей derived_from
 
     for definition_vertex in cluster_vertex.definition_vertex:
         for derived in definition_vertex.derived_from:
             add_edge(session, 'derived_from', '', definition_vertex.vid, derived.vid, '')
+        for destination_vertex, type_link in definition_vertex.requirements.items():
+            add_edge(session, 'definition_requirements', 'name', definition_vertex.vid, destination_vertex.vid,
+                     f'"{type_link}"')
+
     for capability_vertex in cluster_vertex.definition_capabilities:
         capability_vertex: data_classes.DefinitionCapabilities
         for derived in capability_vertex.derived_from:
@@ -175,6 +182,8 @@ def yaml_deploy(cluster_vertex: data_classes.ClusterName):
     for relationship_vertex in cluster_vertex.relationship_type:
         for derived in relationship_vertex.derived_from:
             add_edge(session, 'derived_from', '', relationship_vertex.vid, derived.vid, '')
+        for target in relationship_vertex.valid_target_types:
+            add_edge(session, 'valid_target_types', '', relationship_vertex.vid, target.vid, '')
 
     # доавление связей между cluster_vertex и всеми вершинами
     add_in_vertex(session, cluster_vertex.vertex_type_system, 'pure_yaml', '"' + str(cluster_vertex.pure_yaml) + '"',

@@ -95,6 +95,14 @@ def parser(data, cluster_name):  # возвращает массив где ка
     relationship_vertex = []
     for relationship_type, val in data.get('relationship_types').items():
         vertex = data_classes.RelationshipType(relationship_type)
+
+        if val.get('properties'):
+            for name_value, value in val.get('properties').items():
+                # print(name_value, value)
+                for properties_name, properties_value in value.items():
+                    vertex_properties = data_classes.DefinitionProperties(name_value, properties_name,
+                                                                          str(properties_value).replace('\n', ' '))
+                    vertex.add_properties(vertex_properties)
         relationship_vertex.append(vertex)
     # формирование связей между definition_vertex и другими
     for name, val in data.get('node_types').items():
@@ -134,12 +142,19 @@ def parser(data, cluster_name):  # возвращает массив где ка
             source = find_vertex(val.get('derived_from'), interfaces_vertex, search_by_type=True)
             destination = find_vertex(name, interfaces_vertex, search_by_type=True)
             source.add_derived_from(destination)
+
     # формирование связей между relationship
     for name, val in data.get('relationship_types').items():
+        source: data_classes.RelationshipType
         if val.get('derived_from'):
             source = find_vertex(val.get('derived_from'), relationship_vertex, search_by_type=True)
             destination = find_vertex(name, relationship_vertex, search_by_type=True)
             source.add_derived_from(destination)
+        if val.get('valid_target_types'):
+            for capabilities_type in val.get('valid_target_types'):
+                source = find_vertex(name, relationship_vertex, search_by_type=True)
+                destination = find_vertex(capabilities_type, capabilities_vertex, search_by_type=True)
+                source.add_valid_target_types(destination)
     # P.S скорее всего можно либо сделать методы в data_classes либо придумать функции для уменьшения частичного повторения кода
     for i in definition_vertex:
         print(i)

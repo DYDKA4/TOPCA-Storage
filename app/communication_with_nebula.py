@@ -75,10 +75,10 @@ def add_edge(session, edge_name, edge_params, source_vertex, destination_vertex,
 def delete_all_edge(session, vertex, edge_name):
     result = session.execute(f'GO FROM {vertex} OVER {edge_name}\n'
                              f'YIELD src(edge) AS src, dst(edge) AS dst, rank(edge) AS rank'
-                             f' | DELETE EDGE assignment $-.src->$-.dst @ $-.rank;')
+                             f' | DELETE EDGE {edge_name} $-.src->$-.dst @ $-.rank;')
     print(f'GO FROM {vertex} OVER {edge_name}\n'
           f'YIELD src(edge) AS src, dst(edge) AS dst, rank(edge) AS rank'
-          f' | DELETE EDGE assignment $-.src->$-.dst @ $-.rank;')
+          f' | DELETE EDGE {edge_name} $-.src->$-.dst @ $-.rank;')
     assert result.is_succeeded(), result.error_msg()
     return
 

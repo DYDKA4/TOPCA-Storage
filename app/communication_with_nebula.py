@@ -129,6 +129,12 @@ def yaml_deploy(cluster_vertex: data_classes.ClusterName):
         interface_vertex.set_vid(session)
         add_in_vertex(session, interface_vertex.vertex_type_system, 'vertex_type_tosca',
                       f'"{interface_vertex.vertex_type_tosca}"', interface_vertex.vid)
+    # добавление всех relationship_vertex
+    relationship_vertex : data_classes.RelationshipType
+    for relationship_vertex in cluster_vertex.relationship_type:
+        relationship_vertex.set_vid(session)
+        add_in_vertex(session, relationship_vertex.vertex_type_system, 'vertex_type_tosca',
+                      f'"{relationship_vertex.vertex_type_tosca}"', relationship_vertex.vid)
     # добавление всех definition_vertex
     definition_vertex: data_classes.DefinitionVertex
     for definition_vertex in cluster_vertex.definition_vertex:
@@ -166,6 +172,9 @@ def yaml_deploy(cluster_vertex: data_classes.ClusterName):
     for interface_vertex in cluster_vertex.interfaces_vertex:
         for derived in interface_vertex.derived_from:
             add_edge(session, 'derived_from', '', interface_vertex.vid, derived.vid, '')
+    for relationship_vertex in cluster_vertex.relationship_type:
+        for derived in relationship_vertex.derived_from:
+            add_edge(session, 'derived_from', '', relationship_vertex.vid, derived.vid, '')
 
     # доавление связей между cluster_vertex и всеми вершинами
     add_in_vertex(session, cluster_vertex.vertex_type_system, 'pure_yaml', '"' + str(cluster_vertex.pure_yaml) + '"',
@@ -174,5 +183,7 @@ def yaml_deploy(cluster_vertex: data_classes.ClusterName):
         add_edge(session, 'assignment', '', cluster_vertex.vid, assignment_vertex.vid, '')
     for definition_vertex in cluster_vertex.definition_vertex:
         add_edge(session, 'definition', '', cluster_vertex.vid, definition_vertex.vid, '')
+    for relationship_vertex in cluster_vertex.relationship_type:
+        add_edge(session, 'definition', '', cluster_vertex.vid, relationship_vertex.vid, '')
     # session.release()
     return '200 OK'

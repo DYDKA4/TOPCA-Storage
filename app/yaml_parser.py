@@ -91,6 +91,11 @@ def parser(data, cluster_name):  # возвращает массив где ка
     for interface_type, val in data.get('interface_types').items():
         vertex = data_classes.DefinitionInterface(interface_type)
         interfaces_vertex.append(vertex)
+    # формирование списка relationship_vertex
+    relationship_vertex = []
+    for relationship_type, val in data.get('relationship_types').items():
+        vertex = data_classes.RelationshipType(relationship_type)
+        relationship_vertex.append(vertex)
     # формирование связей между definition_vertex и другими
     for name, val in data.get('node_types').items():
         if val.get('capabilities'):
@@ -129,8 +134,13 @@ def parser(data, cluster_name):  # возвращает массив где ка
             source = find_vertex(val.get('derived_from'), interfaces_vertex, search_by_type=True)
             destination = find_vertex(name, interfaces_vertex, search_by_type=True)
             source.add_derived_from(destination)
+    # формирование связей между relationship
+    for name, val in data.get('relationship_types').items():
+        if val.get('derived_from'):
+            source = find_vertex(val.get('derived_from'), relationship_vertex, search_by_type=True)
+            destination = find_vertex(name, relationship_vertex, search_by_type=True)
+            source.add_derived_from(destination)
     # P.S скорее всего можно либо сделать методы в data_classes либо придумать функции для уменьшения частичного повторения кода
-
     for i in definition_vertex:
         print(i)
 
@@ -141,11 +151,14 @@ def parser(data, cluster_name):  # возвращает массив где ка
     for i in interfaces_vertex:
         print(i)
     print()
+    for i in relationship_vertex:
+        print(i)
+    print()
     for i in assignments_vertex:
         print(i)
     print()
     vertex_cluster = data_classes.ClusterName(cluster_name, data, definition_vertex,
                                               assignments_vertex, capabilities_vertex,
-                                              interfaces_vertex)
+                                              interfaces_vertex, relationship_vertex)
     print(vertex_cluster)
     return vertex_cluster

@@ -51,7 +51,7 @@ class AssignmentVertex(Vertex):
 
 class ClusterName(Vertex):
     def __init__(self, name, pure_yaml, list_of_definition_vertex, list_of_assignment_vertex, definition_capabilities,
-                 interfaces_vertex):
+                 interfaces_vertex, relationship_type):
         super().__init__(name, 'ClusterName')
         self.vid = '"' + name + '"'
         self.vertex_type_system = 'ClusterName'
@@ -60,6 +60,7 @@ class ClusterName(Vertex):
         self.assignment_vertex = list_of_assignment_vertex
         self.definition_capabilities = definition_capabilities
         self.interfaces_vertex = interfaces_vertex
+        self.relationship_type = relationship_type
 
     def __str__(self):
         return f'{hex(id(self))}, {self.vid}, {self.vertex_type_tosca}, {self.vertex_type_system}, {self.name}, {self.definition_vertex}, ' \
@@ -151,6 +152,16 @@ class DefinitionInterface(Vertex):
         super().__init__('noname', vertex_type_tosca)
         self.derived_from = []
         self.vertex_type_system = 'DefinitionInterface'
+
+    def add_derived_from(self, obj):
+        self.derived_from.append(obj)
+
+
+class RelationshipType(Vertex):
+    def __init__(self, vertex_type_tosca):
+        super().__init__('noname', vertex_type_tosca)
+        self.derived_from = []
+        self.vertex_type_system = 'RelationshipType'
 
     def add_derived_from(self, obj):
         self.derived_from.append(obj)

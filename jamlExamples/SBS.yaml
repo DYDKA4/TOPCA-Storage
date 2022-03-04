@@ -473,7 +473,74 @@ interface_types:
       description: Operation to configure the node.
 
 relationship_types:
+  tosca.relationships.Root:
+    description: >
+      The TOSCA root Relationship Type all other TOSCA base Relationship Types
+      derive from.
+    attributes:
+      tosca_id:
+        type: string
+        required: true
+      state:
+        type: string
+        required: false
+    properties:
+      tosca_name:
+        type: string
+        required: true
+    interfaces:
+      Configure:
+        type: tosca.interfaces.relationship.Configure
 
+  tosca.relationships.DependsOn:
+    description: This type represents a general dependency relationship between two nodes.
+    derived_from: tosca.relationships.Root
+    valid_target_types: [ tosca.capabilities.Node ]
+
+  tosca.relationships.HostedOn:
+    description: This type represents a hosting relationship between two nodes.
+    derived_from: tosca.relationships.Root
+    valid_target_types: [ tosca.capabilities.Container ]
+
+  tosca.relationships.ConnectsTo:
+    description: This type represents a network connection relationship between two nodes.
+    derived_from: tosca.relationships.Root
+    valid_target_types: [ tosca.capabilities.Endpoint ]
+    properties:
+      credential:
+        type: tosca.datatypes.Credential
+        required: false
+
+  tosca.relationships.AttachesTo:
+    description: >
+      This type represents an attachment relationship between two nodes. For example, an AttachesTo relationship
+      type would be used for attaching a storage node to a Compute node.
+    derived_from: tosca.relationships.Root
+    valid_target_types: [ tosca.capabilities.Attachment ]
+    properties:
+      location:
+        required: true
+        type: string
+        constraints:
+          - min_length: 1
+      device:
+        required: false
+        type: string
+
+  tosca.relationships.RoutesTo:
+    description: This type represents an intentional network routing between two Endpoints in different networks.
+    derived_from: tosca.relationships.ConnectsTo
+    valid_target_types: [ tosca.capabilities.Endpoint ]
+
+  tosca.relationships.network.LinksTo:
+    description: This relationship type represents an association relationship between Port and Network node types.
+    derived_from: tosca.relationships.DependsOn
+    valid_target_types: [ tosca.capabilities.network.Linkable ]
+
+  tosca.relationships.network.BindsTo:
+    description: This type represents a network association relationship between Port and Compute node types.
+    derived_from: tosca.relationships.DependsOn
+    valid_target_types: [ tosca.capabilities.network.Bindable ]
   MyAttachesTo:
 
     derived_from: tosca.relationships.AttachesTo

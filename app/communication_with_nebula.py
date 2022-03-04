@@ -72,12 +72,39 @@ def add_edge(session, edge_name, edge_params, source_vertex, destination_vertex,
     return
 
 
-def yaml_deploy(cluster_vertex: data_classes.ClusterName):
+def delete_all_edge(session, vertex, edge_name):
+    result = session.execute(f'GO FROM {vertex} OVER {edge_name}\n'
+                             f'YIELD src(edge) AS src, dst(edge) AS dst, rank(edge) AS rank'
+                             f' | DELETE EDGE assignment $-.src->$-.dst @ $-.rank;')
+    print(f'GO FROM {vertex} OVER {edge_name}\n'
+          f'YIELD src(edge) AS src, dst(edge) AS dst, rank(edge) AS rank'
+          f' | DELETE EDGE assignment $-.src->$-.dst @ $-.rank;')
+    assert result.is_succeeded(), result.error_msg()
+    return
+
+
+def update_vertex(session, vertex_name, name_of_key_value, key_value, vid):
+    update = 'UPDATE'
+    result = session.execute(f'{update} VERTEX ON {vertex_name} {vid} set {name_of_key_value} = {key_value}')
+    print(f'{update} VERTEX ON {vertex_name} {vid} set {name_of_key_value} = {key_value}')
+    assert result.is_succeeded(), result.error_msg()
+    return
+
+
+def yaml_deploy(cluster_vertex: data_classes.ClusterName, method_put=False):
     """ программа за четыре прохода создает шаблон в бд,
     за первый проход она размещается все узлы в бд, за второй создаёт соотвествующие связи
     """
     session = chose_of_space()
-    if not (is_unique_vid(session, cluster_vertex.vertex_type_system, cluster_vertex.vid)):
+    if method_put:
+        if is_unique_vid(session, cluster_vertex.vertex_type_system, cluster_vertex.vid):
+            return '400 Cluster VID is not existed'
+        else:
+            delete_all_edge(session, cluster_vertex.vid, 'definition')
+            delete_all_edge(session, cluster_vertex.vid, 'assignment')
+            update_vertex(session, cluster_vertex.vertex_type_system, 'pure_yaml',
+                          '"' + str(cluster_vertex.pure_yaml) + '"', cluster_vertex.vid)
+    elif not (is_unique_vid(session, cluster_vertex.vertex_type_system, cluster_vertex.vid)):
         return '400 Cluster VID is not unique'
     print(type(cluster_vertex.pure_yaml))
     assignment_vertex: data_classes.AssignmentVertex
@@ -172,7 +199,7 @@ def yaml_deploy(cluster_vertex: data_classes.ClusterName):
         for interface_vertex, type_link in definition_vertex.interfaces.items():
             add_edge(session, 'definition_interface', 'name', definition_vertex.vid, interface_vertex.vid,
                      f'"{type_link}"')
-    #добавление связей requirement в definition vertex
+    # добавление связей requirement в definition vertex
 
     # добавление связей derived_from
 
@@ -200,8 +227,9 @@ def yaml_deploy(cluster_vertex: data_classes.ClusterName):
             add_edge(session, 'type_relationship', '', type_relationship.vid, relationship_template.vid, '')
 
     # доавление связей между cluster_vertex и всеми вершинами
-    add_in_vertex(session, cluster_vertex.vertex_type_system, 'pure_yaml', '"' + str(cluster_vertex.pure_yaml) + '"',
-                  cluster_vertex.vid)
+    if not method_put:
+        add_in_vertex(session, cluster_vertex.vertex_type_system, 'pure_yaml', '"' + str(cluster_vertex.pure_yaml) + '"',
+                      cluster_vertex.vid)
     for assignment_vertex in cluster_vertex.assignment_vertex:
         add_edge(session, 'assignment', '', cluster_vertex.vid, assignment_vertex.vid, '')
     for definition_vertex in cluster_vertex.definition_vertex:

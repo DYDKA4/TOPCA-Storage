@@ -1,1 +1,0 @@
-[['my_web_app_tier_1', 'Compute', ['my_storage', 'storage_attachesto_1']], ['my_web_app_tier_2', 'Compute', ['my_storage', 'storage_attachesto_2']], ['my_storage', 'BlockStorage']]

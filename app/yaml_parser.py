@@ -20,28 +20,46 @@ def find_vertex(name, list_of_vertex, search_by_type=False):
     return
 
 
-def parser(data, cluster_name):  # возвращает массив где каждый элдемент сожержимт в себе информаию: имя, тип узла, завимости.
-    # print(json.dumps(data, indent=2))
+def find_property(val, vertex):
+    if val.get('properties'):
+        for name_value, value in val.get('properties').items():
+            for properties_name, properties_value in value.items():
+                vertex_properties = data_classes.DefinitionProperties(name_value, properties_name,
+                                                                      str(properties_value).replace('\n', ' '))
+                vertex.add_properties(vertex_properties)
+
+
+def form_list_of_vertex(yaml, list_of_vertex: list, type_of_vertex: str, class_of_object, find_property_flag=False):
+    for type_node, val in yaml.get(type_of_vertex).items():
+        vertex = class_of_object(type_node)
+        if find_property_flag:
+            find_property(val, vertex)
+        list_of_vertex.append(vertex)
+
+
+def linking_derived_from(val, type_of_vertex, name):
+    source = find_vertex(val.get('derived_from'), type_of_vertex, search_by_type=True)
+    destination = find_vertex(name, type_of_vertex, search_by_type=True)
+    source.add_derived_from(destination)
+
+
+def parser(data, cluster_name):
     node_templates = find_node_templates(data)
     # новая классовая система
     assignments_vertex = []
     for name, value in node_templates.items():
-        # print(name, value)
         vertex_type = value.get('type')
         vertex = data_classes.AssignmentVertex(name, vertex_type)
         if value.get('capabilities'):
             for capabilities_name, capabilities in value.get('capabilities').items():
                 vertex_capabilities = data_classes.AssignmentCapabilities(capabilities_name)
-                # print('PROPS', capabilities_name, capabilities)
                 if capabilities.get('properties'):
                     for properties_name, properties_value in capabilities.get('properties').items():
-                        # print(properties_name, properties_value)
                         vertex_properties = data_classes.AssignmentProperties(properties_name, properties_value)
                         vertex_capabilities.add_properties(vertex_properties)
                 vertex.add_capabilities(vertex_capabilities)
         if value.get('properties'):
             for properties_name, properties_value in value.get('properties').items():
-                # print(properties_name, properties_value)
                 vertex_properties = data_classes.AssignmentProperties(properties_name, properties_value)
                 vertex.add_properties(vertex_properties)
         assignments_vertex.append(vertex)
@@ -51,7 +69,6 @@ def parser(data, cluster_name):  # возвращает массив где ка
         if value.get('requirements'):
             if type(value.get('requirements')) is list:
                 for requirement in value.get('requirements'):
-                    # print(requirement)
                     for link in requirement.values():
                         dest = find_vertex(link['node'], assignments_vertex)
                         source = find_vertex(name, assignments_vertex)
@@ -61,61 +78,29 @@ def parser(data, cluster_name):  # возвращает массив где ка
 
     # формирование списка definition_vertex c properties
     definition_vertex = []
-    for type_node, val in data.get('node_types').items():
-        # print(type_node)
-        vertex = data_classes.DefinitionVertex(type_node)
-        if val.get('properties'):
-            for name_value, value in val.get('properties').items():
-                # print(name_value, value)
-                for properties_name, properties_value in value.items():
-                    vertex_properties = data_classes.DefinitionProperties(name_value, properties_name,
-                                                                          str(properties_value).replace('\n', ' '))
-                    vertex.add_properties(vertex_properties)
-        definition_vertex.append(vertex)
-
+    form_list_of_vertex(data, definition_vertex, 'node_types',
+                        data_classes.DefinitionVertex, find_property_flag=True)
     # формирование списка capabilities
     capabilities_vertex = []
-    for capability_type, val in data.get('capability_types').items():
-        # print(capability_type)
-        vertex = data_classes.DefinitionCapabilities(capability_type)
-        if val.get('properties'):
-            for name_value, value in val.get('properties').items():
-                # print(name_value, value)
-                for properties_name, properties_value in value.items():
-                    vertex_properties = data_classes.DefinitionProperties(name_value, properties_name,
-                                                                          str(properties_value).replace('\n', ' '))
-                    vertex.add_properties(vertex_properties)
-        capabilities_vertex.append(vertex)
+    form_list_of_vertex(data, capabilities_vertex, 'capability_types',
+                        data_classes.DefinitionCapabilities, find_property_flag=True)
     # формирование спика interface
     interfaces_vertex = []
-    for interface_type, val in data.get('interface_types').items():
-        vertex = data_classes.DefinitionInterface(interface_type)
-        interfaces_vertex.append(vertex)
+    form_list_of_vertex(data, interfaces_vertex, 'interface_types',
+                        data_classes.DefinitionInterface)
     # формирование списка relationship_vertex
     relationship_vertex = []
-    for relationship_type, val in data.get('relationship_types').items():
-        vertex = data_classes.RelationshipType(relationship_type)
-
-        if val.get('properties'):
-            for name_value, value in val.get('properties').items():
-                # print(name_value, value)
-                for properties_name, properties_value in value.items():
-                    vertex_properties = data_classes.DefinitionProperties(name_value, properties_name,
-                                                                          str(properties_value).replace('\n', ' '))
-                    vertex.add_properties(vertex_properties)
-        relationship_vertex.append(vertex)
+    form_list_of_vertex(data, relationship_vertex, 'relationship_types',
+                        data_classes.RelationshipType, find_property_flag=True)
     # формирование списка relationship_templates
     relationship_templates = []
     templates_data = dpath.util.get(data, "topology_template/relationship_templates")
-    print(templates_data)
     for relationship_template, val in templates_data.items():
         vertex = data_classes.RelationshipTemplate(relationship_template)
-        print(relationship_template, val)
         if val.get('properties'):
             for name_value, value in val.get('properties').items():
-                print(name_value, value)
                 vertex_properties = data_classes.DefinitionProperties(name_value, name_value,
-                                                                          str(value).replace('\n', ' '))
+                                                                      str(value).replace('\n', ' '))
                 vertex.add_properties(vertex_properties)
         relationship_templates.append(vertex)
     # формирование связей между definition_vertex и другими
@@ -126,18 +111,15 @@ def parser(data, cluster_name):  # возвращает массив где ка
                 source = find_vertex(name, definition_vertex, search_by_type=True)
                 source.add_capabilities(destination)
         if val.get('derived_from'):
-            source = find_vertex(val.get('derived_from'), definition_vertex, search_by_type=True)
-            destination = find_vertex(name, definition_vertex, search_by_type=True)
-            source.add_derived_from(destination)
+            linking_derived_from(val, definition_vertex, name)
         if val.get('interfaces'):
             for link_type, interface in val.get('interfaces').items():
-                destination = find_vertex(interface.get('type'), interfaces_vertex,search_by_type=True)
+                destination = find_vertex(interface.get('type'), interfaces_vertex, search_by_type=True)
                 source = find_vertex(name, definition_vertex, search_by_type=True)
                 source.add_interface(destination, link_type)
         if val.get('requirements'):
             if type(val.get('requirements')) is list:
                 for requirement in val.get('requirements'):
-                    # print(requirement)
                     for link in requirement.values():
                         dest = find_vertex(link['node'], definition_vertex, search_by_type=True)
                         source = find_vertex(name, definition_vertex, search_by_type=True)
@@ -147,23 +129,17 @@ def parser(data, cluster_name):  # возвращает массив где ка
     # формирование связей между capability
     for name, val in data.get('capability_types').items():
         if val.get('derived_from'):
-            source = find_vertex(val.get('derived_from'), capabilities_vertex, search_by_type=True)
-            destination = find_vertex(name, capabilities_vertex, search_by_type=True)
-            source.add_derived_from(destination)
+            linking_derived_from(val, capabilities_vertex, name)
     # формирование связей между interface
     for name, val in data.get('interface_types').items():
         if val.get('derived_from'):
-            source = find_vertex(val.get('derived_from'), interfaces_vertex, search_by_type=True)
-            destination = find_vertex(name, interfaces_vertex, search_by_type=True)
-            source.add_derived_from(destination)
+            linking_derived_from(val, interfaces_vertex, name)
 
     # формирование связей между relationship
     for name, val in data.get('relationship_types').items():
         source: data_classes.RelationshipType
         if val.get('derived_from'):
-            source = find_vertex(val.get('derived_from'), relationship_vertex, search_by_type=True)
-            destination = find_vertex(name, relationship_vertex, search_by_type=True)
-            source.add_derived_from(destination)
+            linking_derived_from(val, relationship_vertex, name)
         if val.get('valid_target_types'):
             for capabilities_type in val.get('valid_target_types'):
                 source = find_vertex(name, relationship_vertex, search_by_type=True)
@@ -173,32 +149,13 @@ def parser(data, cluster_name):  # возвращает массив где ка
     for name, val in templates_data.items():
         src: data_classes.RelationshipTemplate
         if val.get('type'):
-            print(name)
             src = find_vertex(name, relationship_templates)
-            print(src)
             destination = find_vertex(val.get('type'), relationship_vertex, search_by_type=True)
-            print('DESTINATION', destination)
             src.add_type_relationship(destination)
     # P.S скорее всего можно либо сделать методы в data_classes либо придумать функции для уменьшения частичного повторения кода
-    for i in definition_vertex:
-        print(i)
-
-    print()
-    for i in capabilities_vertex:
-        print(i)
-    print()
-    for i in interfaces_vertex:
-        print(i)
-    print()
-    for i in relationship_vertex:
-        print(i)
-    print()
-    for i in assignments_vertex:
-        print(i)
-    print()
     vertex_cluster = data_classes.ClusterName(cluster_name, data, definition_vertex,
                                               assignments_vertex, capabilities_vertex,
                                               interfaces_vertex, relationship_vertex,
                                               relationship_templates)
-    print(vertex_cluster)
+
     return vertex_cluster

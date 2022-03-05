@@ -23,7 +23,7 @@ class Vertex:
         self.vid = '"' + self.vertex_type_system + str(identification) + '"'
 
     def __str__(self):
-        return f'{hex(id(self))}, {self.vid}, {self.vertex_type_tosca}, {self.vertex_type_system}, {self.name}, {self.requirements}, ' \
+        return f'{self.vid}, {self.vertex_type_tosca}, {self.vertex_type_system}, {self.name}, {self.requirements}, ' \
                f'{self.capabilities}, {self.properties}'
 
     def __repr__(self):
@@ -45,8 +45,8 @@ class AssignmentVertex(Vertex):
     def add_properties(self, obj):
         self.properties.append(obj)
 
-    def __repr__(self):
-        return hex(id(self))
+    # def __repr__(self):
+    #     return self.vertex_type_system
 
 
 class ClusterName(Vertex):
@@ -64,7 +64,7 @@ class ClusterName(Vertex):
         self.relationship_templates = relationship_templates
 
     def __str__(self):
-        return f'{hex(id(self))}, {self.vid}, {self.vertex_type_tosca}, {self.vertex_type_system}, {self.name}, ' \
+        return f'{self.vid}, {self.vertex_type_tosca}, {self.vertex_type_system}, {self.name}, ' \
                f'{self.definition_vertex}, ' \
                f'{self.assignment_vertex}, {self.pure_yaml}'
 
@@ -106,8 +106,8 @@ class DefinitionCapabilities(Vertex):
     def add_derived_from(self, obj):
         self.derived_from.append(obj)
 
-    def __repr__(self):
-        return hex(id(self))
+    # def __repr__(self):
+    #     return self.vertex_type_system
 
 
 class DefinitionVertex(Vertex):
@@ -133,8 +133,8 @@ class DefinitionVertex(Vertex):
     def add_interface(self, obj, link_type):
         self.interfaces[obj] = link_type
 
-    def __repr__(self):
-        return hex(id(self))
+    # def __repr__(self):
+    #     return self.vertex_type_system
 
 
 class DefinitionProperties(Vertex):

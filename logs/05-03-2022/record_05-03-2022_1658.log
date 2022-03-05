@@ -1,0 +1,5 @@
+2022-03-05 16:58:45,998 WARNING werkzeug MainThread :  * Debugger is active!
+2022-03-05 16:58:45,998 INFO werkzeug MainThread :  * Debugger PIN: 127-056-592
+2022-03-05 16:58:53,101 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/test.py', reloading
+2022-03-05 16:58:53,289 WARNING werkzeug MainThread :  * Debugger is active!
+2022-03-05 16:58:53,289 INFO werkzeug MainThread :  * Debugger PIN: 127-056-592

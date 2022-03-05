@@ -1,1 +1,0 @@
-[['my_server', 'Compute'], ['my_server2', 'Compute'], ['my_network', 'Network'], ['my_port', 'Port', [['binding', 'my_server'], ['link', 'my_network']]], ['my_port2', 'Port', [['binding', 'my_server2'], ['link', 'my_network']]]]

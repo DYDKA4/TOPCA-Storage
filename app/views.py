@@ -23,7 +23,7 @@ def yaml_add():
         cluster_vertex = yaml_parser.parser(file, cluster_name)
         cluster_vertex.pure_yaml = pure_yaml
         end_code = '400'
-        end_code = communication_with_nebula.yaml_deploy(cluster_vertex)
+        # end_code = communication_with_nebula.yaml_deploy(cluster_vertex)
         print()
         return f'{end_code}'
     return '''

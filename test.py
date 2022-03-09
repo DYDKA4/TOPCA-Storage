@@ -1,8 +1,6 @@
 import unittest
 from app import yaml_parser
-import json
 import yaml
-import filecmp
 
 
 class TestJsonParser(unittest.TestCase):

@@ -29,11 +29,19 @@ def find_property(val, vertex):
                 vertex.add_properties(vertex_properties)
 
 
-def form_list_of_vertex(yaml, list_of_vertex: list, type_of_vertex: str, class_of_object, find_property_flag=False):
+def form_list_of_vertex(yaml, list_of_vertex: list, type_of_vertex: str, class_of_object, find_property_flag=False,
+                        interface_flag=False):
     for type_node, val in yaml.get(type_of_vertex).items():
         vertex = class_of_object(type_node)
         if find_property_flag:
             find_property(val, vertex)
+        if interface_flag:
+            for key, value in val.items():
+                if key != 'derived_from' and key != 'description':
+                    print(key, value)
+                    vertex_properties = data_classes.DefinitionProperties(key, 'Function',
+                                                                          str(value).replace('\n', ' '))
+                    vertex.add_properties(vertex_properties)
         list_of_vertex.append(vertex)
 
 
@@ -69,10 +77,12 @@ def parser(data, cluster_name):
         if value.get('requirements'):
             if type(value.get('requirements')) is list:
                 for requirement in value.get('requirements'):
-                    for link in requirement.values():
+                    for requirement_name, link in requirement.items():
                         dest = find_vertex(link['node'], assignments_vertex)
                         source = find_vertex(name, assignments_vertex)
-                        source.add_requirements(dest, link['relationship'])
+                        requirement_vertex = data_classes.Requirements(requirement_name, source,
+                                                                       dest, link['relationship'])
+                        source.add_requirements(requirement_vertex)
             if type(value.get('requirements')) is dict:
                 print('REQUIREMENTS id DICT')
 
@@ -87,7 +97,7 @@ def parser(data, cluster_name):
     # формирование спика interface
     interfaces_vertex = []
     form_list_of_vertex(data, interfaces_vertex, 'interface_types',
-                        data_classes.DefinitionInterface)
+                        data_classes.DefinitionInterface, interface_flag=True)
     # формирование списка relationship_vertex
     relationship_vertex = []
     form_list_of_vertex(data, relationship_vertex, 'relationship_types',
@@ -107,6 +117,7 @@ def parser(data, cluster_name):
     for name, val in data.get('node_types').items():
         if val.get('capabilities'):
             for capabilities in val.get('capabilities').values():
+                source: data_classes.DefinitionVertex
                 destination = find_vertex(capabilities.get('type'), capabilities_vertex, search_by_type=True)
                 source = find_vertex(name, definition_vertex, search_by_type=True)
                 source.add_capabilities(destination)
@@ -120,10 +131,20 @@ def parser(data, cluster_name):
         if val.get('requirements'):
             if type(val.get('requirements')) is list:
                 for requirement in val.get('requirements'):
-                    for link in requirement.values():
-                        dest = find_vertex(link['node'], definition_vertex, search_by_type=True)
+                    for requirement_name, link in requirement.items():
+                        dest = 'Null'
+                        if link.get('node'):
+                            dest = find_vertex(link['node'], definition_vertex, search_by_type=True)
                         source = find_vertex(name, definition_vertex, search_by_type=True)
-                        source.add_requirements(dest, link['relationship'])
+                        requirement_vertex = data_classes.Requirements(requirement_name, source,
+                                                                       dest, link['relationship'])
+                        if link.get('capability'):
+                            destination = find_vertex(link.get('capability'), capabilities_vertex,
+                                                      search_by_type=True)
+                            requirement_vertex.add_capabilities(destination)
+                        if link.get('occurrences'):
+                            requirement_vertex.set_occurrences(link.get('occurrences'))
+                        source.add_requirements(requirement_vertex)
             if type(val.get('requirements')) is dict:
                 print('REQUIREMENTS id DICT')
     # формирование связей между capability

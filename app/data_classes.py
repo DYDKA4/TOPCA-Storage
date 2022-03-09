@@ -7,7 +7,7 @@ class Vertex:
         self.vertex_type_tosca = vertex_type_tosca
         self.vertex_type_system = 'Vertex'
         self.name = name
-        self.requirements = {}  # хз как сделать лучше
+        self.requirements = []
         self.capabilities = []
         self.properties = []
 
@@ -26,6 +26,16 @@ class Vertex:
         return f'{self.vid}, {self.vertex_type_tosca}, {self.vertex_type_system}, {self.name}, {self.requirements}, ' \
                f'{self.capabilities}, {self.properties}'
 
+    def add_requirements(self, obj):
+        # проверка condition для дочерних классов
+        self.requirements.append(obj)
+
+    def add_properties(self, obj):
+        self.properties.append(obj)
+
+    def add_capabilities(self, obj):
+        self.capabilities.append(obj)
+
     def __repr__(self):
         return repr(vars(self))
 
@@ -35,18 +45,6 @@ class AssignmentVertex(Vertex):
         super().__init__(name, vertex_type_tosca)
         self.vertex_type_system = 'AssignmentVertex'
 
-    def add_requirements(self, obj, link_type):
-        # проверка condition для дочерних классов
-        self.requirements[obj] = link_type
-
-    def add_capabilities(self, obj):
-        self.capabilities.append(obj)
-
-    def add_properties(self, obj):
-        self.properties.append(obj)
-
-    # def __repr__(self):
-    #     return self.vertex_type_system
 
 
 class ClusterName(Vertex):
@@ -74,9 +72,6 @@ class AssignmentCapabilities(Vertex):
         super().__init__(name, vertex_type_tosca)
         self.vertex_type_system = 'AssignmentCapabilities'
 
-    def add_properties(self, obj):
-        self.properties.append(obj)
-
     def __str__(self):
         return f'{self.vid}, {self.vertex_type_tosca}, {self.vertex_type_system}, {self.name}, {self.requirements}, ' \
                f'{self.capabilities}, {self.properties}'
@@ -100,9 +95,6 @@ class DefinitionCapabilities(Vertex):
         self.vertex_type_system = 'DefinitionCapabilities'
         self.derived_from = []
 
-    def add_properties(self, obj):
-        self.properties.append(obj)
-
     def add_derived_from(self, obj):
         self.derived_from.append(obj)
 
@@ -116,16 +108,6 @@ class DefinitionVertex(Vertex):
         self.vertex_type_system = 'DefinitionVertex'
         self.derived_from = []
         self.interfaces = {}
-
-    def add_requirements(self, obj, link_type):
-        # проверка condition для дочерних классов
-        self.requirements[obj] = link_type
-
-    def add_capabilities(self, obj):
-        self.capabilities.append(obj)
-
-    def add_properties(self, obj):
-        self.properties.append(obj)
 
     def add_derived_from(self, obj):
         self.derived_from.append(obj)
@@ -164,14 +146,10 @@ class RelationshipType(Vertex):
         super().__init__('noname', vertex_type_tosca)
         self.derived_from = []
         self.vertex_type_system = 'RelationshipType'
-        self.properties = []
         self.valid_target_types = []
 
     def add_derived_from(self, obj):
         self.derived_from.append(obj)
-
-    def add_properties(self, obj):
-        self.properties.append(obj)
 
     def add_valid_target_types(self, obj):
         self.valid_target_types.append(obj)
@@ -181,11 +159,20 @@ class RelationshipTemplate(Vertex):
     def __init__(self, name, vertex_type_tosca='relationship_templates'):
         super().__init__(name, vertex_type_tosca)
         self.type_relationship = []
-        self.properties = []
         self.vertex_type_system = 'RelationshipTemplate'
 
     def add_type_relationship(self, obj):
         self.type_relationship.append(obj)
 
-    def add_properties(self, obj):
-        self.properties.append(obj)
+
+class Requirements(Vertex):
+    def __init__(self, name, source, destination, link_type):
+        super().__init__(name, vertex_type_tosca='none')
+        self.source = source
+        self.vertex_type_system = 'RequirementsVertex'
+        self.destination = destination
+        self.link_type = link_type
+        self.occurrences = ''
+
+    def set_occurrences(self, occurrences):
+        self.occurrences = occurrences

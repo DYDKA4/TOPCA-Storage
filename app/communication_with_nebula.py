@@ -91,6 +91,13 @@ def update_vertex(session, vertex_name, name_of_key_value, key_value, vid):
     return
 
 
+def get_yaml_from_cluster(cluster_name, session = chose_of_space()):
+    result = session.execute(f'FETCH PROP ON ClusterName "{cluster_name}"'
+                             f' YIELD properties(vertex).pure_yaml AS pure_yaml;')
+    assert result.is_succeeded(), result.error_msg()
+    return result.column_values('pure_yaml')[0].as_string()
+
+
 def yaml_deploy(cluster_vertex: data_classes.ClusterName, method_put=False):
     """ программа за четыре прохода создает шаблон в бд,
     за первый проход она размещается все узлы в бд, за второй создаёт соотвествующие связи
@@ -178,7 +185,8 @@ def yaml_deploy(cluster_vertex: data_classes.ClusterName, method_put=False):
     relationship_template: data_classes.RelationshipTemplate
     for relationship_template in cluster_vertex.relationship_templates:
         relationship_template.set_vid(session)
-        add_in_vertex(session, relationship_template.vertex_type_system, '', '', relationship_template.vid)
+        add_in_vertex(session, relationship_template.vertex_type_system, 'name', f'"{relationship_template.name}"',
+                      relationship_template.vid)
         for property_vertex in relationship_template.properties:
             property_vertex.set_vid(session)
             add_in_vertex(session, property_vertex.vertex_type_system, 'value_name, value',

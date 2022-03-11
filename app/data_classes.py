@@ -176,3 +176,4 @@ class Requirements(Vertex):
 
     def set_occurrences(self, occurrences):
         self.occurrences = occurrences
+

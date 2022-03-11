@@ -1,0 +1,8 @@
+2022-03-11 16:21:06,799 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-03-11 16:21:06,829 WARNING werkzeug MainThread :  * Debugger is active!
+2022-03-11 16:21:06,829 INFO werkzeug MainThread :  * Debugger PIN: 103-640-066
+2022-03-11 16:21:32,088 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/views.py', reloading
+2022-03-11 16:21:32,257 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-03-11 16:21:32,284 WARNING werkzeug MainThread :  * Debugger is active!
+2022-03-11 16:21:32,285 INFO werkzeug MainThread :  * Debugger PIN: 103-640-066
+2022-03-11 16:24:11,998 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/communication_with_nebula.py', reloading

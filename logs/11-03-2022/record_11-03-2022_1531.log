@@ -1,0 +1,14 @@
+2022-03-11 15:31:40,220 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-03-11 15:31:40,253 WARNING werkzeug MainThread :  * Debugger is active!
+2022-03-11 15:31:40,253 INFO werkzeug MainThread :  * Debugger PIN: 103-640-066
+2022-03-11 15:31:42,286 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/communication_with_nebula.py', reloading
+2022-03-11 15:31:42,526 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-03-11 15:31:42,553 WARNING werkzeug MainThread :  * Debugger is active!
+2022-03-11 15:31:42,554 INFO werkzeug MainThread :  * Debugger PIN: 103-640-066
+2022-03-11 15:31:43,583 INFO werkzeug Thread-2 : 127.0.0.1 - - [11/Mar/2022 15:31:43] "[35m[1mPATCH /yaml-template/node_name/name/class/type?cluster_name=cluster_tosca_1 HTTP/1.1[0m" 500 -
+2022-03-11 15:31:57,743 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/communication_with_nebula.py', reloading
+2022-03-11 15:31:58,042 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-03-11 15:31:58,067 WARNING werkzeug MainThread :  * Debugger is active!
+2022-03-11 15:31:58,067 INFO werkzeug MainThread :  * Debugger PIN: 103-640-066
+2022-03-11 15:31:59,750 INFO werkzeug Thread-2 : 127.0.0.1 - - [11/Mar/2022 15:31:59] "PATCH /yaml-template/node_name/name/class/type?cluster_name=cluster_tosca_1 HTTP/1.1" 200 -
+2022-03-11 15:32:43,563 ERROR root MainThread : The connection using by someone, but now want to close it

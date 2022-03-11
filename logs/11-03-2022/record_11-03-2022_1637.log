@@ -1,0 +1,15 @@
+2022-03-11 16:37:07,419 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-03-11 16:37:07,447 WARNING werkzeug MainThread :  * Debugger is active!
+2022-03-11 16:37:07,447 INFO werkzeug MainThread :  * Debugger PIN: 103-640-066
+2022-03-11 16:37:08,346 INFO werkzeug Thread-2 : 127.0.0.1 - - [11/Mar/2022 16:37:08] "[35m[1mPOST /yaml-template/?cluster_name=cluster_tosca_57 HTTP/1.1[0m" 500 -
+2022-03-11 16:37:32,754 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/views.py', reloading
+2022-03-11 16:37:32,980 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-03-11 16:37:33,008 WARNING werkzeug MainThread :  * Debugger is active!
+2022-03-11 16:37:33,008 INFO werkzeug MainThread :  * Debugger PIN: 103-640-066
+2022-03-11 16:37:36,465 INFO werkzeug Thread-2 : 127.0.0.1 - - [11/Mar/2022 16:37:36] "[35m[1mPOST /yaml-template/?cluster_name=cluster_tosca_57 HTTP/1.1[0m" 500 -
+2022-03-11 16:37:50,199 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/views.py', reloading
+2022-03-11 16:37:50,380 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-03-11 16:37:50,407 WARNING werkzeug MainThread :  * Debugger is active!
+2022-03-11 16:37:50,408 INFO werkzeug MainThread :  * Debugger PIN: 103-640-066
+2022-03-11 16:37:52,049 INFO werkzeug Thread-2 : 127.0.0.1 - - [11/Mar/2022 16:37:52] "POST /yaml-template/?cluster_name=cluster_tosca_57 HTTP/1.1" 200 -
+2022-03-11 16:44:07,479 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/views.py', reloading

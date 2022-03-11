@@ -1,0 +1,21 @@
+2022-03-11 15:26:07,951 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-03-11 15:26:07,982 WARNING werkzeug MainThread :  * Debugger is active!
+2022-03-11 15:26:07,983 INFO werkzeug MainThread :  * Debugger PIN: 103-640-066
+2022-03-11 15:26:08,237 INFO werkzeug Thread-2 : 127.0.0.1 - - [11/Mar/2022 15:26:08] "[35m[1mPATCH /yaml-template/node_name/name/class/type?cluster_name=cluster HTTP/1.1[0m" 500 -
+2022-03-11 15:26:20,119 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/communication_with_nebula.py', reloading
+2022-03-11 15:26:20,305 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-03-11 15:26:20,336 WARNING werkzeug MainThread :  * Debugger is active!
+2022-03-11 15:26:20,336 INFO werkzeug MainThread :  * Debugger PIN: 103-640-066
+2022-03-11 15:26:25,570 INFO werkzeug Thread-2 : 127.0.0.1 - - [11/Mar/2022 15:26:25] "[35m[1mPATCH /yaml-template/node_name/name/class/type?cluster_name=cluster HTTP/1.1[0m" 500 -
+2022-03-11 15:26:31,451 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/communication_with_nebula.py', reloading
+2022-03-11 15:26:31,633 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-03-11 15:26:31,660 WARNING werkzeug MainThread :  * Debugger is active!
+2022-03-11 15:26:31,661 INFO werkzeug MainThread :  * Debugger PIN: 103-640-066
+2022-03-11 15:26:32,129 INFO werkzeug Thread-2 : 127.0.0.1 - - [11/Mar/2022 15:26:32] "PATCH /yaml-template/node_name/name/class/type?cluster_name=cluster HTTP/1.1" 200 -
+2022-03-11 15:26:42,793 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/communication_with_nebula.py', reloading
+2022-03-11 15:26:43,059 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-03-11 15:26:43,084 WARNING werkzeug MainThread :  * Debugger is active!
+2022-03-11 15:26:43,085 INFO werkzeug MainThread :  * Debugger PIN: 103-640-066
+2022-03-11 15:26:46,536 INFO werkzeug Thread-2 : 127.0.0.1 - - [11/Mar/2022 15:26:46] "PATCH /yaml-template/node_name/name/class/type?cluster_name=cluster HTTP/1.1" 200 -
+2022-03-11 15:27:15,496 INFO werkzeug Thread-3 : 127.0.0.1 - - [11/Mar/2022 15:27:15] "PATCH /yaml-template/node_name/name/class/type?cluster_name=cluster_tosca_1 HTTP/1.1" 200 -
+2022-03-11 15:30:44,247 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/communication_with_nebula.py', reloading

@@ -1,0 +1,13 @@
+2022-03-11 20:54:14,153 WARNING werkzeug MainThread :  * Debugger is active!
+2022-03-11 20:54:14,154 INFO werkzeug MainThread :  * Debugger PIN: 103-640-066
+2022-03-11 20:54:48,537 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/views.py', reloading
+2022-03-11 20:54:48,726 WARNING werkzeug MainThread :  * Debugger is active!
+2022-03-11 20:54:48,726 INFO werkzeug MainThread :  * Debugger PIN: 103-640-066
+2022-03-11 20:54:50,310 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-11 20:54:50,379 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-11 20:54:50,395 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-11 20:54:50,410 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-11 20:54:50,419 INFO werkzeug Thread-2 : 127.0.0.1 - - [11/Mar/2022 20:54:50] "PATCH /yaml-template/topology_template/relationship_templates/storage_attachesto_1/properties?cluster_name=cluster_tosca_58&new_value8tosca.relationships.network.BindsTo HTTP/1.1" 200 -
+2022-03-11 20:54:57,851 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/views.py', reloading
+2022-03-11 20:54:58,068 WARNING werkzeug MainThread :  * Debugger is active!
+2022-03-11 20:54:58,068 INFO werkzeug MainThread :  * Debugger PIN: 103-640-066

@@ -1,0 +1,11 @@
+2022-03-11 19:19:52,970 INFO werkzeug MainThread :  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2022-03-11 19:19:52,972 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-11 19:19:53,136 WARNING werkzeug MainThread :  * Debugger is active!
+2022-03-11 19:19:53,137 INFO werkzeug MainThread :  * Debugger PIN: 103-640-066
+2022-03-11 19:19:54,629 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-11 19:19:54,693 INFO werkzeug Thread-2 : 127.0.0.1 - - [11/Mar/2022 19:19:54] "PATCH /yaml-template/topology_template/relationship_templates/storage_attachesto_1/type?cluster_name=cluster_tosca_55&new_value=tosca.relationships.network.BindsTo HTTP/1.1" 200 -
+2022-03-11 19:23:04,244 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/communication_with_nebula.py', reloading
+2022-03-11 19:23:04,270 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-11 19:23:26,714 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-11 19:24:21,567 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-11 19:49:04,763 INFO werkzeug MainThread :  * Restarting with stat

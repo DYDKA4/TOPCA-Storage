@@ -83,11 +83,15 @@ def delete_all_edge(session, vertex, edge_name):
     return
 
 
-def update_vertex(session, vertex_name, name_of_key_value, key_value, vid):
+def update_vertex(session, vertex_name, name_of_key_value, key_value, vid, start_session=False):
+    if start_session:
+        session = chose_of_space()
     update = 'UPDATE'
     result = session.execute(f'{update} VERTEX ON {vertex_name} {vid} set {name_of_key_value} = {key_value}')
     print(f'{update} VERTEX ON {vertex_name} {vid} set {name_of_key_value} = {key_value}')
     assert result.is_succeeded(), result.error_msg()
+    if start_session:
+        session.release()
     return
 
 
@@ -95,9 +99,44 @@ def get_yaml_from_cluster(cluster_name):
     session = chose_of_space()
     result = session.execute(f'FETCH PROP ON ClusterName "{cluster_name}"'
                              f' YIELD properties(vertex).pure_yaml AS pure_yaml;')
+    print(f'FETCH PROP ON ClusterName "{cluster_name}"'
+          f' YIELD properties(vertex).pure_yaml AS pure_yaml;')
     assert result.is_succeeded(), result.error_msg()
-    result = result.column_values('pure_yaml')[0].as_string()
+    if result.column_values('pure_yaml'):
+        result = result.column_values('pure_yaml')[0].as_string()
+    else:
+        return None
     session.release()
+    return result
+
+
+def find_destination_by_property(session, vid, edge_name, property_name, property_value, start_session=False):
+    if start_session:
+        session = chose_of_space()
+    result = session.execute(f'GO FROM {vid} over {edge_name} '
+                             f'WHERE properties($$).{property_name} == "{property_value}"'
+                             f' YIELD properties($$).{property_name} as {property_name}, dst(edge) as vid')
+    print(f'GO FROM {vid} over {edge_name} '
+          f'WHERE properties($$).{property_name} == "{property_value}"'
+          f' YIELD properties($$).{property_name} as {property_name}, dst(edge) as vid')
+    assert result.is_succeeded(), result.error_msg()
+    if result.column_values('vid'):
+        result = result.column_values('vid')[0].as_string()
+    if start_session:
+        session.release()
+    return result
+
+
+def find_destination(session, vid, edge_name, start_session=False):
+    if start_session:
+        session = chose_of_space()
+    result = session.execute(f'GO FROM {vid} over {edge_name} YIELD dst(edge) as vid')
+    print(f'GO FROM {vid} over {edge_name} YIELD dst(edge) as vid')
+    assert result.is_succeeded(), result.error_msg()
+    if result.column_values('vid'):
+        result = result.column_values('vid')[0].as_string()
+    if start_session:
+        session.release()
     return result
 
 

@@ -2,3 +2,4 @@
 2022-03-11 18:41:51,567 INFO werkzeug MainThread :  * Debugger PIN: 103-640-066
 2022-03-11 18:41:53,537 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
 2022-03-11 18:41:53,603 INFO werkzeug Thread-2 : 127.0.0.1 - - [11/Mar/2022 18:41:53] "[35m[1mPATCH /yaml-template/topology_template/relationship_templates/storage_attachesto_1/type?cluster_name=cluster_tosca_55&new_value=tosca.relationships.network.BindsTo HTTP/1.1[0m" 500 -
+2022-03-11 18:42:33,040 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/views.py', reloading

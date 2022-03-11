@@ -38,7 +38,6 @@ def form_list_of_vertex(yaml, list_of_vertex: list, type_of_vertex: str, class_o
         if interface_flag:
             for key, value in val.items():
                 if key != 'derived_from' and key != 'description':
-                    print(key, value)
                     vertex_properties = data_classes.DefinitionProperties(key, 'Function',
                                                                           str(value).replace('\n', ' '))
                     vertex.add_properties(vertex_properties)
@@ -53,6 +52,17 @@ def linking_derived_from(val, type_of_vertex, name):
 
 def parser(data, cluster_name):
     node_templates = find_node_templates(data)
+    # формирование списка relationship_templates
+    relationship_templates = []
+    templates_data = dpath.util.get(data, "topology_template/relationship_templates")
+    for relationship_template, val in templates_data.items():
+        vertex = data_classes.RelationshipTemplate(relationship_template)
+        if val.get('properties'):
+            for name_value, value in val.get('properties').items():
+                vertex_properties = data_classes.DefinitionProperties(name_value, name_value,
+                                                                      str(value).replace('\n', ' '))
+                vertex.add_properties(vertex_properties)
+        relationship_templates.append(vertex)
     # новая классовая система
     assignments_vertex = []
     for name, value in node_templates.items():
@@ -81,7 +91,9 @@ def parser(data, cluster_name):
                         dest = find_vertex(link['node'], assignments_vertex)
                         source = find_vertex(name, assignments_vertex)
                         requirement_vertex = data_classes.Requirements(requirement_name, source,
-                                                                       dest, link['relationship'])
+                                                                       dest)
+                        relationship = find_vertex(link['relationship'], relationship_templates)
+                        requirement_vertex.set_relationship(relationship)
                         source.add_requirements(requirement_vertex)
             if type(value.get('requirements')) is dict:
                 print('REQUIREMENTS id DICT')
@@ -102,17 +114,7 @@ def parser(data, cluster_name):
     relationship_vertex = []
     form_list_of_vertex(data, relationship_vertex, 'relationship_types',
                         data_classes.RelationshipType, find_property_flag=True)
-    # формирование списка relationship_templates
-    relationship_templates = []
-    templates_data = dpath.util.get(data, "topology_template/relationship_templates")
-    for relationship_template, val in templates_data.items():
-        vertex = data_classes.RelationshipTemplate(relationship_template)
-        if val.get('properties'):
-            for name_value, value in val.get('properties').items():
-                vertex_properties = data_classes.DefinitionProperties(name_value, name_value,
-                                                                      str(value).replace('\n', ' '))
-                vertex.add_properties(vertex_properties)
-        relationship_templates.append(vertex)
+
     # формирование связей между definition_vertex и другими
     for name, val in data.get('node_types').items():
         if val.get('capabilities'):
@@ -137,7 +139,10 @@ def parser(data, cluster_name):
                             dest = find_vertex(link['node'], definition_vertex, search_by_type=True)
                         source = find_vertex(name, definition_vertex, search_by_type=True)
                         requirement_vertex = data_classes.Requirements(requirement_name, source,
-                                                                       dest, link['relationship'])
+                                                                       dest)
+                        relationship = find_vertex(link['relationship'], relationship_vertex, search_by_type=True)
+                        # print(relationship)
+                        requirement_vertex.set_relationship(relationship)
                         if link.get('capability'):
                             destination = find_vertex(link.get('capability'), capabilities_vertex,
                                                       search_by_type=True)

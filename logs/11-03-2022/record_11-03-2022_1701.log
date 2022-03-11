@@ -1,0 +1,19 @@
+2022-03-11 17:01:08,656 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-03-11 17:01:08,684 WARNING werkzeug MainThread :  * Debugger is active!
+2022-03-11 17:01:08,684 INFO werkzeug MainThread :  * Debugger PIN: 103-640-066
+2022-03-11 17:01:10,741 INFO werkzeug Thread-2 : 127.0.0.1 - - [11/Mar/2022 17:01:10] "[31m[1mGET /yaml-template/topology_template/relationship_template HTTP/1.1[0m" 405 -
+2022-03-11 17:01:15,237 ERROR root MainThread : The connection using by someone, but now want to close it
+2022-03-11 17:01:33,349 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-03-11 17:01:33,374 INFO werkzeug MainThread :  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2022-03-11 17:01:33,376 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-11 17:01:33,524 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-03-11 17:01:33,551 WARNING werkzeug MainThread :  * Debugger is active!
+2022-03-11 17:01:33,552 INFO werkzeug MainThread :  * Debugger PIN: 103-640-066
+2022-03-11 17:01:37,344 INFO werkzeug Thread-2 : 127.0.0.1 - - [11/Mar/2022 17:01:37] "[35m[1mGET /yaml-template/topology_template/relationship_template HTTP/1.1[0m" 500 -
+2022-03-11 17:01:37,380 INFO werkzeug Thread-3 : 127.0.0.1 - - [11/Mar/2022 17:01:37] "GET /yaml-template/topology_template/relationship_template?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2022-03-11 17:01:37,386 INFO werkzeug Thread-4 : 127.0.0.1 - - [11/Mar/2022 17:01:37] "GET /yaml-template/topology_template/relationship_template?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2022-03-11 17:01:37,431 INFO werkzeug Thread-5 : 127.0.0.1 - - [11/Mar/2022 17:01:37] "GET /yaml-template/topology_template/relationship_template?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2022-03-11 17:01:37,433 INFO werkzeug Thread-6 : 127.0.0.1 - - [11/Mar/2022 17:01:37] "GET /yaml-template/topology_template/relationship_template?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2022-03-11 17:02:21,143 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/views.py', reloading
+2022-03-11 17:02:21,169 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-11 17:02:33,767 ERROR root MainThread : The connection using by someone, but now want to close it

@@ -25,3 +25,15 @@
 2022-03-11 16:37:32,820 INFO werkzeug MainThread :  * Restarting with stat
 2022-03-11 16:37:50,227 INFO werkzeug MainThread :  * Restarting with stat
 2022-03-11 16:44:07,505 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-11 16:45:51,920 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-11 16:49:24,159 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-11 16:50:32,183 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-11 16:51:24,993 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-11 16:51:28,250 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-11 16:51:33,516 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-11 16:52:08,111 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-11 16:52:30,580 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-11 16:53:30,529 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-11 16:53:40,874 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-11 17:01:08,507 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-11 17:01:15,268 ERROR root MainThread : The connection using by someone, but now want to close it

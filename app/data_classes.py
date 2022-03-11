@@ -166,14 +166,17 @@ class RelationshipTemplate(Vertex):
 
 
 class Requirements(Vertex):
-    def __init__(self, name, source, destination, link_type):
+    def __init__(self, name, source, destination):
         super().__init__(name, vertex_type_tosca='none')
         self.source = source
         self.vertex_type_system = 'RequirementsVertex'
         self.destination = destination
-        self.link_type = link_type
         self.occurrences = ''
+        self.relationship = None
 
     def set_occurrences(self, occurrences):
         self.occurrences = occurrences
+
+    def set_relationship(self, relationship):
+        self.relationship = relationship
 

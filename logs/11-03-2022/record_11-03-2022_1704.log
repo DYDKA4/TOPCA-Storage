@@ -1,0 +1,18 @@
+2022-03-11 17:04:36,898 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-03-11 17:04:36,926 WARNING werkzeug MainThread :  * Debugger is active!
+2022-03-11 17:04:36,926 INFO werkzeug MainThread :  * Debugger PIN: 103-640-066
+2022-03-11 17:04:38,805 INFO werkzeug Thread-2 : 127.0.0.1 - - [11/Mar/2022 17:04:38] "PATCH /yaml-template/topology_template/relationship_template HTTP/1.1" 200 -
+2022-03-11 17:04:49,715 INFO werkzeug Thread-3 : 127.0.0.1 - - [11/Mar/2022 17:04:49] "PATCH /yaml-template/topology_template/relationship_template?cluster_name=10 HTTP/1.1" 200 -
+2022-03-11 17:04:59,814 INFO werkzeug Thread-4 : 127.0.0.1 - - [11/Mar/2022 17:04:59] "PATCH /yaml-template/topology_template/relationship_template?cluster_name=10 HTTP/1.1" 200 -
+2022-03-11 17:08:51,090 INFO werkzeug Thread-5 : 127.0.0.1 - - [11/Mar/2022 17:08:51] "PATCH /yaml-template/topology_template/relationship_template HTTP/1.1" 200 -
+2022-03-11 17:11:14,349 INFO werkzeug Thread-6 : 127.0.0.1 - - [11/Mar/2022 17:11:14] "PATCH /yaml-template/topology_template/relationship_template?cluster_name=10 HTTP/1.1" 200 -
+2022-03-11 17:11:46,503 INFO werkzeug Thread-7 : 127.0.0.1 - - [11/Mar/2022 17:11:46] "PATCH /yaml-template/topology_template/relationship_template?cluster_name=10 HTTP/1.1" 200 -
+2022-03-11 17:12:44,664 INFO werkzeug Thread-8 : 127.0.0.1 - - [11/Mar/2022 17:12:44] "PATCH /yaml-template/topology_template/relationship_template?cluster_name=10 HTTP/1.1" 200 -
+2022-03-11 17:12:55,722 INFO werkzeug Thread-9 : 127.0.0.1 - - [11/Mar/2022 17:12:55] "PATCH /yaml-template/topology_template/relationship_template?cluster_name=10 HTTP/1.1" 200 -
+2022-03-11 17:13:33,754 INFO werkzeug Thread-10 : 127.0.0.1 - - [11/Mar/2022 17:13:33] "PATCH /yaml-template/topology_template/relationship_template?cluster_name=10 HTTP/1.1" 200 -
+2022-03-11 17:24:45,499 INFO werkzeug Thread-11 : 127.0.0.1 - - [11/Mar/2022 17:24:45] "PATCH /yaml-template/topology_template/relationship_template?cluster_name=10&/name=ab HTTP/1.1" 200 -
+2022-03-11 17:24:53,679 INFO werkzeug Thread-12 : 127.0.0.1 - - [11/Mar/2022 17:24:53] "PATCH /yaml-template/topology_template/relationship_template?cluster_name=10 HTTP/1.1" 200 -
+2022-03-11 17:25:43,253 INFO werkzeug Thread-13 : 127.0.0.1 - - [11/Mar/2022 17:25:43] "PATCH /yaml-template/topology_template/relationship_template?cluster_name=10 HTTP/1.1" 200 -
+2022-03-11 17:25:53,073 INFO werkzeug Thread-14 : 127.0.0.1 - - [11/Mar/2022 17:25:53] "PATCH /yaml-template/topology_template/relationship_template?cluster_name=10 HTTP/1.1" 200 -
+2022-03-11 17:27:26,427 INFO werkzeug Thread-15 : 127.0.0.1 - - [11/Mar/2022 17:27:26] "PATCH /yaml-template/topology_template/relationship_template?cluster_name=10&name=ab HTTP/1.1" 200 -
+2022-03-11 17:28:02,183 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/views.py', reloading

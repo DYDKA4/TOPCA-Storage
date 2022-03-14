@@ -1,0 +1,22 @@
+2022-03-14 17:06:18,973 WARNING werkzeug MainThread :  * Debugger is active!
+2022-03-14 17:06:18,973 INFO werkzeug MainThread :  * Debugger PIN: 150-925-197
+2022-03-14 17:06:25,436 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-14 17:06:25,498 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-14 17:06:25,509 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-14 17:06:25,562 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-14 17:06:25,573 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-14 17:06:25,628 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-14 17:06:25,694 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-14 17:06:25,703 INFO werkzeug Thread-2 : 127.0.0.1 - - [14/Mar/2022 17:06:25] "GET /yaml-template/?cluster_name=cluster_tosca_59 HTTP/1.1" 200 -
+2022-03-14 17:06:58,421 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/constructor_yaml.py', reloading
+2022-03-14 17:06:58,627 WARNING werkzeug MainThread :  * Debugger is active!
+2022-03-14 17:06:58,627 INFO werkzeug MainThread :  * Debugger PIN: 150-925-197
+2022-03-14 17:07:07,266 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-14 17:07:07,282 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-14 17:07:07,292 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-14 17:07:07,301 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-14 17:07:07,353 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-14 17:07:07,364 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-14 17:07:07,417 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-14 17:07:07,427 INFO werkzeug Thread-2 : 127.0.0.1 - - [14/Mar/2022 17:07:07] "GET /yaml-template/?cluster_name=cluster_tosca_59 HTTP/1.1" 200 -
+2022-03-14 17:09:16,257 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/constructor_yaml.py', reloading

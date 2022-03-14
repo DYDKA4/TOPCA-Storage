@@ -1,0 +1,33 @@
+2022-03-14 19:41:50,497 INFO werkzeug MainThread :  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2022-03-14 19:41:50,499 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-14 19:41:50,676 WARNING werkzeug MainThread :  * Debugger is active!
+2022-03-14 19:41:50,676 INFO werkzeug MainThread :  * Debugger PIN: 150-925-197
+2022-03-14 19:41:52,572 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-14 19:43:54,758 INFO werkzeug Thread-2 : 127.0.0.1 - - [14/Mar/2022 19:43:54] "PUT /yaml-template/?cluster_name=cluster_tosca_59 HTTP/1.1" 200 -
+2022-03-14 19:43:59,148 INFO root Thread-3 : Get connection to ('10.100.151.128', 9669)
+2022-03-14 19:43:59,163 INFO root Thread-3 : Get connection to ('10.100.151.128', 9669)
+2022-03-14 19:43:59,174 INFO root Thread-3 : Get connection to ('10.100.151.128', 9669)
+2022-03-14 19:43:59,225 INFO root Thread-3 : Get connection to ('10.100.151.128', 9669)
+2022-03-14 19:43:59,251 INFO root Thread-3 : Get connection to ('10.100.151.128', 9669)
+2022-03-14 19:43:59,262 INFO root Thread-3 : Get connection to ('10.100.151.128', 9669)
+2022-03-14 19:43:59,272 INFO root Thread-3 : Get connection to ('10.100.151.128', 9669)
+2022-03-14 19:43:59,282 INFO root Thread-3 : Get connection to ('10.100.151.128', 9669)
+2022-03-14 19:43:59,299 INFO werkzeug Thread-3 : 127.0.0.1 - - [14/Mar/2022 19:43:59] "[35m[1mGET /yaml-template/?cluster_name=cluster_tosca_59 HTTP/1.1[0m" 500 -
+2022-03-14 19:45:15,035 INFO root Thread-4 : Get connection to ('10.100.151.128', 9669)
+2022-03-14 19:45:15,050 INFO root Thread-4 : Get connection to ('10.100.151.128', 9669)
+2022-03-14 19:45:15,060 INFO root Thread-4 : Get connection to ('10.100.151.128', 9669)
+2022-03-14 19:45:15,070 INFO root Thread-4 : Get connection to ('10.100.151.128', 9669)
+2022-03-14 19:45:15,070 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/constructor_yaml.py', reloading
+2022-03-14 19:45:15,099 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-14 19:45:56,842 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-14 19:46:43,578 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-14 19:46:51,868 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-14 19:46:59,154 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-14 19:48:03,157 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-14 19:48:15,489 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-14 19:48:44,042 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-14 19:49:18,659 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-14 19:50:02,393 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-14 19:50:45,116 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-14 19:51:19,721 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-14 19:51:27,018 INFO werkzeug MainThread :  * Restarting with stat

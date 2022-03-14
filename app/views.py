@@ -3,15 +3,15 @@ from app import app
 from app import communication_with_nebula
 from app import yaml_parser
 import yaml
-import dpath.util
+from app import constructor_yaml
 
 
-@app.route('/yaml-template/', methods=['POST', 'PUT'])
+@app.route('/yaml-template/', methods=['POST', 'PUT', 'GET'])
 @app.route('/yaml-template/<path:varargs>', methods=['PATCH'])
 # curl -F file=@jamlExamples/SBS.yaml http://127.0.0.1:5000/yaml-template?cluster_name="cluster"
 def yaml_add(varargs=None):
     cluster_name = request.args.get('cluster_name')
-    if request.method != 'PATCH':
+    if request.method in ['POST','PUT']:
         file = request.files['file']
         if file:
             file = file.read().decode("utf-8")
@@ -104,6 +104,10 @@ def yaml_add(varargs=None):
                     # изменение типа
                     return '501 Not Implemented'
                 elif varargs[3] == 'capabilities':
+                    '''
+                    'http://127.0.0.1:5000/yaml-template/topology_template/node_templates/my_web_app_tier_2/
+                    capabilities/host/properties/disk_size?cluster_name=cluster_tosca_58&new_value=70%20GB'
+                    '''
                     # изменение capabilities:
                     vid_of_capability = communication_with_nebula. \
                         find_destination_by_property(None, f'"{vid_of_node}"', 'assignment_capability', 'name',
@@ -139,6 +143,11 @@ def yaml_add(varargs=None):
             return '501 Not Implemented'
 
         return f'{varargs} {cluster_name} {new_value}\n{data}'
+    if request.method == 'GET':
+        yaml_collection = constructor_yaml.get_yaml(cluster_name)
+
+        return f'{yaml_collection}'
+
     return '''
             400 Bad Request 
             '''

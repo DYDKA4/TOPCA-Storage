@@ -1,0 +1,16 @@
+2022-03-14 16:05:07,734 INFO werkzeug MainThread :  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2022-03-14 16:05:07,736 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-14 16:05:07,904 WARNING werkzeug MainThread :  * Debugger is active!
+2022-03-14 16:05:07,905 INFO werkzeug MainThread :  * Debugger PIN: 150-925-197
+2022-03-14 16:05:09,444 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-14 16:05:09,467 INFO werkzeug Thread-2 : 127.0.0.1 - - [14/Mar/2022 16:05:09] "[35m[1mGET /yaml-template/?cluster_name=cluster_tosca_58 HTTP/1.1[0m" 500 -
+2022-03-14 16:05:22,075 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/constructor_yaml.py', reloading
+2022-03-14 16:05:22,102 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-14 16:05:22,254 WARNING werkzeug MainThread :  * Debugger is active!
+2022-03-14 16:05:22,254 INFO werkzeug MainThread :  * Debugger PIN: 150-925-197
+2022-03-14 16:05:22,695 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-14 16:05:22,707 INFO werkzeug Thread-2 : 127.0.0.1 - - [14/Mar/2022 16:05:22] "GET /yaml-template/?cluster_name=cluster_tosca_58 HTTP/1.1" 200 -
+2022-03-14 16:06:16,914 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/constructor_yaml.py', reloading
+2022-03-14 16:06:16,942 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-14 16:06:39,359 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-14 16:08:05,608 INFO werkzeug MainThread :  * Restarting with stat

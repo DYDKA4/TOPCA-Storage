@@ -128,17 +128,32 @@ def find_destination_by_property(session, vid, edge_name, property_name, propert
     return result
 
 
-def find_destination(session, vid, edge_name, start_session=False):
+def find_destination(session, vid, edge_name, start_session=False, full_list=False):
     if start_session:
         session = chose_of_space()
     result = session.execute(f'GO FROM {vid} over {edge_name} YIELD dst(edge) as vid')
     print(f'GO FROM {vid} over {edge_name} YIELD dst(edge) as vid')
     assert result.is_succeeded(), result.error_msg()
-    if result.column_values('vid'):
-        result = result.column_values('vid')[0].as_string()
     if start_session:
         session.release()
+    if full_list:
+        return result.column_values('vid')
+    if result.column_values('vid'):
+        result = result.column_values('vid')[0].as_string()
     return result
+
+
+def fetch_vertex(session, vid, vertex_name, properties, start_session=False):
+    if start_session:
+        session = chose_of_space()
+    result = session.execute(f'FETCH PROP ON {vertex_name} {vid} YIELD properties(vertex).{properties} as {properties}')
+    print(f'FETCH PROP ON {vertex_name} {vid} YIELD properties(vertex).{properties} as {properties}')
+    assert result.is_succeeded(), result.error_msg()
+    if start_session:
+        session.release()
+    if result.column_values(properties)[0]:
+        return result.column_values(properties)[0].as_string()
+    return None
 
 
 def yaml_deploy(cluster_vertex: data_classes.ClusterName, method_put=False):
@@ -165,7 +180,8 @@ def yaml_deploy(cluster_vertex: data_classes.ClusterName, method_put=False):
     # добавление всех вершин связанных с definition vertex
     for assignment_vertex in cluster_vertex.assignment_vertex:
         assignment_vertex.set_vid(session)
-        add_in_vertex(session, assignment_vertex.vertex_type_system, 'name', '"' + assignment_vertex.name + '"',
+        add_in_vertex(session, assignment_vertex.vertex_type_system,
+                      'name, type', f'"{assignment_vertex.name}", "{assignment_vertex.vertex_type_tosca}"',
                       assignment_vertex.vid)
 
         # добавление property и capability в БД и ребра между defenition_vertex и property_vertex
@@ -191,11 +207,11 @@ def yaml_deploy(cluster_vertex: data_classes.ClusterName, method_put=False):
         for requirement_vertex in assignment_vertex.requirements:
             requirement_vertex: data_classes.Requirements
             requirement_vertex.set_vid(session)
-            add_in_vertex(session, requirement_vertex.vertex_type_system, '', '',
+            add_in_vertex(session, requirement_vertex.vertex_type_system, 'name', f'"{requirement_vertex.name}"',
                           requirement_vertex.vid)
-            add_edge(session, 'requirements', '', requirement_vertex.vid, requirement_vertex.destination.vid, '')
+            add_edge(session, 'requirements_destination', '', requirement_vertex.vid, requirement_vertex.destination.vid, '')
             add_edge(session, 'requirements', '', assignment_vertex.vid, requirement_vertex.vid, '')
-            add_edge(session, 'requirements', '', requirement_vertex.relationship.vid, requirement_vertex.vid, '')
+            add_edge(session, 'requirements', '', requirement_vertex.vid, requirement_vertex.relationship.vid, '')
             for capabilities_vertex in requirement_vertex.capabilities:
                 add_edge(session, 'requirements', '', requirement_vertex.vid, capabilities_vertex.vid, f'')
 
@@ -268,13 +284,13 @@ def yaml_deploy(cluster_vertex: data_classes.ClusterName, method_put=False):
             requirement_vertex: data_classes.Requirements
             requirement_vertex.set_vid(session)
             if requirement_vertex.occurrences != '':
-                add_in_vertex(session, requirement_vertex.vertex_type_system, 'occurrences',
-                              f'"{str(requirement_vertex.occurrences)}"',
+                add_in_vertex(session, requirement_vertex.vertex_type_system, 'name ,occurrences',
+                              f'"{requirement_vertex.name}","{str(requirement_vertex.occurrences)}"',
                               requirement_vertex.vid)
             else:
-                add_in_vertex(session, requirement_vertex.vertex_type_system, '',
-                              f'', requirement_vertex.vid)
-            add_edge(session, 'requirements', '', requirement_vertex.vid, requirement_vertex.destination.vid, '')
+                add_in_vertex(session, requirement_vertex.vertex_type_system, 'name',
+                              f'"{requirement_vertex.name}"', requirement_vertex.vid)
+            add_edge(session, 'requirements_destination', '', requirement_vertex.vid, requirement_vertex.destination.vid, '')
             add_edge(session, 'requirements', '', definition_vertex.vid, requirement_vertex.vid, '')
             add_edge(session, 'requirements', '', requirement_vertex.relationship.vid, requirement_vertex.vid, '')
             for capabilities_vertex in requirement_vertex.capabilities:

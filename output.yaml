@@ -1,0 +1,46 @@
+node_templates:
+  my_storage:
+    properties:
+      size:
+        get_input: storage_size
+      snapshot_id:
+        get_input: storage_snapshot_id
+    type: tosca.nodes.BlockStorage
+  my_web_app_tier_1:
+    capabilities:
+      host:
+        properties:
+          disk_size: 10 GB
+          mem_size: 4096 MB
+          num_cpus:
+            get_input: cpus
+      os:
+        properties:
+          architecture: x86_64
+          distribution: Fedora
+          type: Linux
+          version: 18.0
+    requirements:
+    - local_storage:
+        node: my_storage
+        relationship: storage_attachesto_1
+    type: tosca.nodes.Compute
+  my_web_app_tier_2:
+    capabilities:
+      host:
+        properties:
+          disk_size: 10 GB
+          mem_size: 4096 MB
+          num_cpus:
+            get_input: cpus
+      os:
+        properties:
+          architecture: x86_64
+          distribution: Fedora
+          type: Linux
+          version: 18.0
+    requirements:
+    - local_storage:
+        node: my_storage
+        relationship: storage_attachesto_2
+    type: tosca.nodes.Compute

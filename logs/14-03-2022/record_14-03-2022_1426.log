@@ -9,3 +9,4 @@
 2022-03-14 14:26:48,952 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
 2022-03-14 14:26:48,965 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
 2022-03-14 14:26:48,973 INFO werkzeug Thread-2 : 127.0.0.1 - - [14/Mar/2022 14:26:48] "PATCH /yaml-template/topology_template/node_templates/my_storage/properties/size?cluster_name=cluster_tosca_58&new_value=40%20GB HTTP/1.1" 200 -
+2022-03-14 14:29:17,876 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/views.py', reloading

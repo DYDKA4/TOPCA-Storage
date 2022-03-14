@@ -105,21 +105,35 @@ def yaml_add(varargs=None):
                     return '501 Not Implemented'
                 elif varargs[3] == 'capabilities':
                     # изменение capabilities:
-                    return '501 Not Implemented'
+                    vid_of_capability = communication_with_nebula. \
+                        find_destination_by_property(None, f'"{vid_of_node}"', 'assignment_capability', 'name',
+                                                     varargs[4], start_session=True)
+                    if varargs[5] == 'properties':
+                        assignment_property = communication_with_nebula.\
+                            find_destination_by_property(None, f'"{vid_of_capability}"', 'assignment_property',
+                                                         'value_name', varargs[6], start_session=True)
+                        communication_with_nebula.update_vertex(None, 'AssignmentProperties', 'values',
+                                                                f'"{new_value}"', f'"{assignment_property}"',
+                                                                start_session=True)
+                        return '200 OK Change of capability'
+                    return '400 Fail'
                 elif varargs[3] == 'requirements':
                     # изменение requirements
                     return '501 Not Implemented'
                 elif varargs[3] == 'properties':
                     # изменение properties
-                    definition_property = communication_with_nebula. \
+                    '''
+                    curl -X PATCH 'http://127.0.0.1:5000/yaml-template/topology_template/node_templates/my_storage/
+                    properties/size?cluster_name=cluster_tosca_58&new_value=40%20GB'
+                    '''
+                    assignment_property = communication_with_nebula. \
                         find_destination_by_property(None, f'"{vid_of_node}"', 'assignment_property', 'value_name',
                                                      varargs[4], start_session=True)
-                    print(definition_property)
                     communication_with_nebula.update_vertex(None, 'AssignmentProperties', 'values',
-                                                            f'"{new_value}"', f'"{definition_property}"',
+                                                            f'"{new_value}"', f'"{assignment_property}"',
                                                             start_session=True)
 
-                    return 'Change properties'
+                    return '100 OK Change properties'
                 return '501 Not Implemented'
         else:
             return '501 Not Implemented'

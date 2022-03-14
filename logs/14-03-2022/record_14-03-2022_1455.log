@@ -1,0 +1,29 @@
+2022-03-14 14:55:02,116 WARNING werkzeug MainThread :  * Debugger is active!
+2022-03-14 14:55:02,116 INFO werkzeug MainThread :  * Debugger PIN: 150-925-197
+2022-03-14 14:55:02,129 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-14 14:55:02,194 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-14 14:55:02,212 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-14 14:55:02,270 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-14 14:55:02,285 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-14 14:55:02,342 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-14 14:55:02,356 INFO werkzeug Thread-2 : 127.0.0.1 - - [14/Mar/2022 14:55:02] "[35m[1mPATCH /yaml-template/topology_template/node_templates/my_web_app_tier_2/capabilities/host/properties/disk_size?cluster_name=cluster_tosca_58&new_value=50%20GB HTTP/1.1[0m" 500 -
+2022-03-14 14:55:31,422 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/views.py', reloading
+2022-03-14 14:55:31,648 WARNING werkzeug MainThread :  * Debugger is active!
+2022-03-14 14:55:31,648 INFO werkzeug MainThread :  * Debugger PIN: 150-925-197
+2022-03-14 14:55:40,749 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/views.py', reloading
+2022-03-14 14:55:40,964 WARNING werkzeug MainThread :  * Debugger is active!
+2022-03-14 14:55:40,964 INFO werkzeug MainThread :  * Debugger PIN: 150-925-197
+2022-03-14 14:55:43,299 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-14 14:55:43,367 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-14 14:55:43,382 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-14 14:55:43,438 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-14 14:55:43,451 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-14 14:55:43,464 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-14 14:55:43,472 INFO werkzeug Thread-2 : 127.0.0.1 - - [14/Mar/2022 14:55:43] "PATCH /yaml-template/topology_template/node_templates/my_web_app_tier_2/capabilities/host/properties/disk_size?cluster_name=cluster_tosca_58&new_value=50%20GB HTTP/1.1" 200 -
+2022-03-14 14:56:32,508 INFO root Thread-4 : Get connection to ('10.100.151.128', 9669)
+2022-03-14 14:56:32,575 INFO root Thread-4 : Get connection to ('10.100.151.128', 9669)
+2022-03-14 14:56:32,634 INFO root Thread-4 : Get connection to ('10.100.151.128', 9669)
+2022-03-14 14:56:32,649 INFO root Thread-4 : Get connection to ('10.100.151.128', 9669)
+2022-03-14 14:56:32,706 INFO root Thread-4 : Get connection to ('10.100.151.128', 9669)
+2022-03-14 14:56:32,719 INFO root Thread-4 : Get connection to ('10.100.151.128', 9669)
+2022-03-14 14:56:32,727 INFO werkzeug Thread-4 : 127.0.0.1 - - [14/Mar/2022 14:56:32] "PATCH /yaml-template/topology_template/node_templates/my_web_app_tier_2/capabilities/host/properties/disk_size?cluster_name=cluster_tosca_58&new_value=70%20GB HTTP/1.1" 200 -

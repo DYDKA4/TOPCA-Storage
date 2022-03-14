@@ -1,0 +1,26 @@
+2022-03-14 14:36:24,670 WARNING werkzeug MainThread :  * Debugger is active!
+2022-03-14 14:36:24,671 INFO werkzeug MainThread :  * Debugger PIN: 150-925-197
+2022-03-14 14:37:33,998 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-14 14:37:34,068 INFO werkzeug Thread-2 : 127.0.0.1 - - [14/Mar/2022 14:37:34] "PATCH /yaml-template/topology_template/node_templates/my_web_app_tier_2/capabilities/host/propeties/disk_size?cluster_name=cluster_tosca_58&new_value=40%20GB HTTP/1.1" 200 -
+2022-03-14 14:37:51,819 INFO root Thread-3 : Get connection to ('10.100.151.128', 9669)
+2022-03-14 14:37:51,889 INFO werkzeug Thread-3 : 127.0.0.1 - - [14/Mar/2022 14:37:51] "PATCH /yaml-template/topology_template/node_templates/my_web_app_tier_2/capabilities/host/propeties/disk_sirze?cluster_name=cluster_tosca_58&new_value=40%20GB HTTP/1.1" 200 -
+2022-03-14 14:38:04,863 INFO root Thread-4 : Get connection to ('10.100.151.128', 9669)
+2022-03-14 14:38:04,926 INFO werkzeug Thread-4 : 127.0.0.1 - - [14/Mar/2022 14:38:04] "PATCH /yaml-template/topology_template/node_templates/my_web_app_tier_2/capabilities/host/propeties/disk_srirze?cluster_name=cluster_tosca_58&new_value=40%20GB HTTP/1.1" 200 -
+2022-03-14 14:38:24,034 INFO werkzeug Thread-5 : 127.0.0.1 - - [14/Mar/2022 14:38:24] "[31m[1mGET /yaml-template/topology_template/node_templates/my_web_app_tier_2/capabilities/host/propertirse?cluster_name=cluster_tosca_ HTTP/1.1[0m" 405 -
+2022-03-14 14:38:30,587 INFO root Thread-6 : Get connection to ('10.100.151.128', 9669)
+2022-03-14 14:38:30,659 INFO werkzeug Thread-6 : 127.0.0.1 - - [14/Mar/2022 14:38:30] "PATCH /yaml-template/topology_template/node_templates/my_web_app_tier_2/capabilities/host/propeties/diproperties?cluster_name=cluster_tosca_58&new_value=40%20GB HTTP/1.1" 200 -
+2022-03-14 14:38:50,557 INFO root Thread-7 : Get connection to ('10.100.151.128', 9669)
+2022-03-14 14:38:50,617 INFO werkzeug Thread-7 : 127.0.0.1 - - [14/Mar/2022 14:38:50] "PATCH /yaml-template/topology_template/node_templates/my_web_app_tier_2/capabilities/host/propeties/diproperties?cluster_name=cluster_tosca_58&new_value=40%20GB HTTP/1.1" 200 -
+2022-03-14 14:39:26,243 INFO root Thread-8 : Get connection to ('10.100.151.128', 9669)
+2022-03-14 14:39:26,313 INFO werkzeug Thread-8 : 127.0.0.1 - - [14/Mar/2022 14:39:26] "PATCH /yaml-template/topology_template/node_templates/my_web_app_tier_2/capabilities/host/propeties/diproperties/disk_size?cluster_name=cluster_tosca_58&new_value=40%20GB HTTP/1.1" 200 -
+2022-03-14 14:40:14,116 INFO root Thread-9 : Get connection to ('10.100.151.128', 9669)
+2022-03-14 14:40:14,186 INFO werkzeug Thread-9 : 127.0.0.1 - - [14/Mar/2022 14:40:14] "PATCH /yaml-template/topology_template/node_templates/my_web_app_tier_2/capabilities/host/properties/diproperties/disk_size?cluster_name=cluster_tosca_58&new_value=40%20GB HTTP/1.1" 200 -
+2022-03-14 14:41:20,021 INFO root Thread-10 : Get connection to ('10.100.151.128', 9669)
+2022-03-14 14:41:20,091 INFO werkzeug Thread-10 : 127.0.0.1 - - [14/Mar/2022 14:41:20] "PATCH /yaml-template/topology_template/node_templates/my_web_app_tier_2/capabilities/host/properties/diproperties/disk_size?cluster_name=cluster_tosca_58&new_value=40%20GB HTTP/1.1" 200 -
+2022-03-14 14:41:44,542 INFO root Thread-11 : Get connection to ('10.100.151.128', 9669)
+2022-03-14 14:41:44,607 INFO root Thread-11 : Get connection to ('10.100.151.128', 9669)
+2022-03-14 14:41:44,623 INFO root Thread-11 : Get connection to ('10.100.151.128', 9669)
+2022-03-14 14:41:44,645 INFO werkzeug Thread-11 : 127.0.0.1 - - [14/Mar/2022 14:41:44] "[35m[1mPATCH /yaml-template/topology_template/node_templates/my_web_app_tier_2?cluster_name=cluster_tosca_58&new_value=40%20GB HTTP/1.1[0m" 500 -
+2022-03-14 14:42:15,582 INFO root Thread-12 : Get connection to ('10.100.151.128', 9669)
+2022-03-14 14:44:09,403 INFO werkzeug Thread-12 : 127.0.0.1 - - [14/Mar/2022 14:44:09] "PUT /yaml-template/?cluster_name=cluster_tosca_58 HTTP/1.1" 200 -
+2022-03-14 14:51:35,671 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/views.py', reloading

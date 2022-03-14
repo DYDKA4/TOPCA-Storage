@@ -61,6 +61,8 @@ def yaml_add(varargs=None):
                         data[varargs[i + 1]] = new_value
                         print(type(data[varargs[i + 1]]), data[varargs[i + 1]])
                         break
+                    else:
+                        return '400 Bad Path'
             else:
                 return '400 Bad Path'
         print(pure_yaml)
@@ -77,20 +79,47 @@ def yaml_add(varargs=None):
                 if varargs[3] == 'type':
                     # изменение типа
 
-                    return 'CHANGE TYPE'
-                if varargs[3] == 'properties':
+                    return '501 CHANGE TYPE'
+                elif varargs[3] == 'properties':
+                    '''
+                    curl -X PATCH 'http://127.0.0.1:5000/yaml-template/topology_template/relationship_templates/
+                    storage_attachesto_1/properties/location?cluster_name=cluster_tosca_58&new_value=/data_location_2'
+                    '''
                     definition_property = communication_with_nebula. \
-                        find_destination(None, f'"{vid_of_template}"', 'definition_property', start_session=True)
+                        find_destination_by_property(None, f'"{vid_of_template}"', 'definition_property', 'value_name',
+                                                     varargs[4], start_session=True)
                     communication_with_nebula.update_vertex(None, 'DefinitionProperties', 'values',
                                                             f'"{new_value}"', f'"{definition_property}"',
                                                             start_session=True)
-                    print(definition_property)
-                    return 'Change properties'
-                elif varargs[3] == 'properties':
-                    # изменение properties у topology_templates
-                    return '501 Not Implemented'
+                    return '200 OK Change properties'
+                else:
+                    return '400 Bad'
             elif varargs[1] == 'node_templates':
                 # работаем с node
+                vid_of_node = communication_with_nebula. \
+                    find_destination_by_property(None, f'"{cluster_name}"', 'assignment', 'name',
+                                                 varargs[2], start_session=True)
+                print(vid_of_node)
+                if varargs[3] == 'type':
+                    # изменение типа
+                    return '501 Not Implemented'
+                elif varargs[3] == 'capabilities':
+                    # изменение capabilities:
+                    return '501 Not Implemented'
+                elif varargs[3] == 'requirements':
+                    # изменение requirements
+                    return '501 Not Implemented'
+                elif varargs[3] == 'properties':
+                    # изменение properties
+                    definition_property = communication_with_nebula. \
+                        find_destination_by_property(None, f'"{vid_of_node}"', 'assignment_property', 'value_name',
+                                                     varargs[4], start_session=True)
+                    print(definition_property)
+                    communication_with_nebula.update_vertex(None, 'AssignmentProperties', 'values',
+                                                            f'"{new_value}"', f'"{definition_property}"',
+                                                            start_session=True)
+
+                    return 'Change properties'
                 return '501 Not Implemented'
         else:
             return '501 Not Implemented'

@@ -1,0 +1,25 @@
+2022-03-14 14:20:15,149 INFO werkzeug MainThread :  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2022-03-14 14:20:15,152 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-14 14:20:15,337 WARNING werkzeug MainThread :  * Debugger is active!
+2022-03-14 14:20:15,338 INFO werkzeug MainThread :  * Debugger PIN: 150-925-197
+2022-03-14 14:20:20,996 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-14 14:20:21,072 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-14 14:20:21,088 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-14 14:20:21,102 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-14 14:20:21,155 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-14 14:20:21,252 INFO werkzeug Thread-2 : 127.0.0.1 - - [14/Mar/2022 14:20:21] "[35m[1mPATCH /yaml-template/topology_template/node_templates/my_storage/properties/size?cluster_name=cluster_tosca_58&new_value=40%20GB HTTP/1.1[0m" 500 -
+2022-03-14 14:20:47,668 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/views.py', reloading
+2022-03-14 14:20:47,704 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-14 14:20:47,889 WARNING werkzeug MainThread :  * Debugger is active!
+2022-03-14 14:20:47,889 INFO werkzeug MainThread :  * Debugger PIN: 150-925-197
+2022-03-14 14:20:50,303 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-14 14:20:50,370 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-14 14:20:50,427 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-14 14:20:50,441 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-14 14:20:50,451 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-14 14:20:50,464 INFO werkzeug Thread-2 : 127.0.0.1 - - [14/Mar/2022 14:20:50] "[35m[1mPATCH /yaml-template/topology_template/node_templates/my_storage/properties/size?cluster_name=cluster_tosca_58&new_value=40%20GB HTTP/1.1[0m" 500 -
+2022-03-14 14:21:30,283 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/views.py', reloading
+2022-03-14 14:21:30,315 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-14 14:22:51,377 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-14 14:26:43,929 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-14 14:26:47,227 INFO werkzeug MainThread :  * Restarting with stat

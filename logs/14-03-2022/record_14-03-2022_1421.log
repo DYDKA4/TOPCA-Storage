@@ -1,0 +1,8 @@
+2022-03-14 14:21:30,492 WARNING werkzeug MainThread :  * Debugger is active!
+2022-03-14 14:21:30,492 INFO werkzeug MainThread :  * Debugger PIN: 150-925-197
+2022-03-14 14:21:32,931 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-14 14:21:33,019 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-14 14:21:33,036 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-14 14:21:33,091 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-14 14:21:33,101 INFO werkzeug Thread-2 : 127.0.0.1 - - [14/Mar/2022 14:21:33] "PATCH /yaml-template/topology_template/node_templates/my_storage/properties/size?cluster_name=cluster_tosca_58&new_value=40%20GB HTTP/1.1" 200 -
+2022-03-14 14:22:51,327 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/communication_with_nebula.py', reloading

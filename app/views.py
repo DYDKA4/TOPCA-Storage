@@ -52,14 +52,18 @@ def yaml_add(varargs=None):
         # поиск нужного ключа в yaml шаблоне и замена его
         for i, key in enumerate(varargs):
             if data.get(key):
+                print(type(data[key]), data[key])
                 data = data[key]
                 if i == len(varargs) - 2:
                     if data.get(varargs[i + 1]):
-                        data[varargs[i + 1]] = {'location': '/some_other_data_location'}
+                        print(type(data[varargs[i + 1]]), data[varargs[i + 1]])
+                        # data[varargs[i + 1]] = {'location': '/some_other_data_location_2'}
+                        data[varargs[i + 1]] = new_value
+                        print(type(data[varargs[i + 1]]), data[varargs[i + 1]])
                         break
-                print(data)
             else:
                 return '400 Bad Path'
+        print(pure_yaml)
         if varargs[0] == 'topology_template':
             communication_with_nebula.update_vertex(None, 'ClusterName', 'pure_yaml',
                                                     '"' + str(pure_yaml) + '"', f'"{cluster_name}"',
@@ -67,7 +71,7 @@ def yaml_add(varargs=None):
             # работаем с assignment частью
             if varargs[1] == 'relationship_templates':
                 # работаем с relationship_templates
-                vid_of_template = communication_with_nebula.\
+                vid_of_template = communication_with_nebula. \
                     find_destination_by_property(None, f'"{cluster_name}"', 'assignment', 'name',
                                                  varargs[2], start_session=True)
                 if varargs[3] == 'type':
@@ -75,10 +79,12 @@ def yaml_add(varargs=None):
 
                     return 'CHANGE TYPE'
                 if varargs[3] == 'properties':
-                    template = communication_with_nebula. \
+                    definition_property = communication_with_nebula. \
                         find_destination(None, f'"{vid_of_template}"', 'definition_property', start_session=True)
-                        # communication_with_nebula.update_vertex(None,'DefinitionProperties', '')
-                    print(template)
+                    communication_with_nebula.update_vertex(None, 'DefinitionProperties', 'values',
+                                                            f'"{new_value}"', f'"{definition_property}"',
+                                                            start_session=True)
+                    print(definition_property)
                     return 'Change properties'
                 elif varargs[3] == 'properties':
                     # изменение properties у topology_templates

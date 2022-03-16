@@ -1,0 +1,16 @@
+2022-03-16 21:06:13,230 WARNING werkzeug MainThread :  * Debugger is active!
+2022-03-16 21:06:13,230 INFO werkzeug MainThread :  * Debugger PIN: 656-638-856
+2022-03-16 21:06:13,651 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 21:06:13,665 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 21:06:13,676 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 21:06:13,727 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 21:06:13,737 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 21:06:13,748 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 21:06:13,799 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 21:06:13,811 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 21:06:13,867 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 21:06:13,880 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 21:06:13,939 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 21:06:13,951 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 21:06:13,972 INFO werkzeug Thread-2 : 127.0.0.1 - - [16/Mar/2022 21:06:13] "[35m[1mGET /yaml-template/?cluster_name=cluster_tosca_59 HTTP/1.1[0m" 500 -
+2022-03-16 21:07:11,986 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/constructor_yaml.py', reloading

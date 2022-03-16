@@ -1,0 +1,3 @@
+2022-03-16 20:36:07,292 WARNING werkzeug MainThread :  * Debugger is active!
+2022-03-16 20:36:07,292 INFO werkzeug MainThread :  * Debugger PIN: 656-638-856
+2022-03-16 20:37:12,995 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/constructor_yaml.py', reloading

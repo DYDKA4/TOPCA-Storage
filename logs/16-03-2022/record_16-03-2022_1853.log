@@ -1,0 +1,25 @@
+2022-03-16 18:53:26,102 INFO werkzeug MainThread :  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2022-03-16 18:53:26,104 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-16 18:53:26,265 WARNING werkzeug MainThread :  * Debugger is active!
+2022-03-16 18:53:26,266 INFO werkzeug MainThread :  * Debugger PIN: 656-638-856
+2022-03-16 18:54:00,681 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/data_classes.py', reloading
+2022-03-16 18:54:00,710 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-16 19:00:08,738 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-16 19:03:19,031 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-16 19:08:38,980 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-16 19:09:01,421 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-16 19:10:30,605 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-16 19:15:24,268 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-16 19:15:57,839 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-16 19:16:15,225 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-16 19:16:27,562 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-16 19:16:33,834 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-16 19:17:34,817 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-16 19:17:51,218 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-16 19:18:07,599 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-16 19:21:17,782 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-16 19:21:50,374 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-16 19:22:44,233 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-16 19:23:48,252 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-16 19:24:53,226 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-16 19:25:20,711 INFO werkzeug MainThread :  * Restarting with stat

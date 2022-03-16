@@ -82,3 +82,4 @@
 2022-03-16 17:49:53,799 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
 2022-03-16 17:49:53,853 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
 2022-03-16 17:49:53,883 INFO werkzeug Thread-2 : 127.0.0.1 - - [16/Mar/2022 17:49:53] "GET /yaml-template/?cluster_name=cluster_tosca_59 HTTP/1.1" 200 -
+2022-03-16 18:00:00,227 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/constructor_yaml.py', reloading

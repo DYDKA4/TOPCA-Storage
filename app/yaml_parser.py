@@ -118,11 +118,11 @@ def parser(data, cluster_name):
     # формирование связей между definition_vertex и другими
     for name, val in data.get('node_types').items():
         if val.get('capabilities'):
-            for capabilities in val.get('capabilities').values():
+            for key, capabilities in val.get('capabilities').items():
                 source: data_classes.DefinitionVertex
                 destination = find_vertex(capabilities.get('type'), capabilities_vertex, search_by_type=True)
                 source = find_vertex(name, definition_vertex, search_by_type=True)
-                source.add_capabilities(destination)
+                source.add_capabilities(destination, key)
         if val.get('derived_from'):
             linking_derived_from(val, definition_vertex, name)
         if val.get('interfaces'):
@@ -183,5 +183,7 @@ def parser(data, cluster_name):
                                               assignments_vertex, capabilities_vertex,
                                               interfaces_vertex, relationship_vertex,
                                               relationship_templates)
-
+    for i in vertex_cluster.definition_vertex:
+        for j in i.capabilities.values():
+            print(j)
     return vertex_cluster

@@ -108,12 +108,16 @@ class DefinitionVertex(Vertex):
         self.vertex_type_system = 'DefinitionVertex'
         self.derived_from = []
         self.interfaces = {}
+        self.capabilities = {}
 
     def add_derived_from(self, obj):
         self.derived_from.append(obj)
 
     def add_interface(self, obj, link_type):
         self.interfaces[obj] = link_type
+
+    def add_capabilities(self, obj, key_value):
+        self.capabilities[obj] = key_value
 
     # def __repr__(self):
     #     return self.vertex_type_system

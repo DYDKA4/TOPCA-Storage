@@ -1,59 +1,226 @@
-node_templates:
-  my_storage:
+node_types:
+  tosca.nodes.BlockStorage:
+    capabilities:
+      attachment:
+        type: tosca.capabilities.Attachment
+    derived_from: tosca.nodes.Root
     properties:
       size:
-        get_input: storage_size
+        constraints:
+        - greater_or_equal: 1 MB
+        type: scalar-unit.size
       snapshot_id:
-        get_input: storage_snapshot_id
+        required: false
+        type: string
+      volume_id:
+        required: false
+        type: string
+  tosca.nodes.Compute:
+    capabilities:
+      binding:
+        type: tosca.capabilities.network.Bindable
+      endpoint:
+        type: tosca.capabilities.Endpoint.Admin
+      host:
+        type: tosca.capabilities.Container
+      os:
+        type: tosca.capabilities.OperatingSystem
+      scalable:
+        type: tosca.capabilities.Scalable
+    derived_from: tosca.nodes.Root
+    properties:
+      meta:
+        required: false
+        type: string
+      networks:
+        entry_schema:
+          type: tosca.datatypes.network.NetworkInfo
+        required: false
+        type: map
+      ports:
+        entry_schema:
+          type: tosca.datatypes.network.PortInfo
+        required: false
+        type: map
+      private_address:
+        required: false
+        type: string
+      public_address:
+        required: false
+        type: string
     requirements:
-      requirements: []
-    type: tosca.nodes.BlockStorage
-  my_web_app_tier_1:
+    - local_storage:
+        capability: tosca.capabilities.Attachment
+        node: tosca.nodes.BlockStorage
+        occurrences:
+        - 0
+        - UNBOUNDED
+        relationship: tosca.relationships.AttachesTo
+  tosca.nodes.DBMS:
     capabilities:
       host:
-        properties:
-          disk_size: 10 GB
-          mem_size: 4096 MB
-          num_cpus:
-            get_input: cpus
-      os:
-        properties:
-          architecture: x86_64
-          distribution: Fedora
-          type: Linux
-          version: 18.0
-    requirements:
-      requirements:
-      - local_storage:
-          node: my_storage
-          relationship: storage_attachesto_1
-    type: tosca.nodes.Compute
-  my_web_app_tier_2:
+        type: tosca.capabilities.Container
+    derived_from: tosca.nodes.SoftwareComponent
+    properties:
+      port:
+        description: 'The port the DBMS service will listen to for data and requests. '
+        required: false
+        type: integer
+      root_password:
+        description: 'The root password for the DBMS service. '
+        required: false
+        type: string
+  tosca.nodes.Database:
     capabilities:
-      host:
-        properties:
-          disk_size: 10 GB
-          mem_size: 4096 MB
-          num_cpus:
-            get_input: cpus
-      os:
-        properties:
-          architecture: x86_64
-          distribution: Fedora
-          type: Linux
-          version: 18.0
+      database_endpoint:
+        type: tosca.capabilities.Endpoint.Database
+    derived_from: tosca.nodes.Root
+    properties:
+      name:
+        description: 'The logical name of the database. '
+        required: true
+        type: string
+      password:
+        description: 'The password for the DB user account '
+        required: false
+        type: string
+      port:
+        description: 'The port the database service will use to listen for incoming
+          data and requests. '
+        required: false
+        type: integer
+      user:
+        description: 'User account name for DB administration '
+        required: false
+        type: string
     requirements:
+    - host:
+        capability: tosca.capabilities.Container
+        node: tosca.nodes.DBMS
+        relationship: tosca.relationships.HostedOn
+  tosca.nodes.Root:
+    capabilities:
+      feature:
+        type: tosca.capabilities.Node
+    properties:
+      state:
+        description: "The state of the node instance. See section \u201CNode States\u201D\
+          \ for allowed values. "
+        required: false
+        type: string
+      tosca_id:
+        description: 'A unique identifier of the realized instance of a Node Template
+          that derives from any TOSCA normative type. '
+        required: false
+        type: string
+      tosca_name:
+        description: 'This attribute reflects the name of the Node Template as defined
+          in the TOSCA service template. '
+        required: false
+        type: string
+    requirements:
+    - dependency:
+        capability: tosca.capabilities.Node
+        node: tosca.nodes.Root
+        occurrences:
+        - 0
+        - UNBOUNDED
+        relationship: tosca.relationships.DependsOn
+  tosca.nodes.SoftwareComponent:
+    derived_from: tosca.nodes.Root
+    properties:
+      admin_credential:
+        required: false
+        type: tosca.datatypes.Credential
+      component_version:
+        description: 'Software component version. '
+        required: false
+        type: version
+    requirements:
+    - host:
+        capability: tosca.capabilities.Container
+        node: tosca.nodes.Compute
+        relationship: tosca.relationships.HostedOn
+  tosca.nodes.WebApplication:
+    capabilities:
+      app_endpoint:
+        type: tosca.capabilities.Endpoint
+    derived_from: tosca.nodes.SoftwareComponent
+    properties:
+      context_root:
+        required: false
+        type: string
+    requirements:
+    - host:
+        capability: tosca.capabilities.Container
+        node: tosca.nodes.WebServer
+        relationship: tosca.relationships.HostedOn
+  tosca.nodes.WebServer:
+    capabilities:
+      admin_endpoint:
+        type: tosca.capabilities.Endpoint.Admin
+      data_endpoint:
+        type: tosca.capabilities.Endpoint
+      host:
+        type: tosca.capabilities.Container
+    derived_from: tosca.nodes.SoftwareComponent
+topology_template:
+  node_templates:
+    my_storage:
+      properties:
+        size:
+          get_input: storage_size
+        snapshot_id:
+          get_input: storage_snapshot_id
       requirements:
-      - local_storage:
-          node: my_storage
-          relationship: storage_attachesto_2
-    type: tosca.nodes.Compute
-relationship_templates:
-  storage_attachesto_1:
-    properties:
-      location: /my_data_location
-    type: MyAttachesTo
-  storage_attachesto_2:
-    properties:
-      location: /some_other_data_location
-    type: MyAttachesTo
+        requirements: []
+      type: tosca.nodes.BlockStorage
+    my_web_app_tier_1:
+      capabilities:
+        host:
+          properties:
+            disk_size: 10 GB
+            mem_size: 4096 MB
+            num_cpus:
+              get_input: cpus
+        os:
+          properties:
+            architecture: x86_64
+            distribution: Fedora
+            type: Linux
+            version: 18.0
+      requirements:
+        requirements:
+        - local_storage:
+            node: my_storage
+            relationship: storage_attachesto_1
+      type: tosca.nodes.Compute
+    my_web_app_tier_2:
+      capabilities:
+        host:
+          properties:
+            disk_size: 10 GB
+            mem_size: 4096 MB
+            num_cpus:
+              get_input: cpus
+        os:
+          properties:
+            architecture: x86_64
+            distribution: Fedora
+            type: Linux
+            version: 18.0
+      requirements:
+        requirements:
+        - local_storage:
+            node: my_storage
+            relationship: storage_attachesto_2
+      type: tosca.nodes.Compute
+  relationship_templates:
+    storage_attachesto_1:
+      properties:
+        location: /my_data_location
+      type: MyAttachesTo
+    storage_attachesto_2:
+      properties:
+        location: /some_other_data_location
+      type: MyAttachesTo

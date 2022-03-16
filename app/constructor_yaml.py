@@ -21,13 +21,17 @@ def deep_update_dict(source, overrides):
     return source
 
 
-def form_properties(list_of_properties):
+def form_properties(list_of_properties, definition_flag=False):
     properties = {}
     for properties_vid in list_of_properties:
         properties_vid = properties_vid.as_string()
-        value_name = cwn.fetch_vertex(None, f'"{properties_vid}"', 'AssignmentProperties',
+        if definition_flag:
+            vertex_type = 'DefinitionProperties'
+        else:
+            vertex_type = 'AssignmentProperties'
+        value_name = cwn.fetch_vertex(None, f'"{properties_vid}"', vertex_type,
                                       'value_name', start_session=True)
-        values = cwn.fetch_vertex(None, f'"{properties_vid}"', 'AssignmentProperties',
+        values = cwn.fetch_vertex(None, f'"{properties_vid}"', vertex_type,
                                   'values', start_session=True)
         try:
             values = ast.literal_eval(values)
@@ -57,12 +61,39 @@ def form_capabilities(list_of_capability):
     return capabilities
 
 
+def form_requirements(list_of_requirements):
+    list_of_requirements_ready = []
+    for requirement_vid in list_of_requirements:
+        requirement_vid = requirement_vid.as_string()
+        requirement_name = cwn.fetch_vertex(None, f'"{requirement_vid}"', 'RequirementsVertex',
+                                            'name', start_session=True)
+        requirement_destination = cwn.find_destination(None, f'"{requirement_vid}"',
+                                                       'requirements_destination', start_session=True,
+                                                       full_list=True)
+        requirement_destination = requirement_destination[0].as_string()
+        destination_name = cwn.fetch_vertex(None, f'"{requirement_destination}"', 'AssignmentVertex',
+                                            'name', start_session=True)
+
+        requirement_template = cwn.find_destination(None, f'"{requirement_vid}"',
+                                                    'requirements', start_session=True,
+                                                    full_list=True)
+        requirement_template = requirement_template[0].as_string()
+        template_name = cwn.fetch_vertex(None, f'"{requirement_template}"', 'RelationshipTemplate',
+                                         'name', start_session=True)
+        list_of_requirements_ready.append({requirement_name: {'node': destination_name,
+                                                              'relationship': template_name}})
+
+    list_of_requirements_ready = {'requirements': list_of_requirements_ready}
+    return list_of_requirements_ready
+
+
 def get_yaml(cluster_name):
     """
     Обработка defention части
     :return:
     """
-    nodes_template = {}
+    nodes_template_assignment = {}
+    relationship_templates = {}
     result = cwn.find_destination(None, f'"{cluster_name}"', 'assignment', start_session=True, full_list=True)
     for vid in result:
         vid = vid.as_string()
@@ -76,27 +107,7 @@ def get_yaml(cluster_name):
                                                       'assignment_capability', start_session=True, full_list=True)
             list_of_requirements = cwn.find_destination(None, f'"{vid}"',
                                                         'requirements', start_session=True, full_list=True)
-            list_of_requirements_ready = []
-            for requirement_vid in list_of_requirements:
-                requirement_vid = requirement_vid.as_string()
-                requirement_name = cwn.fetch_vertex(None, f'"{requirement_vid}"', 'RequirementsVertex',
-                                                    'name', start_session=True)
-                requirement_destination = cwn.find_destination(None, f'"{requirement_vid}"',
-                                                               'requirements_destination', start_session=True,
-                                                               full_list=True)
-                requirement_destination = requirement_destination[0].as_string()
-                destination_name = cwn.fetch_vertex(None, f'"{requirement_destination}"', 'AssignmentVertex',
-                                                    'name', start_session=True)
-
-                requirement_template = cwn.find_destination(None, f'"{requirement_vid}"',
-                                                            'requirements', start_session=True,
-                                                            full_list=True)
-                requirement_template = requirement_template[0].as_string()
-                template_name = cwn.fetch_vertex(None, f'"{requirement_template}"', 'RelationshipTemplate',
-                                                 'name', start_session=True)
-                list_of_requirements_ready.append({requirement_name: {'node': destination_name,
-                                                                      'relationship': template_name}})
-
+            list_of_requirements_ready = form_requirements(list_of_requirements)
             list_of_requirements_ready = {'requirements': list_of_requirements_ready}
             if list_of_requirements_ready.get('requirements'):
                 deep_update_dict(node_template[name], list_of_requirements_ready)
@@ -106,13 +117,31 @@ def get_yaml(cluster_name):
             properties = form_properties(list_of_properties)
             if properties.get('properties'):
                 deep_update_dict(node_template[name], properties)
-            deep_update_dict(nodes_template, node_template)
+            deep_update_dict(nodes_template_assignment, node_template)
 
         elif 'RelationshipTemplate' in vid:
             print('Template')
+            relationship_template = {}
+            name = cwn.fetch_vertex(None, f'"{vid}"', 'RelationshipTemplate', 'name', start_session=True)
+            type_relationship_vid = cwn.find_destination(None, f'"{vid}"', 'type_relationship', start_session=True)
+            type_relationship_name = cwn.fetch_vertex(None, f'"{type_relationship_vid}"',
+                                                      'RelationshipType', 'vertex_type_tosca', start_session=True)
+            list_of_properties = cwn.find_destination(None, f'"{vid}"',
+                                                      'definition_property', start_session=True, full_list=True)
+            properties = form_properties(list_of_properties, definition_flag=True)
+            relationship_template = {name: {'type': type_relationship_name}}
+            if properties.get('properties'):
+                deep_update_dict(relationship_template[name], properties)
+            deep_update_dict(relationship_templates, relationship_template)
+
         else:
             return None
-    nodes_template = {'node_templates': nodes_template}
+    if nodes_template_assignment:
+        nodes_template_assignment = {'node_templates': nodes_template_assignment}
+    if relationship_templates:
+        relationship_templates = {'relationship_templates': relationship_templates}
+        deep_update_dict(nodes_template_assignment, relationship_templates)
+
     with open('./output.yaml', 'w') as file:
-        documents = yaml.dump(nodes_template, file)
-    return nodes_template
+        documents = yaml.dump(nodes_template_assignment, file)
+    return nodes_template_assignment

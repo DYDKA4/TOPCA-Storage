@@ -1,0 +1,96 @@
+2022-03-16 17:39:22,878 INFO werkzeug MainThread :  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2022-03-16 17:39:22,879 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-16 17:39:23,042 WARNING werkzeug MainThread :  * Debugger is active!
+2022-03-16 17:39:23,042 INFO werkzeug MainThread :  * Debugger PIN: 656-638-856
+2022-03-16 17:39:29,121 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/constructor_yaml.py', reloading
+2022-03-16 17:39:29,144 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-16 17:39:29,300 WARNING werkzeug MainThread :  * Debugger is active!
+2022-03-16 17:39:29,300 INFO werkzeug MainThread :  * Debugger PIN: 656-638-856
+2022-03-16 17:39:29,403 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 17:39:29,422 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 17:39:29,433 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 17:39:29,444 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 17:39:29,459 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 17:39:29,514 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 17:39:29,529 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 17:39:29,582 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 17:39:29,594 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 17:39:29,646 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 17:39:29,658 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 17:39:29,718 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 17:39:29,731 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 17:39:29,786 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 17:39:29,805 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 17:39:29,817 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 17:39:29,870 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 17:39:29,882 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 17:39:29,894 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 17:39:29,946 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 17:39:29,956 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 17:39:29,968 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 17:39:30,018 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 17:39:30,030 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 17:39:30,082 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 17:39:30,093 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 17:39:30,104 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 17:39:30,158 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 17:39:30,169 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 17:39:30,180 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 17:39:30,234 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 17:39:30,246 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 17:39:30,302 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 17:39:30,358 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 17:39:30,370 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 17:39:30,422 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 17:39:30,433 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 17:39:30,486 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 17:39:30,498 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 17:39:30,510 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 17:39:30,562 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 17:39:30,574 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 17:39:30,626 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 17:39:30,638 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 17:39:30,690 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 17:39:30,704 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 17:39:30,716 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 17:39:30,770 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 17:39:30,783 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 17:39:30,842 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 17:39:30,854 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 17:39:30,866 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 17:39:30,918 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 17:39:30,928 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 17:39:30,978 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 17:39:30,989 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 17:39:31,000 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 17:39:31,011 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 17:39:31,062 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 17:39:31,074 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 17:39:31,126 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 17:39:31,139 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 17:39:31,190 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 17:39:31,203 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 17:39:31,255 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 17:39:31,268 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 17:39:31,280 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 17:39:31,292 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 17:39:31,320 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 17:39:31,330 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 17:39:31,382 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 17:39:31,394 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 17:39:31,404 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 17:39:31,458 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-16 17:39:31,474 INFO werkzeug Thread-2 : 127.0.0.1 - - [16/Mar/2022 17:39:31] "GET /yaml-template/?cluster_name=cluster_tosca_59 HTTP/1.1" 200 -
+2022-03-16 17:40:15,809 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/constructor_yaml.py', reloading
+2022-03-16 17:40:15,834 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-16 17:40:27,143 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-16 17:41:31,112 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-16 17:42:18,866 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-16 17:43:01,516 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-16 17:43:33,073 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-16 17:44:21,820 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-16 17:48:13,786 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-16 17:48:16,054 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-16 17:48:48,612 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-16 17:49:42,428 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-16 17:49:48,697 INFO werkzeug MainThread :  * Restarting with stat

@@ -147,6 +147,7 @@ def get_yaml(cluster_name):
     capabilities_definition = {}
     relationship_templates = {}
     interfaces_definition = {}
+    relationship_type_definition = {}
     assignment = cwn.find_destination(None, f'"{cluster_name}"', 'assignment', start_session=True, full_list=True)
     for vid in assignment:
         vid = vid.as_string()
@@ -271,6 +272,33 @@ def get_yaml(cluster_name):
                 deep_update_dict(interfaces_definition, {vertex_type_tosca: properties['properties']})
             if not (derived_from_vid or properties.get('properties')):
                 deep_update_dict(interfaces_definition, {vertex_type_tosca: 'None'})
+        if 'RelationshipType' in vid:
+            vertex_type_tosca = cwn.fetch_vertex(None, f'"{vid}"', 'RelationshipType',
+                                                 'vertex_type_tosca', start_session=True)
+            list_of_properties = cwn.find_destination(None, f'"{vid}"',
+                                                      'definition_property', start_session=True, full_list=True)
+            valid_target_types = cwn.find_destination(None, f'"{vid}"',
+                                                      'valid_target_types', start_session=True, full_list=True)
+            valid_target_type_list = []
+            for valid_target_type in valid_target_types:
+                valid_target_type = valid_target_type.as_string()
+                valid_target_type_name = cwn.fetch_vertex(None, f'"{valid_target_type}"', 'DefinitionCapabilities',
+                                                          'vertex_type_tosca', start_session=True)
+                valid_target_type_list.append(valid_target_type_name)
+            properties = form_properties(list_of_properties, definition_flag=True, name_in_edge=True, source_vid=vid)
+            derived_from_vid = cwn.find_destination(None, f'"{vid}"',
+                                                    'derived_from', start_session=True)
+            if derived_from_vid:
+                derived_from = cwn.fetch_vertex(None, f'"{derived_from_vid}"',
+                                                'RelationshipType', 'vertex_type_tosca', start_session=True)
+                deep_update_dict(relationship_type_definition, {vertex_type_tosca: {'derived_from': derived_from}})
+            if valid_target_type_list:
+                deep_update_dict(relationship_type_definition,
+                                 {vertex_type_tosca: {'valid_target_types': valid_target_type_list}})
+            if properties.get('properties'):
+                deep_update_dict(relationship_type_definition, {vertex_type_tosca: properties})
+            if not (derived_from_vid or properties.get('properties')):
+                deep_update_dict(relationship_type_definition, {vertex_type_tosca: 'None'})
     if nodes_template_definition:
         nodes_template_definition = {'node_types': nodes_template_definition}
     if nodes_template_assignment:
@@ -280,6 +308,8 @@ def get_yaml(cluster_name):
         deep_update_dict(nodes_template_assignment, relationship_templates)
 
     template = nodes_template_definition
+    if relationship_type_definition:
+        deep_update_dict(template, {'relationship_types': relationship_type_definition})
     if interfaces_definition:
         deep_update_dict(template, {'interface_types': interfaces_definition})
     if capabilities_definition:

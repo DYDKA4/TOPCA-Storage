@@ -366,6 +366,59 @@ node_types:
       host:
         type: tosca.capabilities.Container
     derived_from: tosca.nodes.SoftwareComponent
+relationship_types:
+  MyAttachesTo:
+    derived_from: tosca.relationships.AttachesTo
+    properties:
+      location:
+        default: /default_location
+        type: string
+  tosca.relationships.AttachesTo:
+    derived_from: tosca.relationships.Root
+    properties:
+      device:
+        required: false
+        type: string
+      location:
+        constraints:
+        - min_length: 1
+        required: true
+        type: string
+    valid_target_types:
+    - tosca.capabilities.Attachment
+  tosca.relationships.ConnectsTo:
+    derived_from: tosca.relationships.Root
+    properties:
+      credential:
+        required: false
+        type: tosca.datatypes.Credential
+    valid_target_types:
+    - tosca.capabilities.Endpoint
+  tosca.relationships.DependsOn:
+    derived_from: tosca.relationships.Root
+    valid_target_types:
+    - tosca.capabilities.Node
+  tosca.relationships.HostedOn:
+    derived_from: tosca.relationships.Root
+    valid_target_types:
+    - tosca.capabilities.Container
+  tosca.relationships.Root:
+    properties:
+      tosca_name:
+        required: true
+        type: string
+  tosca.relationships.RoutesTo:
+    derived_from: tosca.relationships.ConnectsTo
+    valid_target_types:
+    - tosca.capabilities.Endpoint
+  tosca.relationships.network.BindsTo:
+    derived_from: tosca.relationships.DependsOn
+    valid_target_types:
+    - tosca.capabilities.network.Bindable
+  tosca.relationships.network.LinksTo:
+    derived_from: tosca.relationships.DependsOn
+    valid_target_types:
+    - tosca.capabilities.network.Linkable
 topology_template:
   node_templates:
     my_storage:

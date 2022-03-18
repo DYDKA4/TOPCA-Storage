@@ -1,0 +1,27 @@
+2022-03-18 19:05:07,049 INFO werkzeug MainThread :  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2022-03-18 19:05:07,051 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-18 19:05:07,228 WARNING werkzeug MainThread :  * Debugger is active!
+2022-03-18 19:05:07,229 INFO werkzeug MainThread :  * Debugger PIN: 121-664-759
+2022-03-18 19:05:16,102 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-18 19:05:16,175 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-18 19:05:16,196 INFO werkzeug Thread-2 : 127.0.0.1 - - [18/Mar/2022 19:05:16] "PATCH /yaml-template/node_types/tosca.nodes.Root/properties/tosca_id/type?cluster_name=cluster_tosca_59&new_value=NaN HTTP/1.1" 200 -
+2022-03-18 19:05:49,742 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/views.py', reloading
+2022-03-18 19:05:49,770 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-18 19:05:49,923 WARNING werkzeug MainThread :  * Debugger is active!
+2022-03-18 19:05:49,924 INFO werkzeug MainThread :  * Debugger PIN: 121-664-759
+2022-03-18 19:05:51,089 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-18 19:05:51,153 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-18 19:05:51,215 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-18 19:05:51,229 INFO werkzeug Thread-2 : 127.0.0.1 - - [18/Mar/2022 19:05:51] "[35m[1mPATCH /yaml-template/node_types/tosca.nodes.Root/properties/tosca_id/type?cluster_name=cluster_tosca_59&new_value=NaN HTTP/1.1[0m" 500 -
+2022-03-18 19:06:19,310 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/communication_with_nebula.py', reloading
+2022-03-18 19:06:19,338 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-18 19:07:22,278 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-18 19:07:35,636 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-18 19:09:29,168 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-18 19:09:50,607 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-18 19:11:59,475 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-18 19:15:12,987 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-18 19:16:01,764 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-18 19:17:40,151 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-18 19:18:21,780 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-18 19:21:09,036 INFO werkzeug MainThread :  * Restarting with stat

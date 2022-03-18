@@ -66,10 +66,10 @@ def yaml_add(varargs=None):
             else:
                 return '400 Bad Path'
         print(pure_yaml)
+        # communication_with_nebula.update_vertex(None, 'ClusterName', 'pure_yaml',
+        #                                         '"' + str(pure_yaml) + '"', f'"{cluster_name}"',
+        #                                         start_session=True)
         if varargs[0] == 'topology_template':
-            communication_with_nebula.update_vertex(None, 'ClusterName', 'pure_yaml',
-                                                    '"' + str(pure_yaml) + '"', f'"{cluster_name}"',
-                                                    start_session=True)
             # работаем с assignment частью
             if varargs[1] == 'relationship_templates':
                 # работаем с relationship_templates
@@ -139,11 +139,72 @@ def yaml_add(varargs=None):
 
                     return '100 OK Change properties'
                 return '501 Not Implemented'
+        elif varargs[0] == 'node_types':
+            #работаем с node_types
+            vid_of_node = communication_with_nebula. \
+                find_destination_by_property(None, f'"{cluster_name}"', 'definition', 'vertex_type_tosca',
+                                             varargs[1], start_session=True)
+            print(vid_of_node)
+            if varargs[2] == 'properties':
+                """
+                curl -X PATCH 'http://127.0.0.1:5000/yaml-template/node_types/tosca.nodes.Root/properties/
+                tosca_id/type?cluster_name=cluster_tosca_59&new_value=NaN'
+                """
+                assignment_property = communication_with_nebula. \
+                    find_destination_by_property(None, f'"{vid_of_node}"', 'definition_property', 'value_name',
+                                                 varargs[4], start_session=True, edge_property_value=varargs[3],
+                                                 edge_property_name='name')
+                print(assignment_property)
+                communication_with_nebula.update_vertex(None, 'DefinitionProperties', 'values',
+                                                        f'"{new_value}"', f'"{assignment_property}"',
+                                                        start_session=True)
+                return '100 OK Change properties in definition_node'
+            else:
+                return '501 Not Implemented'
+        elif varargs[0] == 'capability_types':
+            #работаем с capability_types
+            vid_of_node = communication_with_nebula. \
+                find_destination_by_property(None, f'"{cluster_name}"', 'definition', 'vertex_type_tosca',
+                                             varargs[1], start_session=True)
+            print(vid_of_node)
+            if varargs[2] == 'properties':
+                assignment_property = communication_with_nebula. \
+                    find_destination_by_property(None, f'"{vid_of_node}"', 'definition_property', 'value_name',
+                                                 varargs[4], start_session=True, edge_property_value=varargs[3],
+                                                 edge_property_name='name')
+                print(assignment_property)
+                communication_with_nebula.update_vertex(None, 'DefinitionProperties', 'values',
+                                                        f'"{new_value}"', f'"{assignment_property}"',
+                                                        start_session=True)
+                return '100 OK Change properties in capability_types'
+            else:
+                return '501 Not Implemented'
+        elif varargs[0] == 'relationship_types':
+            #работаем с capability_types
+            vid_of_node = communication_with_nebula. \
+                find_destination_by_property(None, f'"{cluster_name}"', 'definition', 'vertex_type_tosca',
+                                             varargs[1], start_session=True)
+            print(vid_of_node)
+            if varargs[2] == 'properties':
+                assignment_property = communication_with_nebula. \
+                    find_destination_by_property(None, f'"{vid_of_node}"', 'definition_property', 'value_name',
+                                                 varargs[4], start_session=True, edge_property_value=varargs[3],
+                                                 edge_property_name='name')
+                print(assignment_property)
+                communication_with_nebula.update_vertex(None, 'DefinitionProperties', 'values',
+                                                        f'"{new_value}"', f'"{assignment_property}"',
+                                                        start_session=True)
+                return '100 OK Change properties in relationship_types'
+            else:
+                return '501 Not Implemented'
         else:
             return '501 Not Implemented'
 
         return f'{varargs} {cluster_name} {new_value}\n{data}'
     if request.method == 'GET':
+        """
+        curl -X GET 'http://127.0.0.1:5000/yaml-template/?cluster_name=cluster_tosca_59'
+        """
         yaml_collection = constructor_yaml.get_yaml(cluster_name)
 
         return f'{yaml_collection}'

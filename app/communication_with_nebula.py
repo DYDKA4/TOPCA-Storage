@@ -110,15 +110,26 @@ def get_yaml_from_cluster(cluster_name):
     return result
 
 
-def find_destination_by_property(session, vid, edge_name, property_name, property_value, start_session=False):
+def find_destination_by_property(session, vid, edge_name, property_name, property_value, start_session=False,
+                                 edge_property_name=None, edge_property_value=None):
     if start_session:
         session = chose_of_space()
-    result = session.execute(f'GO FROM {vid} over {edge_name} '
-                             f'WHERE properties($$).{property_name} == "{property_value}"'
-                             f' YIELD properties($$).{property_name} as {property_name}, dst(edge) as vid')
-    print(f'GO FROM {vid} over {edge_name} '
-          f'WHERE properties($$).{property_name} == "{property_value}"'
-          f' YIELD properties($$).{property_name} as {property_name}, dst(edge) as vid')
+    if edge_property_name and edge_property_value:
+        result = session.execute(f'GO FROM {vid} over {edge_name} '
+                                 f'WHERE properties($$).{property_name} == "{property_value}"'
+                                 f'AND properties(edge).{edge_property_name} == "{edge_property_value}"'
+                                 f'YIELD properties($$).{property_name} as {property_name}, dst(edge) as vid')
+        print(f'GO FROM {vid} over {edge_name} '
+              f'WHERE properties($$).{property_name} == "{property_value}'
+              f'AND properties(edge).{edge_property_name} == "{edge_property_value}"'
+              f'YIELD properties($$).{property_name} as {property_name}, dst(edge) as vid')
+    else:
+        result = session.execute(f'GO FROM {vid} over {edge_name} '
+                                 f'WHERE properties($$).{property_name} == "{property_value}"'
+                                 f' YIELD properties($$).{property_name} as {property_name}, dst(edge) as vid')
+        print(f'GO FROM {vid} over {edge_name} '
+              f'WHERE properties($$).{property_name} == "{property_value}"'
+              f' YIELD properties($$).{property_name} as {property_name}, dst(edge) as vid')
     assert result.is_succeeded(), result.error_msg()
     print(result.column_values('vid'))
     if result.column_values('vid'):
@@ -300,7 +311,7 @@ def yaml_deploy(cluster_vertex: data_classes.ClusterName, method_put=False):
 
     for definition_vertex in cluster_vertex.definition_vertex:
         for derived in definition_vertex.derived_from:
-            add_edge(session, 'derived_from', '', derived.vid, definition_vertex.vid,'')
+            add_edge(session, 'derived_from', '', derived.vid, definition_vertex.vid, '')
         for requirement_vertex in definition_vertex.requirements:
             requirement_vertex: data_classes.Requirements
             requirement_vertex.set_vid(session)
@@ -321,7 +332,7 @@ def yaml_deploy(cluster_vertex: data_classes.ClusterName, method_put=False):
     for capability_vertex in cluster_vertex.definition_capabilities:
         capability_vertex: data_classes.DefinitionCapabilities
         for derived in capability_vertex.derived_from:
-            add_edge(session, 'derived_from', '', derived.vid,  capability_vertex.vid, '')
+            add_edge(session, 'derived_from', '', derived.vid, capability_vertex.vid, '')
     for interface_vertex in cluster_vertex.interfaces_vertex:
         for derived in interface_vertex.derived_from:
             add_edge(session, 'derived_from', '', derived.vid, interface_vertex.vid, '')

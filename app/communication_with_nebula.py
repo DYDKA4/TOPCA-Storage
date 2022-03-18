@@ -321,10 +321,10 @@ def yaml_deploy(cluster_vertex: data_classes.ClusterName, method_put=False):
     for capability_vertex in cluster_vertex.definition_capabilities:
         capability_vertex: data_classes.DefinitionCapabilities
         for derived in capability_vertex.derived_from:
-            add_edge(session, 'derived_from', '', capability_vertex.vid, derived.vid, '')
+            add_edge(session, 'derived_from', '', derived.vid,  capability_vertex.vid, '')
     for interface_vertex in cluster_vertex.interfaces_vertex:
         for derived in interface_vertex.derived_from:
-            add_edge(session, 'derived_from', '', interface_vertex.vid, derived.vid, '')
+            add_edge(session, 'derived_from', '', derived.vid, interface_vertex.vid, '')
         for property_vertex in interface_vertex.properties:
             property_vertex.set_vid(session)
             add_in_vertex(session, property_vertex.vertex_type_system, 'value_name, value',
@@ -333,7 +333,7 @@ def yaml_deploy(cluster_vertex: data_classes.ClusterName, method_put=False):
                      f'"{property_vertex.name}"')
     for relationship_vertex in cluster_vertex.relationship_type:
         for derived in relationship_vertex.derived_from:
-            add_edge(session, 'derived_from', '', relationship_vertex.vid, derived.vid, '')
+            add_edge(session, 'derived_from', '', derived.vid, relationship_vertex.vid, '')
         for target in relationship_vertex.valid_target_types:
             add_edge(session, 'valid_target_types', '', relationship_vertex.vid, target.vid, '')
     for relationship_template in cluster_vertex.relationship_templates:
@@ -352,6 +352,8 @@ def yaml_deploy(cluster_vertex: data_classes.ClusterName, method_put=False):
         add_edge(session, 'definition', '', cluster_vertex.vid, relationship_vertex.vid, '')
     for capability_vertex in cluster_vertex.definition_capabilities:
         add_edge(session, 'definition', '', cluster_vertex.vid, capability_vertex.vid, '')
+    for interfaces_vertex in cluster_vertex.interfaces_vertex:
+        add_edge(session, 'definition', '', cluster_vertex.vid, interfaces_vertex.vid, '')
     for relationship_template in cluster_vertex.relationship_templates:
         add_edge(session, 'assignment', '', cluster_vertex.vid, relationship_template.vid, '')
     # session.release()

@@ -144,7 +144,9 @@ def get_yaml(cluster_name):
     """
     nodes_template_assignment = {}
     nodes_template_definition = {}
+    capabilities_definition = {}
     relationship_templates = {}
+    interfaces_definition = {}
     assignment = cwn.find_destination(None, f'"{cluster_name}"', 'assignment', start_session=True, full_list=True)
     for vid in assignment:
         vid = vid.as_string()
@@ -199,6 +201,8 @@ def get_yaml(cluster_name):
                                                       'definition_capability', start_session=True, full_list=True)
             list_of_requirements = cwn.find_destination(None, f'"{vid}"',
                                                         'requirements', start_session=True, full_list=True)
+            list_of_interfaces = cwn.find_destination(None, f'"{vid}"',
+                                                      'definition_interface', start_session=True, full_list=True)
             derived_from_vid = cwn.find_destination(None, f'"{vid}"',
                                                     'derived_from', start_session=True)
             properties = form_properties(list_of_properties, definition_flag=True, name_in_edge=True, source_vid=vid)
@@ -206,6 +210,16 @@ def get_yaml(cluster_name):
                                              source_vid=vid)
             list_of_requirements_ready = form_requirements(list_of_requirements, definition_flag=True)
 
+            interface = {}
+            if list_of_interfaces:
+                for list_of_interfaces_vid in list_of_interfaces:
+                    list_of_interfaces_vid = list_of_interfaces_vid.as_string()
+                    name_of_interface = cwn.fetch_vertex(None, f'"{list_of_interfaces_vid}"', 'DefinitionInterface',
+                                                         'vertex_type_tosca', start_session=True)
+                    name_of_edge = cwn.fetch_edge(None, f'"{vid}"', f'"{list_of_interfaces_vid}"',
+                                                  'definition_interface',
+                                                  'name', start_session=True)
+                    deep_update_dict(interface, {name_of_edge: {'type': name_of_interface}})
             node_template = vertex_type_tosca
             if derived_from_vid:
                 derived_from = cwn.fetch_vertex(None, f'"{derived_from_vid}"',
@@ -217,9 +231,46 @@ def get_yaml(cluster_name):
                 deep_update_dict(nodes_template_definition, {node_template: properties})
             if list_of_requirements_ready.get('requirements'):
                 deep_update_dict(nodes_template_definition, {node_template: list_of_requirements_ready})
+            if interface:
+                interface = {'interfaces': interface}
+                deep_update_dict(nodes_template_definition, {node_template: interface})
             if not (capabilities.get('capabilities') or properties.get('properties') or
-                    list_of_requirements_ready.get('requirements')):
+                    list_of_requirements_ready.get('requirements') or interface or derived_from_vid):
                 deep_update_dict(nodes_template_definition, {node_template: 'None'})
+        if 'DefinitionCapabilities' in vid:
+            vertex_type_tosca = cwn.fetch_vertex(None, f'"{vid}"', 'DefinitionCapabilities',
+                                                 'vertex_type_tosca', start_session=True)
+            list_of_properties = cwn.find_destination(None, f'"{vid}"',
+                                                      'definition_property', start_session=True, full_list=True)
+            properties = form_properties(list_of_properties, definition_flag=True, name_in_edge=True, source_vid=vid)
+            derived_from_vid = cwn.find_destination(None, f'"{vid}"',
+                                                    'derived_from', start_session=True)
+            if derived_from_vid:
+                derived_from = cwn.fetch_vertex(None, f'"{derived_from_vid}"',
+                                                'DefinitionCapabilities', 'vertex_type_tosca', start_session=True)
+                deep_update_dict(capabilities_definition, {vertex_type_tosca: {'derived_from': derived_from}})
+            if properties.get('properties'):
+                deep_update_dict(capabilities_definition, {vertex_type_tosca: properties})
+            if not (derived_from_vid or properties.get('properties')):
+                deep_update_dict(capabilities_definition, {vertex_type_tosca: 'None'})
+        if 'DefinitionInterface' in vid:
+            vertex_type_tosca = cwn.fetch_vertex(None, f'"{vid}"', 'DefinitionInterface',
+                                                 'vertex_type_tosca', start_session=True)
+            list_of_properties = cwn.find_destination(None, f'"{vid}"',
+                                                      'definition_property', start_session=True, full_list=True)
+            properties = form_properties(list_of_properties, definition_flag=True, name_in_edge=True, source_vid=vid)
+            for i, item in properties.get('properties').items():
+                properties.get('properties')[i] = item['Function']
+            derived_from_vid = cwn.find_destination(None, f'"{vid}"',
+                                                    'derived_from', start_session=True)
+            if derived_from_vid:
+                derived_from = cwn.fetch_vertex(None, f'"{derived_from_vid}"',
+                                                'DefinitionInterface', 'vertex_type_tosca', start_session=True)
+                deep_update_dict(interfaces_definition, {vertex_type_tosca: {'derived_from': derived_from}})
+            if properties.get('properties'):
+                deep_update_dict(interfaces_definition, {vertex_type_tosca: properties['properties']})
+            if not (derived_from_vid or properties.get('properties')):
+                deep_update_dict(interfaces_definition, {vertex_type_tosca: 'None'})
     if nodes_template_definition:
         nodes_template_definition = {'node_types': nodes_template_definition}
     if nodes_template_assignment:
@@ -229,6 +280,10 @@ def get_yaml(cluster_name):
         deep_update_dict(nodes_template_assignment, relationship_templates)
 
     template = nodes_template_definition
+    if interfaces_definition:
+        deep_update_dict(template, {'interface_types': interfaces_definition})
+    if capabilities_definition:
+        deep_update_dict(template, {'capability_types': capabilities_definition})
     deep_update_dict(template, {'topology_template': nodes_template_assignment})
     with open('./output.yaml', 'w') as file:
         documents = yaml.dump(template, file)

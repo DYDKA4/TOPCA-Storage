@@ -1,3 +1,200 @@
+capability_types:
+  tosca.capabilities.Attachment:
+    derived_from: tosca.capabilities.Root
+  tosca.capabilities.Container:
+    derived_from: tosca.capabilities.Root
+    properties:
+      cpu_frequency:
+        constraints:
+        - greater_or_equal: 0.1 GHz
+        required: false
+        type: scalar-unit.frequency
+      disk_size:
+        constraints:
+        - greater_or_equal: 0 MB
+        required: false
+        type: scalar-unit.size
+      mem_size:
+        constraints:
+        - greater_or_equal: 0 MB
+        required: false
+        type: scalar-unit.size
+      num_cpus:
+        constraints:
+        - greater_or_equal: 1
+        required: false
+        type: integer
+  tosca.capabilities.Endpoint:
+    derived_from: tosca.capabilities.Root
+    properties:
+      initiator:
+        constraints:
+        - valid_values:
+          - source
+          - target
+          - peer
+        default: source
+        required: false
+        type: string
+      ip_address:
+        default: 0.0.0.0/0
+        type: string
+      network_name:
+        default: PRIVATE
+        required: false
+        type: string
+      port:
+        required: false
+        type: tosca.datatypes.network.PortDef
+      port_name:
+        required: false
+        type: string
+      ports:
+        constraints:
+        - min_length: 1
+        entry_schema:
+          type: tosca.datatypes.network.PortSpec
+        required: false
+        type: map
+      protocol:
+        default: tcp
+        required: true
+        type: string
+      secure:
+        default: false
+        required: false
+        type: boolean
+      url_path:
+        required: false
+        type: string
+  tosca.capabilities.Endpoint.Admin:
+    derived_from: tosca.capabilities.Endpoint
+    properties:
+      secure:
+        constraints:
+        - equal: true
+        default: true
+        required: false
+        type: boolean
+  tosca.capabilities.Endpoint.Database:
+    derived_from: tosca.capabilities.Endpoint
+  tosca.capabilities.Endpoint.Public:
+    derived_from: tosca.capabilities.Endpoint
+    properties:
+      dns_name:
+        description: The optional name to register with DNS
+        required: false
+        status: experimental
+        type: string
+      floating:
+        default: false
+        description: 'Indicates that the public address should be allocated from a
+          pool of floating IPs that are associated with the network. '
+        required: false
+        status: experimental
+        type: boolean
+      network_name:
+        constraints:
+        - equal: PUBLIC
+        default: PUBLIC
+        required: false
+        type: string
+  tosca.capabilities.Node:
+    derived_from: tosca.capabilities.Root
+  tosca.capabilities.OperatingSystem:
+    derived_from: tosca.capabilities.Root
+    properties:
+      architecture:
+        description: 'The host Operating System (OS) architecture. '
+        required: false
+        type: string
+      distribution:
+        description: "The host Operating System (OS) distribution. Examples of valid\
+          \ values for an \u201Ctype\u201D of \u201CLinux\u201D would include: debian,\
+          \ fedora, rhel and ubuntu. "
+        required: false
+        type: string
+      type:
+        description: 'The host Operating System (OS) type. '
+        required: false
+        type: string
+      version:
+        description: 'The host Operating System version. '
+        required: false
+        type: version
+  tosca.capabilities.Root: None
+  tosca.capabilities.Scalable:
+    derived_from: tosca.capabilities.Root
+    properties:
+      default_instances:
+        description: 'An optional property that indicates the requested default number
+          of instances that should be the starting number of instances a TOSCA orchestrator
+          should attempt to allocate. The value for this property MUST be in the range
+          between the values set for min_instances and max_instances properties. '
+        required: false
+        type: integer
+      max_instances:
+        default: 1
+        description: 'This property is used to indicate the maximum number of instances
+          that should be created for the associated TOSCA Node Template by a TOSCA
+          orchestrator. '
+        required: true
+        type: integer
+      min_instances:
+        default: 1
+        description: 'This property is used to indicate the minimum number of instances
+          that should be created for the associated TOSCA Node Template by a TOSCA
+          orchestrator. '
+        required: true
+        type: integer
+  tosca.capabilities.network.Bindable:
+    derived_from: tosca.capabilities.Node
+  tosca.capabilities.network.Linkable:
+    derived_from: tosca.capabilities.Node
+interface_types:
+  tosca.interfaces.Root: None
+  tosca.interfaces.node.Prepare:
+    configure:
+      description: Operation to configure the node.
+    derived_from: tosca.interfaces.Root
+    preconfigure:
+      description: Operation to pre-configure the node.
+  tosca.interfaces.node.lifecycle.Standard:
+    configure:
+      description: Standard lifecycle configure operation.
+    create:
+      description: Standard lifecycle create operation.
+    delete:
+      description: Standard lifecycle delete operation.
+    derived_from: tosca.interfaces.Root
+    preconfigure:
+      description: Standard lifecycle preconfigure operation.
+    start:
+      description: Standard lifecycle start operation.
+    stop:
+      description: Standard lifecycle stop operation.
+  tosca.interfaces.relationship.Configure:
+    add_source: '{''description'': ''Operation to notify the target node of a source
+      node which is now available via a relationship.
+
+      ''}'
+    add_target:
+      description: Operation to add a target node.
+    derived_from: tosca.interfaces.Root
+    post_configure_source:
+      description: Operation to post-configure the source endpoint.
+    post_configure_target:
+      description: Operation to post-configure the target endpoint.
+    pre_configure_source:
+      description: Operation to pre-configure the source endpoint.
+    pre_configure_target:
+      description: Operation to pre-configure the target endpoint.
+    remove_target:
+      description: Operation to remove a target node.
+    target_changed: '{''description'': ''Operation to notify source some property
+      or attribute of the target changed
+
+      ''}'
 node_types:
   tosca.nodes.BlockStorage:
     capabilities:
@@ -102,6 +299,11 @@ node_types:
     capabilities:
       feature:
         type: tosca.capabilities.Node
+    interfaces:
+      Prepare:
+        type: tosca.interfaces.node.Prepare
+      Standard:
+        type: tosca.interfaces.node.lifecycle.Standard
     properties:
       state:
         description: "The state of the node instance. See section \u201CNode States\u201D\

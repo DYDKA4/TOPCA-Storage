@@ -46,7 +46,6 @@ class AssignmentVertex(Vertex):
         self.vertex_type_system = 'AssignmentVertex'
 
 
-
 class ClusterName(Vertex):
     def __init__(self, name, pure_yaml, list_of_definition_vertex, list_of_assignment_vertex, definition_capabilities,
                  interfaces_vertex, relationship_type, relationship_templates):
@@ -170,12 +169,13 @@ class RelationshipTemplate(Vertex):
 
 
 class Requirements(Vertex):
-    def __init__(self, name, source, destination):
+    def __init__(self, name, source, destination=None):
         super().__init__(name, vertex_type_tosca='none')
         self.source = source
         self.vertex_type_system = 'RequirementsVertex'
         self.destination = destination
         self.occurrences = ''
+        self.node_filter = None
         self.relationship = None
 
     def set_occurrences(self, occurrences):
@@ -183,4 +183,13 @@ class Requirements(Vertex):
 
     def set_relationship(self, relationship):
         self.relationship = relationship
+
+    def set_node_filter(self, node_filter):
+        self.node_filter = node_filter
+
+
+class NodeFilter(Vertex):
+    def __init__(self):
+        super().__init__('noname', vertex_type_tosca='none')
+        self.vertex_type_system = 'NodeFilter'
 

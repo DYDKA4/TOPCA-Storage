@@ -1,4 +1,6 @@
 # define a Config
+from typing import List, Any
+
 from nebula2.gclient.net import ConnectionPool
 from nebula2.Config import Config
 import config
@@ -239,10 +241,24 @@ def yaml_deploy(cluster_vertex: data_classes.ClusterName, method_put=False):
             requirement_vertex.set_vid(session)
             add_in_vertex(session, requirement_vertex.vertex_type_system, 'name', f'"{requirement_vertex.name}"',
                           requirement_vertex.vid)
-            add_edge(session, 'requirements_destination', '', requirement_vertex.vid,
-                     requirement_vertex.destination.vid, '')
+            if requirement_vertex.destination:
+                add_edge(session, 'requirements_destination', '', requirement_vertex.vid,
+                         requirement_vertex.destination.vid, '')
             add_edge(session, 'requirements', '', assignment_vertex.vid, requirement_vertex.vid, '')
-            add_edge(session, 'requirements', '', requirement_vertex.vid, requirement_vertex.relationship.vid, '')
+            if requirement_vertex.relationship:
+                add_edge(session, 'requirements', '', requirement_vertex.vid, requirement_vertex.relationship.vid, '')
+            if requirement_vertex.node_filter:
+                node_filter: data_classes.NodeFilter
+                node_filter = requirement_vertex.node_filter
+                node_filter.set_vid(session)
+                print(node_filter.vid, requirement_vertex.vid)
+                add_in_vertex(session, node_filter.vertex_type_system, '', '', node_filter.vid)
+                for property_vertex in node_filter.properties:
+                    property_vertex.set_vid(session)
+                    add_in_vertex(session, property_vertex.vertex_type_system, 'value_name, value',
+                                  f'"{property_vertex.value_name}", "{property_vertex.value}"', property_vertex.vid)
+                    add_edge(session, 'assignment_property', '', node_filter.vid, property_vertex.vid, '')
+                add_edge(session, 'node_filter', '', requirement_vertex.vid, node_filter.vid, '')
             for capabilities_vertex in requirement_vertex.capabilities:
                 add_edge(session, 'requirements_capability', '', requirement_vertex.vid, capabilities_vertex.vid, f'')
 

@@ -66,9 +66,9 @@ def yaml_add(varargs=None):
             else:
                 return '400 Bad Path'
         print(pure_yaml)
-        # communication_with_nebula.update_vertex(None, 'ClusterName', 'pure_yaml',
-        #                                         '"' + str(pure_yaml) + '"', f'"{cluster_name}"',
-        #                                         start_session=True)
+        communication_with_nebula.update_vertex(None, 'ClusterName', 'pure_yaml',
+                                                '"' + str(pure_yaml) + '"', f'"{cluster_name}"',
+                                                start_session=True)
         if varargs[0] == 'topology_template':
             # работаем с assignment частью
             if varargs[1] == 'relationship_templates':

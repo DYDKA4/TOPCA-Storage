@@ -162,7 +162,6 @@ def get_yaml(cluster_name):
             list_of_requirements = cwn.find_destination(None, f'"{vid}"',
                                                         'requirements', start_session=True, full_list=True)
             list_of_requirements_ready = form_requirements(list_of_requirements)
-            list_of_requirements_ready = {'requirements': list_of_requirements_ready}
             if list_of_requirements_ready.get('requirements'):
                 deep_update_dict(node_template[name], list_of_requirements_ready)
             capabilities = form_capabilities(list_of_capability)

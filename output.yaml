@@ -427,8 +427,6 @@ topology_template:
           get_input: storage_size
         snapshot_id:
           get_input: storage_snapshot_id
-      requirements:
-        requirements: []
       type: tosca.nodes.BlockStorage
     my_web_app_tier_1:
       capabilities:
@@ -445,10 +443,9 @@ topology_template:
             type: Linux
             version: 18.0
       requirements:
-        requirements:
-        - local_storage:
-            node: my_storage
-            relationship: storage_attachesto_1
+      - local_storage:
+          node: my_storage
+          relationship: storage_attachesto_1
       type: tosca.nodes.Compute
     my_web_app_tier_2:
       capabilities:
@@ -465,10 +462,9 @@ topology_template:
             type: Linux
             version: 18.0
       requirements:
-        requirements:
-        - local_storage:
-            node: my_storage
-            relationship: storage_attachesto_2
+      - local_storage:
+          node: my_storage
+          relationship: storage_attachesto_2
       type: tosca.nodes.Compute
   relationship_templates:
     storage_attachesto_1:

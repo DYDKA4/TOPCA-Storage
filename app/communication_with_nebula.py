@@ -397,3 +397,22 @@ def yaml_deploy(cluster_vertex: data_classes.ClusterName, method_put=False):
         add_edge(session, 'assignment', '', cluster_vertex.vid, relationship_template.vid, '')
     # session.release()
     return '200 OK'
+
+
+def get_all_tags(session):
+    result = session.execute('SHOW TAGS')
+    assert result.is_succeeded(), result.error_msg()
+    return result.column_values('Name')
+
+
+def get_all_vertex(session, tag):
+    result = session.execute(f'LOOKUP ON {tag}')
+    assert result.is_succeeded(), result.error_msg()
+    return result.column_values('VertexID')
+
+
+def delete_vertex(session, vertex):
+    result = session.execute(f'DELETE VERTEX {vertex} ')
+    print(f'DELETE VERTEX {vertex}')
+    assert result.is_succeeded(), result.error_msg()
+    return

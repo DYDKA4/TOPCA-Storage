@@ -1,0 +1,10 @@
+2022-03-21 20:02:12,469 WARNING werkzeug MainThread :  * Debugger is active!
+2022-03-21 20:02:12,470 INFO werkzeug MainThread :  * Debugger PIN: 138-904-178
+2022-03-21 20:02:15,240 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-21 20:02:15,248 INFO werkzeug Thread-2 : 127.0.0.1 - - [21/Mar/2022 20:02:15] "GET /find/all/node?search_by=tosca.nodes.BlockStorage HTTP/1.1" 200 -
+2022-03-21 20:02:30,727 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/views.py', reloading
+2022-03-21 20:02:30,908 WARNING werkzeug MainThread :  * Debugger is active!
+2022-03-21 20:02:30,908 INFO werkzeug MainThread :  * Debugger PIN: 138-904-178
+2022-03-21 20:02:35,133 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-21 20:02:35,142 INFO werkzeug Thread-2 : 127.0.0.1 - - [21/Mar/2022 20:02:35] "GET /find/all/node?search_by=tosca.nodes.BlockStorage HTTP/1.1" 200 -
+2022-03-21 20:32:00,486 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/views.py', reloading

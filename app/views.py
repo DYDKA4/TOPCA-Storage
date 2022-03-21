@@ -11,7 +11,7 @@ from app import constructor_yaml
 # curl -F file=@jamlExamples/SBS.yaml http://127.0.0.1:5000/yaml-template?cluster_name="cluster"
 def yaml_add(varargs=None):
     cluster_name = request.args.get('cluster_name')
-    if request.method in ['POST','PUT']:
+    if request.method in ['POST', 'PUT']:
         file = request.files['file']
         if file:
             file = file.read().decode("utf-8")
@@ -113,7 +113,7 @@ def yaml_add(varargs=None):
                         find_destination_by_property(None, f'"{vid_of_node}"', 'assignment_capability', 'name',
                                                      varargs[4], start_session=True)
                     if varargs[5] == 'properties':
-                        assignment_property = communication_with_nebula.\
+                        assignment_property = communication_with_nebula. \
                             find_destination_by_property(None, f'"{vid_of_capability}"', 'assignment_property',
                                                          'value_name', varargs[6], start_session=True)
                         communication_with_nebula.update_vertex(None, 'AssignmentProperties', 'values',
@@ -140,7 +140,7 @@ def yaml_add(varargs=None):
                     return '100 OK Change properties'
                 return '501 Not Implemented'
         elif varargs[0] == 'node_types':
-            #работаем с node_types
+            # работаем с node_types
             vid_of_node = communication_with_nebula. \
                 find_destination_by_property(None, f'"{cluster_name}"', 'definition', 'vertex_type_tosca',
                                              varargs[1], start_session=True)
@@ -162,7 +162,7 @@ def yaml_add(varargs=None):
             else:
                 return '501 Not Implemented'
         elif varargs[0] == 'capability_types':
-            #работаем с capability_types
+            # работаем с capability_types
             vid_of_node = communication_with_nebula. \
                 find_destination_by_property(None, f'"{cluster_name}"', 'definition', 'vertex_type_tosca',
                                              varargs[1], start_session=True)
@@ -180,7 +180,7 @@ def yaml_add(varargs=None):
             else:
                 return '501 Not Implemented'
         elif varargs[0] == 'relationship_types':
-            #работаем с capability_types
+            # работаем с capability_types
             vid_of_node = communication_with_nebula. \
                 find_destination_by_property(None, f'"{cluster_name}"', 'definition', 'vertex_type_tosca',
                                              varargs[1], start_session=True)
@@ -214,27 +214,36 @@ def yaml_add(varargs=None):
             '''
 
 
-@app.route('/yaml-patch', methods=['PATCH'])
-# curl -X PATCH -F file=@jamlExamples/SBS.yaml http://127.0.0.1:5000/yaml-patch?cluster_name=cluster_tosca_46
+@app.route('/yaml-delete', methods=['PATCH'])
+# curl -X PATCH -F file=@jamlExamples/SBS.yaml http://127.0.0.1:5000/yaml-patch?
 def yaml_patch():
-    """
+    session = communication_with_nebula.chose_of_space()
+    tags = communication_with_nebula.get_all_tags(session)
+    for tag in tags:
 
-    :return:
-    """
-    cluster_name = request.args.get('cluster_name')
-    if cluster_name:
-        end_code = '400'
-        return f'{end_code}'
+        tag = tag.as_string()
+        vertexes = communication_with_nebula.get_all_vertex(session, tag)
+        for vertex in vertexes:
+            vertex = vertex.as_string()
+            communication_with_nebula.delete_vertex(session, f'"{vertex}"')
     return '''
             400 Bad Request 
             '''
 
 
-@app.route('/node_templates/<string:node_name>/capabilities/<string:name_of_capability>')
-def allow(node_name, name_of_capability):
-    return f'{node_name}, {name_of_capability}'
-
-
-@app.route('/topology_template/node_templates/<string:node_name>/capabilities/<string:name_of_capability>')
-def asd(node_name, name_of_capability):
-    return f'{node_name}, {name_of_capability}'
+@app.route('/find/<path:varargs>', methods=['GET'])
+def find(varargs=None):
+    search_by = request.args.get('search_by')
+    session = communication_with_nebula.chose_of_space()
+    if varargs[0] == 'all':
+        if varargs[1] == 'node':
+            if len(varargs) > 2:
+                return "400 BAD PATH"
+            list_of_clusters = communication_with_nebula.get_all_vertex(session, "ClusterName")
+            answer = []
+            for cluster in list_of_clusters:
+                cluster.as_string()
+                answer += communication_with_nebula.find_destination_by_property(session, f'"{cluster}"', 'assignment',
+                                                                                 'type', search_by)
+                return f'{answer}'
+    return "200 OK"

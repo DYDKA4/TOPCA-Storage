@@ -37,3 +37,4 @@
 2022-03-21 15:54:54,805 INFO root Thread-7 : Get connection to ('10.100.151.128', 9669)
 2022-03-21 15:56:10,196 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/constructor_yaml.py', reloading
 2022-03-21 15:56:10,234 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-21 16:42:54,258 INFO werkzeug MainThread :  * Restarting with stat

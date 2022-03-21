@@ -97,17 +97,17 @@ def parser(data, cluster_name):
                             requirement_vertex = data_classes.Requirements(requirement_name, source,
                                                                            destination=dest)
                         else:
-                            requirement_vertex = data_classes.Requirements(requirement_name, source,
-                                                                           destination=dest)
+                            requirement_vertex = data_classes.Requirements(requirement_name, source)
                         if link.get('node_filter'):
                             node_filter_data = link.get('node_filter')
                             node_filter = data_classes.NodeFilter()
                             if node_filter_data.get('properties'):
-                                for properties_name, properties_value in node_filter_data.get('properties').items():
-                                    vertex_properties = data_classes.AssignmentProperties(properties_name,
-                                                                                          properties_value)
-                                    node_filter.add_properties(vertex_properties)
-                                requirement_vertex.set_node_filter(node_filter)
+                                for properties in node_filter_data.get('properties'):
+                                    for properties_name, properties_value in properties.items():
+                                        vertex_properties = data_classes.AssignmentProperties(properties_name,
+                                                                                              properties_value)
+                                        node_filter.add_properties(vertex_properties)
+                                    requirement_vertex.set_node_filter(node_filter)
                         if link.get('relationship'):
                             relationship = find_vertex(link['relationship'], relationship_templates)
                             requirement_vertex.set_relationship(relationship)
@@ -151,15 +151,28 @@ def parser(data, cluster_name):
             if type(val.get('requirements')) is list:
                 for requirement in val.get('requirements'):
                     for requirement_name, link in requirement.items():
-                        dest = 'Null'
+                        source = find_vertex(name, definition_vertex, search_by_type=True)
                         if link.get('node'):
                             dest = find_vertex(link['node'], definition_vertex, search_by_type=True)
-                        source = find_vertex(name, definition_vertex, search_by_type=True)
-                        requirement_vertex = data_classes.Requirements(requirement_name, source,
-                                                                       dest)
-                        relationship = find_vertex(link['relationship'], relationship_vertex, search_by_type=True)
-                        # print(relationship)
-                        requirement_vertex.set_relationship(relationship)
+                            requirement_vertex = data_classes.Requirements(requirement_name, source,
+                                                                           destination=dest)
+                        else:
+                            requirement_vertex = data_classes.Requirements(requirement_name, source)
+                        print(link)
+                        if link.get('node_filter'):
+                            node_filter_data = link.get('node_filter')
+                            node_filter = data_classes.NodeFilter()
+                            if node_filter_data.get('properties'):
+                                for properties in node_filter_data.get('properties'):
+                                    for properties_name, properties_value in properties.items():
+                                        vertex_properties = data_classes.AssignmentProperties(properties_name,
+                                                                                              properties_value)
+                                        node_filter.add_properties(vertex_properties)
+                                    requirement_vertex.set_node_filter(node_filter)
+
+                        if link.get('relationship'):
+                            relationship = find_vertex(link['relationship'], relationship_vertex, search_by_type=True)
+                            requirement_vertex.set_relationship(relationship)
                         if link.get('capability'):
                             destination = find_vertex(link.get('capability'), capabilities_vertex,
                                                       search_by_type=True)

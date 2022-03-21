@@ -36,6 +36,9 @@ node_types:
           capability: tosca.capabilities.Node
           node: tosca.nodes.Root
           relationship: tosca.relationships.DependsOn
+          node_filter:
+            properties:
+              - size: 1 GB
           occurrences: [ 0, UNBOUNDED ]
     interfaces:
       Standard:
@@ -671,8 +674,7 @@ topology_template:
 
             node_filter:
               properties:
-                size: 1 GB
-
+                - size: 1 GB
             relationship: storage_attachesto_2
 
 

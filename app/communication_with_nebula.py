@@ -342,6 +342,18 @@ def yaml_deploy(cluster_vertex: data_classes.ClusterName, method_put=False):
                      requirement_vertex.destination.vid, '')
             add_edge(session, 'requirements', '', definition_vertex.vid, requirement_vertex.vid, '')
             add_edge(session, 'requirements', '', requirement_vertex.vid, requirement_vertex.relationship.vid, '')
+            if requirement_vertex.node_filter:
+                node_filter: data_classes.NodeFilter
+                node_filter = requirement_vertex.node_filter
+                node_filter.set_vid(session)
+                print(node_filter.vid, requirement_vertex.vid)
+                add_in_vertex(session, node_filter.vertex_type_system, '', '', node_filter.vid)
+                for property_vertex in node_filter.properties:
+                    property_vertex.set_vid(session)
+                    add_in_vertex(session, property_vertex.vertex_type_system, 'value_name, value',
+                                  f'"{property_vertex.value_name}", "{property_vertex.value}"', property_vertex.vid)
+                    add_edge(session, 'assignment_property', '', node_filter.vid, property_vertex.vid, '')
+                add_edge(session, 'node_filter', '', requirement_vertex.vid, node_filter.vid, '')
             for capabilities_vertex in requirement_vertex.capabilities:
                 add_edge(session, 'requirements_capability', '', requirement_vertex.vid, capabilities_vertex.vid, f'')
 

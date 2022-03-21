@@ -328,6 +328,9 @@ node_types:
         - 0
         - UNBOUNDED
         relationship: tosca.relationships.DependsOn
+      node_filter:
+        properties:
+        - size: 1 GB
   tosca.nodes.SoftwareComponent:
     derived_from: tosca.nodes.Root
     properties:
@@ -463,8 +466,10 @@ topology_template:
             version: 18.0
       requirements:
       - local_storage:
-          node: my_storage
           relationship: storage_attachesto_2
+        node_filter:
+          properties:
+          - size: 1 GB
       type: tosca.nodes.Compute
   relationship_templates:
     storage_attachesto_1:

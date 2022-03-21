@@ -21,8 +21,11 @@ def deep_update_dict(source, overrides):
     return source
 
 
-def form_properties(list_of_properties, definition_flag=False, name_in_edge=False, source_vid=None):
-    properties = {}
+def form_properties(list_of_properties, definition_flag=False, name_in_edge=False, source_vid=None, flag_array=False):
+    if flag_array:
+        properties = []
+    else:
+        properties = {}
     for properties_vid in list_of_properties:
         properties_vid = properties_vid.as_string()
         if definition_flag:
@@ -45,9 +48,15 @@ def form_properties(list_of_properties, definition_flag=False, name_in_edge=Fals
         if name_in_edge:
             name = cwn.fetch_edge(None, f'"{source_vid}"', f'"{properties_vid}"', edge_type, 'name',
                                   start_session=True)
-            deep_update_dict(properties, {name: {value_name: values}})
+            if flag_array:
+                properties.append({name: {value_name: values}})
+            else:
+                deep_update_dict(properties, {name: {value_name: values}})
         else:
-            deep_update_dict(properties, {value_name: values})
+            if flag_array:
+                properties.append({value_name: values})
+            else:
+                deep_update_dict(properties, {value_name: values})
     properties = {'properties': properties}
     return properties
 
@@ -81,6 +90,7 @@ def form_capabilities(list_of_capability, definition_flag=False, name_in_edge=Fa
             capabilities_property = form_properties(capabilities_property_list)
             capabilities = deep_update_dict(capabilities, {capabilities_name: capabilities_property})
         else:
+            print(capabilities_name)
             capabilities = deep_update_dict(capabilities, capabilities_name)
     if capabilities:
         capabilities = {'capabilities': capabilities}
@@ -105,8 +115,15 @@ def form_requirements(list_of_requirements, definition_flag=False):
                                             'name', start_session=True)
         requirement_destination = cwn.find_destination(None, f'"{requirement_vid}"',
                                                        'requirements_destination', start_session=True)
-        destination_name = cwn.fetch_vertex(None, f'"{requirement_destination}"', vertex_type,
-                                            column, start_session=True)
+        if requirement_destination:
+            destination_name = cwn.fetch_vertex(None, f'"{requirement_destination}"', vertex_type,
+                                                column, start_session=True)
+        node_filter = cwn.find_destination(None, f'"{requirement_vid}"', 'node_filter', start_session=True)
+        if node_filter:
+            print(node_filter)
+            node_filter_properties = cwn.find_destination(None, f'"{node_filter}"',
+                                                          'assignment_property', start_session=True, full_list=True)
+            node_filter = form_properties(node_filter_properties, flag_array=True)
         occurrences = cwn.fetch_vertex(None, f'"{requirement_vid}"', 'RequirementsVertex',
                                        'occurrences', start_session=True)
         if occurrences:
@@ -124,9 +141,13 @@ def form_requirements(list_of_requirements, definition_flag=False):
                                                     'requirements', start_session=True)
         template_name = cwn.fetch_vertex(None, f'"{requirement_template}"', relationship,
                                          column, start_session=True)
-
-        requirement = ({requirement_name: {'node': destination_name,
-                                           'relationship': template_name}})
+        requirement = {}
+        if node_filter:
+            deep_update_dict(requirement, {'node_filter': node_filter})
+        if requirement_destination:
+            deep_update_dict(requirement, {requirement_name: {'node': destination_name}})
+        if template_name:
+            deep_update_dict(requirement, {requirement_name: {'relationship': template_name}})
         if requirement_capability:
             deep_update_dict(requirement[requirement_name], {'capability': requirement_capability_name})
         if occurrences:

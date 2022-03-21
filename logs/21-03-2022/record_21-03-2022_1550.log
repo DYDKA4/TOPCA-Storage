@@ -1,0 +1,23 @@
+2022-03-21 15:50:51,562 INFO werkzeug MainThread :  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2022-03-21 15:50:51,564 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-21 15:50:51,724 WARNING werkzeug MainThread :  * Debugger is active!
+2022-03-21 15:50:51,724 INFO werkzeug MainThread :  * Debugger PIN: 138-904-178
+2022-03-21 15:50:54,532 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-21 15:50:54,550 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-21 15:50:54,561 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-21 15:50:54,571 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-21 15:50:54,622 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-21 15:50:54,633 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-21 15:50:54,643 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-21 15:50:54,698 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-21 15:50:54,710 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-21 15:50:54,761 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-21 15:50:54,772 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-21 15:50:54,782 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-21 15:50:54,834 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-21 15:50:54,845 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-21 15:50:54,854 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-21 15:50:54,875 INFO werkzeug Thread-2 : 127.0.0.1 - - [21/Mar/2022 15:50:54] "[35m[1mGET /yaml-template/?cluster_name=cluster_tosca_62 HTTP/1.1[0m" 500 -
+2022-03-21 15:53:38,797 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/constructor_yaml.py', reloading
+2022-03-21 15:53:38,824 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-21 15:54:31,641 INFO werkzeug MainThread :  * Restarting with stat

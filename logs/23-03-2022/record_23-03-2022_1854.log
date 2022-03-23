@@ -807,3 +807,10 @@
 2022-03-23 18:57:05,879 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/constructor_yaml.py', reloading
 2022-03-23 18:57:05,912 INFO werkzeug MainThread :  * Restarting with stat
 2022-03-23 18:58:00,786 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-23 19:03:01,477 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-23 19:07:23,813 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-23 19:09:03,225 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-23 19:09:53,046 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-23 19:13:20,686 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-23 19:16:26,235 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-23 19:22:08,603 INFO werkzeug MainThread :  * Restarting with stat

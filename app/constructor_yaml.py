@@ -181,6 +181,142 @@ def form_assignment_vertex(vid):
     return node_template
 
 
+def form_relationship_template(vid):
+    name = cwn.fetch_vertex(None, f'"{vid}"', 'RelationshipTemplate', 'name', start_session=True)
+    type_relationship_vid = cwn.find_destination(None, f'"{vid}"', 'type_relationship', start_session=True)
+    type_relationship_name = cwn.fetch_vertex(None, f'"{type_relationship_vid}"',
+                                              'RelationshipType', 'vertex_type_tosca', start_session=True)
+    list_of_properties = cwn.find_destination(None, f'"{vid}"',
+                                              'definition_property', start_session=True, full_list=True)
+    properties = form_properties(list_of_properties, definition_flag=True)
+    relationship_template = {name: {'type': type_relationship_name}}
+    if properties.get('properties'):
+        deep_update_dict(relationship_template[name], properties)
+    return relationship_template
+
+
+def form_definition_vertex(vid):
+    nodes_template_definition = {}
+    vertex_type_tosca = cwn.fetch_vertex(None, f'"{vid}"', 'DefinitionVertex',
+                                         'vertex_type_tosca', start_session=True)
+    list_of_properties = cwn.find_destination(None, f'"{vid}"',
+                                              'definition_property', start_session=True, full_list=True)
+    list_of_capability = cwn.find_destination(None, f'"{vid}"',
+                                              'definition_capability', start_session=True, full_list=True)
+    list_of_requirements = cwn.find_destination(None, f'"{vid}"',
+                                                'requirements', start_session=True, full_list=True)
+    list_of_interfaces = cwn.find_destination(None, f'"{vid}"',
+                                              'definition_interface', start_session=True, full_list=True)
+    derived_from_vid = cwn.find_destination(None, f'"{vid}"',
+                                            'derived_from', start_session=True)
+    properties = form_properties(list_of_properties, definition_flag=True, name_in_edge=True, source_vid=vid)
+    capabilities = form_capabilities(list_of_capability, definition_flag=True, name_in_edge=True,
+                                     source_vid=vid)
+    list_of_requirements_ready = form_requirements(list_of_requirements, definition_flag=True)
+
+    interface = {}
+    if list_of_interfaces:
+        for list_of_interfaces_vid in list_of_interfaces:
+            list_of_interfaces_vid = list_of_interfaces_vid.as_string()
+            name_of_interface = cwn.fetch_vertex(None, f'"{list_of_interfaces_vid}"', 'DefinitionInterface',
+                                                 'vertex_type_tosca', start_session=True)
+            name_of_edge = cwn.fetch_edge(None, f'"{vid}"', f'"{list_of_interfaces_vid}"',
+                                          'definition_interface',
+                                          'name', start_session=True)
+            deep_update_dict(interface, {name_of_edge: {'type': name_of_interface}})
+    node_template = vertex_type_tosca
+    if derived_from_vid:
+        derived_from = cwn.fetch_vertex(None, f'"{derived_from_vid}"',
+                                        'DefinitionVertex', 'vertex_type_tosca', start_session=True)
+        deep_update_dict(nodes_template_definition, {node_template: {'derived_from': derived_from}})
+    if capabilities.get('capabilities'):
+        deep_update_dict(nodes_template_definition, {node_template: capabilities})
+    if properties.get('properties'):
+        deep_update_dict(nodes_template_definition, {node_template: properties})
+    if list_of_requirements_ready.get('requirements'):
+        deep_update_dict(nodes_template_definition, {node_template: list_of_requirements_ready})
+    if interface:
+        interface = {'interfaces': interface}
+        deep_update_dict(nodes_template_definition, {node_template: interface})
+    if not (capabilities.get('capabilities') or properties.get('properties') or
+            list_of_requirements_ready.get('requirements') or interface or derived_from_vid):
+        deep_update_dict(nodes_template_definition, {node_template: 'None'})
+    return nodes_template_definition
+
+
+def form_capabilities_definition(vid):
+    capabilities_definition = {}
+    vertex_type_tosca = cwn.fetch_vertex(None, f'"{vid}"', 'DefinitionCapabilities',
+                                         'vertex_type_tosca', start_session=True)
+    list_of_properties = cwn.find_destination(None, f'"{vid}"',
+                                              'definition_property', start_session=True, full_list=True)
+    properties = form_properties(list_of_properties, definition_flag=True, name_in_edge=True, source_vid=vid)
+    derived_from_vid = cwn.find_destination(None, f'"{vid}"',
+                                            'derived_from', start_session=True)
+    if derived_from_vid:
+        derived_from = cwn.fetch_vertex(None, f'"{derived_from_vid}"',
+                                        'DefinitionCapabilities', 'vertex_type_tosca', start_session=True)
+        deep_update_dict(capabilities_definition, {vertex_type_tosca: {'derived_from': derived_from}})
+    if properties.get('properties'):
+        deep_update_dict(capabilities_definition, {vertex_type_tosca: properties})
+    if not (derived_from_vid or properties.get('properties')):
+        deep_update_dict(capabilities_definition, {vertex_type_tosca: 'None'})
+    return capabilities_definition
+
+
+def form_definition_interface(vid):
+    interfaces_definition = {}
+    vertex_type_tosca = cwn.fetch_vertex(None, f'"{vid}"', 'DefinitionInterface',
+                                         'vertex_type_tosca', start_session=True)
+    list_of_properties = cwn.find_destination(None, f'"{vid}"',
+                                              'definition_property', start_session=True, full_list=True)
+    properties = form_properties(list_of_properties, definition_flag=True, name_in_edge=True, source_vid=vid)
+    for i, item in properties.get('properties').items():
+        properties.get('properties')[i] = item['Function']
+    derived_from_vid = cwn.find_destination(None, f'"{vid}"',
+                                            'derived_from', start_session=True)
+    if derived_from_vid:
+        derived_from = cwn.fetch_vertex(None, f'"{derived_from_vid}"',
+                                        'DefinitionInterface', 'vertex_type_tosca', start_session=True)
+        deep_update_dict(interfaces_definition, {vertex_type_tosca: {'derived_from': derived_from}})
+    if properties.get('properties'):
+        deep_update_dict(interfaces_definition, {vertex_type_tosca: properties['properties']})
+    if not (derived_from_vid or properties.get('properties')):
+        deep_update_dict(interfaces_definition, {vertex_type_tosca: 'None'})
+    return interfaces_definition
+
+
+def form_definition_relationship_type(vid):
+    relationship_type_definition = {}
+    vertex_type_tosca = cwn.fetch_vertex(None, f'"{vid}"', 'RelationshipType',
+                                         'vertex_type_tosca', start_session=True)
+    list_of_properties = cwn.find_destination(None, f'"{vid}"',
+                                              'definition_property', start_session=True, full_list=True)
+    valid_target_types = cwn.find_destination(None, f'"{vid}"',
+                                              'valid_target_types', start_session=True, full_list=True)
+    valid_target_type_list = []
+    for valid_target_type in valid_target_types:
+        valid_target_type = valid_target_type.as_string()
+        valid_target_type_name = cwn.fetch_vertex(None, f'"{valid_target_type}"', 'DefinitionCapabilities',
+                                                  'vertex_type_tosca', start_session=True)
+        valid_target_type_list.append(valid_target_type_name)
+    properties = form_properties(list_of_properties, definition_flag=True, name_in_edge=True, source_vid=vid)
+    derived_from_vid = cwn.find_destination(None, f'"{vid}"',
+                                            'derived_from', start_session=True)
+    if derived_from_vid:
+        derived_from = cwn.fetch_vertex(None, f'"{derived_from_vid}"',
+                                        'RelationshipType', 'vertex_type_tosca', start_session=True)
+        deep_update_dict(relationship_type_definition, {vertex_type_tosca: {'derived_from': derived_from}})
+    if valid_target_type_list:
+        deep_update_dict(relationship_type_definition,
+                         {vertex_type_tosca: {'valid_target_types': valid_target_type_list}})
+    if properties.get('properties'):
+        deep_update_dict(relationship_type_definition, {vertex_type_tosca: properties})
+    if not (derived_from_vid or properties.get('properties')):
+        deep_update_dict(relationship_type_definition, {vertex_type_tosca: 'None'})
+    return relationship_type_definition
+
+
 def get_yaml(cluster_name):
     """
     Обработка defention части
@@ -200,131 +336,21 @@ def get_yaml(cluster_name):
             deep_update_dict(nodes_template_assignment, node_template)
 
         elif 'RelationshipTemplate' in vid:
-            print('Template')
-            relationship_template = {}
-            name = cwn.fetch_vertex(None, f'"{vid}"', 'RelationshipTemplate', 'name', start_session=True)
-            type_relationship_vid = cwn.find_destination(None, f'"{vid}"', 'type_relationship', start_session=True)
-            type_relationship_name = cwn.fetch_vertex(None, f'"{type_relationship_vid}"',
-                                                      'RelationshipType', 'vertex_type_tosca', start_session=True)
-            list_of_properties = cwn.find_destination(None, f'"{vid}"',
-                                                      'definition_property', start_session=True, full_list=True)
-            properties = form_properties(list_of_properties, definition_flag=True)
-            relationship_template = {name: {'type': type_relationship_name}}
-            if properties.get('properties'):
-                deep_update_dict(relationship_template[name], properties)
+            relationship_template = form_relationship_template(vid)
             deep_update_dict(relationship_templates, relationship_template)
-
         else:
             return None
     definition = cwn.find_destination(None, f'"{cluster_name}"', 'definition', start_session=True, full_list=True)
     for vid in definition:
         vid = vid.as_string()
         if 'DefinitionVertex' in vid:
-            vertex_type_tosca = cwn.fetch_vertex(None, f'"{vid}"', 'DefinitionVertex',
-                                                 'vertex_type_tosca', start_session=True)
-            list_of_properties = cwn.find_destination(None, f'"{vid}"',
-                                                      'definition_property', start_session=True, full_list=True)
-            list_of_capability = cwn.find_destination(None, f'"{vid}"',
-                                                      'definition_capability', start_session=True, full_list=True)
-            list_of_requirements = cwn.find_destination(None, f'"{vid}"',
-                                                        'requirements', start_session=True, full_list=True)
-            list_of_interfaces = cwn.find_destination(None, f'"{vid}"',
-                                                      'definition_interface', start_session=True, full_list=True)
-            derived_from_vid = cwn.find_destination(None, f'"{vid}"',
-                                                    'derived_from', start_session=True)
-            properties = form_properties(list_of_properties, definition_flag=True, name_in_edge=True, source_vid=vid)
-            capabilities = form_capabilities(list_of_capability, definition_flag=True, name_in_edge=True,
-                                             source_vid=vid)
-            list_of_requirements_ready = form_requirements(list_of_requirements, definition_flag=True)
-
-            interface = {}
-            if list_of_interfaces:
-                for list_of_interfaces_vid in list_of_interfaces:
-                    list_of_interfaces_vid = list_of_interfaces_vid.as_string()
-                    name_of_interface = cwn.fetch_vertex(None, f'"{list_of_interfaces_vid}"', 'DefinitionInterface',
-                                                         'vertex_type_tosca', start_session=True)
-                    name_of_edge = cwn.fetch_edge(None, f'"{vid}"', f'"{list_of_interfaces_vid}"',
-                                                  'definition_interface',
-                                                  'name', start_session=True)
-                    deep_update_dict(interface, {name_of_edge: {'type': name_of_interface}})
-            node_template = vertex_type_tosca
-            if derived_from_vid:
-                derived_from = cwn.fetch_vertex(None, f'"{derived_from_vid}"',
-                                                'DefinitionVertex', 'vertex_type_tosca', start_session=True)
-                deep_update_dict(nodes_template_definition, {node_template: {'derived_from': derived_from}})
-            if capabilities.get('capabilities'):
-                deep_update_dict(nodes_template_definition, {node_template: capabilities})
-            if properties.get('properties'):
-                deep_update_dict(nodes_template_definition, {node_template: properties})
-            if list_of_requirements_ready.get('requirements'):
-                deep_update_dict(nodes_template_definition, {node_template: list_of_requirements_ready})
-            if interface:
-                interface = {'interfaces': interface}
-                deep_update_dict(nodes_template_definition, {node_template: interface})
-            if not (capabilities.get('capabilities') or properties.get('properties') or
-                    list_of_requirements_ready.get('requirements') or interface or derived_from_vid):
-                deep_update_dict(nodes_template_definition, {node_template: 'None'})
+            deep_update_dict(nodes_template_definition, form_definition_vertex(vid))
         if 'DefinitionCapabilities' in vid:
-            vertex_type_tosca = cwn.fetch_vertex(None, f'"{vid}"', 'DefinitionCapabilities',
-                                                 'vertex_type_tosca', start_session=True)
-            list_of_properties = cwn.find_destination(None, f'"{vid}"',
-                                                      'definition_property', start_session=True, full_list=True)
-            properties = form_properties(list_of_properties, definition_flag=True, name_in_edge=True, source_vid=vid)
-            derived_from_vid = cwn.find_destination(None, f'"{vid}"',
-                                                    'derived_from', start_session=True)
-            if derived_from_vid:
-                derived_from = cwn.fetch_vertex(None, f'"{derived_from_vid}"',
-                                                'DefinitionCapabilities', 'vertex_type_tosca', start_session=True)
-                deep_update_dict(capabilities_definition, {vertex_type_tosca: {'derived_from': derived_from}})
-            if properties.get('properties'):
-                deep_update_dict(capabilities_definition, {vertex_type_tosca: properties})
-            if not (derived_from_vid or properties.get('properties')):
-                deep_update_dict(capabilities_definition, {vertex_type_tosca: 'None'})
+            deep_update_dict(capabilities_definition, form_capabilities_definition(vid))
         if 'DefinitionInterface' in vid:
-            vertex_type_tosca = cwn.fetch_vertex(None, f'"{vid}"', 'DefinitionInterface',
-                                                 'vertex_type_tosca', start_session=True)
-            list_of_properties = cwn.find_destination(None, f'"{vid}"',
-                                                      'definition_property', start_session=True, full_list=True)
-            properties = form_properties(list_of_properties, definition_flag=True, name_in_edge=True, source_vid=vid)
-            for i, item in properties.get('properties').items():
-                properties.get('properties')[i] = item['Function']
-            derived_from_vid = cwn.find_destination(None, f'"{vid}"',
-                                                    'derived_from', start_session=True)
-            if derived_from_vid:
-                derived_from = cwn.fetch_vertex(None, f'"{derived_from_vid}"',
-                                                'DefinitionInterface', 'vertex_type_tosca', start_session=True)
-                deep_update_dict(interfaces_definition, {vertex_type_tosca: {'derived_from': derived_from}})
-            if properties.get('properties'):
-                deep_update_dict(interfaces_definition, {vertex_type_tosca: properties['properties']})
-            if not (derived_from_vid or properties.get('properties')):
-                deep_update_dict(interfaces_definition, {vertex_type_tosca: 'None'})
+            deep_update_dict(interfaces_definition, form_definition_interface(vid))
         if 'RelationshipType' in vid:
-            vertex_type_tosca = cwn.fetch_vertex(None, f'"{vid}"', 'RelationshipType',
-                                                 'vertex_type_tosca', start_session=True)
-            list_of_properties = cwn.find_destination(None, f'"{vid}"',
-                                                      'definition_property', start_session=True, full_list=True)
-            valid_target_types = cwn.find_destination(None, f'"{vid}"',
-                                                      'valid_target_types', start_session=True, full_list=True)
-            valid_target_type_list = []
-            for valid_target_type in valid_target_types:
-                valid_target_type = valid_target_type.as_string()
-                valid_target_type_name = cwn.fetch_vertex(None, f'"{valid_target_type}"', 'DefinitionCapabilities',
-                                                          'vertex_type_tosca', start_session=True)
-                valid_target_type_list.append(valid_target_type_name)
-            properties = form_properties(list_of_properties, definition_flag=True, name_in_edge=True, source_vid=vid)
-            derived_from_vid = cwn.find_destination(None, f'"{vid}"',
-                                                    'derived_from', start_session=True)
-            if derived_from_vid:
-                derived_from = cwn.fetch_vertex(None, f'"{derived_from_vid}"',
-                                                'RelationshipType', 'vertex_type_tosca', start_session=True)
-                deep_update_dict(relationship_type_definition, {vertex_type_tosca: {'derived_from': derived_from}})
-            if valid_target_type_list:
-                deep_update_dict(relationship_type_definition,
-                                 {vertex_type_tosca: {'valid_target_types': valid_target_type_list}})
-            if properties.get('properties'):
-                deep_update_dict(relationship_type_definition, {vertex_type_tosca: properties})
-            if not (derived_from_vid or properties.get('properties')):
-                deep_update_dict(relationship_type_definition, {vertex_type_tosca: 'None'})
+            deep_update_dict(relationship_type_definition, form_definition_relationship_type(vid))
     if nodes_template_definition:
         nodes_template_definition = {'node_types': nodes_template_definition}
     if nodes_template_assignment:
@@ -351,7 +377,16 @@ def separated_vertex(vid):
     # Assignment_vertex
     if 'AssignmentVertex' in vid:
         template = form_assignment_vertex(vid)
-
-    with open('./part.yaml', 'w') as file:
-        documents = yaml.dump(template, file)
+    elif 'RelationshipTemplate' in vid:
+        template = form_relationship_template(vid)
+    elif 'DefinitionVertex' in vid:
+        template = form_definition_vertex(vid)
+    elif 'DefinitionCapabilities' in vid:
+        template = form_capabilities_definition(vid)
+    elif 'DefinitionInterface' in vid:
+        template = form_definition_interface(vid)
+    elif 'RelationshipType' in vid:
+        template = form_definition_relationship_type(vid)
+    else:
+        pass
     return template

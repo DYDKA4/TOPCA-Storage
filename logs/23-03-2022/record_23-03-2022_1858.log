@@ -10,3 +10,4 @@
 2022-03-23 18:58:03,860 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
 2022-03-23 18:58:03,871 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
 2022-03-23 18:58:03,880 INFO werkzeug Thread-2 : 127.0.0.1 - - [23/Mar/2022 18:58:03] "GET /download_yaml?vid=AssignmentVertex3 HTTP/1.1" 200 -
+2022-03-23 19:03:01,437 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/constructor_yaml.py', reloading

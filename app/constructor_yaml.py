@@ -158,6 +158,29 @@ def form_requirements(list_of_requirements, definition_flag=False):
     return list_of_requirements_ready
 
 
+def form_assignment_vertex(vid):
+    name = cwn.fetch_vertex(None, f'"{vid}"', 'AssignmentVertex', 'name', start_session=True)
+    type_of_vertex = cwn.fetch_vertex(None, f'"{vid}"', 'AssignmentVertex', 'type', start_session=True)
+    node_template = {name: {'type': type_of_vertex}}
+    list_of_properties = cwn.find_destination(None, f'"{vid}"',
+                                              'assignment_property', start_session=True, full_list=True)
+    list_of_capability = cwn.find_destination(None, f'"{vid}"',
+                                              'assignment_capability', start_session=True, full_list=True)
+    list_of_requirements = cwn.find_destination(None, f'"{vid}"',
+                                                'requirements', start_session=True, full_list=True)
+    list_of_requirements_ready = form_requirements(list_of_requirements)
+    if list_of_requirements_ready.get('requirements'):
+        deep_update_dict(node_template[name], list_of_requirements_ready)
+    capabilities = form_capabilities(list_of_capability)
+    if capabilities.get('capabilities'):
+        deep_update_dict(node_template[name], capabilities)
+    properties = form_properties(list_of_properties)
+    if properties.get('properties'):
+        deep_update_dict(node_template[name], properties)
+
+    return node_template
+
+
 def get_yaml(cluster_name):
     """
     Обработка defention части
@@ -173,24 +196,7 @@ def get_yaml(cluster_name):
     for vid in assignment:
         vid = vid.as_string()
         if 'AssignmentVertex' in vid:
-            name = cwn.fetch_vertex(None, f'"{vid}"', 'AssignmentVertex', 'name', start_session=True)
-            type_of_vertex = cwn.fetch_vertex(None, f'"{vid}"', 'AssignmentVertex', 'type', start_session=True)
-            node_template = {name: {'type': type_of_vertex}}
-            list_of_properties = cwn.find_destination(None, f'"{vid}"',
-                                                      'assignment_property', start_session=True, full_list=True)
-            list_of_capability = cwn.find_destination(None, f'"{vid}"',
-                                                      'assignment_capability', start_session=True, full_list=True)
-            list_of_requirements = cwn.find_destination(None, f'"{vid}"',
-                                                        'requirements', start_session=True, full_list=True)
-            list_of_requirements_ready = form_requirements(list_of_requirements)
-            if list_of_requirements_ready.get('requirements'):
-                deep_update_dict(node_template[name], list_of_requirements_ready)
-            capabilities = form_capabilities(list_of_capability)
-            if capabilities.get('capabilities'):
-                deep_update_dict(node_template[name], capabilities)
-            properties = form_properties(list_of_properties)
-            if properties.get('properties'):
-                deep_update_dict(node_template[name], properties)
+            node_template = form_assignment_vertex(vid)
             deep_update_dict(nodes_template_assignment, node_template)
 
         elif 'RelationshipTemplate' in vid:
@@ -336,5 +342,16 @@ def get_yaml(cluster_name):
         deep_update_dict(template, {'capability_types': capabilities_definition})
     deep_update_dict(template, {'topology_template': nodes_template_assignment})
     with open('./output.yaml', 'w') as file:
+        documents = yaml.dump(template, file)
+    return template
+
+
+def separated_vertex(vid):
+    template = {}
+    # Assignment_vertex
+    if 'AssignmentVertex' in vid:
+        template = form_assignment_vertex(vid)
+
+    with open('./part.yaml', 'w') as file:
         documents = yaml.dump(template, file)
     return template

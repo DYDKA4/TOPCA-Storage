@@ -238,6 +238,7 @@ def find(varargs=None):
     varargs = varargs.split("/")
     if varargs[0] == 'all':
         if varargs[1] == 'node':
+            """ curl -X GET 'http://127.0.0.1:5000/find/all/node?search_by=tosca.nodes.BlockStorage' """
             if len(varargs) > 2:
                 return "400 BAD PATH"
             list_of_clusters = communication_with_nebula.get_all_vertex(session, "ClusterName")
@@ -246,5 +247,16 @@ def find(varargs=None):
                 cluster.as_string()
                 answer += communication_with_nebula.find_destination_by_property(session, cluster, 'assignment',
                                                                                  'type', search_by, full_list=True)
-                return f'{str(answer)}'
-    return "200 OK"
+            return f'{answer}'
+        else:
+            return "501 Not Implemented"
+    else:
+        return "501 Not Implemented"
+
+
+@app.route('/download_yaml', methods=['GET'])
+def get_yaml_from_vertex():
+    vid = request.args.get('vid')
+    result = constructor_yaml.separated_vertex(vid)
+    return f'{result}'
+

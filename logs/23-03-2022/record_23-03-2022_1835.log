@@ -1,0 +1,18 @@
+2022-03-23 18:35:56,459 INFO werkzeug MainThread :  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2022-03-23 18:35:56,474 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-23 18:35:56,705 WARNING werkzeug MainThread :  * Debugger is active!
+2022-03-23 18:35:56,758 INFO werkzeug MainThread :  * Debugger PIN: 871-269-185
+2022-03-23 18:36:06,353 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-23 18:36:06,361 INFO werkzeug Thread-2 : 127.0.0.1 - - [23/Mar/2022 18:36:06] "GET /find/all/node?search_by=tosca.nodes.BlockStorage HTTP/1.1" 200 -
+2022-03-23 18:36:29,091 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/views.py', reloading
+2022-03-23 18:36:29,140 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-23 18:37:01,692 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-23 18:37:36,286 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-23 18:38:25,065 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-23 18:38:38,434 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-23 18:38:48,757 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-23 18:39:50,700 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-23 18:40:31,406 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-23 18:40:51,842 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-23 18:40:58,113 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-23 18:41:10,465 INFO werkzeug MainThread :  * Restarting with stat

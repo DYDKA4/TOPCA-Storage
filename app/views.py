@@ -235,6 +235,7 @@ def yaml_patch():
 def find(varargs=None):
     search_by = request.args.get('search_by')
     session = communication_with_nebula.chose_of_space()
+    varargs = varargs.split("/")
     if varargs[0] == 'all':
         if varargs[1] == 'node':
             if len(varargs) > 2:
@@ -243,7 +244,7 @@ def find(varargs=None):
             answer = []
             for cluster in list_of_clusters:
                 cluster.as_string()
-                answer += communication_with_nebula.find_destination_by_property(session, f'"{cluster}"', 'assignment',
-                                                                                 'type', search_by)
-                return f'{answer}'
+                answer += communication_with_nebula.find_destination_by_property(session, cluster, 'assignment',
+                                                                                 'type', search_by, full_list=True)
+                return f'{str(answer)}'
     return "200 OK"

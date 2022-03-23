@@ -1,0 +1,15 @@
+2022-03-23 20:05:07,597 WARNING werkzeug MainThread :  * Debugger is active!
+2022-03-23 20:05:07,598 INFO werkzeug MainThread :  * Debugger PIN: 871-269-185
+2022-03-23 20:05:08,858 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-23 20:05:08,928 INFO werkzeug Thread-2 : 127.0.0.1 - - [23/Mar/2022 20:05:08] "[35m[1mGET /find/all/node/properties/size?search_by=50%20GB HTTP/1.1[0m" 500 -
+2022-03-23 20:05:38,001 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/views.py', reloading
+2022-03-23 20:05:38,212 WARNING werkzeug MainThread :  * Debugger is active!
+2022-03-23 20:05:38,212 INFO werkzeug MainThread :  * Debugger PIN: 871-269-185
+2022-03-23 20:05:38,924 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-23 20:05:39,072 INFO werkzeug Thread-2 : 127.0.0.1 - - [23/Mar/2022 20:05:39] "[35m[1mGET /find/all/node/properties/size?search_by=50%20GB HTTP/1.1[0m" 500 -
+2022-03-23 20:05:50,374 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/views.py', reloading
+2022-03-23 20:05:50,564 WARNING werkzeug MainThread :  * Debugger is active!
+2022-03-23 20:05:50,564 INFO werkzeug MainThread :  * Debugger PIN: 871-269-185
+2022-03-23 20:05:51,759 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-23 20:05:51,924 INFO werkzeug Thread-2 : 127.0.0.1 - - [23/Mar/2022 20:05:51] "GET /find/all/node/properties/size?search_by=50%20GB HTTP/1.1" 200 -
+2022-03-23 20:06:14,885 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/views.py', reloading

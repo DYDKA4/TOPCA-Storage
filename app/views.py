@@ -237,17 +237,62 @@ def find(varargs=None):
     session = communication_with_nebula.chose_of_space()
     varargs = varargs.split("/")
     if varargs[0] == 'all':
+        list_of_clusters = communication_with_nebula.get_all_vertex(session, "ClusterName")
         if varargs[1] == 'node':
-            """ curl -X GET 'http://127.0.0.1:5000/find/all/node?search_by=tosca.nodes.BlockStorage' """
-            if len(varargs) > 2:
-                return "400 BAD PATH"
-            list_of_clusters = communication_with_nebula.get_all_vertex(session, "ClusterName")
             answer = []
-            for cluster in list_of_clusters:
-                cluster.as_string()
-                answer += communication_with_nebula.find_destination_by_property(session, cluster, 'assignment',
-                                                                                 'type', search_by, full_list=True)
-            return f'{answer}'
+            if varargs[2] == 'properties':
+                """
+                curl -X GET 'http://127.0.0.1:5000/find/all/node/properties/snapshot_id?search_by=%7B%27get_input%27:%20%27storage_snapshot_id%27%7D'
+                curl -X GET 'http://127.0.0.1:5000/find/all/node/properties/size?search_by=50%20GB'
+                """
+                for cluster in list_of_clusters:
+                    vertexes = communication_with_nebula.find_destination(session, cluster, 'assignment',
+                                                                          full_list=True)
+                    for vertex in vertexes:
+                        result = []
+                        list_of_properties_1 = communication_with_nebula. \
+                            find_destination_by_property(session, vertex, 'assignment_property', 'values', search_by,
+                                                         full_list=True)
+                        list_of_properties_2 = communication_with_nebula. \
+                            find_destination_by_property(session, vertex, 'assignment_property', 'value_name',
+                                                         varargs[3], full_list=True)
+                        result += list(set(list_of_properties_1, ).intersection(set(list_of_properties_2)))
+                        if result:
+                            answer += [vertex]
+                        print(list_of_properties_1, list_of_properties_2, answer)
+                return f'{answer}'
+            elif varargs[2] == 'type':
+                """ curl -X GET 'http://127.0.0.1:5000/find/all/node/type?search_by=tosca.nodes.BlockStorage' """
+                for cluster in list_of_clusters:
+                    answer += communication_with_nebula.find_destination_by_property(session, cluster, 'assignment',
+                                                                                     varargs[2], search_by,
+                                                                                     full_list=True)
+                    return f'{answer}'
+            elif varargs[2] == 'capabilities':
+                for cluster in list_of_clusters:
+                    vertexes = communication_with_nebula.find_destination(session, cluster, 'assignment',
+                                                                          full_list=True)
+                    for vertex in vertexes:
+                        list_of_capabilities = communication_with_nebula. \
+                            find_destination_by_property(session, vertex, 'assignment_capability', 'name', varargs[3],
+                                                         full_list=True)
+                        if varargs[4] == 'properties':
+                            for capabilities in list_of_capabilities:
+                                result = []
+                                list_of_properties_1 = communication_with_nebula. \
+                                    find_destination_by_property(session, capabilities, 'assignment_property',
+                                                                 'values', search_by, full_list=True)
+                                list_of_properties_2 = communication_with_nebula. \
+                                    find_destination_by_property(session, capabilities, 'assignment_property',
+                                                                 'value_name', varargs[5], full_list=True)
+                                result += list(set(list_of_properties_1, ).intersection(set(list_of_properties_2)))
+                                if result:
+                                    answer += [vertex]
+                        else:
+                            return "501 Not Implemented"
+                return f'{answer}'
+            else:
+                return "501"
         else:
             return "501 Not Implemented"
     else:
@@ -256,7 +301,10 @@ def find(varargs=None):
 
 @app.route('/download_yaml', methods=['GET'])
 def get_yaml_from_vertex():
+    """
+     curl -X GET 'http://127.0.0.1:5000/download_yaml?vid=AssignmentVertex3'
+    :return:
+    """
     vid = request.args.get('vid')
     result = constructor_yaml.separated_vertex(vid)
     return f'{result}'
-

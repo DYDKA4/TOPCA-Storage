@@ -1,0 +1,12 @@
+2022-03-23 19:42:47,642 WARNING werkzeug MainThread :  * Debugger is active!
+2022-03-23 19:42:47,642 INFO werkzeug MainThread :  * Debugger PIN: 871-269-185
+2022-03-23 19:42:50,083 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-23 19:42:50,103 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-23 19:42:50,113 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-23 19:42:50,126 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-23 19:42:50,137 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-23 19:42:50,149 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-23 19:42:50,204 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-23 19:42:50,216 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-23 19:42:50,267 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-23 19:42:50,277 INFO werkzeug Thread-2 : 127.0.0.1 - - [23/Mar/2022 19:42:50] "GET /download_yaml?vid=AssignmentVertex3 HTTP/1.1" 200 -

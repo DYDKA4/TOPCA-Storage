@@ -235,6 +235,7 @@ def yaml_patch():
 def find(varargs=None):
     search_by = request.args.get('search_by')
     cluster_name = request.args.get('cluster_name')
+    find_cluster_name = request.args.get('find_cluster_name')
     session = communication_with_nebula.chose_of_space()
     varargs = varargs.split("/")
     if varargs[0] == 'all':
@@ -259,16 +260,25 @@ def find(varargs=None):
                                                          varargs[3], full_list=True)
                         result += list(set(list_of_properties_1, ).intersection(set(list_of_properties_2)))
                         if result:
-                            answer += [vertex]
-                        print(list_of_properties_1, list_of_properties_2, answer)
+                            if find_cluster_name:
+                                answer += [cluster]
+                            else:
+                                answer += [vertex]
+                        print("ddd", list_of_properties_1, list_of_properties_2, answer, find_cluster_name)
                 return f'{answer}'
             elif varargs[2] == 'type':
                 """ curl -X GET 'http://127.0.0.1:5000/find/all/node/type?search_by=tosca.nodes.BlockStorage' """
                 for cluster in list_of_clusters:
-                    answer += communication_with_nebula.find_destination_by_property(session, cluster, 'assignment',
+                    result = []
+                    result += communication_with_nebula.find_destination_by_property(session, cluster, 'assignment',
                                                                                      varargs[2], search_by,
                                                                                      full_list=True)
-                    return f'{answer}'
+                    if result:
+                        if find_cluster_name:
+                            answer += [cluster]
+                        else:
+                            answer += result
+                return f'{answer}'
             elif varargs[2] == 'capabilities':
                 for cluster in list_of_clusters:
                     vertexes = communication_with_nebula.find_destination(session, cluster, 'assignment',
@@ -288,7 +298,10 @@ def find(varargs=None):
                                                                  'value_name', varargs[5], full_list=True)
                                 result += list(set(list_of_properties_1, ).intersection(set(list_of_properties_2)))
                                 if result:
-                                    answer += [vertex]
+                                    if find_cluster_name:
+                                        answer += [cluster]
+                                    else:
+                                        answer += [vertex]
                         else:
                             return "501 Not Implemented"
                 return f'{answer}'
@@ -340,7 +353,7 @@ def find(varargs=None):
                         list_of_properties_2 = communication_with_nebula. \
                             find_destination_by_property(session, capabilities, 'assignment_property',
                                                          'value_name', varargs[4], full_list=True)
-                        print(list_of_properties_1,list_of_properties_2)
+                        print(list_of_properties_1, list_of_properties_2)
                         result += list(set(list_of_properties_1, ).intersection(set(list_of_properties_2)))
                         if result:
                             answer += [vertex]

@@ -133,7 +133,6 @@ def find_destination_by_property(session, vid, edge_name, property_name, propert
               f'WHERE properties($$).{property_name} == "{property_value}"'
               f' YIELD properties($$).{property_name} as {property_name}, dst(edge) as vid')
     assert result.is_succeeded(), result.error_msg()
-    print(result.column_values('vid'))
     if full_list:
         return result.column_values('vid')
     if result.column_values('vid'):

@@ -1,0 +1,21 @@
+2022-03-25 17:57:09,220 INFO werkzeug MainThread :  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2022-03-25 17:57:09,222 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-25 17:57:09,390 WARNING werkzeug MainThread :  * Debugger is active!
+2022-03-25 17:57:09,390 INFO werkzeug MainThread :  * Debugger PIN: 138-929-055
+2022-03-25 17:57:14,892 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-25 17:57:14,909 INFO werkzeug Thread-2 : 127.0.0.1 - - [25/Mar/2022 17:57:14] "[35m[1mGET /find/node/properties/size?search_by=50%20GB&cluster_name=cluster_tosca_4 HTTP/1.1[0m" 500 -
+2022-03-25 17:57:56,050 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/views.py', reloading
+2022-03-25 17:57:56,076 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-25 17:57:56,242 WARNING werkzeug MainThread :  * Debugger is active!
+2022-03-25 17:57:56,243 INFO werkzeug MainThread :  * Debugger PIN: 138-929-055
+2022-03-25 17:57:56,255 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-25 17:57:56,281 INFO werkzeug Thread-2 : 127.0.0.1 - - [25/Mar/2022 17:57:56] "[35m[1mGET /find/node/properties/size?search_by=50%20GB&cluster_name=cluster_tosca_4 HTTP/1.1[0m" 500 -
+2022-03-25 17:58:04,362 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/views.py', reloading
+2022-03-25 17:58:04,404 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-25 18:04:14,485 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-25 18:04:53,202 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-25 18:05:25,868 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-25 18:05:59,514 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-25 18:06:32,126 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-25 18:09:23,572 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-25 18:11:10,273 INFO werkzeug MainThread :  * Restarting with stat

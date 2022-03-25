@@ -380,7 +380,15 @@ def yaml_deploy(cluster_vertex: data_classes.ClusterName, method_put=False):
     for relationship_template in cluster_vertex.relationship_templates:
         for type_relationship in relationship_template.type_relationship:
             add_edge(session, 'type_relationship', '', relationship_template.vid, type_relationship.vid, '')
-
+    # добавление outputs
+    for output in cluster_vertex.outputs:
+        output.set_vid(session)
+        if output.description:
+            add_in_vertex(session,output.vertex_type_system, 'description, values',
+                          f'"{output.description}", "{output.value}"', output.vid)
+        else:
+            add_in_vertex(session, output.vertex_type_system, 'values',
+                          f'"{output.value}"', output.vid)
     # доавление связей между cluster_vertex и всеми вершинами
     if not method_put:
         add_in_vertex(session, cluster_vertex.vertex_type_system, 'pure_yaml',
@@ -397,6 +405,8 @@ def yaml_deploy(cluster_vertex: data_classes.ClusterName, method_put=False):
         add_edge(session, 'definition', '', cluster_vertex.vid, interfaces_vertex.vid, '')
     for relationship_template in cluster_vertex.relationship_templates:
         add_edge(session, 'assignment', '', cluster_vertex.vid, relationship_template.vid, '')
+    for output in cluster_vertex.outputs:
+        add_edge(session, 'assignment', '', cluster_vertex.vid, output.vid, '')
     # session.release()
     return '200 OK'
 

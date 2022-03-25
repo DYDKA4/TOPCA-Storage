@@ -208,12 +208,22 @@ def parser(data, cluster_name):
             src = find_vertex(name, relationship_templates)
             destination = find_vertex(val.get('type'), relationship_vertex, search_by_type=True)
             src.add_type_relationship(destination)
+    outputs = []
+    output_data = data.get('topology_template')
+    for name, val in output_data.get('outputs').items():
+        output = data_classes.Outputs(name)
+        if val.get('value'):
+            output.set_value(val.get('value'))
+        if val.get('description'):
+            output.set_description(val.get('description'))
+        outputs.append(output)
     # P.S скорее всего можно либо сделать методы в data_classes либо придумать функции для уменьшения частичного повторения кода
     vertex_cluster = data_classes.ClusterName(cluster_name, data, definition_vertex,
                                               assignments_vertex, capabilities_vertex,
                                               interfaces_vertex, relationship_vertex,
-                                              relationship_templates)
+                                              relationship_templates, outputs)
     for i in vertex_cluster.definition_vertex:
         for j in i.capabilities.values():
             print(j)
+    print(outputs)
     return vertex_cluster

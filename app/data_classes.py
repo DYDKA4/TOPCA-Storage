@@ -48,7 +48,7 @@ class AssignmentVertex(Vertex):
 
 class ClusterName(Vertex):
     def __init__(self, name, pure_yaml, list_of_definition_vertex, list_of_assignment_vertex, definition_capabilities,
-                 interfaces_vertex, relationship_type, relationship_templates):
+                 interfaces_vertex, relationship_type, relationship_templates, outputs):
         super().__init__(name, 'ClusterName')
         self.vid = '"' + name + '"'
         self.vertex_type_system = 'ClusterName'
@@ -59,6 +59,7 @@ class ClusterName(Vertex):
         self.interfaces_vertex = interfaces_vertex
         self.relationship_type = relationship_type
         self.relationship_templates = relationship_templates
+        self.outputs = outputs
 
     def __str__(self):
         return f'{self.vid}, {self.vertex_type_tosca}, {self.vertex_type_system}, {self.name}, ' \
@@ -193,3 +194,16 @@ class NodeFilter(Vertex):
         super().__init__('noname', vertex_type_tosca='none')
         self.vertex_type_system = 'NodeFilter'
 
+
+class Outputs(Vertex):
+    def __init__(self, name):
+        super().__init__(name, vertex_type_tosca='output')
+        self.vertex_type_system = 'output'
+        self.description = None
+        self.value = None
+
+    def set_value(self, value):
+        self.value = value
+
+    def set_description(self, description):
+        self.description = description

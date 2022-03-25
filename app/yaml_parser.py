@@ -217,11 +217,20 @@ def parser(data, cluster_name):
         if val.get('description'):
             output.set_description(val.get('description'))
         outputs.append(output)
+    inputs_list = []
+    for name, val in output_data.get('inputs').items():
+        inputs = data_classes.Inputs(name)
+        for name_value, value in val.items():
+            properties = data_classes.AssignmentProperties(name_value, str(value).replace('\n', ' '))
+            inputs.add_properties(properties)
+        inputs_list.append(inputs)
+
+
     # P.S скорее всего можно либо сделать методы в data_classes либо придумать функции для уменьшения частичного повторения кода
     vertex_cluster = data_classes.ClusterName(cluster_name, data, definition_vertex,
                                               assignments_vertex, capabilities_vertex,
                                               interfaces_vertex, relationship_vertex,
-                                              relationship_templates, outputs)
+                                              relationship_templates, outputs, inputs_list)
     for i in vertex_cluster.definition_vertex:
         for j in i.capabilities.values():
             print(j)

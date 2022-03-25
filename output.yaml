@@ -328,9 +328,6 @@ node_types:
         - 0
         - UNBOUNDED
         relationship: tosca.relationships.DependsOn
-      node_filter:
-        properties:
-        - size: 1 GB
   tosca.nodes.SoftwareComponent:
     derived_from: tosca.nodes.Root
     properties:
@@ -423,6 +420,27 @@ relationship_types:
     valid_target_types:
     - tosca.capabilities.network.Linkable
 topology_template:
+  inputs:
+    cpus:
+      constraints:
+      - valid_values:
+        - 1
+        - 2
+        - 4
+        - 8
+      description: Number of CPUs for the server.
+      type: integer
+    storage_location:
+      description: ' Block storage mount point (filesystem path). '
+      type: string
+    storage_size:
+      default: 1 GB
+      description: Size of the storage to be created.
+      type: scalar-unit.size
+    storage_snapshot_id:
+      description: ' Optional identifier for an existing snapshot to use when creating
+        storage. '
+      type: string
   node_templates:
     my_storage:
       properties:
@@ -466,11 +484,28 @@ topology_template:
             version: 18.0
       requirements:
       - local_storage:
+          node: my_storage
           relationship: storage_attachesto_2
-        node_filter:
-          properties:
-          - size: 1 GB
       type: tosca.nodes.Compute
+  outputs:
+    private_ip_1:
+      description: "The private IP address of the application\u2019s first tier."
+      value:
+        get_attribute:
+        - my_web_app_tier_1
+        - private_address
+    private_ip_2:
+      description: "The private IP address of the application\u2019s second tier."
+      value:
+        get_attribute:
+        - my_web_app_tier_2
+        - private_address
+    volume_id:
+      description: The volume id of the block storage instance.
+      value:
+        get_attribute:
+        - my_storage
+        - volume_id
   relationship_templates:
     storage_attachesto_1:
       properties:

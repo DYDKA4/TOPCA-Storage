@@ -317,6 +317,42 @@ def form_definition_relationship_type(vid):
     return relationship_type_definition
 
 
+def form_output_template(vid):
+    output_value = cwn.fetch_vertex(None, f'"{vid}"', 'output',
+                                    'values', start_session=True)
+    output_description = cwn.fetch_vertex(None, f'"{vid}"', 'output',
+                                          'description', start_session=True)
+    output_name = cwn.fetch_vertex(None, f'"{vid}"', 'output',
+                                   'name', start_session=True)
+    if output_value:
+        try:
+            output_value = ast.literal_eval(output_value)
+
+        except ValueError:
+            pass
+        except SyntaxError:
+            pass
+    output_template = {output_name: {'value': output_value}}
+
+    if output_description:
+        deep_update_dict(output_template[output_name], {'description': output_description})
+    return output_template
+
+
+def form_inputs_template(vid):
+    inputs_name = cwn.fetch_vertex(None, f'"{vid}"', 'inputs',
+                                   'name', start_session=True)
+    properties_list = cwn.find_destination(None, f'"{vid}"',
+                                           'assignment_property', start_session=True, full_list=True)
+    properties = form_properties(properties_list)
+    inputs_template = {}
+    if properties:
+        properties = properties.get('properties')
+        inputs_template = {inputs_name: properties}
+
+    return inputs_template
+
+
 def get_yaml(cluster_name):
     """
     Обработка defention части
@@ -326,6 +362,8 @@ def get_yaml(cluster_name):
     nodes_template_definition = {}
     capabilities_definition = {}
     relationship_templates = {}
+    output_templates = {}
+    inputs_templates = {}
     interfaces_definition = {}
     relationship_type_definition = {}
     assignment = cwn.find_destination(None, f'"{cluster_name}"', 'assignment', start_session=True, full_list=True)
@@ -338,6 +376,12 @@ def get_yaml(cluster_name):
         elif 'RelationshipTemplate' in vid:
             relationship_template = form_relationship_template(vid)
             deep_update_dict(relationship_templates, relationship_template)
+        elif 'output' in vid:
+            output = form_output_template(vid)
+            deep_update_dict(output_templates, output)
+        elif 'inputs' in vid:
+            inputs = form_inputs_template(vid)
+            deep_update_dict(inputs_templates, inputs)
         else:
             return None
     definition = cwn.find_destination(None, f'"{cluster_name}"', 'definition', start_session=True, full_list=True)
@@ -358,7 +402,12 @@ def get_yaml(cluster_name):
     if relationship_templates:
         relationship_templates = {'relationship_templates': relationship_templates}
         deep_update_dict(nodes_template_assignment, relationship_templates)
-
+    if output_templates:
+        output_templates = {'outputs': output_templates}
+        deep_update_dict(nodes_template_assignment, output_templates)
+    if inputs_templates:
+        inputs_templates = {'inputs': inputs_templates}
+        deep_update_dict(nodes_template_assignment, inputs_templates)
     template = nodes_template_definition
     if relationship_type_definition:
         deep_update_dict(template, {'relationship_types': relationship_type_definition})
@@ -387,6 +436,8 @@ def separated_vertex(vid):
         template = form_definition_interface(vid)
     elif 'RelationshipType' in vid:
         template = form_definition_relationship_type(vid)
+    elif 'output' in vid:
+        template = form_output_template(vid)
     else:
         pass
     return template

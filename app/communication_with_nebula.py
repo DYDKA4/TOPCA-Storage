@@ -384,11 +384,21 @@ def yaml_deploy(cluster_vertex: data_classes.ClusterName, method_put=False):
     for output in cluster_vertex.outputs:
         output.set_vid(session)
         if output.description:
-            add_in_vertex(session,output.vertex_type_system, 'description, values',
-                          f'"{output.description}", "{output.value}"', output.vid)
+            add_in_vertex(session, output.vertex_type_system, 'name, description, values',
+                          f'"{output.name}", "{output.description}", "{output.value}"', output.vid)
         else:
-            add_in_vertex(session, output.vertex_type_system, 'values',
-                          f'"{output.value}"', output.vid)
+            add_in_vertex(session, output.vertex_type_system, 'name, values',
+                          f'"{output.name}", "{output.value}"', output.vid)
+    # добавление inputs
+    for inputs in cluster_vertex.inputs:
+        inputs.set_vid(session)
+        add_in_vertex(session, inputs.vertex_type_system, 'name',
+                      f'"{inputs.name}"', inputs.vid)
+        for properties in inputs.properties:
+            properties.set_vid(session)
+            add_in_vertex(session, properties.vertex_type_system, 'value, value_name',
+                          f'"{properties.value}", "{properties.value_name}"', properties.vid)
+            add_edge(session, "assignment_property", '', inputs.vid, properties.vid, '')
     # доавление связей между cluster_vertex и всеми вершинами
     if not method_put:
         add_in_vertex(session, cluster_vertex.vertex_type_system, 'pure_yaml',
@@ -407,6 +417,8 @@ def yaml_deploy(cluster_vertex: data_classes.ClusterName, method_put=False):
         add_edge(session, 'assignment', '', cluster_vertex.vid, relationship_template.vid, '')
     for output in cluster_vertex.outputs:
         add_edge(session, 'assignment', '', cluster_vertex.vid, output.vid, '')
+    for inputs in cluster_vertex.inputs:
+        add_edge(session, 'assignment', '', cluster_vertex.vid, inputs.vid, '')
     # session.release()
     return '200 OK'
 

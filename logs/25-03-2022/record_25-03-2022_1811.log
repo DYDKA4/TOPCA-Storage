@@ -11,3 +11,4 @@
 2022-03-25 18:12:50,790 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/views.py', reloading
 2022-03-25 18:12:50,825 INFO werkzeug MainThread :  * Restarting with stat
 2022-03-25 18:14:01,088 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-25 18:20:45,049 INFO werkzeug MainThread :  * Restarting with stat

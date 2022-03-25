@@ -10,6 +10,7 @@ class Vertex:
         self.requirements = []
         self.capabilities = []
         self.properties = []
+        self.attributes = []
 
     def generate_vid(self):
         if self.vertex_type_system is None:
@@ -35,6 +36,9 @@ class Vertex:
 
     def add_capabilities(self, obj):
         self.capabilities.append(obj)
+
+    def add_attributes(self, obj):
+        self.attributes.append(obj)
 
     def __repr__(self):
         return repr(vars(self))
@@ -214,3 +218,11 @@ class Inputs(Vertex):
     def __init__(self, name):
         super().__init__(name, vertex_type_tosca='input')
         self.vertex_type_system = 'inputs'
+
+
+class DefinitionAttributes(Vertex):
+    def __init__(self, name, value_name, value):
+        super().__init__(name, vertex_type_tosca='DefinitionAttributes')
+        self.vertex_type_system = 'DefinitionAttributes'
+        self.value_name = value_name
+        self.value = value

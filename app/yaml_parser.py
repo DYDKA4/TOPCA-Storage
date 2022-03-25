@@ -23,7 +23,6 @@ def find_vertex(name, list_of_vertex, search_by_type=False):
 def find_property(val, vertex):
     if val.get('properties'):
         for name_value, value in val.get('properties').items():
-            print(name_value, value)
             for properties_name, properties_value in value.items():
                 vertex_properties = data_classes.DefinitionProperties(name_value, properties_name,
                                                                       str(properties_value).replace('\n', ' '))
@@ -89,7 +88,6 @@ def parser(data, cluster_name):
             if type(value.get('requirements')) is list:
                 for requirement in value.get('requirements'):
                     for requirement_name, link in requirement.items():
-                        print(requirement_name, link)
                         source = find_vertex(name, assignments_vertex)
                         if link.get('node'):
                             dest = find_vertex(link['node'], assignments_vertex)
@@ -134,6 +132,13 @@ def parser(data, cluster_name):
 
     # формирование связей между definition_vertex и другими
     for name, val in data.get('node_types').items():
+        if val.get('attributes'):
+            for key, attributes in val.get('attributes').items():
+                for value_name, value in attributes.items():
+                    attributes_vertex = data_classes.DefinitionAttributes(key, value_name, value)
+                    source = find_vertex(name, definition_vertex, search_by_type=True)
+                    source.add_attributes(attributes_vertex)
+                    print(attributes_vertex)
         if val.get('capabilities'):
             for key, capabilities in val.get('capabilities').items():
                 source: data_classes.DefinitionVertex
@@ -158,7 +163,6 @@ def parser(data, cluster_name):
                                                                            destination=dest)
                         else:
                             requirement_vertex = data_classes.Requirements(requirement_name, source)
-                        print(link)
                         if link.get('node_filter'):
                             node_filter_data = link.get('node_filter')
                             node_filter = data_classes.NodeFilter()
@@ -231,8 +235,5 @@ def parser(data, cluster_name):
                                               assignments_vertex, capabilities_vertex,
                                               interfaces_vertex, relationship_vertex,
                                               relationship_templates, outputs, inputs_list)
-    for i in vertex_cluster.definition_vertex:
-        for j in i.capabilities.values():
-            print(j)
-    print(outputs)
+
     return vertex_cluster

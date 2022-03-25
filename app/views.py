@@ -26,10 +26,10 @@ def yaml_add(varargs=None):
             cluster_vertex = yaml_parser.parser(file, cluster_name)
             cluster_vertex.pure_yaml = pure_yaml
             end_code = '400'
-            if request.method == 'POST':
-                end_code = communication_with_nebula.yaml_deploy(cluster_vertex)
-            else:
-                end_code = communication_with_nebula.yaml_deploy(cluster_vertex, method_put=True)
+            # if request.method == 'POST':
+            #     end_code = communication_with_nebula.yaml_deploy(cluster_vertex)
+            # else:
+            #     end_code = communication_with_nebula.yaml_deploy(cluster_vertex, method_put=True)
             print()
             return f'{end_code}'
     if request.method == 'PATCH':

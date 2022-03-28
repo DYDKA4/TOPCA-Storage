@@ -32,3 +32,4 @@
 2022-03-28 16:15:24,810 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/find.py', reloading
 2022-03-28 16:15:24,843 INFO werkzeug MainThread :  * Restarting with stat
 2022-03-28 16:15:56,452 INFO werkzeug MainThread :  * Restarting with stat
+2022-03-28 16:54:59,855 INFO werkzeug MainThread :  * Restarting with stat

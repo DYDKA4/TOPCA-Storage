@@ -132,6 +132,8 @@ def find_node(varargs, search_by, cluster_name, find_cluster_name, requirement_n
         else:
             return '501 Not Implemented'
     elif varargs[0] == 'destination_node':
+        """ curl -X GET 'http://127.0.0.1:5000/find/destination_node?cluster_name=cluster_tosca_4&requirement_name=local_storage'
+        """
         if cluster_name is None:
             return "400 Bad Request cluster name is None"
         if requirement_name is None:

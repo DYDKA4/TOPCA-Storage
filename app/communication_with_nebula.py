@@ -4,6 +4,7 @@ from typing import List, Any
 from nebula2.gclient.net import ConnectionPool
 from nebula2.Config import Config
 import config
+import logging
 from app import data_classes
 
 Config = Config()
@@ -59,6 +60,9 @@ def add_in_vertex(session, vertex_name, name_of_key_value, key_value, vid):
     # add into vertex value
     result = session.execute(f'INSERT VERTEX {vertex_name} ({name_of_key_value}) VALUES {vid}'
                              f':({key_value});')
+
+    logging.info(f'INSERT VERTEX {vertex_name} ({name_of_key_value}) VALUES {vid}'
+                 f':({key_value});')
     print(f'INSERT VERTEX {vertex_name} ({name_of_key_value}) VALUES {vid}'
           f':({key_value});')
     assert result.is_succeeded(), result.error_msg()
@@ -68,6 +72,8 @@ def add_in_vertex(session, vertex_name, name_of_key_value, key_value, vid):
 def add_edge(session, edge_name, edge_params, source_vertex, destination_vertex, data):
     result = session.execute(f'INSERT EDGE {edge_name}({edge_params})'
                              f' VALUE {source_vertex}->{destination_vertex}:({data})')
+    logging.info(f'INSERT EDGE {edge_name}({edge_params})'
+                 f' VALUE {source_vertex}->{destination_vertex}:({data})')
     print(f'INSERT EDGE {edge_name}({edge_params})'
           f' VALUE {source_vertex}->{destination_vertex}:({data})')
     assert result.is_succeeded(), result.error_msg()
@@ -78,6 +84,9 @@ def delete_all_edge(session, vertex, edge_name):
     result = session.execute(f'GO FROM {vertex} OVER {edge_name}\n'
                              f'YIELD src(edge) AS src, dst(edge) AS dst, rank(edge) AS rank'
                              f' | DELETE EDGE {edge_name} $-.src->$-.dst @ $-.rank;')
+    logging.info(f'GO FROM {vertex} OVER {edge_name}\n'
+                 f'YIELD src(edge) AS src, dst(edge) AS dst, rank(edge) AS rank'
+                 f' | DELETE EDGE {edge_name} $-.src->$-.dst @ $-.rank;')
     print(f'GO FROM {vertex} OVER {edge_name}\n'
           f'YIELD src(edge) AS src, dst(edge) AS dst, rank(edge) AS rank'
           f' | DELETE EDGE {edge_name} $-.src->$-.dst @ $-.rank;')
@@ -90,6 +99,7 @@ def update_vertex(session, vertex_name, name_of_key_value, key_value, vid, start
         session = chose_of_space()
     update = 'UPDATE'
     result = session.execute(f'{update} VERTEX ON {vertex_name} {vid} set {name_of_key_value} = {key_value}')
+    logging.info(f'{update} VERTEX ON {vertex_name} {vid} set {name_of_key_value} = {key_value}')
     print(f'{update} VERTEX ON {vertex_name} {vid} set {name_of_key_value} = {key_value}')
     assert result.is_succeeded(), result.error_msg()
     if start_session:
@@ -101,6 +111,8 @@ def get_yaml_from_cluster(cluster_name):
     session = chose_of_space()
     result = session.execute(f'FETCH PROP ON ClusterName "{cluster_name}"'
                              f' YIELD properties(vertex).pure_yaml AS pure_yaml;')
+    logging.info(f'FETCH PROP ON ClusterName "{cluster_name}"'
+                 f' YIELD properties(vertex).pure_yaml AS pure_yaml;')
     print(f'FETCH PROP ON ClusterName "{cluster_name}"'
           f' YIELD properties(vertex).pure_yaml AS pure_yaml;')
     assert result.is_succeeded(), result.error_msg()
@@ -121,6 +133,10 @@ def find_destination_by_property(session, vid, edge_name, property_name, propert
                                  f'WHERE properties($$).{property_name} == "{property_value}"'
                                  f'AND properties(edge).{edge_property_name} == "{edge_property_value}"'
                                  f'YIELD properties($$).{property_name} as {property_name}, dst(edge) as vid')
+        logging.info(f'GO FROM {vid} over {edge_name} '
+                     f'WHERE properties($$).{property_name} == "{property_value}'
+                     f'AND properties(edge).{edge_property_name} == "{edge_property_value}"'
+                     f'YIELD properties($$).{property_name} as {property_name}, dst(edge) as vid')
         print(f'GO FROM {vid} over {edge_name} '
               f'WHERE properties($$).{property_name} == "{property_value}'
               f'AND properties(edge).{edge_property_name} == "{edge_property_value}"'
@@ -129,6 +145,9 @@ def find_destination_by_property(session, vid, edge_name, property_name, propert
         result = session.execute(f'GO FROM {vid} over {edge_name} '
                                  f'WHERE properties($$).{property_name} == "{property_value}"'
                                  f' YIELD properties($$).{property_name} as {property_name}, dst(edge) as vid')
+        logging.info(f'GO FROM {vid} over {edge_name} '
+                     f'WHERE properties($$).{property_name} == "{property_value}"'
+                     f' YIELD properties($$).{property_name} as {property_name}, dst(edge) as vid')
         print(f'GO FROM {vid} over {edge_name} '
               f'WHERE properties($$).{property_name} == "{property_value}"'
               f' YIELD properties($$).{property_name} as {property_name}, dst(edge) as vid')
@@ -146,15 +165,14 @@ def find_destination(session, vid, edge_name, start_session=False, full_list=Fal
     if start_session:
         session = chose_of_space()
     result = session.execute(f'GO FROM {vid} over {edge_name} YIELD dst(edge) as vid')
+    logging.info(f'GO FROM {vid} over {edge_name} YIELD dst(edge) as vid')
     print(f'GO FROM {vid} over {edge_name} YIELD dst(edge) as vid')
     assert result.is_succeeded(), result.error_msg()
     if start_session:
         session.release()
     if full_list:
-        print('this')
         return result.column_values('vid')
     if result.column_values('vid'):
-        print('that')
         result = result.column_values('vid')[0].as_string()
         return result
     return None
@@ -164,6 +182,7 @@ def fetch_vertex(session, vid, vertex_name, properties, start_session=False):
     if start_session:
         session = chose_of_space()
     result = session.execute(f'FETCH PROP ON {vertex_name} {vid} YIELD properties(vertex).{properties} as {properties}')
+    logging.info(f'FETCH PROP ON {vertex_name} {vid} YIELD properties(vertex).{properties} as {properties}')
     print(f'FETCH PROP ON {vertex_name} {vid} YIELD properties(vertex).{properties} as {properties}')
     assert result.is_succeeded(), result.error_msg()
     if start_session:
@@ -179,6 +198,8 @@ def fetch_edge(session, source_vid, destination_vid, edge_name, properties, star
         session = chose_of_space()
     result = session.execute(f'FETCH PROP ON {edge_name} {source_vid} -> {destination_vid} '
                              f'YIELD properties(edge).{properties} as {properties};')
+    logging.info('FETCH PROP ON {edge_name} {source_vid} -> {destination_vid} '
+                 f'YIELD properties(edge).{properties} as {properties};')
     print(f'FETCH PROP ON {edge_name} {source_vid} -> {destination_vid} '
           f'YIELD properties(edge).{properties} as {properties};')
     assert result.is_succeeded(), result.error_msg()
@@ -204,7 +225,6 @@ def yaml_deploy(cluster_vertex: data_classes.ClusterName, method_put=False):
                           '"' + str(cluster_vertex.pure_yaml) + '"', cluster_vertex.vid)
     elif not (is_unique_vid(session, cluster_vertex.vertex_type_system, cluster_vertex.vid)):
         return '400 Cluster VID is not unique'
-    print(type(cluster_vertex.pure_yaml))
     assignment_vertex: data_classes.AssignmentVertex
     for relationship_template in cluster_vertex.relationship_templates:
         relationship_template.set_vid(session)

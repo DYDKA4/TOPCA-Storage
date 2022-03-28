@@ -1,0 +1,12 @@
+2022-03-28 15:41:09,371 WARNING werkzeug MainThread :  * Debugger is active!
+2022-03-28 15:41:09,372 INFO werkzeug MainThread :  * Debugger PIN: 460-723-190
+2022-03-28 15:41:12,807 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-28 15:41:12,819 INFO root Thread-2 : GO FROM "cluster_tosca_4" over definition YIELD dst(edge) as vid
+2022-03-28 15:41:12,820 INFO werkzeug Thread-2 : 127.0.0.1 - - [28/Mar/2022 15:41:12] "GET /find/destination_node?cluster_name=cluster_tosca_4&node_vid=AssignmentVertex37 HTTP/1.1" 200 -
+2022-03-28 15:41:36,738 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/find.py', reloading
+2022-03-28 15:41:36,926 WARNING werkzeug MainThread :  * Debugger is active!
+2022-03-28 15:41:36,926 INFO werkzeug MainThread :  * Debugger PIN: 460-723-190
+2022-03-28 15:41:39,198 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-28 15:41:39,211 INFO root Thread-2 : GO FROM "cluster_tosca_4" over definition YIELD dst(edge) as vid
+2022-03-28 15:41:39,212 INFO werkzeug Thread-2 : 127.0.0.1 - - [28/Mar/2022 15:41:39] "GET /find/destination_node?cluster_name=cluster_tosca_4&node_vid=AssignmentVertex37 HTTP/1.1" 200 -
+2022-03-28 15:42:17,462 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/find.py', reloading

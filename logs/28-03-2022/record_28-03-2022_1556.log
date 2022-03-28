@@ -1,0 +1,57 @@
+2022-03-28 15:56:13,380 WARNING werkzeug MainThread :  * Debugger is active!
+2022-03-28 15:56:13,380 INFO werkzeug MainThread :  * Debugger PIN: 460-723-190
+2022-03-28 15:56:14,557 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-28 15:56:14,568 INFO root Thread-2 : GO FROM "cluster_tosca_4" over assignment YIELD dst(edge) as vid
+2022-03-28 15:56:14,571 INFO root Thread-2 : GO FROM "AssignmentVertex37" over requirements YIELD dst(edge) as vid
+2022-03-28 15:56:14,573 INFO root Thread-2 : GO FROM "AssignmentVertex38" over requirements YIELD dst(edge) as vid
+2022-03-28 15:56:14,576 INFO root Thread-2 : GO FROM "AssignmentVertex39" over requirements YIELD dst(edge) as vid
+2022-03-28 15:56:14,579 INFO root Thread-2 : GO FROM "RelationshipTemplate25" over requirements YIELD dst(edge) as vid
+2022-03-28 15:56:14,582 INFO root Thread-2 : GO FROM "RelationshipTemplate26" over requirements YIELD dst(edge) as vid
+2022-03-28 15:56:14,585 INFO root Thread-2 : GO FROM "inputs6" over requirements YIELD dst(edge) as vid
+2022-03-28 15:56:14,588 INFO root Thread-2 : GO FROM "inputs7" over requirements YIELD dst(edge) as vid
+2022-03-28 15:56:14,591 INFO root Thread-2 : GO FROM "inputs8" over requirements YIELD dst(edge) as vid
+2022-03-28 15:56:14,593 INFO root Thread-2 : GO FROM "inputs9" over requirements YIELD dst(edge) as vid
+2022-03-28 15:56:14,596 INFO root Thread-2 : GO FROM "output28" over requirements YIELD dst(edge) as vid
+2022-03-28 15:56:14,599 INFO root Thread-2 : GO FROM "output29" over requirements YIELD dst(edge) as vid
+2022-03-28 15:56:14,602 INFO root Thread-2 : GO FROM "output30" over requirements YIELD dst(edge) as vid
+2022-03-28 15:56:14,603 INFO werkzeug Thread-2 : 127.0.0.1 - - [28/Mar/2022 15:56:14] "GET /find/destination_node?cluster_name=cluster_tosca_4&requirement_name=local_storage HTTP/1.1" 200 -
+2022-03-28 15:56:23,511 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/find.py', reloading
+2022-03-28 15:56:23,713 WARNING werkzeug MainThread :  * Debugger is active!
+2022-03-28 15:56:23,713 INFO werkzeug MainThread :  * Debugger PIN: 460-723-190
+2022-03-28 15:56:25,149 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-03-28 15:56:25,161 INFO root Thread-2 : GO FROM "cluster_tosca_4" over definition YIELD dst(edge) as vid
+2022-03-28 15:56:25,164 INFO root Thread-2 : GO FROM "DefinitionCapabilities145" over requirements YIELD dst(edge) as vid
+2022-03-28 15:56:25,167 INFO root Thread-2 : GO FROM "DefinitionCapabilities146" over requirements YIELD dst(edge) as vid
+2022-03-28 15:56:25,170 INFO root Thread-2 : GO FROM "DefinitionCapabilities147" over requirements YIELD dst(edge) as vid
+2022-03-28 15:56:25,173 INFO root Thread-2 : GO FROM "DefinitionCapabilities148" over requirements YIELD dst(edge) as vid
+2022-03-28 15:56:25,176 INFO root Thread-2 : GO FROM "DefinitionCapabilities149" over requirements YIELD dst(edge) as vid
+2022-03-28 15:56:25,179 INFO root Thread-2 : GO FROM "DefinitionCapabilities150" over requirements YIELD dst(edge) as vid
+2022-03-28 15:56:25,182 INFO root Thread-2 : GO FROM "DefinitionCapabilities151" over requirements YIELD dst(edge) as vid
+2022-03-28 15:56:25,185 INFO root Thread-2 : GO FROM "DefinitionCapabilities152" over requirements YIELD dst(edge) as vid
+2022-03-28 15:56:25,188 INFO root Thread-2 : GO FROM "DefinitionCapabilities153" over requirements YIELD dst(edge) as vid
+2022-03-28 15:56:25,191 INFO root Thread-2 : GO FROM "DefinitionCapabilities154" over requirements YIELD dst(edge) as vid
+2022-03-28 15:56:25,194 INFO root Thread-2 : GO FROM "DefinitionCapabilities155" over requirements YIELD dst(edge) as vid
+2022-03-28 15:56:25,197 INFO root Thread-2 : GO FROM "DefinitionCapabilities156" over requirements YIELD dst(edge) as vid
+2022-03-28 15:56:25,200 INFO root Thread-2 : GO FROM "DefinitionInterface49" over requirements YIELD dst(edge) as vid
+2022-03-28 15:56:25,204 INFO root Thread-2 : GO FROM "DefinitionInterface50" over requirements YIELD dst(edge) as vid
+2022-03-28 15:56:25,207 INFO root Thread-2 : GO FROM "DefinitionInterface51" over requirements YIELD dst(edge) as vid
+2022-03-28 15:56:25,210 INFO root Thread-2 : GO FROM "DefinitionInterface52" over requirements YIELD dst(edge) as vid
+2022-03-28 15:56:25,214 INFO root Thread-2 : GO FROM "DefinitionVertex100" over requirements YIELD dst(edge) as vid
+2022-03-28 15:56:25,217 INFO root Thread-2 : GO FROM "DefinitionVertex101" over requirements YIELD dst(edge) as vid
+2022-03-28 15:56:25,220 INFO root Thread-2 : GO FROM "DefinitionVertex102" over requirements YIELD dst(edge) as vid
+2022-03-28 15:56:25,224 INFO root Thread-2 : GO FROM "DefinitionVertex103" over requirements YIELD dst(edge) as vid
+2022-03-28 15:56:25,228 INFO root Thread-2 : GO FROM "DefinitionVertex104" over requirements YIELD dst(edge) as vid
+2022-03-28 15:56:25,231 INFO root Thread-2 : GO FROM "DefinitionVertex97" over requirements YIELD dst(edge) as vid
+2022-03-28 15:56:25,235 INFO root Thread-2 : GO FROM "DefinitionVertex98" over requirements YIELD dst(edge) as vid
+2022-03-28 15:56:25,238 INFO root Thread-2 : GO FROM "DefinitionVertex99" over requirements YIELD dst(edge) as vid
+2022-03-28 15:56:25,241 INFO root Thread-2 : GO FROM "RelationshipType109" over requirements YIELD dst(edge) as vid
+2022-03-28 15:56:25,245 INFO root Thread-2 : GO FROM "RelationshipType110" over requirements YIELD dst(edge) as vid
+2022-03-28 15:56:25,248 INFO root Thread-2 : GO FROM "RelationshipType111" over requirements YIELD dst(edge) as vid
+2022-03-28 15:56:25,252 INFO root Thread-2 : GO FROM "RelationshipType112" over requirements YIELD dst(edge) as vid
+2022-03-28 15:56:25,255 INFO root Thread-2 : GO FROM "RelationshipType113" over requirements YIELD dst(edge) as vid
+2022-03-28 15:56:25,259 INFO root Thread-2 : GO FROM "RelationshipType114" over requirements YIELD dst(edge) as vid
+2022-03-28 15:56:25,262 INFO root Thread-2 : GO FROM "RelationshipType115" over requirements YIELD dst(edge) as vid
+2022-03-28 15:56:25,266 INFO root Thread-2 : GO FROM "RelationshipType116" over requirements YIELD dst(edge) as vid
+2022-03-28 15:56:25,269 INFO root Thread-2 : GO FROM "RelationshipType117" over requirements YIELD dst(edge) as vid
+2022-03-28 15:56:25,271 INFO werkzeug Thread-2 : 127.0.0.1 - - [28/Mar/2022 15:56:25] "GET /find/destination_node?cluster_name=cluster_tosca_4&requirement_name=local_storage HTTP/1.1" 200 -
+2022-03-28 15:57:02,186 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/find.py', reloading

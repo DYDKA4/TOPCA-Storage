@@ -21,6 +21,7 @@
 #   copy: <source_node_template_name>
 from werkzeug.exceptions import abort
 
+from app.parser.tosca_v_1_3.AttributeAssignment import attribute_assignments_parser, AttributeAssignment
 from app.parser.tosca_v_1_3.DescriptionDefinition import description_parser
 from app.parser.tosca_v_1_3.Metadata import Metadata
 from app.parser.tosca_v_1_3.PropertyAssignment import PropertyAssignment
@@ -53,8 +54,8 @@ class NodeTemplate:
     def add_property(self, property: PropertyAssignment):
         self.properties.append(property)
 
-    # def add_attributes(self, attribute:):
-    #     self.attributes.append(attribute)
+    def add_attributes(self, attribute: AttributeAssignment):
+        self.attributes.append(attribute)
 
 
 def node_template_parser(name: str, data: dict) -> NodeTemplate:
@@ -74,5 +75,16 @@ def node_template_parser(name: str, data: dict) -> NodeTemplate:
     if data.get('properties'):
         for property_name, property_value in data.get('properties').items():
             node_template.add_property(PropertyAssignment(property_name, str(property_value)))
+    if data.get('attributes'):
+        for attributes_name, attributes_value in data.get('attributes').items():
+            attribute = attribute_assignments_parser(attributes_name, attributes_value)
+            node_template.add_attributes(attribute)
+
+    # requirements:
+    # capabilities:
+    # interfaces:
+    # artifacts:
+    # node_filter:
+    # copy: <source_node_template_name>
     # if data.get('')
     return node_template

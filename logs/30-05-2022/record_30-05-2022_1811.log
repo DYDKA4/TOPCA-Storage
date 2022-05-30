@@ -1,0 +1,4 @@
+2022-05-30 18:11:52,640 WARNING werkzeug MainThread :  * Debugger is active!
+2022-05-30 18:11:52,640 INFO werkzeug MainThread :  * Debugger PIN: 100-900-223
+2022-05-30 18:11:53,799 INFO werkzeug Thread-2 : 127.0.0.1 - - [30/May/2022 18:11:53] "[35m[1mPOST /yaml-template/?cluster_name=cluster_tosca_6 HTTP/1.1[0m" 500 -
+2022-05-30 18:13:06,638 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/parser/tosca_v_1_3/TemplateDefinition.py', reloading

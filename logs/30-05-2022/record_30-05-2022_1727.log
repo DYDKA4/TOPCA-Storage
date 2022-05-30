@@ -1,0 +1,12 @@
+2022-05-30 17:27:13,532 WARNING werkzeug MainThread :  * Debugger is active!
+2022-05-30 17:27:13,532 INFO werkzeug MainThread :  * Debugger PIN: 100-900-223
+2022-05-30 17:27:13,594 INFO werkzeug Thread-2 : 127.0.0.1 - - [30/May/2022 17:27:13] "POST /yaml-template/?cluster_name=cluster_tosca_6 HTTP/1.1" 200 -
+2022-05-30 17:27:25,761 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/parser/tosca_v_1_3/ConstraintСlause.py', reloading
+2022-05-30 17:27:25,949 WARNING werkzeug MainThread :  * Debugger is active!
+2022-05-30 17:27:25,950 INFO werkzeug MainThread :  * Debugger PIN: 100-900-223
+2022-05-30 17:27:26,009 INFO werkzeug Thread-2 : 127.0.0.1 - - [30/May/2022 17:27:26] "POST /yaml-template/?cluster_name=cluster_tosca_6 HTTP/1.1" 200 -
+2022-05-30 17:27:53,374 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/parser/tosca_v_1_3/ParameterDefinition.py', reloading
+2022-05-30 17:27:53,560 WARNING werkzeug MainThread :  * Debugger is active!
+2022-05-30 17:27:53,561 INFO werkzeug MainThread :  * Debugger PIN: 100-900-223
+2022-05-30 17:27:53,842 INFO werkzeug Thread-2 : 127.0.0.1 - - [30/May/2022 17:27:53] "POST /yaml-template/?cluster_name=cluster_tosca_6 HTTP/1.1" 200 -
+2022-05-30 17:28:15,892 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/parser/tosca_v_1_3/ConstraintСlause.py', reloading

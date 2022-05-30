@@ -1,0 +1,4 @@
+2022-05-30 17:58:15,647 WARNING werkzeug MainThread :  * Debugger is active!
+2022-05-30 17:58:15,648 INFO werkzeug MainThread :  * Debugger PIN: 100-900-223
+2022-05-30 17:58:23,999 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/parser/tosca_v_1_3/TemplateDefinition.py', reloading
+2022-05-30 17:58:25,608 WARNING root MainThread : Connect 10.100.151.128:9669 failed: socket error connecting to host 10.100.151.128, port 9669 (('10.100.151.128', 9669)): timeout('timed out')

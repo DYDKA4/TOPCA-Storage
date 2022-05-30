@@ -1,0 +1,12 @@
+2022-05-30 17:37:16,295 INFO werkzeug MainThread :  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2022-05-30 17:37:16,298 INFO werkzeug MainThread :  * Restarting with stat
+2022-05-30 17:37:16,911 WARNING werkzeug MainThread :  * Debugger is active!
+2022-05-30 17:37:16,912 INFO werkzeug MainThread :  * Debugger PIN: 100-900-223
+2022-05-30 17:37:43,939 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/parser/tosca_v_1_3/ParameterDefinition.py', reloading
+2022-05-30 17:37:43,983 INFO werkzeug MainThread :  * Restarting with stat
+2022-05-30 17:37:44,628 WARNING werkzeug MainThread :  * Debugger is active!
+2022-05-30 17:37:44,628 INFO werkzeug MainThread :  * Debugger PIN: 100-900-223
+2022-05-30 17:37:49,145 INFO werkzeug MainThread :  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2022-05-30 17:37:49,148 INFO werkzeug MainThread :  * Restarting with stat
+2022-05-30 17:37:49,838 WARNING werkzeug MainThread :  * Debugger is active!
+2022-05-30 17:37:49,838 INFO werkzeug MainThread :  * Debugger PIN: 100-900-223

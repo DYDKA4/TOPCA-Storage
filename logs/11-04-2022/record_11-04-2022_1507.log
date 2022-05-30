@@ -1,0 +1,908 @@
+2022-04-11 15:07:42,591 WARNING werkzeug MainThread :  * Debugger is active!
+2022-04-11 15:07:42,592 INFO werkzeug MainThread :  * Debugger PIN: 269-649-845
+2022-04-11 15:07:45,035 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-04-11 15:07:45,046 INFO werkzeug Thread-2 : 127.0.0.1 - - [11/Apr/2022 15:07:45] "POST /yaml-template/?cluster_name=cluster_tosca_4 HTTP/1.1" 200 -
+2022-04-11 15:08:11,351 INFO root Thread-3 : Get connection to ('10.100.151.128', 9669)
+2022-04-11 15:08:11,360 INFO werkzeug Thread-3 : 127.0.0.1 - - [11/Apr/2022 15:08:11] "PUT /yaml-template/?cluster_name=cluster_tosca_1000 HTTP/1.1" 200 -
+2022-04-11 15:10:48,138 INFO root Thread-4 : Get connection to ('10.100.151.128', 9669)
+2022-04-11 15:10:48,152 INFO root Thread-4 : GO FROM "cluster_tosca_1" over assignment YIELD dst(edge) as vid
+2022-04-11 15:10:48,178 INFO root Thread-4 : GO FROM "AssignmentVertex1" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:10:48,180 INFO root Thread-4 : GO FROM "AssignmentVertex1" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:10:48,183 INFO root Thread-4 : GO FROM "AssignmentVertex2" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:10:48,185 INFO root Thread-4 : GO FROM "AssignmentVertex2" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:10:48,196 INFO root Thread-4 : GO FROM "AssignmentVertex3" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:10:48,199 INFO root Thread-4 : GO FROM "AssignmentVertex3" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:10:48,202 INFO root Thread-4 : GO FROM "RelationshipTemplate1" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:10:48,204 INFO root Thread-4 : GO FROM "RelationshipTemplate1" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:10:48,206 INFO root Thread-4 : GO FROM "RelationshipTemplate2" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:10:48,209 INFO root Thread-4 : GO FROM "RelationshipTemplate2" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:10:48,219 INFO root Thread-4 : GO FROM "cluster_tosca_2" over assignment YIELD dst(edge) as vid
+2022-04-11 15:10:48,222 INFO root Thread-4 : GO FROM "AssignmentVertex4" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:10:48,224 INFO root Thread-4 : GO FROM "AssignmentVertex4" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:10:48,226 INFO root Thread-4 : GO FROM "AssignmentVertex5" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:10:48,228 INFO root Thread-4 : GO FROM "AssignmentVertex5" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:10:48,231 INFO root Thread-4 : GO FROM "AssignmentVertex6" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:10:48,234 INFO root Thread-4 : GO FROM "AssignmentVertex6" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:10:48,237 INFO root Thread-4 : GO FROM "RelationshipTemplate3" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:10:48,238 INFO root Thread-4 : GO FROM "RelationshipTemplate3" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:10:48,240 INFO root Thread-4 : GO FROM "RelationshipTemplate4" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:10:48,242 INFO root Thread-4 : GO FROM "RelationshipTemplate4" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:10:48,244 INFO root Thread-4 : GO FROM "cluster_tosca_3" over assignment YIELD dst(edge) as vid
+2022-04-11 15:10:48,246 INFO root Thread-4 : GO FROM "AssignmentVertex7" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:10:48,248 INFO root Thread-4 : GO FROM "AssignmentVertex7" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:10:48,250 INFO root Thread-4 : GO FROM "AssignmentVertex8" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:10:48,253 INFO root Thread-4 : GO FROM "AssignmentVertex8" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:10:48,256 INFO root Thread-4 : GO FROM "AssignmentVertex9" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:10:48,259 INFO root Thread-4 : GO FROM "AssignmentVertex9" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:10:48,261 INFO root Thread-4 : GO FROM "RelationshipTemplate5" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:10:48,263 INFO root Thread-4 : GO FROM "RelationshipTemplate5" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:10:48,266 INFO root Thread-4 : GO FROM "RelationshipTemplate6" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:10:48,268 INFO root Thread-4 : GO FROM "RelationshipTemplate6" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:10:48,270 INFO root Thread-4 : GO FROM "cluster_tosca_4" over assignment YIELD dst(edge) as vid
+2022-04-11 15:10:48,272 INFO root Thread-4 : GO FROM "AssignmentVertex37" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:10:48,275 INFO root Thread-4 : GO FROM "AssignmentVertex37" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:10:48,277 INFO root Thread-4 : GO FROM "AssignmentVertex38" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:10:48,279 INFO root Thread-4 : GO FROM "AssignmentVertex38" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:10:48,281 INFO root Thread-4 : GO FROM "AssignmentVertex39" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:10:48,284 INFO root Thread-4 : GO FROM "AssignmentVertex39" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:10:48,286 INFO root Thread-4 : GO FROM "RelationshipTemplate25" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:10:48,288 INFO root Thread-4 : GO FROM "RelationshipTemplate25" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:10:48,290 INFO root Thread-4 : GO FROM "RelationshipTemplate26" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:10:48,292 INFO root Thread-4 : GO FROM "RelationshipTemplate26" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:10:48,296 INFO root Thread-4 : GO FROM "inputs6" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:10:48,298 INFO root Thread-4 : GO FROM "inputs6" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:10:48,301 INFO root Thread-4 : GO FROM "inputs7" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:10:48,304 INFO root Thread-4 : GO FROM "inputs7" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:10:48,307 INFO root Thread-4 : GO FROM "inputs8" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:10:48,310 INFO root Thread-4 : GO FROM "inputs8" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:10:48,313 INFO root Thread-4 : GO FROM "inputs9" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:10:48,316 INFO root Thread-4 : GO FROM "inputs9" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:10:48,318 INFO root Thread-4 : GO FROM "output28" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:10:48,320 INFO root Thread-4 : GO FROM "output28" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:10:48,323 INFO root Thread-4 : GO FROM "output29" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:10:48,325 INFO root Thread-4 : GO FROM "output29" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:10:48,328 INFO root Thread-4 : GO FROM "output30" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:10:48,330 INFO root Thread-4 : GO FROM "output30" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:10:48,332 INFO root Thread-4 : GO FROM "cluster_tosca_5" over assignment YIELD dst(edge) as vid
+2022-04-11 15:10:48,335 INFO root Thread-4 : GO FROM "AssignmentVertex40" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:10:48,337 INFO root Thread-4 : GO FROM "AssignmentVertex40" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:10:48,340 INFO root Thread-4 : GO FROM "AssignmentVertex41" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:10:48,343 INFO root Thread-4 : GO FROM "AssignmentVertex41" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:10:48,346 INFO root Thread-4 : GO FROM "AssignmentVertex42" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:10:48,349 INFO root Thread-4 : GO FROM "AssignmentVertex42" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:10:48,351 INFO root Thread-4 : GO FROM "AssignmentVertex43" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:10:48,354 INFO root Thread-4 : GO FROM "AssignmentVertex43" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:10:48,356 INFO root Thread-4 : GO FROM "AssignmentVertex44" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:10:48,358 INFO root Thread-4 : GO FROM "AssignmentVertex44" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:10:48,361 INFO root Thread-4 : GO FROM "inputs10" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:10:48,364 INFO root Thread-4 : GO FROM "inputs10" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:10:48,367 INFO root Thread-4 : GO FROM "inputs11" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:10:48,370 INFO root Thread-4 : GO FROM "inputs11" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:10:48,373 INFO root Thread-4 : GO FROM "inputs12" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:10:48,376 INFO root Thread-4 : GO FROM "inputs12" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:10:48,378 INFO root Thread-4 : GO FROM "inputs13" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:10:48,381 INFO root Thread-4 : GO FROM "inputs13" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:10:48,384 INFO root Thread-4 : GO FROM "inputs14" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:10:48,387 INFO root Thread-4 : GO FROM "inputs14" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:10:48,390 INFO root Thread-4 : GO FROM "inputs15" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:10:48,393 INFO root Thread-4 : GO FROM "inputs15" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:10:48,395 INFO root Thread-4 : GO FROM "output31" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:10:48,397 INFO root Thread-4 : GO FROM "output31" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:10:48,398 INFO werkzeug Thread-4 : 127.0.0.1 - - [11/Apr/2022 15:10:48] "GET /find/all/node/properties/size?search_by=50%20GB HTTP/1.1" 200 -
+2022-04-11 15:11:29,412 INFO root Thread-5 : Get connection to ('10.100.151.128', 9669)
+2022-04-11 15:11:29,424 INFO root Thread-5 : GO FROM "cluster_tosca_1" over assignment YIELD dst(edge) as vid
+2022-04-11 15:11:29,426 INFO root Thread-5 : GO FROM "AssignmentVertex1" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:29,428 INFO root Thread-5 : GO FROM "AssignmentVertex1" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:29,430 INFO root Thread-5 : GO FROM "AssignmentVertex2" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:29,432 INFO root Thread-5 : GO FROM "AssignmentVertex2" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:29,435 INFO root Thread-5 : GO FROM "AssignmentVertex3" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:29,437 INFO root Thread-5 : GO FROM "AssignmentVertex3" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:29,439 INFO root Thread-5 : GO FROM "RelationshipTemplate1" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:29,441 INFO root Thread-5 : GO FROM "RelationshipTemplate1" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:29,443 INFO root Thread-5 : GO FROM "RelationshipTemplate2" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:29,445 INFO root Thread-5 : GO FROM "RelationshipTemplate2" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:29,447 INFO root Thread-5 : GO FROM "cluster_tosca_2" over assignment YIELD dst(edge) as vid
+2022-04-11 15:11:29,449 INFO root Thread-5 : GO FROM "AssignmentVertex4" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:29,451 INFO root Thread-5 : GO FROM "AssignmentVertex4" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:29,454 INFO root Thread-5 : GO FROM "AssignmentVertex5" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:29,456 INFO root Thread-5 : GO FROM "AssignmentVertex5" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:29,458 INFO root Thread-5 : GO FROM "AssignmentVertex6" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:29,461 INFO root Thread-5 : GO FROM "AssignmentVertex6" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:29,463 INFO root Thread-5 : GO FROM "RelationshipTemplate3" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:29,465 INFO root Thread-5 : GO FROM "RelationshipTemplate3" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:29,468 INFO root Thread-5 : GO FROM "RelationshipTemplate4" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:29,470 INFO root Thread-5 : GO FROM "RelationshipTemplate4" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:29,472 INFO root Thread-5 : GO FROM "cluster_tosca_3" over assignment YIELD dst(edge) as vid
+2022-04-11 15:11:29,474 INFO root Thread-5 : GO FROM "AssignmentVertex7" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:29,476 INFO root Thread-5 : GO FROM "AssignmentVertex7" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:29,478 INFO root Thread-5 : GO FROM "AssignmentVertex8" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:29,480 INFO root Thread-5 : GO FROM "AssignmentVertex8" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:29,483 INFO root Thread-5 : GO FROM "AssignmentVertex9" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:29,486 INFO root Thread-5 : GO FROM "AssignmentVertex9" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:29,488 INFO root Thread-5 : GO FROM "RelationshipTemplate5" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:29,491 INFO root Thread-5 : GO FROM "RelationshipTemplate5" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:29,493 INFO root Thread-5 : GO FROM "RelationshipTemplate6" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:29,495 INFO root Thread-5 : GO FROM "RelationshipTemplate6" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:29,497 INFO root Thread-5 : GO FROM "cluster_tosca_4" over assignment YIELD dst(edge) as vid
+2022-04-11 15:11:29,499 INFO root Thread-5 : GO FROM "AssignmentVertex37" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:29,501 INFO root Thread-5 : GO FROM "AssignmentVertex37" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:29,503 INFO root Thread-5 : GO FROM "AssignmentVertex38" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:29,506 INFO root Thread-5 : GO FROM "AssignmentVertex38" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:29,508 INFO root Thread-5 : GO FROM "AssignmentVertex39" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:29,511 INFO root Thread-5 : GO FROM "AssignmentVertex39" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:29,513 INFO root Thread-5 : GO FROM "RelationshipTemplate25" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:29,515 INFO root Thread-5 : GO FROM "RelationshipTemplate25" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:29,518 INFO root Thread-5 : GO FROM "RelationshipTemplate26" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:29,520 INFO root Thread-5 : GO FROM "RelationshipTemplate26" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:29,522 INFO root Thread-5 : GO FROM "inputs6" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:29,525 INFO root Thread-5 : GO FROM "inputs6" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:29,528 INFO root Thread-5 : GO FROM "inputs7" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:29,531 INFO root Thread-5 : GO FROM "inputs7" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:29,533 INFO root Thread-5 : GO FROM "inputs8" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:29,536 INFO root Thread-5 : GO FROM "inputs8" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:29,539 INFO root Thread-5 : GO FROM "inputs9" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:29,541 INFO root Thread-5 : GO FROM "inputs9" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:29,543 INFO root Thread-5 : GO FROM "output28" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:29,545 INFO root Thread-5 : GO FROM "output28" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:29,546 INFO root Thread-5 : GO FROM "output29" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:29,548 INFO root Thread-5 : GO FROM "output29" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:29,550 INFO root Thread-5 : GO FROM "output30" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:29,552 INFO root Thread-5 : GO FROM "output30" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:29,554 INFO root Thread-5 : GO FROM "cluster_tosca_5" over assignment YIELD dst(edge) as vid
+2022-04-11 15:11:29,556 INFO root Thread-5 : GO FROM "AssignmentVertex40" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:29,558 INFO root Thread-5 : GO FROM "AssignmentVertex40" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:29,561 INFO root Thread-5 : GO FROM "AssignmentVertex41" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:29,564 INFO root Thread-5 : GO FROM "AssignmentVertex41" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:29,566 INFO root Thread-5 : GO FROM "AssignmentVertex42" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:29,568 INFO root Thread-5 : GO FROM "AssignmentVertex42" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:29,570 INFO root Thread-5 : GO FROM "AssignmentVertex43" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:29,572 INFO root Thread-5 : GO FROM "AssignmentVertex43" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:29,573 INFO root Thread-5 : GO FROM "AssignmentVertex44" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:29,575 INFO root Thread-5 : GO FROM "AssignmentVertex44" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:29,578 INFO root Thread-5 : GO FROM "inputs10" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:29,580 INFO root Thread-5 : GO FROM "inputs10" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:29,582 INFO root Thread-5 : GO FROM "inputs11" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:29,585 INFO root Thread-5 : GO FROM "inputs11" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:29,587 INFO root Thread-5 : GO FROM "inputs12" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:29,590 INFO root Thread-5 : GO FROM "inputs12" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:29,592 INFO root Thread-5 : GO FROM "inputs13" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:29,595 INFO root Thread-5 : GO FROM "inputs13" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:29,597 INFO root Thread-5 : GO FROM "inputs14" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:29,600 INFO root Thread-5 : GO FROM "inputs14" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:29,603 INFO root Thread-5 : GO FROM "inputs15" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:29,605 INFO root Thread-5 : GO FROM "inputs15" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:29,607 INFO root Thread-5 : GO FROM "output31" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:29,609 INFO root Thread-5 : GO FROM "output31" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:29,610 INFO werkzeug Thread-5 : 127.0.0.1 - - [11/Apr/2022 15:11:29] "GET /find/all/node/properties/size?search_by=10%20GB HTTP/1.1" 200 -
+2022-04-11 15:11:51,121 INFO root Thread-6 : Get connection to ('10.100.151.128', 9669)
+2022-04-11 15:11:51,131 INFO root Thread-6 : GO FROM "cluster_tosca_1" over assignment YIELD dst(edge) as vid
+2022-04-11 15:11:51,134 INFO root Thread-6 : GO FROM "AssignmentVertex1" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:51,135 INFO root Thread-6 : GO FROM "AssignmentVertex1" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:51,137 INFO root Thread-6 : GO FROM "AssignmentVertex2" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:51,139 INFO root Thread-6 : GO FROM "AssignmentVertex2" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:51,142 INFO root Thread-6 : GO FROM "AssignmentVertex3" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:51,145 INFO root Thread-6 : GO FROM "AssignmentVertex3" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:51,146 INFO root Thread-6 : GO FROM "RelationshipTemplate1" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:51,148 INFO root Thread-6 : GO FROM "RelationshipTemplate1" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:51,150 INFO root Thread-6 : GO FROM "RelationshipTemplate2" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:51,152 INFO root Thread-6 : GO FROM "RelationshipTemplate2" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:51,154 INFO root Thread-6 : GO FROM "cluster_tosca_2" over assignment YIELD dst(edge) as vid
+2022-04-11 15:11:51,156 INFO root Thread-6 : GO FROM "AssignmentVertex4" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:51,159 INFO root Thread-6 : GO FROM "AssignmentVertex4" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:51,161 INFO root Thread-6 : GO FROM "AssignmentVertex5" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:51,163 INFO root Thread-6 : GO FROM "AssignmentVertex5" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:51,165 INFO root Thread-6 : GO FROM "AssignmentVertex6" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:51,168 INFO root Thread-6 : GO FROM "AssignmentVertex6" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:51,170 INFO root Thread-6 : GO FROM "RelationshipTemplate3" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:51,172 INFO root Thread-6 : GO FROM "RelationshipTemplate3" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:51,174 INFO root Thread-6 : GO FROM "RelationshipTemplate4" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:51,176 INFO root Thread-6 : GO FROM "RelationshipTemplate4" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:51,178 INFO root Thread-6 : GO FROM "cluster_tosca_3" over assignment YIELD dst(edge) as vid
+2022-04-11 15:11:51,180 INFO root Thread-6 : GO FROM "AssignmentVertex7" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:51,182 INFO root Thread-6 : GO FROM "AssignmentVertex7" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:51,185 INFO root Thread-6 : GO FROM "AssignmentVertex8" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:51,187 INFO root Thread-6 : GO FROM "AssignmentVertex8" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:51,190 INFO root Thread-6 : GO FROM "AssignmentVertex9" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:51,192 INFO root Thread-6 : GO FROM "AssignmentVertex9" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:51,195 INFO root Thread-6 : GO FROM "RelationshipTemplate5" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:51,197 INFO root Thread-6 : GO FROM "RelationshipTemplate5" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:51,200 INFO root Thread-6 : GO FROM "RelationshipTemplate6" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:51,202 INFO root Thread-6 : GO FROM "RelationshipTemplate6" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:51,204 INFO root Thread-6 : GO FROM "cluster_tosca_4" over assignment YIELD dst(edge) as vid
+2022-04-11 15:11:51,206 INFO root Thread-6 : GO FROM "AssignmentVertex37" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:51,209 INFO root Thread-6 : GO FROM "AssignmentVertex37" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:51,211 INFO root Thread-6 : GO FROM "AssignmentVertex38" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:51,213 INFO root Thread-6 : GO FROM "AssignmentVertex38" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:51,215 INFO root Thread-6 : GO FROM "AssignmentVertex39" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:51,218 INFO root Thread-6 : GO FROM "AssignmentVertex39" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:51,220 INFO root Thread-6 : GO FROM "RelationshipTemplate25" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:51,222 INFO root Thread-6 : GO FROM "RelationshipTemplate25" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:51,224 INFO root Thread-6 : GO FROM "RelationshipTemplate26" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:51,227 INFO root Thread-6 : GO FROM "RelationshipTemplate26" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:51,230 INFO root Thread-6 : GO FROM "inputs6" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:51,232 INFO root Thread-6 : GO FROM "inputs6" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:51,235 INFO root Thread-6 : GO FROM "inputs7" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:51,238 INFO root Thread-6 : GO FROM "inputs7" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:51,242 INFO root Thread-6 : GO FROM "inputs8" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:51,244 INFO root Thread-6 : GO FROM "inputs8" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:51,247 INFO root Thread-6 : GO FROM "inputs9" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:51,251 INFO root Thread-6 : GO FROM "inputs9" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:51,253 INFO root Thread-6 : GO FROM "output28" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:51,255 INFO root Thread-6 : GO FROM "output28" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:51,258 INFO root Thread-6 : GO FROM "output29" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:51,260 INFO root Thread-6 : GO FROM "output29" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:51,263 INFO root Thread-6 : GO FROM "output30" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:51,265 INFO root Thread-6 : GO FROM "output30" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:51,267 INFO root Thread-6 : GO FROM "cluster_tosca_5" over assignment YIELD dst(edge) as vid
+2022-04-11 15:11:51,270 INFO root Thread-6 : GO FROM "AssignmentVertex40" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:51,272 INFO root Thread-6 : GO FROM "AssignmentVertex40" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:51,275 INFO root Thread-6 : GO FROM "AssignmentVertex41" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:51,279 INFO root Thread-6 : GO FROM "AssignmentVertex41" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:51,281 INFO root Thread-6 : GO FROM "AssignmentVertex42" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:51,284 INFO root Thread-6 : GO FROM "AssignmentVertex42" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:51,287 INFO root Thread-6 : GO FROM "AssignmentVertex43" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:51,289 INFO root Thread-6 : GO FROM "AssignmentVertex43" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:51,292 INFO root Thread-6 : GO FROM "AssignmentVertex44" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:51,295 INFO root Thread-6 : GO FROM "AssignmentVertex44" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:51,298 INFO root Thread-6 : GO FROM "inputs10" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:51,301 INFO root Thread-6 : GO FROM "inputs10" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:51,304 INFO root Thread-6 : GO FROM "inputs11" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:51,307 INFO root Thread-6 : GO FROM "inputs11" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:51,311 INFO root Thread-6 : GO FROM "inputs12" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:51,313 INFO root Thread-6 : GO FROM "inputs12" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:51,317 INFO root Thread-6 : GO FROM "inputs13" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:51,320 INFO root Thread-6 : GO FROM "inputs13" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:51,323 INFO root Thread-6 : GO FROM "inputs14" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:51,326 INFO root Thread-6 : GO FROM "inputs14" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:51,329 INFO root Thread-6 : GO FROM "inputs15" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:51,332 INFO root Thread-6 : GO FROM "inputs15" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:51,334 INFO root Thread-6 : GO FROM "output31" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:51,337 INFO root Thread-6 : GO FROM "output31" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:51,338 INFO werkzeug Thread-6 : 127.0.0.1 - - [11/Apr/2022 15:11:51] "GET /find/all/node/properties/size?search_by=20%20GB HTTP/1.1" 200 -
+2022-04-11 15:11:54,565 INFO root Thread-7 : Get connection to ('10.100.151.128', 9669)
+2022-04-11 15:11:54,580 INFO root Thread-7 : GO FROM "cluster_tosca_1" over assignment YIELD dst(edge) as vid
+2022-04-11 15:11:54,583 INFO root Thread-7 : GO FROM "AssignmentVertex1" over assignment_property WHERE properties($$).values == "30 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:54,584 INFO root Thread-7 : GO FROM "AssignmentVertex1" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:54,586 INFO root Thread-7 : GO FROM "AssignmentVertex2" over assignment_property WHERE properties($$).values == "30 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:54,589 INFO root Thread-7 : GO FROM "AssignmentVertex2" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:54,593 INFO root Thread-7 : GO FROM "AssignmentVertex3" over assignment_property WHERE properties($$).values == "30 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:54,596 INFO root Thread-7 : GO FROM "AssignmentVertex3" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:54,598 INFO root Thread-7 : GO FROM "RelationshipTemplate1" over assignment_property WHERE properties($$).values == "30 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:54,600 INFO root Thread-7 : GO FROM "RelationshipTemplate1" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:54,602 INFO root Thread-7 : GO FROM "RelationshipTemplate2" over assignment_property WHERE properties($$).values == "30 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:54,604 INFO root Thread-7 : GO FROM "RelationshipTemplate2" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:54,605 INFO root Thread-7 : GO FROM "cluster_tosca_2" over assignment YIELD dst(edge) as vid
+2022-04-11 15:11:54,607 INFO root Thread-7 : GO FROM "AssignmentVertex4" over assignment_property WHERE properties($$).values == "30 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:54,609 INFO root Thread-7 : GO FROM "AssignmentVertex4" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:54,612 INFO root Thread-7 : GO FROM "AssignmentVertex5" over assignment_property WHERE properties($$).values == "30 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:54,616 INFO root Thread-7 : GO FROM "AssignmentVertex5" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:54,619 INFO root Thread-7 : GO FROM "AssignmentVertex6" over assignment_property WHERE properties($$).values == "30 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:54,622 INFO root Thread-7 : GO FROM "AssignmentVertex6" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:54,624 INFO root Thread-7 : GO FROM "RelationshipTemplate3" over assignment_property WHERE properties($$).values == "30 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:54,627 INFO root Thread-7 : GO FROM "RelationshipTemplate3" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:54,629 INFO root Thread-7 : GO FROM "RelationshipTemplate4" over assignment_property WHERE properties($$).values == "30 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:54,632 INFO root Thread-7 : GO FROM "RelationshipTemplate4" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:54,634 INFO root Thread-7 : GO FROM "cluster_tosca_3" over assignment YIELD dst(edge) as vid
+2022-04-11 15:11:54,636 INFO root Thread-7 : GO FROM "AssignmentVertex7" over assignment_property WHERE properties($$).values == "30 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:54,638 INFO root Thread-7 : GO FROM "AssignmentVertex7" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:54,641 INFO root Thread-7 : GO FROM "AssignmentVertex8" over assignment_property WHERE properties($$).values == "30 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:54,643 INFO root Thread-7 : GO FROM "AssignmentVertex8" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:54,646 INFO root Thread-7 : GO FROM "AssignmentVertex9" over assignment_property WHERE properties($$).values == "30 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:54,649 INFO root Thread-7 : GO FROM "AssignmentVertex9" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:54,651 INFO root Thread-7 : GO FROM "RelationshipTemplate5" over assignment_property WHERE properties($$).values == "30 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:54,653 INFO root Thread-7 : GO FROM "RelationshipTemplate5" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:54,655 INFO root Thread-7 : GO FROM "RelationshipTemplate6" over assignment_property WHERE properties($$).values == "30 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:54,657 INFO root Thread-7 : GO FROM "RelationshipTemplate6" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:54,660 INFO root Thread-7 : GO FROM "cluster_tosca_4" over assignment YIELD dst(edge) as vid
+2022-04-11 15:11:54,663 INFO root Thread-7 : GO FROM "AssignmentVertex37" over assignment_property WHERE properties($$).values == "30 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:54,665 INFO root Thread-7 : GO FROM "AssignmentVertex37" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:54,667 INFO root Thread-7 : GO FROM "AssignmentVertex38" over assignment_property WHERE properties($$).values == "30 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:54,669 INFO root Thread-7 : GO FROM "AssignmentVertex38" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:54,672 INFO root Thread-7 : GO FROM "AssignmentVertex39" over assignment_property WHERE properties($$).values == "30 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:54,675 INFO root Thread-7 : GO FROM "AssignmentVertex39" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:54,677 INFO root Thread-7 : GO FROM "RelationshipTemplate25" over assignment_property WHERE properties($$).values == "30 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:54,681 INFO root Thread-7 : GO FROM "RelationshipTemplate25" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:54,687 INFO root Thread-7 : GO FROM "RelationshipTemplate26" over assignment_property WHERE properties($$).values == "30 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:54,692 INFO root Thread-7 : GO FROM "RelationshipTemplate26" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:54,695 INFO root Thread-7 : GO FROM "inputs6" over assignment_property WHERE properties($$).values == "30 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:54,699 INFO root Thread-7 : GO FROM "inputs6" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:54,702 INFO root Thread-7 : GO FROM "inputs7" over assignment_property WHERE properties($$).values == "30 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:54,705 INFO root Thread-7 : GO FROM "inputs7" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:54,708 INFO root Thread-7 : GO FROM "inputs8" over assignment_property WHERE properties($$).values == "30 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:54,711 INFO root Thread-7 : GO FROM "inputs8" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:54,714 INFO root Thread-7 : GO FROM "inputs9" over assignment_property WHERE properties($$).values == "30 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:54,717 INFO root Thread-7 : GO FROM "inputs9" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:54,719 INFO root Thread-7 : GO FROM "output28" over assignment_property WHERE properties($$).values == "30 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:54,721 INFO root Thread-7 : GO FROM "output28" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:54,723 INFO root Thread-7 : GO FROM "output29" over assignment_property WHERE properties($$).values == "30 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:54,726 INFO root Thread-7 : GO FROM "output29" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:54,729 INFO root Thread-7 : GO FROM "output30" over assignment_property WHERE properties($$).values == "30 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:54,732 INFO root Thread-7 : GO FROM "output30" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:54,734 INFO root Thread-7 : GO FROM "cluster_tosca_5" over assignment YIELD dst(edge) as vid
+2022-04-11 15:11:54,736 INFO root Thread-7 : GO FROM "AssignmentVertex40" over assignment_property WHERE properties($$).values == "30 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:54,739 INFO root Thread-7 : GO FROM "AssignmentVertex40" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:54,742 INFO root Thread-7 : GO FROM "AssignmentVertex41" over assignment_property WHERE properties($$).values == "30 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:54,745 INFO root Thread-7 : GO FROM "AssignmentVertex41" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:54,749 INFO root Thread-7 : GO FROM "AssignmentVertex42" over assignment_property WHERE properties($$).values == "30 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:54,753 INFO root Thread-7 : GO FROM "AssignmentVertex42" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:54,755 INFO root Thread-7 : GO FROM "AssignmentVertex43" over assignment_property WHERE properties($$).values == "30 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:54,758 INFO root Thread-7 : GO FROM "AssignmentVertex43" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:54,760 INFO root Thread-7 : GO FROM "AssignmentVertex44" over assignment_property WHERE properties($$).values == "30 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:54,762 INFO root Thread-7 : GO FROM "AssignmentVertex44" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:54,765 INFO root Thread-7 : GO FROM "inputs10" over assignment_property WHERE properties($$).values == "30 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:54,768 INFO root Thread-7 : GO FROM "inputs10" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:54,771 INFO root Thread-7 : GO FROM "inputs11" over assignment_property WHERE properties($$).values == "30 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:54,774 INFO root Thread-7 : GO FROM "inputs11" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:54,777 INFO root Thread-7 : GO FROM "inputs12" over assignment_property WHERE properties($$).values == "30 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:54,780 INFO root Thread-7 : GO FROM "inputs12" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:54,783 INFO root Thread-7 : GO FROM "inputs13" over assignment_property WHERE properties($$).values == "30 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:54,786 INFO root Thread-7 : GO FROM "inputs13" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:54,789 INFO root Thread-7 : GO FROM "inputs14" over assignment_property WHERE properties($$).values == "30 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:54,792 INFO root Thread-7 : GO FROM "inputs14" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:54,795 INFO root Thread-7 : GO FROM "inputs15" over assignment_property WHERE properties($$).values == "30 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:54,799 INFO root Thread-7 : GO FROM "inputs15" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:54,801 INFO root Thread-7 : GO FROM "output31" over assignment_property WHERE properties($$).values == "30 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:54,803 INFO root Thread-7 : GO FROM "output31" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:54,804 INFO werkzeug Thread-7 : 127.0.0.1 - - [11/Apr/2022 15:11:54] "GET /find/all/node/properties/size?search_by=30%20GB HTTP/1.1" 200 -
+2022-04-11 15:11:57,739 INFO root Thread-8 : Get connection to ('10.100.151.128', 9669)
+2022-04-11 15:11:57,748 INFO root Thread-8 : GO FROM "cluster_tosca_1" over assignment YIELD dst(edge) as vid
+2022-04-11 15:11:57,750 INFO root Thread-8 : GO FROM "AssignmentVertex1" over assignment_property WHERE properties($$).values == "40 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:57,752 INFO root Thread-8 : GO FROM "AssignmentVertex1" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:57,754 INFO root Thread-8 : GO FROM "AssignmentVertex2" over assignment_property WHERE properties($$).values == "40 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:57,755 INFO root Thread-8 : GO FROM "AssignmentVertex2" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:57,758 INFO root Thread-8 : GO FROM "AssignmentVertex3" over assignment_property WHERE properties($$).values == "40 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:57,761 INFO root Thread-8 : GO FROM "AssignmentVertex3" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:57,763 INFO root Thread-8 : GO FROM "RelationshipTemplate1" over assignment_property WHERE properties($$).values == "40 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:57,765 INFO root Thread-8 : GO FROM "RelationshipTemplate1" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:57,767 INFO root Thread-8 : GO FROM "RelationshipTemplate2" over assignment_property WHERE properties($$).values == "40 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:57,769 INFO root Thread-8 : GO FROM "RelationshipTemplate2" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:57,771 INFO root Thread-8 : GO FROM "cluster_tosca_2" over assignment YIELD dst(edge) as vid
+2022-04-11 15:11:57,773 INFO root Thread-8 : GO FROM "AssignmentVertex4" over assignment_property WHERE properties($$).values == "40 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:57,775 INFO root Thread-8 : GO FROM "AssignmentVertex4" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:57,777 INFO root Thread-8 : GO FROM "AssignmentVertex5" over assignment_property WHERE properties($$).values == "40 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:57,779 INFO root Thread-8 : GO FROM "AssignmentVertex5" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:57,782 INFO root Thread-8 : GO FROM "AssignmentVertex6" over assignment_property WHERE properties($$).values == "40 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:57,785 INFO root Thread-8 : GO FROM "AssignmentVertex6" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:57,787 INFO root Thread-8 : GO FROM "RelationshipTemplate3" over assignment_property WHERE properties($$).values == "40 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:57,789 INFO root Thread-8 : GO FROM "RelationshipTemplate3" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:57,794 INFO root Thread-8 : GO FROM "RelationshipTemplate4" over assignment_property WHERE properties($$).values == "40 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:57,797 INFO root Thread-8 : GO FROM "RelationshipTemplate4" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:57,799 INFO root Thread-8 : GO FROM "cluster_tosca_3" over assignment YIELD dst(edge) as vid
+2022-04-11 15:11:57,801 INFO root Thread-8 : GO FROM "AssignmentVertex7" over assignment_property WHERE properties($$).values == "40 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:57,803 INFO root Thread-8 : GO FROM "AssignmentVertex7" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:57,806 INFO root Thread-8 : GO FROM "AssignmentVertex8" over assignment_property WHERE properties($$).values == "40 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:57,808 INFO root Thread-8 : GO FROM "AssignmentVertex8" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:57,810 INFO root Thread-8 : GO FROM "AssignmentVertex9" over assignment_property WHERE properties($$).values == "40 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:57,813 INFO root Thread-8 : GO FROM "AssignmentVertex9" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:57,816 INFO root Thread-8 : GO FROM "RelationshipTemplate5" over assignment_property WHERE properties($$).values == "40 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:57,818 INFO root Thread-8 : GO FROM "RelationshipTemplate5" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:57,820 INFO root Thread-8 : GO FROM "RelationshipTemplate6" over assignment_property WHERE properties($$).values == "40 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:57,823 INFO root Thread-8 : GO FROM "RelationshipTemplate6" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:57,825 INFO root Thread-8 : GO FROM "cluster_tosca_4" over assignment YIELD dst(edge) as vid
+2022-04-11 15:11:57,827 INFO root Thread-8 : GO FROM "AssignmentVertex37" over assignment_property WHERE properties($$).values == "40 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:57,830 INFO root Thread-8 : GO FROM "AssignmentVertex37" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:57,832 INFO root Thread-8 : GO FROM "AssignmentVertex38" over assignment_property WHERE properties($$).values == "40 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:57,834 INFO root Thread-8 : GO FROM "AssignmentVertex38" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:57,837 INFO root Thread-8 : GO FROM "AssignmentVertex39" over assignment_property WHERE properties($$).values == "40 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:57,841 INFO root Thread-8 : GO FROM "AssignmentVertex39" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:57,843 INFO root Thread-8 : GO FROM "RelationshipTemplate25" over assignment_property WHERE properties($$).values == "40 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:57,845 INFO root Thread-8 : GO FROM "RelationshipTemplate25" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:57,847 INFO root Thread-8 : GO FROM "RelationshipTemplate26" over assignment_property WHERE properties($$).values == "40 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:57,849 INFO root Thread-8 : GO FROM "RelationshipTemplate26" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:57,852 INFO root Thread-8 : GO FROM "inputs6" over assignment_property WHERE properties($$).values == "40 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:57,855 INFO root Thread-8 : GO FROM "inputs6" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:57,858 INFO root Thread-8 : GO FROM "inputs7" over assignment_property WHERE properties($$).values == "40 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:57,861 INFO root Thread-8 : GO FROM "inputs7" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:57,864 INFO root Thread-8 : GO FROM "inputs8" over assignment_property WHERE properties($$).values == "40 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:57,867 INFO root Thread-8 : GO FROM "inputs8" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:57,870 INFO root Thread-8 : GO FROM "inputs9" over assignment_property WHERE properties($$).values == "40 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:57,873 INFO root Thread-8 : GO FROM "inputs9" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:57,876 INFO root Thread-8 : GO FROM "output28" over assignment_property WHERE properties($$).values == "40 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:57,878 INFO root Thread-8 : GO FROM "output28" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:57,881 INFO root Thread-8 : GO FROM "output29" over assignment_property WHERE properties($$).values == "40 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:57,883 INFO root Thread-8 : GO FROM "output29" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:57,885 INFO root Thread-8 : GO FROM "output30" over assignment_property WHERE properties($$).values == "40 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:57,888 INFO root Thread-8 : GO FROM "output30" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:57,890 INFO root Thread-8 : GO FROM "cluster_tosca_5" over assignment YIELD dst(edge) as vid
+2022-04-11 15:11:57,893 INFO root Thread-8 : GO FROM "AssignmentVertex40" over assignment_property WHERE properties($$).values == "40 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:57,895 INFO root Thread-8 : GO FROM "AssignmentVertex40" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:57,898 INFO root Thread-8 : GO FROM "AssignmentVertex41" over assignment_property WHERE properties($$).values == "40 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:57,901 INFO root Thread-8 : GO FROM "AssignmentVertex41" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:57,904 INFO root Thread-8 : GO FROM "AssignmentVertex42" over assignment_property WHERE properties($$).values == "40 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:57,907 INFO root Thread-8 : GO FROM "AssignmentVertex42" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:57,910 INFO root Thread-8 : GO FROM "AssignmentVertex43" over assignment_property WHERE properties($$).values == "40 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:57,912 INFO root Thread-8 : GO FROM "AssignmentVertex43" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:57,914 INFO root Thread-8 : GO FROM "AssignmentVertex44" over assignment_property WHERE properties($$).values == "40 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:57,917 INFO root Thread-8 : GO FROM "AssignmentVertex44" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:57,920 INFO root Thread-8 : GO FROM "inputs10" over assignment_property WHERE properties($$).values == "40 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:57,923 INFO root Thread-8 : GO FROM "inputs10" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:57,926 INFO root Thread-8 : GO FROM "inputs11" over assignment_property WHERE properties($$).values == "40 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:57,929 INFO root Thread-8 : GO FROM "inputs11" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:57,931 INFO root Thread-8 : GO FROM "inputs12" over assignment_property WHERE properties($$).values == "40 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:57,935 INFO root Thread-8 : GO FROM "inputs12" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:57,938 INFO root Thread-8 : GO FROM "inputs13" over assignment_property WHERE properties($$).values == "40 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:57,940 INFO root Thread-8 : GO FROM "inputs13" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:57,943 INFO root Thread-8 : GO FROM "inputs14" over assignment_property WHERE properties($$).values == "40 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:57,946 INFO root Thread-8 : GO FROM "inputs14" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:57,950 INFO root Thread-8 : GO FROM "inputs15" over assignment_property WHERE properties($$).values == "40 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:57,952 INFO root Thread-8 : GO FROM "inputs15" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:57,955 INFO root Thread-8 : GO FROM "output31" over assignment_property WHERE properties($$).values == "40 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:11:57,957 INFO root Thread-8 : GO FROM "output31" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:11:57,958 INFO werkzeug Thread-8 : 127.0.0.1 - - [11/Apr/2022 15:11:57] "GET /find/all/node/properties/size?search_by=40%20GB HTTP/1.1" 200 -
+2022-04-11 15:12:00,576 INFO root Thread-9 : Get connection to ('10.100.151.128', 9669)
+2022-04-11 15:12:00,585 INFO root Thread-9 : GO FROM "cluster_tosca_1" over assignment YIELD dst(edge) as vid
+2022-04-11 15:12:00,587 INFO root Thread-9 : GO FROM "AssignmentVertex1" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:00,589 INFO root Thread-9 : GO FROM "AssignmentVertex1" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:00,591 INFO root Thread-9 : GO FROM "AssignmentVertex2" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:00,593 INFO root Thread-9 : GO FROM "AssignmentVertex2" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:00,595 INFO root Thread-9 : GO FROM "AssignmentVertex3" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:00,598 INFO root Thread-9 : GO FROM "AssignmentVertex3" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:00,599 INFO root Thread-9 : GO FROM "RelationshipTemplate1" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:00,601 INFO root Thread-9 : GO FROM "RelationshipTemplate1" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:00,604 INFO root Thread-9 : GO FROM "RelationshipTemplate2" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:00,606 INFO root Thread-9 : GO FROM "RelationshipTemplate2" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:00,608 INFO root Thread-9 : GO FROM "cluster_tosca_2" over assignment YIELD dst(edge) as vid
+2022-04-11 15:12:00,610 INFO root Thread-9 : GO FROM "AssignmentVertex4" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:00,612 INFO root Thread-9 : GO FROM "AssignmentVertex4" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:00,614 INFO root Thread-9 : GO FROM "AssignmentVertex5" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:00,616 INFO root Thread-9 : GO FROM "AssignmentVertex5" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:00,619 INFO root Thread-9 : GO FROM "AssignmentVertex6" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:00,622 INFO root Thread-9 : GO FROM "AssignmentVertex6" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:00,625 INFO root Thread-9 : GO FROM "RelationshipTemplate3" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:00,627 INFO root Thread-9 : GO FROM "RelationshipTemplate3" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:00,629 INFO root Thread-9 : GO FROM "RelationshipTemplate4" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:00,631 INFO root Thread-9 : GO FROM "RelationshipTemplate4" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:00,632 INFO root Thread-9 : GO FROM "cluster_tosca_3" over assignment YIELD dst(edge) as vid
+2022-04-11 15:12:00,634 INFO root Thread-9 : GO FROM "AssignmentVertex7" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:00,636 INFO root Thread-9 : GO FROM "AssignmentVertex7" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:00,638 INFO root Thread-9 : GO FROM "AssignmentVertex8" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:00,640 INFO root Thread-9 : GO FROM "AssignmentVertex8" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:00,643 INFO root Thread-9 : GO FROM "AssignmentVertex9" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:00,646 INFO root Thread-9 : GO FROM "AssignmentVertex9" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:00,651 INFO root Thread-9 : GO FROM "RelationshipTemplate5" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:00,653 INFO root Thread-9 : GO FROM "RelationshipTemplate5" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:00,656 INFO root Thread-9 : GO FROM "RelationshipTemplate6" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:00,658 INFO root Thread-9 : GO FROM "RelationshipTemplate6" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:00,660 INFO root Thread-9 : GO FROM "cluster_tosca_4" over assignment YIELD dst(edge) as vid
+2022-04-11 15:12:00,662 INFO root Thread-9 : GO FROM "AssignmentVertex37" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:00,664 INFO root Thread-9 : GO FROM "AssignmentVertex37" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:00,666 INFO root Thread-9 : GO FROM "AssignmentVertex38" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:00,669 INFO root Thread-9 : GO FROM "AssignmentVertex38" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:00,672 INFO root Thread-9 : GO FROM "AssignmentVertex39" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:00,674 INFO root Thread-9 : GO FROM "AssignmentVertex39" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:00,677 INFO root Thread-9 : GO FROM "RelationshipTemplate25" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:00,679 INFO root Thread-9 : GO FROM "RelationshipTemplate25" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:00,681 INFO root Thread-9 : GO FROM "RelationshipTemplate26" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:00,683 INFO root Thread-9 : GO FROM "RelationshipTemplate26" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:00,686 INFO root Thread-9 : GO FROM "inputs6" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:00,691 INFO root Thread-9 : GO FROM "inputs6" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:00,696 INFO root Thread-9 : GO FROM "inputs7" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:00,700 INFO root Thread-9 : GO FROM "inputs7" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:00,705 INFO root Thread-9 : GO FROM "inputs8" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:00,708 INFO root Thread-9 : GO FROM "inputs8" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:00,711 INFO root Thread-9 : GO FROM "inputs9" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:00,714 INFO root Thread-9 : GO FROM "inputs9" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:00,716 INFO root Thread-9 : GO FROM "output28" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:00,719 INFO root Thread-9 : GO FROM "output28" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:00,721 INFO root Thread-9 : GO FROM "output29" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:00,725 INFO root Thread-9 : GO FROM "output29" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:00,727 INFO root Thread-9 : GO FROM "output30" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:00,729 INFO root Thread-9 : GO FROM "output30" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:00,731 INFO root Thread-9 : GO FROM "cluster_tosca_5" over assignment YIELD dst(edge) as vid
+2022-04-11 15:12:00,734 INFO root Thread-9 : GO FROM "AssignmentVertex40" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:00,737 INFO root Thread-9 : GO FROM "AssignmentVertex40" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:00,740 INFO root Thread-9 : GO FROM "AssignmentVertex41" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:00,743 INFO root Thread-9 : GO FROM "AssignmentVertex41" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:00,746 INFO root Thread-9 : GO FROM "AssignmentVertex42" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:00,750 INFO root Thread-9 : GO FROM "AssignmentVertex42" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:00,754 INFO root Thread-9 : GO FROM "AssignmentVertex43" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:00,757 INFO root Thread-9 : GO FROM "AssignmentVertex43" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:00,759 INFO root Thread-9 : GO FROM "AssignmentVertex44" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:00,762 INFO root Thread-9 : GO FROM "AssignmentVertex44" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:00,765 INFO root Thread-9 : GO FROM "inputs10" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:00,768 INFO root Thread-9 : GO FROM "inputs10" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:00,771 INFO root Thread-9 : GO FROM "inputs11" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:00,773 INFO root Thread-9 : GO FROM "inputs11" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:00,776 INFO root Thread-9 : GO FROM "inputs12" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:00,779 INFO root Thread-9 : GO FROM "inputs12" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:00,782 INFO root Thread-9 : GO FROM "inputs13" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:00,784 INFO root Thread-9 : GO FROM "inputs13" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:00,787 INFO root Thread-9 : GO FROM "inputs14" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:00,790 INFO root Thread-9 : GO FROM "inputs14" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:00,793 INFO root Thread-9 : GO FROM "inputs15" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:00,796 INFO root Thread-9 : GO FROM "inputs15" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:00,798 INFO root Thread-9 : GO FROM "output31" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:00,800 INFO root Thread-9 : GO FROM "output31" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:00,801 INFO werkzeug Thread-9 : 127.0.0.1 - - [11/Apr/2022 15:12:00] "GET /find/all/node/properties/size?search_by=50%20GB HTTP/1.1" 200 -
+2022-04-11 15:12:40,199 ERROR werkzeug Thread-10 : 127.0.0.1 - - [11/Apr/2022 15:12:40] code 400, message Bad request syntax ('GET /find/all/node/properties/size?search_by="50 20GB" HTTP/1.1')
+2022-04-11 15:12:40,199 INFO werkzeug Thread-10 : 127.0.0.1 - - [11/Apr/2022 15:12:40] "[35m[1mGET /find/all/node/properties/size?search_by="50 20GB" HTTP/1.1[0m" HTTPStatus.BAD_REQUEST -
+2022-04-11 15:12:43,606 INFO root Thread-11 : Get connection to ('10.100.151.128', 9669)
+2022-04-11 15:12:43,617 INFO root Thread-11 : GO FROM "cluster_tosca_1" over assignment YIELD dst(edge) as vid
+2022-04-11 15:12:43,619 INFO root Thread-11 : GO FROM "AssignmentVertex1" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:43,621 INFO root Thread-11 : GO FROM "AssignmentVertex1" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:43,623 INFO root Thread-11 : GO FROM "AssignmentVertex2" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:43,625 INFO root Thread-11 : GO FROM "AssignmentVertex2" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:43,628 INFO root Thread-11 : GO FROM "AssignmentVertex3" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:43,631 INFO root Thread-11 : GO FROM "AssignmentVertex3" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:43,636 INFO root Thread-11 : GO FROM "RelationshipTemplate1" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:43,638 INFO root Thread-11 : GO FROM "RelationshipTemplate1" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:43,640 INFO root Thread-11 : GO FROM "RelationshipTemplate2" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:43,643 INFO root Thread-11 : GO FROM "RelationshipTemplate2" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:43,645 INFO root Thread-11 : GO FROM "cluster_tosca_2" over assignment YIELD dst(edge) as vid
+2022-04-11 15:12:43,647 INFO root Thread-11 : GO FROM "AssignmentVertex4" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:43,649 INFO root Thread-11 : GO FROM "AssignmentVertex4" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:43,653 INFO root Thread-11 : GO FROM "AssignmentVertex5" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:43,657 INFO root Thread-11 : GO FROM "AssignmentVertex5" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:43,662 INFO root Thread-11 : GO FROM "AssignmentVertex6" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:43,667 INFO root Thread-11 : GO FROM "AssignmentVertex6" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:43,670 INFO root Thread-11 : GO FROM "RelationshipTemplate3" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:43,674 INFO root Thread-11 : GO FROM "RelationshipTemplate3" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:43,677 INFO root Thread-11 : GO FROM "RelationshipTemplate4" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:43,681 INFO root Thread-11 : GO FROM "RelationshipTemplate4" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:43,684 INFO root Thread-11 : GO FROM "cluster_tosca_3" over assignment YIELD dst(edge) as vid
+2022-04-11 15:12:43,687 INFO root Thread-11 : GO FROM "AssignmentVertex7" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:43,690 INFO root Thread-11 : GO FROM "AssignmentVertex7" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:43,693 INFO root Thread-11 : GO FROM "AssignmentVertex8" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:43,697 INFO root Thread-11 : GO FROM "AssignmentVertex8" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:43,701 INFO root Thread-11 : GO FROM "AssignmentVertex9" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:43,706 INFO root Thread-11 : GO FROM "AssignmentVertex9" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:43,709 INFO root Thread-11 : GO FROM "RelationshipTemplate5" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:43,713 INFO root Thread-11 : GO FROM "RelationshipTemplate5" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:43,716 INFO root Thread-11 : GO FROM "RelationshipTemplate6" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:43,720 INFO root Thread-11 : GO FROM "RelationshipTemplate6" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:43,723 INFO root Thread-11 : GO FROM "cluster_tosca_4" over assignment YIELD dst(edge) as vid
+2022-04-11 15:12:43,726 INFO root Thread-11 : GO FROM "AssignmentVertex37" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:43,731 INFO root Thread-11 : GO FROM "AssignmentVertex37" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:43,736 INFO root Thread-11 : GO FROM "AssignmentVertex38" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:43,740 INFO root Thread-11 : GO FROM "AssignmentVertex38" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:43,745 INFO root Thread-11 : GO FROM "AssignmentVertex39" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:43,750 INFO root Thread-11 : GO FROM "AssignmentVertex39" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:43,754 INFO root Thread-11 : GO FROM "RelationshipTemplate25" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:43,757 INFO root Thread-11 : GO FROM "RelationshipTemplate25" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:43,761 INFO root Thread-11 : GO FROM "RelationshipTemplate26" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:43,765 INFO root Thread-11 : GO FROM "RelationshipTemplate26" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:43,770 INFO root Thread-11 : GO FROM "inputs6" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:43,774 INFO root Thread-11 : GO FROM "inputs6" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:43,779 INFO root Thread-11 : GO FROM "inputs7" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:43,784 INFO root Thread-11 : GO FROM "inputs7" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:43,788 INFO root Thread-11 : GO FROM "inputs8" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:43,792 INFO root Thread-11 : GO FROM "inputs8" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:43,798 INFO root Thread-11 : GO FROM "inputs9" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:43,802 INFO root Thread-11 : GO FROM "inputs9" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:43,806 INFO root Thread-11 : GO FROM "output28" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:43,810 INFO root Thread-11 : GO FROM "output28" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:43,814 INFO root Thread-11 : GO FROM "output29" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:43,817 INFO root Thread-11 : GO FROM "output29" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:43,821 INFO root Thread-11 : GO FROM "output30" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:43,825 INFO root Thread-11 : GO FROM "output30" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:43,828 INFO root Thread-11 : GO FROM "cluster_tosca_5" over assignment YIELD dst(edge) as vid
+2022-04-11 15:12:43,833 INFO root Thread-11 : GO FROM "AssignmentVertex40" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:43,837 INFO root Thread-11 : GO FROM "AssignmentVertex40" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:43,842 INFO root Thread-11 : GO FROM "AssignmentVertex41" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:43,846 INFO root Thread-11 : GO FROM "AssignmentVertex41" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:43,851 INFO root Thread-11 : GO FROM "AssignmentVertex42" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:43,855 INFO root Thread-11 : GO FROM "AssignmentVertex42" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:43,858 INFO root Thread-11 : GO FROM "AssignmentVertex43" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:43,862 INFO root Thread-11 : GO FROM "AssignmentVertex43" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:43,865 INFO root Thread-11 : GO FROM "AssignmentVertex44" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:43,869 INFO root Thread-11 : GO FROM "AssignmentVertex44" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:43,874 INFO root Thread-11 : GO FROM "inputs10" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:43,878 INFO root Thread-11 : GO FROM "inputs10" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:43,883 INFO root Thread-11 : GO FROM "inputs11" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:43,888 INFO root Thread-11 : GO FROM "inputs11" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:43,893 INFO root Thread-11 : GO FROM "inputs12" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:43,898 INFO root Thread-11 : GO FROM "inputs12" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:43,902 INFO root Thread-11 : GO FROM "inputs13" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:43,907 INFO root Thread-11 : GO FROM "inputs13" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:43,912 INFO root Thread-11 : GO FROM "inputs14" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:43,917 INFO root Thread-11 : GO FROM "inputs14" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:43,921 INFO root Thread-11 : GO FROM "inputs15" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:43,929 INFO root Thread-11 : GO FROM "inputs15" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:43,933 INFO root Thread-11 : GO FROM "output31" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:12:43,936 INFO root Thread-11 : GO FROM "output31" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:12:43,938 INFO werkzeug Thread-11 : 127.0.0.1 - - [11/Apr/2022 15:12:43] "GET /find/all/node/properties/size?search_by=50%20GB HTTP/1.1" 200 -
+2022-04-11 15:14:01,034 INFO root Thread-12 : Get connection to ('10.100.151.128', 9669)
+2022-04-11 15:14:01,046 INFO root Thread-12 : GO FROM "cluster_tosca_1" over assignment YIELD dst(edge) as vid
+2022-04-11 15:14:01,048 INFO root Thread-12 : GO FROM "AssignmentVertex1" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:01,050 INFO root Thread-12 : GO FROM "AssignmentVertex1" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:01,052 INFO root Thread-12 : GO FROM "AssignmentVertex2" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:01,055 INFO root Thread-12 : GO FROM "AssignmentVertex2" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:01,058 INFO root Thread-12 : GO FROM "AssignmentVertex3" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:01,060 INFO root Thread-12 : GO FROM "AssignmentVertex3" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:01,062 INFO root Thread-12 : GO FROM "RelationshipTemplate1" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:01,064 INFO root Thread-12 : GO FROM "RelationshipTemplate1" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:01,066 INFO root Thread-12 : GO FROM "RelationshipTemplate2" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:01,068 INFO root Thread-12 : GO FROM "RelationshipTemplate2" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:01,070 INFO root Thread-12 : GO FROM "cluster_tosca_2" over assignment YIELD dst(edge) as vid
+2022-04-11 15:14:01,073 INFO root Thread-12 : GO FROM "AssignmentVertex4" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:01,076 INFO root Thread-12 : GO FROM "AssignmentVertex4" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:01,078 INFO root Thread-12 : GO FROM "AssignmentVertex5" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:01,080 INFO root Thread-12 : GO FROM "AssignmentVertex5" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:01,083 INFO root Thread-12 : GO FROM "AssignmentVertex6" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:01,086 INFO root Thread-12 : GO FROM "AssignmentVertex6" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:01,089 INFO root Thread-12 : GO FROM "RelationshipTemplate3" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:01,092 INFO root Thread-12 : GO FROM "RelationshipTemplate3" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:01,095 INFO root Thread-12 : GO FROM "RelationshipTemplate4" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:01,098 INFO root Thread-12 : GO FROM "RelationshipTemplate4" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:01,100 INFO root Thread-12 : GO FROM "cluster_tosca_3" over assignment YIELD dst(edge) as vid
+2022-04-11 15:14:01,103 INFO root Thread-12 : GO FROM "AssignmentVertex7" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:01,107 INFO root Thread-12 : GO FROM "AssignmentVertex7" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:01,110 INFO root Thread-12 : GO FROM "AssignmentVertex8" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:01,112 INFO root Thread-12 : GO FROM "AssignmentVertex8" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:01,115 INFO root Thread-12 : GO FROM "AssignmentVertex9" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:01,118 INFO root Thread-12 : GO FROM "AssignmentVertex9" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:01,120 INFO root Thread-12 : GO FROM "RelationshipTemplate5" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:01,123 INFO root Thread-12 : GO FROM "RelationshipTemplate5" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:01,125 INFO root Thread-12 : GO FROM "RelationshipTemplate6" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:01,128 INFO root Thread-12 : GO FROM "RelationshipTemplate6" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:01,130 INFO root Thread-12 : GO FROM "cluster_tosca_4" over assignment YIELD dst(edge) as vid
+2022-04-11 15:14:01,132 INFO root Thread-12 : GO FROM "AssignmentVertex37" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:01,134 INFO root Thread-12 : GO FROM "AssignmentVertex37" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:01,138 INFO root Thread-12 : GO FROM "AssignmentVertex38" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:01,140 INFO root Thread-12 : GO FROM "AssignmentVertex38" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:01,143 INFO root Thread-12 : GO FROM "AssignmentVertex39" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:01,146 INFO root Thread-12 : GO FROM "AssignmentVertex39" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:01,148 INFO root Thread-12 : GO FROM "RelationshipTemplate25" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:01,151 INFO root Thread-12 : GO FROM "RelationshipTemplate25" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:01,153 INFO root Thread-12 : GO FROM "RelationshipTemplate26" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:01,155 INFO root Thread-12 : GO FROM "RelationshipTemplate26" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:01,159 INFO root Thread-12 : GO FROM "inputs6" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:01,162 INFO root Thread-12 : GO FROM "inputs6" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:01,164 INFO root Thread-12 : GO FROM "inputs7" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:01,167 INFO root Thread-12 : GO FROM "inputs7" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:01,171 INFO root Thread-12 : GO FROM "inputs8" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:01,175 INFO root Thread-12 : GO FROM "inputs8" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:01,178 INFO root Thread-12 : GO FROM "inputs9" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:01,181 INFO root Thread-12 : GO FROM "inputs9" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:01,183 INFO root Thread-12 : GO FROM "output28" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:01,186 INFO root Thread-12 : GO FROM "output28" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:01,188 INFO root Thread-12 : GO FROM "output29" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:01,191 INFO root Thread-12 : GO FROM "output29" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:01,193 INFO root Thread-12 : GO FROM "output30" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:01,196 INFO root Thread-12 : GO FROM "output30" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:01,198 INFO root Thread-12 : GO FROM "cluster_tosca_5" over assignment YIELD dst(edge) as vid
+2022-04-11 15:14:01,201 INFO root Thread-12 : GO FROM "AssignmentVertex40" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:01,204 INFO root Thread-12 : GO FROM "AssignmentVertex40" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:01,208 INFO root Thread-12 : GO FROM "AssignmentVertex41" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:01,211 INFO root Thread-12 : GO FROM "AssignmentVertex41" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:01,216 INFO root Thread-12 : GO FROM "AssignmentVertex42" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:01,223 INFO root Thread-12 : GO FROM "AssignmentVertex42" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:01,227 INFO root Thread-12 : GO FROM "AssignmentVertex43" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:01,231 INFO root Thread-12 : GO FROM "AssignmentVertex43" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:01,237 INFO root Thread-12 : GO FROM "AssignmentVertex44" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:01,242 INFO root Thread-12 : GO FROM "AssignmentVertex44" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:01,248 INFO root Thread-12 : GO FROM "inputs10" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:01,255 INFO root Thread-12 : GO FROM "inputs10" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:01,260 INFO root Thread-12 : GO FROM "inputs11" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:01,263 INFO root Thread-12 : GO FROM "inputs11" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:01,266 INFO root Thread-12 : GO FROM "inputs12" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:01,269 INFO root Thread-12 : GO FROM "inputs12" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:01,272 INFO root Thread-12 : GO FROM "inputs13" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:01,278 INFO root Thread-12 : GO FROM "inputs13" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:01,283 INFO root Thread-12 : GO FROM "inputs14" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:01,286 INFO root Thread-12 : GO FROM "inputs14" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:01,289 INFO root Thread-12 : GO FROM "inputs15" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:01,293 INFO root Thread-12 : GO FROM "inputs15" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:01,295 INFO root Thread-12 : GO FROM "output31" over assignment_property WHERE properties($$).values == "10 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:01,297 INFO root Thread-12 : GO FROM "output31" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:01,298 INFO werkzeug Thread-12 : 127.0.0.1 - - [11/Apr/2022 15:14:01] "GET /find/all/node/properties/size?search_by=10%20GB HTTP/1.1" 200 -
+2022-04-11 15:14:04,493 INFO root Thread-13 : Get connection to ('10.100.151.128', 9669)
+2022-04-11 15:14:04,501 INFO root Thread-13 : GO FROM "cluster_tosca_1" over assignment YIELD dst(edge) as vid
+2022-04-11 15:14:04,503 INFO root Thread-13 : GO FROM "AssignmentVertex1" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:04,505 INFO root Thread-13 : GO FROM "AssignmentVertex1" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:04,507 INFO root Thread-13 : GO FROM "AssignmentVertex2" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:04,509 INFO root Thread-13 : GO FROM "AssignmentVertex2" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:04,512 INFO root Thread-13 : GO FROM "AssignmentVertex3" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:04,514 INFO root Thread-13 : GO FROM "AssignmentVertex3" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:04,516 INFO root Thread-13 : GO FROM "RelationshipTemplate1" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:04,517 INFO root Thread-13 : GO FROM "RelationshipTemplate1" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:04,519 INFO root Thread-13 : GO FROM "RelationshipTemplate2" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:04,521 INFO root Thread-13 : GO FROM "RelationshipTemplate2" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:04,523 INFO root Thread-13 : GO FROM "cluster_tosca_2" over assignment YIELD dst(edge) as vid
+2022-04-11 15:14:04,525 INFO root Thread-13 : GO FROM "AssignmentVertex4" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:04,526 INFO root Thread-13 : GO FROM "AssignmentVertex4" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:04,528 INFO root Thread-13 : GO FROM "AssignmentVertex5" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:04,530 INFO root Thread-13 : GO FROM "AssignmentVertex5" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:04,533 INFO root Thread-13 : GO FROM "AssignmentVertex6" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:04,535 INFO root Thread-13 : GO FROM "AssignmentVertex6" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:04,537 INFO root Thread-13 : GO FROM "RelationshipTemplate3" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:04,539 INFO root Thread-13 : GO FROM "RelationshipTemplate3" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:04,542 INFO root Thread-13 : GO FROM "RelationshipTemplate4" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:04,544 INFO root Thread-13 : GO FROM "RelationshipTemplate4" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:04,546 INFO root Thread-13 : GO FROM "cluster_tosca_3" over assignment YIELD dst(edge) as vid
+2022-04-11 15:14:04,548 INFO root Thread-13 : GO FROM "AssignmentVertex7" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:04,550 INFO root Thread-13 : GO FROM "AssignmentVertex7" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:04,552 INFO root Thread-13 : GO FROM "AssignmentVertex8" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:04,554 INFO root Thread-13 : GO FROM "AssignmentVertex8" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:04,557 INFO root Thread-13 : GO FROM "AssignmentVertex9" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:04,560 INFO root Thread-13 : GO FROM "AssignmentVertex9" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:04,563 INFO root Thread-13 : GO FROM "RelationshipTemplate5" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:04,565 INFO root Thread-13 : GO FROM "RelationshipTemplate5" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:04,567 INFO root Thread-13 : GO FROM "RelationshipTemplate6" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:04,569 INFO root Thread-13 : GO FROM "RelationshipTemplate6" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:04,571 INFO root Thread-13 : GO FROM "cluster_tosca_4" over assignment YIELD dst(edge) as vid
+2022-04-11 15:14:04,574 INFO root Thread-13 : GO FROM "AssignmentVertex37" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:04,576 INFO root Thread-13 : GO FROM "AssignmentVertex37" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:04,578 INFO root Thread-13 : GO FROM "AssignmentVertex38" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:04,580 INFO root Thread-13 : GO FROM "AssignmentVertex38" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:04,583 INFO root Thread-13 : GO FROM "AssignmentVertex39" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:04,586 INFO root Thread-13 : GO FROM "AssignmentVertex39" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:04,588 INFO root Thread-13 : GO FROM "RelationshipTemplate25" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:04,591 INFO root Thread-13 : GO FROM "RelationshipTemplate25" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:04,593 INFO root Thread-13 : GO FROM "RelationshipTemplate26" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:04,596 INFO root Thread-13 : GO FROM "RelationshipTemplate26" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:04,599 INFO root Thread-13 : GO FROM "inputs6" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:04,602 INFO root Thread-13 : GO FROM "inputs6" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:04,605 INFO root Thread-13 : GO FROM "inputs7" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:04,608 INFO root Thread-13 : GO FROM "inputs7" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:04,611 INFO root Thread-13 : GO FROM "inputs8" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:04,614 INFO root Thread-13 : GO FROM "inputs8" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:04,617 INFO root Thread-13 : GO FROM "inputs9" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:04,620 INFO root Thread-13 : GO FROM "inputs9" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:04,622 INFO root Thread-13 : GO FROM "output28" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:04,624 INFO root Thread-13 : GO FROM "output28" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:04,627 INFO root Thread-13 : GO FROM "output29" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:04,629 INFO root Thread-13 : GO FROM "output29" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:04,631 INFO root Thread-13 : GO FROM "output30" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:04,634 INFO root Thread-13 : GO FROM "output30" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:04,636 INFO root Thread-13 : GO FROM "cluster_tosca_5" over assignment YIELD dst(edge) as vid
+2022-04-11 15:14:04,639 INFO root Thread-13 : GO FROM "AssignmentVertex40" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:04,641 INFO root Thread-13 : GO FROM "AssignmentVertex40" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:04,645 INFO root Thread-13 : GO FROM "AssignmentVertex41" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:04,651 INFO root Thread-13 : GO FROM "AssignmentVertex41" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:04,654 INFO root Thread-13 : GO FROM "AssignmentVertex42" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:04,657 INFO root Thread-13 : GO FROM "AssignmentVertex42" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:04,659 INFO root Thread-13 : GO FROM "AssignmentVertex43" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:04,661 INFO root Thread-13 : GO FROM "AssignmentVertex43" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:04,664 INFO root Thread-13 : GO FROM "AssignmentVertex44" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:04,667 INFO root Thread-13 : GO FROM "AssignmentVertex44" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:04,670 INFO root Thread-13 : GO FROM "inputs10" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:04,674 INFO root Thread-13 : GO FROM "inputs10" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:04,677 INFO root Thread-13 : GO FROM "inputs11" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:04,680 INFO root Thread-13 : GO FROM "inputs11" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:04,683 INFO root Thread-13 : GO FROM "inputs12" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:04,685 INFO root Thread-13 : GO FROM "inputs12" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:04,688 INFO root Thread-13 : GO FROM "inputs13" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:04,691 INFO root Thread-13 : GO FROM "inputs13" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:04,695 INFO root Thread-13 : GO FROM "inputs14" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:04,698 INFO root Thread-13 : GO FROM "inputs14" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:04,701 INFO root Thread-13 : GO FROM "inputs15" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:04,704 INFO root Thread-13 : GO FROM "inputs15" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:04,706 INFO root Thread-13 : GO FROM "output31" over assignment_property WHERE properties($$).values == "20 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:04,708 INFO root Thread-13 : GO FROM "output31" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:04,710 INFO werkzeug Thread-13 : 127.0.0.1 - - [11/Apr/2022 15:14:04] "GET /find/all/node/properties/size?search_by=20%20GB HTTP/1.1" 200 -
+2022-04-11 15:14:29,339 INFO root Thread-14 : Get connection to ('10.100.151.128', 9669)
+2022-04-11 15:14:29,353 INFO root Thread-14 : GO FROM "cluster_tosca_1" over assignment YIELD dst(edge) as vid
+2022-04-11 15:14:29,356 INFO root Thread-14 : GO FROM "AssignmentVertex1" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:29,359 INFO root Thread-14 : GO FROM "AssignmentVertex1" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:29,361 INFO root Thread-14 : GO FROM "AssignmentVertex2" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:29,364 INFO root Thread-14 : GO FROM "AssignmentVertex2" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:29,368 INFO root Thread-14 : GO FROM "AssignmentVertex3" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:29,371 INFO root Thread-14 : GO FROM "AssignmentVertex3" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:29,373 INFO root Thread-14 : GO FROM "RelationshipTemplate1" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:29,376 INFO root Thread-14 : GO FROM "RelationshipTemplate1" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:29,378 INFO root Thread-14 : GO FROM "RelationshipTemplate2" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:29,381 INFO root Thread-14 : GO FROM "RelationshipTemplate2" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:29,383 INFO root Thread-14 : GO FROM "cluster_tosca_2" over assignment YIELD dst(edge) as vid
+2022-04-11 15:14:29,385 INFO root Thread-14 : GO FROM "AssignmentVertex4" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:29,390 INFO root Thread-14 : GO FROM "AssignmentVertex4" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:29,393 INFO root Thread-14 : GO FROM "AssignmentVertex5" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:29,397 INFO root Thread-14 : GO FROM "AssignmentVertex5" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:29,402 INFO root Thread-14 : GO FROM "AssignmentVertex6" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:29,407 INFO root Thread-14 : GO FROM "AssignmentVertex6" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:29,410 INFO root Thread-14 : GO FROM "RelationshipTemplate3" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:29,414 INFO root Thread-14 : GO FROM "RelationshipTemplate3" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:29,418 INFO root Thread-14 : GO FROM "RelationshipTemplate4" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:29,422 INFO root Thread-14 : GO FROM "RelationshipTemplate4" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:29,425 INFO root Thread-14 : GO FROM "cluster_tosca_3" over assignment YIELD dst(edge) as vid
+2022-04-11 15:14:29,428 INFO root Thread-14 : GO FROM "AssignmentVertex7" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:29,432 INFO root Thread-14 : GO FROM "AssignmentVertex7" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:29,436 INFO root Thread-14 : GO FROM "AssignmentVertex8" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:29,439 INFO root Thread-14 : GO FROM "AssignmentVertex8" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:29,444 INFO root Thread-14 : GO FROM "AssignmentVertex9" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:29,448 INFO root Thread-14 : GO FROM "AssignmentVertex9" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:29,452 INFO root Thread-14 : GO FROM "RelationshipTemplate5" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:29,456 INFO root Thread-14 : GO FROM "RelationshipTemplate5" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:29,459 INFO root Thread-14 : GO FROM "RelationshipTemplate6" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:29,462 INFO root Thread-14 : GO FROM "RelationshipTemplate6" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:29,466 INFO root Thread-14 : GO FROM "cluster_tosca_4" over assignment YIELD dst(edge) as vid
+2022-04-11 15:14:29,469 INFO root Thread-14 : GO FROM "AssignmentVertex37" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:29,473 INFO root Thread-14 : GO FROM "AssignmentVertex37" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:29,476 INFO root Thread-14 : GO FROM "AssignmentVertex38" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:29,480 INFO root Thread-14 : GO FROM "AssignmentVertex38" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:29,484 INFO root Thread-14 : GO FROM "AssignmentVertex39" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:29,488 INFO root Thread-14 : GO FROM "AssignmentVertex39" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:29,491 INFO root Thread-14 : GO FROM "RelationshipTemplate25" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:29,493 INFO root Thread-14 : GO FROM "RelationshipTemplate25" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:29,496 INFO root Thread-14 : GO FROM "RelationshipTemplate26" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:29,499 INFO root Thread-14 : GO FROM "RelationshipTemplate26" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:29,503 INFO root Thread-14 : GO FROM "inputs6" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:29,508 INFO root Thread-14 : GO FROM "inputs6" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:29,512 INFO root Thread-14 : GO FROM "inputs7" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:29,516 INFO root Thread-14 : GO FROM "inputs7" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:29,520 INFO root Thread-14 : GO FROM "inputs8" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:29,525 INFO root Thread-14 : GO FROM "inputs8" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:29,530 INFO root Thread-14 : GO FROM "inputs9" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:29,534 INFO root Thread-14 : GO FROM "inputs9" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:29,538 INFO root Thread-14 : GO FROM "output28" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:29,541 INFO root Thread-14 : GO FROM "output28" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:29,545 INFO root Thread-14 : GO FROM "output29" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:29,548 INFO root Thread-14 : GO FROM "output29" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:29,551 INFO root Thread-14 : GO FROM "output30" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:29,555 INFO root Thread-14 : GO FROM "output30" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:29,558 INFO root Thread-14 : GO FROM "cluster_tosca_5" over assignment YIELD dst(edge) as vid
+2022-04-11 15:14:29,563 INFO root Thread-14 : GO FROM "AssignmentVertex40" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:29,567 INFO root Thread-14 : GO FROM "AssignmentVertex40" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:29,576 INFO root Thread-14 : GO FROM "AssignmentVertex41" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:29,583 INFO root Thread-14 : GO FROM "AssignmentVertex41" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:29,588 INFO root Thread-14 : GO FROM "AssignmentVertex42" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:29,592 INFO root Thread-14 : GO FROM "AssignmentVertex42" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:29,595 INFO root Thread-14 : GO FROM "AssignmentVertex43" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:29,598 INFO root Thread-14 : GO FROM "AssignmentVertex43" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:29,601 INFO root Thread-14 : GO FROM "AssignmentVertex44" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:29,604 INFO root Thread-14 : GO FROM "AssignmentVertex44" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:29,608 INFO root Thread-14 : GO FROM "inputs10" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:29,612 INFO root Thread-14 : GO FROM "inputs10" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:29,615 INFO root Thread-14 : GO FROM "inputs11" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:29,619 INFO root Thread-14 : GO FROM "inputs11" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:29,623 INFO root Thread-14 : GO FROM "inputs12" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:29,626 INFO root Thread-14 : GO FROM "inputs12" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:29,630 INFO root Thread-14 : GO FROM "inputs13" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:29,634 INFO root Thread-14 : GO FROM "inputs13" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:29,638 INFO root Thread-14 : GO FROM "inputs14" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:29,642 INFO root Thread-14 : GO FROM "inputs14" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:29,648 INFO root Thread-14 : GO FROM "inputs15" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:29,653 INFO root Thread-14 : GO FROM "inputs15" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:29,656 INFO root Thread-14 : GO FROM "output31" over assignment_property WHERE properties($$).values == "50 GB" YIELD properties($$).values as values, dst(edge) as vid
+2022-04-11 15:14:29,659 INFO root Thread-14 : GO FROM "output31" over assignment_property WHERE properties($$).value_name == "size" YIELD properties($$).value_name as value_name, dst(edge) as vid
+2022-04-11 15:14:29,660 INFO werkzeug Thread-14 : 127.0.0.1 - - [11/Apr/2022 15:14:29] "GET /find/all/node/properties/size?search_by=50%20GB HTTP/1.1" 200 -
+2022-04-11 15:15:25,656 INFO root Thread-15 : Get connection to ('10.100.151.128', 9669)
+2022-04-11 15:15:25,684 INFO root Thread-15 : GO FROM "cluster_tosca_1" over assignment WHERE properties($$).type == "tosca.nodes.BlockStorage" YIELD properties($$).type as type, dst(edge) as vid
+2022-04-11 15:15:25,692 INFO root Thread-15 : GO FROM "cluster_tosca_2" over assignment WHERE properties($$).type == "tosca.nodes.BlockStorage" YIELD properties($$).type as type, dst(edge) as vid
+2022-04-11 15:15:25,699 INFO root Thread-15 : GO FROM "cluster_tosca_3" over assignment WHERE properties($$).type == "tosca.nodes.BlockStorage" YIELD properties($$).type as type, dst(edge) as vid
+2022-04-11 15:15:25,706 INFO root Thread-15 : GO FROM "cluster_tosca_4" over assignment WHERE properties($$).type == "tosca.nodes.BlockStorage" YIELD properties($$).type as type, dst(edge) as vid
+2022-04-11 15:15:25,713 INFO root Thread-15 : GO FROM "cluster_tosca_5" over assignment WHERE properties($$).type == "tosca.nodes.BlockStorage" YIELD properties($$).type as type, dst(edge) as vid
+2022-04-11 15:15:25,714 INFO werkzeug Thread-15 : 127.0.0.1 - - [11/Apr/2022 15:15:25] "GET /find/all/node/type?search_by=tosca.nodes.BlockStorage HTTP/1.1" 200 -
+2022-04-11 15:16:41,395 INFO root Thread-16 : Get connection to ('10.100.151.128', 9669)
+2022-04-11 15:16:41,403 INFO root Thread-16 : GO FROM "cluster_tosca_4" over definition YIELD dst(edge) as vid
+2022-04-11 15:16:41,406 INFO root Thread-16 : GO FROM "DefinitionCapabilities145" over requirements WHERE properties($$).name == "local_storage" YIELD properties($$).name as name, dst(edge) as vid
+2022-04-11 15:16:41,408 INFO root Thread-16 : GO FROM "DefinitionCapabilities146" over requirements WHERE properties($$).name == "local_storage" YIELD properties($$).name as name, dst(edge) as vid
+2022-04-11 15:16:41,411 INFO root Thread-16 : GO FROM "DefinitionCapabilities147" over requirements WHERE properties($$).name == "local_storage" YIELD properties($$).name as name, dst(edge) as vid
+2022-04-11 15:16:41,413 INFO root Thread-16 : GO FROM "DefinitionCapabilities148" over requirements WHERE properties($$).name == "local_storage" YIELD properties($$).name as name, dst(edge) as vid
+2022-04-11 15:16:41,415 INFO root Thread-16 : GO FROM "DefinitionCapabilities149" over requirements WHERE properties($$).name == "local_storage" YIELD properties($$).name as name, dst(edge) as vid
+2022-04-11 15:16:41,417 INFO root Thread-16 : GO FROM "DefinitionCapabilities150" over requirements WHERE properties($$).name == "local_storage" YIELD properties($$).name as name, dst(edge) as vid
+2022-04-11 15:16:41,419 INFO root Thread-16 : GO FROM "DefinitionCapabilities151" over requirements WHERE properties($$).name == "local_storage" YIELD properties($$).name as name, dst(edge) as vid
+2022-04-11 15:16:41,421 INFO root Thread-16 : GO FROM "DefinitionCapabilities152" over requirements WHERE properties($$).name == "local_storage" YIELD properties($$).name as name, dst(edge) as vid
+2022-04-11 15:16:41,423 INFO root Thread-16 : GO FROM "DefinitionCapabilities153" over requirements WHERE properties($$).name == "local_storage" YIELD properties($$).name as name, dst(edge) as vid
+2022-04-11 15:16:41,425 INFO root Thread-16 : GO FROM "DefinitionCapabilities154" over requirements WHERE properties($$).name == "local_storage" YIELD properties($$).name as name, dst(edge) as vid
+2022-04-11 15:16:41,427 INFO root Thread-16 : GO FROM "DefinitionCapabilities155" over requirements WHERE properties($$).name == "local_storage" YIELD properties($$).name as name, dst(edge) as vid
+2022-04-11 15:16:41,429 INFO root Thread-16 : GO FROM "DefinitionCapabilities156" over requirements WHERE properties($$).name == "local_storage" YIELD properties($$).name as name, dst(edge) as vid
+2022-04-11 15:16:41,431 INFO root Thread-16 : GO FROM "DefinitionInterface49" over requirements WHERE properties($$).name == "local_storage" YIELD properties($$).name as name, dst(edge) as vid
+2022-04-11 15:16:41,434 INFO root Thread-16 : GO FROM "DefinitionInterface50" over requirements WHERE properties($$).name == "local_storage" YIELD properties($$).name as name, dst(edge) as vid
+2022-04-11 15:16:41,436 INFO root Thread-16 : GO FROM "DefinitionInterface51" over requirements WHERE properties($$).name == "local_storage" YIELD properties($$).name as name, dst(edge) as vid
+2022-04-11 15:16:41,438 INFO root Thread-16 : GO FROM "DefinitionInterface52" over requirements WHERE properties($$).name == "local_storage" YIELD properties($$).name as name, dst(edge) as vid
+2022-04-11 15:16:41,440 INFO root Thread-16 : GO FROM "DefinitionVertex100" over requirements WHERE properties($$).name == "local_storage" YIELD properties($$).name as name, dst(edge) as vid
+2022-04-11 15:16:41,462 INFO root Thread-16 : GO FROM "DefinitionVertex101" over requirements WHERE properties($$).name == "local_storage" YIELD properties($$).name as name, dst(edge) as vid
+2022-04-11 15:16:41,464 INFO root Thread-16 : GO FROM "DefinitionVertex102" over requirements WHERE properties($$).name == "local_storage" YIELD properties($$).name as name, dst(edge) as vid
+2022-04-11 15:16:41,469 INFO root Thread-16 : GO FROM "DefinitionVertex103" over requirements WHERE properties($$).name == "local_storage" YIELD properties($$).name as name, dst(edge) as vid
+2022-04-11 15:16:41,473 INFO root Thread-16 : GO FROM "DefinitionVertex104" over requirements WHERE properties($$).name == "local_storage" YIELD properties($$).name as name, dst(edge) as vid
+2022-04-11 15:16:41,479 INFO root Thread-16 : GO FROM "DefinitionVertex97" over requirements WHERE properties($$).name == "local_storage" YIELD properties($$).name as name, dst(edge) as vid
+2022-04-11 15:16:41,483 INFO root Thread-16 : GO FROM "DefinitionVertex98" over requirements WHERE properties($$).name == "local_storage" YIELD properties($$).name as name, dst(edge) as vid
+2022-04-11 15:16:41,485 INFO root Thread-16 : GO FROM "RequirementsVertex88" over requirements_destination YIELD dst(edge) as vid
+2022-04-11 15:16:41,488 INFO root Thread-16 : FETCH PROP ON DefinitionVertex "DefinitionVertex104" YIELD properties(vertex).vertex_type_tosca as vertex_type_tosca
+2022-04-11 15:16:41,493 INFO root Thread-16 : GO FROM "DefinitionVertex99" over requirements WHERE properties($$).name == "local_storage" YIELD properties($$).name as name, dst(edge) as vid
+2022-04-11 15:16:41,496 INFO root Thread-16 : GO FROM "RelationshipType109" over requirements WHERE properties($$).name == "local_storage" YIELD properties($$).name as name, dst(edge) as vid
+2022-04-11 15:16:41,499 INFO root Thread-16 : GO FROM "RelationshipType110" over requirements WHERE properties($$).name == "local_storage" YIELD properties($$).name as name, dst(edge) as vid
+2022-04-11 15:16:41,501 INFO root Thread-16 : GO FROM "RelationshipType111" over requirements WHERE properties($$).name == "local_storage" YIELD properties($$).name as name, dst(edge) as vid
+2022-04-11 15:16:41,503 INFO root Thread-16 : GO FROM "RelationshipType112" over requirements WHERE properties($$).name == "local_storage" YIELD properties($$).name as name, dst(edge) as vid
+2022-04-11 15:16:41,504 INFO root Thread-16 : GO FROM "RelationshipType113" over requirements WHERE properties($$).name == "local_storage" YIELD properties($$).name as name, dst(edge) as vid
+2022-04-11 15:16:41,507 INFO root Thread-16 : GO FROM "RelationshipType114" over requirements WHERE properties($$).name == "local_storage" YIELD properties($$).name as name, dst(edge) as vid
+2022-04-11 15:16:41,508 INFO root Thread-16 : GO FROM "RelationshipType115" over requirements WHERE properties($$).name == "local_storage" YIELD properties($$).name as name, dst(edge) as vid
+2022-04-11 15:16:41,510 INFO root Thread-16 : GO FROM "RelationshipType116" over requirements WHERE properties($$).name == "local_storage" YIELD properties($$).name as name, dst(edge) as vid
+2022-04-11 15:16:41,512 INFO root Thread-16 : GO FROM "RelationshipType117" over requirements WHERE properties($$).name == "local_storage" YIELD properties($$).name as name, dst(edge) as vid
+2022-04-11 15:16:41,514 INFO root Thread-16 : GO FROM "cluster_tosca_4" over assignment YIELD dst(edge) as vid
+2022-04-11 15:16:41,515 INFO root Thread-16 : FETCH PROP ON AssignmentVertex "AssignmentVertex37" YIELD properties(vertex).type as type
+2022-04-11 15:16:41,518 INFO root Thread-16 : FETCH PROP ON AssignmentVertex "AssignmentVertex38" YIELD properties(vertex).type as type
+2022-04-11 15:16:41,519 INFO root Thread-16 : FETCH PROP ON AssignmentVertex "AssignmentVertex39" YIELD properties(vertex).type as type
+2022-04-11 15:16:41,520 INFO werkzeug Thread-16 : 127.0.0.1 - - [11/Apr/2022 15:16:41] "GET /find/destination_node?cluster_name=cluster_tosca_4&requirement_name=local_storage HTTP/1.1" 200 -
+2022-04-11 15:16:42,854 INFO werkzeug MainThread :  * Detected change in '/usr/lib/python3.8/uuid.py', reloading

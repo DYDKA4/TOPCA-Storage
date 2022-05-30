@@ -19,6 +19,7 @@
 #   node_filter:
 #     <node_filter_definition>
 #   copy: <source_node_template_name>
+# todo requirements capabilities interfaces artifacts node_filter copy: <source_node_template_name>
 from werkzeug.exceptions import abort
 
 from app.parser.tosca_v_1_3.AttributeAssignment import attribute_assignments_parser, AttributeAssignment

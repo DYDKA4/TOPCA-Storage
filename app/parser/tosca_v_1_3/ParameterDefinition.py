@@ -11,6 +11,7 @@
 #   entry_schema: <entry_schema_definition>
 from app.parser.tosca_v_1_3.ConstraintСlause import Constraint, constraint_parser
 from app.parser.tosca_v_1_3.DescriptionDefinition import description_parser
+# complete without key_schema & entry_schema
 
 
 class Parameter:

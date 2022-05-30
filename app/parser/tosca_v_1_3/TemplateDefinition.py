@@ -12,6 +12,7 @@
 #   # as an implementation of a Node Type.
 #   substitution_mappings:
 #     <substitution_mappings>
+# todo node_templates relationship_templates groups policies
 from app.parser.tosca_v_1_3.DescriptionDefinition import description_parser
 from app.parser.tosca_v_1_3.NodeTemplate import NodeTemplate, node_template_parser
 from app.parser.tosca_v_1_3.ParameterDefinition import parameter_parser, Parameter

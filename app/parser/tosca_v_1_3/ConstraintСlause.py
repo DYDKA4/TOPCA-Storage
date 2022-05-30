@@ -7,6 +7,8 @@
 # # Regular expression (regex) grammar
 # pattern: < regular_expression_value >
 # # Schema grammar
+# complete
+
 class Constraint:
     def __init__(self):
         self.operator = None

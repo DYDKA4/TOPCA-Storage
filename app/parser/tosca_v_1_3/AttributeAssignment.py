@@ -1,6 +1,7 @@
 # <attribute_name>:
 #   description: <attribute_description>
 #   value: <attribute_value> | { <attribute_value_expression> }
+# complete
 from app.parser.tosca_v_1_3.DescriptionDefinition import description_parser
 
 

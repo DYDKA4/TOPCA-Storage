@@ -1,4 +1,5 @@
 # description: <string>
+# complete
 
 def description_parser(data: dict) -> str:
     description = str(data.get('description'))

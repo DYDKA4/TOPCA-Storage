@@ -609,7 +609,7 @@ topology_template:
 
           properties:
 
-            disk_size: 10 GB
+            disk_size: 10GB
 
             num_cpus: { get_input: cpus }
 

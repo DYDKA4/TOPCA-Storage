@@ -1,5 +1,5 @@
 import unittest
-from app import yaml_parser
+from app.parser import yaml_parser
 import yaml
 
 

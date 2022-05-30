@@ -14,13 +14,13 @@ from app.parser.tosca_v_1_3.DescriptionDefinition import description_parser
 
 
 class Parameter:
-    def __init__(self, name):
+    def __init__(self, name: str, value: str = None):
         self.name = name
         self.type = None
         self.vid = None
         self.vertex_type_system = 'ParameterDefinition'
         self.description = None
-        self.value = None
+        self.value = value
         self.required = None
         self.default = None
         self.status = None
@@ -60,25 +60,39 @@ class Parameter:
 
 
 def parameter_parser(parameter_name: str, data: dict) -> Parameter:
+    if type(data) == str:
+        return Parameter(parameter_name, str(data))
     parameter = Parameter(parameter_name)
+    short_notation = True
     if data.get('type'):
+        short_notation = False
         parameter.set_type(data.get('type'))
     if data.get('description'):
+        short_notation = False
         description = description_parser(data)
         parameter.set_description(description)
     if data.get('value'):  # Data type?
+        short_notation = False
         parameter.set_value(data.get('value'))
     if data.get('required'):
+        short_notation = False
         parameter.set_value(data.get('required'))
     if data.get('default'):  # Data type?
+        short_notation = False
         parameter.set_default(data.get('default'))
     if data.get('status'):
+        short_notation = False
         parameter.set_status(data.get('status'))
     if data.get('constraints'):
+        short_notation = False
         for constraint in data.get('constraints'):
             parameter.add_constraints(constraint_parser(constraint))
     if data.get('key_schema'):
+        short_notation = False
         parameter.set_key_schema(data.get('key_schema'))
     if data.get('entry_schema'):
+        short_notation = False
         parameter.set_entry_schema(data.get('entry_schema'))
+    if short_notation:
+        parameter.set_value(str(data))
     return parameter

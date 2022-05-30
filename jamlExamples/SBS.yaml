@@ -559,6 +559,8 @@ topology_template:
 
   inputs:
 
+    mem: 1 GB
+
     cpus:
 
       type: integer

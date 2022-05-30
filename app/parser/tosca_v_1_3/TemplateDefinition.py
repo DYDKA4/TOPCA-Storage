@@ -51,7 +51,7 @@ def template_parser(data: dict) -> Template:
             template.add_input(parameter_parser(input_name, input_value))
     if data.get('node_templates'):
         for node_template_name, node_template_value in data.get('node_templates').items():
-            template.add_node_templates(node_template_parser(node_template_name,node_template_value))
+            template.add_node_templates(node_template_parser(node_template_name, node_template_value))
     # node_templates
     # relationship_templates
     # groups

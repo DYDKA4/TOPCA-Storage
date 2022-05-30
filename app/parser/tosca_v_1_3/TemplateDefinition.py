@@ -13,7 +13,8 @@
 #   substitution_mappings:
 #     <substitution_mappings>
 from app.parser.tosca_v_1_3.DescriptionDefinition import description_parser
-from app.parser.tosca_v_1_3.ParameterDefinition import parameter_parser
+from app.parser.tosca_v_1_3.NodeTemplate import NodeTemplate, node_template_parser
+from app.parser.tosca_v_1_3.ParameterDefinition import parameter_parser, Parameter
 
 
 class Template:
@@ -22,12 +23,20 @@ class Template:
         self.vertex_type_system = 'TemplateDefinition'
         self.description = ""
         self.inputs = []
+        self.outputs = []
+        self.node_templates = []
 
     def set_description(self, description: str):
         self.description = description
 
-    def add_input(self, inputs):
+    def add_input(self, inputs: Parameter):
         self.inputs.append(inputs)
+
+    def add_output(self, outputs: Parameter):
+        self.outputs.append(outputs)
+
+    def add_node_templates(self, node_template: NodeTemplate):
+        self.node_templates.append(node_template)
 
 
 def template_parser(data: dict) -> Template:
@@ -40,5 +49,17 @@ def template_parser(data: dict) -> Template:
     if data.get('inputs'):
         for input_name, input_value in data.get('inputs').items():
             template.add_input(parameter_parser(input_name, input_value))
+    if data.get('node_templates'):
+        for node_template_name, node_template_value in data.get('node_templates').items():
+            template.add_node_templates(node_template_parser(node_template_name,node_template_value))
+    # node_templates
+    # relationship_templates
+    # groups
+    # policies
 
+    if data.get('outputs'):
+        for output_name, output_value in data.get('outputs').items():
+            template.add_output(parameter_parser(output_name, output_value))
+    # substitution_mappings
+    # workflows
     return template

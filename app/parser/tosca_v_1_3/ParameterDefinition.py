@@ -52,6 +52,12 @@ class Parameter:
     def add_constraints(self, constraint: Constraint):
         self.constraints.append(constraint)
 
+    def set_key_schema(self, key_schema: str):
+        self.key_schema = key_schema
+
+    def set_entry_schema(self, entry_schema: str):
+        self.entry_schema = entry_schema
+
 
 def parameter_parser(parameter_name: str, data: dict) -> Parameter:
     parameter = Parameter(parameter_name)
@@ -71,4 +77,8 @@ def parameter_parser(parameter_name: str, data: dict) -> Parameter:
     if data.get('constraints'):
         for constraint in data.get('constraints'):
             parameter.add_constraints(constraint_parser(constraint))
+    if data.get('key_schema'):
+        parameter.set_key_schema(data.get('key_schema'))
+    if data.get('entry_schema'):
+        parameter.set_entry_schema(data.get('entry_schema'))
     return parameter

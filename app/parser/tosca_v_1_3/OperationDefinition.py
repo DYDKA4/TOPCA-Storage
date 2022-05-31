@@ -45,14 +45,15 @@ class OperationDefinition:
         self.implementation = implementation
 
     def set_outputs(self, outputs):
-        #todo remake later
+        # todo remake later
         self.outputs = outputs
 
     def add_input_definition(self, inputs: PropertyDefinition):
-        self.input_definition.append(inputs)
+        self.inputs_definition.append(inputs)
 
-    def add_inputs_assignment(self, inputs: PropertyAssignment ):
+    def add_inputs_assignment(self, inputs: PropertyAssignment):
         self.inputs_assignment.append(inputs)
+
 
 def operation_definition(name: str, data: dict) -> OperationDefinition:
     operation = OperationDefinition(name)
@@ -71,10 +72,9 @@ def operation_definition(name: str, data: dict) -> OperationDefinition:
         if data.get('inputs'):
             for input_property_name, input_property_value in data.get('inputs').items():
                 operation.add_input_definition(property_definition_parser(input_property_name, input_property_value))
-    if data.get('inputs'): #todo look at 71 to 77 may be wrong?
+    if data.get('inputs'):  # todo look at 71 to 77 may be wrong?
         for input_property_name, input_property_value in data.get('inputs').items():
             operation.add_inputs_assignment(PropertyAssignment(input_property_name, str(input_property_value)))
-
 
     if short_notation:
         operation.set_implementation_artifact_name(str(data))

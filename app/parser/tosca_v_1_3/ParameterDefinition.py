@@ -49,7 +49,7 @@ class Parameter:
         self.default = default
 
     def set_status(self, status: str):
-        self.default = status
+        self.status = status
 
     def add_constraints(self, constraint: Constraint):
         self.constraints.append(constraint)
@@ -78,7 +78,7 @@ def parameter_parser(parameter_name: str, data: dict) -> Parameter:
         parameter.set_value(data.get('value'))
     if data.get('required'):
         short_notation = False
-        parameter.set_value(data.get('required'))
+        parameter.set_required(data.get('required'))
     if data.get('default'):  # Data type?
         short_notation = False
         parameter.set_default(data.get('default'))

@@ -65,7 +65,7 @@ class ArtifactDefinition:
         self.properties.append(properties)
 
 
-def artifact_definition(name: str, data: dict) -> ArtifactDefinition:
+def artifact_definition_parser(name: str, data: dict) -> ArtifactDefinition:
     artifact = ArtifactDefinition(name)
     short_notation = True
     if data.get('description'):

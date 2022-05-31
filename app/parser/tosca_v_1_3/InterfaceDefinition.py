@@ -16,6 +16,7 @@
 #     <operation_definitions>
 #   notifications:
 #     <notification_definitions>
+from app.parser.tosca_v_1_3.OperationDefinition import OperationDefinition, operation_definition_parser
 from app.parser.tosca_v_1_3.PropertyAssignment import PropertyAssignment
 from app.parser.tosca_v_1_3.PropertyDefinition import PropertyDefinition, property_definition_parser
 
@@ -28,6 +29,8 @@ class InterfaceDefinition:
         self.type = None
         self.inputs_definition = []
         self.inputs_assignments = []
+        self.operations = []
+        self.notifications = []
 
     def set_type(self, interface_type: str):
         self.type = interface_type
@@ -37,6 +40,12 @@ class InterfaceDefinition:
 
     def add_inputs_assignments(self, inputs: PropertyAssignment):
         self.inputs_assignments.append(inputs)
+
+    def add_operation(self, operation: OperationDefinition):
+        self.operations.append(operation)
+
+    def add_notification(self, notifications: ?):
+        self.notifications.
 
 
 def interface_definition_parser(name: str, data: dict) -> InterfaceDefinition:
@@ -51,7 +60,12 @@ def interface_definition_parser(name: str, data: dict) -> InterfaceDefinition:
             for input_property_name, input_property_value in data.get('inputs').items():
                 interface.add_inputs_assignments(PropertyAssignment(input_property_name, str(input_property_value)))
     if data.get('operations'):
-        
+        for operation_name, operation_value in data.get('operations').items():
+            interface.add_operation(operation_definition_parser(operation_name, operation_value))
+    if data.get('notifications')
+
+
+
 
     return interface
 

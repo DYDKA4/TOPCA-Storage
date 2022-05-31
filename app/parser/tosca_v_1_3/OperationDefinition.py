@@ -55,7 +55,7 @@ class OperationDefinition:
         self.inputs_assignment.append(inputs)
 
 
-def operation_definition(name: str, data: dict) -> OperationDefinition:
+def operation_definition_parser(name: str, data: dict) -> OperationDefinition:
     operation = OperationDefinition(name)
     short_notation = True
     if data.get('description'):

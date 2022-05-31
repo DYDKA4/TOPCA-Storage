@@ -16,6 +16,7 @@
 #     <operation_definitions>
 #   notifications:
 #     <notification_definitions>
+from app.parser.tosca_v_1_3.NotificationDefinition import NotificationDefinition, notification_definition_parser
 from app.parser.tosca_v_1_3.OperationDefinition import OperationDefinition, operation_definition_parser
 from app.parser.tosca_v_1_3.PropertyAssignment import PropertyAssignment
 from app.parser.tosca_v_1_3.PropertyDefinition import PropertyDefinition, property_definition_parser
@@ -44,8 +45,8 @@ class InterfaceDefinition:
     def add_operation(self, operation: OperationDefinition):
         self.operations.append(operation)
 
-    def add_notification(self, notifications: ?):
-        self.notifications.
+    def add_notification(self, notifications: NotificationDefinition):
+        self.notifications.append(notifications)
 
 
 def interface_definition_parser(name: str, data: dict) -> InterfaceDefinition:
@@ -62,10 +63,8 @@ def interface_definition_parser(name: str, data: dict) -> InterfaceDefinition:
     if data.get('operations'):
         for operation_name, operation_value in data.get('operations').items():
             interface.add_operation(operation_definition_parser(operation_name, operation_value))
-    if data.get('notifications')
-
-
-
-
+    if data.get('notifications'):
+        for notification_name, notification_value in data.get('notifications').items():
+            interface.add_notification(notification_definition_parser(notification_name,notification_value))
     return interface
 

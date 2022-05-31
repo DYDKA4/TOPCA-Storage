@@ -27,7 +27,7 @@ class NotificationDefinition:
         self.outputs = outputs
 
 
-def notification_definition(name: str, data: dict) -> NotificationDefinition:
+def notification_definition_parser(name: str, data: dict) -> NotificationDefinition:
     notification = NotificationDefinition(name)
     if data.get('description'):
         description = description_parser(data)

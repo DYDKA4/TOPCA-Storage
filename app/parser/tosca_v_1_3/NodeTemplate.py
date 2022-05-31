@@ -24,6 +24,7 @@ from werkzeug.exceptions import abort
 
 from app.parser.tosca_v_1_3.AttributeAssignment import attribute_assignments_parser, AttributeAssignment
 from app.parser.tosca_v_1_3.DescriptionDefinition import description_parser
+from app.parser.tosca_v_1_3.Directives import Directives
 from app.parser.tosca_v_1_3.Metadata import Metadata
 from app.parser.tosca_v_1_3.PropertyAssignment import PropertyAssignment
 
@@ -35,7 +36,7 @@ class NodeTemplate:
         self.name = name
         self.vid = None
         self.vertex_type_system = 'NodeTemplate'
-        self.directives = None  # IDK what is it
+        self.directives = []
         self.metadata = []
         self.properties = []
         self.attributes = []
@@ -46,8 +47,8 @@ class NodeTemplate:
     def set_description(self, description: str):
         self.description = description
 
-    def set_directives(self, directives: str):
-        self.directives = directives
+    def add_directives(self, directives: Directives):
+        self.directives.append(directives)
 
     def add_metadata(self, metadata: Metadata):
         self.metadata.append(metadata)
@@ -69,7 +70,8 @@ def node_template_parser(name: str, data: dict) -> NodeTemplate:
         description = description_parser(data)
         node_template.set_description(description)
     if data.get('directives'):
-        node_template.set_directives(data.get('directives'))
+        for directive in data.get('directives'):
+            node_template.add_directives(Directives(directive))
     if data.get('metadata'):
         for metadata_name, metadata_value in data.get('metadata'):
             node_template.add_metadata(Metadata(metadata_name, metadata_value))

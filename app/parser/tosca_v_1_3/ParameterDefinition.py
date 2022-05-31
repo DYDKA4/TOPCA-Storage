@@ -11,7 +11,8 @@
 #   entry_schema: <entry_schema_definition>
 from app.parser.tosca_v_1_3.ConstraintСlause import Constraint, constraint_parser
 from app.parser.tosca_v_1_3.DescriptionDefinition import description_parser
-# complete without key_schema & entry_schema
+# complete
+from app.parser.tosca_v_1_3.SchemaDefinition import SchemaDefinition, schema_definition_parser
 
 
 class Parameter:
@@ -26,8 +27,8 @@ class Parameter:
         self.default = None
         self.status = None
         self.constraints = []
-        self.key_schema = None  # IDK what is it
-        self.entry_schema = None  # IDK what is it
+        self.key_schema = None
+        self.entry_schema = None
 
     def set_description(self, description: str):
         self.description = description
@@ -53,10 +54,10 @@ class Parameter:
     def add_constraints(self, constraint: Constraint):
         self.constraints.append(constraint)
 
-    def set_key_schema(self, key_schema: str):
+    def set_key_schema(self, key_schema: SchemaDefinition):
         self.key_schema = key_schema
 
-    def set_entry_schema(self, entry_schema: str):
+    def set_entry_schema(self, entry_schema: SchemaDefinition):
         self.entry_schema = entry_schema
 
 
@@ -90,10 +91,10 @@ def parameter_parser(parameter_name: str, data: dict) -> Parameter:
             parameter.add_constraints(constraint_parser(constraint))
     if data.get('key_schema'):
         short_notation = False
-        parameter.set_key_schema(data.get('key_schema'))
+        parameter.set_key_schema(schema_definition_parser(data.get('key_schema')))
     if data.get('entry_schema'):
         short_notation = False
-        parameter.set_entry_schema(data.get('entry_schema'))
+        parameter.set_entry_schema(schema_definition_parser(data.get('entry_schema')))
     if short_notation:
         parameter.set_value(str(data))
     return parameter

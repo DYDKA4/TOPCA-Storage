@@ -63,7 +63,7 @@ class OperationImplementationDefinition:
         self.timeout = timeout
 
 
-def operation_implementation_definition(data: dict) -> OperationImplementationDefinition:
+def operation_implementation_definition_parser(data: dict) -> OperationImplementationDefinition:
     operation = OperationImplementationDefinition()
     short_notation = True
     if data.get('primary'):

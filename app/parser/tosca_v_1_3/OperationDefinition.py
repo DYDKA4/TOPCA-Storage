@@ -51,7 +51,7 @@ class OperationDefinition:
     def add_input_definition(self, inputs: PropertyDefinition):
         self.input_definition.append(inputs)
 
-    def add_inputs_assignment(self, inputs: ):
+    def add_inputs_assignment(self, inputs: PropertyAssignment ):
         self.inputs_assignment.append(inputs)
 
 def operation_definition(name: str, data: dict) -> OperationDefinition:

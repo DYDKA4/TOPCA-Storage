@@ -63,6 +63,7 @@ class PropertyDefinition:
     def add_metadata(self, metadata: Metadata):
         self.metadata.append(metadata)
 
+
 def property_definition_parser(name: str, data: dict) -> PropertyDefinition:
     property_definition = PropertyDefinition(name)
     if data.get('type'):

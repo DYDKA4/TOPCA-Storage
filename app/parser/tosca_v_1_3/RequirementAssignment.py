@@ -19,6 +19,7 @@
 #       <property_assignments>
 #     interfaces:
 #       <interface_assignments>
+from app.parser.tosca_v_1_3.InterfaceDefinition import InterfaceDefinition, interface_definition_parser
 from app.parser.tosca_v_1_3.PropertyAssignment import PropertyAssignment
 
 
@@ -45,8 +46,9 @@ class RequirementAssignment:
     def add_property(self, property: PropertyAssignment):
         self.properties.append(property)
 
-    # def add_interface(self, property: PropertyAssignment):
-    #     self.properties.append(property)
+    def add_interface(self, interface: InterfaceDefinition):
+        self.properties.append(interface)
+
 
 def requirement_parser(name: str, data: dict) -> RequirementAssignment:
     requirement = RequirementAssignment(name)
@@ -64,8 +66,9 @@ def requirement_parser(name: str, data: dict) -> RequirementAssignment:
                 for property_name, property_value in data.get('properties').items():
                     requirement.add_property(PropertyAssignment(property_name, str(property_value)))
             if relationship_data.get('interfaces'):
-                for
-
+                for interface_name, interface_value in data.get('interfaces').items():
+                    requirement.add_interface(interface_definition_parser(interface_name, interface_value))
+    #todo   capability node_filter occurrences
 
 
     if short_notation:

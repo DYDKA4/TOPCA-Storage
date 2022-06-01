@@ -80,7 +80,8 @@ class TriggerDefinition:
     def set_action(self, action: str):
         self.action = action
 
-def trigger_definition(name: str, data: dict) -> TriggerDefinition:
+
+def trigger_definition_parser(name: str, data: dict) -> TriggerDefinition:
     trigger = TriggerDefinition(name)
     if data.get('description'):
         description = description_parser(data)

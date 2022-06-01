@@ -13,6 +13,7 @@ from werkzeug.exceptions import abort
 from app.parser.tosca_v_1_3.DescriptionDefinition import description_parser
 from app.parser.tosca_v_1_3.Metadata import Metadata
 from app.parser.tosca_v_1_3.PropertyAssignment import PropertyAssignment
+from app.parser.tosca_v_1_3.TriggerDefinition import TriggerDefinition, trigger_definition_parser
 
 
 class PolicyDefinition:
@@ -26,7 +27,6 @@ class PolicyDefinition:
         self.properties = []
         self.targets = []
         self.triggers = []
-
 
     def set_type(self, group_type: str):
         self.type = group_type
@@ -42,6 +42,9 @@ class PolicyDefinition:
 
     def add_targets(self, target: str):
         self.targets.append(target)
+
+    def add_trigger(self, trigger: TriggerDefinition):
+        self.triggers.append(trigger)
 
 
 def policy_definition_parser(name: str, data: dict) -> PolicyDefinition:
@@ -63,5 +66,6 @@ def policy_definition_parser(name: str, data: dict) -> PolicyDefinition:
         for target in data.get('targets'):
             policy.add_targets(target)
     if data.get('triggers'):
-        
+        for trigger_name, trigger_value in data.get('triggers'):
+            policy.add_trigger(trigger_definition_parser(trigger_name,trigger_value))
     return policy

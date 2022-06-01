@@ -7,7 +7,7 @@
 #   entry_schema: <entry_schema_definition>
 from werkzeug.exceptions import abort
 
-from app.parser.tosca_v_1_3.ConstraintСlause import constraint_parser, Constraint
+from app.parser.tosca_v_1_3.ConstraintСlause import constraint_clause_parser, ConstraintClause
 from app.parser.tosca_v_1_3.DescriptionDefinition import description_parser
 
 
@@ -27,7 +27,7 @@ class SchemaDefinition:
     def set_description(self, description: str):
         self.description = description
 
-    def add_constraints(self, constraint: Constraint):
+    def add_constraints(self, constraint: ConstraintClause):
         self.constraints.append(constraint)
 
     def set_key_schema(self, schema):
@@ -48,7 +48,7 @@ def schema_definition_parser(data: dict) -> SchemaDefinition:
         schema.set_description(description)
     if data.get('constraints'):
         for constraint in data.get('constraints'):
-            schema.add_constraints(constraint_parser(constraint))
+            schema.add_constraints(constraint_clause_parser(constraint))
     if data.get('key_schema'):
         schema.set_key_schema(schema_definition_parser(data.get('key_schema')))
     if data.get('entry_schema'):

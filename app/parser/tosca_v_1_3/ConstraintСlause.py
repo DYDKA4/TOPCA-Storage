@@ -9,7 +9,7 @@
 # # Schema grammar
 # complete
 
-class Constraint:
+class ConstraintClause:
     def __init__(self):
         self.operator = None
         self.vertex_type_system = 'ConstraintClause'
@@ -23,8 +23,8 @@ class Constraint:
         self.value = value
 
 
-def constraint_parser(data: dict) -> Constraint:
-    constraint = Constraint()
+def constraint_clause_parser(data: dict) -> ConstraintClause:
+    constraint = ConstraintClause()
     for operator, scalar_value in data.items():
         constraint.set_operator(operator)
         constraint.set_value(str(scalar_value))

@@ -9,7 +9,7 @@
 #     - <parameter_constraints>
 #   key_schema : <key_schema_definition>
 #   entry_schema: <entry_schema_definition>
-from app.parser.tosca_v_1_3.ConstraintСlause import Constraint, constraint_parser
+from app.parser.tosca_v_1_3.ConstraintСlause import ConstraintClause, constraint_clause_parser
 from app.parser.tosca_v_1_3.DescriptionDefinition import description_parser
 # complete
 from app.parser.tosca_v_1_3.SchemaDefinition import SchemaDefinition, schema_definition_parser
@@ -51,7 +51,7 @@ class Parameter:
     def set_status(self, status: str):
         self.status = status
 
-    def add_constraints(self, constraint: Constraint):
+    def add_constraints(self, constraint: ConstraintClause):
         self.constraints.append(constraint)
 
     def set_key_schema(self, key_schema: SchemaDefinition):
@@ -88,7 +88,7 @@ def parameter_parser(parameter_name: str, data: dict) -> Parameter:
     if data.get('constraints'):
         short_notation = False
         for constraint in data.get('constraints'):
-            parameter.add_constraints(constraint_parser(constraint))
+            parameter.add_constraints(constraint_clause_parser(constraint))
     if data.get('key_schema'):
         short_notation = False
         parameter.set_key_schema(schema_definition_parser(data.get('key_schema')))

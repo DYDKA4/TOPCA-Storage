@@ -12,7 +12,7 @@
 #     <metadata_map>
 from werkzeug.exceptions import abort
 
-from app.parser.tosca_v_1_3.ConstraintСlause import constraint_parser
+from app.parser.tosca_v_1_3.ConstraintСlause import constraint_clause_parser
 from app.parser.tosca_v_1_3.DescriptionDefinition import description_parser
 from app.parser.tosca_v_1_3.Metadata import Metadata
 from app.parser.tosca_v_1_3.SchemaDefinition import schema_definition_parser, SchemaDefinition
@@ -81,7 +81,7 @@ def property_definition_parser(name: str, data: dict) -> PropertyDefinition:
         property_definition.set_status(data.get('status'))
     if data.get('constraints'):
         for constraint in data.get('constraints'):
-            property_definition.add_constraints(constraint_parser(constraint))
+            property_definition.add_constraints(constraint_clause_parser(constraint))
     if data.get('key_schema'):
         property_definition.set_key_schema(schema_definition_parser(data.get('key_schema')))
     if data.get('entry_schema'):

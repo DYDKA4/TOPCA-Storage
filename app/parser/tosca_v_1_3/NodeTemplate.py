@@ -22,10 +22,14 @@
 # todo requirements capabilities interfaces artifacts node_filter copy: <source_node_template_name>
 from werkzeug.exceptions import abort
 
+from app.parser.tosca_v_1_3.ArtifactDefinition import ArtifactDefinition, artifact_definition_parser
 from app.parser.tosca_v_1_3.AttributeAssignment import attribute_assignments_parser, AttributeAssignment
+from app.parser.tosca_v_1_3.CapabilityAssignment import CapabilityAssignment, capability_assignment_parser
 from app.parser.tosca_v_1_3.DescriptionDefinition import description_parser
 from app.parser.tosca_v_1_3.Directives import Directives
+from app.parser.tosca_v_1_3.InterfaceDefinition import InterfaceDefinition, interface_definition_parser
 from app.parser.tosca_v_1_3.Metadata import Metadata
+from app.parser.tosca_v_1_3.NodeFilterDefinition import NodeFilterDefinition, node_filter_definition_parser
 from app.parser.tosca_v_1_3.PropertyAssignment import PropertyAssignment
 from app.parser.tosca_v_1_3.RequirementAssignment import RequirementAssignment, requirement_assignment_parser
 
@@ -42,6 +46,11 @@ class NodeTemplate:
         self.properties = []
         self.attributes = []
         self.requirements = []
+        self.capabilities = []
+        self.interfaces = []
+        self.artifacts = []
+        self.node_filter = None
+        self.copy = None
 
     def set_type(self, node_type: str):
         self.type = node_type
@@ -63,6 +72,21 @@ class NodeTemplate:
 
     def add_requirement(self, requirement: RequirementAssignment):
         self.requirements.append(requirement)
+
+    def add_capability(self, capability: CapabilityAssignment):
+        self.capabilities.append(capability)
+
+    def add_interface(self, interface: InterfaceDefinition):
+        self.interfaces.append(interface)
+
+    def add_artifact(self, artifact: ArtifactDefinition):
+        self.artifacts.append(artifact)
+
+    def set_node_filter(self, node_filter: NodeFilterDefinition):
+        self.node_filter = node_filter
+
+    def set_copy(self, copy: str):
+        self.copy = copy
 
 def node_template_parser(name: str, data: dict) -> NodeTemplate:
     node_template = NodeTemplate(name)
@@ -89,15 +113,18 @@ def node_template_parser(name: str, data: dict) -> NodeTemplate:
     if data.get('requirements'):
         for requirement in data.get('requirements'):
             for requirement_name, requirement_value in requirement.items():
-                node_template.add_requirement(requirement_assignment_parser(requirement_name,requirement_value))
+                node_template.add_requirement(requirement_assignment_parser(requirement_name, requirement_value))
     if data.get('capabilities'):
-
-
-
-    # capabilities:
-    # interfaces:
-    # artifacts:
-    # node_filter:
-    # copy: <source_node_template_name>
-    # if data.get('')
+        for capability_name, capability_value in data.get('capabilities').items():
+            node_template.add_capability(capability_assignment_parser(capability_name, capability_value))
+    if data.get('interfaces'):
+        for interface_name, interface_value in data.get('interface').items():
+            node_template.add_interface(interface_definition_parser(interface_name, interface_value))
+    if data.get('artifacts'):
+        for artifact_name, artifact_value in data.get('artifacts').items():
+            node_template.add_artifact(artifact_definition_parser(artifact_name, artifact_value))
+    if data.get('node_filter'):
+        node_template.set_node_filter(node_filter_definition_parser(data.get('node_filter')))
+    if data.get('copy'):
+        node_template.set_copy(data.get('copy'))
     return node_template

@@ -12,10 +12,13 @@
 #   # as an implementation of a Node Type.
 #   substitution_mappings:
 #     <substitution_mappings>
-# todo relationship_templates groups policies
+# todo relationship_templates groups policies workflows substitution_mappings
+from app.data_classes import RelationshipTemplate
 from app.parser.tosca_v_1_3.DescriptionDefinition import description_parser
+from app.parser.tosca_v_1_3.GroupDefinition import GroupDefinition, group_definition_parser
 from app.parser.tosca_v_1_3.NodeTemplate import NodeTemplate, node_template_parser
 from app.parser.tosca_v_1_3.ParameterDefinition import parameter_parser, Parameter
+from app.parser.tosca_v_1_3.RelationshipTemplate import relationship_template_parser
 
 
 class TemplateDefinition:
@@ -26,6 +29,8 @@ class TemplateDefinition:
         self.inputs = []
         self.outputs = []
         self.node_templates = []
+        self.relationship_templates = []
+        self.groups = []
 
     def set_description(self, description: str):
         self.description = description
@@ -38,6 +43,12 @@ class TemplateDefinition:
 
     def add_node_templates(self, node_template: NodeTemplate):
         self.node_templates.append(node_template)
+
+    def add_relationship_template(self, relationship_template: RelationshipTemplate):
+        self.relationship_templates.append(relationship_template)
+
+    def add_group(self, group: GroupDefinition):
+        self.groups.append(group)
 
 
 def template_parser(data: dict) -> TemplateDefinition:
@@ -53,10 +64,14 @@ def template_parser(data: dict) -> TemplateDefinition:
     if data.get('node_templates'):
         for node_template_name, node_template_value in data.get('node_templates').items():
             template.add_node_templates(node_template_parser(node_template_name, node_template_value))
-    # if data.get('relationship_templates'):
-    #     for
-    # # relationship_templates
-    # groups
+    if data.get('relationship_templates'):
+        for relationship_name, relationship_value in data.get('relationship_templates').items():
+            template.add_relationship_template(relationship_template_parser(relationship_name,relationship_value))
+    if data.get('groups'):
+        for group_name, group_value in data.get('groups').items():
+            template.add_group(group_definition_parser(group_name, group_value))
+    if data.get('policies'):
+        
     # policies
 
     if data.get('outputs'):

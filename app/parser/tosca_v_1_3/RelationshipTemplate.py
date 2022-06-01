@@ -22,6 +22,7 @@ from app.parser.tosca_v_1_3.PropertyAssignment import PropertyAssignment
 
 class RelationshipTemplate:
     def __init__(self, name: str):
+        self.name = name
         self.vid = None
         self.vertex_type_system = 'RelationshipTemplate'
         self.type = None

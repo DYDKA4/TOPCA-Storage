@@ -8,21 +8,21 @@
 #   policies:
 #     - <policy_definition_list>
 #   workflows: <workflows>
-#   # Optional declaration that exports the Topology Template
+#   # Optional declaration that exports the Topology TemplateDefinition
 #   # as an implementation of a Node Type.
 #   substitution_mappings:
 #     <substitution_mappings>
-# todo node_templates relationship_templates groups policies
+# todo relationship_templates groups policies
 from app.parser.tosca_v_1_3.DescriptionDefinition import description_parser
 from app.parser.tosca_v_1_3.NodeTemplate import NodeTemplate, node_template_parser
 from app.parser.tosca_v_1_3.ParameterDefinition import parameter_parser, Parameter
 
 
-class Template:
+class TemplateDefinition:
     def __init__(self):
         self.vid = None
         self.vertex_type_system = 'TemplateDefinition'
-        self.description = ""
+        self.description = None
         self.inputs = []
         self.outputs = []
         self.node_templates = []
@@ -40,8 +40,8 @@ class Template:
         self.node_templates.append(node_template)
 
 
-def template_parser(data: dict) -> Template:
-    template = Template()
+def template_parser(data: dict) -> TemplateDefinition:
+    template = TemplateDefinition()
     if data.get('topology_template'):
         data = data.get('topology_template')
     if data.get('description'):
@@ -53,8 +53,9 @@ def template_parser(data: dict) -> Template:
     if data.get('node_templates'):
         for node_template_name, node_template_value in data.get('node_templates').items():
             template.add_node_templates(node_template_parser(node_template_name, node_template_value))
-    # node_templates
-    # relationship_templates
+    # if data.get('relationship_templates'):
+    #     for
+    # # relationship_templates
     # groups
     # policies
 

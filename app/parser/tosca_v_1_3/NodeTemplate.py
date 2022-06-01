@@ -19,7 +19,6 @@
 #   node_filter:
 #     <node_filter_definition>
 #   copy: <source_node_template_name>
-# todo requirements capabilities interfaces artifacts node_filter copy: <source_node_template_name>
 from werkzeug.exceptions import abort
 
 from app.parser.tosca_v_1_3.ArtifactDefinition import ArtifactDefinition, artifact_definition_parser
@@ -87,6 +86,7 @@ class NodeTemplate:
 
     def set_copy(self, copy: str):
         self.copy = copy
+
 
 def node_template_parser(name: str, data: dict) -> NodeTemplate:
     node_template = NodeTemplate(name)

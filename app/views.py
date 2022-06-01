@@ -10,7 +10,7 @@ from app.parser.tosca_v_1_3.TemplateDefinition import template_parser
 
 @app.route('/yaml-template/', methods=['POST', 'PUT', 'GET'])
 @app.route('/yaml-template/<path:varargs>', methods=['PATCH'])
-# curl -F file=@jamlExamples/SBS.yaml http://127.0.0.1:5000/yaml-template?cluster_name="cluster"
+# curl -F file=@jamlExamples/SBS.yaml 'http://127.0.0.1:5000/yaml-template/?cluster_name=cluster'
 def yaml_add(varargs=None):
     cluster_name = request.args.get('cluster_name')
     if request.method in ['POST', 'PUT']:

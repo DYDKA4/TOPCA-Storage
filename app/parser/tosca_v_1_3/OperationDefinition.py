@@ -10,7 +10,7 @@
 #    outputs: WRONG?
 #       <attribute mappings>
 
-# Extended notation for use in Template definitions
+# Extended notation for use in TemplateDefinition definitions
 # <operation_name>:
 #    description: <operation_description>
 #    implementation: <Operation implementation definition>

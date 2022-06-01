@@ -8,7 +8,7 @@
 #   notifications:
 #     <notification definitions>
 
-# Extended notation for use in Template definitions
+# Extended notation for use in TemplateDefinition definitions
 # <interface_definition_name>:
 #   inputs:
 #     <property_assignments>

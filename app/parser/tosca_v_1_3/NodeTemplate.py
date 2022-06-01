@@ -27,6 +27,7 @@ from app.parser.tosca_v_1_3.DescriptionDefinition import description_parser
 from app.parser.tosca_v_1_3.Directives import Directives
 from app.parser.tosca_v_1_3.Metadata import Metadata
 from app.parser.tosca_v_1_3.PropertyAssignment import PropertyAssignment
+from app.parser.tosca_v_1_3.RequirementAssignment import RequirementAssignment, requirement_assignment_parser
 
 
 class NodeTemplate:
@@ -40,6 +41,7 @@ class NodeTemplate:
         self.metadata = []
         self.properties = []
         self.attributes = []
+        self.requirements = []
 
     def set_type(self, node_type: str):
         self.type = node_type
@@ -59,6 +61,8 @@ class NodeTemplate:
     def add_attributes(self, attribute: AttributeAssignment):
         self.attributes.append(attribute)
 
+    def add_requirement(self, requirement: RequirementAssignment):
+        self.requirements.append(requirement)
 
 def node_template_parser(name: str, data: dict) -> NodeTemplate:
     node_template = NodeTemplate(name)
@@ -82,8 +86,14 @@ def node_template_parser(name: str, data: dict) -> NodeTemplate:
         for attributes_name, attributes_value in data.get('attributes').items():
             attribute = attribute_assignments_parser(attributes_name, attributes_value)
             node_template.add_attributes(attribute)
+    if data.get('requirements'):
+        for requirement in data.get('requirements'):
+            for requirement_name, requirement_value in requirement.items():
+                node_template.add_requirement(requirement_assignment_parser(requirement_name,requirement_value))
+    if data.get('capabilities'):
 
-    # requirements:
+
+
     # capabilities:
     # interfaces:
     # artifacts:

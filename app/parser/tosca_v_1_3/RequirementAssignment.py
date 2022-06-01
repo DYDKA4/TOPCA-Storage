@@ -63,7 +63,7 @@ class RequirementAssignment:
         self.occurrences = occurrences
 
 
-def requirement_parser(name: str, data: dict) -> RequirementAssignment:
+def requirement_assignment_parser(name: str, data: dict) -> RequirementAssignment:
     requirement = RequirementAssignment(name)
     short_notation = True
     if data.get('node'):

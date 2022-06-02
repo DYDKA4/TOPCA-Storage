@@ -15,6 +15,8 @@
 from app.parser.tosca_v_1_3.DescriptionDefinition import description_parser
 from app.parser.tosca_v_1_3.Metadata import Metadata
 from app.parser.tosca_v_1_3.PropertyDefinition import PropertyDefinition, property_definition_parser
+from app.parser.tosca_v_1_3.WorkflowPreconditionDefinition import WorkflowPredictionDefinition, \
+    workflow_prediction_definition_parser
 
 
 class ImperativeWorkflowDefinition:
@@ -25,6 +27,8 @@ class ImperativeWorkflowDefinition:
         self.name = name
         self.metadata = []
         self.inputs = []
+        self.predictions = []
+        self.steps = []
 
     def set_description(self, description: str):
         self.description = description
@@ -34,6 +38,9 @@ class ImperativeWorkflowDefinition:
 
     def add_inputs(self, inputs: PropertyDefinition):
         self.inputs.append(inputs)
+
+    def add_prediction(self, prediction: WorkflowPredictionDefinition):
+        self.predictions.append(prediction)
 
 
 def imperative_workflow_parser(name: str, data: dict) -> ImperativeWorkflowDefinition:
@@ -48,5 +55,8 @@ def imperative_workflow_parser(name: str, data: dict) -> ImperativeWorkflowDefin
         for input_property_name, input_property_value in data.get('inputs').items():
             workflow.add_inputs(property_definition_parser(input_property_name, input_property_value))
     if data.get('preconditions'):
+        for prediction in data.get('predictions'):
+            workflow.add_prediction(workflow_prediction_definition_parser(prediction))
+
 
     return workflow

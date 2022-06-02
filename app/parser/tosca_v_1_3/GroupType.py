@@ -50,7 +50,7 @@ class GroupType:
         self.members.append(valid_member_type)
 
 
-def node_type_parser(name: str, data: dict) -> GroupType:
+def group_type_parser(name: str, data: dict) -> GroupType:
     group = GroupType(name)
     if data.get('derived_from'):
         group.set_derived_from(data.get('derived_from'))

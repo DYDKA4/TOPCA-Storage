@@ -29,7 +29,7 @@ from app.parser.tosca_v_1_3.RequirementDefinition import RequirementDefinition, 
 class NodeType:
     def __init__(self, name: str):
         self.vid = None
-        self.vertex_type_system = 'RelationshipType'
+        self.vertex_type_system = 'NodeType'
         self.name = name
         self.derived_from = None
         self.version = None
@@ -73,7 +73,7 @@ class NodeType:
         self.artifacts.append(artifact)
 
 
-def relationship_type_parser(name: str, data: dict) -> NodeType:
+def node_type_parser(name: str, data: dict) -> NodeType:
     node = NodeType(name)
     if data.get('derived_from'):
         node.set_derived_from(data.get('derived_from'))

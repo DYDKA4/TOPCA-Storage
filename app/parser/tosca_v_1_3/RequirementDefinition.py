@@ -23,7 +23,7 @@ from app.parser.tosca_v_1_3.InterfaceDefinition import InterfaceDefinition, inte
 class RequirementDefinition:
     def __init__(self, name: str):
         self.vid = None
-        self.vertex_type_system = 'RelationshipType'
+        self.vertex_type_system = 'RequirementDefinition'
         self.name = name
         self.capability = None
         self.node = None
@@ -31,7 +31,6 @@ class RequirementDefinition:
         self.type = None
         self.interfaces = []
         self.occurrences = []
-
 
     def set_capability(self, capability: str):
         self.capability = capability

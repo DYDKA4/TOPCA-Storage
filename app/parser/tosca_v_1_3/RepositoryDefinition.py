@@ -12,7 +12,7 @@ from app.parser.tosca_v_1_3.DescriptionDefinition import description_parser
 
 
 class RepositoryDefinition:
-    def __init__(self,name: str):
+    def __init__(self, name: str):
         self.name = name
         self.vid = None
         self.vertex_type_system = 'RepositoryDefinition'

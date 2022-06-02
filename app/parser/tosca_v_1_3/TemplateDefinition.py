@@ -18,6 +18,7 @@ from app.parser.tosca_v_1_3.DescriptionDefinition import description_parser
 from app.parser.tosca_v_1_3.GroupDefinition import GroupDefinition, group_definition_parser
 from app.parser.tosca_v_1_3.NodeTemplate import NodeTemplate, node_template_parser
 from app.parser.tosca_v_1_3.ParameterDefinition import parameter_parser, Parameter
+from app.parser.tosca_v_1_3.PolicyDefinition import PolicyDefinition, policy_definition_parser
 from app.parser.tosca_v_1_3.RelationshipTemplate import relationship_template_parser
 
 
@@ -31,6 +32,7 @@ class TemplateDefinition:
         self.node_templates = []
         self.relationship_templates = []
         self.groups = []
+        self.policies = []
 
     def set_description(self, description: str):
         self.description = description
@@ -49,6 +51,9 @@ class TemplateDefinition:
 
     def add_group(self, group: GroupDefinition):
         self.groups.append(group)
+
+    def add_policy(self, policy: PolicyDefinition):
+        self.policies.append(policy)
 
 
 def template_parser(data: dict) -> TemplateDefinition:
@@ -71,9 +76,9 @@ def template_parser(data: dict) -> TemplateDefinition:
         for group_name, group_value in data.get('groups').items():
             template.add_group(group_definition_parser(group_name, group_value))
     if data.get('policies'):
-        
-    # policies
-
+        for policy in data.get('policies'):
+            for policy_name, policy_value in policy.items():
+                template.add_policy(policy_definition_parser(policy_name, policy_value))
     if data.get('outputs'):
         for output_name, output_value in data.get('outputs').items():
             template.add_output(parameter_parser(output_name, output_value))

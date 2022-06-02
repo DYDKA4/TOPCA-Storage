@@ -74,7 +74,7 @@ class TriggerDefinition:
     def set_method(self, method: str):
         self.method = method
 
-    def set_condition(self, condition: str):
+    def set_condition(self, condition: ConditionClauseDefinition):
         self.condition = condition
 
     def set_action(self, action: str):
@@ -113,7 +113,7 @@ def trigger_definition_parser(name: str, data: dict) -> TriggerDefinition:
             short_notation = False
             trigger.set_method(condition.get('method'))
         if short_notation:
-            trigger.set_condition(condition)
+            trigger.set_condition(condition_clause_definition_parser('condition', condition))
     if data.get('action'):
         trigger.set_action(str(data.get('action')))
     return trigger

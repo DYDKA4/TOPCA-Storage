@@ -51,7 +51,7 @@ class RequirementAssignment:
         self.properties.append(property)
 
     def add_interface(self, interface: InterfaceDefinition):
-        self.properties.append(interface)
+        self.interfaces.append(interface)
 
     def set_capability(self, capability: str):
         self.capability = capability

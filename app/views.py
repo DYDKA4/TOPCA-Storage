@@ -1,7 +1,6 @@
 from flask import request
 from app import app
 from app import communication_with_nebula
-from app.parser import yaml_parser
 import yaml
 from app import constructor_yaml
 from app import find as find_method

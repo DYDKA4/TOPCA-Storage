@@ -66,7 +66,7 @@ class TemplateDefinition:
         self.substitution_mappings = substitution_mappings
 
 
-def template_parser(data: dict) -> TemplateDefinition:
+def template_definition_parser(data: dict) -> TemplateDefinition:
     template = TemplateDefinition()
     if data.get('topology_template'):
         data = data.get('topology_template')

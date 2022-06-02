@@ -36,6 +36,7 @@
 from werkzeug.exceptions import abort
 
 from app.parser.tosca_v_1_3.DescriptionDefinition import description_parser
+from app.parser.tosca_v_1_3.ImportDefinition import ImportDefinition, import_definition_parser
 from app.parser.tosca_v_1_3.RepositoryDefinition import RepositoryDefinition, repository_definition_parser
 from app.parser.tosca_v_1_3.TemplateDefinition import TemplateDefinition, template_definition_parser
 
@@ -74,7 +75,7 @@ class ServiceTemplateDefinition:
     def add_repository(self, repository: RepositoryDefinition):
         self.repositories.append(repository)
 
-    def add_import(self, imports: ):
+    def add_import(self, imports: ImportDefinition):
         self.imports.append(imports)
 
 
@@ -101,7 +102,9 @@ def service_template_definition(cluster_name: str, data: dict) -> ServiceTemplat
         for repository_name, repository_value in data.get('repositories'):
             service_template.add_repository(repository_definition_parser(repository_name, repository_value))
     if data.get('imports'):
-
-
+        for import_value in data.get('imports'):
+            service_template.add_import(import_definition_parser(import_value))
+    if data.get('artifact_types'):
+        for artifact_name, artifact_value in data.get('artifact_types').items():
 
     return service_template

@@ -14,10 +14,12 @@
 #     <attribute_mappings>
 from app.parser.tosca_v_1_3.DescriptionDefinition import description_parser
 from app.parser.tosca_v_1_3.Metadata import Metadata
+from app.parser.tosca_v_1_3.OperationImplementationDefinition import OperationImplementationDefinition, \
+    operation_implementation_definition_parser
 from app.parser.tosca_v_1_3.PropertyDefinition import PropertyDefinition, property_definition_parser
 from app.parser.tosca_v_1_3.WorkflowPreconditionDefinition import WorkflowPredictionDefinition, \
     workflow_prediction_definition_parser
-
+from app.parser.tosca_v_1_3.WorkflowStepDefinition import WorkflowStepDefinition, workflow_step_definition_parser
 
 class ImperativeWorkflowDefinition:
     def __init__(self, name: str):
@@ -27,8 +29,10 @@ class ImperativeWorkflowDefinition:
         self.name = name
         self.metadata = []
         self.inputs = []
-        self.predictions = []
+        self.predictions = None
         self.steps = []
+        self.implementation = None
+        self.outputs = None
 
     def set_description(self, description: str):
         self.description = description
@@ -41,6 +45,15 @@ class ImperativeWorkflowDefinition:
 
     def add_prediction(self, prediction: WorkflowPredictionDefinition):
         self.predictions.append(prediction)
+
+    def add_steps(self, step: WorkflowStepDefinition):
+        self.steps.append(step)
+
+    def set_implementation(self, implementation: OperationImplementationDefinition):
+        self.implementation = implementation
+
+    def set_outputs(self, outputs: str):
+        self.outputs = outputs
 
 
 def imperative_workflow_parser(name: str, data: dict) -> ImperativeWorkflowDefinition:
@@ -57,6 +70,12 @@ def imperative_workflow_parser(name: str, data: dict) -> ImperativeWorkflowDefin
     if data.get('preconditions'):
         for prediction in data.get('predictions'):
             workflow.add_prediction(workflow_prediction_definition_parser(prediction))
-
-
+    if data.get('steps'):
+        for step_name, step_value in data.get('steps').items():
+            workflow.add_steps(workflow_step_definition_parser(step_name, step_value))
+    if data.get('implementation'):
+        workflow.set_implementation(operation_implementation_definition_parser(data.get('implementation')))
+    if data.get('outputs'):
+        # todo REMAKE LATER
+        workflow.set_outputs(str(data.get('outputs')))
     return workflow

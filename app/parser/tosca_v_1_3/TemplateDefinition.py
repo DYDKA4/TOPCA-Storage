@@ -16,6 +16,8 @@
 from app.data_classes import RelationshipTemplate
 from app.parser.tosca_v_1_3.DescriptionDefinition import description_parser
 from app.parser.tosca_v_1_3.GroupDefinition import GroupDefinition, group_definition_parser
+from app.parser.tosca_v_1_3.ImperativeWorkflowDefinition import ImperativeWorkflowDefinition, \
+    imperative_workflow_definition_parser
 from app.parser.tosca_v_1_3.NodeTemplate import NodeTemplate, node_template_parser
 from app.parser.tosca_v_1_3.ParameterDefinition import parameter_parser, Parameter
 from app.parser.tosca_v_1_3.PolicyDefinition import PolicyDefinition, policy_definition_parser
@@ -33,6 +35,7 @@ class TemplateDefinition:
         self.relationship_templates = []
         self.groups = []
         self.policies = []
+        self.workflows = []
 
     def set_description(self, description: str):
         self.description = description
@@ -54,6 +57,9 @@ class TemplateDefinition:
 
     def add_policy(self, policy: PolicyDefinition):
         self.policies.append(policy)
+
+    def add_workflow(self, workflow: ImperativeWorkflowDefinition):
+        self.workflows.append(workflow)
 
 
 def template_parser(data: dict) -> TemplateDefinition:
@@ -82,6 +88,8 @@ def template_parser(data: dict) -> TemplateDefinition:
     if data.get('outputs'):
         for output_name, output_value in data.get('outputs').items():
             template.add_output(parameter_parser(output_name, output_value))
+    if data.get('workflows'):
+        for workflow_name, workflow_value in data.get('workflows').items():
+            template.add_workflow(imperative_workflow_definition_parser(workflow_name, workflow_value))
     # substitution_mappings
-    # workflows
     return template

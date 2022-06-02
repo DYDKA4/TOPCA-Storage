@@ -56,7 +56,7 @@ class ImperativeWorkflowDefinition:
         self.outputs = outputs
 
 
-def imperative_workflow_parser(name: str, data: dict) -> ImperativeWorkflowDefinition:
+def imperative_workflow_definition_parser(name: str, data: dict) -> ImperativeWorkflowDefinition:
     workflow = ImperativeWorkflowDefinition(name)
     if data.get('description'):
         description = description_parser(data)

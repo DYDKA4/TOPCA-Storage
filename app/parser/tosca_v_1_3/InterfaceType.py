@@ -30,7 +30,6 @@ class InterfaceType:
         self.operations = []
         self.notifications = []
 
-
     def set_derived_from(self, derived_from: str):
         self.derived_from = derived_from
 

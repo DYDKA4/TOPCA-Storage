@@ -70,6 +70,8 @@ def template_definition_parser(data: dict) -> TemplateDefinition:
     template = TemplateDefinition()
     if data.get('topology_template'):
         data = data.get('topology_template')
+    else:
+        return template
     if data.get('description'):
         description = description_parser(data)
         template.set_description(description)

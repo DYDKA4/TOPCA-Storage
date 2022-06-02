@@ -79,7 +79,7 @@ def parameter_parser(parameter_name: str, data: dict) -> Parameter:
     if data.get('required'):
         short_notation = False
         parameter.set_required(data.get('required'))
-    if data.get('default'):  # Data type?
+    if data.get('default'):  # todo Data type problem?
         short_notation = False
         parameter.set_default(data.get('default'))
     if data.get('status'):

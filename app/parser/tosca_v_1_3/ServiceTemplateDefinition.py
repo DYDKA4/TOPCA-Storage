@@ -35,6 +35,7 @@
 # # topology template definition of the cloud application or service
 from werkzeug.exceptions import abort
 
+from app.parser.tosca_v_1_3.ArtifactType import ArtifactType, artifact_type_parser
 from app.parser.tosca_v_1_3.DescriptionDefinition import description_parser
 from app.parser.tosca_v_1_3.ImportDefinition import ImportDefinition, import_definition_parser
 from app.parser.tosca_v_1_3.RepositoryDefinition import RepositoryDefinition, repository_definition_parser
@@ -58,6 +59,7 @@ class ServiceTemplateDefinition:
         self.dsl_definitions = None
         self.repositories = []
         self.imports = []
+        self.artifact_types = []
 
 
     def set_tosca_definitions_version(self, tosca_definitions_version: str):
@@ -77,6 +79,9 @@ class ServiceTemplateDefinition:
 
     def add_import(self, imports: ImportDefinition):
         self.imports.append(imports)
+
+    def add_artifact_type(self, artifact_type: ArtifactType):
+        self.artifact_types.append(artifact_type)
 
 
 def service_template_definition(cluster_name: str, data: dict) -> ServiceTemplateDefinition:
@@ -106,5 +111,9 @@ def service_template_definition(cluster_name: str, data: dict) -> ServiceTemplat
             service_template.add_import(import_definition_parser(import_value))
     if data.get('artifact_types'):
         for artifact_name, artifact_value in data.get('artifact_types').items():
+            service_template.add_artifact_type(artifact_type_parser(artifact_name,artifact_value))
+    if data.get('data_types'):
+        for data_type_name, data_type_value in data.get('data_types').items():
+
 
     return service_template

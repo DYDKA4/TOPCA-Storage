@@ -121,7 +121,7 @@ class ServiceTemplateDefinition:
         self.template_definition = template
 
 
-def service_template_definition(cluster_name: str, data: dict) -> ServiceTemplateDefinition:
+def service_template_definition_parser(cluster_name: str, data: dict) -> ServiceTemplateDefinition:
     service_template = ServiceTemplateDefinition(cluster_name)
     if data.get('tosca_definitions_version'):
         service_template.set_tosca_definitions_version(data.get('tosca_definitions_version'))

@@ -4,7 +4,7 @@ from app import communication_with_nebula
 import yaml
 from app import constructor_yaml
 from app import find as find_method
-from app.parser.tosca_v_1_3.TemplateDefinition import template_parser
+from app.parser.tosca_v_1_3.ServiceTemplateDefinition import service_template_definition_parser
 
 
 @app.route('/yaml-template/', methods=['POST', 'PUT', 'GET'])
@@ -26,7 +26,7 @@ def yaml_add(varargs=None):
         if cluster_name:
             print(type(file))
             print(False, bool("False"))
-            template_parser(file)
+            service_template_definition_parser(cluster_name,file)
             # cluster_vertex = yaml_parser.parser(file, cluster_name)
             # cluster_vertex.pure_yaml = pure_yaml
             end_code = '400'

@@ -77,7 +77,7 @@ def relationship_type_parser(name: str, data: dict) -> RelationshipType:
         for attribute_name, attribute_value in data.get('attributes').items():
             relationship.add_attribute(attribute_definition_parser(attribute_name, attribute_value))
     if data.get('interfaces'):
-        for interface_name, interface_value in data.get('interface').items():
+        for interface_name, interface_value in data.get('interfaces').items():
             relationship.add_interface(interface_definition_parser(interface_name, interface_value))
     if data.get('valid_source_types'):
         for valid_source_type in data.get('valid_source_types'):

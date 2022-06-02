@@ -97,10 +97,10 @@ def node_type_parser(name: str, data: dict) -> NodeType:
             for requirement_name, requirements_value in requirement.items():
                 node.add_requirements(requirement_definition_parser(requirement_name, requirements_value))
     if data.get('capabilities'):
-        for capability_name, capability_value in data.get('capabilities'):
+        for capability_name, capability_value in data.get('capabilities').items():
             node.add_capability(capability_definition_parser(capability_name, capability_value))
     if data.get('interfaces'):
-        for interface_name, interface_value in data.get('interface').items():
+        for interface_name, interface_value in data.get('interfaces').items():
             node.add_interface(interface_definition_parser(interface_name, interface_value))
     if data.get('artifacts'):
         for artifact_name, artifact_value in data.get('artifacts').items():

@@ -11,8 +11,8 @@
 #   # Optional declaration that exports the Topology TemplateDefinition
 #   # as an implementation of a Node Type.
 #   substitution_mappings:
-#     <substitution_mappings>
-# todo relationship_templates groups policies workflows substitution_mappings
+#     <substitution_mappings> #todo What is it?
+# substitution_mappings
 from app.data_classes import RelationshipTemplate
 from app.parser.tosca_v_1_3.DescriptionDefinition import description_parser
 from app.parser.tosca_v_1_3.GroupDefinition import GroupDefinition, group_definition_parser
@@ -36,6 +36,7 @@ class TemplateDefinition:
         self.groups = []
         self.policies = []
         self.workflows = []
+        self.substitution_mappings = None
 
     def set_description(self, description: str):
         self.description = description
@@ -60,6 +61,9 @@ class TemplateDefinition:
 
     def add_workflow(self, workflow: ImperativeWorkflowDefinition):
         self.workflows.append(workflow)
+
+    def set_substitution_mappings(self, substitution_mappings: str):
+        self.substitution_mappings = substitution_mappings
 
 
 def template_parser(data: dict) -> TemplateDefinition:
@@ -91,5 +95,6 @@ def template_parser(data: dict) -> TemplateDefinition:
     if data.get('workflows'):
         for workflow_name, workflow_value in data.get('workflows').items():
             template.add_workflow(imperative_workflow_definition_parser(workflow_name, workflow_value))
-    # substitution_mappings
+    if data.get('substitution_mappings'):
+        template.set_substitution_mappings(str(data.get('substitution_mappings')))
     return template

@@ -1,0 +1,1 @@
+test_property_name: { get_input: test_value }

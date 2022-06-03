@@ -4,7 +4,7 @@ from app import communication_with_nebula
 import yaml
 from app import constructor_yaml
 from app import find as find_method
-from app.parser.tosca_v_1_3.ServiceTemplateDefinition import service_template_definition_parser
+from app.parser.tosca_v_1_3.definitions.ServiceTemplateDefinition import service_template_definition_parser
 
 
 @app.route('/yaml-template/', methods=['POST', 'PUT', 'GET'])

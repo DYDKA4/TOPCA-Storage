@@ -1,0 +1,40 @@
+# - target: < target_name > Required
+# target_relationship: < target_requirement_name >\
+# condition:
+# < list_of_condition_clause_definition >
+from werkzeug.exceptions import abort
+
+from app.parser.tosca_v_1_3.definitions.ConditionClauseDefinition import ConditionClauseDefinition, \
+    condition_clause_definition_parser
+
+
+class WorkflowPredictionDefinition:
+    def __init__(self):
+        self.vid = None
+        self.vertex_type_system = 'WorkflowPredictionDefinition'
+        self.target = None
+        self.target_relationship = None
+        self.conditions = []
+
+    def set_target(self, target: str):
+        self.target = target
+
+    def set_target_relationship(self, target_relationship: str):
+        self.target_relationship = target_relationship
+
+    def add_condition(self, condition: ConditionClauseDefinition):
+        self.conditions.append(condition)
+
+
+def workflow_prediction_definition_parser(data: dict) -> WorkflowPredictionDefinition:
+    prediction = WorkflowPredictionDefinition()
+    if data.get('target'):
+        prediction.set_target(data.get('target'))
+    else:
+        abort(400)
+    if data.get('target_relationship'):
+        prediction.set_target_relationship(data.get('target_relationship'))
+    if data.get('condition'):
+        for condition_name, condition_value in data.get('condition'):
+            prediction.add_condition(condition_clause_definition_parser(condition_name, condition_value))
+    return prediction

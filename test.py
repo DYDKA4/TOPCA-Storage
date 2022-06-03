@@ -1,5 +1,4 @@
 import unittest
-from app.parser.tosca_v_1_3 import ServiceTemplateDefinition
 import yaml
 
 

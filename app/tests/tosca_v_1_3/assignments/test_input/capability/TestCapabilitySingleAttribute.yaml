@@ -1,0 +1,4 @@
+test_capability_name:
+   attributes:
+     test_property_name: attribute_value_test
+

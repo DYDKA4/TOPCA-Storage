@@ -1,0 +1,5 @@
+test_capability_name:
+   properties:
+     test_property_name_0: property_value_test_0
+     test_property_name_1: property_value_test_1
+

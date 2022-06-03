@@ -1,0 +1,5 @@
+test_capability_name:
+   attributes:
+     test_attribute_name_0: attribute_value_test_0
+     test_attribute_name_1: attribute_value_test_1
+

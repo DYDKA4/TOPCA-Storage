@@ -5,7 +5,7 @@ import yaml
 from app.parser.tosca_v_1_3.assignments.PropertyAssignment import PropertyAssignment
 
 
-class TestAttribute(unittest.TestCase):
+class TestProperty(unittest.TestCase):
     # setUp method is overridden from the parent class TestCase
     def setUp(self):
         self.property_assignments = PropertyAssignment
@@ -24,7 +24,7 @@ class TestAttribute(unittest.TestCase):
             self.assertEqual(properties.vertex_type_system, 'PropertyAssignment')
 
     def test_set_value_complex(self):
-        file = open('test_input/property/TestProperty.Complex.yaml')
+        file = open('test_input/property/TestPropertyComplex.yaml')
         data = file.read()
         file.close()
         data = yaml.safe_load(data)

@@ -12,7 +12,7 @@ Config.max_connection_pool_size = 10
 # init connection pool
 connection_pool = ConnectionPool()
 # if the given servers are ok, return true, else return false
-ok = connection_pool.init([(config.IP_address, 9669)], Config)
+# ok = connection_pool.init([(config.IP_address, 9669)], Config) todo REMAKE IT
 
 
 def hello_world():

@@ -12,7 +12,7 @@ class TestDescription(unittest.TestCase):
 
     # Each test method starts with the keyword test_
     def test_parser(self):
-        file = open('test_input/TestDescription.yaml')
+        file = open('test_input/description/TestDescription.yaml')
         data = file.read()
         file.close()
         data = yaml.safe_load(data)

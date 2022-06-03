@@ -1,0 +1,11 @@
+test_artifact_name:
+  description: test_description
+  type: test_type
+  file: test_file
+  repository: test_repository
+  deploy_path: test_deploy_path
+  version: test_version
+  checksum: test_checksum
+  checksum_algorithm: test_checksum_algorithm
+  properties:
+    test_property_name: property_value_test

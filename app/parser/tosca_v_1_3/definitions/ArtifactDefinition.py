@@ -67,40 +67,32 @@ class ArtifactDefinition:
 
 def artifact_definition_parser(name: str, data: dict) -> ArtifactDefinition:
     artifact = ArtifactDefinition(name)
-    short_notation = True
+    if type(data) == str:
+        artifact.set_artifact_file_uri(str(data))
+        return artifact
     if data.get('description'):
-        short_notation = False
         description = description_parser(data)
         artifact.set_description(description)
     if data.get('type'):
-        short_notation = False
         artifact.set_type(data.get('type'))
     if data.get('file'):
-        short_notation = False
         artifact.set_file(data.get('file'))
     if data.get('repository'):
-        short_notation = False
         artifact.set_repository(data.get('repository'))
     if data.get('deploy_path'):
-        short_notation = False
         artifact.set_deploy_path(data.get('deploy_path'))
     if data.get('version'):
-        short_notation = False
         artifact.set_version(data.get('version'))
     if data.get('checksum'):
-        short_notation = False
         artifact.set_checksum(data.get('checksum'))
     if data.get('checksum_algorithm'):
-        short_notation = False
         artifact.set_checksum_algorithm(data.get('checksum_algorithm'))
     if data.get('properties'):
         for property_name, property_value in data.get('properties').items():
             artifact.add_properties(PropertyAssignment(property_name, str(property_value)))
-    if short_notation:
-        artifact.set_artifact_file_uri(str(data))
-    elif artifact.type is None:
+    if artifact.type is None:
         abort(400)
-    elif artifact.file is None:
+    if artifact.file is None:
         abort(400)
 
     return artifact

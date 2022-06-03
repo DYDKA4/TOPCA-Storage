@@ -1,0 +1,3 @@
+test_property_name:
+  - equal_0: value_0
+  - equal_1: value_1

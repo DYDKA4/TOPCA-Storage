@@ -21,7 +21,7 @@
 #       <interface_assignments>
 from app.parser.tosca_v_1_3.definitions.InterfaceDefinition import InterfaceDefinition, interface_definition_parser
 from app.parser.tosca_v_1_3.definitions.NodeFilterDefinition import NodeFilterDefinition, node_filter_definition_parser
-from app.parser.tosca_v_1_3.definitions.PropertyAssignment import PropertyAssignment
+from app.parser.tosca_v_1_3.assignments.PropertyAssignment import PropertyAssignment
 
 
 class RequirementAssignment:

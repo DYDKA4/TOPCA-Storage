@@ -22,15 +22,15 @@
 from werkzeug.exceptions import abort
 
 from app.parser.tosca_v_1_3.definitions.ArtifactDefinition import ArtifactDefinition, artifact_definition_parser
-from app.parser.tosca_v_1_3.definitions.AttributeAssignment import attribute_assignments_parser, AttributeAssignment
-from app.parser.tosca_v_1_3.definitions.CapabilityAssignment import CapabilityAssignment, capability_assignment_parser
+from app.parser.tosca_v_1_3.assignments.AttributeAssignment import attribute_assignments_parser, AttributeAssignment
+from app.parser.tosca_v_1_3.assignments.CapabilityAssignment import CapabilityAssignment, capability_assignment_parser
 from app.parser.tosca_v_1_3.definitions.DescriptionDefinition import description_parser
 from app.parser.tosca_v_1_3.others.Directives import Directives
 from app.parser.tosca_v_1_3.definitions.InterfaceDefinition import InterfaceDefinition, interface_definition_parser
 from app.parser.tosca_v_1_3.others.Metadata import Metadata
 from app.parser.tosca_v_1_3.definitions.NodeFilterDefinition import NodeFilterDefinition, node_filter_definition_parser
-from app.parser.tosca_v_1_3.definitions.PropertyAssignment import PropertyAssignment
-from app.parser.tosca_v_1_3.definitions.RequirementAssignment import RequirementAssignment, requirement_assignment_parser
+from app.parser.tosca_v_1_3.assignments.PropertyAssignment import PropertyAssignment
+from app.parser.tosca_v_1_3.assignments.RequirementAssignment import RequirementAssignment, requirement_assignment_parser
 
 
 class NodeTemplate:

@@ -4,8 +4,8 @@
 #   attributes:
 #     <attribute_assignments>
 #   occurrences: [ min_occurrences, max_occurrences ]
-from app.parser.tosca_v_1_3.definitions.AttributeAssignment import AttributeAssignment, attribute_assignments_parser
-from app.parser.tosca_v_1_3.definitions.PropertyAssignment import PropertyAssignment
+from app.parser.tosca_v_1_3.assignments.AttributeAssignment import AttributeAssignment, attribute_assignments_parser
+from app.parser.tosca_v_1_3.assignments.PropertyAssignment import PropertyAssignment
 
 
 class CapabilityAssignment:

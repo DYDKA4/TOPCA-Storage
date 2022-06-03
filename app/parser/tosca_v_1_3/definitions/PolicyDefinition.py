@@ -12,7 +12,7 @@ from werkzeug.exceptions import abort
 
 from app.parser.tosca_v_1_3.definitions.DescriptionDefinition import description_parser
 from app.parser.tosca_v_1_3.others.Metadata import Metadata
-from app.parser.tosca_v_1_3.definitions.PropertyAssignment import PropertyAssignment
+from app.parser.tosca_v_1_3.assignments.PropertyAssignment import PropertyAssignment
 from app.parser.tosca_v_1_3.definitions.TriggerDefinition import TriggerDefinition, trigger_definition_parser
 
 

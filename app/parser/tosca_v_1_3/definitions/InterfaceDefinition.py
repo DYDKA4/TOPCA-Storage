@@ -18,7 +18,7 @@
 #     <notification_definitions>
 from app.parser.tosca_v_1_3.definitions.NotificationDefinition import NotificationDefinition, notification_definition_parser
 from app.parser.tosca_v_1_3.definitions.OperationDefinition import OperationDefinition, operation_definition_parser
-from app.parser.tosca_v_1_3.definitions.PropertyAssignment import PropertyAssignment
+from app.parser.tosca_v_1_3.assignments.PropertyAssignment import PropertyAssignment
 from app.parser.tosca_v_1_3.definitions.PropertyDefinition import PropertyDefinition, property_definition_parser
 
 

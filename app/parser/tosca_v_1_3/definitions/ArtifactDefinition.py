@@ -15,7 +15,7 @@
 from werkzeug.exceptions import abort
 
 from app.parser.tosca_v_1_3.definitions.DescriptionDefinition import description_parser
-from app.parser.tosca_v_1_3.definitions.PropertyAssignment import PropertyAssignment
+from app.parser.tosca_v_1_3.assignments.PropertyAssignment import PropertyAssignment
 
 
 class ArtifactDefinition:

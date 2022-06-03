@@ -19,7 +19,7 @@
 from app.parser.tosca_v_1_3.definitions.DescriptionDefinition import description_parser
 from app.parser.tosca_v_1_3.definitions.OperationImplementationDefinition import OperationImplementationDefinition, \
     operation_implementation_definition_parser
-from app.parser.tosca_v_1_3.definitions.PropertyAssignment import PropertyAssignment
+from app.parser.tosca_v_1_3.assignments.PropertyAssignment import PropertyAssignment
 from app.parser.tosca_v_1_3.definitions.PropertyDefinition import property_definition_parser, PropertyDefinition
 
 

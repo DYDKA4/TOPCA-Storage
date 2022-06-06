@@ -29,7 +29,7 @@ class NodeFilterDefinition:
         self.properties.append(properties)
 
     def add_capabilities(self, capability_name: str, properties: PropertyFilterDefinition):
-        if self.capabilities[capability_name]:
+        if capability_name in self.capabilities.keys():
             self.capabilities[capability_name].append(properties)
         else:
             self.capabilities[capability_name] = []
@@ -46,7 +46,7 @@ def node_filter_definition_parser(data: dict) -> NodeFilterDefinition:
         for capability in data.get('capabilities'):
             for capability_name, properties in capability.items():
                 for property_filter_name, property_filter_value in properties.items():
-                    node.add_capabilities(capability_name,property_filter_definition_parser(property_filter_name,
+                    node.add_capabilities(capability_name, property_filter_definition_parser(property_filter_name,
                                                                                             property_filter_value))
     return node
 

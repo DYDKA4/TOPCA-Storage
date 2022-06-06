@@ -87,6 +87,6 @@ def property_definition_parser(name: str, data: dict) -> PropertyDefinition:
     if data.get('entry_schema'):
         property_definition.set_entry_schema(schema_definition_parser(data.get('entry_schema')))
     if data.get('metadata'):
-        for metadata_name, metadata_value in data.get('metadata'):
+        for metadata_name, metadata_value in data.get('metadata').items():
             property_definition.add_metadata(Metadata(metadata_name, metadata_value))
     return property_definition

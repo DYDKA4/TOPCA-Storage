@@ -31,6 +31,26 @@ class TestSchema(unittest.TestCase):
         file.close()
         data = yaml.safe_load(data)
         schema = schema_definition_parser(data)
+        self.assertEqual(schema.type, 'schema_type_test')
+        self.assertEqual(schema.description, 'schema_description_test')
+        for index, constraint in enumerate(schema.constraints):
+            self.assertEqual(constraint.operator, 'equal_' + str(index))
+            self.assertEqual(constraint.value, 'value_' + str(index))
 
+        self.assertEqual(schema.key_schema.type, 'key_schema_type_test')
+        self.assertEqual(schema.key_schema.description, 'key_schema_description_test')
+        for index, constraint in enumerate(schema.key_schema.constraints):
+            self.assertEqual(constraint.operator, 'key_equal_' + str(index))
+            self.assertEqual(constraint.value, 'key_value_' + str(index))
+        self.assertEqual(schema.key_schema.key_schema, None)
+        self.assertEqual(schema.key_schema.entry_schema, None)
+
+        self.assertEqual(schema.entry_schema.type, 'entry_schema_type_test')
+        self.assertEqual(schema.entry_schema.description, 'entry_schema_description_test')
+        for index, constraint in enumerate(schema.entry_schema.constraints):
+            self.assertEqual(constraint.operator, 'entry_equal_' + str(index))
+            self.assertEqual(constraint.value, 'entry_value_' + str(index))
+        self.assertEqual(schema.entry_schema.key_schema, None)
+        self.assertEqual(schema.entry_schema.entry_schema, None)
 
 

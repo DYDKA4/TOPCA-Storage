@@ -1,0 +1,7 @@
+implementation:
+   primary:
+      test_artifact_name: test_artifact_file_URI
+   dependencies:
+     - test_artifact_name_0
+     - test_artifact_name_1
+     - test_artifact_name_2

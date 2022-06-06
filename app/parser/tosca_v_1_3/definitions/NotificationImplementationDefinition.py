@@ -1,4 +1,4 @@
-# Short notation for use with single artifact
+    # Short notation for use with single artifact
 # implementation: <primary_artifact_name>
 
 #  Short notation for use with multiple artifact
@@ -31,6 +31,9 @@ class NotificationImplementationDefinition:
 def notification_implementation_definition_parser(data: dict) -> NotificationImplementationDefinition:
     notification = NotificationImplementationDefinition()
     short_notation = True
+    if type(data) == str:
+        notification.set_primary_artifact_name(str(data))
+        return notification
     if data.get('primary'):
         short_notation = False
         for artifact_name, artifact_value in data.get('primary'):

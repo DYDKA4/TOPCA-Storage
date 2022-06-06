@@ -6,7 +6,7 @@ from app.parser.tosca_v_1_3.definitions.NotificationImplementationDefinition imp
     notification_implementation_definition_parser
 
 
-class TestProperty(unittest.TestCase):
+class TestNotificationImplementation(unittest.TestCase):
     # setUp method is overridden from the parent class TestCase
     def setUp(self):
         self.notification_implementation_definition_parser = notification_implementation_definition_parser

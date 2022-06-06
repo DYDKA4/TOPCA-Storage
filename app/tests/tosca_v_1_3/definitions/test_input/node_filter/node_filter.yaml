@@ -1,0 +1,25 @@
+ node_filter:
+   properties:
+     - test_property_name_0:
+       - equal_0: value_0
+       - equal_1: value_1
+     - test_property_name_1:
+         - equal_0: value_0
+         - equal_1: value_1
+   capabilities:
+     - test_capability_name_0:
+         properties:
+           - test_property_name_0:
+               - equal_0: value_0
+               - equal_1: value_1
+           - test_property_name_1:
+               - equal_0: value_0
+               - equal_1: value_1
+     - test_capability_name_1:
+         properties:
+           - test_property_name_0:
+               - equal_0: value_0
+               - equal_1: value_1
+           - test_property_name_1:
+               - equal_0: value_0
+               - equal_1: value_1

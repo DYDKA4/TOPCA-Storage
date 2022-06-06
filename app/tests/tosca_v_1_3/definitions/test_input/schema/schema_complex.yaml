@@ -1,0 +1,17 @@
+  type: schema_type_test
+  description: schema_description_test
+  constraints:
+      - equal_0: value_0
+      - equal_1: value_1
+  key_schema :
+    type: key_schema_type_test
+    description: key_schema_description_test
+    constraints:
+        - key_equal_0: key_value_0
+        - key_equal_1: key_value_1
+  entry_schema:
+    type: entry_schema_type_test
+    description: entry_schema_description_test
+    constraints:
+        - entry_equal_0: entry_value_0
+        - entry_equal_1: entry_value_1

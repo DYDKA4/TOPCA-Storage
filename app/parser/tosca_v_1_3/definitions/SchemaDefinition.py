@@ -20,6 +20,7 @@ class SchemaDefinition:
         self.constraints = []
         self.key_schema = None
         self.entry_schema = None
+        self.vertex_type_system = 'SchemaDefinition'
 
     def set_type(self, schema_type: str):
         self.type = schema_type
@@ -40,7 +41,7 @@ class SchemaDefinition:
 def schema_definition_parser(data: dict) -> SchemaDefinition:
     schema = SchemaDefinition()
     if data.get('type'):
-        schema.set_type('type')
+        schema.set_type(data.get('type'))
     else:
         abort(400)
     if data.get('description'):

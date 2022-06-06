@@ -1,0 +1,5 @@
+  type: schema_type_test
+  description: schema_description_test
+  constraints:
+      - equal_0: value_0
+      - equal_1: value_1

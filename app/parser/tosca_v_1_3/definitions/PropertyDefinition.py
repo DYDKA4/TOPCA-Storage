@@ -40,9 +40,9 @@ class PropertyDefinition:
         self.description = description
 
     def set_required(self, required: str):
-        if required in {"false", "False", "0"}:
+        if {required}.union({"false", "False", "0"}):
             self.required = False
-        if required in {"true", "True", "1"}:
+        if {required}.union({"true", "True", "1"}):
             self.required = True
 
     def set_default(self, default: str):

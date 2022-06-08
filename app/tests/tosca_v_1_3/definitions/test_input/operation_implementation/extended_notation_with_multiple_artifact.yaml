@@ -1,0 +1,9 @@
+ implementation:
+   primary:
+      test_artifact_name: test_artifact_file_URI
+   dependencies:
+     - test_artifact_name_0: 0_test_artifact_file_URI
+     - test_artifact_name_1: 1_test_artifact_file_URI
+     - test_artifact_name_2: 2_test_artifact_file_URI
+   operation_host : SELF
+   timeout : 60

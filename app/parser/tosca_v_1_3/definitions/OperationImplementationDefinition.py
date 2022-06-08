@@ -34,7 +34,6 @@ class OperationImplementationDefinition:
         self.vid = None
         self.vertex_type_system = 'OperationImplementationDefinition'
         self.primary_artifact_name = None
-        self.primary_name = None
         self.primary_definition = None
         self.list_of_dependent_artifact_names = []
         self.list_of_dependent_artifact_definitions = []
@@ -43,9 +42,6 @@ class OperationImplementationDefinition:
 
     def set_primary_artifact_name(self, value: str):
         self.primary_artifact_name = value
-
-    def set_primary_name(self, primary_name: str):
-        self.primary_name = primary_name
 
     def set_primary_definition(self, primary_definition: ArtifactDefinition):
         self.primary_definition = primary_definition
@@ -66,34 +62,35 @@ class OperationImplementationDefinition:
 def operation_implementation_definition_parser(data: dict) -> OperationImplementationDefinition:
     operation = OperationImplementationDefinition()
     short_notation = True
+    if type(data) == str:
+        operation.set_primary_artifact_name(str(data))
+        return operation
     if data.get('primary'):
         short_notation = False
         if type(data.get('primary')) == str:
-            operation.set_primary_name(data.get('primary'))
+            operation.set_primary_artifact_name(data.get('primary'))
         else:
-            for artifact_name, artifact_value in data.get('primary'):
+            for artifact_name, artifact_value in data.get('primary').items():
                 operation.set_primary_definition(artifact_definition_parser(artifact_name, artifact_value))
     if data.get('dependencies'):
         short_notation = False
         for dependency in data.get('dependencies'):
+            if operation.primary_definition is None and operation.primary_artifact_name is None:
+                abort(400)
             if type(dependency) == str:
-                if operation.primary_definition:
-                    abort(400)
-                for dependent_artifact_name in dependency:
-                    operation.add_dependent_artifact_name(dependent_artifact_name)
+                operation.add_dependent_artifact_name(dependency)
             else:
-                if operation.primary_name:
-                    abort(400)
-                for dependent_artifact_name, dependent_artifact_value in dependency:
+                for dependent_artifact_name, dependent_artifact_value in dependency.items():
                     operation.add_dependent_artifact_definition(artifact_definition_parser(
                         dependent_artifact_name,
                         dependent_artifact_value))
     if data.get('operation_host'):
         short_notation = False
         operation.set_operation_host(data.get('operation_host'))
-    if data.get(' timeout'):
+    if data.get('timeout'):
         short_notation = False
         operation.set_timeout(data.get('timeout'))
     if short_notation:
-        operation.set_primary_artifact_name(str(data))
+        for artifact_name, artifact_value in data.items():
+            operation.set_primary_definition(artifact_definition_parser(artifact_name, artifact_value))
     return operation

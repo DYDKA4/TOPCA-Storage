@@ -28,7 +28,6 @@ class RequirementDefinition:
         self.capability = None
         self.node = None
         self.relationship_type_name = None
-        self.type = None
         self.interfaces = []
         self.occurrences = []
 
@@ -41,9 +40,6 @@ class RequirementDefinition:
     def set_relationship_type_name(self, relationship_type_name: str):
         self.relationship_type_name = relationship_type_name
 
-    def set_type(self, relationship_type: str):
-        self.type = relationship_type
-
     def add_interface(self, interface: InterfaceDefinition):
         self.interfaces.append(interface)
 
@@ -53,31 +49,27 @@ class RequirementDefinition:
 
 def requirement_definition_parser(name: str, data: dict) -> RequirementDefinition:
     requirement = RequirementDefinition(name)
-    short_notation = True
+    if type(data) == str:
+        requirement.set_capability(str(data))
+        return requirement
     if data.get('capability'):
-        short_notation = False
         requirement.set_capability(data.get('capability'))
     if data.get('node'):
-        short_notation = False
         requirement.set_node(data.get('node'))
     if data.get('relationship'):
-        short_notation = False
         relationship = data.get('relationship')
         if type(relationship) == str:
             requirement.set_relationship_type_name(relationship)
         else:
-            if data.get('type'):
-                requirement.set_type(data.get('type'))
+            if relationship.get('type'):
+                requirement.set_relationship_type_name(relationship.get('type'))
             else:
                 abort(400)
-            if data.get('interfaces'):
-                for interface_name, interface_value in data.get('interfaces').items():
+            if relationship.get('interfaces'):
+                for interface_name, interface_value in relationship.get('interfaces').items():
                     requirement.add_interface(interface_definition_parser(interface_name, interface_value))
     if data.get('occurrences'):
-        short_notation = False
         requirement.set_occurrences(data.get('occurrences'))
-    if short_notation:
-        requirement.set_capability(str(data))
-    elif requirement.capability is None:
+    if requirement.capability is None:
         abort(400)
     return requirement

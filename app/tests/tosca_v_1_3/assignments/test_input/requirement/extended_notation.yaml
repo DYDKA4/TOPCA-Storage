@@ -1,0 +1,13 @@
+ test_requirement_name:
+   node: test_node_template_name
+   relationship: test_relationship_template_name
+   capability: test_capability_symbolic_name
+   node_filter:
+      properties:
+         - test_property_name_0:
+              - equal_0: value_0
+              - equal_1: value_1
+         - test_property_name_1:
+              - equal_0: value_0
+              - equal_1: value_1
+   occurrences: [ 0, 10 ]

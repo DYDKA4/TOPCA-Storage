@@ -1,0 +1,13 @@
+ test_requirement_name:
+   node: test_node_template_name
+   capability: test_capability_symbolic_name
+   relationship:
+     type: test_relationship_template_name
+     properties:
+       test_property_name_0: property_value_test_0
+       test_property_name_1: property_value_test_1
+     interfaces:
+       test_interface_definition_name_0:
+         type: test_interface_type_0
+       test_interface_definition_name_1:
+         type: test_interface_type_1

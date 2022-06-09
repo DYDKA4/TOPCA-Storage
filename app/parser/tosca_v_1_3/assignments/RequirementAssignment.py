@@ -65,12 +65,12 @@ class RequirementAssignment:
 
 def requirement_assignment_parser(name: str, data: dict) -> RequirementAssignment:
     requirement = RequirementAssignment(name)
-    short_notation = True
+    if type(data) == str:
+        requirement.set_node(str(data))
+        return requirement
     if data.get('node'):
-        short_notation = False
         requirement.set_node(data.get('node'))
     if data.get('relationship'):
-        short_notation = False
         if type(data.get('relationship')) == str:
             requirement.set_relationship(data.get('relationship'))
         else:
@@ -78,20 +78,15 @@ def requirement_assignment_parser(name: str, data: dict) -> RequirementAssignmen
             if relationship_data.get('type'):
                 requirement.set_relationship_complex(relationship_data.get('type'))
             if relationship_data.get('properties'):
-                for property_name, property_value in data.get('properties').items():
+                for property_name, property_value in relationship_data.get('properties').items():
                     requirement.add_property(PropertyAssignment(property_name, str(property_value)))
             if relationship_data.get('interfaces'):
-                for interface_name, interface_value in data.get('interfaces').items():
+                for interface_name, interface_value in relationship_data.get('interfaces').items():
                     requirement.add_interface(interface_definition_parser(interface_name, interface_value))
     if data.get('capability'):
-        short_notation = False
         requirement.set_capability(data.get('capability'))
     if data.get('node_filter'):
-        short_notation = False
         requirement.set_node_filter(node_filter_definition_parser(data.get('node_filter')))
     if data.get('occurrences'):
-        short_notation = False
         requirement.set_occurrences(data.get('occurrences'))
-    if short_notation:
-        requirement.set_node(str(data))
     return requirement

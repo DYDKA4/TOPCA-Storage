@@ -1,0 +1,17 @@
+test_capability_definition_name:
+   type: test_capability_type
+   description: test_capability_description
+   properties:
+     test_property_name_0:
+       type: test_property_name_0
+       description: test_property_description_0
+     test_property_name_1:
+       type: test_property_name_1
+       description: test_property_description_1
+   attributes:
+       attribute_name_0:
+         type: attribute_type_0
+       attribute_name_1:
+         type: attribute_type_1
+   valid_source_types: [ node_type_name_0, node_type_name_1 ]
+   occurrences : [ 0, 10 ]

@@ -51,32 +51,26 @@ class CapabilityDefinition:
 
 def capability_definition_parser(name: str, data: dict) -> CapabilityDefinition:
     capability = CapabilityDefinition(name)
-    short_notation = True
+    if type(data) == str:
+        capability.set_type(str(data))
+        return capability
     if data.get('type'):
-        short_notation = False
         capability.set_type(data.get('type'))
     if data.get('description'):
-        short_notation = False
         description = description_parser(data)
         capability.set_description(description)
     if data.get('properties'):
-        short_notation = False
-        for property_name, property_value in data.get('inputs').items():
+        for property_name, property_value in data.get('properties').items():
             capability.add_property(property_definition_parser(property_name, property_value))
     if data.get('attributes'):
-        short_notation = False
         for attribute_name, attribute_value in data.get('attributes').items():
             capability.add_attribute(attribute_definition_parser(attribute_name, attribute_value))
     if data.get('valid_source_types'):
-        short_notation = False
         for valid_source_type in data.get('valid_source_types'):
             capability.add_valid_source_type(valid_source_type)
     if data.get('occurrences'):
-        short_notation = False
         capability.set_occurrences(data.get('occurrences'))
-    if short_notation:
-        capability.set_type(str(data))
-    elif capability.type is None:
+    if capability.type is None:
         abort(400)
     return capability
 

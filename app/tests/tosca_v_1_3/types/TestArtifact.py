@@ -19,14 +19,14 @@ class TestArtifact(unittest.TestCase):
         for name, value in data.items():
             artifact = artifact_type_parser(name, value)
             self.assertEqual(artifact.vertex_type_system, 'ArtifactType')
-            self.assertEqual(artifact.name,'test_artifact_type_name')
+            self.assertEqual(artifact.name, 'test_artifact_type_name')
             self.assertEqual(artifact.derived_from, 'test_parent_artifact_type_name')
             self.assertEqual(artifact.version, 'test_version_number')
             for index, metadata in enumerate(artifact.metadata):
                 self.assertEqual(metadata.name, 'metadata_key_' + str(index))
                 self.assertEqual(metadata.value, 'metadata_value_' + str(index))
-            self.assertEqual(artifact.description,'test_artifact_description')
-            self.assertEqual(artifact.mime_type,'test_mime_type_string')
+            self.assertEqual(artifact.description, 'test_artifact_description')
+            self.assertEqual(artifact.mime_type, 'test_mime_type_string')
             for index, file_ext in enumerate(artifact.file_ext):
                 self.assertEqual(file_ext, 'file_extensions_' + str(index))
             for index, properties in enumerate(artifact.properties):

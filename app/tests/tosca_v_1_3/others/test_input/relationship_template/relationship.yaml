@@ -1,0 +1,20 @@
+ test_relationship_template_name:
+   type: test_relationship_type_name
+   description: test_relationship_type_description
+   metadata:
+     metadata_key_0: metadata_value_0
+     metadata_key_1: metadata_value_1
+     metadata_key_2: metadata_value_2
+   properties:
+     test_property_name_0: property_value_test_0
+     test_property_name_1: property_value_test_1
+   attributes:
+     test_attribute_name_0: attribute_value_test_0
+     test_attribute_name_1: attribute_value_test_1
+   interfaces:
+     test_interface_definition_name_0:
+       type: test_interface_type_0
+     test_interface_definition_name_1:
+       type: test_interface_type_1
+   copy:
+     test_source_relationship_template_name

@@ -65,7 +65,7 @@ def relationship_template_parser(name: str, data: dict) -> RelationshipTemplate:
         description = description_parser(data)
         relationship.set_description(description)
     if data.get('metadata'):
-        for metadata_name, metadata_value in data.get('metadata'):
+        for metadata_name, metadata_value in data.get('metadata').items():
             relationship.add_metadata(Metadata(metadata_name, metadata_value))
     if data.get('properties'):
         for property_name, property_value in data.get('properties').items():
@@ -74,7 +74,7 @@ def relationship_template_parser(name: str, data: dict) -> RelationshipTemplate:
         for attribute_name, attribute_value in data.get('attributes').items():
             relationship.add_attributes(attribute_assignments_parser(attribute_name, attribute_value))
     if data.get('interfaces'):
-        for interface_name, interface_value in data.get('interface').items():
+        for interface_name, interface_value in data.get('interfaces').items():
             relationship.add_interface(interface_definition_parser(interface_name, interface_value))
     if data.get('copy'):
         relationship.set_copy(data.get('copy'))

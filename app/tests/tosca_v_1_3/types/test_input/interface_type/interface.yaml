@@ -1,0 +1,25 @@
+ test_interface_type_name:
+   derived_from: test_parent_interface_type_name
+   version: test_version_number
+   metadata:
+     metadata_key_0: metadata_value_0
+     metadata_key_1: metadata_value_1
+     metadata_key_2: metadata_value_2
+   description: test_interface_description
+   inputs:
+     test_property_name_0:
+       type: test_property_name_0
+       description: test_property_description_0
+     test_property_name_1:
+       type: test_property_name_1
+       description: test_property_description_1
+   operations:
+     operation_test_name_0: implementation_artifact_test_name_0
+     operation_test_name_1: implementation_artifact_test_name_1
+   notifications:
+     notification_test_name_0:
+       description: test_notification_description_0
+       implementation: test_notification_implementation_0
+     notification_test_name_1:
+       description: test_notification_description_1
+       implementation: test_notification_implementation_1

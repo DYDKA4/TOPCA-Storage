@@ -65,6 +65,6 @@ def interface_definition_parser(name: str, data: dict) -> InterfaceDefinition:
             interface.add_operation(operation_definition_parser(operation_name, operation_value))
     if data.get('notifications'):
         for notification_name, notification_value in data.get('notifications').items():
-            interface.add_notification(notification_definition_parser(notification_name,notification_value))
+            interface.add_notification(notification_definition_parser(notification_name, notification_value))
     return interface
 

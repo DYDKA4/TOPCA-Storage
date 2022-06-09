@@ -1,0 +1,12 @@
+ test_operation_name:
+    description: test_operation_description
+    implementation: test_primary_artifact_name
+    inputs:
+      test_property_name_0:
+        type: test_property_name_0
+        description: test_property_description_0
+      test_property_name_1:
+        type: test_property_name_1
+        description: test_property_description_1
+    outputs:
+       test_value

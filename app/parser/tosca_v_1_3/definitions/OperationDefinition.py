@@ -57,25 +57,21 @@ class OperationDefinition:
 
 def operation_definition_parser(name: str, data: dict) -> OperationDefinition:
     operation = OperationDefinition(name)
-    short_notation = True
+    if type(data) == str:
+        operation.set_implementation_artifact_name(str(data))
+        return operation
     if data.get('description'):
-        short_notation = False
         description = description_parser(data)
         operation.set_description(description)
     if data.get('implementation'):
-        short_notation = False
         implementation = data.get('implementation')
         operation.set_implementation(operation_implementation_definition_parser(implementation))
     if data.get('outputs'):
-        short_notation = False
         operation.set_outputs(data.get('outputs'))
-        if data.get('inputs'):
-            for input_property_name, input_property_value in data.get('inputs').items():
-                operation.add_input_definition(property_definition_parser(input_property_name, input_property_value))
-    if data.get('inputs'):  # todo look at 71 to 77 may be wrong?
+    if data.get('inputs'):
         for input_property_name, input_property_value in data.get('inputs').items():
-            operation.add_inputs_assignment(PropertyAssignment(input_property_name, str(input_property_value)))
-
-    if short_notation:
-        operation.set_implementation_artifact_name(str(data))
+            if type(input_property_value) == str:
+                operation.add_inputs_assignment(PropertyAssignment(input_property_name, str(input_property_value)))
+            else:
+                operation.add_input_definition(property_definition_parser(input_property_name, input_property_value))
     return operation

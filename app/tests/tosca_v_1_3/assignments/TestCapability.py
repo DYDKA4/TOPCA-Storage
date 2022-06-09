@@ -66,9 +66,11 @@ class TestCapability(unittest.TestCase):
         for name, value in data.items():
             capability = self.capability_assignment_parser(name, value)
             self.assertEqual(capability.name, 'test_capability_name')
-            self.assertEqual(capability.occurrences, [1,10])
+            self.assertEqual(capability.occurrences, [1, 10])
             self.assertEqual(capability.properties, [])
             self.assertEqual(capability.attributes, [])
             self.assertEqual(capability.vertex_type_system, 'CapabilityAssignment')
 
 
+if __name__ == '__main__':
+    unittest.main()

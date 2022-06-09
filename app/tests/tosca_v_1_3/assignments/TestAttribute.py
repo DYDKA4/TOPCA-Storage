@@ -32,7 +32,6 @@ class TestAttribute(unittest.TestCase):
             self.assertEqual(attribute.value, 'attribute_value_test')
             self.assertEqual(attribute.vertex_type_system, 'AttributeAssignment')
 
-
     def test_set_description(self):
         file = open('test_input/attribute/TestAttributeDescription.yaml')
         data = file.read()
@@ -44,7 +43,6 @@ class TestAttribute(unittest.TestCase):
             self.assertEqual(attribute.description, 'test_description')
             self.assertEqual(attribute.vertex_type_system, 'AttributeAssignment')
 
-
     def test_set_value_short_complex(self):
         file = open('test_input/attribute/TestAttributeShortComplex.yaml')
         data = file.read()
@@ -55,3 +53,7 @@ class TestAttribute(unittest.TestCase):
             self.assertEqual(attribute.name, 'test_attribute_name')
             self.assertEqual(attribute.value, "{'get_input': 'test_value'}")
             self.assertEqual(attribute.vertex_type_system, 'AttributeAssignment')
+
+
+if __name__ == '__main__':
+    unittest.main()

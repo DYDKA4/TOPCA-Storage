@@ -79,3 +79,7 @@ class TestRequirement(unittest.TestCase):
             self.assertEqual(requirement.capability, 'test_capability_symbolic_name')
             self.assertEqual(requirement.node_filter, None)
             self.assertEqual(requirement.occurrences, [])
+
+
+if __name__ == '__main__':
+    unittest.main()

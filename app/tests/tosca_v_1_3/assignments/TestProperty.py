@@ -34,3 +34,7 @@ class TestProperty(unittest.TestCase):
             self.assertEqual(properties.name, 'test_property_name')
             self.assertEqual(properties.value, "{'get_input': 'test_value'}")
             self.assertEqual(properties.vertex_type_system, 'PropertyAssignment')
+
+
+if __name__ == '__main__':
+    unittest.main()

@@ -80,7 +80,7 @@ def node_type_parser(name: str, data: dict) -> NodeType:
     if data.get('version'):
         node.set_version(data.get('version'))
     if data.get('metadata'):
-        for metadata_name, metadata_value in data.get('metadata'):
+        for metadata_name, metadata_value in data.get('metadata').items():
             node.add_metadata(Metadata(metadata_name, metadata_value))
     if data.get('description'):
         if data.get('description'):

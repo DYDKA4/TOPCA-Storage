@@ -1,0 +1,30 @@
+ test_data_type_name:
+   derived_from: test_existing_type_name
+   version: test_version_number
+   metadata:
+     metadata_key_0: metadata_value_0
+     metadata_key_1: metadata_value_1
+     metadata_key_2: metadata_value_2
+   description: test_datatype_description
+   constraints:
+     - equal_0: value_0
+     - equal_1: value_1
+   properties:
+     test_property_name_0:
+       type: test_property_name_0
+       description: test_property_description_0
+     test_property_name_1:
+       type: test_property_name_1
+       description: test_property_description_1
+   key_schema:
+     type: key_schema_type_test
+     description: key_schema_description_test
+     constraints:
+       - key_equal_0: key_value_0
+       - key_equal_1: key_value_1
+   entry_schema:
+     type: entry_schema_type_test
+     description: entry_schema_description_test
+     constraints:
+       - entry_equal_0: entry_value_0
+       - entry_equal_1: entry_value_1

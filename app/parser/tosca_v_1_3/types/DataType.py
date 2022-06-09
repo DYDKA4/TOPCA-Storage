@@ -63,7 +63,7 @@ def data_type_parser(name: str, data: dict) -> DataType:
     if data.get('version'):
         data_type.set_version(data.get('version'))
     if data.get('metadata'):
-        for metadata_name, metadata_value in data.get('metadata'):
+        for metadata_name, metadata_value in data.get('metadata').items():
             data_type.add_metadata(Metadata(metadata_name, metadata_value))
     if data.get('description'):
         if data.get('description'):
@@ -73,7 +73,7 @@ def data_type_parser(name: str, data: dict) -> DataType:
         for constraint in data.get('constraints'):
             data_type.add_constraints(constraint_clause_parser(constraint))
     if data.get('properties'):
-        for property_name, property_value in data.get('inputs').items():
+        for property_name, property_value in data.get('properties').items():
             data_type.add_property(property_definition_parser(property_name, property_value))
     if data.get('key_schema'):
         data_type.set_key_schema(schema_definition_parser(data.get('key_schema')))

@@ -55,7 +55,7 @@ def artifact_type_parser(name: str, data: dict) -> ArtifactType:
     if data.get('version'):
         artifact.set_version(data.get('version'))
     if data.get('metadata'):
-        for metadata_name, metadata_value in data.get('metadata'):
+        for metadata_name, metadata_value in data.get('metadata').items():
             artifact.add_metadata(Metadata(metadata_name, metadata_value))
     if data.get('description'):
         if data.get('description'):
@@ -67,6 +67,6 @@ def artifact_type_parser(name: str, data: dict) -> ArtifactType:
         for file_ext in data.get('file_ext'):
             artifact.add_file_ext(file_ext)
     if data.get('properties'):
-        for property_name, property_value in data.get('inputs').items():
+        for property_name, property_value in data.get('properties').items():
             artifact.add_property(property_definition_parser(property_name, property_value))
     return artifact

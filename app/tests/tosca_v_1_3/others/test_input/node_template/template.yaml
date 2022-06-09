@@ -31,7 +31,6 @@
      test_artifact_name_0: test_artifact_file_URI_0
      test_artifact_name_1: test_artifact_file_URI_1
    node_filter:
-     node_filter:
        properties:
          - test_property_name_0:
              - equal_0: value_0

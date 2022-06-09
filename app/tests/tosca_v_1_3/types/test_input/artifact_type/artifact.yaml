@@ -1,0 +1,17 @@
+ test_artifact_type_name:
+   derived_from: test_parent_artifact_type_name
+   version: test_version_number
+   metadata:
+     metadata_key_0: metadata_value_0
+     metadata_key_1: metadata_value_1
+     metadata_key_2: metadata_value_2
+   description: test_artifact_description
+   mime_type: test_mime_type_string
+   file_ext: [ file_extensions_0, file_extensions_1, file_extensions_2 ]
+   properties:
+     test_property_name_0:
+       type: test_property_name_0
+       description: test_property_description_0
+     test_property_name_1:
+       type: test_property_name_1
+       description: test_property_description_1

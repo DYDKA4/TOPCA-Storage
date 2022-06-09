@@ -101,7 +101,7 @@ def node_template_parser(name: str, data: dict) -> NodeTemplate:
         for directive in data.get('directives'):
             node_template.add_directives(Directives(directive))
     if data.get('metadata'):
-        for metadata_name, metadata_value in data.get('metadata'):
+        for metadata_name, metadata_value in data.get('metadata').items():
             node_template.add_metadata(Metadata(metadata_name, metadata_value))
     if data.get('properties'):
         for property_name, property_value in data.get('properties').items():
@@ -118,7 +118,7 @@ def node_template_parser(name: str, data: dict) -> NodeTemplate:
         for capability_name, capability_value in data.get('capabilities').items():
             node_template.add_capability(capability_assignment_parser(capability_name, capability_value))
     if data.get('interfaces'):
-        for interface_name, interface_value in data.get('interface').items():
+        for interface_name, interface_value in data.get('interfaces').items():
             node_template.add_interface(interface_definition_parser(interface_name, interface_value))
     if data.get('artifacts'):
         for artifact_name, artifact_value in data.get('artifacts').items():

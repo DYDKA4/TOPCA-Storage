@@ -1,0 +1,3 @@
+ node: test_node_type_name
+ requirement: test_requirement_name
+ capability: test_capability_name

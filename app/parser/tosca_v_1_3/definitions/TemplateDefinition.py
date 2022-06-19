@@ -19,7 +19,7 @@ from app.parser.tosca_v_1_3.definitions.GroupDefinition import GroupDefinition, 
 from app.parser.tosca_v_1_3.definitions.ImperativeWorkflowDefinition import ImperativeWorkflowDefinition, \
     imperative_workflow_definition_parser
 from app.parser.tosca_v_1_3.others.NodeTemplate import NodeTemplate, node_template_parser
-from app.parser.tosca_v_1_3.definitions.ParameterDefinition import parameter_parser, Parameter
+from app.parser.tosca_v_1_3.definitions.ParameterDefinition import parameter_definition_parser, Parameter
 from app.parser.tosca_v_1_3.definitions.PolicyDefinition import PolicyDefinition, policy_definition_parser
 from app.parser.tosca_v_1_3.others.RelationshipTemplate import relationship_template_parser
 
@@ -77,7 +77,7 @@ def template_definition_parser(data: dict) -> TemplateDefinition:
         template.set_description(description)
     if data.get('inputs'):
         for input_name, input_value in data.get('inputs').items():
-            template.add_input(parameter_parser(input_name, input_value))
+            template.add_input(parameter_definition_parser(input_name, input_value))
     if data.get('node_templates'):
         for node_template_name, node_template_value in data.get('node_templates').items():
             template.add_node_templates(node_template_parser(node_template_name, node_template_value))
@@ -93,7 +93,7 @@ def template_definition_parser(data: dict) -> TemplateDefinition:
                 template.add_policy(policy_definition_parser(policy_name, policy_value))
     if data.get('outputs'):
         for output_name, output_value in data.get('outputs').items():
-            template.add_output(parameter_parser(output_name, output_value))
+            template.add_output(parameter_definition_parser(output_name, output_value))
     if data.get('workflows'):
         for workflow_name, workflow_value in data.get('workflows').items():
             template.add_workflow(imperative_workflow_definition_parser(workflow_name, workflow_value))

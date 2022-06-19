@@ -1,3 +1,5 @@
+# Extended
+
 # <parameter_name>:
 #   type: # <type> Required No
 #   description: <parameter_description>
@@ -9,6 +11,15 @@
 #     - <parameter_constraints>
 #   key_schema : <key_schema_definition>
 #   entry_schema: <entry_schema_definition>
+
+# Short
+# <parameter_name>: <parameter_value>
+
+# Single line
+# <parameter_name>:
+#     value : <parameter_value> | { <parameter_value_expression> }
+from werkzeug.exceptions import abort
+
 from app.parser.tosca_v_1_3.others.ConstraintСlause import ConstraintClause, constraint_clause_parser
 from app.parser.tosca_v_1_3.definitions.DescriptionDefinition import description_parser
 # complete
@@ -40,9 +51,9 @@ class Parameter:
         self.value = value
 
     def set_required(self, required: str):
-        if required in {"false", "False", "0"}:
+        if {required}.union({"false", "False", 0, "0", False}):
             self.required = False
-        if required in {"true", "True", "1"}:
+        elif {required}.union({"true", "True", 1, "1", True}):
             self.required = True
 
     def set_default(self, default: str):
@@ -61,40 +72,34 @@ class Parameter:
         self.entry_schema = entry_schema
 
 
-def parameter_parser(parameter_name: str, data: dict) -> Parameter:
+def parameter_definition_parser(parameter_name: str, data: dict) -> Parameter:
     if type(data) == str:
         return Parameter(parameter_name, str(data))
+    if len(data.keys()) == 1:
+        if data.get('value'):
+            return Parameter(parameter_name, data.get('value'))
+        else:
+            abort(400)
     parameter = Parameter(parameter_name)
-    short_notation = True
     if data.get('type'):
-        short_notation = False
         parameter.set_type(data.get('type'))
     if data.get('description'):
-        short_notation = False
         description = description_parser(data)
         parameter.set_description(description)
     if data.get('value'):  # Data type?
-        short_notation = False
         parameter.set_value(data.get('value'))
-    if data.get('required'):
-        short_notation = False
+    required = data.get('required')
+    if required is not None:
         parameter.set_required(data.get('required'))
     if data.get('default'):  # todo Data type problem?
-        short_notation = False
         parameter.set_default(data.get('default'))
     if data.get('status'):
-        short_notation = False
         parameter.set_status(data.get('status'))
     if data.get('constraints'):
-        short_notation = False
         for constraint in data.get('constraints'):
             parameter.add_constraints(constraint_clause_parser(constraint))
     if data.get('key_schema'):
-        short_notation = False
         parameter.set_key_schema(schema_definition_parser(data.get('key_schema')))
     if data.get('entry_schema'):
-        short_notation = False
         parameter.set_entry_schema(schema_definition_parser(data.get('entry_schema')))
-    if short_notation:
-        parameter.set_value(str(data))
     return parameter

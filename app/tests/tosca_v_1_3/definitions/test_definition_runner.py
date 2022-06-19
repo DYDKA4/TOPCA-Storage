@@ -1,11 +1,12 @@
 import unittest
 
-import TestAttribute
 import TestArtifact
+import TestAttribute
 import TestCapability
 import TestConditionClause
 import TestDescription
 import TestEventFilter
+import TestGroup
 import TestInterface
 import TestNodeFilter
 import TestNotification
@@ -25,6 +26,7 @@ definitionTestSuite.addTest(unittest.makeSuite(TestCapability.TestCapability))
 definitionTestSuite.addTest(unittest.makeSuite(TestConditionClause.TestConditionClause))
 definitionTestSuite.addTest(unittest.makeSuite(TestDescription.TestDescription))
 definitionTestSuite.addTest(unittest.makeSuite(TestEventFilter.TestEventFilter))
+definitionTestSuite.addTest(unittest.makeSuite(TestGroup.TestGroup))
 definitionTestSuite.addTest(unittest.makeSuite(TestInterface.TestInterface))
 definitionTestSuite.addTest(unittest.makeSuite(TestNodeFilter.TestNodeFilter))
 definitionTestSuite.addTest(unittest.makeSuite(TestNotification.TestNotification))

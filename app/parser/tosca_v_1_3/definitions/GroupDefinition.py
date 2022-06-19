@@ -58,7 +58,7 @@ def group_definition_parser(name: str, data: dict) -> GroupDefinition:
         description = description_parser(data)
         group.set_description(description)
     if data.get('metadata'):
-        for metadata_name, metadata_value in data.get('metadata'):
+        for metadata_name, metadata_value in data.get('metadata').items():
             group.add_metadata(Metadata(metadata_name, metadata_value))
     if data.get('properties'):
         for property_name, property_value in data.get('properties').items():

@@ -29,7 +29,7 @@ class ImperativeWorkflowDefinition:
         self.name = name
         self.metadata = []
         self.inputs = []
-        self.predictions = None
+        self.preconditions = []
         self.steps = []
         self.implementation = None
         self.outputs = None
@@ -43,8 +43,8 @@ class ImperativeWorkflowDefinition:
     def add_inputs(self, inputs: PropertyDefinition):
         self.inputs.append(inputs)
 
-    def add_prediction(self, prediction: WorkflowPredictionDefinition):
-        self.predictions.append(prediction)
+    def add_preconditions(self, prediction: WorkflowPredictionDefinition):
+        self.preconditions.append(prediction)
 
     def add_steps(self, step: WorkflowStepDefinition):
         self.steps.append(step)
@@ -62,14 +62,14 @@ def imperative_workflow_definition_parser(name: str, data: dict) -> ImperativeWo
         description = description_parser(data)
         workflow.set_description(description)
     if data.get('metadata'):
-        for metadata_name, metadata_value in data.get('metadata'):
+        for metadata_name, metadata_value in data.get('metadata').items():
             workflow.add_metadata(Metadata(metadata_name, metadata_value))
     if data.get('inputs'):
         for input_property_name, input_property_value in data.get('inputs').items():
             workflow.add_inputs(property_definition_parser(input_property_name, input_property_value))
     if data.get('preconditions'):
-        for prediction in data.get('predictions'):
-            workflow.add_prediction(workflow_precondition_definition_parser(prediction))
+        for prediction in data.get('preconditions'):
+            workflow.add_preconditions(workflow_precondition_definition_parser(prediction))
     if data.get('steps'):
         for step_name, step_value in data.get('steps').items():
             workflow.add_steps(workflow_step_definition_parser(step_name, step_value))

@@ -27,15 +27,15 @@ class WorkflowPredictionDefinition:
 
 
 def workflow_precondition_definition_parser(data: dict) -> WorkflowPredictionDefinition:
-    prediction = WorkflowPredictionDefinition()
+    precondition = WorkflowPredictionDefinition()
     if data.get('target'):
-        prediction.set_target(data.get('target'))
+        precondition.set_target(data.get('target'))
     else:
         abort(400)
     if data.get('target_relationship'):
-        prediction.set_target_relationship(data.get('target_relationship'))
+        precondition.set_target_relationship(data.get('target_relationship'))
     if data.get('condition'):
         for condition_value in data.get('condition'):
             for key in condition_value.keys():
-                prediction.add_condition(condition_clause_definition_parser(key, condition_value))
-    return prediction
+                precondition.add_condition(condition_clause_definition_parser(key, condition_value))
+    return precondition

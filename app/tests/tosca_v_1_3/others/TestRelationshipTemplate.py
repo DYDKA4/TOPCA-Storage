@@ -20,8 +20,8 @@ class TestRelationshipTemplate(unittest.TestCase):
             relationship = relationship_template_parser(name, value)
             self.assertEqual(relationship.name, 'test_relationship_template_name')
             self.assertEqual(relationship.vertex_type_system, 'RelationshipTemplate')
-            self.assertEqual(relationship.type,'test_relationship_type_name')
-            self.assertEqual(relationship.description,'test_relationship_type_description')
+            self.assertEqual(relationship.type, 'test_relationship_type_name')
+            self.assertEqual(relationship.description, 'test_relationship_type_description')
             for index, metadata in enumerate(relationship.metadata):
                 self.assertEqual(metadata.name, 'metadata_key_' + str(index))
                 self.assertEqual(metadata.value, 'metadata_value_' + str(index))

@@ -8,6 +8,7 @@ import TestDescription
 import TestEventFilter
 import TestGroup
 import TestImperativeWorkflow
+import TestImport
 import TestInterface
 import TestNodeFilter
 import TestNotification
@@ -31,6 +32,7 @@ definitionTestSuite.addTest(unittest.makeSuite(TestDescription.TestDescription))
 definitionTestSuite.addTest(unittest.makeSuite(TestEventFilter.TestEventFilter))
 definitionTestSuite.addTest(unittest.makeSuite(TestGroup.TestGroup))
 definitionTestSuite.addTest(unittest.makeSuite(TestImperativeWorkflow.TestImperativeWorkflow))
+definitionTestSuite.addTest(unittest.makeSuite(TestImport.TestImport))
 definitionTestSuite.addTest(unittest.makeSuite(TestInterface.TestInterface))
 definitionTestSuite.addTest(unittest.makeSuite(TestNodeFilter.TestNodeFilter))
 definitionTestSuite.addTest(unittest.makeSuite(TestNotification.TestNotification))

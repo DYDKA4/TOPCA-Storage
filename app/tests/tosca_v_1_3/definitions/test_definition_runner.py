@@ -22,6 +22,7 @@ import TestPropertyFilter
 import TestRepository
 import TestRequirement
 import TestSchema
+import TestTemplate
 import TestTrigger
 import TestWorkflowPrecondition
 import TestWorkflowStep
@@ -50,6 +51,7 @@ definitionTestSuite.addTest(unittest.makeSuite(TestPropertyFilter.TestPropertyFi
 definitionTestSuite.addTest(unittest.makeSuite(TestRepository.TestRepository))
 definitionTestSuite.addTest(unittest.makeSuite(TestRequirement.TestRequirement))
 definitionTestSuite.addTest(unittest.makeSuite(TestSchema.TestSchema))
+definitionTestSuite.addTest(unittest.makeSuite(TestTemplate.TestTemplate))
 definitionTestSuite.addTest(unittest.makeSuite(TestTrigger.TestTrigger))
 definitionTestSuite.addTest(unittest.makeSuite(TestWorkflowPrecondition.TestWorkflowPrecondition))
 definitionTestSuite.addTest(unittest.makeSuite(TestWorkflowStep.TestWorkflowStep))

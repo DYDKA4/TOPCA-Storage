@@ -1,0 +1,35 @@
+ topology_template:
+   description: test_template_description
+   inputs:
+      input_0: test_input_value_0
+      input_1: test_input_value_1
+   outputs:
+      output_0: test_output_value_0
+      output_1: test_output_value_1
+   node_templates:
+      test_node_template_name_0:
+         type: test_node_type_name_0
+      test_node_template_name_1:
+         type: test_node_type_name_1
+   relationship_templates:
+      test_relationship_template_name_0:
+         type: test_relationship_type_name_0
+      test_relationship_template_name_1:
+         type: test_relationship_type_name_1
+   groups:
+      test_group_name_0:
+         type: test_group_type_name_0
+      test_group_name_1:
+         type: test_group_type_name_1
+   policies:
+     - test_policy_name_0:
+          type: test_policy_type_name_0
+     - test_policy_name_1:
+          type: test_policy_type_name_1
+   workflows:
+      test_workflow_name_0:
+         description: test_workflow_description_0
+      test_workflow_name_1:
+         description: test_workflow_description_1
+   substitution_mappings:
+     test_substitution_mappings

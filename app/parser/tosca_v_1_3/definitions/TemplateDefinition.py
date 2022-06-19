@@ -12,7 +12,6 @@
 #   # as an implementation of a Node Type.
 #   substitution_mappings:
 #     <substitution_mappings> #todo What is it?
-# substitution_mappings
 from app.data_classes import RelationshipTemplate
 from app.parser.tosca_v_1_3.definitions.DescriptionDefinition import description_parser
 from app.parser.tosca_v_1_3.definitions.GroupDefinition import GroupDefinition, group_definition_parser

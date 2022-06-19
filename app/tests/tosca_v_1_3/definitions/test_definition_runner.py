@@ -19,6 +19,7 @@ import TestParameter
 import TestPolicy
 import TestProperty
 import TestPropertyFilter
+import TestRepository
 import TestRequirement
 import TestSchema
 import TestTrigger
@@ -46,6 +47,7 @@ definitionTestSuite.addTest(unittest.makeSuite(TestPolicy.TestPolicy))
 definitionTestSuite.addTest(unittest.makeSuite(TestConditionClause.TestConditionClause))
 definitionTestSuite.addTest(unittest.makeSuite(TestProperty.TestProperty))
 definitionTestSuite.addTest(unittest.makeSuite(TestPropertyFilter.TestPropertyFilter))
+definitionTestSuite.addTest(unittest.makeSuite(TestRepository.TestRepository))
 definitionTestSuite.addTest(unittest.makeSuite(TestRequirement.TestRequirement))
 definitionTestSuite.addTest(unittest.makeSuite(TestSchema.TestSchema))
 definitionTestSuite.addTest(unittest.makeSuite(TestTrigger.TestTrigger))

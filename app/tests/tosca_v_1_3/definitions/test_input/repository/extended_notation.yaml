@@ -1,0 +1,4 @@
+ test_repository_name:
+   description: test_repository_description
+   url: test_repository_address
+   credential: test_authorization_credential

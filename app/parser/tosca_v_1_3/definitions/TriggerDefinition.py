@@ -46,7 +46,6 @@ class TriggerDefinition:
         self.period = None
         self.evaluations = None
         self.method = None
-        self.condition = None
         self.action = None
 
     def set_description(self, description: str):
@@ -74,9 +73,6 @@ class TriggerDefinition:
     def set_method(self, method: str):
         self.method = method
 
-    def set_condition(self, condition: ConditionClauseDefinition):
-        self.condition = condition
-
     def set_action(self, action: str):
         self.action = action
 
@@ -97,23 +93,20 @@ def trigger_definition_parser(name: str, data: dict) -> TriggerDefinition:
         event_filter = data.get('target_filter')
         trigger.set_event_filter(EventFilterDefinition(event_filter.get('node'), event_filter.get('requirement'),
                                                        event_filter.get('capability')))
-    short_notation = True
     if data.get('condition'):
         condition = data.get('condition')
-        if condition.get('constraint'):
-            short_notation = False
-            trigger.set_constraint(condition_clause_definition_parser('constraint', condition.get('constraint')))
-        if condition.get('period'):
-            short_notation = False
-            trigger.set_period(condition.get('period'))
-        if condition.get('evaluations'):
-            short_notation = False
-            trigger.set_evaluations(condition.get('evaluations'))
-        if condition.get('method'):
-            short_notation = False
-            trigger.set_method(condition.get('method'))
-        if short_notation:
-            trigger.set_condition(condition_clause_definition_parser('condition', condition))
+        if type(condition) == dict:
+            if condition.get('constraint'):
+                constraint = condition.get('constraint')
+                trigger.set_constraint(condition_clause_definition_parser('constraint', {'constraint': constraint} ))
+            if condition.get('period'):
+                trigger.set_period(condition.get('period'))
+            if condition.get('evaluations'):
+                trigger.set_evaluations(condition.get('evaluations'))
+            if condition.get('method'):
+                trigger.set_method(condition.get('method'))
+        else:
+            trigger.set_constraint(condition_clause_definition_parser('condition', {'condition': condition}))
     if data.get('action'):
         trigger.set_action(str(data.get('action')))
     return trigger

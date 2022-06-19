@@ -1,0 +1,18 @@
+test_trigger_name:
+
+  description: test_trigger_description
+
+  event: test_event_name
+
+  schedule:
+    start_time: 0
+    end_time: 1
+
+  target_filter:
+    node: test_node_type_name
+    requirement: test_requirement_name
+    capability: test_capability_name
+  condition:
+    - my_attribute: [{equal: my_value}]
+  action:
+    - test_value

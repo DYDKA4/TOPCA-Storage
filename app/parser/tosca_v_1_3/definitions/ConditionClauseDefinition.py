@@ -48,6 +48,7 @@ def sub_parser(condition_clause, condition, operation):
         condition.operands[operation].append(operand)
     pass
 
+
 def condition_clause_definition_parser(type_condition: str, data: dict) -> ConditionClauseDefinition:
     condition = ConditionClauseDefinition(type_condition)
     if type(data) == dict:
@@ -68,11 +69,4 @@ def condition_clause_definition_parser(type_condition: str, data: dict) -> Condi
                             for conditions_clauses in constraint_clauses:
                                 assert_dict[attribute_name].append(constraint_clause_parser(conditions_clauses))
                             condition.operands['assert'].append(assert_dict)
-    elif type(data) == list:
-        for constraint_clause in data:
-            for constraint_clause_attribute, constraint_clause_values in constraint_clause:
-                assert_dict = {constraint_clause_attribute: []}
-                for conditions_clauses in constraint_clause_values:
-                    assert_dict[constraint_clause_attribute].append(constraint_clause_parser(conditions_clauses))
-                condition.operands['assert'].append(assert_dict)
     return condition

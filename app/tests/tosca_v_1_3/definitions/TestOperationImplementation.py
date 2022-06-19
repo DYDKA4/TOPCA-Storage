@@ -6,7 +6,7 @@ from app.parser.tosca_v_1_3.definitions.OperationImplementationDefinition import
     operation_implementation_definition_parser
 
 
-class TestOperationNotification(unittest.TestCase):
+class TestOperationImplementation(unittest.TestCase):
     # setUp method is overridden from the parent class TestCase
     def setUp(self):
         self.operation_implementation_definition_parser = operation_implementation_definition_parser

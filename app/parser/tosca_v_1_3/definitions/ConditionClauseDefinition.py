@@ -9,7 +9,6 @@
 
 # Direct assertion definition
 # <attribute_name>: <list_of_constraint_clauses>
-from app.parser.tosca_v_1_3.definitions.AssertionDefinition import assertion_definition
 from app.parser.tosca_v_1_3.others.ConstraintСlause import constraint_clause_parser
 
 

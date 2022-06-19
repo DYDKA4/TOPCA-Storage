@@ -19,6 +19,7 @@ import TestRequirement
 import TestSchema
 import TestTrigger
 import TestWorkflowPrecondition
+import TestWorkflowStep
 
 definitionTestSuite = unittest.TestSuite()
 definitionTestSuite.addTest(unittest.makeSuite(TestArtifact.TestArtifact))
@@ -41,6 +42,7 @@ definitionTestSuite.addTest(unittest.makeSuite(TestRequirement.TestRequirement))
 definitionTestSuite.addTest(unittest.makeSuite(TestSchema.TestSchema))
 definitionTestSuite.addTest(unittest.makeSuite(TestTrigger.TestTrigger))
 definitionTestSuite.addTest(unittest.makeSuite(TestWorkflowPrecondition.TestWorkflowPrecondition))
+definitionTestSuite.addTest(unittest.makeSuite(TestWorkflowStep.TestWorkflowStep))
 
 runner = unittest.TextTestRunner(verbosity=2)
 runner.run(definitionTestSuite)

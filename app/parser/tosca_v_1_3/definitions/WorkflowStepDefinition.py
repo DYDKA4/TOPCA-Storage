@@ -12,12 +12,12 @@
 #       - <target_step_name>
 from werkzeug.exceptions import abort
 
-from app.parser.tosca_v_1_3.others.ConstraintСlause import ConstraintClause, constraint_clause_parser
+from app.parser.tosca_v_1_3.definitions.ConditionClauseDefinition import condition_clause_definition_parser, \
+    ConditionClauseDefinition
 
 
 class WorkflowStepDefinition:
     def __init__(self, name: str):
-        self.on_failure = []
         self.vid = None
         self.vertex_type_system = 'WorkflowPredictionDefinition'
         self.name = name
@@ -25,8 +25,9 @@ class WorkflowStepDefinition:
         self.target_relationship = None
         self.operation_host = None
         self.filter = []
-        self.activities = None
+        self.activities = []
         self.on_success = []
+        self.on_failure = []
 
     def set_target(self, target: str):
         self.target = target
@@ -37,16 +38,16 @@ class WorkflowStepDefinition:
     def set_operation_host(self, operation_host: str):
         self.operation_host = operation_host
 
-    def add_filter(self, filters: ConstraintClause):
+    def add_filter(self, filters: ConditionClauseDefinition):
         self.filter.append(filters)
 
-    def set_activities(self, activities: str):
-        self.activities = activities
+    def add_activities(self, activities: str):
+        self.activities.append(activities)
 
     def add_on_success(self, on_success: str):
         self.on_success.append(on_success)
 
-    def add_on_failure(self, on_failure:str):
+    def add_on_failure(self, on_failure: str):
         self.on_failure.append(on_failure)
 
 
@@ -62,10 +63,11 @@ def workflow_step_definition_parser(name: str, data: dict) -> WorkflowStepDefini
         step.set_operation_host(data.get('operation_host'))
     if data.get('filter'):
         for filters in data.get('filter'):
-            for filter_value in filters:
-                step.add_filter(constraint_clause_parser(filter_value))
+            for key in filters.keys():
+                step.add_filter(condition_clause_definition_parser(key, filters))
     if data.get('activities'):
-        step.set_activities(data.get('activities'))
+        for activities in data.get('activities'):
+            step.add_activities(activities)
     else:
         abort(400)
     if data.get('on_success'):
@@ -75,4 +77,3 @@ def workflow_step_definition_parser(name: str, data: dict) -> WorkflowStepDefini
         for on_failure in data.get('on_failure'):
             step.add_on_failure(on_failure)
     return step
-

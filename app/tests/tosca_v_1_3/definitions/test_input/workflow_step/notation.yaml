@@ -1,0 +1,20 @@
+ test_step_name:
+     target: test_target_name
+     target_relationship: test_target_requirement_name
+     operation_host: test_operation_host_name
+     filter:
+       - condition:
+           - my_attribute: [ { equal: my_value } ]
+       - condition:
+           - or:
+               - my_attribute_0: [ { equal: my_value_0 } ]
+               - my_attribute_1: [ { equal: my_value_0 } ]
+     activities:
+       - activity_definition_0
+       - activity_definition_1
+     on_success:
+       - on_success_step_name_0
+       - on_success_step_name_1
+     on_failure:
+       - on_failure_step_name_0
+       - on_failure_step_name_1

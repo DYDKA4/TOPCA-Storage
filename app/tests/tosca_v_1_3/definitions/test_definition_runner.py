@@ -18,6 +18,7 @@ import TestPropertyFilter
 import TestRequirement
 import TestSchema
 import TestTrigger
+import TestWorkflowPrecondition
 
 definitionTestSuite = unittest.TestSuite()
 definitionTestSuite.addTest(unittest.makeSuite(TestArtifact.TestArtifact))
@@ -39,6 +40,7 @@ definitionTestSuite.addTest(unittest.makeSuite(TestPropertyFilter.TestPropertyFi
 definitionTestSuite.addTest(unittest.makeSuite(TestRequirement.TestRequirement))
 definitionTestSuite.addTest(unittest.makeSuite(TestSchema.TestSchema))
 definitionTestSuite.addTest(unittest.makeSuite(TestTrigger.TestTrigger))
+definitionTestSuite.addTest(unittest.makeSuite(TestWorkflowPrecondition.TestWorkflowPrecondition))
 
 runner = unittest.TextTestRunner(verbosity=2)
 runner.run(definitionTestSuite)

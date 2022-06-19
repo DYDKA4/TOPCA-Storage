@@ -1,4 +1,4 @@
-# - target: < target_name > Required
+# target: < target_name > Required
 # target_relationship: < target_requirement_name >\
 # condition:
 # < list_of_condition_clause_definition >
@@ -26,7 +26,7 @@ class WorkflowPredictionDefinition:
         self.conditions.append(condition)
 
 
-def workflow_prediction_definition_parser(data: dict) -> WorkflowPredictionDefinition:
+def workflow_precondition_definition_parser(data: dict) -> WorkflowPredictionDefinition:
     prediction = WorkflowPredictionDefinition()
     if data.get('target'):
         prediction.set_target(data.get('target'))
@@ -35,6 +35,7 @@ def workflow_prediction_definition_parser(data: dict) -> WorkflowPredictionDefin
     if data.get('target_relationship'):
         prediction.set_target_relationship(data.get('target_relationship'))
     if data.get('condition'):
-        for condition_name, condition_value in data.get('condition'):
-            prediction.add_condition(condition_clause_definition_parser(condition_name, condition_value))
+        for condition_value in data.get('condition'):
+            for key in condition_value.keys():
+                prediction.add_condition(condition_clause_definition_parser(key, condition_value))
     return prediction

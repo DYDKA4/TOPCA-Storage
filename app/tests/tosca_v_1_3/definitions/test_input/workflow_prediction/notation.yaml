@@ -1,0 +1,9 @@
+ target: test_target_name
+ target_relationship: test_target_requirement_name
+ condition:
+   - condition:
+      - my_attribute: [{equal: my_value}]
+   - condition:
+        - or:
+             - my_attribute_0: [ { equal: my_value_0 } ]
+             - my_attribute_1: [ { equal: my_value_0 } ]

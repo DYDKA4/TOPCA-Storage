@@ -18,7 +18,7 @@ from app.parser.tosca_v_1_3.definitions.OperationImplementationDefinition import
     operation_implementation_definition_parser
 from app.parser.tosca_v_1_3.definitions.PropertyDefinition import PropertyDefinition, property_definition_parser
 from app.parser.tosca_v_1_3.definitions.WorkflowPreconditionDefinition import WorkflowPredictionDefinition, \
-    workflow_prediction_definition_parser
+    workflow_precondition_definition_parser
 from app.parser.tosca_v_1_3.definitions.WorkflowStepDefinition import WorkflowStepDefinition, workflow_step_definition_parser
 
 class ImperativeWorkflowDefinition:
@@ -69,7 +69,7 @@ def imperative_workflow_definition_parser(name: str, data: dict) -> ImperativeWo
             workflow.add_inputs(property_definition_parser(input_property_name, input_property_value))
     if data.get('preconditions'):
         for prediction in data.get('predictions'):
-            workflow.add_prediction(workflow_prediction_definition_parser(prediction))
+            workflow.add_prediction(workflow_precondition_definition_parser(prediction))
     if data.get('steps'):
         for step_name, step_value in data.get('steps').items():
             workflow.add_steps(workflow_step_definition_parser(step_name, step_value))

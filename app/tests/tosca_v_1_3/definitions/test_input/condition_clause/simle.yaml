@@ -1,0 +1,2 @@
+condition:
+  - my_attribute: [{equal: my_value}]

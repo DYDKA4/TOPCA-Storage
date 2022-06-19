@@ -1,0 +1,9 @@
+condition:
+
+  - not:
+
+    - and:
+
+      - my_attribute_0: [{equal: my_value_0}]
+
+      - my_attribute_1: [{equal: my_value_1}]

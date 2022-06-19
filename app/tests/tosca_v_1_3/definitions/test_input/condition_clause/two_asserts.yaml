@@ -1,0 +1,5 @@
+condition:
+
+  - my_attribute_0: [{equal_0: my_value_0}]
+
+  - my_attribute_1: [{equal_0: my_value_0}]

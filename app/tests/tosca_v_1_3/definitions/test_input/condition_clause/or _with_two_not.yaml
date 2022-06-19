@@ -1,0 +1,13 @@
+condition:
+
+  - or:
+
+    - not:
+
+      - my_attribute_not_00: [{equal: my_value_0}]
+      - my_attribute_not_01: [{equal: my_value_1}]
+
+
+    - not:
+
+      - my_attribute_not_10: [{equal: my_value_1}]

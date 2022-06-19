@@ -16,6 +16,7 @@ import TestNotificationImplementation
 import TestOperation
 import TestOperationImplementation
 import TestParameter
+import TestPolicy
 import TestProperty
 import TestPropertyFilter
 import TestRequirement
@@ -41,6 +42,7 @@ definitionTestSuite.addTest(unittest.makeSuite(TestNotificationImplementation.Te
 definitionTestSuite.addTest(unittest.makeSuite(TestOperation.TestOperation))
 definitionTestSuite.addTest(unittest.makeSuite(TestOperationImplementation.TestOperationImplementation))
 definitionTestSuite.addTest(unittest.makeSuite(TestParameter.TestParameter))
+definitionTestSuite.addTest(unittest.makeSuite(TestPolicy.TestPolicy))
 definitionTestSuite.addTest(unittest.makeSuite(TestConditionClause.TestConditionClause))
 definitionTestSuite.addTest(unittest.makeSuite(TestProperty.TestProperty))
 definitionTestSuite.addTest(unittest.makeSuite(TestPropertyFilter.TestPropertyFilter))

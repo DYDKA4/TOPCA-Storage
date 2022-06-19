@@ -1,0 +1,18 @@
+ test_policy_name:
+   type: test_policy_type_name
+   description: test_policy_description
+   metadata:
+     metadata_key_0: metadata_value_0
+     metadata_key_1: metadata_value_1
+     metadata_key_2: metadata_value_2
+   properties:
+     test_property_name_0: property_value_test_0
+     test_property_name_1: property_value_test_1
+   targets: [policy_target_0, policy_target_1]
+   triggers:
+     test_trigger_name_0:
+       description: test_trigger_description
+       event: test_event_name
+     test_trigger_name_1:
+       description: test_trigger_description
+       event: test_event_name

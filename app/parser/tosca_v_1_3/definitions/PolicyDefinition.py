@@ -57,7 +57,7 @@ def policy_definition_parser(name: str, data: dict) -> PolicyDefinition:
         description = description_parser(data)
         policy.set_description(description)
     if data.get('metadata'):
-        for metadata_name, metadata_value in data.get('metadata'):
+        for metadata_name, metadata_value in data.get('metadata').items():
             policy.add_metadata(Metadata(metadata_name, metadata_value))
     if data.get('properties'):
         for property_name, property_value in data.get('properties').items():
@@ -66,6 +66,6 @@ def policy_definition_parser(name: str, data: dict) -> PolicyDefinition:
         for target in data.get('targets'):
             policy.add_targets(target)
     if data.get('triggers'):
-        for trigger_name, trigger_value in data.get('triggers'):
-            policy.add_trigger(trigger_definition_parser(trigger_name,trigger_value))
+        for trigger_name, trigger_value in data.get('triggers').items():
+            policy.add_trigger(trigger_definition_parser(trigger_name, trigger_value))
     return policy

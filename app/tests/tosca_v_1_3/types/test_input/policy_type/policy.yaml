@@ -1,0 +1,23 @@
+ test_policy_type_name:
+   derived_from: test_parent_policy_type_name
+   version: test_version_number
+   metadata:
+     metadata_key_0: metadata_value_0
+     metadata_key_1: metadata_value_1
+     metadata_key_2: metadata_value_2
+   description: test_policy_description
+   properties:
+     test_property_name_0:
+       type: test_property_name_0
+       description: test_property_description_0
+     test_property_name_1:
+       type: test_property_name_1
+       description: test_property_description_1
+   targets: [ valid_target_type_0, valid_target_type_1 ]
+   triggers:
+     test_trigger_name_0:
+       description: test_trigger_description
+       event: test_event_name
+     test_trigger_name_1:
+       description: test_trigger_description
+       event: test_event_name

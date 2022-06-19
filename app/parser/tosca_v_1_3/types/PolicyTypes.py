@@ -57,7 +57,7 @@ def policy_type_parser(name: str, data: dict) -> PolicyType:
     if data.get('version'):
         policy.set_version(data.get('version'))
     if data.get('metadata'):
-        for metadata_name, metadata_value in data.get('metadata'):
+        for metadata_name, metadata_value in data.get('metadata').items():
             policy.add_metadata(Metadata(metadata_name, metadata_value))
     if data.get('description'):
         if data.get('description'):
@@ -70,6 +70,6 @@ def policy_type_parser(name: str, data: dict) -> PolicyType:
         for target in data.get('targets'):
             policy.add_target(target)
     if data.get('triggers'):
-        for trigger_name, trigger_value in data.get('triggers'):
+        for trigger_name, trigger_value in data.get('triggers').items():
             policy.add_trigger(trigger_definition_parser(trigger_name, trigger_value))
     return policy

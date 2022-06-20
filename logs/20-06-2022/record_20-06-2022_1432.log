@@ -1,0 +1,16 @@
+2022-06-20 14:32:14,611 INFO werkzeug MainThread :  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2022-06-20 14:32:14,620 INFO werkzeug MainThread :  * Restarting with stat
+2022-06-20 14:32:14,776 WARNING werkzeug MainThread :  * Debugger is active!
+2022-06-20 14:32:14,832 INFO werkzeug MainThread :  * Debugger PIN: 997-840-681
+2022-06-20 14:32:21,540 INFO werkzeug Thread-2 : 127.0.0.1 - - [20/Jun/2022 14:32:21] "POST /yaml-template/?cluster_name=cluster HTTP/1.1" 200 -
+2022-06-20 14:33:00,628 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/views.py', reloading
+2022-06-20 14:33:00,653 INFO werkzeug MainThread :  * Restarting with stat
+2022-06-20 14:34:59,904 INFO werkzeug MainThread :  * Restarting with stat
+2022-06-20 14:41:55,863 INFO werkzeug MainThread :  * Restarting with stat
+2022-06-20 14:42:19,541 INFO werkzeug MainThread :  * Restarting with stat
+2022-06-20 14:42:36,035 INFO werkzeug MainThread :  * Restarting with stat
+2022-06-20 14:42:50,538 INFO werkzeug MainThread :  * Restarting with stat
+2022-06-20 14:45:33,399 INFO werkzeug MainThread :  * Restarting with stat
+2022-06-20 14:46:37,715 INFO werkzeug MainThread :  * Restarting with stat
+2022-06-20 14:48:58,305 INFO werkzeug MainThread :  * Restarting with stat
+2022-06-20 14:49:28,022 INFO werkzeug MainThread :  * Restarting with stat

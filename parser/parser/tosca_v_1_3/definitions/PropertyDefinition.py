@@ -12,7 +12,7 @@
 #     <metadata_map>
 from werkzeug.exceptions import abort
 
-from parser.parser.tosca_v_1_3.others.ConstraintСlause import constraint_clause_parser
+from parser.parser.tosca_v_1_3.others.ConstraintСlause import constraint_clause_parser, ConstraintClause
 from parser.parser.tosca_v_1_3.definitions.DescriptionDefinition import description_parser
 from parser.parser.tosca_v_1_3.others.Metadata import Metadata
 from parser.parser.tosca_v_1_3.definitions.SchemaDefinition import schema_definition_parser, SchemaDefinition
@@ -51,7 +51,7 @@ class PropertyDefinition:
     def set_status(self, status: str):
         self.status = status
 
-    def add_constraints(self, constraint):
+    def add_constraints(self, constraint: ConstraintClause):
         self.constraints.append(constraint)
 
     def set_key_schema(self, key_schema: SchemaDefinition):

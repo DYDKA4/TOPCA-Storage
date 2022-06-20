@@ -11,8 +11,10 @@ from parser.linker.LinkDerivedFrom import link_derived_from
 from parser.parser.tosca_v_1_3.definitions.ServiceTemplateDefinition import ServiceTemplateDefinition, \
     service_template_definition_parser
 
-realised_vertex_type = {'ServiceTemplateDefinition', 'Metadata', 'RepositoryDefinition', 'ImportDefinition','ArtifactType'}
-realised_edge_type = {'metadata', 'repositories', 'imports', 'artifact_types', 'derived_from'}
+realised_vertex_type = {'ServiceTemplateDefinition', 'Metadata', 'RepositoryDefinition', 'ImportDefinition',
+                        'ArtifactType', 'PropertyDefinition', 'ConstraintClause', 'SchemaDefinition'}
+realised_edge_type = {'metadata', 'repositories', 'imports', 'artifact_types', 'derived_from', 'properties',
+                      'constraints', 'key_schema', 'entry_schema'}
 Config = Config()
 Config.max_connection_pool_size = 10
 connection_pool = ConnectionPool()
@@ -58,7 +60,7 @@ def add_in_vertex(vertex_name, name_of_key_value, key_value, vid):
     logging.info(f'INSERT VERTEX {vertex_name} ({name_of_key_value}) VALUES {vid}'
                  f':({key_value});')
     print(f'INSERT VERTEX {vertex_name} ({name_of_key_value}) VALUES {vid}'
-                             f':({key_value});')
+          f':({key_value});')
     assert result.is_succeeded(), result.error_msg()
     session.release()
     return
@@ -78,10 +80,9 @@ def add_edge(edge_name, edge_params, source_vertex, destination_vertex, data):
 
 
 def deploy(template) -> None:
-    if template.vid is None:
-        template.vid = vid_getter(template.vertex_type_system)
     name_of_key_value = ''
     key_value = ''
+    edges = []
     for attribute_name, attribute_value in template.__dict__.items():
         if type(attribute_value) in {int, float, str} and attribute_name not in {'vid', 'vertex_type_system'}:
             if name_of_key_value == '':
@@ -95,14 +96,25 @@ def deploy(template) -> None:
         elif attribute_name not in {'vid', 'vertex_type_system'} and attribute_value is not None:
             if type(attribute_value) == list:
                 for attribute_item in attribute_value:
-                    if attribute_item.vertex_type_system in realised_vertex_type: #todo Remove when it will be done
+                    if attribute_item.vertex_type_system in realised_vertex_type:  # todo Remove when it will be done
                         deploy(attribute_item)
-                        add_edge(attribute_name, '', template.vid, attribute_item.vid, '')
-            if type(attribute_value) == dict:
+                        edges.append([attribute_name, '', template, attribute_item, ''])
+                        # add_edge(attribute_name, '', template.vid, attribute_item.vid, '')
+            elif type(attribute_value) == dict:
                 for type_edge, vertexes in attribute_value.items():
-                    add_edge(type_edge, '', vertexes[0].vid, vertexes[1].vid, '')
+                    edges.append([type_edge, '', vertexes[0], vertexes[1], ''])
+                    # add_edge(type_edge, '', vertexes[0].vid, vertexes[1].vid, '')
+            else:
+                if attribute_value.vertex_type_system in realised_vertex_type:  # todo Remove when it will be done
+                    deploy(attribute_value)
+                    edges.append([attribute_name, '', template, attribute_value, ''])
+                    # add_edge(attribute_name, '', template.vid, attribute_value.vid, '')
 
             print(attribute_name)
+    if template.vid is None:
+        template.vid = vid_getter(template.vertex_type_system)
+    for edge in edges:
+        add_edge(edge[0], edge[1], edge[2].vid, edge[3].vid, edge[4]) # todo Thing about it
     add_in_vertex(template.vertex_type_system, name_of_key_value, key_value, template.vid)
     return
 

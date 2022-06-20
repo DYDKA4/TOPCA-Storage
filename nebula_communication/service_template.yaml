@@ -16,6 +16,32 @@
       test_parent_artifact_type_name:
         description: test_description
         derived_from: test_parent_artifact_type_name
+        properties:
+          test_property_name_0:
+            type: test_property_name_0
+            constraints:
+              - equal: 2
+              - equal: 10
+          test_property_name_1:
+            type: test_property_name_1
+            key_schema:
+              type: key_schema_type_test
+              description: key_schema_description_test
+              constraints:
+                - key_equal_0: key_value_0
+                - key_equal_1: key_value_1
+              key_schema:
+                type: key_key_schema_type_test
+                description: key_schema_description_test
+                constraints:
+                  - key_equal_0: key_value_2
+                  - key_equal_1: key_value_3
+            entry_schema:
+              type: entry_schema_type_test
+              description: entry_schema_description_test
+              constraints:
+                - entry_equal_0: entry_value_4
+                - entry_equal_1: entry_value_5
       test_artifact_type_name_0:
         derived_from: test_parent_artifact_type_name
       test_artifact_type_name_1:

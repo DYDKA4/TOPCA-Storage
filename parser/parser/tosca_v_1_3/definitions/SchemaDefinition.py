@@ -16,7 +16,6 @@ class SchemaDefinition:
         self.description = None
         self.type = None
         self.vid = None
-        self.type = None
         self.constraints = []
         self.key_schema = None
         self.entry_schema = None

@@ -1,0 +1,56 @@
+ tosca_definitions_version: 1.3
+ namespace:  URI
+ metadata:
+     metadata_key_0: metadata_value_0
+     metadata_key_1: metadata_value_1
+     metadata_key_2: metadata_value_2
+
+ description: test_template_type_description
+ repositories:
+      test_repository_name_0: test_repository_address_0
+      test_repository_name_1: test_repository_address_1
+ imports:
+      - URI_0
+      - URI_1
+ artifact_types:
+      test_artifact_type_name_0:
+        derived_from: test_parent_artifact_type_name
+      test_artifact_type_name_1:
+        derived_from: test_parent_artifact_type_name
+ data_types:
+      test_data_type_name_0:
+        derived_from: test_existing_type_name
+      test_data_type_name_1:
+           derived_from: test_existing_type_name
+ capability_types:
+      test_capability_type_name_0:
+           derived_from: test_parent_capability_type_name
+      test_capability_type_name_1:
+           derived_from: test_parent_capability_type_name
+ interface_types:
+      test_interface_type_name_0:
+           derived_from: test_parent_interface_type_name
+      test_interface_type_name_1:
+           derived_from: test_parent_interface_type_name
+ relationship_types:
+      test_relationship_type_name_0:
+        derived_from: test_parent_relationship_type_name
+      test_relationship_type_name_1:
+           derived_from: test_parent_relationship_type_name
+ node_types:
+      test_node_type_name_0:
+           derived_from: test_parent_node_type_name
+      test_node_type_name_1:
+           derived_from: test_parent_node_type_name
+ group_types:
+      test_group_type_name_0:
+           derived_from: test_parent_group_type_name
+      test_group_type_name_1:
+        derived_from: test_parent_group_type_name
+ policy_types:
+      test_policy_type_name_0:
+        derived_from: test_parent_policy_type_name
+      test_policy_type_name_1:
+         derived_from: test_parent_policy_type_name
+ topology_template:
+      description: test_template_description

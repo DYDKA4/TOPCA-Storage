@@ -56,11 +56,7 @@ class ServiceTemplateDefinition:
         self.vid = None
         self.vertex_type_system = 'ServiceTemplateDefinition'
         self.namespace = None
-        self.metadata = {
-            'template_name': None,
-            'template_author': None,
-            'template_version': None
-        }
+        self.metadata = {}
         self.description = None
         self.dsl_definitions = None
         self.repositories = []
@@ -131,9 +127,8 @@ def service_template_definition_parser(cluster_name: str, data: dict) -> Service
         service_template.set_namespace(data.get('namespace'))
     if data.get('metadata'):
         metadata = data.get('metadata')
-        for metadata_name in service_template.metadata.keys():
-            if metadata.get(metadata_name):
-                service_template.metadata[metadata_name] = metadata.get(metadata_name)
+        for metadata_key, metadata_value in metadata.items():
+            service_template.metadata[metadata_key] = metadata_value
     if data.get('description'):
         if data.get('description'):
             description = description_parser(data)
@@ -141,7 +136,7 @@ def service_template_definition_parser(cluster_name: str, data: dict) -> Service
     if data.get('dsl_definitions'):
         service_template.set_dsl_definitions(str(data.get('dsl_definitions')))
     if data.get('repositories'):
-        for repository_name, repository_value in data.get('repositories'):
+        for repository_name, repository_value in data.get('repositories').items():
             service_template.add_repository(repository_definition_parser(repository_name, repository_value))
     if data.get('imports'):
         for import_value in data.get('imports'):

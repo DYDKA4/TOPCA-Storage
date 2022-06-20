@@ -30,7 +30,7 @@ class RelationshipType:
         self.properties = []
         self.attributes = []
         self.interfaces = []
-        self.valid_source_types = []
+        self.valid_target_types = []
 
     def set_derived_from(self, derived_from: str):
         self.derived_from = derived_from
@@ -54,7 +54,7 @@ class RelationshipType:
         self.interfaces.append(interface)
 
     def add_valid_source_type(self, valid_source_type: str):
-        self.valid_source_types.append(valid_source_type)
+        self.valid_target_types.append(valid_source_type)
 
 
 def relationship_type_parser(name: str, data: dict) -> RelationshipType:
@@ -64,7 +64,7 @@ def relationship_type_parser(name: str, data: dict) -> RelationshipType:
     if data.get('version'):
         relationship.set_version(data.get('version'))
     if data.get('metadata'):
-        for metadata_name, metadata_value in data.get('metadata'):
+        for metadata_name, metadata_value in data.get('metadata').items():
             relationship.add_metadata(Metadata(metadata_name, metadata_value))
     if data.get('description'):
         if data.get('description'):
@@ -79,7 +79,7 @@ def relationship_type_parser(name: str, data: dict) -> RelationshipType:
     if data.get('interfaces'):
         for interface_name, interface_value in data.get('interfaces').items():
             relationship.add_interface(interface_definition_parser(interface_name, interface_value))
-    if data.get('valid_source_types'):
-        for valid_source_type in data.get('valid_source_types'):
+    if data.get('valid_target_types'):
+        for valid_source_type in data.get('valid_target_types'):
             relationship.add_valid_source_type(valid_source_type)
     return relationship

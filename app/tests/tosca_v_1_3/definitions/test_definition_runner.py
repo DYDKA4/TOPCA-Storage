@@ -1,31 +1,10 @@
 import unittest
 
-import TestArtifact
-import TestAttribute
-import TestCapability
-import TestConditionClause
-import TestDescription
-import TestEventFilter
-import TestGroup
-import TestImperativeWorkflow
-import TestImport
-import TestInterface
-import TestNodeFilter
-import TestNotification
-import TestNotificationImplementation
-import TestOperation
-import TestOperationImplementation
-import TestParameter
-import TestPolicy
-import TestProperty
-import TestPropertyFilter
-import TestRepository
-import TestRequirement
-import TestSchema
-import TestTemplate
-import TestTrigger
-import TestWorkflowPrecondition
-import TestWorkflowStep
+from app.tests.tosca_v_1_3.definitions import TestArtifact, TestAttribute, TestCapability, TestConditionClause, \
+    TestDescription, TestEventFilter, TestGroup, TestImperativeWorkflow, TestImport, TestInterface, TestNodeFilter, \
+    TestNotification, TestNotificationImplementation, TestOperation, TestOperationImplementation, TestParameter, \
+    TestPolicy, TestProperty, TestPropertyFilter, TestRepository, TestRequirement, TestSchema, TestServiceTemplate, TestTemplate, \
+    TestTrigger, TestWorkflowPrecondition, TestWorkflowStep
 
 definitionTestSuite = unittest.TestSuite()
 definitionTestSuite.addTest(unittest.makeSuite(TestArtifact.TestArtifact))
@@ -45,13 +24,13 @@ definitionTestSuite.addTest(unittest.makeSuite(TestOperation.TestOperation))
 definitionTestSuite.addTest(unittest.makeSuite(TestOperationImplementation.TestOperationImplementation))
 definitionTestSuite.addTest(unittest.makeSuite(TestParameter.TestParameter))
 definitionTestSuite.addTest(unittest.makeSuite(TestPolicy.TestPolicy))
-definitionTestSuite.addTest(unittest.makeSuite(TestConditionClause.TestConditionClause))
 definitionTestSuite.addTest(unittest.makeSuite(TestProperty.TestProperty))
 definitionTestSuite.addTest(unittest.makeSuite(TestPropertyFilter.TestPropertyFilter))
 definitionTestSuite.addTest(unittest.makeSuite(TestRepository.TestRepository))
 definitionTestSuite.addTest(unittest.makeSuite(TestRequirement.TestRequirement))
 definitionTestSuite.addTest(unittest.makeSuite(TestSchema.TestSchema))
 definitionTestSuite.addTest(unittest.makeSuite(TestTemplate.TestTemplate))
+definitionTestSuite.addTest(unittest.makeSuite(TestServiceTemplate.TestServiceTemplate))
 definitionTestSuite.addTest(unittest.makeSuite(TestTrigger.TestTrigger))
 definitionTestSuite.addTest(unittest.makeSuite(TestWorkflowPrecondition.TestWorkflowPrecondition))
 definitionTestSuite.addTest(unittest.makeSuite(TestWorkflowStep.TestWorkflowStep))

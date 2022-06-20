@@ -1,12 +1,9 @@
 import unittest
-import TestAttribute
-import TestCapability
-import TestProperty
-import TestRequirement
+
+from app.tests.tosca_v_1_3.assignments import TestAttribute, TestCapability, TestProperty, TestRequirement
 
 assignmentTestSuite = unittest.TestSuite()
 assignmentTestSuite.addTest(unittest.makeSuite(TestAttribute.TestAttribute))
-assignmentTestSuite.addTest(unittest.makeSuite(TestCapability.TestCapability))
 assignmentTestSuite.addTest(unittest.makeSuite(TestCapability.TestCapability))
 assignmentTestSuite.addTest(unittest.makeSuite(TestProperty.TestProperty))
 assignmentTestSuite.addTest(unittest.makeSuite(TestRequirement.TestRequirement))

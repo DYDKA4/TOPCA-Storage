@@ -1,7 +1,6 @@
 import unittest
-import yaml
 
-from app.tests.tosca_v_1_3.assignments.TestAttribute import TestAttribute
+from parser.tests.tosca_v_1_3.assignments.TestAttribute import TestAttribute
 
 
 class TestJsonParser(unittest.TestCase):

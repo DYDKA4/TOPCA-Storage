@@ -1,9 +1,10 @@
 from flask import request
 from app import app
-from app import communication_with_nebula
+from nebula_communication import communication_with_nebula
 import yaml
 from app import constructor_yaml
 from app import find as find_method
+from nebula_communication.deploy import deploy
 from parser.parser.tosca_v_1_3.definitions.ServiceTemplateDefinition import service_template_definition_parser
 
 
@@ -22,16 +23,14 @@ def yaml_add(varargs=None):
             return '''
             400 Bad Request 
             '''
-        print(pure_yaml)
         if cluster_name:
-            print(type(file))
-            print(False, bool("False"))
-            service_template_definition_parser(cluster_name,file)
+            template = service_template_definition_parser(cluster_name, file)
             # cluster_vertex = yaml_parser.parser(file, cluster_name)
             # cluster_vertex.pure_yaml = pure_yaml
+            print(template)
             end_code = '400'
-            # if request.method == 'POST':
-            #     end_code = communication_with_nebula.yaml_deploy(cluster_vertex)
+            if request.method == 'POST':
+                deploy(template)
             # else:
             #     end_code = communication_with_nebula.yaml_deploy(cluster_vertex, method_put=True)
             print()

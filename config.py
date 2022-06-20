@@ -1,7 +1,7 @@
 IP_address = '10.100.151.128'
 UserName = 'Administator'
 UserPassword = 'password'
-WorkSpace = 'data_center_str_demo'
+WorkSpace = 'tosca_templates'
 NameOfUserVertex = 'persons'
 NameOfKeyValueUser = 'name'
 NameOfServerVertex = 'server'

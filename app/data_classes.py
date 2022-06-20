@@ -1,4 +1,4 @@
-from app import communication_with_nebula as cwn
+from nebula_communication import communication_with_nebula as cwn
 
 
 class Vertex:

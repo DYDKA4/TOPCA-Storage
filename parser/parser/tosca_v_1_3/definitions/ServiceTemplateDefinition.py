@@ -35,6 +35,7 @@
 # # topology template definition of the cloud application or service
 from werkzeug.exceptions import abort
 
+from parser.parser.tosca_v_1_3.others.Metadata import Metadata
 from parser.parser.tosca_v_1_3.types.ArtifactType import ArtifactType, artifact_type_parser
 from parser.parser.tosca_v_1_3.types.CapabilityType import CapabilityType, capability_type_parser
 from parser.parser.tosca_v_1_3.types.DataType import DataType, data_type_parser
@@ -53,10 +54,10 @@ class ServiceTemplateDefinition:
     def __init__(self, cluster_name: str):
         self.tosca_definitions_version = None
         self.name = cluster_name
-        self.vid = None
+        self.vid = '"'+cluster_name+'"'
         self.vertex_type_system = 'ServiceTemplateDefinition'
         self.namespace = None
-        self.metadata = {}
+        self.metadata = []
         self.description = None
         self.dsl_definitions = None
         self.repositories = []
@@ -76,6 +77,9 @@ class ServiceTemplateDefinition:
 
     def set_namespace(self, namespace: str):
         self.namespace = namespace
+
+    def add_metadata(self, metadata: Metadata):
+        self.metadata.append(metadata)
 
     def set_description(self, description: str):
         self.description = description
@@ -126,9 +130,8 @@ def service_template_definition_parser(cluster_name: str, data: dict) -> Service
     if data.get('namespace'):
         service_template.set_namespace(data.get('namespace'))
     if data.get('metadata'):
-        metadata = data.get('metadata')
-        for metadata_key, metadata_value in metadata.items():
-            service_template.metadata[metadata_key] = metadata_value
+        for metadata_name, metadata_value in data.get('metadata').items():
+            service_template.add_metadata(Metadata(metadata_name, metadata_value))
     if data.get('description'):
         if data.get('description'):
             description = description_parser(data)

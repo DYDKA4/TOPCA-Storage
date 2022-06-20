@@ -1,9 +1,7 @@
-from app import communication_with_nebula as cwn
+from nebula_communication import communication_with_nebula as cwn
 import itertools
 import yaml
 import ast
-import json
-import pprint
 
 
 def deep_update_dict(source, overrides):

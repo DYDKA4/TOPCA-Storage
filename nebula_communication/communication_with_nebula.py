@@ -9,7 +9,6 @@ from app import data_classes
 
 Config = Config()
 Config.max_connection_pool_size = 10
-# init connection pool
 connection_pool = ConnectionPool()
 # if the given servers are ok, return true, else return false
 # ok = connection_pool.init([(config.IP_address, 9669)], Config) todo REMAKE IT
@@ -21,7 +20,8 @@ def hello_world():
 
 def chose_of_space():
     # chose of working space session is still open
-    session = connection_pool.get_session(config.UserName, config.UserPassword)
+    session = connection_pool.get_session('Administator', 'password')
+    # session = connection_pool.get_session(config.UserName, config.UserPassword)
     result = session.execute(f'USE {config.WorkSpace}')
     assert result.is_succeeded(), result.error_msg()
     return session
@@ -63,8 +63,6 @@ def add_in_vertex(session, vertex_name, name_of_key_value, key_value, vid):
 
     logging.info(f'INSERT VERTEX {vertex_name} ({name_of_key_value}) VALUES {vid}'
                  f':({key_value});')
-    print(f'INSERT VERTEX {vertex_name} ({name_of_key_value}) VALUES {vid}'
-          f':({key_value});')
     assert result.is_succeeded(), result.error_msg()
     return
 
@@ -215,6 +213,7 @@ def yaml_deploy(cluster_vertex: data_classes.ClusterName, method_put=False):
     за первый проход она размещается все узлы в бд, за второй создаёт соотвествующие связи
     """
     session = chose_of_space()
+    return
     if method_put:
         if is_unique_vid(session, cluster_vertex.vertex_type_system, cluster_vertex.vid):
             return '400 Cluster VID is not existed'

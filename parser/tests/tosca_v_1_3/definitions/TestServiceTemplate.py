@@ -22,12 +22,10 @@ class TestServiceTemplate(unittest.TestCase):
         self.assertEqual(template.vertex_type_system, 'ServiceTemplateDefinition')
         self.assertEqual(template.namespace, 'URI')
         self.assertEqual(len(template.metadata), 3)
-        for index in range(3):
-            key = 'metadata_key_' + str(index)
-            self.assertEqual(template.metadata[key], 'metadata_value_' + str(index))
-        self.assertEqual(template.description, 'test_template_type_description')
+        for index, metadata in enumerate(template.metadata):
+            self.assertEqual(metadata.name, 'metadata_key_' + str(index))
+            self.assertEqual(metadata.value, 'metadata_value_' + str(index))
         self.assertEqual(template.dsl_definitions, None)
-        self.dsl_definitions = None
         self.assertEqual(len(template.repositories), 2)
         for index, repositories in enumerate(template.repositories):
             self.assertEqual(repositories.name, 'test_repository_name_' + str(index))

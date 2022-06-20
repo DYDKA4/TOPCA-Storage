@@ -20,7 +20,7 @@ from parser.parser.tosca_v_1_3.definitions.SchemaDefinition import SchemaDefinit
 class DataType:
     def __init__(self, name: str):
         self.vid = None
-        self.vertex_type_system = 'ArtifactType'
+        self.vertex_type_system = 'DataType'
         self.name = name
         self.derived_from = None
         self.version = None

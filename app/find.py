@@ -1,4 +1,4 @@
-from app import communication_with_nebula
+from nebula_communication import communication_with_nebula
 
 
 def search_by_type(value_name, session, search_by, cluster_name):

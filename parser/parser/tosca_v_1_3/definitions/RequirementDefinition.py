@@ -18,6 +18,7 @@
 from werkzeug.exceptions import abort
 
 from parser.parser.tosca_v_1_3.definitions.InterfaceDefinition import InterfaceDefinition, interface_definition_parser
+from parser.parser.tosca_v_1_3.others.Occurrences import Occurrences
 
 
 class RequirementDefinition:
@@ -43,7 +44,7 @@ class RequirementDefinition:
     def add_interface(self, interface: InterfaceDefinition):
         self.interfaces.append(interface)
 
-    def set_occurrences(self, occurrences: list):
+    def set_occurrences(self, occurrences: Occurrences):
         self.occurrences = occurrences
 
 
@@ -69,7 +70,8 @@ def requirement_definition_parser(name: str, data: dict) -> RequirementDefinitio
                 for interface_name, interface_value in relationship.get('interfaces').items():
                     requirement.add_interface(interface_definition_parser(interface_name, interface_value))
     if data.get('occurrences'):
-        requirement.set_occurrences(data.get('occurrences'))
+        occurrences = data.get('occurrences')
+        requirement.set_occurrences(Occurrences(occurrences[0], occurrences[1]))
     if requirement.capability is None:
         abort(400)
     return requirement

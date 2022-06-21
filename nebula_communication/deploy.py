@@ -8,7 +8,7 @@ from random import choice
 from string import ascii_uppercase
 
 from parser.linker.LinkDerivedFrom import link_derived_from
-from parser.linker.LinkerValidTypes import link_valid_target_types
+from parser.linker.LinkerValidTypes import link_valid_target_types, link_valid_source_types
 from parser.parser.tosca_v_1_3.definitions.ServiceTemplateDefinition import ServiceTemplateDefinition, \
     service_template_definition_parser
 
@@ -16,7 +16,8 @@ realised_vertex_type = {'ServiceTemplateDefinition', 'Metadata', 'RepositoryDefi
                         'ArtifactType', 'PropertyDefinition', 'ConstraintClause', 'SchemaDefinition', 'DataType',
                         'CapabilityType', 'AttributeDefinition', 'ArtifactDefinition', 'PropertyAssignments',
                         'OperationImplementationDefinition', 'OperationDefinition', 'InterfaceType', 'RelationshipType',
-                        'InterfaceDefinition', 'NotificationDefinition', 'NotificationImplementationDefinition'}
+                        'InterfaceDefinition', 'NotificationDefinition', 'NotificationImplementationDefinition',
+                        'NodeType', 'Occurrences', 'CapabilityDefinition'}
 realised_edge_type = {'metadata', 'repositories', 'imports', 'artifact_types', 'derived_from', 'properties',
                       'constraints', 'key_schema', 'entry_schema', 'data_types', 'capability_types', 'attributes'}
 Config = Config()
@@ -88,26 +89,28 @@ def deploy(template) -> None:
     name_of_key_value = ''
     key_value = ''
     complex_vertex = {}
-    for attribute_name, attribute_value in template.__dict__.items():
-        if type(attribute_value) in {int, float, str, bool} and attribute_name not in {'vid', 'vertex_type_system'}:
-            if name_of_key_value == '':
-                if attribute_value is not None:
-                    name_of_key_value = attribute_name
-                    key_value = '"' + str(attribute_value) + '"'
-            else:
-                if attribute_value is not None:
-                    name_of_key_value = name_of_key_value + ", " + attribute_name
-                    key_value = key_value + ', "' + str(attribute_value) + '"'
-        elif attribute_name not in {'vid', 'vertex_type_system'} and attribute_value is not None:
-            complex_vertex[attribute_name] = attribute_value
-    if template.vid is None:
-        template.vid = vid_getter(template.vertex_type_system)
+    if template.vid is None or template.vertex_type_system == 'ServiceTemplateDefinition':
+        for attribute_name, attribute_value in template.__dict__.items():
+            if type(attribute_value) in {int, float, str, bool} and attribute_name not in {'vid', 'vertex_type_system'}:
+                if name_of_key_value == '':
+                    if attribute_value is not None:
+                        name_of_key_value = attribute_name
+                        key_value = '"' + str(attribute_value) + '"'
+                else:
+                    if attribute_value is not None:
+                        name_of_key_value = name_of_key_value + ", " + attribute_name
+                        key_value = key_value + ', "' + str(attribute_value) + '"'
+            elif attribute_name not in {'vid', 'vertex_type_system'} and attribute_value is not None:
+                complex_vertex[attribute_name] = attribute_value
+        if template.vid is None:
+            template.vid = vid_getter(template.vertex_type_system)
+        add_in_vertex(template.vertex_type_system, name_of_key_value, key_value, template.vid)
     # for edge in edges:
     #     add_edge(edge[0], edge[1], edge[2].vid, edge[3].vid, edge[4]) # todo Thing about it
-    add_in_vertex(template.vertex_type_system, name_of_key_value, key_value, template.vid)
     for attribute_name, attribute_value in complex_vertex.items():
         if type(attribute_value) == list:
             for attribute_item in attribute_value:
+                print(attribute_item)
                 if attribute_item.vertex_type_system in realised_vertex_type:  # todo Remove when it will be done
                     deploy(attribute_item)
                     # edges.append([attribute_name, '', template, attribute_item, ''])
@@ -115,8 +118,27 @@ def deploy(template) -> None:
         elif type(attribute_value) == dict:
             for type_edge, vertexes in attribute_value.items():
                 # edges.append([type_edge, '', vertexes[0], vertexes[1], ''])
-                if type(vertexes[1]) == list:
+                if type(vertexes[0]) == list and type(vertexes[1]) == list:
+                    for vertex_0 in vertexes[0]:
+                        for vertex_1 in vertexes[1]:
+                            if vertex_0.vid is None:
+                                deploy(vertex_0)
+                            if vertex_1.vid is None:
+                                deploy(vertex_1)
+                            add_edge(type_edge, '', vertex_0.vid, vertex_1.vid, '')
+                elif type(vertexes[0]) == list:
+                    for vertex in vertexes[0]:
+                        if vertexes[1].vid is None:
+                            deploy(vertex[1])
+                        if vertex.vid is None:
+                            deploy(vertex)
+                        add_edge(type_edge, '', vertex.vid, vertexes[1].vid, '')
+                elif type(vertexes[1]) == list:
                     for vertex in vertexes[1]:
+                        if vertexes[0].vid is None:
+                            deploy(vertex[1])
+                        if vertex.vid is None:
+                            deploy(vertex)
                         add_edge(type_edge, '', vertexes[0].vid, vertex.vid, '')
                 else:
                     add_edge(type_edge, '', vertexes[0].vid, vertexes[1].vid, '')
@@ -148,4 +170,9 @@ for interface_type in template.interface_types:
 for relationship_type in template.relationship_types:
     link_derived_from(template.relationship_types, relationship_type)
     link_valid_target_types(template.capability_types, relationship_type)
+for node_type in template.node_types:
+    link_derived_from(template.node_types, node_type)
+    for capability_definition in node_type.capabilities:
+        link_valid_source_types(template.node_types, capability_definition)
+
 deploy(template)

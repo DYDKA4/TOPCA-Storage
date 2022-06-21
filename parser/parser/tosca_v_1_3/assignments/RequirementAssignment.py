@@ -22,6 +22,7 @@
 from parser.parser.tosca_v_1_3.definitions.InterfaceDefinition import InterfaceDefinition, interface_definition_parser
 from parser.parser.tosca_v_1_3.definitions.NodeFilterDefinition import NodeFilterDefinition, node_filter_definition_parser
 from parser.parser.tosca_v_1_3.assignments.PropertyAssignment import PropertyAssignment
+from parser.parser.tosca_v_1_3.others.Occurrences import Occurrences
 
 
 class RequirementAssignment:
@@ -59,7 +60,7 @@ class RequirementAssignment:
     def set_node_filter(self, node_filter: NodeFilterDefinition):
         self.node_filter = node_filter
 
-    def set_occurrences(self, occurrences: list):
+    def set_occurrences(self, occurrences: Occurrences):
         self.occurrences = occurrences
 
 
@@ -88,5 +89,6 @@ def requirement_assignment_parser(name: str, data: dict) -> RequirementAssignmen
     if data.get('node_filter'):
         requirement.set_node_filter(node_filter_definition_parser(data.get('node_filter')))
     if data.get('occurrences'):
-        requirement.set_occurrences(data.get('occurrences'))
+        occurrences = data.get('occurrences')
+        requirement.set_occurrences(Occurrences(occurrences[0], occurrences[1]))
     return requirement

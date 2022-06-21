@@ -6,6 +6,7 @@
 #   occurrences: [ min_occurrences, max_occurrences ]
 from parser.parser.tosca_v_1_3.assignments.AttributeAssignment import AttributeAssignment, attribute_assignments_parser
 from parser.parser.tosca_v_1_3.assignments.PropertyAssignment import PropertyAssignment
+from parser.parser.tosca_v_1_3.others.Occurrences import Occurrences
 
 
 class CapabilityAssignment:
@@ -23,7 +24,7 @@ class CapabilityAssignment:
     def add_attributes(self, attribute: AttributeAssignment):
         self.attributes.append(attribute)
 
-    def set_occurrences(self, occurrences: list):
+    def set_occurrences(self, occurrences: Occurrences):
         self.occurrences = occurrences
 
 
@@ -36,5 +37,6 @@ def capability_assignment_parser(name: str, data: dict) -> CapabilityAssignment:
         for attribute_name, attribute_value in data.get('attributes').items():
             capability.add_attributes(attribute_assignments_parser(attribute_name, attribute_value))
     if data.get('occurrences'):
-        capability.set_occurrences(data.get('occurrences'))
+        occurrences = data.get('occurrences')
+        capability.set_occurrences(Occurrences(occurrences[0], occurrences[1]))
     return capability

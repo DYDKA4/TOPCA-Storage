@@ -47,11 +47,32 @@
       test_artifact_type_name_1:
         derived_from: test_parent_artifact_type_name
  data_types:
+      test_existing_type_name:
+        description: test_description
       test_data_type_name_0:
         derived_from: test_existing_type_name
       test_data_type_name_1:
            derived_from: test_existing_type_name
  capability_types:
+      test_parent_capability_type_name:
+           attributes:
+             test_attribute_name:
+               type: test_attribute_type
+               description: test_attribute_description
+               default: test_default_value
+               status: test_status_value
+               key_schema:
+                 type: key_schema_type_test
+                 description: key_schema_description_test
+                 constraints:
+                   - key_equal_0: key_value_0
+                   - key_equal_1: key_value_1
+               entry_schema:
+                 type: entry_schema_type_test
+                 description: entry_schema_description_test
+                 constraints:
+                   - entry_equal_0: entry_value_0
+                   - entry_equal_1: entry_value_1
       test_capability_type_name_0:
            derived_from: test_parent_capability_type_name
       test_capability_type_name_1:

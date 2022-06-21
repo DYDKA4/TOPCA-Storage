@@ -12,9 +12,10 @@ from parser.parser.tosca_v_1_3.definitions.ServiceTemplateDefinition import Serv
     service_template_definition_parser
 
 realised_vertex_type = {'ServiceTemplateDefinition', 'Metadata', 'RepositoryDefinition', 'ImportDefinition',
-                        'ArtifactType', 'PropertyDefinition', 'ConstraintClause', 'SchemaDefinition'}
+                        'ArtifactType', 'PropertyDefinition', 'ConstraintClause', 'SchemaDefinition', 'DataType',
+                        'CapabilityType', 'AttributeDefinition'}
 realised_edge_type = {'metadata', 'repositories', 'imports', 'artifact_types', 'derived_from', 'properties',
-                      'constraints', 'key_schema', 'entry_schema'}
+                      'constraints', 'key_schema', 'entry_schema', 'data_types', 'capability_types', 'attributes'}
 Config = Config()
 Config.max_connection_pool_size = 10
 connection_pool = ConnectionPool()
@@ -128,4 +129,8 @@ data = yaml.safe_load(data)
 template = service_template_definition_parser(''.join(choice(ascii_uppercase) for i in range(12)), data)
 for artifact_type in template.artifact_types:
     link_derived_from(template.artifact_types, artifact_type)
+for data_type in template.data_types:
+    link_derived_from(template.data_types, data_type)
+for capability_type in template.capability_types:
+    link_derived_from(template.capability_types, capability_type)
 deploy(template)

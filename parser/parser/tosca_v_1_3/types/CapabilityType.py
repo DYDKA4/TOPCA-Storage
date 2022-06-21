@@ -6,7 +6,7 @@
 #     <property_definitions>
 #   attributes:
 #     <attribute_definitions>
-#   valid_source_types: [ <node type_names> ]
+#   valid_source_types: [ <node type_names> ] #todo Linker
 from parser.parser.tosca_v_1_3.definitions.AttributeDefinition import AttributeDefinition, attribute_definition_parser
 from parser.parser.tosca_v_1_3.definitions.DescriptionDefinition import description_parser
 from parser.parser.tosca_v_1_3.definitions.PropertyDefinition import PropertyDefinition, property_definition_parser

@@ -14,7 +14,8 @@ from parser.parser.tosca_v_1_3.definitions.ServiceTemplateDefinition import Serv
 realised_vertex_type = {'ServiceTemplateDefinition', 'Metadata', 'RepositoryDefinition', 'ImportDefinition',
                         'ArtifactType', 'PropertyDefinition', 'ConstraintClause', 'SchemaDefinition', 'DataType',
                         'CapabilityType', 'AttributeDefinition', 'ArtifactDefinition', 'PropertyAssignments',
-                        'OperationImplementationDefinition', 'OperationDefinition', 'InterfaceType', 'RelationshipType'}
+                        'OperationImplementationDefinition', 'OperationDefinition', 'InterfaceType', 'RelationshipType',
+                        'InterfaceDefinition', 'NotificationDefinition', 'NotificationImplementationDefinition'}
 realised_edge_type = {'metadata', 'repositories', 'imports', 'artifact_types', 'derived_from', 'properties',
                       'constraints', 'key_schema', 'entry_schema', 'data_types', 'capability_types', 'attributes'}
 Config = Config()

@@ -13,15 +13,12 @@ class NotificationImplementationDefinition:
     def __init__(self):
         self.vid = None
         self.vertex_type_system = 'NotificationImplementationDefinition'
-        self.primary = None
+        self.primary = None  # todo Make LINKER
         self.implementation = None
         self.primary_artifact_name = None
-        self.dependencies_artefact_names = []
+        self.dependencies_artefact_names = []  # todo Make LINKER
 
-    def set_primary_artifact_name(self, primary_artifact_name: str):
-        self.primary_artifact_name = primary_artifact_name
-
-    def set_primary(self, primary: ArtifactDefinition):
+    def set_primary(self, primary: str):
         self.primary = primary
 
     def add_dependencies_artefact_names(self, dependency: str):
@@ -30,21 +27,13 @@ class NotificationImplementationDefinition:
 
 def notification_implementation_definition_parser(data: dict) -> NotificationImplementationDefinition:
     notification = NotificationImplementationDefinition()
-    short_notation = True
     if type(data) == str:
-        notification.set_primary_artifact_name(str(data))
+        notification.set_primary(str(data))
         return notification
     if data.get('primary'):
-        short_notation = False
         if type(data.get('primary')) == str:
-            notification.set_primary_artifact_name(data.get('primary'))
-        else:
-            for artifact_name, artifact_value in data.get('primary').items():
-                notification.set_primary(artifact_definition_parser(artifact_name, artifact_value))
+            notification.set_primary(data.get('primary'))
     if data.get('dependencies'):
         for dependency in data.get('dependencies'):
             notification.add_dependencies_artefact_names(dependency)
-    if short_notation:
-        notification.set_primary_artifact_name(str(data))
-
     return notification

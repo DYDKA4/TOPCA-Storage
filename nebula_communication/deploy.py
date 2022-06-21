@@ -82,7 +82,7 @@ def add_edge(edge_name, edge_params, source_vertex, destination_vertex, data):
 def deploy(template) -> None:
     name_of_key_value = ''
     key_value = ''
-    edges = []
+    complex_vertex = {}
     for attribute_name, attribute_value in template.__dict__.items():
         if type(attribute_value) in {int, float, str} and attribute_name not in {'vid', 'vertex_type_system'}:
             if name_of_key_value == '':
@@ -94,28 +94,30 @@ def deploy(template) -> None:
                     name_of_key_value = name_of_key_value + ", " + attribute_name
                     key_value = key_value + ', "' + str(attribute_value) + '"'
         elif attribute_name not in {'vid', 'vertex_type_system'} and attribute_value is not None:
-            if type(attribute_value) == list:
-                for attribute_item in attribute_value:
-                    if attribute_item.vertex_type_system in realised_vertex_type:  # todo Remove when it will be done
-                        deploy(attribute_item)
-                        edges.append([attribute_name, '', template, attribute_item, ''])
-                        # add_edge(attribute_name, '', template.vid, attribute_item.vid, '')
-            elif type(attribute_value) == dict:
-                for type_edge, vertexes in attribute_value.items():
-                    edges.append([type_edge, '', vertexes[0], vertexes[1], ''])
-                    # add_edge(type_edge, '', vertexes[0].vid, vertexes[1].vid, '')
-            else:
-                if attribute_value.vertex_type_system in realised_vertex_type:  # todo Remove when it will be done
-                    deploy(attribute_value)
-                    edges.append([attribute_name, '', template, attribute_value, ''])
-                    # add_edge(attribute_name, '', template.vid, attribute_value.vid, '')
-
-            print(attribute_name)
+            complex_vertex[attribute_name] = attribute_value
     if template.vid is None:
         template.vid = vid_getter(template.vertex_type_system)
-    for edge in edges:
-        add_edge(edge[0], edge[1], edge[2].vid, edge[3].vid, edge[4]) # todo Thing about it
+    # for edge in edges:
+    #     add_edge(edge[0], edge[1], edge[2].vid, edge[3].vid, edge[4]) # todo Thing about it
     add_in_vertex(template.vertex_type_system, name_of_key_value, key_value, template.vid)
+    for attribute_name, attribute_value in complex_vertex.items():
+        if type(attribute_value) == list:
+            for attribute_item in attribute_value:
+                if attribute_item.vertex_type_system in realised_vertex_type:  # todo Remove when it will be done
+                    deploy(attribute_item)
+                    # edges.append([attribute_name, '', template, attribute_item, ''])
+                    add_edge(attribute_name, '', template.vid, attribute_item.vid, '')
+        elif type(attribute_value) == dict:
+            for type_edge, vertexes in attribute_value.items():
+                # edges.append([type_edge, '', vertexes[0], vertexes[1], ''])
+                add_edge(type_edge, '', vertexes[0].vid, vertexes[1].vid, '')
+        else:
+            if attribute_value.vertex_type_system in realised_vertex_type:  # todo Remove when it will be done
+                deploy(attribute_value)
+                # edges.append([attribute_name, '', template, attribute_value, ''])
+                add_edge(attribute_name, '', template.vid, attribute_value.vid, '')
+
+        print(attribute_name)
     return
 
 

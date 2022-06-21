@@ -3,9 +3,9 @@
 
 # Short notation for use with multiple artifact
 # implementation:
-#   primary: <primary_artifact_name>
+#   primary: <primary_artifact_name> #todo Linker
 #   dependencies:
-#     - <list_of_dependent_artifact_names>
+#     - <list_of_dependent_artifact_names> #todo Linker
 #   operation_host : SELF
 #   timeout : 60
 
@@ -33,24 +33,23 @@ class OperationImplementationDefinition:
     def __init__(self):
         self.vid = None
         self.vertex_type_system = 'OperationImplementationDefinition'
-        self.primary_artifact_name = None
-        self.primary_definition = None
-        self.list_of_dependent_artifact_names = []
-        self.list_of_dependent_artifact_definitions = []
+        self.primary = None
+        self.primary_link = None
+        self.dependencies = []
         self.operation_host = None
         self.timeout = None
 
     def set_primary_artifact_name(self, value: str):
-        self.primary_artifact_name = value
+        self.primary = value
 
     def set_primary_definition(self, primary_definition: ArtifactDefinition):
-        self.primary_definition = primary_definition
+        self.primary = primary_definition
 
     def add_dependent_artifact_name(self, dependent_artifact_name: str):
-        self.list_of_dependent_artifact_names.append(dependent_artifact_name)
+        self.dependencies.append(dependent_artifact_name)
 
     def add_dependent_artifact_definition(self, dependent_artifact_definition: ArtifactDefinition):
-        self.list_of_dependent_artifact_definitions.append(dependent_artifact_definition)
+        self.dependencies.append(dependent_artifact_definition)
 
     def set_operation_host(self, operation_host: str):
         self.operation_host = operation_host
@@ -75,8 +74,6 @@ def operation_implementation_definition_parser(data: dict) -> OperationImplement
     if data.get('dependencies'):
         short_notation = False
         for dependency in data.get('dependencies'):
-            if operation.primary_definition is None and operation.primary_artifact_name is None:
-                abort(400)
             if type(dependency) == str:
                 operation.add_dependent_artifact_name(dependency)
             else:

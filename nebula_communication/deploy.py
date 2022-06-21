@@ -13,7 +13,8 @@ from parser.parser.tosca_v_1_3.definitions.ServiceTemplateDefinition import Serv
 
 realised_vertex_type = {'ServiceTemplateDefinition', 'Metadata', 'RepositoryDefinition', 'ImportDefinition',
                         'ArtifactType', 'PropertyDefinition', 'ConstraintClause', 'SchemaDefinition', 'DataType',
-                        'CapabilityType', 'AttributeDefinition'}
+                        'CapabilityType', 'AttributeDefinition', 'ArtifactDefinition', 'PropertyAssignments',
+                        'OperationImplementationDefinition', 'OperationDefinition', 'InterfaceType'}
 realised_edge_type = {'metadata', 'repositories', 'imports', 'artifact_types', 'derived_from', 'properties',
                       'constraints', 'key_schema', 'entry_schema', 'data_types', 'capability_types', 'attributes'}
 Config = Config()
@@ -85,7 +86,7 @@ def deploy(template) -> None:
     key_value = ''
     complex_vertex = {}
     for attribute_name, attribute_value in template.__dict__.items():
-        if type(attribute_value) in {int, float, str} and attribute_name not in {'vid', 'vertex_type_system'}:
+        if type(attribute_value) in {int, float, str, bool} and attribute_name not in {'vid', 'vertex_type_system'}:
             if name_of_key_value == '':
                 if attribute_value is not None:
                     name_of_key_value = attribute_name
@@ -113,6 +114,8 @@ def deploy(template) -> None:
                 # edges.append([type_edge, '', vertexes[0], vertexes[1], ''])
                 add_edge(type_edge, '', vertexes[0].vid, vertexes[1].vid, '')
         else:
+            if type(attribute_value) == bool:
+                print(complex_vertex)
             if attribute_value.vertex_type_system in realised_vertex_type:  # todo Remove when it will be done
                 deploy(attribute_value)
                 # edges.append([attribute_name, '', template, attribute_value, ''])
@@ -133,4 +136,6 @@ for data_type in template.data_types:
     link_derived_from(template.data_types, data_type)
 for capability_type in template.capability_types:
     link_derived_from(template.capability_types, capability_type)
+for interface_type in template.interface_types:
+    link_derived_from(template.interface_types, interface_type)
 deploy(template)

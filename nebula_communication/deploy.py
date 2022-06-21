@@ -7,6 +7,8 @@ from nebula2.Config import Config
 from random import choice
 from string import ascii_uppercase
 
+from parser.linker.LinkByName import link_by_type_name, link_by_relationship_type_name, link_by_capability_type_name, \
+    link_by_node_type_name
 from parser.linker.LinkDerivedFrom import link_derived_from
 from parser.linker.LinkerValidTypes import link_valid_target_types, link_valid_source_types
 from parser.parser.tosca_v_1_3.definitions.ServiceTemplateDefinition import ServiceTemplateDefinition, \
@@ -17,7 +19,7 @@ realised_vertex_type = {'ServiceTemplateDefinition', 'Metadata', 'RepositoryDefi
                         'CapabilityType', 'AttributeDefinition', 'ArtifactDefinition', 'PropertyAssignments',
                         'OperationImplementationDefinition', 'OperationDefinition', 'InterfaceType', 'RelationshipType',
                         'InterfaceDefinition', 'NotificationDefinition', 'NotificationImplementationDefinition',
-                        'NodeType', 'Occurrences', 'CapabilityDefinition'}
+                        'NodeType', 'Occurrences', 'CapabilityDefinition', 'RequirementDefinition'}
 realised_edge_type = {'metadata', 'repositories', 'imports', 'artifact_types', 'derived_from', 'properties',
                       'constraints', 'key_schema', 'entry_schema', 'data_types', 'capability_types', 'attributes'}
 Config = Config()
@@ -170,9 +172,17 @@ for interface_type in template.interface_types:
 for relationship_type in template.relationship_types:
     link_derived_from(template.relationship_types, relationship_type)
     link_valid_target_types(template.capability_types, relationship_type)
+    for interface in relationship_type.interfaces:
+        link_by_type_name(template.interface_types, interface, 'type')
 for node_type in template.node_types:
     link_derived_from(template.node_types, node_type)
     for capability_definition in node_type.capabilities:
         link_valid_source_types(template.node_types, capability_definition)
-
+        # link_by_type_name(template.)
+    for requirement in node_type.requirements:
+        link_by_type_name(template.relationship_types, requirement, 'relationship')
+        link_by_type_name(template.capability_types, requirement, 'capability')
+        link_by_type_name(template.node_types, requirement, 'node')
+    for interface in node_type.interfaces:
+        link_by_type_name(template.interface_types, interface, 'type')
 deploy(template)

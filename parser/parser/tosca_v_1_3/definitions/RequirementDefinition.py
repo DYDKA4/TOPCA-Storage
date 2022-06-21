@@ -1,18 +1,18 @@
 # Simple grammar (Capability Type only)
-# <requirement_definition_name>: <capability_type_name>
+# <requirement_definition_name>: <capability_type_name> todo Linker
 
 # Extended grammar (with Node and Relationship Types)
 # <requirement_definition_name>:
-#   capability: <capability_type_name> Required
-#   node: <node_type_name>
-#   relationship: <relationship_type_name>
+#   capability: <capability_type_name> Required #todo Linker
+#   node: <node_type_name> #todo Linker
+#   relationship: <relationship_type_name> todo Linker
 #   occurrences: [ <min_occurrences>, <max_occurrences> ]
 
 # Extended grammar for declaring Property Definitions on the relationship’s Interfaces
 # <requirement_definition_name>:
 #   # Other keynames omitted for brevity
 #   relationship:
-#     type: # <relationship_type_name> Required
+#     type: # <relationship_type_name> Required todo Linker
 #     interfaces:
 #       <interface_definitions>
 from werkzeug.exceptions import abort
@@ -28,7 +28,7 @@ class RequirementDefinition:
         self.name = name
         self.capability = None
         self.node = None
-        self.relationship_type_name = None
+        self.relationship = None
         self.interfaces = []
         self.occurrences = []
 
@@ -39,7 +39,7 @@ class RequirementDefinition:
         self.node = node
 
     def set_relationship_type_name(self, relationship_type_name: str):
-        self.relationship_type_name = relationship_type_name
+        self.relationship = relationship_type_name
 
     def add_interface(self, interface: InterfaceDefinition):
         self.interfaces.append(interface)

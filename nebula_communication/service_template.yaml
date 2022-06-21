@@ -170,9 +170,9 @@
               type: attribute_type_1
         interfaces:
             test_interface_definition_name_0:
-              type: test_interface_type_0
+              type: test_interface_type_name_0
             test_interface_definition_name_1:
-              type: test_interface_type
+              type: test_interface_type_name_1
               inputs:
                 test_property_name_0:
                   type: test_property_name_0
@@ -240,9 +240,9 @@
              test_capability_definition_name_1: test_capability_type_1
            interfaces:
                test_interface_definition_name_0:
-                 type: test_interface_type_0
+                 type: test_interface_type_name_0
                test_interface_definition_name_1:
-                 type: test_interface_type_1
+                 type: test_interface_type_name_1
            artifacts:
                test_artifact_name_0: test_artifact_file_URI_0
                test_artifact_name_1: test_artifact_file_URI_1

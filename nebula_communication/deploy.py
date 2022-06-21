@@ -14,7 +14,7 @@ from parser.parser.tosca_v_1_3.definitions.ServiceTemplateDefinition import Serv
 realised_vertex_type = {'ServiceTemplateDefinition', 'Metadata', 'RepositoryDefinition', 'ImportDefinition',
                         'ArtifactType', 'PropertyDefinition', 'ConstraintClause', 'SchemaDefinition', 'DataType',
                         'CapabilityType', 'AttributeDefinition', 'ArtifactDefinition', 'PropertyAssignments',
-                        'OperationImplementationDefinition', 'OperationDefinition', 'InterfaceType'}
+                        'OperationImplementationDefinition', 'OperationDefinition', 'InterfaceType', 'RelationshipType'}
 realised_edge_type = {'metadata', 'repositories', 'imports', 'artifact_types', 'derived_from', 'properties',
                       'constraints', 'key_schema', 'entry_schema', 'data_types', 'capability_types', 'attributes'}
 Config = Config()
@@ -139,4 +139,6 @@ for capability_type in template.capability_types:
     link_derived_from(template.capability_types, capability_type)
 for interface_type in template.interface_types:
     link_derived_from(template.interface_types, interface_type)
+for relationship_type in template.relationship_types:
+    link_derived_from(template.relationship_types, relationship_type)
 deploy(template)

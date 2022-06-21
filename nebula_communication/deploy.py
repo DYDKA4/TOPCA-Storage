@@ -8,6 +8,7 @@ from random import choice
 from string import ascii_uppercase
 
 from parser.linker.LinkDerivedFrom import link_derived_from
+from parser.linker.LinkerValidTypes import link_valid_target_types
 from parser.parser.tosca_v_1_3.definitions.ServiceTemplateDefinition import ServiceTemplateDefinition, \
     service_template_definition_parser
 
@@ -114,7 +115,11 @@ def deploy(template) -> None:
         elif type(attribute_value) == dict:
             for type_edge, vertexes in attribute_value.items():
                 # edges.append([type_edge, '', vertexes[0], vertexes[1], ''])
-                add_edge(type_edge, '', vertexes[0].vid, vertexes[1].vid, '')
+                if type(vertexes[1]) == list:
+                    for vertex in vertexes[1]:
+                        add_edge(type_edge, '', vertexes[0].vid, vertex.vid, '')
+                else:
+                    add_edge(type_edge, '', vertexes[0].vid, vertexes[1].vid, '')
         else:
             if type(attribute_value) == bool:
                 print(complex_vertex)
@@ -142,4 +147,5 @@ for interface_type in template.interface_types:
     link_derived_from(template.interface_types, interface_type)
 for relationship_type in template.relationship_types:
     link_derived_from(template.relationship_types, relationship_type)
+    link_valid_target_types(template.capability_types, relationship_type)
 deploy(template)

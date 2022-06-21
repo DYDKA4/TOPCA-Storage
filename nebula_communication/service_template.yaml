@@ -150,7 +150,30 @@
            derived_from: test_parent_interface_type_name
  relationship_types:
       test_parent_relationship_type_name:
-        description: test_description
+        version: test_version_number
+        metadata:
+            metadata_key_0: metadata_value_0
+            metadata_key_1: metadata_value_1
+            metadata_key_2: metadata_value_2
+        description: test_relationship_description
+        properties:
+            test_property_name_0:
+              type: test_property_name_0
+              description: test_property_description_0
+            test_property_name_1:
+              type: test_property_name_1
+              description: test_property_description_1
+        attributes:
+            attribute_name_0:
+              type: attribute_type_0
+            attribute_name_1:
+              type: attribute_type_1
+        interfaces:
+            test_interface_definition_name_0:
+              type: test_interface_type_0
+            test_interface_definition_name_1:
+              type: test_interface_type_1
+        valid_target_types: [ test_parent_capability_type_name, test_capability_type_name_0 ]
       test_relationship_type_name_0:
         derived_from: test_parent_relationship_type_name
       test_relationship_type_name_1:

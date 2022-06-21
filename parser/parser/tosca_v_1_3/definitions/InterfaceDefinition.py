@@ -28,8 +28,7 @@ class InterfaceDefinition:
         self.vid = None
         self.vertex_type_system = 'InterfaceDefinition'
         self.type = None
-        self.inputs_definition = []
-        self.inputs_assignments = []
+        self.inputs = []
         self.operations = []
         self.notifications = []
 
@@ -37,10 +36,10 @@ class InterfaceDefinition:
         self.type = interface_type
 
     def add_input_definition(self, inputs: PropertyDefinition):
-        self.inputs_definition.append(inputs)
+        self.inputs.append(inputs)
 
     def add_inputs_assignments(self, inputs: PropertyAssignment):
-        self.inputs_assignments.append(inputs)
+        self.inputs.append(inputs)
 
     def add_operation(self, operation: OperationDefinition):
         self.operations.append(operation)

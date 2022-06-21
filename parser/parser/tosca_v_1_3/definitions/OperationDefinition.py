@@ -1,5 +1,5 @@
 # Short notation
-# <operation_name>: <implementation_artifact_name>
+# <operation_name>: <implementation_artifact_name> #todo linker
 
 # Extended notation for use in Type definitions
 # <operation_name>:
@@ -31,9 +31,8 @@ class OperationDefinition:
         self.vertex_type_system = 'OperationDefinition'
         self.description = None
         self.implementation = None
-        self.inputs_definition = []
+        self.inputs = []
         self.outputs = []
-        self.inputs_assignment = []
 
     def set_implementation_artifact_name(self, value: str):
         self.implementation_artifact_name = value
@@ -49,10 +48,10 @@ class OperationDefinition:
         self.outputs = outputs
 
     def add_input_definition(self, inputs: PropertyDefinition):
-        self.inputs_definition.append(inputs)
+        self.inputs.append(inputs)
 
     def add_inputs_assignment(self, inputs: PropertyAssignment):
-        self.inputs_assignment.append(inputs)
+        self.inputs.append(inputs)
 
 
 def operation_definition_parser(name: str, data: dict) -> OperationDefinition:

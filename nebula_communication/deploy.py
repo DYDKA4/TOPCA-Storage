@@ -33,6 +33,7 @@ def start_session():
 def number_of_entities(session, vertex_name):
     # return of new index of new entities
     result = session.execute(f'LOOKUP ON {vertex_name}')
+    print(f'LOOKUP ON {vertex_name}')
     assert result.is_succeeded(), result.error_msg()
     result = result.column_values('VertexID')
     if result:

@@ -1,16 +1,3 @@
-# Short notation
-# <capability_definition_name>: <capability_type>
-
-# Extended notation
-# <capability_definition_name>:
-#   type: # <capability_type> Required
-#   description: <capability_description>
-#   properties:
-#     <property_definitions>
-#   attributes:
-#     <attribute_definitions>
-#   valid_source_types: [ <node type_names> ]
-#   occurrences : <range_of_occurrences>
 from werkzeug.exceptions import abort
 
 from parser.linker.LinkByName import link_by_type_name

@@ -6,7 +6,7 @@ from parser.parser.tosca_v_1_3.assignments.RequirementAssignment import Requirem
 from parser.parser.tosca_v_1_3.definitions.ServiceTemplateDefinition import ServiceTemplateDefinition
 
 
-def link_node(service_template: ServiceTemplateDefinition, requirement: RequirementAssignment) -> None:
+def link_requirement_assignments(service_template: ServiceTemplateDefinition, requirement: RequirementAssignment) -> None:
     template_definition: TemplateDefinition = service_template.topology_template
     if type(requirement.node) == str:
         link_by_type_name(template_definition.node_templates, requirement, 'node',)

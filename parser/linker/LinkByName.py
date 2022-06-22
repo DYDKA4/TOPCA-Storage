@@ -1,9 +1,7 @@
 from werkzeug.exceptions import abort
 
-from parser.parser.tosca_v_1_3.definitions.RequirementDefinition import RequirementDefinition
 
-
-def link_by_type_name(main_template, current_template: RequirementDefinition, link_type,
+def link_by_type_name(main_template, current_template: object, link_type,
                       attribute_name=None):  # todo Think about it
     if attribute_name is None:
         attribute_name = link_type

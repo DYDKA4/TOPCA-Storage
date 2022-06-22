@@ -70,7 +70,7 @@ class ServiceTemplateDefinition:
         self.node_types = []
         self.group_types = []
         self.policy_types = []
-        self.topology_template = None
+        self.template_definition = None
 
     def set_tosca_definitions_version(self, tosca_definitions_version: str):
         self.tosca_definitions_version = tosca_definitions_version
@@ -118,7 +118,7 @@ class ServiceTemplateDefinition:
         self.policy_types.append(policy_type)
 
     def set_template_definition(self, template: TemplateDefinition):
-        self.topology_template = template
+        self.template_definition = template
 
 
 def service_template_definition_parser(cluster_name: str, data: dict) -> ServiceTemplateDefinition:

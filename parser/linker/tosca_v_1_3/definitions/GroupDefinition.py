@@ -20,7 +20,7 @@ from parser.parser.tosca_v_1_3.others.Metadata import Metadata
 from parser.parser.tosca_v_1_3.assignments.PropertyAssignment import PropertyAssignment
 
 
-def link_capability_definition(service_template: ServiceTemplateDefinition, group: GroupDefinition) -> None:
+def link_group_definition(service_template: ServiceTemplateDefinition, group: GroupDefinition) -> None:
     if type(group.type) == str:
         link_by_type_name(service_template.artifact_types, group, 'type',)
     link_members(service_template.node_types, group)

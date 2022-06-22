@@ -27,3 +27,17 @@ def link_valid_source_types(source_types, current_template):
     if len(source_structure) != len(current_template.valid_source_types):
         abort(400)
     current_template.valid_source_types = {'valid_source_types': [current_template, source_structure]}
+
+
+def link_members(members, current_template):
+    if current_template.valid_source_types is None:
+        return
+    members_structure = []
+    for member in members:
+        for source in current_template.valid_source_types:
+            if member.name == source:
+                members_structure.append(member)
+                break
+    if len(members_structure) != len(current_template.valid_source_types):
+        abort(400)
+    current_template.valid_source_types = {'valid_source_types': [current_template, members_structure]}

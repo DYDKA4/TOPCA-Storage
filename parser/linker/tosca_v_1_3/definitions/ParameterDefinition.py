@@ -25,7 +25,7 @@ from parser.linker.tosca_v_1_3.definitions.ServiceTemplateDefinition import Serv
 from parser.parser.tosca_v_1_3.definitions import ParameterDefinition
 
 
-def link_artifact_definition(service_template: ServiceTemplateDefinition, parameter: ParameterDefinition) -> None:
+def link_parameter_definition(service_template: ServiceTemplateDefinition, parameter: ParameterDefinition) -> None:
     if type(parameter.type) == str:
         link_by_type_name(service_template.data_types, parameter, 'type')
     if str in {type(parameter.type)}:

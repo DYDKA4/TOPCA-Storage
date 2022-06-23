@@ -6,34 +6,19 @@
 #   primary: <primary_artifact_name>
 #   dependencies:
 #     - <list_of_dependent_artifact_names>
-from parser.parser.tosca_v_1_3.definitions.ArtifactDefinition import ArtifactDefinition, artifact_definition_parser
+from werkzeug.exceptions import abort
+
+from parser.linker.LinkByName import link_by_type_name
+from parser.linker.LinkerValidTypes import link_members
+from parser.parser.tosca_v_1_3.definitions.NotificationImplementationDefinition import \
+    NotificationImplementationDefinition
+from parser.parser.tosca_v_1_3.definitions.ServiceTemplateDefinition import ServiceTemplateDefinition
 
 
-class NotificationImplementationDefinition:
-    def __init__(self):
-        self.vid = None
-        self.vertex_type_system = 'NotificationImplementationDefinition'
-        self.primary = None  # todo Make LINKER
-        self.implementation = None
-        self.primary_artifact_name = None
-        self.dependencies_artefact_names = []  # todo Make LINKER
-
-    def set_primary(self, primary: str):
-        self.primary = primary
-
-    def add_dependencies_artefact_names(self, dependency: str):
-        self.dependencies_artefact_names.append(dependency)
-
-
-def notification_implementation_definition_parser(data: dict) -> NotificationImplementationDefinition:
-    notification = NotificationImplementationDefinition()
-    if type(data) == str:
-        notification.set_primary(str(data))
-        return notification
-    if data.get('primary'):
-        if type(data.get('primary')) == str:
-            notification.set_primary(data.get('primary'))
-    if data.get('dependencies'):
-        for dependency in data.get('dependencies'):
-            notification.add_dependencies_artefact_names(dependency)
-    return notification
+def link_notification_implementation_definition(service_template: ServiceTemplateDefinition,
+                                                notification: NotificationImplementationDefinition) -> None:
+    if type(notification.primary) == str:
+        link_by_type_name(service_template.artifact_types, notification, 'type', )
+    link_members(service_template.node_types, notification)
+    if str in {type(notification.primary)}:
+        abort(400)

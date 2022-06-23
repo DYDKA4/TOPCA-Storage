@@ -15,7 +15,6 @@ class NotificationImplementationDefinition:
         self.vertex_type_system = 'NotificationImplementationDefinition'
         self.primary = None  # todo Make LINKER
         self.implementation = None
-        self.primary_artifact_name = None
         self.dependencies_artefact_names = []  # todo Make LINKER
 
     def set_primary(self, primary: str):

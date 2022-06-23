@@ -23,6 +23,7 @@ def link_policy_definition(service_template: ServiceTemplateDefinition, policy: 
     array_to_find = service_template.group_types
     topology_template: TemplateDefinition = service_template.topology_template
     if topology_template:
+        array_to_find += topology_template.groups
         array_to_find += topology_template.node_templates
     link_with_list(array_to_find, policy, 'targets')
     if str in {type(policy.type)}:

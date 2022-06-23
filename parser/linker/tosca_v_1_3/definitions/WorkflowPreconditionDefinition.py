@@ -4,38 +4,23 @@
 # < list_of_condition_clause_definition >
 from werkzeug.exceptions import abort
 
-from parser.parser.tosca_v_1_3.definitions.ConditionClauseDefinition import ConditionClauseDefinition, \
-    condition_clause_definition_parser
+from parser.linker.LinkByName import link_by_type_name
+from parser.linker.LinkerValidTypes import link_with_list
+from parser.parser.tosca_v_1_3.definitions import WorkflowPreconditionDefinition
+from parser.parser.tosca_v_1_3.definitions.ServiceTemplateDefinition import ServiceTemplateDefinition
+from parser.parser.tosca_v_1_3.definitions.TemplateDefinition import TemplateDefinition
 
 
-class WorkflowPredictionDefinition:
-    def __init__(self):
-        self.vid = None
-        self.vertex_type_system = 'WorkflowPredictionDefinition'
-        self.target = None
-        self.target_relationship = None
-        self.conditions = []
-
-    def set_target(self, target: str):
-        self.target = target
-
-    def set_target_relationship(self, target_relationship: str):
-        self.target_relationship = target_relationship
-
-    def add_condition(self, condition: ConditionClauseDefinition):
-        self.conditions.append(condition)
-
-
-def workflow_precondition_definition_parser(data: dict) -> WorkflowPredictionDefinition:
-    precondition = WorkflowPredictionDefinition()
-    if data.get('target'):
-        precondition.set_target(data.get('target'))
-    else:
+def link_workflow_precondition_definition(service_template: ServiceTemplateDefinition,
+                                          workflow: WorkflowPreconditionDefinition) -> None:
+    array_to_find_target = []
+    array_to_find_target_relationship = []
+    topology_template: TemplateDefinition = service_template.topology_template
+    if topology_template:
+        array_to_find_target += topology_template.groups
+        array_to_find_target_relationship += topology_template.relationship_templates
+        array_to_find_target += topology_template.node_templates
+    link_by_type_name(array_to_find_target, workflow, 'target')
+    link_by_type_name(array_to_find_target_relationship, workflow, 'target_relationship')
+    if str in {type(workflow.target), type(workflow.target_relationship)}:
         abort(400)
-    if data.get('target_relationship'):
-        precondition.set_target_relationship(data.get('target_relationship'))
-    if data.get('condition'):
-        for condition_value in data.get('condition'):
-            for key in condition_value.keys():
-                precondition.add_condition(condition_clause_definition_parser(key, condition_value))
-    return precondition

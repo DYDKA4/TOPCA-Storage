@@ -58,7 +58,7 @@ class TriggerDefinition:
         self.schedule_start = schedule_start
         self.schedule_end = schedule_end
 
-    def set_event_filter(self, event_filter: EventFilterDefinition):
+    def set_target_filter(self, event_filter: EventFilterDefinition):
         self.event_filter = event_filter
 
     def set_constraint(self, constraint: ConditionClauseDefinition):
@@ -91,8 +91,8 @@ def trigger_definition_parser(name: str, data: dict) -> TriggerDefinition:
         trigger.set_schedule(schedule['start_time'], schedule['end_time'])
     if data.get('target_filter'):
         event_filter = data.get('target_filter')
-        trigger.set_event_filter(EventFilterDefinition(event_filter.get('node'), event_filter.get('requirement'),
-                                                       event_filter.get('capability')))
+        trigger.set_target_filter(EventFilterDefinition(event_filter.get('node'), event_filter.get('requirement'),
+                                                        event_filter.get('capability')))
     if data.get('condition'):
         condition = data.get('condition')
         if type(condition) == dict:

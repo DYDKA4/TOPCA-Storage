@@ -13,7 +13,7 @@
 # Extended notation:
 # <trigger_name>:
 #   description: <trigger_description>
-#   event: <event _name>
+#   event: <event_name>
 #   schedule: <time_interval_for_trigger>
 #   target_filter:
 #     <event_filter_definition>

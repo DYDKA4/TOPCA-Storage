@@ -9,7 +9,7 @@ from parser.parser.tosca_v_1_3.definitions.ServiceTemplateDefinition import Serv
 from parser.parser.tosca_v_1_3.definitions.TemplateDefinition import TemplateDefinition
 
 
-def link_capability_definition(service_template: ServiceTemplateDefinition, event: EventFilterDefinition) -> None:
+def link_event_filter_definition(service_template: ServiceTemplateDefinition, event: EventFilterDefinition) -> None:
     if type(event.requirement) == str:
         link_by_type_name(service_template.artifact_types, event, 'requirement')
     if type(event.capability) == str:

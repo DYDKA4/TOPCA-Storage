@@ -20,14 +20,15 @@ from werkzeug.exceptions import abort
 
 from parser.linker.GetAllArtifactDefinition import get_all_artifact_definition
 from parser.linker.LinkByName import link_by_type_name
+from parser.parser.tosca_v_1_3.definitions.OperationDefinition import OperationDefinition
 from parser.parser.tosca_v_1_3.definitions.OperationImplementationDefinition import OperationImplementationDefinition
 from parser.parser.tosca_v_1_3.definitions.ServiceTemplateDefinition import ServiceTemplateDefinition
 
 
-def link_operation_implementation_definition(service_template: ServiceTemplateDefinition,
-                                                operation: OperationImplementationDefinition) -> None:
+def link_operation_definition(service_template: ServiceTemplateDefinition,
+                              operation: OperationDefinition) -> None:
     list_of_artifact_definition = get_all_artifact_definition(service_template)
-    if type(operation.primary) == str:
-        link_by_type_name(list_of_artifact_definition, operation, 'primary')
-    if str in {type(operation.primary)}:
+    if type(operation.implementation) == str:
+        link_by_type_name(list_of_artifact_definition, operation, 'implementation')
+    if str in {type(operation.implementation)}:
         abort(400)

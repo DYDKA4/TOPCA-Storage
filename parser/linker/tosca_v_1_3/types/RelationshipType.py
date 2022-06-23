@@ -16,11 +16,11 @@ from werkzeug.exceptions import abort
 from parser.linker.LinkDerivedFrom import link_derived_from
 from parser.linker.LinkerValidTypes import link_valid_target_types
 from parser.parser.tosca_v_1_3.definitions.ServiceTemplateDefinition import ServiceTemplateDefinition
-from parser.parser.tosca_v_1_3.types.PolicyTypes import PolicyType
+from parser.parser.tosca_v_1_3.types.RelationshipType import RelationshipType
 
 
 def link_relationship_type(service_template: ServiceTemplateDefinition,
-                           relationship: PolicyType) -> None:
+                           relationship: RelationshipType) -> None:
     link_derived_from(service_template.relationship_types, relationship)
     link_valid_target_types(service_template.capability_types, relationship)
     if str in {type(relationship.derived_from)}:

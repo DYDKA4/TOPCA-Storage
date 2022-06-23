@@ -34,7 +34,6 @@ class OperationImplementationDefinition:
         self.vid = None
         self.vertex_type_system = 'OperationImplementationDefinition'
         self.primary = None
-        self.primary_link = None
         self.dependencies = []
         self.operation_host = None
         self.timeout = None

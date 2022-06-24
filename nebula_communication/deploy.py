@@ -39,7 +39,7 @@ def start_session():
 def number_of_entities(session, vertex_name):
     # return of new index of new entities
     result = session.execute(f'LOOKUP ON {vertex_name}')
-    print(f'LOOKUP ON {vertex_name}')
+    # print(f'LOOKUP ON {vertex_name}')
     assert result.is_succeeded(), result.error_msg()
     result = result.column_values('VertexID')
     if result:
@@ -68,8 +68,8 @@ def add_in_vertex(vertex_name, name_of_key_value, key_value, vid):
 
     logging.info(f'INSERT VERTEX {vertex_name} ({name_of_key_value}) VALUES {vid}'
                  f':({key_value});')
-    print(f'INSERT VERTEX {vertex_name} ({name_of_key_value}) VALUES {vid}'
-          f':({key_value});')
+    # print(f'INSERT VERTEX {vertex_name} ({name_of_key_value}) VALUES {vid}'
+    #       f':({key_value});')
     assert result.is_succeeded(), result.error_msg()
     session.release()
     return
@@ -81,8 +81,8 @@ def add_edge(edge_name, edge_params, source_vertex, destination_vertex, data):
                              f' VALUE {source_vertex}->{destination_vertex}:({data})')
     logging.info(f'INSERT EDGE {edge_name}({edge_params})'
                  f' VALUE {source_vertex}->{destination_vertex}:({data})')
-    print(f'INSERT EDGE {edge_name}({edge_params})'
-          f' VALUE {source_vertex}->{destination_vertex}:({data})')
+    # print(f'INSERT EDGE {edge_name}({edge_params})'
+    #       f' VALUE {source_vertex}->{destination_vertex}:({data})')
     assert result.is_succeeded(), result.error_msg()
     session.release()
     return
@@ -113,7 +113,6 @@ def deploy(template) -> None:
     for attribute_name, attribute_value in complex_vertex.items():
         if type(attribute_value) == list:
             for attribute_item in attribute_value:
-                print(attribute_item)
                 if attribute_item.vertex_type_system in realised_vertex_type:  # todo Remove when it will be done
                     deploy(attribute_item)
                     # edges.append([attribute_name, '', template, attribute_item, ''])
@@ -132,18 +131,22 @@ def deploy(template) -> None:
                 elif type(vertexes[0]) == list:
                     for vertex in vertexes[0]:
                         if vertexes[1].vid is None:
-                            deploy(vertex[1])
+                            deploy(vertexes[1])
                         if vertex.vid is None:
                             deploy(vertex)
                         add_edge(type_edge, '', vertex.vid, vertexes[1].vid, '')
                 elif type(vertexes[1]) == list:
                     for vertex in vertexes[1]:
                         if vertexes[0].vid is None:
-                            deploy(vertex[1])
+                            deploy(vertex[0])
                         if vertex.vid is None:
                             deploy(vertex)
                         add_edge(type_edge, '', vertexes[0].vid, vertex.vid, '')
                 else:
+                    if vertexes[0].vid is None:
+                        deploy(vertexes[0])
+                    if vertexes[1].vid is None:
+                        deploy(vertexes[1])
                     add_edge(type_edge, '', vertexes[0].vid, vertexes[1].vid, '')
         else:
             if type(attribute_value) == bool:
@@ -153,7 +156,6 @@ def deploy(template) -> None:
                 # edges.append([attribute_name, '', template, attribute_value, ''])
                 add_edge(attribute_name, '', template.vid, attribute_value.vid, '')
 
-        print(attribute_name)
     return
 
 
@@ -163,4 +165,5 @@ file.close()
 data = yaml.safe_load(data)
 template = service_template_definition_parser(''.join(choice(ascii_uppercase) for i in range(12)), data)
 main_linker(template)
-# deploy(template)
+# template
+deploy(template)

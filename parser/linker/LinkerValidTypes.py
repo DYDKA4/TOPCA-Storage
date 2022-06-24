@@ -12,7 +12,7 @@ def link_with_list(list_of_smt, current_template, name_of_connection):
                 break
     if len(target_structure) != len(getattr(current_template, name_of_connection)):
         abort(400)
-    current_template.valid_target_types = {'valid_target_types': [current_template, target_structure]}
+    setattr(current_template,name_of_connection, {name_of_connection: [current_template, target_structure]})
 
 
 def link_valid_target_types(target_types, current_template):

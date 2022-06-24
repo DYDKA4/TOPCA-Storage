@@ -21,11 +21,10 @@ class TestInterface(unittest.TestCase):
             self.assertEqual(interface.name, 'test_interface_definition_name')
             self.assertEqual(interface.type, 'test_interface_type')
             self.assertEqual(interface.vertex_type_system, 'InterfaceDefinition')
-            for index, inputs in enumerate(interface.inputs_definition):
+            for index, inputs in enumerate(interface.inputs):
                 self.assertEqual(inputs.type, 'test_property_name_' + str(index))
                 self.assertEqual(inputs.name, 'test_property_name_' + str(index))
                 self.assertEqual(inputs.description, 'test_property_description_' + str(index))
-            self.assertEqual(interface.inputs_assignments, [])
             for index, operation in enumerate(interface.operations):
                 self.assertEqual(operation.name, 'operation_test_name_' + str(index))
             for index, notification in enumerate(interface.notifications):
@@ -42,8 +41,7 @@ class TestInterface(unittest.TestCase):
             self.assertEqual(interface.name, 'test_interface_definition_name')
             self.assertIsNone(interface.type)
             self.assertEqual(interface.vertex_type_system, 'InterfaceDefinition')
-            self.assertEqual(interface.inputs_definition, [])
-            for index, inputs in enumerate(interface.inputs_assignments):
+            for index, inputs in enumerate(interface.inputs):
                 self.assertEqual(inputs.name, 'test_property_name_' + str(index))
                 self.assertEqual(inputs.value, 'property_value_test_' + str(index))
             for index, operation in enumerate(interface.operations):

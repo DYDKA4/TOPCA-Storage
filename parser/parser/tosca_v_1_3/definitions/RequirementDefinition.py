@@ -30,7 +30,7 @@ class RequirementDefinition:
         self.node = None
         self.relationship = None
         self.interfaces = []
-        self.occurrences = []
+        self.occurrences = None
 
     def set_capability(self, capability: str):
         self.capability = capability

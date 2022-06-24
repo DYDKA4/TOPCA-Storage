@@ -47,4 +47,5 @@ class TestCapability(unittest.TestCase):
                 self.assertEqual(attribute.type, 'attribute_type_' + str(index))
             for index, valid_source, in enumerate(capability.valid_source_types):
                 self.assertEqual(valid_source, 'node_type_name_' + str(index))
-            self.assertEqual(capability.occurrences, [0, 10])
+            self.assertEqual(capability.occurrences.minimum, 0)
+            self.assertEqual(capability.occurrences.maximum, 10)

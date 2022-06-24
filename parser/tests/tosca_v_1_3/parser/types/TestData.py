@@ -18,7 +18,7 @@ class TestData(unittest.TestCase):
         data = yaml.safe_load(data)
         for name, value in data.items():
             data_type = data_type_parser(name, value)
-            self.assertEqual(data_type.vertex_type_system, 'ArtifactType')
+            self.assertEqual(data_type.vertex_type_system, 'DataType')
             self.assertEqual(data_type.name, 'test_data_type_name')
             self.assertEqual(data_type.derived_from, 'test_existing_type_name')
             self.assertEqual(data_type.version, 'test_version_number')

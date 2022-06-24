@@ -20,10 +20,8 @@ class TestOperationImplementation(unittest.TestCase):
         data = data.get('implementation')
         operation = operation_implementation_definition_parser(data)
         self.assertEqual(operation.vertex_type_system, 'OperationImplementationDefinition')
-        self.assertEqual(operation.primary_artifact_name, 'test_primary_artifact_name')
-        self.assertIsNone(operation.primary_definition)
-        self.assertEqual(operation.list_of_dependent_artifact_names, [])
-        self.assertEqual(operation.list_of_dependent_artifact_definitions, [])
+        self.assertEqual(operation.primary, 'test_primary_artifact_name')
+        self.assertEqual(operation.dependencies, [])
         self.assertIsNone(operation.operation_host)
         self.assertIsNone(operation.timeout)
 
@@ -35,10 +33,8 @@ class TestOperationImplementation(unittest.TestCase):
         data = data.get('implementation')
         operation = operation_implementation_definition_parser(data)
         self.assertEqual(operation.vertex_type_system, 'OperationImplementationDefinition')
-        self.assertIsNone(operation.primary_artifact_name)
-        self.assertEqual(operation.primary_definition.name, 'test_artifact_name')
-        self.assertEqual(operation.list_of_dependent_artifact_names, [])
-        self.assertEqual(operation.list_of_dependent_artifact_definitions, [])
+        self.assertEqual(operation.primary.name, 'test_artifact_name')
+        self.assertEqual(operation.dependencies, [])
         self.assertIsNone(operation.operation_host)
         self.assertIsNone(operation.timeout)
 
@@ -50,11 +46,9 @@ class TestOperationImplementation(unittest.TestCase):
         data = data.get('implementation')
         operation = operation_implementation_definition_parser(data)
         self.assertEqual(operation.vertex_type_system, 'OperationImplementationDefinition')
-        self.assertEqual(operation.primary_artifact_name, 'test_primary_artifact_name')
-        self.assertIsNone(operation.primary_definition)
-        for index, dependency in enumerate(operation.list_of_dependent_artifact_names):
+        self.assertEqual(operation.primary, 'test_primary_artifact_name')
+        for index, dependency in enumerate(operation.dependencies):
             self.assertEqual(dependency, 'test_artifact_name_' + str(index))
-        self.assertEqual(operation.list_of_dependent_artifact_definitions, [])
         self.assertEqual(operation.operation_host, 'SELF')
         self.assertEqual(operation.timeout, 60)
 
@@ -66,10 +60,8 @@ class TestOperationImplementation(unittest.TestCase):
         data = data.get('implementation')
         operation = operation_implementation_definition_parser(data)
         self.assertEqual(operation.vertex_type_system, 'OperationImplementationDefinition')
-        self.assertIsNone(operation.primary_artifact_name)
-        self.assertEqual(operation.primary_definition.name, 'test_artifact_name')
-        self.assertEqual(operation.list_of_dependent_artifact_names, [])
-        for index, dependency in enumerate(operation.list_of_dependent_artifact_definitions):
+        self.assertEqual(operation.primary.name, 'test_artifact_name')
+        for index, dependency in enumerate(operation.dependencies):
             self.assertEqual(dependency.name, 'test_artifact_name_' + str(index))
         self.assertEqual(operation.operation_host, 'SELF')
         self.assertEqual(operation.timeout, 60)

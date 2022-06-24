@@ -23,7 +23,7 @@ class TestCapability(unittest.TestCase):
             for properties in capability.properties:
                 self.assertEqual(properties.value, 'property_value_test')
             self.assertEqual(capability.attributes, [])
-            self.assertEqual(capability.occurrences, [])
+            self.assertEqual(capability.occurrences, None)
             self.assertEqual(capability.vertex_type_system, 'CapabilityAssignment')
 
     def test_set_properties(self):
@@ -38,7 +38,7 @@ class TestCapability(unittest.TestCase):
             for index, properties in enumerate(capability.properties):
                 self.assertEqual(properties.value, 'property_value_test_' + str(index))
             self.assertEqual(capability.attributes, [])
-            self.assertEqual(capability.occurrences, [])
+            self.assertEqual(capability.occurrences, None)
             self.assertEqual(capability.vertex_type_system, 'CapabilityAssignment')
 
     def test_set_attribute(self):
@@ -53,7 +53,7 @@ class TestCapability(unittest.TestCase):
             for attributes in capability.attributes:
                 self.assertEqual(attributes.value, 'attribute_value_test')
             self.assertEqual(capability.properties, [])
-            self.assertEqual(capability.occurrences, [])
+            self.assertEqual(capability.occurrences, None)
             self.assertEqual(capability.vertex_type_system, 'CapabilityAssignment')
 
     def test_set_occurrences(self):
@@ -65,7 +65,8 @@ class TestCapability(unittest.TestCase):
         for name, value in data.items():
             capability = self.capability_assignment_parser(name, value)
             self.assertEqual(capability.name, 'test_capability_name')
-            self.assertEqual(capability.occurrences, [1, 10])
+            self.assertEqual(capability.occurrences.minimum, 1)
+            self.assertEqual(capability.occurrences.maximum, 10)
             self.assertEqual(capability.properties, [])
             self.assertEqual(capability.attributes, [])
             self.assertEqual(capability.vertex_type_system, 'CapabilityAssignment')

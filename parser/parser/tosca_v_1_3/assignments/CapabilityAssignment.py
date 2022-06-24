@@ -16,7 +16,7 @@ class CapabilityAssignment:
         self.vertex_type_system = 'CapabilityAssignment'
         self.properties = []
         self.attributes = []
-        self.occurrences = []
+        self.occurrences = None
 
     def add_property(self, properties: PropertyAssignment):
         self.properties.append(properties)

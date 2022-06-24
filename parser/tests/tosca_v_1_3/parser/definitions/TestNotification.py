@@ -19,4 +19,4 @@ class TestNotification(unittest.TestCase):
         notification = notification_definition_parser('notification_test_name', data.get('notification_test_name'))
         self.assertEqual(notification.vertex_type_system, 'NotificationDefinition')
         self.assertEqual(notification.description, 'test_notification_description')
-        self.assertEqual(notification.implementation.primary_artifact_name, 'test_notification_implementation')
+        self.assertEqual(notification.implementation.primary, 'test_notification_implementation')

@@ -56,4 +56,4 @@ class TestServiceTemplate(unittest.TestCase):
         self.assertEqual(len(template.policy_types), 2)
         for index, imports in enumerate(template.policy_types):
             self.assertEqual(imports.name, 'test_policy_type_name_' + str(index))
-        self.assertEqual(template.template_definition.description, 'test_template_description')
+        self.assertEqual(template.topology_template.description, 'test_template_description')

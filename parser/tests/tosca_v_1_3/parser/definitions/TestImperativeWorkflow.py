@@ -37,5 +37,5 @@ class TestImperativeWorkflow(unittest.TestCase):
             self.assertNotEqual(workflow.steps, [])
             for index, step in enumerate(workflow.steps):
                 self.assertEqual(step.name, 'test_step_name_' + str(index))
-            self.assertEqual(workflow.implementation.primary_artifact_name, 'test_primary_artifact_name')
+            self.assertEqual(workflow.implementation.primary, 'test_primary_artifact_name')
             self.assertEqual(workflow.outputs, 'test_attribute_mappings')

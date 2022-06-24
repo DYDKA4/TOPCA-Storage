@@ -32,10 +32,10 @@ class TestInterface(unittest.TestCase):
                 self.assertEqual(inputs.description, 'test_property_description_' + str(index))
             for index, operations in enumerate(interface.operations):
                 self.assertEqual(operations.name, 'operation_test_name_' + str(index))
-                self.assertEqual(operations.implementation_artifact_name, 'implementation_artifact_test_name_' +
+                self.assertEqual(operations.implementation, 'implementation_artifact_test_name_' +
                                  str(index))
             for index, notification in enumerate(interface.notifications):
                 self.assertEqual(notification.name, 'notification_test_name_' + str(index))
                 self.assertEqual(notification.description, 'test_notification_description_' + str(index))
-                self.assertEqual(notification.implementation.primary_artifact_name,
+                self.assertEqual(notification.implementation.primary,
                                  'test_notification_implementation_' + str(index))

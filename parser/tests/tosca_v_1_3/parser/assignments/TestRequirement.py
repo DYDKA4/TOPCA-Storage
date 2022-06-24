@@ -56,7 +56,8 @@ class TestRequirement(unittest.TestCase):
                     for index_2, property_constraint in enumerate(capabilities.property_constraint_list):
                         self.assertEqual(property_constraint.operator, 'equal_' + str(index_2))
                         self.assertEqual(property_constraint.value, 'value_' + str(index_2))
-            self.assertEqual(requirement.occurrences, [0, 10])
+            self.assertEqual(requirement.occurrences.minimum, 0)
+            self.assertEqual(requirement.occurrences.maximum, 10)
 
     def test_extended_notation_with_property(self):
         file = open('test_input/requirement/extended_notation_with_property.yaml')

@@ -7,17 +7,25 @@ from parser.linker.LinkByName import link_by_type_name
 from parser.parser.tosca_v_1_3.definitions.EventFilterDefinition import EventFilterDefinition
 from parser.parser.tosca_v_1_3.definitions.ServiceTemplateDefinition import ServiceTemplateDefinition
 from parser.parser.tosca_v_1_3.definitions.TemplateDefinition import TemplateDefinition
+from parser.parser.tosca_v_1_3.others.NodeTemplate import NodeTemplate
+from parser.parser.tosca_v_1_3.types.NodeType import NodeType
 
 
 def link_event_filter_definition(service_template: ServiceTemplateDefinition, event: EventFilterDefinition) -> None:
-    if type(event.requirement) == str:
-        link_by_type_name(service_template.artifact_types, event, 'requirement')
-    if type(event.capability) == str:
-        link_by_type_name(service_template.artifact_types, event, 'capability')
-    if type(event.node) == str:
-        link_by_type_name(service_template.node_types, event, 'node')
+
     topology_template: TemplateDefinition = service_template.topology_template
-    if type(event.node) == str and topology_template:
-        link_by_type_name(topology_template.node_templates, event, 'node')
-    if str in {type(event.requirement), type(event.capability)}:
+    node_template = []
+    if topology_template.node_templates:
+        node_template = topology_template.node_templates
+    link_by_type_name(service_template.node_types + node_template, event, 'node')
+    if event.node.get('node')[1].vertex_type_system == 'NodeType':
+        node_type: NodeType = event.node.get('node')[1]
+        link_by_type_name(node_type.requirements, event, 'requirement')
+        link_by_type_name(node_type.capabilities, event, 'capability')
+    else:
+        node_template: NodeTemplate = event.node.get('node')[1]
+        link_by_type_name(node_template.requirements, event, 'requirement')
+        link_by_type_name(node_template.capabilities, event, 'capability')
+
+    if str in {type(event.node),type(event.requirement), type(event.capability)}:
         abort(400)

@@ -22,8 +22,8 @@ from parser.parser.tosca_v_1_3.assignments.PropertyAssignment import PropertyAss
 
 def link_group_definition(service_template: ServiceTemplateDefinition, group: GroupDefinition) -> None:
     if type(group.type) == str:
-        link_by_type_name(service_template.artifact_types, group, 'type',)
-    link_members(service_template.node_types, group)
+        link_by_type_name(service_template.group_types, group, 'type',)
+    link_members(service_template.topology_template.node_templates, group)
     if str in {type(group.type)}:
         abort(400)
 

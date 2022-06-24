@@ -1,6 +1,6 @@
 import unittest
 
-from parser.tests.tosca_v_1_3.assignments.TestAttribute import TestAttribute
+from parser.tests.tosca_v_1_3.parser.assignments import TestAttribute
 
 
 class TestJsonParser(unittest.TestCase):

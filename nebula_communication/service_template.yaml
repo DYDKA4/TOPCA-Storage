@@ -18,12 +18,12 @@
         derived_from: test_parent_artifact_type_name
         properties:
           test_property_name_0:
-            type: test_property_name_0
+            type: test_data_type_name_0
             constraints:
               - equal: 2
               - equal: 10
           test_property_name_1:
-            type: test_property_name_1
+            type: test_data_type_name_1
             key_schema:
               type: key_schema_type_test
               description: key_schema_description_test
@@ -57,7 +57,7 @@
       test_parent_capability_type_name:
            attributes:
              test_attribute_name:
-               type: test_attribute_type
+               type: test_data_type_name_0
                description: test_attribute_description
                default: test_default_value
                status: test_status_value
@@ -90,7 +90,7 @@
            description: test_interface_description
            inputs:
              test_property_name:
-               type: test_property_name
+               type: test_data_type_name_0
                description: test_property_description
                required: true
                default: test_default_value
@@ -115,7 +115,7 @@
                  metadata_key_1: metadata_value_1
                  metadata_key_2: metadata_value_2
              test_property_name_1:
-               type: test_property_name_1
+               type: test_data_type_name_1
                description: test_property_description_1
            operations:
              test_operation_name:
@@ -131,21 +131,21 @@
                  timeout: 60
                inputs:
                  test_property_name_0:
-                   type: test_property_name_0
+                   type: test_data_type_name_0
                    description: test_property_description_0
                  test_property_name_1:
-                   type: test_property_name_1
+                   type: test_data_type_name_1
                    description: test_property_description_1
                outputs:
                  test_value
-             operation_test_name_1: implementation_artifact_test_name_1
+             operation_test_name_1: test_artifact_name_1
            notifications:
              notification_test_name_0:
                description: test_notification_description_0
-               implementation: test_notification_implementation_0
+               implementation: test_artifact_name_0
              notification_test_name_1:
                description: test_notification_description_1
-               implementation: test_notification_implementation_1
+               implementation: test_artifact_name_1
       test_interface_type_name_1:
            derived_from: test_parent_interface_type_name
  relationship_types:
@@ -158,16 +158,16 @@
         description: test_relationship_description
         properties:
             test_property_name_0:
-              type: test_property_name_0
+              type: test_data_type_name_0
               description: test_property_description_0
             test_property_name_1:
-              type: test_property_name_1
+              type: test_data_type_name_1
               description: test_property_description_1
         attributes:
             attribute_name_0:
-              type: attribute_type_0
+              type: test_data_type_name_0
             attribute_name_1:
-              type: attribute_type_1
+              type: test_data_type_name_1
         interfaces:
             test_interface_definition_name_0:
               type: test_interface_type_name_0
@@ -175,21 +175,21 @@
               type: test_interface_type_name_1
               inputs:
                 test_property_name_0:
-                  type: test_property_name_0
+                  type: test_data_type_name_0
                   description: test_property_description_0
                 test_property_name_1:
-                  type: test_property_name_1
+                  type: test_data_type_name_1
                   description: test_property_description_1
               operations:
-                operation_test_name_0: implementation_artifact_test_name_0
-                operation_test_name_1: implementation_artifact_test_name_1
+                operation_test_name_0: test_artifact_name_0
+                operation_test_name_1: test_artifact_name_1
               notifications:
                 notification_test_name_0:
                   description: test_notification_description_0
-                  implementation: test_notification_implementation_0
+                  implementation: test_artifact_name_0
                 notification_test_name_1:
                   description: test_notification_description_1
-                  implementation: test_notification_implementation_1
+                  implementation: test_artifact_name_1
         valid_target_types: [ test_parent_capability_type_name, test_capability_type_name_0 ]
       test_relationship_type_name_0:
         derived_from: test_parent_relationship_type_name
@@ -205,39 +205,38 @@
                metadata_key_2: metadata_value_2
            attributes:
                attribute_name_0:
-                 type: attribute_type_0
+                 type: test_data_type_name_0
                attribute_name_1:
-                 type: attribute_type_1
+                 type: test_data_type_name_1
            properties:
                test_property_name_0:
-                 type: test_property_name_0
+                 type: test_data_type_name_0
                  description: test_property_description_0
                test_property_name_1:
-                 type: test_property_name_1
+                 type: test_data_type_name_1
                  description: test_property_description_1
            requirements:
                - test_requirement_definition_name_0: test_capability_type_name_0
                - test_requirement_definition_name_1: test_capability_type_name_1
            capabilities:
              test_capability_definition_name:
-               type: test_capability_type
+               type: test_capability_type_name_0
                description: test_capability_description
                properties:
                  test_property_name_0:
-                   type: test_property_name_0
+                   type: test_data_type_name_0
                    description: test_property_description_0
                  test_property_name_1:
-                   type: test_property_name_1
+                   type: test_data_type_name_1
                    description: test_property_description_1
                attributes:
                  attribute_name_0:
-                   type: attribute_type_0
+                   type: test_data_type_name_0
                  attribute_name_1:
-                   type: attribute_type_1
+                   type: test_data_type_name_1
                valid_source_types: [ test_node_type_name_0, test_node_type_name_1 ]
                occurrences: [ 0, 10 ]
-
-             test_capability_definition_name_1: test_capability_type_1
+             test_capability_definition_name_1: test_capability_type_name_1
            interfaces:
                test_interface_definition_name_0:
                  type: test_interface_type_name_0
@@ -251,11 +250,15 @@
       test_node_type_name_1:
            derived_from: test_parent_node_type_name
  group_types:
+      test_parent_group_type_name:
+        derived_from: test_parent_group_type_name
       test_group_type_name_0:
            derived_from: test_parent_group_type_name
       test_group_type_name_1:
         derived_from: test_parent_group_type_name
  policy_types:
+      test_parent_policy_type_name:
+        derived_from: test_parent_policy_type_name
       test_policy_type_name_0:
         derived_from: test_parent_policy_type_name
       test_policy_type_name_1:

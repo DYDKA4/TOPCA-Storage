@@ -25,6 +25,6 @@ from parser.parser.tosca_v_1_3.definitions.ServiceTemplateDefinition import Serv
 
 def link_interface_definition(service_template: ServiceTemplateDefinition, interface: InterfaceDefinition) -> None:
     if type(interface.type) == str:
-        link_by_type_name(service_template.artifact_types, interface, 'type',)
+        link_by_type_name(service_template.interface_types, interface, 'type',)
     if str in {type(interface.type)}:
         abort(400)

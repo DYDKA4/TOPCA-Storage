@@ -19,7 +19,7 @@ from parser.parser.tosca_v_1_3.types.GroupType import GroupType
 
 def link_group_type(service_template: ServiceTemplateDefinition,
                     group: GroupType) -> None:
-    link_derived_from(service_template.data_types, group)
+    link_derived_from(service_template.group_types, group)
     link_members(service_template.node_types, group)
     if str in {type(group.derived_from)}:
         abort(400)

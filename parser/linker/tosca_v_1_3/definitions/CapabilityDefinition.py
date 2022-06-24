@@ -8,7 +8,7 @@ from parser.parser.tosca_v_1_3.definitions.ServiceTemplateDefinition import Serv
 
 def link_capability_definition(service_template: ServiceTemplateDefinition, capability: CapabilityDefinition) -> None:
     if type(capability.type) == str:
-        link_by_type_name(service_template.artifact_types, capability, 'type',)
+        link_by_type_name(service_template.capability_types, capability, 'type',)
     link_valid_source_types(service_template.node_types, capability)
     if str in {type(capability.type)}:
         abort(400)

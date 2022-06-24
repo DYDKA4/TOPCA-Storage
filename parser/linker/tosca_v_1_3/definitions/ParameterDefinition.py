@@ -21,8 +21,8 @@
 from werkzeug.exceptions import abort
 
 from parser.linker.LinkByName import link_by_type_name
-from parser.linker.tosca_v_1_3.definitions.ServiceTemplateDefinition import ServiceTemplateDefinition
 from parser.parser.tosca_v_1_3.definitions import ParameterDefinition
+from parser.parser.tosca_v_1_3.definitions.ServiceTemplateDefinition import ServiceTemplateDefinition
 
 
 def link_parameter_definition(service_template: ServiceTemplateDefinition, parameter: ParameterDefinition) -> None:

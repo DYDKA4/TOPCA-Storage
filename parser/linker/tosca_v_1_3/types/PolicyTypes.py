@@ -20,6 +20,6 @@ from parser.parser.tosca_v_1_3.types.PolicyTypes import PolicyType
 def link_policy_type(service_template: ServiceTemplateDefinition,
                      policy: PolicyType) -> None:
     link_derived_from(service_template.policy_types, policy)
-    link_with_list(service_template.node_types + service_template.group_types, policy, 'target')
+    link_with_list(service_template.node_types + service_template.group_types, policy, 'targets')
     if str in {type(policy.derived_from)}:
         abort(400)

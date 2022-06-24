@@ -13,6 +13,7 @@ from parser.linker.tosca_v_1_3.definitions.ParameterDefinition import link_param
 from parser.linker.tosca_v_1_3.definitions.PolicyDefinition import link_policy_definition
 from parser.linker.tosca_v_1_3.definitions.PropertyDefinition import link_property_definition
 from parser.linker.tosca_v_1_3.definitions.RequirementDefinition import link_requirement_definition
+from parser.linker.tosca_v_1_3.definitions.SchemaDefinition import link_schema_definition
 from parser.linker.tosca_v_1_3.definitions.WorkflowPreconditionDefinition import link_workflow_precondition_definition
 from parser.linker.tosca_v_1_3.definitions.WorkflowStepDefinition import link_workflow_step_definition
 from parser.linker.tosca_v_1_3.others.NodeTemplate import link_node_template
@@ -26,6 +27,7 @@ from parser.linker.tosca_v_1_3.types.NodeType import link_node_type
 from parser.linker.tosca_v_1_3.types.PolicyTypes import link_policy_type
 from parser.linker.tosca_v_1_3.types.RelationshipType import link_relationship_type
 from parser.parser.tosca_v_1_3.assignments.RequirementAssignment import RequirementAssignment
+from parser.parser.tosca_v_1_3.definitions.AttributeDefinition import AttributeDefinition
 from parser.parser.tosca_v_1_3.definitions.CapabilityDefinition import CapabilityDefinition
 from parser.parser.tosca_v_1_3.definitions.GroupDefinition import GroupDefinition
 from parser.parser.tosca_v_1_3.definitions.ImperativeWorkflowDefinition import ImperativeWorkflowDefinition
@@ -56,20 +58,32 @@ def sub_interface_definition_parser(interfaces_list, service_template: ServiceTe
         link_interface_definition(service_template, interface_definition)
         for notification_definition in interface_definition.notifications:
             notification_definition: NotificationDefinition
-            for notification in notification_definition.implementation:
-                link_notification_implementation_definition(service_template, notification)
+            if notification_definition.implementation and type(notification_definition.implementation) != dict:
+                link_notification_implementation_definition(service_template, notification_definition.implementation)
         for operation_definition in interface_definition.operations:
             operation_definition: OperationDefinition
             link_operation_definition(service_template, operation_definition)
-            for notification in operation_definition.implementation:
-                link_operation_definition(service_template, notification)
+            if operation_definition.implementation and type(operation_definition.implementation) != dict:
+                link_operation_implementation_definition(service_template, operation_definition.implementation)
+
+
+
+def sub_attribute_definition_parser(service_template: ServiceTemplateDefinition, attribute_list: list):
+    for attribute_definition in attribute_list:
+        attribute_definition: AttributeDefinition
+        link_attribute_definition(service_template, attribute_definition)
+        if attribute_definition.key_schema:
+            link_schema_definition(service_template, attribute_definition.key_schema)
+        if attribute_definition.entry_schema:
+            link_schema_definition(service_template, attribute_definition.entry_schema)
+
 
 
 def main_linker(service_template: ServiceTemplateDefinition):
     for artifact_type in service_template.artifact_types:
         artifact_type: ArtifactType
         for property_definition in artifact_type.properties:
-            link_property_definition(artifact_type.properties, property_definition)
+            link_property_definition(service_template, property_definition)
         link_artifact_type(service_template, artifact_type)
     for data_type in service_template.data_types:
         data_type: DataType
@@ -80,8 +94,7 @@ def main_linker(service_template: ServiceTemplateDefinition):
         capability_type: CapabilityType
         for property_definition in capability_type.properties:
             link_property_definition(service_template, property_definition)
-        for attribute_definition in capability_type.attributes:
-            link_attribute_definition(service_template, attribute_definition)
+        sub_attribute_definition_parser(service_template, capability_type.attributes)
         link_capability_type(service_template, capability_type)
     for interface_type in service_template.interface_types:
         interface_type: InterfaceType
@@ -89,27 +102,24 @@ def main_linker(service_template: ServiceTemplateDefinition):
             link_property_definition(service_template, property_definition)
         for notification_definition in interface_type.notifications:
             notification_definition: NotificationDefinition
-            for notification in notification_definition.implementation:
-                link_notification_implementation_definition(service_template, notification)
+            if notification_definition.implementation and type(notification_definition.implementation) != dict:
+                link_notification_implementation_definition(service_template, notification_definition.implementation)
         for operation_definition in interface_type.operations:
             operation_definition: OperationDefinition
             link_operation_definition(service_template, operation_definition)
-            for notification in operation_definition.implementation:
-                link_operation_definition(service_template, notification)
+            if operation_definition.implementation and type(operation_definition.implementation) != dict:
+                link_operation_implementation_definition(service_template, operation_definition.implementation)
         link_interface_type(service_template, interface_type)
     for relationship_type in service_template.relationship_types:
         relationship_type: RelationshipType
-
-        for attribute_definition in relationship_type.attributes:
-            link_attribute_definition(service_template, attribute_definition)
+        sub_attribute_definition_parser(service_template, relationship_type.attributes)
         sub_interface_definition_parser(relationship_type.interfaces, service_template)
         link_relationship_type(service_template, relationship_type)
     for node_type in service_template.node_types:
         node_type: NodeType
         for property_definition in node_type.properties:
             link_property_definition(service_template, property_definition)
-        for attribute_definition in node_type.attributes:
-            link_attribute_definition(service_template, attribute_definition)
+        sub_attribute_definition_parser(service_template, node_type.attributes)
         for requirement_definition in node_type.requirements:
             requirement_definition: RequirementDefinition
             link_requirement_definition(service_template, requirement_definition)
@@ -119,16 +129,14 @@ def main_linker(service_template: ServiceTemplateDefinition):
             link_capability_definition(service_template, capabilities_definition)
             for property_definition in capabilities_definition.properties:
                 link_property_definition(service_template, property_definition)
-            for attribute_definition in capabilities_definition.attributes:
-                link_attribute_definition(service_template, attribute_definition)
+            sub_attribute_definition_parser(service_template, capabilities_definition.attributes)
         sub_interface_definition_parser(node_type.interfaces, service_template)
         for artifact_definition in node_type.artifacts:
             link_artifact_definition(service_template, artifact_definition)
         link_node_type(service_template, node_type)
     for group_type in service_template.group_types:
         group_type: GroupType
-        for attribute_definition in group_type.attributes:
-            link_attribute_definition(service_template, attribute_definition)
+        sub_attribute_definition_parser(service_template, group_type.attributes)
         for property_definition in group_type.properties:
             link_property_definition(service_template, property_definition)
         link_group_type(service_template, group_type)

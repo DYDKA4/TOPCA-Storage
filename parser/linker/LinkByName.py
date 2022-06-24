@@ -11,6 +11,7 @@ def link_by_type_name(main_template, current_template: object, link_type,
         if other_template.name == current_template.__dict__[attribute_name]:
             setattr(current_template, attribute_name, {link_type: [current_template, other_template]})
             return
+    print(getattr(current_template, link_type))
     abort(400)
 
 

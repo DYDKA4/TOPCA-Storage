@@ -11,6 +11,7 @@ from parser.linker.LinkByName import link_by_type_name, link_by_relationship_typ
     link_by_node_type_name
 from parser.linker.LinkDerivedFrom import link_derived_from
 from parser.linker.LinkerValidTypes import link_valid_target_types, link_valid_source_types
+from parser.linker.tosca_v_1_3.main_linker import main_linker
 from parser.parser.tosca_v_1_3.definitions.ServiceTemplateDefinition import ServiceTemplateDefinition, \
     service_template_definition_parser
 
@@ -93,7 +94,7 @@ def deploy(template) -> None:
     complex_vertex = {}
     if template.vid is None or template.vertex_type_system == 'ServiceTemplateDefinition':
         for attribute_name, attribute_value in template.__dict__.items():
-            if type(attribute_value) in {int, float, str, bool} and attribute_name not in {'vid', 'vertex_type_system'}:
+            if type(attribute_value) in {int, float, str, bool} and attribute_name not in {'vid'}:
                 if name_of_key_value == '':
                     if attribute_value is not None:
                         name_of_key_value = attribute_name
@@ -161,28 +162,5 @@ data = file.read()
 file.close()
 data = yaml.safe_load(data)
 template = service_template_definition_parser(''.join(choice(ascii_uppercase) for i in range(12)), data)
-for artifact_type in template.artifact_types:
-    link_derived_from(template.artifact_types, artifact_type)
-for data_type in template.data_types:
-    link_derived_from(template.data_types, data_type)
-for capability_type in template.capability_types:
-    link_derived_from(template.capability_types, capability_type)
-for interface_type in template.interface_types:
-    link_derived_from(template.interface_types, interface_type)
-for relationship_type in template.relationship_types:
-    link_derived_from(template.relationship_types, relationship_type)
-    link_valid_target_types(template.capability_types, relationship_type)
-    for interface in relationship_type.interfaces:
-        link_by_type_name(template.interface_types, interface, 'type')
-for node_type in template.node_types:
-    link_derived_from(template.node_types, node_type)
-    for capability_definition in node_type.capabilities:
-        link_valid_source_types(template.node_types, capability_definition)
-        # link_by_type_name(template.)
-    for requirement in node_type.requirements:
-        link_by_type_name(template.relationship_types, requirement, 'relationship')
-        link_by_type_name(template.capability_types, requirement, 'capability')
-        link_by_type_name(template.node_types, requirement, 'node')
-    for interface in node_type.interfaces:
-        link_by_type_name(template.interface_types, interface, 'type')
-deploy(template)
+main_linker(template)
+# deploy(template)

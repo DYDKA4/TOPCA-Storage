@@ -25,4 +25,5 @@ def link_property_definition(service_template: ServiceTemplateDefinition, proper
     if type(property_vertex.type) == str:
         link_by_type_name(service_template.data_types, property_vertex, 'type')
     if str in {type(property_vertex.type)}:
+        print(property_vertex.type)
         abort(400)

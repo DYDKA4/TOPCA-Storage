@@ -15,13 +15,13 @@ class NotificationImplementationDefinition:
         self.vertex_type_system = 'NotificationImplementationDefinition'
         self.primary = None  # todo Make LINKER
         self.implementation = None
-        self.dependencies_artefact_names = []  # todo Make LINKER
+        self.dependencies = []  # todo Make LINKER
 
     def set_primary(self, primary: str):
         self.primary = primary
 
     def add_dependencies_artefact_names(self, dependency: str):
-        self.dependencies_artefact_names.append(dependency)
+        self.dependencies.append(dependency)
 
 
 def notification_implementation_definition_parser(data: dict) -> NotificationImplementationDefinition:

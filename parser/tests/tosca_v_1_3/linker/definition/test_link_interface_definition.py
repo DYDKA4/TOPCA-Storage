@@ -6,7 +6,7 @@ from parser.parser.tosca_v_1_3.definitions.ServiceTemplateDefinition import Serv
 from parser.parser.tosca_v_1_3.types.InterfaceType import InterfaceType
 
 
-class TestAttributeDefinition(unittest.TestCase):
+class TestInterfaceDefinition(unittest.TestCase):
     def setUp(self):
         self.service_template = ServiceTemplateDefinition('test_service')
         self.service_template.interface_types.append(InterfaceType('interface_type'))

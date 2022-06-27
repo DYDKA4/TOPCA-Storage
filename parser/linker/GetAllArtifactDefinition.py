@@ -47,27 +47,23 @@ def get_all_artifact_definition(service_template: ServiceTemplateDefinition) -> 
         for interface in node_type.interfaces:
             interface: InterfaceDefinition
             add_artifact_from_notification_definition_artifact(interface, artifact_definition_array)
-            # todo if artifact definition in notification uncomment it
-            # linker_notification_definition_artifact(interface,notification, artifact_definition_array)
+            add_artifact_from_operation_definition_artifact(interface,artifact_definition_array)
         for requirement_definition in node_type.requirements:
             requirement_definition: RequirementDefinition
             for interface in requirement_definition.interfaces:
                 interface: InterfaceDefinition
-                # todo if artifact definition in notification uncomment it
-                # linker_notification_definition_artifact(interface,notification, artifact_definition_array)
+                add_artifact_from_operation_definition_artifact(interface, artifact_definition_array)
                 add_artifact_from_notification_definition_artifact(interface, artifact_definition_array)
     for interface in service_template.interface_types:
         interface: InterfaceType
-        # todo if artifact definition in notification uncomment it
-        # linker_notification_definition_artifact(interface,notification, artifact_definition_array)
+        add_artifact_from_operation_definition_artifact(interface, artifact_definition_array)
         add_artifact_from_notification_definition_artifact(interface, artifact_definition_array)
 
     for relationship_type in service_template.relationship_types:
         relationship_type: RelationshipType
         for interface in relationship_type.interfaces:
             interface: InterfaceDefinition
-            # todo if artifact definition in notification uncomment it
-            # linker_notification_definition_artifact(interface,notification, artifact_definition_array)
+            add_artifact_from_operation_definition_artifact(interface,artifact_definition_array)
             add_artifact_from_notification_definition_artifact(interface, artifact_definition_array)
 
     topology_template: TemplateDefinition = service_template.topology_template
@@ -78,21 +74,19 @@ def get_all_artifact_definition(service_template: ServiceTemplateDefinition) -> 
             for interface in node_template.interfaces:
                 interface: InterfaceDefinition
                 add_artifact_from_notification_definition_artifact(interface, artifact_definition_array)
-                # todo if artifact definition in notification uncomment it
-                # linker_notification_definition_artifact(interface,notification, artifact_definition_array)
+                add_artifact_from_operation_definition_artifact(interface, artifact_definition_array)
             for requirement_assignment in node_template.requirements:
                 requirement_assignment: RequirementAssignment
                 for interface in requirement_assignment.interfaces:
                     interface: InterfaceDefinition
                     add_artifact_from_notification_definition_artifact(interface, artifact_definition_array)
-                    # todo if artifact definition in notification uncomment it
-                    # linker_notification_definition_artifact(interface,notification, artifact_definition_array)
+                    add_artifact_from_operation_definition_artifact(interface, artifact_definition_array)
+
         for relationship_templates in topology_template.relationship_templates:
             relationship_templates: RelationshipTemplate
             for interface in relationship_templates.interfaces:
                 interface: InterfaceDefinition
-                # todo if artifact definition in notification uncomment it
-                # linker_notification_definition_artifact(interface,notification, artifact_definition_array)
+                add_artifact_from_operation_definition_artifact(interface, artifact_definition_array)
                 add_artifact_from_notification_definition_artifact(interface, artifact_definition_array)
 
     return artifact_definition_array

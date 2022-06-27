@@ -20,6 +20,7 @@ from parser.parser.tosca_v_1_3.definitions.DescriptionDefinition import descript
 from parser.parser.tosca_v_1_3.definitions.OperationImplementationDefinition import OperationImplementationDefinition, \
     operation_implementation_definition_parser
 from parser.parser.tosca_v_1_3.assignments.PropertyAssignment import PropertyAssignment
+from parser.parser.tosca_v_1_3.definitions.ParameterDefinition import ParameterDefinition, parameter_definition_parser
 from parser.parser.tosca_v_1_3.definitions.PropertyDefinition import property_definition_parser, PropertyDefinition
 
 
@@ -46,7 +47,7 @@ class OperationDefinition:
         # todo remake later
         self.outputs = outputs
 
-    def add_input_definition(self, inputs: PropertyDefinition):
+    def add_input_definition(self, inputs: ParameterDefinition):
         self.inputs.append(inputs)
 
     def add_inputs_assignment(self, inputs: PropertyAssignment):
@@ -71,5 +72,5 @@ def operation_definition_parser(name: str, data: dict) -> OperationDefinition:
             if type(input_property_value) == str:
                 operation.add_inputs_assignment(PropertyAssignment(input_property_name, str(input_property_value)))
             else:
-                operation.add_input_definition(property_definition_parser(input_property_name, input_property_value))
+                operation.add_input_definition(parameter_definition_parser(input_property_name, input_property_value))
     return operation

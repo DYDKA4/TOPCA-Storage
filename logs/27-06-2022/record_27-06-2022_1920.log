@@ -1,0 +1,8 @@
+2022-06-27 19:20:24,335 INFO werkzeug MainThread :  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2022-06-27 19:20:24,340 INFO werkzeug MainThread :  * Restarting with stat
+2022-06-27 19:20:24,494 WARNING werkzeug MainThread :  * Debugger is active!
+2022-06-27 19:20:24,548 INFO werkzeug MainThread :  * Debugger PIN: 448-166-028
+2022-06-27 19:20:49,391 INFO werkzeug Thread-2 : 127.0.0.1 - - [27/Jun/2022 19:20:49] "[35m[1mPATCH /yaml-delete HTTP/1.1[0m" 500 -
+2022-06-27 19:21:08,410 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/nebula_communication/communication_with_nebula.py', reloading
+2022-06-27 19:21:08,435 INFO werkzeug MainThread :  * Restarting with stat
+2022-06-27 19:21:36,175 INFO werkzeug MainThread :  * Restarting with stat

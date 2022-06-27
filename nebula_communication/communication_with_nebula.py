@@ -10,8 +10,7 @@ from app import data_classes
 Config = Config()
 Config.max_connection_pool_size = 10
 connection_pool = ConnectionPool()
-# if the given servers are ok, return true, else return false
-# ok = connection_pool.init([(config.IP_address, 9669)], Config) todo REMAKE IT
+ok = connection_pool.init([('10.100.151.128', 9669)], Config)
 
 
 def hello_world():
@@ -21,7 +20,7 @@ def hello_world():
 def chose_of_space():
     # chose of working space session is still open
     session = connection_pool.get_session('Administator', 'password')
-    # session = connection_pool.get_session(config.UserName, config.UserPassword)
+    session = connection_pool.get_session(config.UserName, config.UserPassword)
     result = session.execute(f'USE {config.WorkSpace}')
     assert result.is_succeeded(), result.error_msg()
     return session

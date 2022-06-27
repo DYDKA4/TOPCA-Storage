@@ -30,6 +30,7 @@ from parser.parser.tosca_v_1_3.others.NodeTemplate import NodeTemplate
 def link_node_template(service_template: ServiceTemplateDefinition,
                        node: NodeTemplate) -> None:
     topology_template: TemplateDefinition = service_template.topology_template
+    link_by_type_name(service_template.node_types, node, 'type')
     link_by_type_name(topology_template.node_templates, node, 'copy')
     if str in {type(node.copy)}:
         abort(400)

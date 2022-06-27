@@ -19,7 +19,7 @@ from parser.parser.tosca_v_1_3.definitions.ConditionClauseDefinition import cond
 class WorkflowStepDefinition:
     def __init__(self, name: str):
         self.vid = None
-        self.vertex_type_system = 'WorkflowPredictionDefinition'
+        self.vertex_type_system = 'WorkflowStepDefinition'
         self.name = name
         self.target = None
         self.target_relationship = None
@@ -68,8 +68,8 @@ def workflow_step_definition_parser(name: str, data: dict) -> WorkflowStepDefini
     if data.get('activities'):
         for activities in data.get('activities'):
             step.add_activities(activities)
-    else:
-        abort(400)
+    # else: todo Uncommit when activities is done
+    #     abort(400)
     if data.get('on_success'):
         for on_success in data.get('on_success'):
             step.add_on_success(on_success)

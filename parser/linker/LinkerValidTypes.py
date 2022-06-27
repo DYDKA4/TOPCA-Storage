@@ -7,12 +7,15 @@ def link_with_list(list_of_smt, current_template, name_of_connection):
     target_structure = []
     for item in list_of_smt:
         for source in getattr(current_template, name_of_connection):
-            if item.name == source:
+            if item.name == source and item not in target_structure:
                 target_structure.append(item)
                 break
     if len(target_structure) != len(getattr(current_template, name_of_connection)):
+        print(name_of_connection, getattr(current_template, name_of_connection))
+        # for item in getattr(current_template, name_of_connection):
+        #     print(item.name)
         abort(400)
-    setattr(current_template,name_of_connection, {name_of_connection: [current_template, target_structure]})
+    setattr(current_template, name_of_connection, {name_of_connection: [current_template, target_structure]})
 
 
 def link_valid_target_types(target_types, current_template):

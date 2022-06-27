@@ -25,7 +25,7 @@ from parser.parser.tosca_v_1_3.others.RelationshipTemplate import relationship_t
 class TemplateDefinition:
     def __init__(self):
         self.vid = None
-        self.vertex_type_system = 'TemplateDefinition'
+        self.vertex_type_system = 'TopologyTemplateDefinition'
         self.description = None
         self.inputs = []
         self.outputs = []

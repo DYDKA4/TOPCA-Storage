@@ -19,12 +19,13 @@ from parser.parser.tosca_v_1_3.types.RelationshipType import RelationshipType
 def add_artifact_from_operation_definition_artifact(interface, artifact_definition_array: list):
     for operation_definition in interface.operations:
         operation_definition: OperationDefinition
-        operation_definition_implementation: OperationImplementationDefinition = \
-            operation_definition.implementation
-        if type(operation_definition_implementation.primary) not in {str, dict}:
-            artifact: ArtifactDefinition = operation_definition_implementation.primary
-            artifact_definition_array.append(artifact)
-            artifact_definition_array += operation_definition_implementation.dependencies
+        if type(operation_definition.implementation) not in {str, dict}:
+            operation_definition_implementation: OperationImplementationDefinition = \
+                operation_definition.implementation
+            if type(operation_definition_implementation.primary) not in {str, dict}:
+                artifact: ArtifactDefinition = operation_definition_implementation.primary
+                artifact_definition_array.append(artifact)
+                artifact_definition_array += operation_definition_implementation.dependencies
 
 
 def add_artifact_from_notification_definition_artifact(interface, artifact_definition_array: list):

@@ -4,7 +4,7 @@ from nebula_communication import communication_with_nebula
 import yaml
 from app import constructor_yaml
 from app import find as find_method
-from nebula_communication.deploy import deploy
+# from nebula_communication.deploy import deploy
 from parser.parser.tosca_v_1_3.definitions.ServiceTemplateDefinition import service_template_definition_parser
 
 

@@ -1,3 +1,4 @@
+from parser.linker.tosca_v_1_3.assignments.RequirementAssignment import link_requirement_assignments
 from parser.linker.tosca_v_1_3.definitions.ArtifactDefinition import link_artifact_definition
 from parser.linker.tosca_v_1_3.definitions.AttributeDefinition import link_attribute_definition
 from parser.linker.tosca_v_1_3.definitions.CapabilityDefinition import link_capability_definition
@@ -35,6 +36,7 @@ from parser.parser.tosca_v_1_3.definitions.InterfaceDefinition import InterfaceD
 from parser.parser.tosca_v_1_3.definitions.NodeFilterDefinition import NodeFilterDefinition
 from parser.parser.tosca_v_1_3.definitions.NotificationDefinition import NotificationDefinition
 from parser.parser.tosca_v_1_3.definitions.OperationDefinition import OperationDefinition
+from parser.parser.tosca_v_1_3.definitions.ParameterDefinition import ParameterDefinition
 from parser.parser.tosca_v_1_3.definitions.PolicyDefinition import PolicyDefinition
 from parser.parser.tosca_v_1_3.definitions.PropertyDefinition import PropertyDefinition
 from parser.parser.tosca_v_1_3.definitions.RequirementDefinition import RequirementDefinition
@@ -63,9 +65,18 @@ def sub_interface_definition_parser(interfaces_list, service_template: ServiceTe
                 link_notification_implementation_definition(service_template, notification_definition.implementation)
         for operation_definition in interface_definition.operations:
             operation_definition: OperationDefinition
+            if operation_definition.inputs:
+                if operation_definition.inputs[0].vertex_type_system == 'ParameterDefinition':
+                    for parameter_definition in operation_definition.inputs:
+                        link_parameter_definition(service_template, parameter_definition)
+            sub_property_definition_parser(service_template, operation_definition.inputs)
             link_operation_definition(service_template, operation_definition)
             if operation_definition.implementation and type(operation_definition.implementation) != dict:
                 link_operation_implementation_definition(service_template, operation_definition.implementation)
+        if interface_definition.inputs:
+            if interface_definition.inputs[0].vertex_type_system == 'PropertyDefinition':
+                for property_definition in interface_definition.inputs:
+                    link_property_definition(service_template, property_definition)
 
 
 def sub_attribute_definition_parser(service_template: ServiceTemplateDefinition, attribute_list: list):
@@ -111,6 +122,10 @@ def main_linker(service_template: ServiceTemplateDefinition):
                 link_notification_implementation_definition(service_template, notification_definition.implementation)
         for operation_definition in interface_type.operations:
             operation_definition: OperationDefinition
+            if operation_definition.inputs and \
+                    operation_definition.inputs[0].vertex_type_system == 'ParameterDefinition':
+                for parameter_definition in operation_definition.inputs:
+                    link_parameter_definition(service_template, parameter_definition)
             link_operation_definition(service_template, operation_definition)
             if operation_definition.implementation and type(operation_definition.implementation) != dict:
                 link_operation_implementation_definition(service_template, operation_definition.implementation)
@@ -119,6 +134,8 @@ def main_linker(service_template: ServiceTemplateDefinition):
         relationship_type: RelationshipType
         sub_attribute_definition_parser(service_template, relationship_type.attributes)
         sub_interface_definition_parser(relationship_type.interfaces, service_template)
+        for property_definition in relationship_type.properties:
+            link_property_definition(service_template, property_definition)
         link_relationship_type(service_template, relationship_type)
     for node_type in service_template.node_types:
         node_type: NodeType
@@ -154,18 +171,30 @@ def main_linker(service_template: ServiceTemplateDefinition):
     if service_template.topology_template:
         topology_template: TemplateDefinition = service_template.topology_template
         for inputs in topology_template.inputs:
+            inputs: ParameterDefinition
+            if inputs.key_schema:
+                link_schema_definition(service_template, inputs.key_schema)
+            if inputs.entry_schema:
+                link_schema_definition(service_template, inputs.entry_schema)
             link_parameter_definition(service_template, inputs)
         for outputs in topology_template.outputs:
+            outputs: ParameterDefinition
+            if outputs.key_schema:
+                link_schema_definition(service_template, outputs.key_schema)
+            if outputs.entry_schema:
+                link_schema_definition(service_template, outputs.entry_schema)
             link_parameter_definition(service_template, outputs)
         for node_template in topology_template.node_templates:
             node_template: NodeTemplate
             for requirement_assignment in node_template.requirements:
                 requirement_assignment: RequirementAssignment
                 sub_interface_definition_parser(requirement_assignment.interfaces, service_template)
+                link_requirement_assignments(service_template, requirement_assignment)
                 # if requirement_assignment.node_filter:
                 #     node_filter: NodeFilterDefinition = requirement_assignment.node_filter
             for artifact_definition in node_template.artifacts:
                 link_artifact_definition(service_template, artifact_definition)
+            sub_interface_definition_parser(node_template.interfaces, service_template)
             link_node_template(service_template, node_template)
         for relationship_template in topology_template.relationship_templates:
             relationship_template: RelationshipTemplate
@@ -189,5 +218,5 @@ def main_linker(service_template: ServiceTemplateDefinition):
                 link_workflow_precondition_definition(service_template, workflow_precondition_definition)
             for workflow_step_definition in imperative_workflow_definition.steps:
                 link_workflow_step_definition(service_template, workflow_step_definition)
-            for operation_implementation_definition in imperative_workflow_definition.implementation:
-                link_operation_implementation_definition(service_template, operation_implementation_definition)
+            if imperative_workflow_definition.implementation:
+                link_operation_implementation_definition(service_template, imperative_workflow_definition.implementation)

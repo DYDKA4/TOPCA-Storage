@@ -1,18 +1,18 @@
 # Simple grammar (Capability Type only)
-# <requirement_definition_name>: <capability_type_name> todo Linker
+# <requirement_definition_name>: <capability_type_name>
 
 # Extended grammar (with Node and Relationship Types)
 # <requirement_definition_name>:
-#   capability: <capability_type_name> Required #todo Linker
-#   node: <node_type_name> #todo Linker
-#   relationship: <relationship_type_name> todo Linker
+#   capability: <capability_type_name> Required
+#   node: <node_type_name>
+#   relationship: <relationship_type_name>
 #   occurrences: [ <min_occurrences>, <max_occurrences> ]
 
 # Extended grammar for declaring Property Definitions on the relationship’s Interfaces
 # <requirement_definition_name>:
 #   # Other keynames omitted for brevity
 #   relationship:
-#     type: # <relationship_type_name> Required todo Linker
+#     type: # <relationship_type_name> Required
 #     interfaces:
 #       <interface_definitions>
 from werkzeug.exceptions import abort
@@ -29,7 +29,7 @@ def link_requirement_definition(service_template: ServiceTemplateDefinition, req
     if type(requirement.node) == str:
         link_by_type_name(service_template.node_types, requirement, 'node')
 
-    if type(requirement.capability) == str:
+    if type(requirement.relationship) == str:
         link_by_type_name(service_template.relationship_types, requirement, 'relationship')
     if str in {type(requirement.node), type(requirement.relationship), type(requirement.capability)}:
         abort(400)

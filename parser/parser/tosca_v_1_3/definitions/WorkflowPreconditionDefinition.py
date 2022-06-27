@@ -8,10 +8,10 @@ from parser.parser.tosca_v_1_3.definitions.ConditionClauseDefinition import Cond
     condition_clause_definition_parser
 
 
-class WorkflowPredictionDefinition:
+class WorkflowPreconditionDefinition:
     def __init__(self):
         self.vid = None
-        self.vertex_type_system = 'WorkflowPredictionDefinition'
+        self.vertex_type_system = 'WorkflowPreconditionDefinition'
         self.target = None
         self.target_relationship = None
         self.conditions = []
@@ -26,8 +26,8 @@ class WorkflowPredictionDefinition:
         self.conditions.append(condition)
 
 
-def workflow_precondition_definition_parser(data: dict) -> WorkflowPredictionDefinition:
-    precondition = WorkflowPredictionDefinition()
+def workflow_precondition_definition_parser(data: dict) -> WorkflowPreconditionDefinition:
+    precondition = WorkflowPreconditionDefinition()
     if data.get('target'):
         precondition.set_target(data.get('target'))
     else:

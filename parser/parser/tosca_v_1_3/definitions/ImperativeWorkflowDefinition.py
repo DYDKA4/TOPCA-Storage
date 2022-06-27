@@ -17,9 +17,10 @@ from parser.parser.tosca_v_1_3.others.Metadata import Metadata
 from parser.parser.tosca_v_1_3.definitions.OperationImplementationDefinition import OperationImplementationDefinition, \
     operation_implementation_definition_parser
 from parser.parser.tosca_v_1_3.definitions.PropertyDefinition import PropertyDefinition, property_definition_parser
-from parser.parser.tosca_v_1_3.definitions.WorkflowPreconditionDefinition import WorkflowPredictionDefinition, \
+from parser.parser.tosca_v_1_3.definitions.WorkflowPreconditionDefinition import WorkflowPreconditionDefinition, \
     workflow_precondition_definition_parser
-from parser.parser.tosca_v_1_3.definitions.WorkflowStepDefinition import WorkflowStepDefinition, workflow_step_definition_parser
+from parser.parser.tosca_v_1_3.definitions.WorkflowStepDefinition import WorkflowStepDefinition, \
+    workflow_step_definition_parser
 
 class ImperativeWorkflowDefinition:
     def __init__(self, name: str):
@@ -43,7 +44,7 @@ class ImperativeWorkflowDefinition:
     def add_inputs(self, inputs: PropertyDefinition):
         self.inputs.append(inputs)
 
-    def add_preconditions(self, prediction: WorkflowPredictionDefinition):
+    def add_preconditions(self, prediction: WorkflowPreconditionDefinition):
         self.preconditions.append(prediction)
 
     def add_steps(self, step: WorkflowStepDefinition):

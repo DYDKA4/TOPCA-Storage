@@ -10,6 +10,3 @@ def test_other_runner():
     assignmentTestSuite.addTest(unittest.makeSuite(test_link_relationship_template.TestRelationshipTemplate))
     runner = unittest.TextTestRunner(verbosity=2)
     runner.run(assignmentTestSuite)
-
-
-test_other_runner()

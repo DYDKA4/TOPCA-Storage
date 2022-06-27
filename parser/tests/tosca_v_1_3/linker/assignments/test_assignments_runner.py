@@ -11,4 +11,3 @@ def test_assignments_runner():
     runner.run(assignmentTestSuite)
 
 
-test_assignments_runner()

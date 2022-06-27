@@ -17,7 +17,7 @@ class TestWorkflowPrecondition(unittest.TestCase):
         file.close()
         data = yaml.safe_load(data)
         workflow_prediction = workflow_precondition_definition_parser(data)
-        self.assertEqual(workflow_prediction.vertex_type_system, 'WorkflowPredictionDefinition')
+        self.assertEqual(workflow_prediction.vertex_type_system, 'WorkflowPreconditionDefinition')
         self.assertEqual(workflow_prediction.target, 'test_target_name')
         self.assertEqual(workflow_prediction.target_relationship, 'test_target_requirement_name')
         workflow_prediction_condition = workflow_prediction.conditions[0]

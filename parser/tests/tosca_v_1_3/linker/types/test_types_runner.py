@@ -19,4 +19,3 @@ def test_types_runner():
     runner.run(assignmentTestSuite)
 
 
-test_types_runner()

@@ -33,4 +33,3 @@ def test_definition_runner():
     runner.run(assignmentTestSuite)
 
 
-test_definition_runner()

@@ -6,11 +6,11 @@ from parser.tests.tosca_v_1_3.parser.others.test_other_runner import test_other_
 from parser.tests.tosca_v_1_3.parser.types.test_types_runner import test_types_runner
 
 path = os.getcwd()
-os.chdir(path + '/parser/types')
+os.chdir(path + '/types')
 test_types_runner()
-os.chdir(path + '/parser/assignments')
+os.chdir(path + '/assignments')
 test_assignment_runner()
-os.chdir(path + '/parser/definitions')
+os.chdir(path + '/definitions')
 test_definition_runner()
-# os.chdir(path + '/parser/others')
-# test_other_runner()
+os.chdir(path + '/others')
+test_other_runner()

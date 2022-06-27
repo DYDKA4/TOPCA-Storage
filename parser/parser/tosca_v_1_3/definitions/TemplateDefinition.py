@@ -17,7 +17,7 @@ from parser.parser.tosca_v_1_3.definitions.GroupDefinition import GroupDefinitio
 from parser.parser.tosca_v_1_3.definitions.ImperativeWorkflowDefinition import ImperativeWorkflowDefinition, \
     imperative_workflow_definition_parser
 from parser.parser.tosca_v_1_3.others.NodeTemplate import NodeTemplate, node_template_parser
-from parser.parser.tosca_v_1_3.definitions.ParameterDefinition import parameter_definition_parser, Parameter
+from parser.parser.tosca_v_1_3.definitions.ParameterDefinition import parameter_definition_parser, ParameterDefinition
 from parser.parser.tosca_v_1_3.definitions.PolicyDefinition import PolicyDefinition, policy_definition_parser
 from parser.parser.tosca_v_1_3.others.RelationshipTemplate import relationship_template_parser, RelationshipTemplate
 
@@ -39,10 +39,10 @@ class TemplateDefinition:
     def set_description(self, description: str):
         self.description = description
 
-    def add_input(self, inputs: Parameter):
+    def add_input(self, inputs: ParameterDefinition):
         self.inputs.append(inputs)
 
-    def add_output(self, outputs: Parameter):
+    def add_output(self, outputs: ParameterDefinition):
         self.outputs.append(outputs)
 
     def add_node_templates(self, node_template: NodeTemplate):

@@ -26,7 +26,7 @@ from parser.parser.tosca_v_1_3.definitions.DescriptionDefinition import descript
 from parser.parser.tosca_v_1_3.definitions.SchemaDefinition import SchemaDefinition, schema_definition_parser
 
 
-class Parameter:
+class ParameterDefinition:
     def __init__(self, name: str, value: str = None):
         self.name = name
         self.type = None
@@ -72,15 +72,15 @@ class Parameter:
         self.entry_schema = entry_schema
 
 
-def parameter_definition_parser(parameter_name: str, data: dict) -> Parameter:
+def parameter_definition_parser(parameter_name: str, data: dict) -> ParameterDefinition:
     if type(data) == str:
-        return Parameter(parameter_name, str(data))
+        return ParameterDefinition(parameter_name, str(data))
     if len(data.keys()) == 1:
         if data.get('value'):
-            return Parameter(parameter_name, data.get('value'))
+            return ParameterDefinition(parameter_name, data.get('value'))
         else:
             abort(400)
-    parameter = Parameter(parameter_name)
+    parameter = ParameterDefinition(parameter_name)
     if data.get('type'):
         parameter.set_type(data.get('type'))
     if data.get('description'):

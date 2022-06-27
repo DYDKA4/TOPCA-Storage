@@ -18,7 +18,7 @@ class TestWorkflowStep(unittest.TestCase):
         data = yaml.safe_load(data)
         for name, value in data.items():
             workflow_step = workflow_step_definition_parser(name, value)
-            self.assertEqual(workflow_step.vertex_type_system, 'WorkflowPredictionDefinition')
+            self.assertEqual(workflow_step.vertex_type_system, 'WorkflowStepDefinition')
             self.assertEqual(workflow_step.name, 'test_step_name')
             self.assertEqual(workflow_step.target, 'test_target_name')
             self.assertEqual(workflow_step.target_relationship, 'test_target_requirement_name')

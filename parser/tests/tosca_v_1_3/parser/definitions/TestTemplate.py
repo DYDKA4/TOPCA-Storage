@@ -17,7 +17,7 @@ class TestTemplate(unittest.TestCase):
         file.close()
         data = yaml.safe_load(data)
         template = template_definition_parser(data)
-        self.assertEqual(template.vertex_type_system, 'TemplateDefinition')
+        self.assertEqual(template.vertex_type_system, 'TopologyTemplateDefinition')
         self.assertEqual(template.description, 'test_template_description')
         self.assertNotEqual(template.inputs, [])
         for index, inputs in enumerate(template.inputs):

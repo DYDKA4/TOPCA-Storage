@@ -34,11 +34,10 @@ from parser.parser.tosca_v_1_3.definitions.ServiceTemplateDefinition import Serv
 
 
 def link_operation_implementation_definition(service_template: ServiceTemplateDefinition,
-                                                operation: OperationImplementationDefinition) -> None:
+                                             operation: OperationImplementationDefinition) -> None:
     list_of_artifact_definition = get_all_artifact_definition(service_template)
     if type(operation.primary) == str:
         link_by_type_name(list_of_artifact_definition, operation, 'primary')
-    if type(operation.dependencies[0]) == str:
-        link_with_list(list_of_artifact_definition, operation, 'dependencies')
+    link_with_list(list_of_artifact_definition, operation, 'dependencies')
     if str in {type(operation.primary)}:
         abort(400)

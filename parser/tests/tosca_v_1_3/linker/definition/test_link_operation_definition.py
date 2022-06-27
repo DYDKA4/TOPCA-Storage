@@ -43,6 +43,5 @@ class TestOperationDefinition(unittest.TestCase):
         self.assertEqual(implementation, self.operation.implementation)
 
 
-
 if __name__ == '__main__':
     unittest.main()

@@ -27,9 +27,9 @@ def link_workflow_step_definition(service_template: ServiceTemplateDefinition,
     array_to_find_steps = []
     topology_template: TemplateDefinition = service_template.topology_template
     if topology_template:
-        for workflow in topology_template.workflows:
-            workflow: ImperativeWorkflowDefinition
-            array_to_find_steps += workflow.steps
+        for workflow_imperative in topology_template.workflows:
+            workflow_imperative: ImperativeWorkflowDefinition
+            array_to_find_steps += workflow_imperative.steps
 
         array_to_find_target += topology_template.groups
         array_to_find_target_relationship += topology_template.relationship_templates

@@ -44,11 +44,8 @@ class TestNotificationImplementationDefinition(unittest.TestCase):
                                                          'artifact_definition_in_node']
         link_notification_implementation_definition(self.service_template, self.notification_implementation)
         self.assertEqual(self.primary, self.notification_implementation.primary.get('primary')[1])
-        self.assertListEqual([self.node_type.artifacts[0],self.primary],
+        self.assertListEqual([self.node_type.artifacts[0], self.primary],
                              self.notification_implementation.dependencies.get('dependencies')[1])
-
-if __name__ == '__main__':
-    unittest.main()
 
 
 if __name__ == '__main__':

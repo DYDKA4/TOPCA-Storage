@@ -27,8 +27,8 @@ from parser.parser.tosca_v_1_3.definitions.ServiceTemplateDefinition import Serv
 
 def link_operation_definition(service_template: ServiceTemplateDefinition,
                               operation: OperationDefinition) -> None:
-    list_of_artifact_definition = get_all_artifact_definition(service_template)
     if type(operation.implementation) == str:
+        list_of_artifact_definition = get_all_artifact_definition(service_template)
         link_by_type_name(list_of_artifact_definition, operation, 'implementation')
     if str in {type(operation.implementation)}:
         abort(400)

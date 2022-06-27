@@ -8,7 +8,7 @@
 #    inputs:
 #      <property_definitions>
 #    outputs: WRONG?
-#       <attribute mappings>
+#       <interface mappings>
 
 # Extended notation for use in TemplateDefinition definitions
 # <operation_name>:

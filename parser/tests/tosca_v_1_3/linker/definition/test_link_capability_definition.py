@@ -6,7 +6,7 @@ from parser.parser.tosca_v_1_3.definitions.ServiceTemplateDefinition import Serv
 from parser.parser.tosca_v_1_3.types.CapabilityType import CapabilityType
 
 
-class TestAttributeDefinition(unittest.TestCase):
+class TestCapabilityDefinition(unittest.TestCase):
     def setUp(self):
         self.service_template = ServiceTemplateDefinition('test_service')
         self.service_template.capability_types.append(CapabilityType('capability_type'))

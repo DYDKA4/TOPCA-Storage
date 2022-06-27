@@ -82,7 +82,7 @@ def add_edge(edge_name, edge_params, source_vertex, destination_vertex, data):
     logging.info(f'INSERT EDGE {edge_name}({edge_params})'
                  f' VALUE {source_vertex}->{destination_vertex}:({data})')
     # print(f'INSERT EDGE {edge_name}({edge_params})'
-    #       f' VALUE {source_vertex}->{destination_vertex}:({data})')
+    #       f' VALUE {source_vertex}->{destination_vertex}:({interface})')
     assert result.is_succeeded(), result.error_msg()
     session.release()
     return

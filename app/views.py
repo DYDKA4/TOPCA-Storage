@@ -60,7 +60,7 @@ def yaml_add(varargs=None):
                 if i == len(varargs) - 2:
                     if data.get(varargs[i + 1]):
                         print(type(data[varargs[i + 1]]), data[varargs[i + 1]])
-                        # data[varargs[i + 1]] = {'location': '/some_other_data_location_2'}
+                        # interface[varargs[i + 1]] = {'location': '/some_other_data_location_2'}
                         data[varargs[i + 1]] = new_value
                         print(type(data[varargs[i + 1]]), data[varargs[i + 1]])
                         break

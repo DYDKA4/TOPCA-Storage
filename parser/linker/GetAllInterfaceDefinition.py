@@ -30,3 +30,4 @@ def get_all_interface_definition(service_template: ServiceTemplateDefinition) ->
             for requirement in node_template.requirements:
                 requirement: RequirementAssignment
                 interface_list += requirement.interfaces
+    return interface_list

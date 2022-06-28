@@ -347,7 +347,7 @@
               evaluations: 1
               method: average
             action:
-              - test_value
+              - call_operation: test_interface_definition_name_1.operation_test_name_0
           test_trigger_name_1:
             description: test_trigger_description
             event: test_event_name
@@ -540,13 +540,13 @@
          test_step_name_0:
            target: test_node_template_name_0
            target_relationship: test_relationship_template_name_0
-#           activities:
-#             - activity_definition_0 todo Make It
+           activities:
+             - call_operation: test_interface_definition_name_1.operation_test_name_0
          test_step_name_1:
            target: test_node_template_name_1
            target_relationship: test_relationship_template_name_1
-#           activities:
-#             - activity_definition_0 todo Make It
+           activities:
+             - call_operation: test_interface_definition_name_1.operation_test_name_0
        implementation: test_artifact_name_0
        outputs:
          test_attribute_mappings

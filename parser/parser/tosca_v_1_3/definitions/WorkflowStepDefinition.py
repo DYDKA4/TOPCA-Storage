@@ -68,8 +68,7 @@ def workflow_step_definition_parser(name: str, data: dict) -> WorkflowStepDefini
                 step.add_filter(condition_clause_definition_parser(key, filters))
     if data.get('activities'):
         for activities in data.get('activities'):
-            for activity in activities:
-                step.add_activities(activity_definition_parser(activity))
+            step.add_activities(activity_definition_parser(activities))
     else:
         abort(400)
     if data.get('on_success'):

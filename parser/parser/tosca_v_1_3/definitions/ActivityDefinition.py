@@ -1,33 +1,37 @@
 from werkzeug.exceptions import abort
 
-from parser.parser.tosca_v_1_3.definitions.ParameterDefinition import parameter_definition_parser, ParameterDefinition
+from parser.parser.tosca_v_1_3.definitions.ParameterDefinition import parameter_definition_parser
 
 
 class CallOperationActivityDefinition:
-    def __int__(self):
+    def __init__(self):
         self.operation = None
         self.vertex_type_system = 'CallOperationActivityDefinition'
         self.inputs = []
+        self.vid = None
 
 
 class DelegateWorkflowActivityDefinition:
-    def __int__(self):
+    def __init__(self):
         self.workflow = None
         self.vertex_type_system = 'DelegateWorkflowActivityDefinition'
         self.inputs = []
+        self.vid = None
 
 
 class SetStateActivityDefinition:
-    def __int__(self):
-        self.set_state = None
+    def __init__(self, set_state: str):
+        self.set_state = set_state
         self.vertex_type_system = 'SetStateActivityDefinition'
+        self.vid = None
 
 
 class InlineWorkflowActivityDefinition:
-    def __int__(self):
-        self.workflow = None
+    def __init__(self, workflow: str):
+        self.workflow = workflow
         self.vertex_type_system = 'InlineWorkflowActivityDefinition'
         self.inputs = []
+        self.vid = None
 
 
 def activity_definition_parser(data: dict):
@@ -36,6 +40,7 @@ def activity_definition_parser(data: dict):
             call_operation = CallOperationActivityDefinition()
             if type(data[key_name]) == str:
                 call_operation.operation = data[key_name]
+                return call_operation
             else:
                 for call_operation_key, call_operation_value in data[key_name].items():
                     if call_operation_key == 'operation':
@@ -45,6 +50,7 @@ def activity_definition_parser(data: dict):
                             for parameter_name, parameter_value in input_def.items():
                                 call_operation.inputs.append(
                                     parameter_definition_parser(parameter_name, parameter_value))
+            return call_operation
         if key_name == 'delegate':
             delegate_workflow = DelegateWorkflowActivityDefinition()
             if type(data[key_name]) == str:
@@ -58,10 +64,12 @@ def activity_definition_parser(data: dict):
                             for parameter_name, parameter_value in input_def.items():
                                 delegate_workflow.inputs.append(
                                     parameter_definition_parser(parameter_name, parameter_value))
+            return delegate_workflow
         if key_name == 'delegate':
             set_state = SetStateActivityDefinition()
             if type(data[key_name]) == str:
                 set_state.set_state = data[key_name]
+                return set_state
             else:
                 abort(400)
         if key_name == 'inline':
@@ -77,3 +85,4 @@ def activity_definition_parser(data: dict):
                             for parameter_name, parameter_value in input_def.items():
                                 inline_workflow.inputs.append(
                                     parameter_definition_parser(parameter_name, parameter_value))
+            return inline_workflow

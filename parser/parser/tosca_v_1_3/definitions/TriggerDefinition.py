@@ -75,7 +75,7 @@ class TriggerDefinition:
         self.method = method
 
     def add_action(self, action: str):
-        self.action = action
+        self.action.append(action)
 
 
 def trigger_definition_parser(name: str, data: dict) -> TriggerDefinition:

@@ -1,3 +1,5 @@
+import uuid
+
 import yaml
 
 from werkzeug.exceptions import abort
@@ -6,7 +8,7 @@ from werkzeug.exceptions import abort
 from random import choice
 from string import ascii_uppercase
 
-from nebula_communication.nebula_functions import add_in_vertex, vid_getter, add_edge
+from nebula_communication.nebula_functions import add_in_vertex, vid_getter, add_edge, is_unique_vid
 from parser.linker.tosca_v_1_3.main_linker import main_linker
 from parser.parser.tosca_v_1_3.definitions.ServiceTemplateDefinition import service_template_definition_parser
 
@@ -31,10 +33,11 @@ def deploy(template) -> None:
             elif attribute_name not in {'vid', 'vertex_type_system'} and attribute_value is not None:
                 complex_vertex[attribute_name] = attribute_value
         if template.vid is None:
-            template.vid = vid_getter(template.vertex_type_system)
+            template.vid = uuid.uuid4()
+            is_unique_vid(template.vid)
+            template.vid = '"' + str(template.vid) + '"'
+
         # print(template.__dict__)
-
-
         add_in_vertex(template.vertex_type_system, name_of_key_value, key_value, template.vid)
     # for edge in edges:
     #     add_edge(edge[0], edge[1], edge[2].vid, edge[3].vid, edge[4]) # todo Thing about it

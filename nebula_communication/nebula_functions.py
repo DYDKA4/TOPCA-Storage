@@ -77,3 +77,25 @@ def find_destination(vid, edge_name):
     logging.info(f'GO FROM {vid} over {edge_name} YIELD dst(edge) as vid')
     assert result.is_succeeded(), result.error_msg()
     return result.column_values('vid')
+
+
+def get_all_tags():
+    session = start_session()
+    result = session.execute('SHOW TAGS')
+    assert result.is_succeeded(), result.error_msg()
+    return result.column_values('Name')
+
+
+def is_unique_vid(vid):
+    # return true if unique else false
+    tags = get_all_tags()
+
+    session = start_session()
+    for tag_name in tags:
+        tag_name = tag_name.as_string()
+        result = session.execute(f'MATCH (v:{tag_name}) WHERE id(v) == "{vid}" RETURN v')
+        logging.info(f'MATCH (v:{tag_name}) WHERE id(v) == "{vid}" RETURN v')
+        assert result.is_succeeded(), result.error_msg()
+        if result.column_values('v'):
+            return False
+    return True

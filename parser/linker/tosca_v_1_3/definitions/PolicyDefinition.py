@@ -8,6 +8,8 @@
 #   targets: [<list_of_policy_targets>]
 #   triggers:
 #     <trigger_definitions>
+import copy
+
 from werkzeug.exceptions import abort
 
 from parser.linker.LinkByName import link_by_type_name
@@ -20,7 +22,7 @@ from parser.parser.tosca_v_1_3.definitions.TemplateDefinition import TemplateDef
 def link_policy_definition(service_template: ServiceTemplateDefinition, policy: PolicyDefinition) -> None:
     if type(policy.type) == str:
         link_by_type_name(service_template.policy_types, policy, 'type')
-    array_to_find = service_template.group_types
+    array_to_find = copy.deepcopy(service_template.group_types)
     topology_template: TemplateDefinition = service_template.topology_template
     if topology_template:
         array_to_find += topology_template.groups

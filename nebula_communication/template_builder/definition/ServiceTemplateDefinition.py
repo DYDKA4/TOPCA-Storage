@@ -2,6 +2,7 @@ import yaml
 
 from nebula_communication.nebula_functions import fetch_vertex, find_destination
 from nebula_communication.template_builder.definition.MetadataDefinition import construct_metadata_definition
+from nebula_communication.template_builder.definition.RepositoryDefinition import construct_repository_definition
 from parser.parser.tosca_v_1_3.definitions.ServiceTemplateDefinition import ServiceTemplateDefinition
 
 
@@ -23,6 +24,7 @@ def construct_service_template_definition(name: str):
                 template['metadata'] = construct_metadata_definition(destination)
                 print(edge, destination)
             elif edge == 'repositories':
+                template['repositories'] = construct_repository_definition(destination)
                 print(edge, destination)
             elif edge == 'imports':
                 print(edge, destination)

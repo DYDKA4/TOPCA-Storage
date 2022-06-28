@@ -17,5 +17,12 @@ def construct_constraint_schema(list_of_vid) -> list:
         if edges:
             print(edges, vid)
             abort(500)
-        result.append({vertex_value['operator'].as_string(): vertex_value['values'].as_string()})
+        value = vertex_value['values'].as_string()
+        value: str
+        if value.isnumeric():
+            value: int = int(value)
+        elif value.replace('.', '', 1).isdigit():
+            value: float = float(value)
+
+        result.append({vertex_value['operator'].as_string(): value})
     return result

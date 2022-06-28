@@ -99,3 +99,4 @@ def is_unique_vid(vid):
         if result.column_values('v'):
             return False
     return True
+

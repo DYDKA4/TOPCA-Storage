@@ -11,6 +11,10 @@
  imports:
       - URI_0
       - URI_1
+      - file: <file_URI>
+        repository: <repository_name>
+        namespace_uri: <definition_namespace_uri>  # deprecated
+        namespace_prefix: <definition_namespace_prefix>
  artifact_types:
       test_parent_artifact_type_name:
         description: test_description

@@ -16,13 +16,13 @@ class ImportDefinition:
     def __init__(self):
         self.vid = None
         self.vertex_type_system = 'ImportDefinition'
-        self.uri = None
+        self.file = None
         self.repository = None
         self.namespace_uri = None
         self.namespace_prefix = None
 
-    def set_uri(self, uri: str):
-        self.uri = uri
+    def set_file(self, file: str):
+        self.file = file
 
     def set_repository(self, repository: str):
         self.repository = repository
@@ -37,10 +37,10 @@ class ImportDefinition:
 def import_definition_parser(data) -> ImportDefinition:
     import_definition = ImportDefinition()
     if type(data) == str:
-        import_definition.set_uri(data)
+        import_definition.set_file(data)
         return import_definition
     if data.get('file'):
-        import_definition.set_uri(data.get('file'))
+        import_definition.set_file(data.get('file'))
     else:
         abort(400)
     if data.get('repository'):

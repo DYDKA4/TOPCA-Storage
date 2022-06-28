@@ -1,6 +1,7 @@
 import yaml
 
 from nebula_communication.nebula_functions import fetch_vertex, find_destination
+from nebula_communication.template_builder.definition.ImportDefinition import construct_import_definition
 from nebula_communication.template_builder.definition.MetadataDefinition import construct_metadata_definition
 from nebula_communication.template_builder.definition.RepositoryDefinition import construct_repository_definition
 from parser.parser.tosca_v_1_3.definitions.ServiceTemplateDefinition import ServiceTemplateDefinition
@@ -28,6 +29,7 @@ def construct_service_template_definition(name: str):
                 print(edge, destination)
             elif edge == 'imports':
                 print(edge, destination)
+                template['imports'] = construct_import_definition(destination)
             elif edge == 'artifact_types':
                 print(edge, destination)
             elif edge == 'data_types':
@@ -51,4 +53,4 @@ def construct_service_template_definition(name: str):
         documents = yaml.dump(template, file)
 
 
-construct_service_template_definition('ZVMOLWFZMIGW')
+construct_service_template_definition('HVMIWOJMIUJR')

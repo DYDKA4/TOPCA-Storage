@@ -15,34 +15,27 @@
 #           - <cap_1_property_filter_def_1>
 #           - ...
 #           - <cap_m_property_filter_def_n>
-from parser.parser.tosca_v_1_3.definitions.CapabilityFilterDefinition import CapabilityFilterDefinition, \
-    capability_filter_definition_parser
 from parser.parser.tosca_v_1_3.definitions.PropertyFilterDefinition import PropertyFilterDefinition, \
     property_filter_definition_parser
 
 
-class NodeFilterDefinition:
-    def __init__(self):
+class CapabilityFilterDefinition:
+    def __init__(self, name: str):
         self.vid = None
-        self.vertex_type_system = 'NodeFilterDefinition'
+        self.name = name
+        self.vertex_type_system = 'CapabilityFilterDefinition'
         self.properties = []
-        self.capabilities = []
 
     def add_properties(self, properties: PropertyFilterDefinition):
         self.properties.append(properties)
 
-    def add_capabilities(self, capability: CapabilityFilterDefinition):
-        self.capabilities.append(capability)
 
-
-def node_filter_definition_parser(data: dict) -> NodeFilterDefinition:
-    node = NodeFilterDefinition()
+def capability_filter_definition_parser(name: str, data: dict) -> CapabilityFilterDefinition:
+    capability = CapabilityFilterDefinition(name)
     if data.get('properties'):
         for property_filter in data.get('properties'):
             for property_filter_name, property_filter_value in property_filter.items():
-                node.add_properties(property_filter_definition_parser(property_filter_name, property_filter_value))
-    if data.get('capabilities'):
-        for capability in data.get('capabilities'):
-            for capability_name, properties in capability.items():
-                node.add_capabilities(capability_filter_definition_parser(capability_name, properties))
-    return node
+                capability.add_properties(
+                    property_filter_definition_parser(property_filter_name, property_filter_value))
+
+    return capability

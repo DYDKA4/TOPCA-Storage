@@ -13,14 +13,13 @@ class PropertyFilterDefinition:
         self.vid = None
         self.name = name
         self.vertex_type_system = 'PropertyFilterDefinition'
-        self.property_constraint = None
-        self.property_constraint_list = []
+        self.property_constraint = []
 
     def set_property_constraint(self, property_constraint: ConstraintClause):
-        self.property_constraint = property_constraint
+        self.property_constraint = [property_constraint]
 
     def add_property_constraint_list(self, property_constraint_list: ConstraintClause):
-        self.property_constraint_list.append(property_constraint_list)
+        self.property_constraint.append(property_constraint_list)
 
 
 def property_filter_definition_parser(name: str, data: dict) -> PropertyFilterDefinition:

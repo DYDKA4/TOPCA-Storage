@@ -440,14 +440,14 @@
        artifacts:
          test_artifact_name_0: test_artifact_file_URI_0
          test_artifact_name_1: test_artifact_file_URI_1
-#       node_filter:
-#         properties:
-#           - test_property_name_0:
-#               - equal_0: value_0
-#               - equal_1: value_1
-#           - test_property_name_1:
-#               - equal_0: value_0
-#               - equal_1: value_1
+       node_filter:
+         properties:
+           - test_property_name_0:
+               - equal_0: value_0
+               - equal_1: value_1
+           - test_property_name_1:
+               - equal_0: value_0
+               - equal_1: value_1
    relationship_templates:
      test_relationship_template_name_0:
        type: test_relationship_type_name_0

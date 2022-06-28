@@ -1,4 +1,5 @@
 from parser.linker.tosca_v_1_3.assignments.RequirementAssignment import link_requirement_assignments
+from parser.linker.tosca_v_1_3.definitions.ActivityDefinition import link_activity_definition
 from parser.linker.tosca_v_1_3.definitions.ArtifactDefinition import link_artifact_definition
 from parser.linker.tosca_v_1_3.definitions.AttributeDefinition import link_attribute_definition
 from parser.linker.tosca_v_1_3.definitions.CapabilityDefinition import link_capability_definition
@@ -33,7 +34,6 @@ from parser.parser.tosca_v_1_3.definitions.CapabilityDefinition import Capabilit
 from parser.parser.tosca_v_1_3.definitions.GroupDefinition import GroupDefinition
 from parser.parser.tosca_v_1_3.definitions.ImperativeWorkflowDefinition import ImperativeWorkflowDefinition
 from parser.parser.tosca_v_1_3.definitions.InterfaceDefinition import InterfaceDefinition
-from parser.parser.tosca_v_1_3.definitions.NodeFilterDefinition import NodeFilterDefinition
 from parser.parser.tosca_v_1_3.definitions.NotificationDefinition import NotificationDefinition
 from parser.parser.tosca_v_1_3.definitions.OperationDefinition import OperationDefinition
 from parser.parser.tosca_v_1_3.definitions.ParameterDefinition import ParameterDefinition
@@ -43,6 +43,7 @@ from parser.parser.tosca_v_1_3.definitions.RequirementDefinition import Requirem
 from parser.parser.tosca_v_1_3.definitions.ServiceTemplateDefinition import ServiceTemplateDefinition
 from parser.parser.tosca_v_1_3.definitions.TemplateDefinition import TemplateDefinition
 from parser.parser.tosca_v_1_3.definitions.TriggerDefinition import TriggerDefinition
+from parser.parser.tosca_v_1_3.definitions.WorkflowStepDefinition import WorkflowStepDefinition
 from parser.parser.tosca_v_1_3.others.NodeTemplate import NodeTemplate
 from parser.parser.tosca_v_1_3.others.RelationshipTemplate import RelationshipTemplate
 from parser.parser.tosca_v_1_3.types.ArtifactType import ArtifactType
@@ -167,6 +168,8 @@ def main_linker(service_template: ServiceTemplateDefinition):
             # link_trigger_definition
             if trigger_definition.event_filter:
                 link_event_filter_definition(service_template, trigger_definition.event_filter)
+            for action in trigger_definition.action:
+                link_activity_definition(service_template, action)
         link_policy_type(service_template, policy_type)
     if service_template.topology_template:
         topology_template: TemplateDefinition = service_template.topology_template
@@ -211,12 +214,18 @@ def main_linker(service_template: ServiceTemplateDefinition):
                 # link_trigger_definition
                 if trigger_definition.event_filter:
                     link_event_filter_definition(service_template, trigger_definition.event_filter)
+                for action in trigger_definition.action:
+                    link_activity_definition(service_template, action)
         for imperative_workflow_definition in topology_template.workflows:
             imperative_workflow_definition: ImperativeWorkflowDefinition
             sub_property_definition_parser(service_template, imperative_workflow_definition.inputs)
             for workflow_precondition_definition in imperative_workflow_definition.preconditions:
                 link_workflow_precondition_definition(service_template, workflow_precondition_definition)
             for workflow_step_definition in imperative_workflow_definition.steps:
+                workflow_step_definition: WorkflowStepDefinition
                 link_workflow_step_definition(service_template, workflow_step_definition)
+                for activity in workflow_step_definition.activities:
+                    activity: object
+                    link_activity_definition(service_template, activity)
             if imperative_workflow_definition.implementation:
                 link_operation_implementation_definition(service_template, imperative_workflow_definition.implementation)

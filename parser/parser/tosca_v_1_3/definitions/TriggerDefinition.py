@@ -26,6 +26,7 @@
 #     - <list_of_activity_definition> #todo Remake if need it
 from werkzeug.exceptions import abort
 
+from parser.parser.tosca_v_1_3.definitions.ActivityDefinition import activity_definition_parser
 from parser.parser.tosca_v_1_3.definitions.ConditionClauseDefinition import ConditionClauseDefinition, \
     condition_clause_definition_parser
 from parser.parser.tosca_v_1_3.definitions.DescriptionDefinition import description_parser
@@ -46,7 +47,7 @@ class TriggerDefinition:
         self.period = None
         self.evaluations = None
         self.method = None
-        self.action = None
+        self.action = []
 
     def set_description(self, description: str):
         self.description = description
@@ -73,7 +74,7 @@ class TriggerDefinition:
     def set_method(self, method: str):
         self.method = method
 
-    def set_action(self, action: str):
+    def add_action(self, action: str):
         self.action = action
 
 
@@ -108,5 +109,6 @@ def trigger_definition_parser(name: str, data: dict) -> TriggerDefinition:
         else:
             trigger.set_constraint(condition_clause_definition_parser('condition', {'condition': condition}))
     if data.get('action'):
-        trigger.set_action(str(data.get('action')))
+        for action in data.get('action'):
+            trigger.add_action(activity_definition_parser(action))
     return trigger

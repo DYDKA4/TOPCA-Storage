@@ -12,6 +12,7 @@
 #       - <target_step_name>
 from werkzeug.exceptions import abort
 
+from parser.parser.tosca_v_1_3.definitions.ActivityDefinition import activity_definition_parser
 from parser.parser.tosca_v_1_3.definitions.ConditionClauseDefinition import condition_clause_definition_parser, \
     ConditionClauseDefinition
 
@@ -41,7 +42,7 @@ class WorkflowStepDefinition:
     def add_filter(self, filters: ConditionClauseDefinition):
         self.filter.append(filters)
 
-    def add_activities(self, activities: str):
+    def add_activities(self, activities: object):
         self.activities.append(activities)
 
     def add_on_success(self, on_success: str):
@@ -67,9 +68,10 @@ def workflow_step_definition_parser(name: str, data: dict) -> WorkflowStepDefini
                 step.add_filter(condition_clause_definition_parser(key, filters))
     if data.get('activities'):
         for activities in data.get('activities'):
-            step.add_activities(activities)
-    # else: todo Uncommit when activities is done
-    #     abort(400)
+            for activity in activities:
+                step.add_activities(activity_definition_parser(activity))
+    else:
+        abort(400)
     if data.get('on_success'):
         for on_success in data.get('on_success'):
             step.add_on_success(on_success)

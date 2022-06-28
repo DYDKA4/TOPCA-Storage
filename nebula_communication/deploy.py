@@ -1,95 +1,14 @@
 import yaml
-import logging
 
 from werkzeug.exceptions import abort
 
-import config
-from nebula2.gclient.net import ConnectionPool
-from nebula2.Config import Config
 
 from random import choice
 from string import ascii_uppercase
 
-from nebula_communication import connection_pool
-from parser.linker.LinkByName import link_by_type_name, link_by_relationship_type_name, link_by_capability_type_name, \
-    link_by_node_type_name
-from parser.linker.LinkDerivedFrom import link_derived_from
-from parser.linker.LinkerValidTypes import link_valid_target_types, link_valid_source_types
+from nebula_communication.nebula_functions import add_in_vertex, vid_getter, add_edge
 from parser.linker.tosca_v_1_3.main_linker import main_linker
-from parser.parser.tosca_v_1_3.definitions.ServiceTemplateDefinition import ServiceTemplateDefinition, \
-    service_template_definition_parser
-
-# realised_vertex_type = {'ServiceTemplateDefinition', 'Metadata', 'RepositoryDefinition', 'ImportDefinition',
-#                         'ArtifactType', 'PropertyDefinition', 'ConstraintClause', 'SchemaDefinition', 'DataType',
-#                         'CapabilityType', 'AttributeDefinition', 'ArtifactDefinition', 'PropertyAssignments',
-#                         'OperationImplementationDefinition', 'OperationDefinition', 'InterfaceType', 'RelationshipType',
-#                         'InterfaceDefinition', 'NotificationDefinition', 'NotificationImplementationDefinition',
-#                         'NodeType', 'Occurrences', 'CapabilityDefinition', 'RequirementDefinition'}
-# realised_edge_type = {'metadata', 'repositories', 'imports', 'artifact_types', 'derived_from', 'properties',
-#                       'constraints', 'key_schema', 'entry_schema', 'data_types', 'capability_types', 'attributes'}
-# Config = Config()
-# Config.max_connection_pool_size = 10
-# connection_pool = ConnectionPool()
-# ok = connection_pool.init([('10.100.151.128', 9669)], Config)
-
-
-def start_session():
-    session = connection_pool.get_session('Administator', 'password')
-    result = session.execute(f'USE {config.WorkSpace}')
-    assert result.is_succeeded(), result.error_msg()
-    return session
-
-
-def number_of_entities(session, vertex_name):
-    # return of new index of new entities
-    result = session.execute(f'LOOKUP ON {vertex_name}')
-    # print(f'LOOKUP ON {vertex_name}')
-    assert result.is_succeeded(), result.error_msg()
-    result = result.column_values('VertexID')
-    if result:
-        amount = 0
-        for index in result:
-            index = index.as_string()
-            if int(index[len(vertex_name):]) > amount:
-                amount = int(index[len(vertex_name):])
-        return amount + 1
-    else:
-        return 1
-
-
-def vid_getter(vertex_type):
-    vertex_type = vertex_type
-    session = start_session()
-    vid = '"' + vertex_type + str(number_of_entities(session, vertex_type)) + '"'
-    session.release()
-    return vid
-
-
-def add_in_vertex(vertex_name, name_of_key_value, key_value, vid):
-    session = start_session()
-    result = session.execute(f'INSERT VERTEX {vertex_name} ({name_of_key_value}) VALUES {vid}'
-                             f':({key_value});')
-
-    logging.info(f'INSERT VERTEX {vertex_name} ({name_of_key_value}) VALUES {vid}'
-                 f':({key_value});')
-    # print(f'INSERT VERTEX {vertex_name} ({name_of_key_value}) VALUES {vid}'
-    #       f':({key_value});')
-    assert result.is_succeeded(), result.error_msg()
-    session.release()
-    return
-
-
-def add_edge(edge_name, edge_params, source_vertex, destination_vertex, data):
-    session = start_session()
-    result = session.execute(f'INSERT EDGE {edge_name}({edge_params})'
-                             f' VALUE {source_vertex}->{destination_vertex}:({data})')
-    logging.info(f'INSERT EDGE {edge_name}({edge_params})'
-                 f' VALUE {source_vertex}->{destination_vertex}:({data})')
-    # print(f'INSERT EDGE {edge_name}({edge_params})'
-    #       f' VALUE {source_vertex}->{destination_vertex}:({interface})')
-    assert result.is_succeeded(), result.error_msg()
-    session.release()
-    return
+from parser.parser.tosca_v_1_3.definitions.ServiceTemplateDefinition import service_template_definition_parser
 
 
 def deploy(template) -> None:

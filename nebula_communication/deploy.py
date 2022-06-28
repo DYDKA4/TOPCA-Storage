@@ -10,6 +10,7 @@ from nebula2.Config import Config
 from random import choice
 from string import ascii_uppercase
 
+from nebula_communication import connection_pool
 from parser.linker.LinkByName import link_by_type_name, link_by_relationship_type_name, link_by_capability_type_name, \
     link_by_node_type_name
 from parser.linker.LinkDerivedFrom import link_derived_from
@@ -26,10 +27,10 @@ from parser.parser.tosca_v_1_3.definitions.ServiceTemplateDefinition import Serv
 #                         'NodeType', 'Occurrences', 'CapabilityDefinition', 'RequirementDefinition'}
 # realised_edge_type = {'metadata', 'repositories', 'imports', 'artifact_types', 'derived_from', 'properties',
 #                       'constraints', 'key_schema', 'entry_schema', 'data_types', 'capability_types', 'attributes'}
-Config = Config()
-Config.max_connection_pool_size = 10
-connection_pool = ConnectionPool()
-ok = connection_pool.init([('10.100.151.128', 9669)], Config)
+# Config = Config()
+# Config.max_connection_pool_size = 10
+# connection_pool = ConnectionPool()
+# ok = connection_pool.init([('10.100.151.128', 9669)], Config)
 
 
 def start_session():
@@ -113,8 +114,7 @@ def deploy(template) -> None:
         if template.vid is None:
             template.vid = vid_getter(template.vertex_type_system)
         # print(template.__dict__)
-        if template.vertex_type_system == 'ConditionClauseDefinition':
-            add_in_vertex(template.vertex_type_system, name_of_key_value, key_value, template.vid)
+
 
         add_in_vertex(template.vertex_type_system, name_of_key_value, key_value, template.vid)
     # for edge in edges:

@@ -7,10 +7,11 @@ import config
 import logging
 from app import data_classes
 
-Config = Config()
-Config.max_connection_pool_size = 10
-connection_pool = ConnectionPool()
-ok = connection_pool.init([('10.100.151.128', 9669)], Config)
+# Config = Config()
+# Config.max_connection_pool_size = 10
+# connection_pool = ConnectionPool()
+# ok = connection_pool.init([('10.100.151.128', 9669)], Config)
+from nebula_communication import connection_pool
 
 
 def hello_world():

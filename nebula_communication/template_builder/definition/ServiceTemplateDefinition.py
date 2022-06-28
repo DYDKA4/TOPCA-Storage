@@ -6,6 +6,7 @@ from nebula_communication.template_builder.definition.ImportDefinition import co
 from nebula_communication.template_builder.definition.MetadataDefinition import construct_metadata_definition
 from nebula_communication.template_builder.definition.RepositoryDefinition import construct_repository_definition
 from nebula_communication.template_builder.type.ArtifactType import construct_artifact_type
+from nebula_communication.template_builder.type.DataTypes import construct_data_type
 from parser.parser.tosca_v_1_3.definitions.ServiceTemplateDefinition import ServiceTemplateDefinition
 
 
@@ -38,7 +39,7 @@ def construct_service_template_definition(name: str):
             elif edge == 'artifact_types':
                 template['artifact_types'] = construct_artifact_type(destination)
             elif edge == 'data_types':
-                print(edge, destination)
+                template['data_types'] = construct_data_type(destination)
             elif edge == 'capability_types':
                 print(edge, destination)
             elif edge == 'interface_types':

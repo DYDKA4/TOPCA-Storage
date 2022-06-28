@@ -340,9 +340,9 @@
               node: test_parent_node_type_name
               requirement: test_requirement_definition_name_0
               capability: test_capability_definition_name
-#            condition:
-#              constraint: todo do it later
-#                - my_attribute: [ { equal: my_value } ]
+            condition:
+              constraint:
+                - my_attribute: [ { equal: my_value } ]
               period: 60 sec
               evaluations: 1
               method: average

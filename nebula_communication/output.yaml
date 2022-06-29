@@ -227,11 +227,19 @@ interface_types:
         description: test_operation_description
         implementation:
           dependencies:
-          - test_artifact_name_2: 2_test_artifact_file_URI
-          - test_artifact_name_1: 1_test_artifact_file_URI
-          - test_artifact_name_0: 0_test_artifact_file_URI
+          - test_artifact_name_2:
+              artifact_file_URI: 2_test_artifact_file_URI
+              properties: {}
+          - test_artifact_name_1:
+              artifact_file_URI: 1_test_artifact_file_URI
+              properties: {}
+          - test_artifact_name_0:
+              artifact_file_URI: 0_test_artifact_file_URI
+              properties: {}
           primary:
-            test_artifact_name: test_artifact_file_URI
+            test_artifact_name:
+              artifact_file_URI: test_artifact_file_URI
+              properties: {}
         inputs:
           test_property_name_0:
             constraints: []
@@ -287,8 +295,12 @@ node_types:
     requirements: []
   test_parent_node_type_name:
     artifacts:
-      test_artifact_name_0: test_artifact_file_URI_0
-      test_artifact_name_1: test_artifact_file_URI_1
+      test_artifact_name_0:
+        artifact_file_URI: test_artifact_file_URI_0
+        properties: {}
+      test_artifact_name_1:
+        artifact_file_URI: test_artifact_file_URI_1
+        properties: {}
     attributes:
       attribute_name_0:
         entry_schema: {}
@@ -369,12 +381,8 @@ node_types:
     requirements:
     - test_requirement_definition_name_0:
         capability: test_capability_type_name_0
-        relationship:
-          interfaces: {}
     - test_requirement_definition_name_1:
         capability: test_capability_type_name_1
-        relationship:
-          interfaces: {}
     version: test_version_number
 policy_types:
   test_parent_policy_type_name:
@@ -610,8 +618,12 @@ topology_template:
   node_templates:
     test_node_template_name:
       artifacts:
-        test_artifact_name_0: test_artifact_file_URI_0
-        test_artifact_name_1: test_artifact_file_URI_1
+        test_artifact_name_0:
+          artifact_file_URI: test_artifact_file_URI_0
+          properties: {}
+        test_artifact_name_1:
+          artifact_file_URI: test_artifact_file_URI_1
+          properties: {}
       attributes:
         test_attribute_name_0:
           values: attribute_value_test_0
@@ -810,7 +822,9 @@ topology_template:
       implementation:
         dependencies: []
         primary:
-          test_artifact_name_0: test_artifact_file_URI_0
+          test_artifact_name_0:
+            artifact_file_URI: test_artifact_file_URI_0
+            properties: {}
       inputs:
         test_property_name_0:
           constraints: []

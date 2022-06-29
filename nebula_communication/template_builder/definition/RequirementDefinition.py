@@ -39,14 +39,15 @@ def construct_requirement_definition(list_of_vid) -> list:
                     tmp_result['node'] = relationship
                     if tmp_result.get('relationship'):
                         tmp_result['relationship'] += {'type': relationship}
-                    else:
+                    elif relationship:
                         tmp_result['relationship'] = {'type': relationship}
             elif edge == 'interfaces':
                 interfaces = construct_interface_definition(destination)
-                if tmp_result.get('relationship'):
-                    tmp_result['relationship'] += {'interfaces': interfaces}
-                else:
-                    tmp_result['relationship'] = {'interfaces': interfaces}
+                if interfaces != {}:
+                    if tmp_result.get('relationship'):
+                        tmp_result['relationship'] += {'interfaces': interfaces}
+                    else:
+                        tmp_result['relationship'] = {'interfaces': interfaces}
             elif edge == 'occurrences':
                 if destination:
                     relationship = fetch_vertex(destination[0], 'Occurrences')

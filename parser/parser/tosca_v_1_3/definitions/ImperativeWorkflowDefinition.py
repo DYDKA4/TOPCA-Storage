@@ -22,6 +22,7 @@ from parser.parser.tosca_v_1_3.definitions.WorkflowPreconditionDefinition import
 from parser.parser.tosca_v_1_3.definitions.WorkflowStepDefinition import WorkflowStepDefinition, \
     workflow_step_definition_parser
 
+
 class ImperativeWorkflowDefinition:
     def __init__(self, name: str):
         self.vid = None

@@ -279,36 +279,6 @@
           test_property_name_1:
             type: test_data_type_name_1
             description: test_property_description_1
-        requirements:
-          - test_requirement_definition_name_0: test_capability_type_name_0
-          - test_requirement_definition_name_1: test_capability_type_name_1
-        capabilities:
-          test_capability_definition_name:
-            type: test_capability_type_name_0
-            description: test_capability_description
-            properties:
-              test_property_name_0:
-                type: test_data_type_name_0
-                description: test_property_description_0
-              test_property_name_1:
-                type: test_data_type_name_1
-                description: test_property_description_1
-            attributes:
-              attribute_name_0:
-                type: test_data_type_name_0
-              attribute_name_1:
-                type: test_data_type_name_1
-            valid_source_types: [ test_node_type_name_0, test_node_type_name_1 ]
-            occurrences: [ 0, 10 ]
-            test_capability_definition_name_1: test_capability_type_name_1
-        interfaces:
-          test_interface_definition_name_0:
-            type: test_interface_type_name_0
-          test_interface_definition_name_1:
-            type: test_interface_type_name_1
-        artifacts:
-          test_artifact_name_0: test_artifact_file_URI_0
-          test_artifact_name_1: test_artifact_file_URI_1
  policy_types:
       test_parent_policy_type_name:
         derived_from: test_parent_policy_type_name

@@ -8,6 +8,7 @@ from nebula_communication.template_builder.definition.RepositoryDefinition impor
 from nebula_communication.template_builder.type.ArtifactType import construct_artifact_type
 from nebula_communication.template_builder.type.CapabilityType import construct_capability_type
 from nebula_communication.template_builder.type.DataTypes import construct_data_type
+from nebula_communication.template_builder.type.GroupType import construct_group_type
 from nebula_communication.template_builder.type.InterfaceType import construct_interface_type
 from nebula_communication.template_builder.type.NodeTypes import construct_node_type
 from nebula_communication.template_builder.type.RelationshipType import construct_relationship_type
@@ -53,7 +54,7 @@ def construct_service_template_definition(name: str):
             elif edge == 'node_types':
                 template['node_types'] = construct_node_type(destination)
             elif edge == 'group_types':
-                print(edge, destination)
+                template['group_types'] = construct_group_type(destination)
             elif edge == 'policy_types':
                 print(edge, destination)
             elif edge == 'topology_template':

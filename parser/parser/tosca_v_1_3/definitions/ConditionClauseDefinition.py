@@ -24,9 +24,6 @@ class ConditionClauseDefinition:
         self.vertex_type_system = 'ConditionClauseDefinition'
 
 
-
-
-
 def condition_clause_definition_parser(type_condition: str, data: dict) -> ConditionClauseDefinition:
     condition = ConditionClauseDefinition(type_condition)
     if type(data) == dict:

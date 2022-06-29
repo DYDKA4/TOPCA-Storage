@@ -1,0 +1,876 @@
+artifact_types:
+  test_artifact_type_name_0:
+    derived_from: test_parent_artifact_type_name
+    metadata: {}
+    properties: {}
+  test_artifact_type_name_1:
+    derived_from: test_parent_artifact_type_name
+    metadata: {}
+    properties: {}
+  test_parent_artifact_type_name:
+    derived_from: test_parent_artifact_type_name
+    description: test_description
+    metadata: {}
+    properties:
+      test_property_name_0:
+        constraints:
+        - equal: 10
+        - equal: 2
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        type: test_data_type_name_0
+      test_property_name_1:
+        constraints: []
+        entry_schema:
+          constraints:
+          - entry_equal_4: entry_value_4
+          - entry_equal_5: entry_value_5
+          description: entry_schema_description_test
+          entry_schema: {}
+          key_schema: {}
+          type: test_data_type_name_0
+        key_schema:
+          constraints:
+          - key_equal_0: key_value_0
+          - key_equal_1: key_value_1
+          description: key_schema_description_test
+          entry_schema: {}
+          key_schema:
+            constraints:
+            - key_equal_3: key_value_3
+            - key_equal_2: key_value_2
+            description: key_schema_description_test
+            entry_schema: {}
+            key_schema: {}
+            type: test_data_type_name_0
+          type: test_data_type_name_1
+        metadata: {}
+        type: test_data_type_name_1
+capability_types:
+  test_capability_type_name_0:
+    attributes: {}
+    derived_from: test_parent_capability_type_name
+    properties: {}
+    valid_source_types: []
+  test_capability_type_name_1:
+    attributes: {}
+    derived_from: test_parent_capability_type_name
+    properties: {}
+    valid_source_types: []
+  test_parent_capability_type_name:
+    attributes:
+      test_attribute_name:
+        default: test_default_value
+        description: test_attribute_description
+        entry_schema:
+          constraints:
+          - entry_equal_1: entry_value_1
+          - entry_equal_0: entry_value_0
+          description: entry_schema_description_test
+          entry_schema: {}
+          key_schema: {}
+          type: test_data_type_name_0
+        key_schema:
+          constraints:
+          - key_equal_0: key_value_0
+          - key_equal_1: key_value_1
+          description: key_schema_description_test
+          entry_schema: {}
+          key_schema: {}
+          type: test_data_type_name_1
+        status: test_status_value
+        type: test_data_type_name_0
+    properties: {}
+    valid_source_types: []
+data_types:
+  test_data_type_name_0:
+    constraints: []
+    derived_from: test_existing_type_name
+    entry_schema: {}
+    key_schema: {}
+    metadata: {}
+    properties: {}
+  test_data_type_name_1:
+    constraints: []
+    derived_from: test_existing_type_name
+    entry_schema: {}
+    key_schema: {}
+    metadata: {}
+    properties: {}
+  test_existing_type_name:
+    constraints: []
+    description: test_description
+    entry_schema: {}
+    key_schema: {}
+    metadata: {}
+    properties: {}
+description: test_template_type_description
+group_types:
+  test_group_type_name:
+    attributes:
+      attribute_name_0:
+        entry_schema: {}
+        key_schema: {}
+        type: test_data_type_name_0
+      attribute_name_1:
+        entry_schema: {}
+        key_schema: {}
+        type: test_data_type_name_1
+    derived_from: test_parent_group_type_name
+    description: test_node_type_description
+    members: []
+    metadata:
+      metadata_key_0: metadata_value_0
+      metadata_key_1: metadata_value_1
+      metadata_key_2: metadata_value_2
+    properties:
+      test_property_name_0:
+        constraints: []
+        description: test_property_description_0
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        type: test_data_type_name_0
+      test_property_name_1:
+        constraints: []
+        description: test_property_description_1
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        type: test_data_type_name_1
+    version: test_version_number
+  test_group_type_name_0:
+    attributes: {}
+    derived_from: test_parent_group_type_name
+    members: []
+    metadata: {}
+    properties: {}
+  test_group_type_name_1:
+    attributes: {}
+    derived_from: test_parent_group_type_name
+    members: []
+    metadata: {}
+    properties: {}
+  test_parent_group_type_name:
+    attributes: {}
+    derived_from: test_parent_group_type_name
+    members: []
+    metadata: {}
+    properties: {}
+imports:
+- file: URI_0
+- file: <file_URI>
+  namespace_prefix: <definition_namespace_prefix>
+  namespace_uri: <definition_namespace_uri>
+  repository: <repository_name>
+- file: URI_1
+interface_types:
+  test_interface_type_name_0:
+    derived_from: test_parent_interface_type_name
+    description: test_interface_description
+    inputs:
+      test_property_name:
+        constraints:
+        - equal_1: value_1
+        - equal_0: value_0
+        default: test_default_value
+        description: test_property_description
+        entry_schema:
+          constraints:
+          - entry_equal_1: entry_value_1
+          - entry_equal_0: entry_value_0
+          description: entry_schema_description_test
+          entry_schema: {}
+          key_schema: {}
+          type: test_data_type_name_0
+        key_schema:
+          constraints:
+          - key_equal_1: key_value_1
+          - key_equal_0: key_value_0
+          description: key_schema_description_test
+          entry_schema: {}
+          key_schema: {}
+          type: test_data_type_name_1
+        metadata:
+          metadata_key_0: metadata_value_0
+          metadata_key_1: metadata_value_1
+          metadata_key_2: metadata_value_2
+        required: true
+        status: test_status
+        type: test_data_type_name_0
+      test_property_name_1:
+        constraints: []
+        description: test_property_description_1
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        type: test_data_type_name_1
+    metadata:
+      metadata_key_0: metadata_value_0
+      metadata_key_1: metadata_value_1
+      metadata_key_2: metadata_value_2
+    notifications:
+      notification_test_name_0:
+        description: test_notification_description_0
+        implementation:
+          dependencies: []
+          primary: test_artifact_name_0
+      notification_test_name_1:
+        description: test_notification_description_1
+        implementation:
+          dependencies: []
+          primary: test_artifact_name_1
+    operations:
+      operation_test_name_1: test_artifact_name_1
+      test_operation_name:
+        description: test_operation_description
+        implementation:
+          dependencies:
+          - test_artifact_name_2: 2_test_artifact_file_URI
+          - test_artifact_name_1: 1_test_artifact_file_URI
+          - test_artifact_name_0: 0_test_artifact_file_URI
+          primary:
+            test_artifact_name: test_artifact_file_URI
+        inputs:
+          test_property_name_0:
+            constraints: []
+            description: test_property_description_0
+            entry_schema: {}
+            key_schema: {}
+            metadata: {}
+            type: test_data_type_name_1
+          test_property_name_1:
+            constraints: []
+            description: test_property_description_1
+            entry_schema: {}
+            key_schema: {}
+            metadata: {}
+            type: test_data_type_name_1
+        outputs: test_value
+    version: test_version_number
+  test_interface_type_name_1:
+    derived_from: test_parent_interface_type_name
+    inputs: {}
+    metadata: {}
+    notifications: {}
+    operations: {}
+  test_parent_interface_type_name:
+    description: test_description
+    inputs: {}
+    metadata: {}
+    notifications: {}
+    operations: {}
+metadata:
+  metadata_key_0: metadata_value_0
+  metadata_key_1: metadata_value_1
+  metadata_key_2: metadata_value_2
+namespace: URI
+node_types:
+  test_node_type_name_0:
+    artifacts: {}
+    attributes: {}
+    capabilities: {}
+    derived_from: test_parent_node_type_name
+    interfaces: {}
+    metadata: {}
+    properties: {}
+    requirements: []
+  test_node_type_name_1:
+    artifacts: {}
+    attributes: {}
+    capabilities: {}
+    derived_from: test_parent_node_type_name
+    interfaces: {}
+    metadata: {}
+    properties: {}
+    requirements: []
+  test_parent_node_type_name:
+    artifacts:
+      test_artifact_name_0: test_artifact_file_URI_0
+      test_artifact_name_1: test_artifact_file_URI_1
+    attributes:
+      attribute_name_0:
+        entry_schema: {}
+        key_schema: {}
+        type: test_data_type_name_0
+      attribute_name_1:
+        entry_schema: {}
+        key_schema: {}
+        type: test_data_type_name_1
+    capabilities:
+      test_capability_definition_name:
+        attributes:
+          attribute_name_0:
+            entry_schema: {}
+            key_schema: {}
+            type: test_data_type_name_0
+          attribute_name_1:
+            entry_schema: {}
+            key_schema: {}
+            type: test_data_type_name_1
+        description: test_capability_description
+        occurrences:
+        - 0
+        - 10
+        properties:
+          test_property_name_0:
+            constraints: []
+            description: test_property_description_0
+            entry_schema: {}
+            key_schema: {}
+            metadata: {}
+            type: test_data_type_name_0
+          test_property_name_1:
+            constraints: []
+            description: test_property_description_1
+            entry_schema: {}
+            key_schema: {}
+            metadata: {}
+            type: test_data_type_name_1
+        type: test_capability_type_name_0
+        valid_source_types:
+        - test_node_type_name_1
+        - test_node_type_name_0
+      test_capability_definition_name_1:
+        attributes: {}
+        properties: {}
+        type: test_capability_type_name_1
+        valid_source_types: []
+    description: test_description
+    interfaces:
+      test_interface_definition_name_0:
+        notifications: {}
+        operations: {}
+        type: test_interface_type_name_0
+      test_interface_definition_name_1:
+        notifications: {}
+        operations: {}
+        type: test_interface_type_name_1
+    metadata:
+      metadata_key_0: metadata_value_0
+      metadata_key_1: metadata_value_1
+      metadata_key_2: metadata_value_2
+    properties:
+      test_property_name_0:
+        constraints: []
+        description: test_property_description_0
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        type: test_data_type_name_0
+      test_property_name_1:
+        constraints: []
+        description: test_property_description_1
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        type: test_data_type_name_1
+    requirements:
+    - test_requirement_definition_name_0:
+        capability: test_capability_type_name_0
+        relationship:
+          interfaces: {}
+    - test_requirement_definition_name_1:
+        capability: test_capability_type_name_1
+        relationship:
+          interfaces: {}
+    version: test_version_number
+policy_types:
+  test_parent_policy_type_name:
+    derived_from: test_parent_policy_type_name
+    metadata: {}
+    properties: {}
+    targets: []
+    triggers: {}
+  test_policy_type_name:
+    derived_from: test_parent_policy_type_name
+    description: test_policy_description
+    metadata:
+      metadata_key_0: metadata_value_0
+      metadata_key_1: metadata_value_1
+      metadata_key_2: metadata_value_2
+    properties:
+      test_property_name_0:
+        constraints: []
+        description: test_property_description_0
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        type: test_data_type_name_0
+      test_property_name_1:
+        constraints: []
+        description: test_property_description_1
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        type: test_data_type_name_1
+    targets:
+    - test_node_type_name_0
+    - test_parent_node_type_name
+    triggers:
+      test_trigger_name:
+        action:
+        - call_operation:
+            inputs: []
+            operation: test_interface_definition_name_1.operation_test_name_0
+        condition:
+          constraint:
+          - attribute_name:
+            - equal: my_value
+          evaluations: 1
+          method: average
+          period: 60 sec
+        description: test_trigger_description
+        event: test_event_name
+        schedule_end: 1
+        schedule_start: 0
+        target_filter:
+          capability: test_capability_definition_name
+          node: test_parent_node_type_name
+          requirement: test_requirement_definition_name_0
+      test_trigger_name_1:
+        action: []
+        description: test_trigger_description
+        event: test_event_name
+        target_filter: {}
+    version: test_version_number
+  test_policy_type_name_0:
+    derived_from: test_parent_policy_type_name
+    metadata: {}
+    properties: {}
+    targets: []
+    triggers: {}
+  test_policy_type_name_1:
+    derived_from: test_parent_policy_type_name
+    metadata: {}
+    properties: {}
+    targets: []
+    triggers: {}
+relationship_types:
+  test_parent_relationship_type_name:
+    attributes:
+      attribute_name_0:
+        entry_schema: {}
+        key_schema: {}
+        type: test_data_type_name_0
+      attribute_name_1:
+        entry_schema: {}
+        key_schema: {}
+        type: test_data_type_name_1
+    description: test_relationship_description
+    interfaces:
+      test_interface_definition_name_0:
+        notifications: {}
+        operations: {}
+        type: test_interface_type_name_0
+      test_interface_definition_name_1:
+        inputs:
+          test_property_name_0:
+            constraints: []
+            description: test_property_description_from_interface_from_relationship_type
+            entry_schema: {}
+            key_schema: {}
+            metadata: {}
+            type: test_data_type_name_0
+          test_property_name_1:
+            constraints: []
+            description: test_property_description_1
+            entry_schema: {}
+            key_schema: {}
+            metadata: {}
+            type: test_data_type_name_1
+        notifications:
+          notification_test_name_0:
+            description: test_notification_description_0
+            implementation:
+              dependencies: []
+              primary: test_artifact_name_0
+          notification_test_name_1:
+            description: test_notification_description_1
+            implementation:
+              dependencies: []
+              primary: test_artifact_name_1
+        operations:
+          operation_test_name_0: test_artifact_name_0
+          operation_test_name_1: test_artifact_name_1
+        type: test_interface_type_name_1
+    metadata:
+      metadata_key_0: metadata_value_0
+      metadata_key_1: metadata_value_1
+      metadata_key_2: metadata_value_2
+    properties:
+      test_property_name_0:
+        constraints: []
+        description: test_property_description_0_from_relationship_type
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        type: test_data_type_name_0
+      test_property_name_1:
+        constraints: []
+        description: test_property_description_1
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        type: test_data_type_name_1
+    valid_target_types:
+    - test_parent_capability_type_name
+    - test_capability_type_name_0
+    version: test_version_number
+  test_relationship_type_name_0:
+    attributes: {}
+    derived_from: test_parent_relationship_type_name
+    interfaces: {}
+    metadata: {}
+    properties: {}
+    valid_target_types: []
+  test_relationship_type_name_1:
+    attributes: {}
+    derived_from: test_parent_relationship_type_name
+    interfaces: {}
+    metadata: {}
+    properties: {}
+    valid_target_types: []
+repositories:
+  test_repository_name_0:
+    url: test_repository_address_0
+  test_repository_name_1:
+    url: test_repository_address_1
+topology_template:
+  description: test_template_description
+  groups:
+    test_group_name:
+      attributes:
+        test_attribute_name_0:
+          values: attribute_value_test_0
+        test_attribute_name_1:
+          values: attribute_value_test_1
+      description: test_group_description
+      members:
+      - test_node_template_name_1
+      - test_node_template_name_0
+      metadata:
+        metadata_key_0: metadata_value_0
+        metadata_key_1: metadata_value_1
+        metadata_key_2: metadata_value_2
+      properties:
+        test_property_name_0: property_value_test_0
+        test_property_name_1: property_value_test_1
+      type: test_group_type_name
+    test_group_name_0:
+      attributes: {}
+      members: []
+      metadata: {}
+      properties: {}
+      type: test_group_type_name_0
+    test_group_name_1:
+      attributes: {}
+      members: []
+      metadata: {}
+      properties: {}
+      type: test_group_type_name_1
+  inputs:
+    input_0:
+      constraints: []
+      entry_schema: {}
+      key_schema: {}
+      value: test_input_value_0
+    input_1:
+      constraints: []
+      entry_schema: {}
+      key_schema: {}
+      value: test_input_value_1
+    test_parameter_name:
+      constraints:
+      - equal_0: value_0
+      - equal_1: value_1
+      default: test_parameter_default_value
+      description: ssss
+      entry_schema:
+        constraints:
+        - entry_equal_0: entry_value_0
+        - entry_equal_1: entry_value_1
+        description: entry_schema_description_test
+        entry_schema: {}
+        key_schema: {}
+        type: test_data_type_name_0
+      key_schema:
+        constraints:
+        - key_equal_0: key_value_0
+        - key_equal_1: key_value_1
+        description: key_schema_description_test
+        entry_schema: {}
+        key_schema: {}
+        type: test_data_type_name_1
+      required: false
+      status: test_status_value
+      type: test_data_type_name_0
+      value: test_parameter_value
+  node_templates:
+    test_node_template_name:
+      artifacts:
+        test_artifact_name_0: test_artifact_file_URI_0
+        test_artifact_name_1: test_artifact_file_URI_1
+      attributes:
+        test_attribute_name_0:
+          values: attribute_value_test_0
+        test_attribute_name_1:
+          values: attribute_value_test_1
+      capabilities:
+        test_capability_name_0:
+          attributes: {}
+          properties:
+            test_property_name_0: property_value_test_0
+        test_capability_name_1:
+          attributes: {}
+          properties:
+            test_property_name_1: property_value_test_1
+      description: test_node_template_description
+      directives:
+      - directive_1
+      - directive_2
+      - directive_0
+      interfaces:
+        test_interface_definition_name_0:
+          notifications: {}
+          operations: {}
+          type: test_interface_type_name_0
+        test_interface_definition_name_1:
+          notifications: {}
+          operations: {}
+          type: test_interface_type_name_1
+      metadata:
+        metadata_key_0: metadata_value_0
+        metadata_key_1: metadata_value_1
+        metadata_key_2: metadata_value_2
+      node_filter:
+        capabilities: []
+        properties:
+        - test_property_name_0:
+            property_constraint:
+            - equal_1: value_1
+            - equal_0: value_0
+        - test_property_name_1:
+            property_constraint:
+            - equal_1: value_1
+            - equal_0: value_0
+      properties:
+        test_property_name_0: property_value_test_0
+        test_property_name_1: property_value_test_1
+      requirements:
+      - test_requirement_name_0:
+          node: test_node_template_name_0
+          node_filter: {}
+          relationship:
+            interfaces: {}
+      - test_requirement_name_1:
+          node: test_node_template_name_1
+          node_filter: {}
+          relationship:
+            interfaces: {}
+      type: test_node_type_name_0
+    test_node_template_name_0:
+      artifacts: {}
+      attributes: {}
+      capabilities: {}
+      directives: []
+      interfaces: {}
+      metadata: {}
+      node_filter: {}
+      properties: {}
+      requirements: []
+      type: test_node_type_name_0
+    test_node_template_name_1:
+      artifacts: {}
+      attributes: {}
+      capabilities: {}
+      directives: []
+      interfaces: {}
+      metadata: {}
+      node_filter: {}
+      properties: {}
+      requirements: []
+      type: test_node_type_name_1
+  outputs:
+    output_0:
+      constraints: []
+      entry_schema: {}
+      key_schema: {}
+      value: test_output_value_0
+    output_1:
+      constraints: []
+      entry_schema: {}
+      key_schema: {}
+      value: test_output_value_1
+    test_parameter_name:
+      constraints:
+      - equal_0: value_0
+      - equal_1: value_1
+      default: test_parameter_default_value
+      description: test_parameter_description
+      entry_schema:
+        constraints:
+        - entry_equal_0: entry_value_0
+        - entry_equal_1: entry_value_1
+        description: entry_schema_description_test
+        entry_schema: {}
+        key_schema: {}
+        type: test_data_type_name_1
+      key_schema:
+        constraints:
+        - key_equal_1: key_value_1
+        - key_equal_0: key_value_0
+        description: key_schema_description_test
+        entry_schema: {}
+        key_schema: {}
+        type: test_data_type_name_0
+      required: false
+      status: test_status_value
+      type: test_data_type_name_0
+      value: test_parameter_value
+  policies:
+  - test_policy_name_1:
+      metadata: {}
+      properties: {}
+      targets: []
+      triggers: {}
+      type: test_policy_type_name_1
+  - test_policy_name_0:
+      metadata: {}
+      properties: {}
+      targets: []
+      triggers: {}
+      type: test_policy_type_name_0
+  - test_policy_name:
+      description: test_policy_description
+      metadata:
+        metadata_key_0: metadata_value_0
+        metadata_key_1: metadata_value_1
+        metadata_key_2: metadata_value_2
+      properties:
+        test_property_name_0: property_value_test_0
+        test_property_name_1: property_value_test_1
+      targets:
+      - test_node_template_name_1
+      - test_node_template_name_0
+      triggers:
+        test_trigger_name_0:
+          action: []
+          description: test_trigger_description
+          event: test_event_name
+          target_filter: {}
+        test_trigger_name_1:
+          action: []
+          description: test_trigger_description
+          event: test_event_name
+          target_filter: {}
+      type: test_policy_type_name
+  relationship_templates:
+    test_relationship_template_name:
+      attributes:
+        test_attribute_name_0:
+          values: attribute_value_test_0
+        test_attribute_name_1:
+          values: attribute_value_test_1
+      description: test_relationship_type_description
+      interfaces:
+        test_interface_definition_name_0:
+          notifications: {}
+          operations: {}
+          type: test_interface_type_name_0
+        test_interface_definition_name_1:
+          notifications: {}
+          operations: {}
+          type: test_interface_type_name_1
+      metadata:
+        metadata_key_0: metadata_value_0
+        metadata_key_1: metadata_value_1
+        metadata_key_2: metadata_value_2
+      properties:
+        test_property_name_0: property_value_test_0
+        test_property_name_1: property_value_test_1
+      type: test_relationship_type_name_0
+    test_relationship_template_name_0:
+      attributes: {}
+      interfaces: {}
+      metadata: {}
+      properties: {}
+      type: test_relationship_type_name_0
+    test_relationship_template_name_1:
+      attributes: {}
+      interfaces: {}
+      metadata: {}
+      properties: {}
+      type: test_relationship_type_name_1
+  substitution_mappings: test_substitution_mappings
+  workflows:
+    test_workflow_name:
+      description: test_workflow_description
+      implementation:
+        dependencies: []
+        primary:
+          test_artifact_name_0: test_artifact_file_URI_0
+      inputs:
+        test_property_name_0:
+          constraints: []
+          description: test_property_description_0
+          entry_schema: {}
+          key_schema: {}
+          metadata: {}
+          type: test_existing_type_name
+        test_property_name_1:
+          constraints: []
+          description: test_property_description_1
+          entry_schema: {}
+          key_schema: {}
+          metadata: {}
+          type: test_existing_type_name
+      metadata:
+        metadata_key_0: metadata_value_0
+        metadata_key_1: metadata_value_1
+        metadata_key_2: metadata_value_2
+      outputs: test_attribute_mappings
+      preconditions:
+      - condition: {}
+        target: test_group_name_0
+        target_relationship: test_relationship_template_name_0
+      - condition: {}
+        target: test_group_name_1
+        target_relationship: test_relationship_template_name_1
+      steps:
+      - test_step_name_1:
+          activities:
+          - call_operation:
+              inputs: []
+              operation: test_interface_definition_name_1.operation_test_name_0
+          filter: []
+          on_failure: []
+          on_success: []
+          target: test_node_template_name_1
+          target_relationship: test_relationship_template_name_1
+      - test_step_name_0:
+          activities:
+          - call_operation:
+              inputs: []
+              operation: test_interface_definition_name_1.operation_test_name_0
+          filter: []
+          on_failure: []
+          on_success: []
+          target: test_node_template_name_0
+          target_relationship: test_relationship_template_name_0
+    test_workflow_name_0:
+      description: test_workflow_description_0
+      implementation: {}
+      inputs: {}
+      metadata: {}
+      preconditions: []
+      steps: []
+    test_workflow_name_1:
+      description: test_workflow_description_1
+      implementation: {}
+      inputs: {}
+      metadata: {}
+      preconditions: []
+      steps: []
+tosca_definitions_version: 1.3

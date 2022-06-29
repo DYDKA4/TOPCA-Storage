@@ -16,25 +16,29 @@ def construct_artifact_definition(list_of_vid) -> dict:
         vertex_value = vertex_value.as_map()
         tmp_result = {}
         vertex_keys = vertex_value.keys()
-        for vertex_key in vertex_value.keys():
-            if not vertex_value[vertex_key].is_null() and vertex_key not in {'vertex_type_system', 'name'}:
-                tmp_result[vertex_key] = vertex_value[vertex_key].as_string()
         edges = set(artifact_definition.keys()) - set(vertex_keys) - {'vid'}
-        for edge in edges:
-            destination = find_destination(vid, edge)
-            if edge == 'type':
-                if destination:
-                    data_type = fetch_vertex(destination[0], 'ArtifactType')
-                    data_type = data_type.as_map()
-                    data_type = data_type['name'].as_string()
-                    tmp_result['type'] = data_type
-                elif len(tmp_result.keys()) == 1:
-                    keys = list(tmp_result.keys())
-                    tmp_result = tmp_result[keys[0]]
-                    break
-            elif edge == 'properties':
-                tmp_result['properties'] = construct_property_assignment(destination)
-            else:
-                abort(500)
-        result[vertex_value['name'].as_string()] = tmp_result
+
+        if find_destination(vid, 'type') is None:
+            result[vertex_value['name'].as_string()] = vertex_value['artifact_file_URI']
+        else:
+            for vertex_key in vertex_value.keys():
+                if not vertex_value[vertex_key].is_null() and vertex_key not in {'vertex_type_system', 'name'}:
+                    tmp_result[vertex_key] = vertex_value[vertex_key].as_string()
+            for edge in edges:
+                destination = find_destination(vid, edge)
+                if edge == 'type':
+                    if destination:
+                        data_type = fetch_vertex(destination[0], 'ArtifactType')
+                        data_type = data_type.as_map()
+                        data_type = data_type['name'].as_string()
+                        tmp_result['type'] = data_type
+                    elif len(tmp_result.keys()) == 1:
+                        keys = list(tmp_result.keys())
+                        tmp_result = tmp_result[keys[0]]
+                        break
+                elif edge == 'properties':
+                    tmp_result['properties'] = construct_property_assignment(destination)
+                else:
+                    abort(500)
+            result[vertex_value['name'].as_string()] = tmp_result
     return result

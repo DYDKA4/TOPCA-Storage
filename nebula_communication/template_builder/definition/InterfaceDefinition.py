@@ -29,10 +29,11 @@ def construct_interface_definition(list_of_vid) -> dict:
                 interface_type = interface_type['name'].as_string()
                 tmp_result['type'] = interface_type
             elif edge == 'inputs':
-                if fetch_vertex(destination[0], 'PropertyDefinition'):
-                    tmp_result['inputs'] = construct_property_definition(destination)
-                elif fetch_vertex(destination[0], 'PropertyAssignment'):
-                    tmp_result['inputs'] = construct_property_assignment(destination)
+                if destination:
+                    if fetch_vertex(destination[0], 'PropertyDefinition'):
+                        tmp_result['inputs'] = construct_property_definition(destination)
+                    elif fetch_vertex(destination[0], 'PropertyAssignment'):
+                        tmp_result['inputs'] = construct_property_assignment(destination)
             elif edge == 'notifications':
                 tmp_result['notifications'] = construct_notification_definition(destination)
             elif edge == 'operations':

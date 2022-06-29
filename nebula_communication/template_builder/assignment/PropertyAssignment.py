@@ -7,7 +7,7 @@ def construct_property_assignment(list_of_vid) -> dict:
     for vid in list_of_vid:
         vertex_value = fetch_vertex(vid, 'PropertyAssignment')
         vertex_value = vertex_value.as_map()
-        value = vertex_value['values'].as_string()
+        value: str = vertex_value['values'].as_string()
         if value.isnumeric():
             value: int = int(value)
         elif value.replace('.', '', 1).isdigit():

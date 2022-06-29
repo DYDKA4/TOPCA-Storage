@@ -3,7 +3,7 @@
 
 #  Extended notation
 # <requirement_name>:
-#   node: <node_template_name> | <node_type_name>
+#   node: <node_template_name> | <node_type_name> Required
 #   relationship: <relationship_template_name> | <relationship_type_name>
 #   capability: <capability_symbolic_name> | <capability_type_name>
 #   node_filter:
@@ -32,7 +32,6 @@ class RequirementAssignment:
         self.vertex_type_system = 'RequirementAssignment'
         self.node = None
         self.relationship = None
-        self.relationship_complex = None
         self.properties = []
         self.interfaces = []
         self.capability = None
@@ -46,7 +45,7 @@ class RequirementAssignment:
         self.relationship = relationship
 
     def set_relationship_complex(self, relationship: str):
-        self.relationship_complex = relationship
+        self.relationship = relationship
 
     def add_property(self, property: PropertyAssignment):
         self.properties.append(property)

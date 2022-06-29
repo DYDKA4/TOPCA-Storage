@@ -5,6 +5,7 @@ from nebula_communication.nebula_functions import fetch_vertex, find_destination
 from nebula_communication.template_builder.definition.ImportDefinition import construct_import_definition
 from nebula_communication.template_builder.definition.MetadataDefinition import construct_metadata_definition
 from nebula_communication.template_builder.definition.RepositoryDefinition import construct_repository_definition
+from nebula_communication.template_builder.definition.TemplateDefinition import construct_topology_template_definition
 from nebula_communication.template_builder.type.ArtifactType import construct_artifact_type
 from nebula_communication.template_builder.type.CapabilityType import construct_capability_type
 from nebula_communication.template_builder.type.DataTypes import construct_data_type
@@ -59,7 +60,7 @@ def construct_service_template_definition(name: str):
             elif edge == 'policy_types':
                 template['policy_types'] = construct_policy_type(destination)
             elif edge == 'topology_template':
-                print(edge, destination)
+                template['topology_template'] = construct_topology_template_definition(destination)
             else:
                 abort(500)
 

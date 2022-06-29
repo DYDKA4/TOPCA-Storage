@@ -23,9 +23,10 @@ def construct_parameter_definition(list_of_vid) -> dict:
                     value = True
                 elif value == 'False':
                     value = False
-
+                if vertex_key == 'values':
+                    vertex_key = 'value'
                 tmp_result[vertex_key] = value
-        edges = set(property_definition.keys()) - set(vertex_keys) - {'vid'}
+        edges = set(property_definition.keys()) - set(vertex_keys) - {'vid'} - {'value'}
         for edge in edges:
             destination = find_destination(vid, edge)
             if edge == 'entry_schema':

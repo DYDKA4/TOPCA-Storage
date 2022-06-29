@@ -20,15 +20,15 @@ class DelegateWorkflowActivityDefinition:
 
 
 class SetStateActivityDefinition:
-    def __init__(self, set_state: str):
-        self.set_state = set_state
+    def __init__(self):
+        self.set_state = None
         self.vertex_type_system = 'SetStateActivityDefinition'
         self.vid = None
 
 
 class InlineWorkflowActivityDefinition:
-    def __init__(self, workflow: str):
-        self.workflow = workflow
+    def __init__(self):
+        self.workflow = None
         self.vertex_type_system = 'InlineWorkflowActivityDefinition'
         self.inputs = []
         self.vid = None

@@ -40,7 +40,6 @@ def add_in_vertex(vertex_name, name_of_key_value, key_value, vid):
     session = start_session()
     result = session.execute(f'INSERT VERTEX {vertex_name} ({name_of_key_value}) VALUES {vid}'
                              f':({key_value});')
-
     logging.info(f'INSERT VERTEX {vertex_name} ({name_of_key_value}) VALUES {vid}'
                  f':({key_value});')
     # print(f'INSERT VERTEX {vertex_name} ({name_of_key_value}) VALUES {vid}'
@@ -68,7 +67,21 @@ def fetch_vertex(vid, vertex_name):
     result = session.execute(f'FETCH PROP ON {vertex_name} {vid} YIELD properties(vertex)')
     logging.info(f'FETCH PROP ON {vertex_name} {vid} YIELD properties(vertex)')
     assert result.is_succeeded(), result.error_msg()
-    return result.column_values('properties(VERTEX)')[0]
+    if result.column_values('properties(VERTEX)'):
+        return result.column_values('properties(VERTEX)')[0]
+    return None
+
+
+def fetch_edge(source_vid, destination_vid, edge_name):
+    session = start_session()
+    result = session.execute(f'FETCH PROP ON {edge_name} {source_vid} -> {destination_vid} '
+                             f'YIELD properties(edge)')
+    logging.info(f'FETCH PROP ON {edge_name} {source_vid} -> {destination_vid} '
+                 f'YIELD properties(edge)')
+    assert result.is_succeeded(), result.error_msg()
+    if result.column_values('properties(EDGE)'):
+        return result.column_values('properties(EDGE)')[0]
+    return None
 
 
 def find_destination(vid, edge_name):
@@ -94,7 +107,7 @@ def is_unique_vid(vid):
     for tag_name in tags:
         tag_name = tag_name.as_string()
         result = session.execute(f'MATCH (v:{tag_name}) WHERE id(v) == "{vid}" RETURN v')
-        logging.info(f'MATCH (v:{tag_name}) WHERE id(v) == "{vid}" RETURN v')
+        # logging.info(f'MATCH (v:{tag_name}) WHERE id(v) == "{vid}" RETURN v')
         assert result.is_succeeded(), result.error_msg()
         if result.column_values('v'):
             return False

@@ -67,9 +67,9 @@ def sub_interface_definition_parser(interfaces_list, service_template: ServiceTe
         for operation_definition in interface_definition.operations:
             operation_definition: OperationDefinition
             if operation_definition.inputs:
-                if operation_definition.inputs[0].vertex_type_system == 'ParameterDefinition':
-                    for parameter_definition in operation_definition.inputs:
-                        link_parameter_definition(service_template, parameter_definition)
+                if operation_definition.inputs[0].vertex_type_system == 'PropertyDefinition':
+                    for property_definition in operation_definition.inputs:
+                        link_property_definition(service_template, property_definition)
             sub_property_definition_parser(service_template, operation_definition.inputs)
             link_operation_definition(service_template, operation_definition)
             if operation_definition.implementation and type(operation_definition.implementation) != dict:
@@ -123,10 +123,10 @@ def main_linker(service_template: ServiceTemplateDefinition):
                 link_notification_implementation_definition(service_template, notification_definition.implementation)
         for operation_definition in interface_type.operations:
             operation_definition: OperationDefinition
-            if operation_definition.inputs and \
-                    operation_definition.inputs[0].vertex_type_system == 'ParameterDefinition':
-                for parameter_definition in operation_definition.inputs:
-                    link_parameter_definition(service_template, parameter_definition)
+            if operation_definition.inputs:
+                if operation_definition.inputs[0].vertex_type_system == 'PropertyDefinition':
+                    for property_definition in operation_definition.inputs:
+                        link_property_definition(service_template, property_definition)
             link_operation_definition(service_template, operation_definition)
             if operation_definition.implementation and type(operation_definition.implementation) != dict:
                 link_operation_implementation_definition(service_template, operation_definition.implementation)

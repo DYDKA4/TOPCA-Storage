@@ -3,9 +3,9 @@
 
 # Short notation for use with multiple artifact
 # implementation:
-#   primary: <primary_artifact_name> #todo Linker
+#   primary: <primary_artifact_name>
 #   dependencies:
-#     - <list_of_dependent_artifact_names> #todo Linker
+#     - <list_of_dependent_artifact_names>
 #   operation_host : SELF
 #   timeout : 60
 
@@ -38,7 +38,11 @@ def link_operation_implementation_definition(service_template: ServiceTemplateDe
     list_of_artifact_definition = get_all_artifact_definition(service_template)
     if type(operation.primary) == str:
         link_by_type_name(list_of_artifact_definition, operation, 'primary')
+    if operation.primary and type(operation.primary) != dict and type(operation.primary) != str:
+        operation.primary = {'primary': [operation, operation.primary, {'type': 'definition'}]}
     if operation.dependencies and type(operation.dependencies[0]) == str:
         link_with_list(list_of_artifact_definition, operation, 'dependencies')
+    elif operation.dependencies:
+        operation.dependencies = {'dependencies': [operation, operation.dependencies, {'type': 'definition'}]}
     if str in {type(operation.primary)}:
         abort(400)

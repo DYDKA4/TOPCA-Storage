@@ -19,7 +19,13 @@ def construct_property_definition(list_of_vid) -> dict:
         vertex_keys = vertex_value.keys()
         for vertex_key in vertex_value.keys():
             if not vertex_value[vertex_key].is_null() and vertex_key not in {'vertex_type_system', 'name'}:
-                tmp_result[vertex_key] = vertex_value[vertex_key].as_string()
+                value = vertex_value[vertex_key].as_string()
+                if value == 'True':
+                    value = True
+                elif value == 'False':
+                    value = False
+
+                tmp_result[vertex_key] = value
         edges = set(property_definition.keys()) - set(vertex_keys) - {'vid'}
         for edge in edges:
             destination = find_destination(vid, edge)

@@ -26,6 +26,7 @@ def construct_notification_implementation_definition(list_of_vid) -> dict:
             elif edge == 'dependencies':
                 dependencies = []
                 for dependency in destination:
+                    dependency = fetch_vertex(dependency, 'ArtifactDefinition')
                     dependency = dependency.as_map()
                     dependency = dependency['name'].as_string()
                     dependencies.append(dependency)

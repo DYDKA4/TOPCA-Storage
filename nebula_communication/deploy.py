@@ -13,6 +13,20 @@ from parser.linker.tosca_v_1_3.main_linker import main_linker
 from parser.parser.tosca_v_1_3.definitions.ServiceTemplateDefinition import service_template_definition_parser
 
 
+def edge_forming(vertexes):
+    edge_key_names = ''
+    edge_values = ''
+    if len(vertexes) == 3:
+        for key_name, edge_value in vertexes[2].items():
+            if edge_key_names == '':
+                edge_key_names = key_name
+                edge_values = '"' + edge_value + '"'
+            else:
+                edge_key_names += ', ' + key_name
+                edge_values = ', "' + edge_value + '"'
+    return edge_key_names, edge_values
+
+
 def deploy(template) -> None:
     name_of_key_value = ''
     key_value = ''
@@ -61,6 +75,7 @@ def deploy(template) -> None:
                     # if template.vertex_type_system == 'ConditionClauseDefinition':
 
                     if vertexes:
+                        edge_key_names, edge_values = edge_forming(vertexes)
                         if type(vertexes[0]) == list and type(vertexes[1]) == list:
                             for vertex_0 in vertexes[0]:
                                 for vertex_1 in vertexes[1]:
@@ -70,7 +85,7 @@ def deploy(template) -> None:
                                         deploy(vertex_1)
                                     if attribute_name == 'steps':
                                         attribute_name = 'steps_tosca'
-                                    add_edge(type_edge, '', vertex_0.vid, vertex_1.vid, '')
+                                    add_edge(type_edge, edge_key_names, vertex_0.vid, vertex_1.vid, edge_values)
                         elif type(vertexes[0]) == list:
                             for vertex in vertexes[0]:
                                 if vertexes[1].vid is None:
@@ -79,7 +94,7 @@ def deploy(template) -> None:
                                     deploy(vertex)
                                 if attribute_name == 'steps':
                                     attribute_name = 'steps_tosca'
-                                add_edge(type_edge, '', vertex.vid, vertexes[1].vid, '')
+                                add_edge(type_edge, edge_key_names, vertex.vid, vertexes[1].vid, edge_values)
                         elif type(vertexes[1]) == list:
                             for vertex in vertexes[1]:
                                 if vertexes[0].vid is None:
@@ -88,7 +103,7 @@ def deploy(template) -> None:
                                     deploy(vertex)
                                 if attribute_name == 'steps':
                                     attribute_name = 'steps_tosca'
-                                add_edge(type_edge, '', vertexes[0].vid, vertex.vid, '')
+                                add_edge(type_edge, edge_key_names, vertexes[0].vid, vertex.vid, edge_values)
                         else:
                             if vertexes[0].vid is None:
                                 deploy(vertexes[0])
@@ -96,7 +111,7 @@ def deploy(template) -> None:
                                 deploy(vertexes[1])
                             if attribute_name == 'steps':
                                 attribute_name = 'steps_tosca'
-                            add_edge(type_edge, '', vertexes[0].vid, vertexes[1].vid, '')
+                            add_edge(type_edge, edge_key_names, vertexes[0].vid, vertexes[1].vid, edge_values)
         else:
             deploy(attribute_value)
             if attribute_name == 'steps':

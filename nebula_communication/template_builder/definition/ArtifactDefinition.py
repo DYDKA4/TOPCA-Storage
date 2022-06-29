@@ -1,6 +1,7 @@
 from werkzeug.exceptions import abort
 
 from nebula_communication.nebula_functions import fetch_vertex, find_destination
+from nebula_communication.template_builder.assignment.PropertyAssignment import construct_property_assignment
 from nebula_communication.template_builder.definition.SchemaDefinition import construct_schema_definition
 from parser.parser.tosca_v_1_3.definitions.ArtifactDefinition import ArtifactDefinition
 
@@ -32,12 +33,7 @@ def construct_artifact_definition(list_of_vid) -> dict:
                     tmp_result = tmp_result[keys[0]]
                     break
             elif edge == 'properties':
-                props = {}
-                for properties in destination:
-                    data_type = fetch_vertex(properties, 'PropertyAssignment')
-                    data_type = data_type.as_map()
-                    props[data_type['name'].as_string] = data_type['values'].as_string
-                tmp_result['properties'] = props
+                tmp_result['properties'] = construct_property_assignment(destination)
             else:
                 abort(500)
         result[vertex_value['name'].as_string()] = tmp_result

@@ -8,6 +8,7 @@ from nebula_communication.template_builder.definition.RepositoryDefinition impor
 from nebula_communication.template_builder.type.ArtifactType import construct_artifact_type
 from nebula_communication.template_builder.type.CapabilityType import construct_capability_type
 from nebula_communication.template_builder.type.DataTypes import construct_data_type
+from nebula_communication.template_builder.type.InterfaceType import construct_interface_type
 from parser.parser.tosca_v_1_3.definitions.ServiceTemplateDefinition import ServiceTemplateDefinition
 
 
@@ -44,7 +45,7 @@ def construct_service_template_definition(name: str):
             elif edge == 'capability_types':
                 template['capability_types'] = construct_capability_type(destination)
             elif edge == 'interface_types':
-                print(edge, destination)
+                template['interface_types'] = construct_interface_type(destination)
             elif edge == 'relationship_types':
                 print(edge, destination)
             elif edge == 'node_types':
@@ -62,4 +63,4 @@ def construct_service_template_definition(name: str):
         documents = yaml.dump(template, file)
 
 
-construct_service_template_definition('JCFQUUSVQJKX')
+construct_service_template_definition('NUDEXHPAFTBW')

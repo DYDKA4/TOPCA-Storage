@@ -1,7 +1,6 @@
 from werkzeug.exceptions import abort
 
 from nebula_communication.nebula_functions import fetch_vertex, find_destination
-from nebula_communication.template_builder.definition.MetadataDefinition import construct_metadata_definition
 from nebula_communication.template_builder.definition.SchemaDefinition import construct_schema_definition
 from nebula_communication.template_builder.other.ConstraintClause import construct_constraint_schema
 from parser.parser.tosca_v_1_3.definitions.ParameterDefinition import ParameterDefinition
@@ -13,7 +12,7 @@ def construct_parameter_definition(list_of_vid) -> dict:
     property_definition = ParameterDefinition('name').__dict__
 
     for vid in list_of_vid:
-        vertex_value = fetch_vertex(vid, 'PropertyDefinition')
+        vertex_value = fetch_vertex(vid, 'ParameterDefinition')
         vertex_value = vertex_value.as_map()
         tmp_result = {}
         vertex_keys = vertex_value.keys()

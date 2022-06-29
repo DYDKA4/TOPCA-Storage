@@ -40,7 +40,8 @@ def construct_activity_definition(list_of_vid) -> list:
                     operation = fetch_vertex(destination[0], 'OperationDefinition')
                     operation = operation.as_map()
                     operation = operation['name'].as_string()
-                    tmp_result['operation'] = operation
+
+                    tmp_result['operation'] = vertex_value['interface_name'].as_string() + '.' + operation
             elif edge == 'workflow':
                 if len(tmp_result.keys()) > 0 in range(0, 1) and 'inputs' in set(tmp_result.keys()):
                     workflow = fetch_vertex(destination[0], 'ImperativeWorkflowDefinition')

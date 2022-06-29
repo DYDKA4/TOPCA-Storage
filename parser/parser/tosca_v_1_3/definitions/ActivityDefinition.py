@@ -6,6 +6,7 @@ from parser.parser.tosca_v_1_3.definitions.ParameterDefinition import parameter_
 class CallOperationActivityDefinition:
     def __init__(self):
         self.operation = None
+        self.interface_name = None
         self.vertex_type_system = 'CallOperationActivityDefinition'
         self.inputs = []
         self.vid = None

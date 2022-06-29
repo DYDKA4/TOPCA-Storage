@@ -19,7 +19,7 @@ def link_activity_definition(service_template: ServiceTemplateDefinition, activi
             operation_split = operation.split('.')
             operation = operation_split[-1]
             interface = operation_split[0]
-
+            activity.interface_name = interface
             interface_definition_list = get_all_interface_definition(service_template)
             for interface_definition in interface_definition_list:
                 interface_definition: InterfaceDefinition

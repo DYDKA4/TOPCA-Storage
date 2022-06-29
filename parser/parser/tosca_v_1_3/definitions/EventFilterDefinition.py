@@ -1,4 +1,4 @@
-# node: <node_type_name> | <node_template_name>
+# node: <node_type_name> | <node_template_name> Required
 # requirement: <requirement_name>
 # capability: <capability_name>
 

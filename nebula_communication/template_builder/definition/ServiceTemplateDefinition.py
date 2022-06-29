@@ -11,6 +11,7 @@ from nebula_communication.template_builder.type.DataTypes import construct_data_
 from nebula_communication.template_builder.type.GroupType import construct_group_type
 from nebula_communication.template_builder.type.InterfaceType import construct_interface_type
 from nebula_communication.template_builder.type.NodeTypes import construct_node_type
+from nebula_communication.template_builder.type.PolicyType import construct_policy_type
 from nebula_communication.template_builder.type.RelationshipType import construct_relationship_type
 from parser.parser.tosca_v_1_3.definitions.ServiceTemplateDefinition import ServiceTemplateDefinition
 
@@ -56,7 +57,7 @@ def construct_service_template_definition(name: str):
             elif edge == 'group_types':
                 template['group_types'] = construct_group_type(destination)
             elif edge == 'policy_types':
-                print(edge, destination)
+                template['policy_types'] = construct_policy_type(destination)
             elif edge == 'topology_template':
                 print(edge, destination)
             else:

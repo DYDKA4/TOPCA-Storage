@@ -65,8 +65,8 @@ capability_types:
         description: test_attribute_description
         entry_schema:
           constraints:
-          - entry_equal_1: entry_value_1
           - entry_equal_0: entry_value_0
+          - entry_equal_1: entry_value_1
           description: entry_schema_description_test
           entry_schema: {}
           key_schema: {}
@@ -159,12 +159,12 @@ group_types:
     metadata: {}
     properties: {}
 imports:
+- file: URI_1
+- file: URI_0
 - file: <file_URI>
   namespace_prefix: <definition_namespace_prefix>
   namespace_uri: <definition_namespace_uri>
   repository: <repository_name>
-- file: URI_1
-- file: URI_0
 interface_types:
   test_interface_type_name_0:
     derived_from: test_parent_interface_type_name
@@ -172,22 +172,22 @@ interface_types:
     inputs:
       test_property_name:
         constraints:
-        - equal_1: value_1
         - equal_0: value_0
+        - equal_1: value_1
         default: test_default_value
         description: test_property_description
         entry_schema:
           constraints:
-          - entry_equal_1: entry_value_1
           - entry_equal_0: entry_value_0
+          - entry_equal_1: entry_value_1
           description: entry_schema_description_test
           entry_schema: {}
           key_schema: {}
           type: test_data_type_name_0
         key_schema:
           constraints:
-          - key_equal_1: key_value_1
           - key_equal_0: key_value_0
+          - key_equal_1: key_value_1
           description: key_schema_description_test
           entry_schema: {}
           key_schema: {}
@@ -330,8 +330,8 @@ node_types:
             type: test_data_type_name_1
         type: test_capability_type_name_0
         valid_source_types:
-        - test_node_type_name_0
         - test_node_type_name_1
+        - test_node_type_name_0
       test_capability_definition_name_1:
         attributes: {}
         properties: {}
@@ -367,10 +367,10 @@ node_types:
         metadata: {}
         type: test_data_type_name_1
     requirements:
-    - test_requirement_definition_name_0:
-        capability: test_capability_type_name_0
     - test_requirement_definition_name_1:
         capability: test_capability_type_name_1
+    - test_requirement_definition_name_0:
+        capability: test_capability_type_name_0
     version: test_version_number
 policy_types:
   test_parent_policy_type_name:
@@ -580,8 +580,8 @@ topology_template:
       value: test_input_value_1
     test_parameter_name:
       constraints:
-      - equal_0: value_0
       - equal_1: value_1
+      - equal_0: value_0
       default: test_parameter_default_value
       description: ssss
       entry_schema:
@@ -594,8 +594,8 @@ topology_template:
         type: test_data_type_name_0
       key_schema:
         constraints:
-        - key_equal_0: key_value_0
         - key_equal_1: key_value_1
+        - key_equal_0: key_value_0
         description: key_schema_description_test
         entry_schema: {}
         key_schema: {}
@@ -626,8 +626,8 @@ topology_template:
       description: test_node_template_description
       directives:
       - directive_2
-      - directive_0
       - directive_1
+      - directive_0
       interfaces:
         test_interface_definition_name_0:
           notifications: {}
@@ -648,8 +648,8 @@ topology_template:
           - equal_1: value_1
           - equal_0: value_0
         - test_property_name_1:
-          - equal_0: value_0
           - equal_1: value_1
+          - equal_0: value_0
       properties:
         test_property_name_0: property_value_test_0
         test_property_name_1: property_value_test_1
@@ -706,16 +706,16 @@ topology_template:
       description: test_parameter_description
       entry_schema:
         constraints:
-        - entry_equal_1: entry_value_1
         - entry_equal_0: entry_value_0
+        - entry_equal_1: entry_value_1
         description: entry_schema_description_test
         entry_schema: {}
         key_schema: {}
         type: test_data_type_name_1
       key_schema:
         constraints:
-        - key_equal_1: key_value_1
         - key_equal_0: key_value_0
+        - key_equal_1: key_value_1
         description: key_schema_description_test
         entry_schema: {}
         key_schema: {}

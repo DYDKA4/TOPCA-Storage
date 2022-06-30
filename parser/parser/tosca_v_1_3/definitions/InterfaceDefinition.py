@@ -58,7 +58,7 @@ def interface_definition_parser(name: str, data: dict) -> InterfaceDefinition:
     else:
         if data.get('inputs'):
             for input_property_name, input_property_value in data.get('inputs').items():
-                interface.add_inputs_assignments(PropertyAssignment(input_property_name, str(input_property_value)))
+                interface.add_inputs_assignments(PropertyAssignment(input_property_name, input_property_value))
     if data.get('operations'):
         for operation_name, operation_value in data.get('operations').items():
             interface.add_operation(operation_definition_parser(operation_name, operation_value))

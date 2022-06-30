@@ -89,7 +89,7 @@ def artifact_definition_parser(name: str, data: dict) -> ArtifactDefinition:
         artifact.set_checksum_algorithm(data.get('checksum_algorithm'))
     if data.get('properties'):
         for property_name, property_value in data.get('properties').items():
-            artifact.add_properties(PropertyAssignment(property_name, str(property_value)))
+            artifact.add_properties(PropertyAssignment(property_name, property_value))
     if artifact.type is None:
         abort(400)
     if artifact.file is None:

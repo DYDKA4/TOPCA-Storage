@@ -105,7 +105,7 @@ def node_template_parser(name: str, data: dict) -> NodeTemplate:
             node_template.add_metadata(Metadata(metadata_name, metadata_value))
     if data.get('properties'):
         for property_name, property_value in data.get('properties').items():
-            node_template.add_property(PropertyAssignment(property_name, str(property_value)))
+            node_template.add_property(PropertyAssignment(property_name, property_value))
     if data.get('attributes'):
         for attributes_name, attributes_value in data.get('attributes').items():
             attribute = attribute_assignments_parser(attributes_name, attributes_value)

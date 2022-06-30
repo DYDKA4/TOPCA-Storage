@@ -79,7 +79,7 @@ def requirement_assignment_parser(name: str, data: dict) -> RequirementAssignmen
                 requirement.set_relationship_complex(relationship_data.get('type'))
             if relationship_data.get('properties'):
                 for property_name, property_value in relationship_data.get('properties').items():
-                    requirement.add_property(PropertyAssignment(property_name, str(property_value)))
+                    requirement.add_property(PropertyAssignment(property_name, property_value))
             if relationship_data.get('interfaces'):
                 for interface_name, interface_value in relationship_data.get('interfaces').items():
                     requirement.add_interface(interface_definition_parser(interface_name, interface_value))

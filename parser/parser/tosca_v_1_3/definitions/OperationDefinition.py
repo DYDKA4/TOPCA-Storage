@@ -70,7 +70,7 @@ def operation_definition_parser(name: str, data: dict) -> OperationDefinition:
     if data.get('inputs'):
         for input_property_name, input_property_value in data.get('inputs').items():
             if type(input_property_value) == str:
-                operation.add_inputs_assignment(PropertyAssignment(input_property_name, str(input_property_value)))
+                operation.add_inputs_assignment(PropertyAssignment(input_property_name, input_property_value))
             else:
                 operation.add_input_definition(property_definition_parser(input_property_name, input_property_value))
     return operation

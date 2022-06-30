@@ -68,4 +68,4 @@ def construct_service_template_definition(name: str):
         documents = yaml.dump(template, file)
 
 
-construct_service_template_definition('IKTKLKSKYJWD')
+construct_service_template_definition('PSKYHWSITCSW')

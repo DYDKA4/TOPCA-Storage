@@ -121,7 +121,7 @@ def deploy(template) -> None:
     return
 
 
-file = open('output.yaml')
+file = open('service_template.yaml')
 data = file.read()
 file.close()
 data = yaml.safe_load(data)

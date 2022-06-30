@@ -17,9 +17,9 @@ def construct_artifact_definition(list_of_vid) -> dict:
         tmp_result = {}
         vertex_keys = vertex_value.keys()
         edges = set(artifact_definition.keys()) - set(vertex_keys) - {'vid'}
-
-        if find_destination(vid, 'type') is None:
-            result[vertex_value['name'].as_string()] = vertex_value['artifact_file_URI']
+        ss = find_destination(vid, 'type')
+        if not find_destination(vid, 'type'):
+            result[vertex_value['name'].as_string()] = vertex_value['artifact_file_URI'].as_string()
         else:
             for vertex_key in vertex_value.keys():
                 if not vertex_value[vertex_key].is_null() and vertex_key not in {'vertex_type_system', 'name'}:

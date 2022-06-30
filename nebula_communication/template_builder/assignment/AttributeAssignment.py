@@ -16,6 +16,6 @@ def construct_attribute_assignment(list_of_vid) -> dict:
                     value: int = int(value)
                 elif value.replace('.', '', 1).isdigit():
                     value: float = float(value)
-                tmp_result[vertex_key] = value
+                tmp_result['value'] = value
         result[vertex_value['name'].as_string()] = tmp_result
     return result

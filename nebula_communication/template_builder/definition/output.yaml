@@ -73,8 +73,8 @@ capability_types:
           type: test_data_type_name_0
         key_schema:
           constraints:
-          - key_equal_0: key_value_0
           - key_equal_1: key_value_1
+          - key_equal_0: key_value_0
           description: key_schema_description_test
           entry_schema: {}
           key_schema: {}
@@ -159,12 +159,12 @@ group_types:
     metadata: {}
     properties: {}
 imports:
-- file: URI_0
 - file: <file_URI>
   namespace_prefix: <definition_namespace_prefix>
   namespace_uri: <definition_namespace_uri>
   repository: <repository_name>
 - file: URI_1
+- file: URI_0
 interface_types:
   test_interface_type_name_0:
     derived_from: test_parent_interface_type_name
@@ -228,8 +228,8 @@ interface_types:
         implementation:
           dependencies:
           - test_artifact_name_2: 2_test_artifact_file_URI
-          - test_artifact_name_1: 1_test_artifact_file_URI
           - test_artifact_name_0: 0_test_artifact_file_URI
+          - test_artifact_name_1: 1_test_artifact_file_URI
           primary:
             test_artifact_name: test_artifact_file_URI
         inputs:
@@ -330,8 +330,8 @@ node_types:
             type: test_data_type_name_1
         type: test_capability_type_name_0
         valid_source_types:
-        - test_node_type_name_1
         - test_node_type_name_0
+        - test_node_type_name_1
       test_capability_definition_name_1:
         attributes: {}
         properties: {}
@@ -511,8 +511,8 @@ relationship_types:
         metadata: {}
         type: test_data_type_name_1
     valid_target_types:
-    - test_parent_capability_type_name
     - test_capability_type_name_0
+    - test_parent_capability_type_name
     version: test_version_number
   test_relationship_type_name_0:
     attributes: {}
@@ -539,9 +539,9 @@ topology_template:
     test_group_name:
       attributes:
         test_attribute_name_0:
-          values: attribute_value_test_0
+          value: attribute_value_test_0
         test_attribute_name_1:
-          values: attribute_value_test_1
+          value: attribute_value_test_1
       description: test_group_description
       members:
       - test_node_template_name_1
@@ -610,9 +610,9 @@ topology_template:
         test_artifact_name_1: test_artifact_file_URI_1
       attributes:
         test_attribute_name_0:
-          values: attribute_value_test_0
+          value: attribute_value_test_0
         test_attribute_name_1:
-          values: attribute_value_test_1
+          value: attribute_value_test_1
       capabilities:
         test_capability_name_0:
           attributes: {}
@@ -624,9 +624,9 @@ topology_template:
             test_property_name_1: property_value_test_1
       description: test_node_template_description
       directives:
-      - directive_1
       - directive_2
       - directive_0
+      - directive_1
       interfaces:
         test_interface_definition_name_0:
           notifications: {}
@@ -649,19 +649,19 @@ topology_template:
             - equal_0: value_0
         - test_property_name_1:
             property_constraint:
-            - equal_1: value_1
             - equal_0: value_0
+            - equal_1: value_1
       properties:
         test_property_name_0: property_value_test_0
         test_property_name_1: property_value_test_1
       requirements:
-      - test_requirement_name_0:
-          node: test_node_template_name_0
+      - test_requirement_name_1:
+          node: test_node_template_name_1
           node_filter: {}
           relationship:
             interfaces: {}
-      - test_requirement_name_1:
-          node: test_node_template_name_1
+      - test_requirement_name_0:
+          node: test_node_template_name_0
           node_filter: {}
           relationship:
             interfaces: {}
@@ -707,8 +707,8 @@ topology_template:
       description: test_parameter_description
       entry_schema:
         constraints:
-        - entry_equal_0: entry_value_0
         - entry_equal_1: entry_value_1
+        - entry_equal_0: entry_value_0
         description: entry_schema_description_test
         entry_schema: {}
         key_schema: {}
@@ -726,18 +726,6 @@ topology_template:
       type: test_data_type_name_0
       value: test_parameter_value
   policies:
-  - test_policy_name_1:
-      metadata: {}
-      properties: {}
-      targets: []
-      triggers: {}
-      type: test_policy_type_name_1
-  - test_policy_name_0:
-      metadata: {}
-      properties: {}
-      targets: []
-      triggers: {}
-      type: test_policy_type_name_0
   - test_policy_name:
       description: test_policy_description
       metadata:
@@ -762,13 +750,25 @@ topology_template:
           event: test_event_name
           target_filter: {}
       type: test_policy_type_name
+  - test_policy_name_0:
+      metadata: {}
+      properties: {}
+      targets: []
+      triggers: {}
+      type: test_policy_type_name_0
+  - test_policy_name_1:
+      metadata: {}
+      properties: {}
+      targets: []
+      triggers: {}
+      type: test_policy_type_name_1
   relationship_templates:
     test_relationship_template_name:
       attributes:
         test_attribute_name_0:
-          values: attribute_value_test_0
+          value: attribute_value_test_0
         test_attribute_name_1:
-          values: attribute_value_test_1
+          value: attribute_value_test_1
       description: test_relationship_type_description
       interfaces:
         test_interface_definition_name_0:
@@ -829,11 +829,11 @@ topology_template:
       outputs: test_attribute_mappings
       preconditions:
       - condition: {}
-        target: test_group_name_0
-        target_relationship: test_relationship_template_name_0
-      - condition: {}
         target: test_group_name_1
         target_relationship: test_relationship_template_name_1
+      - condition: {}
+        target: test_group_name_0
+        target_relationship: test_relationship_template_name_0
       steps:
         test_step_name_0:
           activities:

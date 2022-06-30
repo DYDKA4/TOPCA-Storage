@@ -7,8 +7,8 @@ from nebula_communication.template_builder.definition.ConditionClauseDefinition 
 from parser.parser.tosca_v_1_3.definitions.WorkflowStepDefinition import WorkflowStepDefinition
 
 
-def construct_workflow_step_definition(list_of_vid) -> list:
-    result = []
+def construct_workflow_step_definition(list_of_vid) -> dict:
+    result = {}
     imperative_workflow_definition = WorkflowStepDefinition('name').__dict__
 
     for vid in list_of_vid:
@@ -65,6 +65,6 @@ def construct_workflow_step_definition(list_of_vid) -> list:
             else:
                 print(edge)
                 abort(500)
-        result.append({vertex_value['name'].as_string(): tmp_result})
+        result[vertex_value['name'].as_string()] = tmp_result
 
     return result

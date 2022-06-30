@@ -14,13 +14,13 @@ def construct_property_filter_definition(list_of_vid) -> list:
     for vid in list_of_vid:
         vertex_value = fetch_vertex(vid, 'PropertyFilterDefinition')
         vertex_value = vertex_value.as_map()
-        tmp_result = {}
+        tmp_result = []
         vertex_keys = vertex_value.keys()
         edges = set(property_definition.keys()) - set(vertex_keys) - {'vid'}
         for edge in edges:
             destination = find_destination(vid, edge)
             if edge == 'property_constraint':
-                tmp_result['property_constraint'] = construct_constraint_schema(destination)
+                tmp_result += construct_constraint_schema(destination)
             else:
                 abort(500)
         result.append({vertex_value['name'].as_string(): tmp_result})

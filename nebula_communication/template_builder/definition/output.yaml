@@ -644,13 +644,11 @@ topology_template:
         capabilities: []
         properties:
         - test_property_name_0:
-            property_constraint:
-            - equal_1: value_1
-            - equal_0: value_0
+          - equal_1: value_1
+          - equal_0: value_0
         - test_property_name_1:
-            property_constraint:
-            - equal_0: value_0
-            - equal_1: value_1
+          - equal_0: value_0
+          - equal_1: value_1
       properties:
         test_property_name_0: property_value_test_0
         test_property_name_1: property_value_test_1

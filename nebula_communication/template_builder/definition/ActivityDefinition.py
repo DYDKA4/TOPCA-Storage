@@ -1,3 +1,5 @@
+import logging
+
 from werkzeug.exceptions import abort
 
 from nebula_communication.nebula_functions import fetch_vertex, find_destination
@@ -35,21 +37,25 @@ def construct_activity_definition(list_of_vid) -> list:
         edges = set(artifact_definition.keys()) - set(vertex_keys) - {'vid'}
         for edge in edges:
             destination = find_destination(vid, edge)
-            if edge == 'operation':
-                if len(tmp_result.keys()) > 0 in range(0, 1) and 'inputs' in set(tmp_result.keys()):
+            if edge == 'operation' and type_vertex == 'CallOperationActivityDefinition':
+                if len(tmp_result.keys()) in range(0, 2):
                     operation = fetch_vertex(destination[0], 'OperationDefinition')
                     operation = operation.as_map()
                     operation = operation['name'].as_string()
 
                     tmp_result['operation'] = vertex_value['interface_name'].as_string() + '.' + operation
+                else:
+                    abort(500)
             elif edge == 'workflow':
-                if len(tmp_result.keys()) > 0 in range(0, 1) and 'inputs' in set(tmp_result.keys()):
+                if len(tmp_result.keys()) in range(0, 2):
                     workflow = fetch_vertex(destination[0], 'ImperativeWorkflowDefinition')
                     workflow = workflow.as_map()
                     workflow = workflow['name'].as_string()
                     tmp_result['workflow'] = workflow
+                else:
+                    abort(500)
             elif edge == 'inputs':
-                if len(tmp_result.keys()) in range(0, 1):
+                if len(tmp_result.keys()) in range(0, 2):
                     inputs = []
                     for inputs_value in destination:
                         inputs_value = fetch_vertex(inputs_value, 'ParameterDefinition')
@@ -57,7 +63,6 @@ def construct_activity_definition(list_of_vid) -> list:
                         inputs_value = inputs_value['name'].as_string()
                         inputs.append(inputs_value)
                     tmp_result['inputs'] = inputs
-
                 else:
                     abort(500)
             else:

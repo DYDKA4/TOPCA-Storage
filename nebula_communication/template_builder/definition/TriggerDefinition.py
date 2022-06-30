@@ -32,6 +32,19 @@ def construct_trigger_definition(list_of_vid) -> dict:
                     condition_dict[vertex_key] = value
                 else:
                     tmp_result[vertex_key] = value
+        schedule = {}
+        if tmp_result.get('schedule_start') is not None:
+            schedule = {'start_time': tmp_result.get('schedule_start')}
+            if tmp_result.get('schedule_end') is not None:
+                schedule['end_time'] = tmp_result.get('schedule_end')
+                del tmp_result['schedule_end']
+            del tmp_result['schedule_start']
+        elif tmp_result.get('schedule_end'):
+            schedule = {'end_time': tmp_result.get('schedule_end')}
+            del tmp_result['schedule_end']
+        if schedule != {}:
+            tmp_result['schedule'] = schedule
+
         edges = set(trigger_definition.keys()) - set(vertex_keys) - {'vid'}
         for edge in edges:
             destination = find_destination(vid, edge)

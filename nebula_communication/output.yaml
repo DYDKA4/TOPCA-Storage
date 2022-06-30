@@ -419,8 +419,9 @@ policy_types:
           period: 60 sec
         description: test_trigger_description
         event: test_event_name
-        schedule_end: 1
-        schedule_start: 0
+        schedule:
+          end_time: 1
+          start_time: 0
         target_filter:
           capability: test_capability_definition_name
           node: test_parent_node_type_name
@@ -644,13 +645,11 @@ topology_template:
         capabilities: []
         properties:
         - test_property_name_0:
-            property_constraint:
-            - equal_1: value_1
-            - equal_0: value_0
+          - equal_1: value_1
+          - equal_0: value_0
         - test_property_name_1:
-            property_constraint:
-            - equal_0: value_0
-            - equal_1: value_1
+          - equal_0: value_0
+          - equal_1: value_1
       properties:
         test_property_name_0: property_value_test_0
         test_property_name_1: property_value_test_1

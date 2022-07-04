@@ -1,3 +1,4 @@
+from parser.linker.tosca_v_1_3.assignments.PropertyAssignment import link_property_assignment
 from parser.linker.tosca_v_1_3.assignments.RequirementAssignment import link_requirement_assignments
 from parser.linker.tosca_v_1_3.definitions.ActivityDefinition import link_activity_definition
 from parser.linker.tosca_v_1_3.definitions.ArtifactDefinition import link_artifact_definition
@@ -78,6 +79,9 @@ def sub_interface_definition_parser(interfaces_list, service_template: ServiceTe
             if interface_definition.inputs[0].vertex_type_system == 'PropertyDefinition':
                 for property_definition in interface_definition.inputs:
                     link_property_definition(service_template, property_definition)
+            if interface_definition.inputs[0].vertex_type_system == 'PropertyAssignment':
+                for property_assignment in interface_definition.inputs:
+                    link_property_assignment(service_template, property_assignment)
 
 
 def sub_attribute_definition_parser(service_template: ServiceTemplateDefinition, attribute_list: list):
@@ -197,12 +201,16 @@ def main_linker(service_template: ServiceTemplateDefinition):
                 #     node_filter: NodeFilterDefinition = requirement_assignment.node_filter
             for artifact_definition in node_template.artifacts:
                 link_artifact_definition(service_template, artifact_definition)
+            for property_assignment in node_template.properties:
+                link_property_assignment(service_template, property_assignment)
             sub_interface_definition_parser(node_template.interfaces, service_template)
             link_node_template(service_template, node_template)
         for relationship_template in topology_template.relationship_templates:
             relationship_template: RelationshipTemplate
             sub_interface_definition_parser(relationship_template.interfaces, service_template)
             link_relationship_template(service_template, relationship_template)
+            for property_assignment in relationship_template.properties:
+                link_property_assignment(service_template, property_assignment)
         for group_definition in topology_template.groups:
             group_definition: GroupDefinition
             link_group_definition(service_template, group_definition)

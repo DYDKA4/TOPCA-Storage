@@ -39,11 +39,11 @@ def deploy(template, cluster_name) -> None:
                 if name_of_key_value == '':
                     if attribute_value is not None:
                         name_of_key_value = attribute_name
-                        key_value = '"' + str(attribute_value) + '"'
+                        key_value = "'" + str(attribute_value) + "'"
                 else:
                     if attribute_value is not None:
                         name_of_key_value = name_of_key_value + ", " + attribute_name
-                        key_value = key_value + ', "' + str(attribute_value) + '"'
+                        key_value = key_value + ", '" + str(attribute_value) + "'"
             elif attribute_name not in {'vid', 'vertex_type_system'} and attribute_value is not None:
                 complex_vertex[attribute_name] = attribute_value
         if template.vid is None:
@@ -130,5 +130,4 @@ template = service_template_definition_parser(''.join(choice(ascii_uppercase) fo
 main_linker(template)
 if add_vid(template.vid, template.name):
     abort(400)
-# template
 deploy(template, template.name)

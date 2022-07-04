@@ -380,6 +380,10 @@
      test_node_template_name_0:
        type: test_node_type_name_0
      test_node_template_name_1:
+       properties:
+        get_property_0: {get_property: [test_node_template_name,test_property_name_0]}
+        get_property_1: { get_property: [ test_node_template_name,test_capability_name_0,test_property_name_0 ] }
+
        type: test_node_type_name_1
      test_node_template_name:
        type: test_node_type_name_0

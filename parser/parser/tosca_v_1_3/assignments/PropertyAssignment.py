@@ -6,3 +6,5 @@ class PropertyAssignment:
         self.name = name
         self.value = value
         self.vertex_type_system = 'PropertyAssignment'
+        self.get_property = None
+

@@ -104,7 +104,18 @@ def link_property_assignment(service_template: ServiceTemplateDefinition,
     target_name = ''
     target_names = []
     if value[0] == 'SELF':
-        abort(501)
+        parent_template: NodeTemplate = find_parent_template(template_definition, property_assignment)
+        if parent_template is not None:
+            value = value[1:]
+            target_name = parent_template.name
+        else:
+            parent_template: RelationshipTemplate = find_parent_relationship_template(template_definition,
+                                                                                      property_assignment)
+            if parent_template is None:
+                abort(400)
+            value = value[1:]
+            target_name = parent_template.name
+
     elif value[0] == 'SOURCE':
         parent_relationship_template = find_parent_relationship_template(template_definition, property_assignment)
         for node_template in template_definition.node_templates:

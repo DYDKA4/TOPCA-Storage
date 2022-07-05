@@ -379,6 +379,12 @@
    node_templates:
      test_node_template_name_0:
        type: test_node_type_name_0
+       properties:
+         test_property_name_0: host_value_0
+       capabilities:
+         test_capability_name_0:
+           properties:
+            test_property_name_0: host_value_1
      test_node_template_name_1:
        properties:
         get_property_0: {get_property: [test_node_template_name,test_property_name_0]}
@@ -394,13 +400,13 @@
          metadata_key_1: metadata_value_1
          metadata_key_2: metadata_value_2
        properties:
-         test_property_name_0: property_value_test_0
-         test_property_name_1: property_value_test_1
+         test_property_name_0: {get_property: [HOST,test_property_name_0]}
+         test_property_name_1: {get_property: [HOST,test_capability_name_0,test_property_name_0]}
        attributes:
          test_attribute_name_0: attribute_value_test_0
          test_attribute_name_1: attribute_value_test_1
        requirements:
-         - test_requirement_name_0: test_node_template_name_0
+         - host: test_node_template_name_0
          - test_requirement_name_1: test_node_template_name_1
        capabilities:
          test_capability_name_0:

@@ -17,7 +17,7 @@ def construct_property_assignment(list_of_vid) -> dict:
         else:
             try:
                 value = json.loads(value)
-            except:
+            except ValueError:
                 value = value
         result[vertex_value['name'].as_string()] = value
     return result

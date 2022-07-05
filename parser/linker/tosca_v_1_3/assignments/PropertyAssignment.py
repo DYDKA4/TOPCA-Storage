@@ -33,6 +33,21 @@ def find_in_property_list(property_assignment: PropertyAssignment, destination_p
     return
 
 
+def find_parent_template(template_definition: TemplateDefinition, property_assignment):
+    for node_template in template_definition.node_templates:
+        node_template: NodeTemplate
+        for property_assignment_copy in node_template.properties:
+            property_assignment_copy: PropertyAssignment
+            if property_assignment_copy == property_assignment:
+                return node_template
+        for capability_assignment in node_template.capabilities:
+            capability_assignment: CapabilityAssignment
+            for property_assignment_copy in capability_assignment.properties:
+                if property_assignment_copy == property_assignment:
+                    return node_template
+    return None
+
+
 def link_property_assignment(service_template: ServiceTemplateDefinition,
                              property_assignment: PropertyAssignment) -> None:
     template_definition: TemplateDefinition = service_template.topology_template
@@ -52,7 +67,19 @@ def link_property_assignment(service_template: ServiceTemplateDefinition,
     elif value[0] == 'TARGET':
         abort(501)
     elif value[0] == 'HOST':
-        abort(501)
+        parent_template = find_parent_template(template_definition, property_assignment)
+        if parent_template is None:
+            abort(400)
+        for requirement_assignment in parent_template.requirements:
+            requirement_assignment: RequirementAssignment
+            if requirement_assignment.name == 'host':
+                if type(requirement_assignment.node) == str:
+                    target_name = requirement_assignment.node
+                elif type(requirement_assignment.node) == dict:
+                    target_vertex: NodeTemplate = requirement_assignment.node.get('node')[1]
+                    target_name = target_vertex.name
+                    value = value[1:]
+
     else:
         target_name = value[0]
         value = value[1:]

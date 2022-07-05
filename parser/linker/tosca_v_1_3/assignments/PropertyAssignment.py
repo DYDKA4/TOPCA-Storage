@@ -3,11 +3,14 @@ import json
 from werkzeug.exceptions import abort
 
 from parser.linker.LinkByName import link_by_type_name
+from parser.linker.tosca_v_1_3.assignments.get_attribute import get_attribute
 from parser.parser.tosca_v_1_3.assignments.CapabilityAssignment import CapabilityAssignment
 from parser.parser.tosca_v_1_3.assignments.PropertyAssignment import PropertyAssignment
 from parser.parser.tosca_v_1_3.assignments.RequirementAssignment import RequirementAssignment
+from parser.parser.tosca_v_1_3.definitions.GroupDefinition import GroupDefinition
 from parser.parser.tosca_v_1_3.definitions.InterfaceDefinition import InterfaceDefinition
 from parser.parser.tosca_v_1_3.definitions.ParameterDefinition import ParameterDefinition
+from parser.parser.tosca_v_1_3.definitions.PolicyDefinition import PolicyDefinition
 from parser.parser.tosca_v_1_3.definitions.ServiceTemplateDefinition import ServiceTemplateDefinition
 from parser.parser.tosca_v_1_3.definitions.TemplateDefinition import TemplateDefinition
 from parser.parser.tosca_v_1_3.others.NodeTemplate import NodeTemplate
@@ -53,6 +56,27 @@ def find_parent_template(template_definition: TemplateDefinition, property_assig
             for property_assignment_copy in capability_assignment.properties:
                 if property_assignment_copy == property_assignment:
                     return node_template
+        for interface_definition in node_template.interfaces:
+            interface_definition: InterfaceDefinition
+            for inputs_property_assignment in interface_definition.inputs:
+                inputs_property_assignment: PropertyAssignment
+                if inputs_property_assignment.vertex_type_system != "PropertyAssignment":
+                    abort(400)
+                if inputs_property_assignment == property_assignment:
+                    return node_template
+        for requirement_assignment in node_template.requirements:
+            requirement_assignment: RequirementAssignment
+            for requirement_property_assignment in requirement_assignment.properties:
+                requirement_property_assignment: PropertyAssignment
+                if requirement_property_assignment == property_assignment:
+                    return node_template
+            for interface_definition in requirement_assignment.interfaces:
+                interface_definition: InterfaceDefinition
+                for inputs_property_assignment in interface_definition.inputs:
+                    if inputs_property_assignment.vertex_type_system != "PropertyAssignment":
+                        abort(400)
+                    if inputs_property_assignment == property_assignment:
+                        return node_template
     return None
 
 
@@ -63,6 +87,14 @@ def find_parent_relationship_template(template_definition: TemplateDefinition, p
             property_assignment_copy: PropertyAssignment
             if property_assignment_copy == property_assignment:
                 return relationship_template
+        for interface_definition in relationship_template.interfaces:
+            interface_definition: InterfaceDefinition
+            for inputs_property_assignment in interface_definition.inputs:
+                inputs_property_assignment: PropertyAssignment
+                if inputs_property_assignment.vertex_type_system != "PropertyAssignment":
+                    abort(400)
+                if inputs_property_assignment == property_assignment:
+                    return relationship_template
     return None
 
 
@@ -91,6 +123,40 @@ def find_in_node_template_list(node_templates: list, target_name, value, propert
     return False
 
 
+def find_in_group_definition_list(group_definitions: list, target_name, value, property_assignment: PropertyAssignment):
+    for group_definition in group_definitions:
+        group_definition: GroupDefinition
+        if group_definition.name == target_name:
+            if find_in_property_list(property_assignment, group_definition.properties, value[0]):
+                return True
+    return False
+
+
+def find_in_policy_definition_list(policy_definitions: list, target_name, value,
+                                   property_assignment: PropertyAssignment):
+    for policy_definition in policy_definitions:
+        policy_definition: PolicyDefinition
+        if policy_definition.name == target_name:
+            if find_in_property_list(property_assignment, policy_definition.properties, value[0]):
+                return True
+    return False
+
+
+def find_in_relationship_template_list(relationship_templates: list, target_name, value,
+                                       property_assignment: PropertyAssignment):
+    for relationship_template in relationship_templates:
+        relationship_template: RelationshipTemplate
+        if relationship_template.name == target_name:
+            if find_in_property_list(property_assignment, relationship_template.properties, value[0]):
+                return
+            if len(value) > 1:
+                for interface in relationship_template.interfaces:
+                    interface: InterfaceDefinition
+                    if interface.name == value[0]:
+                        if find_in_property_list(property_assignment, interface.inputs, value[1]):
+                            return
+
+
 def link_property_assignment(service_template: ServiceTemplateDefinition,
                              property_assignment: PropertyAssignment) -> None:
     template_definition: TemplateDefinition = service_template.topology_template
@@ -103,18 +169,17 @@ def link_property_assignment(service_template: ServiceTemplateDefinition,
         target_name = ''
         target_names = []
         if value[0] == 'SELF':
-            parent_template: NodeTemplate = find_parent_template(template_definition, property_assignment)
-            if parent_template is not None:
+            if find_parent_template(template_definition, property_assignment):
+                parent_template: NodeTemplate = find_parent_template(template_definition, property_assignment)
+                value = value[1:]
+                target_name = parent_template.name
+            elif find_parent_relationship_template(template_definition, property_assignment):
+                parent_template: RelationshipTemplate = find_parent_relationship_template(template_definition,
+                                                                                          property_assignment)
                 value = value[1:]
                 target_name = parent_template.name
             else:
-                parent_template: RelationshipTemplate = find_parent_relationship_template(template_definition,
-                                                                                          property_assignment)
-                if parent_template is None:
-                    abort(400)
-                value = value[1:]
-                target_name = parent_template.name
-
+                abort(400)
         elif value[0] == 'SOURCE':
             parent_relationship_template = find_parent_relationship_template(template_definition, property_assignment)
             for node_template in template_definition.node_templates:
@@ -174,25 +239,19 @@ def link_property_assignment(service_template: ServiceTemplateDefinition,
                         target_vertex: NodeTemplate = requirement_assignment.node.get('node')[1]
                         target_name = target_vertex.name
                         value = value[1:]
-
         else:
             target_name = value[0]
             value = value[1:]
-        for relationship_template in template_definition.relationship_templates:
-            relationship_template: RelationshipTemplate
-            if relationship_template.name == target_name:
-                if find_in_property_list(property_assignment, relationship_template.properties, value[0]):
-                    return
-                if len(value) > 1:
-                    for interface in relationship_template.interfaces:
-                        interface: InterfaceDefinition
-                        if interface.name == value[0]:
-                            if find_in_property_list(property_assignment, interface.inputs, value[1]):
-                                return
-
-        if find_in_node_template_list(template_definition.node_templates, target_name, value, property_assignment):
+        if find_in_relationship_template_list(template_definition.relationship_templates, target_name, value,
+                                              property_assignment):
             return
-        if type(property_assignment.value) == dict and property_assignment.get_property is None:
+        elif find_in_node_template_list(template_definition.node_templates, target_name, value, property_assignment):
+            return
+        elif find_in_policy_definition_list(template_definition.policies, target_name, value, property_assignment):
+            return
+        elif find_in_group_definition_list(template_definition.groups, target_name, value, property_assignment):
+            return
+        elif type(property_assignment.value) == dict and property_assignment.get_property is None:
             property_assignment.value = json.dumps(property_assignment.value)
     elif value.get('get_input'):
         target_name = value.get('get_input')

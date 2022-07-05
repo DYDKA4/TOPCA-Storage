@@ -37,7 +37,7 @@ def find_in_property_list(property_assignment: PropertyAssignment, destination_p
         if destination_property_assignment.name == value:
             set_get_property(property_assignment, destination_property_assignment)
             return True
-    return
+    return False
 
 
 def find_parent_template(template_definition: TemplateDefinition, property_assignment):
@@ -63,6 +63,31 @@ def find_parent_relationship_template(template_definition: TemplateDefinition, p
             if property_assignment_copy == property_assignment:
                 return relationship_template
     return None
+
+
+def find_in_node_template_list(node_templates: list, target_name, value, property_assignment):
+    for node_template in node_templates:
+        node_template: NodeTemplate
+        if node_template.name == target_name:
+            if find_in_property_list(property_assignment, node_template.properties, value[0]):
+                return True
+            if len(value) > 1:
+                for interface in node_template.interfaces:
+                    interface: InterfaceDefinition
+                    if interface.name == value[0]:
+                        if find_in_property_list(property_assignment, interface.inputs, value[1]):
+                            return True
+                for requirement_assignment in node_template.requirements:
+                    requirement_assignment: RequirementAssignment
+                    if requirement_assignment.name == value[0]:
+                        if find_in_property_list(property_assignment, requirement_assignment.properties, value[1]):
+                            return True
+                for capability_assignment in node_template.capabilities:
+                    capability_assignment: CapabilityAssignment
+                    if capability_assignment.name == value[0]:
+                        if find_in_property_list(property_assignment, capability_assignment.properties, value[1]):
+                            return True
+    return False
 
 
 def link_property_assignment(service_template: ServiceTemplateDefinition,
@@ -98,28 +123,34 @@ def link_property_assignment(service_template: ServiceTemplateDefinition,
                             break
         value = value[1:]
         for target_name in target_names:
-            for node_template in template_definition.node_templates:
-                node_template: NodeTemplate
-                if node_template.name == target_name:
-                    find_in_property_list(property_assignment, node_template.properties, value[0])
-                    if len(value) > 1:
-                        for interface in node_template.interfaces:
-                            interface: InterfaceDefinition
-                            if interface.name == value[0]:
-                                find_in_property_list(property_assignment, interface.inputs, value[1])
-                        for requirement_assignment in node_template.requirements:
-                            requirement_assignment: RequirementAssignment
-                            if requirement_assignment.name == value[0]:
-                                find_in_property_list(property_assignment, requirement_assignment.properties,
-                                                      value[1])
-                        for capability_assignment in node_template.capabilities:
-                            capability_assignment: CapabilityAssignment
-                            if capability_assignment.name == value[0]:
-                                find_in_property_list(property_assignment, capability_assignment.properties,
-                                                      value[1])
+            find_in_node_template_list(template_definition.node_templates, target_name, value, property_assignment)
         return
     elif value[0] == 'TARGET':
-        abort(501)
+        parent_relationship_template = find_parent_relationship_template(template_definition, property_assignment)
+        for node_template in template_definition.node_templates:
+            node_template: NodeTemplate
+            for requirement_assignment in node_template.requirements:
+                requirement_assignment: RequirementAssignment
+                if requirement_assignment.relationship:
+                    if type(requirement_assignment.relationship) == str and \
+                            requirement_assignment.relationship == parent_relationship_template.name:
+                        if type(requirement_assignment.node) == str:
+                            target_names.append(requirement_assignment.node)
+                        elif type(requirement_assignment.node) == dict:
+                            target_names.append(requirement_assignment.node.get('node')[1].name)
+                        break
+                    elif type(requirement_assignment.relationship) == dict:
+                        target_relationship = requirement_assignment.relationship.get('relationship')[1]
+                        if target_relationship == parent_relationship_template:
+                            if type(requirement_assignment.node) == str:
+                                target_names.append(requirement_assignment.node)
+                            elif type(requirement_assignment.node) == dict:
+                                target_names.append(requirement_assignment.node.get('node')[1].name)
+                            break
+        value = value[1:]
+        for target_name in target_names:
+            find_in_node_template_list(template_definition.node_templates, target_name, value, property_assignment)
+        return
     elif value[0] == 'HOST':
         parent_template = find_parent_template(template_definition, property_assignment)
         if parent_template is None:
@@ -149,27 +180,7 @@ def link_property_assignment(service_template: ServiceTemplateDefinition,
                         if find_in_property_list(property_assignment, interface.inputs, value[1]):
                             return
 
-    for node_template in template_definition.node_templates:
-        node_template: NodeTemplate
-        if node_template.name == target_name:
-            if find_in_property_list(property_assignment, node_template.properties, value[0]):
-                return
-            if len(value) > 1:
-                for interface in node_template.interfaces:
-                    interface: InterfaceDefinition
-                    if interface.name == value[0]:
-                        if find_in_property_list(property_assignment, interface.inputs, value[1]):
-                            return
-                for requirement_assignment in node_template.requirements:
-                    requirement_assignment: RequirementAssignment
-                    if requirement_assignment.name == value[0]:
-                        if find_in_property_list(property_assignment, requirement_assignment.properties, value[1]):
-                            return
-                for capability_assignment in node_template.capabilities:
-                    capability_assignment: CapabilityAssignment
-                    if capability_assignment.name == value[0]:
-                        if find_in_property_list(property_assignment, capability_assignment.properties, value[1]):
-                            return
-
+    if find_in_node_template_list(template_definition.node_templates, target_name, value, property_assignment):
+        return
     if type(property_assignment.value) == dict and property_assignment.get_property is None:
         property_assignment.value = json.dumps(property_assignment.value)

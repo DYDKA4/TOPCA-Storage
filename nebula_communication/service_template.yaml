@@ -391,8 +391,13 @@
              relationship: test_relationship_template_name_0
      test_node_template_name_1:
        properties:
+        test_property_name_0: target_value_0
         get_property_0: {get_property: [test_node_template_name,test_property_name_0]}
         get_property_1: { get_property: [ test_node_template_name,test_capability_name_0,test_property_name_0 ] }
+       capabilities:
+         test_capability_name_0:
+           properties:
+            test_property_name_0: target_value_1
 
        type: test_node_type_name_1
      test_node_template_name:
@@ -444,6 +449,8 @@
        properties:
          test_property_name_0: {get_property: [SOURCE, test_property_name_0]}
          test_property_name_1: { get_property: [ SOURCE, test_capability_name_0, test_property_name_0 ] }
+         test_property_name_2: { get_property: [ TARGET, test_property_name_0 ] }
+         test_property_name_3: { get_property: [ TARGET, test_capability_name_0, test_property_name_0 ] }
      test_relationship_template_name_1:
        type: test_relationship_type_name_1
      test_relationship_template_name:

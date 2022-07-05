@@ -1,6 +1,7 @@
 from werkzeug.exceptions import abort
 
 from nebula_communication.nebula_functions import fetch_vertex, find_destination
+from nebula_communication.template_builder.DeepUpdate import deep_update_dict
 from nebula_communication.template_builder.assignment.PropertyAssignment import construct_property_assignment
 from nebula_communication.template_builder.definition.InterfaceDefinition import construct_interface_definition
 from nebula_communication.template_builder.definition.NodeFilterDefinition import construct_node_filter_definition
@@ -58,20 +59,20 @@ def construct_requirement_assignment(list_of_vid) -> list:
                     relationship = relationship.as_map()
                     relationship = relationship['name'].as_string()
                     if tmp_result.get('relationship'):
-                        tmp_result['relationship'] += {'type': relationship}
+                        deep_update_dict(tmp_result['relationship'], {'type': relationship})
                     else:
                         tmp_result['relationship'] = {'type': relationship}
             elif edge == 'properties':
                 if destination:
                     properties = construct_property_assignment(destination)
                     if tmp_result.get('relationship'):
-                        tmp_result['relationship'] += {'properties': properties}
+                        deep_update_dict(tmp_result['relationship'], {'properties': properties})
                     else:
                         tmp_result['relationship'] = {'properties': properties}
             elif edge == 'interfaces':
                 interfaces = construct_interface_definition(destination)
                 if tmp_result.get('relationship'):
-                    tmp_result['relationship'] += {'interfaces': interfaces}
+                    deep_update_dict(tmp_result['relationship'], {'interfaces': interfaces})
                 else:
                     tmp_result['relationship'] = {'interfaces': interfaces}
             elif edge == 'occurrences':

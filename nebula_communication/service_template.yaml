@@ -385,6 +385,10 @@
          test_capability_name_0:
            properties:
             test_property_name_0: host_value_1
+       requirements:
+         - get_property_source:
+             node: test_node_template_name_1
+             relationship: test_relationship_template_name_0
      test_node_template_name_1:
        properties:
         get_property_0: {get_property: [test_node_template_name,test_property_name_0]}
@@ -408,6 +412,9 @@
        requirements:
          - host: test_node_template_name_0
          - test_requirement_name_1: test_node_template_name_1
+         - get_property_source:
+              node: test_node_template_name_0
+              relationship: test_relationship_template_name_0
        capabilities:
          test_capability_name_0:
            properties:
@@ -434,6 +441,9 @@
    relationship_templates:
      test_relationship_template_name_0:
        type: test_relationship_type_name_0
+       properties:
+         test_property_name_0: {get_property: [SOURCE, test_property_name_0]}
+         test_property_name_1: { get_property: [ SOURCE, test_capability_name_0, test_property_name_0 ] }
      test_relationship_template_name_1:
        type: test_relationship_type_name_1
      test_relationship_template_name:

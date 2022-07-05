@@ -234,16 +234,16 @@ def link_property_assignment(service_template: ServiceTemplateDefinition,
                                                                                           property_assignment)
                 value = value[1:]
                 target_name = parent_template.name
-            elif find_parent_group_definition(template_definition, property_assignment):
-                parent_template: GroupDefinition = find_parent_group_definition(template_definition,
-                                                                                property_assignment)
-                value = value[1:]
-                target_name = parent_template.name
-            elif find_parent_policy_definition(template_definition, property_assignment):
-                parent_template: PolicyDefinition = find_parent_policy_definition(template_definition,
-                                                                                  property_assignment)
-                value = value[1:]
-                target_name = parent_template.name
+            # elif find_parent_group_definition(template_definition, property_assignment):
+            #     parent_template: GroupDefinition = find_parent_group_definition(template_definition,
+            #                                                                     property_assignment)
+            #     value = value[1:]
+            #     target_name = parent_template.name
+            # elif find_parent_policy_definition(template_definition, property_assignment):
+            #     parent_template: PolicyDefinition = find_parent_policy_definition(template_definition,
+            #                                                                       property_assignment)
+            #     value = value[1:]
+            #     target_name = parent_template.name
             else:
                 abort(400)
         elif value[0] == 'SOURCE':

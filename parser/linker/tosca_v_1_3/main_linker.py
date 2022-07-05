@@ -29,6 +29,7 @@ from parser.linker.tosca_v_1_3.types.InterfaceType import link_interface_type
 from parser.linker.tosca_v_1_3.types.NodeType import link_node_type
 from parser.linker.tosca_v_1_3.types.PolicyTypes import link_policy_type
 from parser.linker.tosca_v_1_3.types.RelationshipType import link_relationship_type
+from parser.parser.tosca_v_1_3.assignments.CapabilityAssignment import CapabilityAssignment
 from parser.parser.tosca_v_1_3.assignments.RequirementAssignment import RequirementAssignment
 from parser.parser.tosca_v_1_3.definitions.AttributeDefinition import AttributeDefinition
 from parser.parser.tosca_v_1_3.definitions.CapabilityDefinition import CapabilityDefinition
@@ -203,6 +204,10 @@ def main_linker(service_template: ServiceTemplateDefinition):
                 link_artifact_definition(service_template, artifact_definition)
             for property_assignment in node_template.properties:
                 link_property_assignment(service_template, property_assignment)
+            for capability_assignment in node_template.capabilities:
+                capability_assignment: CapabilityAssignment
+                for property_assignment in capability_assignment.properties:
+                    link_property_assignment(service_template, property_assignment)
             sub_interface_definition_parser(node_template.interfaces, service_template)
             link_node_template(service_template, node_template)
         for relationship_template in topology_template.relationship_templates:

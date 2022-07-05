@@ -381,10 +381,12 @@
        type: test_node_type_name_0
        properties:
          test_property_name_0: host_value_0
+         test_get_input_property: {get_input: [input_0]}
        capabilities:
          test_capability_name_0:
            properties:
             test_property_name_0: host_value_1
+            test_get_input_property: { get_input: [input_1]}
        requirements:
          - get_property_source:
              node: test_node_template_name_1

@@ -7,4 +7,5 @@ class PropertyAssignment:
         self.value = value
         self.vertex_type_system = 'PropertyAssignment'
         self.get_property = None
+        self.get_input = None
 

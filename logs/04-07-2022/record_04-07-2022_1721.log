@@ -1,0 +1,5 @@
+2022-07-04 17:21:00,198 WARNING werkzeug MainThread :  * Debugger is active!
+2022-07-04 17:21:00,199 INFO werkzeug MainThread :  * Debugger PIN: 837-044-901
+2022-07-04 17:21:18,293 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-04 17:21:18,299 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-04 17:22:21,522 INFO werkzeug MainThread :  * Detected change in '/home/dmitrytulin/PycharmProjects/API_COURSE/nebula_communication/redis_communication.py', reloading

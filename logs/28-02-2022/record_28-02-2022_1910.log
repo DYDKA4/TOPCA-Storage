@@ -1,6 +1,0 @@
-2022-02-28 19:10:11,871 WARNING werkzeug MainThread :  * Debugger is active!
-2022-02-28 19:10:11,872 INFO werkzeug MainThread :  * Debugger PIN: 104-682-689
-2022-02-28 19:10:44,238 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/data_classes.py', reloading
-2022-02-28 19:10:44,429 WARNING werkzeug MainThread :  * Debugger is active!
-2022-02-28 19:10:44,429 INFO werkzeug MainThread :  * Debugger PIN: 104-682-689
-2022-02-28 19:11:24,876 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/data_classes.py', reloading

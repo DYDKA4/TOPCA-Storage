@@ -1,3 +1,0 @@
-2022-02-18 18:50:07,846 WARNING werkzeug MainThread :  * Debugger is active!
-2022-02-18 18:50:07,846 INFO werkzeug MainThread :  * Debugger PIN: 138-624-410
-2022-02-18 18:51:12,475 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/views.py', reloading

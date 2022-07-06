@@ -1,8 +1,0 @@
-2022-03-04 19:30:16,357 WARNING werkzeug MainThread :  * Debugger is active!
-2022-03-04 19:30:16,357 INFO werkzeug MainThread :  * Debugger PIN: 759-239-593
-2022-03-04 19:30:17,135 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
-2022-03-04 19:30:53,907 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/views.py', reloading
-2022-03-04 19:30:54,092 WARNING werkzeug MainThread :  * Debugger is active!
-2022-03-04 19:30:54,093 INFO werkzeug MainThread :  * Debugger PIN: 759-239-593
-2022-03-04 19:31:00,584 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
-2022-03-04 19:31:04,916 ERROR root MainThread : The connection using by someone, but now want to close it

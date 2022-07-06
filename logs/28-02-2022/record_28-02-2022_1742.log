@@ -1,3 +1,0 @@
-2022-02-28 17:42:32,832 WARNING werkzeug MainThread :  * Debugger is active!
-2022-02-28 17:42:32,832 INFO werkzeug MainThread :  * Debugger PIN: 104-682-689
-2022-02-28 17:44:02,822 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/communication_with_nebula.py', reloading

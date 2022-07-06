@@ -1,5 +1,0 @@
-2022-03-11 16:49:24,303 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
-2022-03-11 16:49:24,333 WARNING werkzeug MainThread :  * Debugger is active!
-2022-03-11 16:49:24,333 INFO werkzeug MainThread :  * Debugger PIN: 103-640-066
-2022-03-11 16:50:10,390 INFO werkzeug Thread-2 : 127.0.0.1 - - [11/Mar/2022 16:50:10] "[35m[1mPATCH /yaml-template/topology_template/relationship_templates/?name=Latex HTTP/1.1[0m" 500 -
-2022-03-11 16:50:32,157 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/views.py', reloading

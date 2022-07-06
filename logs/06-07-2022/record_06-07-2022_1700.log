@@ -1,0 +1,9 @@
+2022-07-06 17:00:27,075 INFO werkzeug MainThread :  * Running on http://127.0.0.1:5000 (Press CTRL+C to quit)
+2022-07-06 17:00:27,076 INFO werkzeug MainThread :  * Restarting with stat
+2022-07-06 17:00:27,548 WARNING werkzeug MainThread :  * Debugger is active!
+2022-07-06 17:00:27,548 INFO werkzeug MainThread :  * Debugger PIN: 857-589-734
+2022-07-06 17:00:30,161 INFO werkzeug Thread-2 : 127.0.0.1 - - [06/Jul/2022 17:00:30] "[31m[1mPOST /yaml-template/?cluster_name=cluster HTTP/1.1[0m" 400 -
+2022-07-06 17:02:50,573 INFO werkzeug MainThread :  * Detected change in '/home/dmitrytulin/PycharmProjects/API_COURSE/app/views.py', reloading
+2022-07-06 17:02:50,629 INFO werkzeug MainThread :  * Restarting with stat
+2022-07-06 17:03:07,950 INFO werkzeug MainThread :  * Restarting with stat
+2022-07-06 17:03:34,766 INFO werkzeug MainThread :  * Restarting with stat

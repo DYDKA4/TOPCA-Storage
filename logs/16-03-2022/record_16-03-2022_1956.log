@@ -1,7 +1,0 @@
-2022-03-16 19:56:06,603 WARNING werkzeug MainThread :  * Debugger is active!
-2022-03-16 19:56:06,603 INFO werkzeug MainThread :  * Debugger PIN: 656-638-856
-2022-03-16 19:56:08,621 INFO werkzeug Thread-2 : 127.0.0.1 - - [16/Mar/2022 19:56:08] "PUT /yaml-template/?cluster_name=cluster_tosca_59 HTTP/1.1" 200 -
-2022-03-16 19:56:56,169 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/communication_with_nebula.py', reloading
-2022-03-16 19:56:56,370 WARNING werkzeug MainThread :  * Debugger is active!
-2022-03-16 19:56:56,370 INFO werkzeug MainThread :  * Debugger PIN: 656-638-856
-2022-03-16 19:57:00,422 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/views.py', reloading

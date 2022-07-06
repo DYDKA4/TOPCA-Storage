@@ -1,6 +1,0 @@
-2021-12-21 18:37:20,958 WARNING werkzeug MainThread :  * Debugger is active!
-2021-12-21 18:37:20,958 INFO werkzeug MainThread :  * Debugger PIN: 360-797-176
-2021-12-21 18:37:59,029 INFO werkzeug MainThread :  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
-2021-12-21 18:37:59,031 INFO werkzeug MainThread :  * Restarting with stat
-2021-12-21 18:37:59,188 WARNING werkzeug MainThread :  * Debugger is active!
-2021-12-21 18:37:59,188 INFO werkzeug MainThread :  * Debugger PIN: 360-797-176

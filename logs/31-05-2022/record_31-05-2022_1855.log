@@ -1,3 +1,0 @@
-2022-05-31 18:55:18,440 WARNING werkzeug MainThread :  * Debugger is active!
-2022-05-31 18:55:18,441 INFO werkzeug MainThread :  * Debugger PIN: 774-930-408
-2022-05-31 19:00:24,862 INFO werkzeug MainThread :  * Detected change in '/home/dmitry/PycharmProjects/API_COURSE/app/parser/tosca_v_1_3/RequirementAssignment.py', reloading

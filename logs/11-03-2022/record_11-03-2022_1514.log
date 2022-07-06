@@ -1,9 +1,0 @@
-2022-03-11 15:14:36,256 INFO werkzeug MainThread :  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
-2022-03-11 15:14:36,279 INFO werkzeug MainThread :  * Restarting with stat
-2022-03-11 15:14:36,485 WARNING werkzeug MainThread :  * Debugger is active!
-2022-03-11 15:14:36,559 INFO werkzeug MainThread :  * Debugger PIN: 103-640-066
-2022-03-11 15:14:39,069 INFO werkzeug Thread-2 : 127.0.0.1 - - [11/Mar/2022 15:14:39] "PATCH /yaml-template/node_name/name/class/type HTTP/1.1" 200 -
-2022-03-11 15:15:03,880 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/views.py', reloading
-2022-03-11 15:15:03,910 INFO werkzeug MainThread :  * Restarting with stat
-2022-03-11 15:16:37,035 INFO werkzeug MainThread :  * Restarting with stat
-2022-03-11 15:23:35,353 INFO werkzeug MainThread :  * Restarting with stat

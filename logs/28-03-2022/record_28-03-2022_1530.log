@@ -1,9 +1,0 @@
-2022-03-28 15:30:33,253 WARNING werkzeug MainThread :  * Debugger is active!
-2022-03-28 15:30:33,253 INFO werkzeug MainThread :  * Debugger PIN: 460-723-190
-2022-03-28 15:31:28,539 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
-2022-03-28 15:31:28,548 INFO werkzeug Thread-2 : 127.0.0.1 - - [28/Mar/2022 15:31:28] "GET /find/destination_node HTTP/1.1" 200 -
-2022-03-28 15:32:13,806 INFO root Thread-3 : Get connection to ('10.100.151.128', 9669)
-2022-03-28 15:32:13,815 INFO werkzeug Thread-3 : 127.0.0.1 - - [28/Mar/2022 15:32:13] "GET /find/destination_node?cluster_name=cluster_tosca_1 HTTP/1.1" 200 -
-2022-03-28 15:32:39,258 INFO root Thread-4 : Get connection to ('10.100.151.128', 9669)
-2022-03-28 15:32:39,266 INFO werkzeug Thread-4 : 127.0.0.1 - - [28/Mar/2022 15:32:39] "GET /find/destination_node?cluster_name=cluster_tosca_1 HTTP/1.1" 200 -
-2022-03-28 15:32:51,191 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/find.py', reloading

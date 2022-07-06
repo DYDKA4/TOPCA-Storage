@@ -1,3 +1,0 @@
-2022-05-30 15:41:47,663 WARNING werkzeug MainThread :  * Debugger is active!
-2022-05-30 15:41:47,664 INFO werkzeug MainThread :  * Debugger PIN: 100-900-223
-2022-05-30 15:44:48,898 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/parser/tosca_v_1_3/TemplateDefinition.py', reloading

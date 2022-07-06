@@ -1,8 +1,0 @@
-2021-12-18 20:24:10,789 WARNING werkzeug MainThread :  * Debugger is active!
-2021-12-18 20:24:10,793 INFO werkzeug MainThread :  * Debugger PIN: 959-477-946
-2021-12-18 20:24:11,329 INFO werkzeug Thread-1 :  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
-2021-12-18 20:24:12,305 INFO werkzeug Thread-2 : 127.0.0.1 - - [18/Dec/2021 20:24:12] "POST /yaml-template HTTP/1.1" 200 -
-2021-12-18 20:24:26,171 INFO werkzeug Thread-3 : 127.0.0.1 - - [18/Dec/2021 20:24:26] "POST /yaml-template HTTP/1.1" 200 -
-2021-12-18 20:24:34,505 INFO werkzeug Thread-4 : 127.0.0.1 - - [18/Dec/2021 20:24:34] "[35m[1mPOST /yaml-template HTTP/1.1[0m" 500 -
-2021-12-18 20:24:37,981 INFO werkzeug Thread-5 : 127.0.0.1 - - [18/Dec/2021 20:24:37] "[35m[1mPOST /yaml-template HTTP/1.1[0m" 500 -
-2021-12-18 20:27:09,039 INFO werkzeug MainThread :  * Detected change in 'C:\\Users\\User\\PycharmProjects\\API_COURSE\\app\\json_parser.py', reloading

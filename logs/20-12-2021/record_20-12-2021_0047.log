@@ -1,7 +1,0 @@
-2021-12-20 00:47:40,155 WARNING werkzeug MainThread :  * Debugger is active!
-2021-12-20 00:47:40,159 INFO werkzeug MainThread :  * Debugger PIN: 959-477-946
-2021-12-20 00:47:40,648 INFO werkzeug Thread-1 :  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
-2021-12-20 00:48:00,945 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
-2021-12-20 00:48:02,418 INFO werkzeug Thread-2 : 127.0.0.1 - - [20/Dec/2021 00:48:02] "POST /yaml-template HTTP/1.1" 200 -
-2021-12-20 00:48:33,886 INFO root Thread-3 : Get connection to ('10.100.151.128', 9669)
-2021-12-20 00:48:34,973 INFO werkzeug Thread-3 : 127.0.0.1 - - [20/Dec/2021 00:48:34] "POST /yaml-template HTTP/1.1" 200 -

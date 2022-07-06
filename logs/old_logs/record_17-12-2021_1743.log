@@ -1,6 +1,0 @@
-2021-12-17 17:43:35,817 WARNING werkzeug MainThread :  * Debugger is active!
-2021-12-17 17:43:35,817 INFO werkzeug MainThread :  * Debugger PIN: 122-984-268
-2021-12-17 17:43:55,954 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/json_parser.py', reloading
-2021-12-17 17:43:56,146 WARNING werkzeug MainThread :  * Debugger is active!
-2021-12-17 17:43:56,146 INFO werkzeug MainThread :  * Debugger PIN: 122-984-268
-2021-12-17 17:44:05,201 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/json_parser.py', reloading

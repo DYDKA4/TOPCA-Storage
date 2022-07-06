@@ -1,5 +1,0 @@
-2022-03-09 20:17:46,193 WARNING werkzeug MainThread :  * Debugger is active!
-2022-03-09 20:17:46,193 INFO werkzeug MainThread :  * Debugger PIN: 401-824-779
-2022-03-09 20:17:53,512 INFO werkzeug Thread-2 : 127.0.0.1 - - [09/Mar/2022 20:17:53] "[33mGET /allow/20/ HTTP/1.1[0m" 404 -
-2022-03-09 20:18:00,263 INFO werkzeug Thread-3 : 127.0.0.1 - - [09/Mar/2022 20:18:00] "GET /allow/20/1314 HTTP/1.1" 200 -
-2022-03-09 20:25:36,713 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/views.py', reloading

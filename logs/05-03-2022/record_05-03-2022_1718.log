@@ -1,9 +1,0 @@
-2022-03-05 17:18:05,607 WARNING werkzeug MainThread :  * Debugger is active!
-2022-03-05 17:18:05,608 INFO werkzeug MainThread :  * Debugger PIN: 127-056-592
-2022-03-05 17:18:10,663 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/yaml_parser.py', reloading
-2022-03-05 17:18:10,842 WARNING werkzeug MainThread :  * Debugger is active!
-2022-03-05 17:18:10,843 INFO werkzeug MainThread :  * Debugger PIN: 127-056-592
-2022-03-05 17:18:34,121 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/yaml_parser.py', reloading
-2022-03-05 17:18:34,311 WARNING werkzeug MainThread :  * Debugger is active!
-2022-03-05 17:18:34,311 INFO werkzeug MainThread :  * Debugger PIN: 127-056-592
-2022-03-05 17:20:44,748 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/yaml_parser.py', reloading

@@ -1,9 +1,0 @@
-2022-05-31 21:47:14,611 WARNING werkzeug MainThread :  * Debugger is active!
-2022-05-31 21:47:14,611 INFO werkzeug MainThread :  * Debugger PIN: 774-930-408
-2022-05-31 21:47:23,751 INFO werkzeug MainThread :  * Detected change in '/home/dmitry/PycharmProjects/API_COURSE/app/parser/tosca_v_1_3/OperationImplementationDefinition.py', reloading
-2022-05-31 21:47:23,995 WARNING werkzeug MainThread :  * Debugger is active!
-2022-05-31 21:47:23,995 INFO werkzeug MainThread :  * Debugger PIN: 774-930-408
-2022-05-31 21:47:58,453 INFO werkzeug MainThread :  * Detected change in '/home/dmitry/PycharmProjects/API_COURSE/app/parser/tosca_v_1_3/OperationImplementationDefinition.py', reloading
-2022-05-31 21:47:58,706 WARNING werkzeug MainThread :  * Debugger is active!
-2022-05-31 21:47:58,706 INFO werkzeug MainThread :  * Debugger PIN: 774-930-408
-2022-05-31 21:48:24,033 INFO werkzeug MainThread :  * Detected change in '/home/dmitry/PycharmProjects/API_COURSE/app/parser/tosca_v_1_3/OperationImplementationDefinition.py', reloading

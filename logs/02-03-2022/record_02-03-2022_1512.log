@@ -1,5 +1,0 @@
-2022-03-02 15:12:19,830 WARNING werkzeug MainThread :  * Debugger is active!
-2022-03-02 15:12:19,831 INFO werkzeug MainThread :  * Debugger PIN: 799-069-225
-2022-03-02 15:12:22,431 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
-2022-03-02 15:12:32,520 INFO werkzeug Thread-2 : 127.0.0.1 - - [02/Mar/2022 15:12:32] "POST /yaml-template?cluster_name=cluster_tosca_25 HTTP/1.1" 200 -
-2022-03-02 15:17:07,704 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/views.py', reloading

@@ -1,6 +1,0 @@
-2022-05-30 15:24:03,614 WARNING werkzeug MainThread :  * Debugger is active!
-2022-05-30 15:24:03,615 INFO werkzeug MainThread :  * Debugger PIN: 100-900-223
-2022-05-30 15:24:09,445 INFO werkzeug Thread-2 : 127.0.0.1 - - [30/May/2022 15:24:09] "[35m[1mPOST /yaml-template?cluster_name=cluster HTTP/1.1[0m" 500 -
-2022-05-30 15:24:14,957 INFO werkzeug Thread-3 : 127.0.0.1 - - [30/May/2022 15:24:14] "[35m[1mPOST /yaml-template?cluster_name=cluster HTTP/1.1[0m" 500 -
-2022-05-30 15:38:05,887 INFO werkzeug Thread-4 : 127.0.0.1 - - [30/May/2022 15:38:05] "[35m[1mPOST /yaml-template?cluster_name=cluster HTTP/1.1[0m" 500 -
-2022-05-30 15:38:40,093 INFO werkzeug Thread-5 : 127.0.0.1 - - [30/May/2022 15:38:40] "POST /yaml-template/?cluster_name=cluster_tosca_6 HTTP/1.1" 200 -

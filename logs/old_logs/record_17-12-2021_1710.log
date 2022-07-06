@@ -1,4 +1,0 @@
-2021-12-17 17:10:18,782 WARNING werkzeug MainThread :  * Debugger is active!
-2021-12-17 17:10:18,783 INFO werkzeug MainThread :  * Debugger PIN: 122-984-268
-2021-12-17 17:10:21,220 INFO werkzeug Thread-2 : 127.0.0.1 - - [17/Dec/2021 17:10:21] "POST /yaml-template HTTP/1.1" 200 -
-2021-12-17 17:11:00,046 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/json_parser.py', reloading

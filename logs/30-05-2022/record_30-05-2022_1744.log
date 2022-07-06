@@ -1,7 +1,0 @@
-2022-05-30 17:44:05,590 INFO werkzeug MainThread :  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
-2022-05-30 17:44:05,592 INFO werkzeug MainThread :  * Restarting with stat
-2022-05-30 17:44:05,783 WARNING werkzeug MainThread :  * Debugger is active!
-2022-05-30 17:44:05,783 INFO werkzeug MainThread :  * Debugger PIN: 100-900-223
-2022-05-30 17:50:15,866 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/app/parser/tosca_v_1_3/ConstraintСlause.py', reloading
-2022-05-30 17:50:15,904 INFO werkzeug MainThread :  * Restarting with stat
-2022-05-30 17:53:05,504 INFO werkzeug MainThread :  * Restarting with stat

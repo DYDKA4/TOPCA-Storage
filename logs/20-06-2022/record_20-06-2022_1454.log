@@ -1,9 +1,0 @@
-2022-06-20 14:54:01,901 WARNING werkzeug MainThread :  * Debugger is active!
-2022-06-20 14:54:01,901 INFO werkzeug MainThread :  * Debugger PIN: 997-840-681
-2022-06-20 14:54:21,277 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/nebula_communication/communication_with_nebula.py', reloading
-2022-06-20 14:54:21,458 WARNING werkzeug MainThread :  * Debugger is active!
-2022-06-20 14:54:21,458 INFO werkzeug MainThread :  * Debugger PIN: 997-840-681
-2022-06-20 14:54:36,751 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/nebula_communication/communication_with_nebula.py', reloading
-2022-06-20 14:54:36,948 WARNING werkzeug MainThread :  * Debugger is active!
-2022-06-20 14:54:36,949 INFO werkzeug MainThread :  * Debugger PIN: 997-840-681
-2022-06-20 14:56:06,534 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/nebula_communication/deploy.py', reloading

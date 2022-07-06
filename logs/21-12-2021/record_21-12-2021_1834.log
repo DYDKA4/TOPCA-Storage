@@ -1,6 +1,0 @@
-2021-12-21 18:34:18,496 WARNING werkzeug MainThread :  * Debugger is active!
-2021-12-21 18:34:18,497 INFO werkzeug MainThread :  * Debugger PIN: 360-797-176
-2021-12-21 18:34:57,845 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/tests/test_yaml_add.py', reloading
-2021-12-21 18:34:58,033 WARNING werkzeug MainThread :  * Debugger is active!
-2021-12-21 18:34:58,034 INFO werkzeug MainThread :  * Debugger PIN: 360-797-176
-2021-12-21 18:35:12,176 INFO werkzeug MainThread :  * Detected change in '/home/tulin/PycharmProjects/pythonProject/tests/test_yaml_add.py', reloading

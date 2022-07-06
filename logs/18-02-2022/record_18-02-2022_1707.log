@@ -1,9 +1,0 @@
-2022-02-18 17:07:06,557 WARNING werkzeug MainThread :  * Debugger is active!
-2022-02-18 17:07:06,557 INFO werkzeug MainThread :  * Debugger PIN: 138-624-410
-2022-02-18 17:07:07,635 INFO werkzeug Thread-2 : 127.0.0.1 - - [18/Feb/2022 17:07:07] "POST /yaml-template?cluster_name=First HTTP/1.1" 200 -
-2022-02-18 17:07:46,897 INFO werkzeug Thread-3 : 127.0.0.1 - - [18/Feb/2022 17:07:46] "POST /yaml-template?cluster_name=First HTTP/1.1" 200 -
-2022-02-18 17:08:56,020 INFO werkzeug Thread-4 : 127.0.0.1 - - [18/Feb/2022 17:08:56] "POST /yaml-template?cluster_name=First HTTP/1.1" 200 -
-2022-02-18 17:09:50,641 INFO werkzeug Thread-5 : 127.0.0.1 - - [18/Feb/2022 17:09:50] "POST /yaml-template?cluster_name=First HTTP/1.1" 200 -
-2022-02-18 17:10:25,549 INFO werkzeug Thread-6 : 127.0.0.1 - - [18/Feb/2022 17:10:25] "POST /yaml-template?cluster_name=First HTTP/1.1" 200 -
-2022-02-18 17:10:45,290 INFO werkzeug Thread-7 : 127.0.0.1 - - [18/Feb/2022 17:10:45] "POST /yaml-template?cluster_name=First HTTP/1.1" 200 -
-2022-02-18 17:12:14,199 INFO werkzeug Thread-8 : 127.0.0.1 - - [18/Feb/2022 17:12:14] "[35m[1mPOST /yaml-template HTTP/1.1[0m" 500 -

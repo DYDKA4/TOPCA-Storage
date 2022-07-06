@@ -13,9 +13,8 @@ class NotificationImplementationDefinition:
     def __init__(self):
         self.vid = None
         self.vertex_type_system = 'NotificationImplementationDefinition'
-        self.primary = None  # todo Make LINKER
-        self.implementation = None
-        self.dependencies = []  # todo Make LINKER
+        self.primary = None
+        self.dependencies = []
 
     def set_primary(self, primary: str):
         self.primary = primary

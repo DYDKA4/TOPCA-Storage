@@ -1,13 +1,25 @@
 import json
+import warnings
 
 from werkzeug.exceptions import abort
 
+from parser.linker.tosca_v_1_3.definitions.NotificationImplementationDefinition import \
+    link_notification_implementation_definition
+from parser.linker.tosca_v_1_3.definitions.OperationDefinition import link_operation_definition
+from parser.linker.tosca_v_1_3.definitions.OperationImplementationDefinition import \
+    link_operation_implementation_definition
 from parser.parser.tosca_v_1_3.assignments.AttributeAssignment import AttributeAssignment
 from parser.parser.tosca_v_1_3.assignments.CapabilityAssignment import CapabilityAssignment
 from parser.parser.tosca_v_1_3.assignments.PropertyAssignment import PropertyAssignment
 from parser.parser.tosca_v_1_3.assignments.RequirementAssignment import RequirementAssignment
+from parser.parser.tosca_v_1_3.definitions.ArtifactDefinition import ArtifactDefinition
 from parser.parser.tosca_v_1_3.definitions.GroupDefinition import GroupDefinition
 from parser.parser.tosca_v_1_3.definitions.InterfaceDefinition import InterfaceDefinition
+from parser.parser.tosca_v_1_3.definitions.NotificationDefinition import NotificationDefinition
+from parser.parser.tosca_v_1_3.definitions.NotificationImplementationDefinition import \
+    NotificationImplementationDefinition
+from parser.parser.tosca_v_1_3.definitions.OperationDefinition import OperationDefinition
+from parser.parser.tosca_v_1_3.definitions.OperationImplementationDefinition import OperationImplementationDefinition
 from parser.parser.tosca_v_1_3.definitions.ParameterDefinition import ParameterDefinition
 from parser.parser.tosca_v_1_3.definitions.PolicyDefinition import PolicyDefinition
 from parser.parser.tosca_v_1_3.definitions.ServiceTemplateDefinition import ServiceTemplateDefinition
@@ -50,7 +62,16 @@ def find_in_attribute_list(property_assignment: PropertyAssignment, attribute_li
         if attribute_assignment.name == value:
             set_get_smt(property_assignment, attribute_assignment, 'get_attribute')
             return True
-        return False
+    return False
+
+
+def find_in_artifact_list(property_assignment, artifact_list, value: str):
+    for artifact_definition in artifact_list:
+        artifact_definition: ArtifactDefinition
+        if artifact_definition.name == value:
+            set_get_smt(property_assignment, artifact_definition, 'get_artifact')
+            return True
+    return False
 
 
 def find_parent_template(template_definition: TemplateDefinition, property_assignment):
@@ -127,7 +148,44 @@ def find_parent_group_definition(template_definition: TemplateDefinition, proper
     return None
 
 
-def find_in_node_template_list(node_templates: list, target_name, value, property_assignment, attribute_flag):
+def find_in_interface_artifact(value, property_assignment, interface_list: list,
+                               service_template: ServiceTemplateDefinition):
+    artifact_list = []
+    for interface_definition in interface_list:
+        interface_definition: InterfaceDefinition
+        for operation_definition in interface_definition.operations:
+            operation_definition: OperationDefinition
+            if operation_definition.implementation is None:
+                break
+            if type(operation_definition.implementation) == str:
+                link_operation_definition(service_template, operation_definition)
+            if type(operation_definition.implementation) == dict:
+                artifact_list.append(operation_definition.implementation.get('implementation')[1])
+            else:
+                operation_implementation: OperationImplementationDefinition = \
+                    operation_definition.implementation
+                if type(operation_implementation.primary) == str:
+                    link_operation_implementation_definition(service_template, operation_implementation)
+                if type(operation_implementation) == dict:
+                    artifact_list.append(operation_implementation.primary.get('primary')[1])
+                else:
+                    artifact_list.append(operation_implementation.primary)
+        for notification_definition in interface_definition.notifications:
+            notification_definition: NotificationDefinition
+            if notification_definition.implementation is not None:
+                notification_implementation: NotificationImplementationDefinition = \
+                    notification_definition.implementation
+                if type(notification_implementation.primary) == str:
+                    link_notification_implementation_definition(service_template,
+                                                                notification_implementation)
+                artifact_list.append(notification_implementation.primary.get('primary')[1])
+    if find_in_artifact_list(property_assignment, artifact_list, value[0]):
+        return True
+    return False
+
+
+def find_in_node_template_list(node_templates: list, target_name, value, property_assignment, attribute_flag,
+                               artifact_flag, service_template: ServiceTemplateDefinition):
     for node_template in node_templates:
         node_template: NodeTemplate
         if node_template.name == target_name:
@@ -140,6 +198,11 @@ def find_in_node_template_list(node_templates: list, target_name, value, propert
                         if capability_assignment.name == value[0]:
                             if find_in_attribute_list(property_assignment, capability_assignment.attributes, value[1]):
                                 return True
+            elif artifact_flag:
+                if find_in_artifact_list(property_assignment, node_template.artifacts, value[0]):
+                    return True
+                elif find_in_interface_artifact(value, property_assignment, node_template.interfaces, service_template):
+                    return True
             else:
                 if find_in_property_list(property_assignment, node_template.properties, value[0]):
                     return True
@@ -190,13 +253,18 @@ def find_in_policy_definition_list(policy_definitions: list, target_name, value,
 
 
 def find_in_relationship_template_list(relationship_templates: list, target_name, value,
-                                       property_assignment: PropertyAssignment, attribute_flag):
+                                       property_assignment: PropertyAssignment, attribute_flag, artifact_flag,
+                                       service_template: ServiceTemplateDefinition):
     for relationship_template in relationship_templates:
         relationship_template: RelationshipTemplate
         if relationship_template.name == target_name:
             if attribute_flag:
                 if find_in_attribute_list(property_assignment, relationship_template.attributes, value[0]):
                     return
+            elif artifact_flag:
+                if find_in_interface_artifact(value, property_assignment, relationship_template.interfaces,
+                                              service_template):
+                    return True
             else:
                 if find_in_property_list(property_assignment, relationship_template.properties, value[0]):
                     return
@@ -215,13 +283,19 @@ def link_property_assignment(service_template: ServiceTemplateDefinition,
         value = property_assignment.value
     else:
         return
-    if value.get('get_property') or value.get('get_attribute'):
+    if value.get('get_property') or value.get('get_attribute') or value.get('get_artifact'):
         if value.get('get_property'):
             value = value.get('get_property')
             attribute_flag = False
+            artifact_flag = False
+        elif value.get('get_artifact'):
+            value = value.get('get_artifact')
+            attribute_flag = False
+            artifact_flag = True
         else:
             value = value.get('get_attribute')
             attribute_flag = True
+            artifact_flag = False
         target_name = ''
         target_names = []
         if value[0] == 'SELF':
@@ -265,7 +339,7 @@ def link_property_assignment(service_template: ServiceTemplateDefinition,
             value = value[1:]
             for target_name in target_names:
                 find_in_node_template_list(template_definition.node_templates, target_name, value, property_assignment,
-                                           attribute_flag)
+                                           attribute_flag, artifact_flag, service_template)
             return
         elif value[0] == 'TARGET':
             parent_relationship_template = find_parent_relationship_template(template_definition, property_assignment)
@@ -292,7 +366,7 @@ def link_property_assignment(service_template: ServiceTemplateDefinition,
             value = value[1:]
             for target_name in target_names:
                 find_in_node_template_list(template_definition.node_templates, target_name, value, property_assignment,
-                                           attribute_flag)
+                                           attribute_flag, artifact_flag, service_template)
             return
         elif value[0] == 'HOST':
             parent_template = find_parent_template(template_definition, property_assignment)
@@ -311,16 +385,16 @@ def link_property_assignment(service_template: ServiceTemplateDefinition,
             target_name = value[0]
             value = value[1:]
         if find_in_relationship_template_list(template_definition.relationship_templates, target_name, value,
-                                              property_assignment, attribute_flag):
+                                              property_assignment, attribute_flag, artifact_flag, service_template):
             return
         elif find_in_node_template_list(template_definition.node_templates, target_name, value, property_assignment,
-                                        attribute_flag):
+                                        attribute_flag, artifact_flag, service_template):
             return
-        elif find_in_policy_definition_list(template_definition.policies, target_name, value, property_assignment,
-                                            attribute_flag):
+        elif not artifact_flag and find_in_policy_definition_list(template_definition.policies, target_name, value,
+                                                                  property_assignment, attribute_flag):
             return
-        elif find_in_group_definition_list(template_definition.groups, target_name, value, property_assignment,
-                                           attribute_flag):
+        elif not artifact_flag and find_in_group_definition_list(template_definition.groups, target_name, value,
+                                                                 property_assignment, attribute_flag):
             return
         elif type(property_assignment.value) == dict and property_assignment.get_property is None:
             property_assignment.value = json.dumps(property_assignment.value)
@@ -334,4 +408,5 @@ def link_property_assignment(service_template: ServiceTemplateDefinition,
                 property_assignment.get_input = {'get_input': [property_assignment,
                                                                [inputs]]}
     else:
+        warnings.warn(f'Unsuccessful try to link {value}')
         abort(501)

@@ -1,0 +1,1307 @@
+2022-07-06 16:57:03,842 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:04,516 INFO root MainThread : DELETE VERTEX "a26419f9-fd1a-4ee5-8a12-75e174c58737", "756f5d2c-0cb4-4396-a02d-f03112a03d67", "0acaf6ce-3846-4078-bf26-4ebdaf00cf9a", "6c4846c1-7ff4-4d70-a6cc-ddb4ba912e06", "a4409c08-2b87-4a56-a3ae-c532ece82ff2", "da290366-e89e-46c1-a108-8f9510fde263", "a8946038-9955-4820-a6a4-58055f6e20ec", "a64bd741-d64b-43a4-82a1-5bd8fa75d574", "fc85f7ca-06b4-46f3-b6f3-717d17eef7f9", "df99e0f8-fd46-42e2-bf7f-3f764d4e23ee", "4dc00393-2f8e-4d01-8943-6282b4fa081f", "07ca333d-1851-4f06-89e7-da464e35639b", "e3d8b916-6077-46a4-b5e2-ede93b8f67f0", "8c89ff4f-f3ff-4bac-b67e-8b7143f15e9a", "60bfcfff-e658-4907-8186-885f64da4842", "da91b35f-b3f6-4525-b301-d4a851f365db", "da36fcd5-07d5-4314-b498-f002b4629bfe", "efd15605-a091-4c60-a4e1-6fe1dcda175a", "21ea5a15-9057-4874-a76d-1f734a3e24ef", "807c0113-3384-4d8d-87bf-18d23bbaddfd", "1bd7c4a6-7119-4e95-ae44-acb4448e17f0", "6144780d-ee83-44ad-a673-75ad82b245b5", "c79e7bbb-3dbf-4f13-998a-7db1a40e9602", "abe1ac6e-76fb-4559-9d4a-30d198472484", "c1c59638-f2a1-4aeb-ba6e-e644a89d3391", "a702fe15-1c12-4f08-bd20-764ab2576b92", "d15b0d3f-be94-49f7-a14d-7e5c60bad751", "c530adfc-4980-447d-aecb-d8e4e42ce54b", "51b62f57-e8d8-4bb7-94f9-865e976f9ac9", "e46cf8c2-01e7-4688-ad84-d5bd9fd15a93", "7192e607-3161-4afd-8f29-01ee871face5", "c785fc86-3919-49e0-81a1-c2a8f4212db5", "47f19f2e-be2f-498e-bc88-e6af67afd6f2", "4081691e-9bc7-4414-b0cd-5bca9420af89", "db483409-04fc-49bb-8a3d-df7593621fd2", "feb4c43c-71fe-43ca-ab90-c42918826889", "84cedfc3-cd1a-4a9d-9bd8-0638cbdcffbc", "25d45986-bfb5-4f26-bb64-65cde5c8b94e", "2104d28e-5d6e-46ee-936e-5f91622ed7ee", "85e22fac-15d6-4e13-91d4-8bbcd54341f4", "40dc8bde-5eb8-4b62-88d5-f527dab46f7e", "8bdb1437-bfc4-452d-baa9-1e942d04f175", "d40543a5-aa5f-4993-a58c-c3cdac721728", "3d10cff4-f5ea-4901-9875-74ec291fdf79", "f72f1dad-03ef-4bfa-b6a4-d93864c73e47", "56c37416-de0b-414e-822a-6f14aeadcc84", "b53befad-4ca2-4992-aa6a-b8462df038ab", "f673c0ad-d3d1-44f9-9834-818677cbad7d", "1e474ce8-0418-49d9-875c-d9e8e869464c", "bb188f26-071f-484f-9f78-635ca8d64b3b", "e8c0201a-3acf-43ba-bef5-44d19981fdd2", "ac91b4e6-d792-441e-9e38-f551afc23ffd", "11192bfc-c379-4edb-9db6-97b439d52c8c", "cluster", "0636a2bf-a3bd-40fb-b424-9ec434c58920", "7fa3beb9-fc62-40e5-9da6-4a9820c1a850", "799fdc7b-90b5-431f-9370-0227e7fd7991", "0e790ae9-1a8d-4699-84ab-bd0335ac27be", "126596e6-0759-471f-8947-089acafe70dc", "4ace4e31-ee4e-4f7b-8f37-2742754cb625", "b3e77815-47f1-4202-b028-9586b7ba24ae", "f3b913f4-4bb6-4d52-9ca4-86c49ac5f20a", "0161cc1e-b483-4215-be9d-7ecb3607fc8b", "317d05a8-cdcf-4f90-8e40-944ddecafc75", "44046f68-853a-4e5b-bd1d-b3969f9a516e", "a56e3d94-88fe-459f-87ad-823581262fe5", "5a917ea1-8fae-4df6-845e-4ab066ecf4ee", "ebc912ab-6e59-4f6a-aba6-01fc8cedaa8d", "baedf56b-a30a-47dc-8be5-d1043436f2dc", "13acd156-3e94-4ea7-af62-ef06de9feb8e", "bacac39c-f780-4cdf-9b1e-5220ae2e9a24", "693fbb0d-0da3-4d09-9fc1-9dd1106a70b1", "0689d351-5ee3-48b9-9ca0-da5ce05d4ca2", "daab0a05-74b7-466f-b548-887abefae669", "257081bf-dae9-4499-8605-f3a78c209cb8", "44823ae2-e3df-4b59-acca-17e74627d392", "2cb81498-3b5c-4bcc-81f0-44184729fa37", "9f6620cb-0701-44f4-a104-5cd691e25bd6", "8c5c3bc3-f1d8-438f-8d9d-a7d39a77f739", "f8515dff-ff86-4e7b-89d0-13ad7a56cc4a", "9d3cbd9e-806a-46e1-9000-348957ad8ac2", "ca9a6a6e-a2a4-4385-9370-40845e0dc67a", "06fe687b-cc29-444f-9fca-356315591522", "4261060d-5560-4869-a39f-008774d18a96", "b4f0c4e8-da03-41db-9466-300bf8592ff8", "c0e24cc0-b9ea-49aa-907e-322ec680f1bc", "b9cbd8b7-225b-4c96-bc23-a2bba20922fe", "fa8630ca-c86f-4f38-bd4b-f72292e21f00", "e5c936b0-cdcc-44a2-a18a-9d4fe4b12d8b", "fe3fe3ff-1eca-43ee-aabd-38a3077f1a52", "73f6eeb2-19ed-422d-afa5-b7c1dcd87e3f", "696e17bb-754a-46a0-b271-2713d8583290", "0cc26f25-aa1d-47ef-8382-0177cd87dca3", "fd6486f9-5bc6-433d-9735-47bbd6204f90", "2ab30f45-0480-4a9c-b4b2-7f8c5b5305ef", "e3d87df3-cd63-43bd-9237-4e1983631e19", "b79a92d3-6194-4103-981c-1694766f6d2d", "0fda53b1-2c97-47be-871b-f728f13357fa", "8276431c-422c-4ecd-a84c-9a7ab654157f", "65c132d0-5fe6-4ee8-bcb2-0c9525c818e1", "2afd860f-0d8a-4050-997d-c4409dcd99ed", "3384eb71-6682-4042-85f1-a4c0f0b36cad", "9d4c7127-b579-48b1-840c-be968bb9f482", "d22776e8-ffed-4ccb-bba7-fe1c97a4f29a", "a3091adb-36e4-4c24-aff8-1988333b0147", "cdc24314-5fa8-4964-95fb-ae896a3e9e22", "f7c6c622-006e-4219-a9eb-5e52e68d4f3e", "66d592b3-8b03-48a1-92da-c8637753e068", "330420ca-1773-4350-9249-cbef12707c9b", "f871e828-3340-4246-8b7f-12d19a8e3bf5", "cf6a2fca-d0cf-44eb-b187-66574f05b8ce", "d0bd6390-c72d-4ca2-b20e-1bb7d679d06f", "88f59668-8c39-4123-8783-f2f8b0fd858c", "c5ffac9c-33b2-4400-86f6-360622c7f777", "fbcae879-cbb7-4574-81c9-995d8190b56a", "0b12af99-d0af-449b-a4ab-a04f9108cecc", "b7130d85-762d-4ce9-8953-3d762d453081", "6c1468de-2857-4814-8f2e-b86d03bdc26e", "a204cc73-d652-4039-8403-e59c1ab46e1a", "befc9c85-7a33-4c8d-b9dd-cd81bf9c629b", "2599e567-08f5-487c-9905-2e6ddccca86e", "942830e4-80e8-417b-89ec-c4bee0d131c5", "071e92af-a3a0-4f77-b58c-39626a3612a0", "165837b9-d284-4862-84d7-25fd09c8f250", "3c038113-879a-4feb-bdf0-d7a2d8316f52", "183e7245-3732-4ccf-9b39-dae65b9f4cc2", "446050ed-3c3f-47bc-8582-3475fd9e7eb1", "bdedeb97-01f3-47fe-ab7f-d4c1107ce7df", "d445cd2f-f0ef-42f9-ba27-bad6b110f40f", "98e757cc-b434-4453-9348-39b5976c2a04", "eeca508d-16d7-4058-9ea6-e5e70df0f269", "a03d7251-0cc2-4e54-996b-1b74d8871942", "56ae0c8c-121b-45ca-b90f-3ddd5ece42cb", "1b97b082-3e02-4450-bf72-81be1c75f89e", "c4d2ec75-a4b8-44ff-87cb-868d74c1c6c8", "12b8c7b0-5b02-4ecc-b78c-4a4d0e6c285a", "aecca8d2-bf13-4881-8a9f-b668695cc29f", "32b4c10a-d7fa-4188-bbe6-18fe7fc1527c", "0860d57c-323b-4658-95e1-be7270aa885d", "e0d6721c-b285-4a99-808e-80432efad3c1", "f493c8c3-0c6c-4f72-907a-b46e3f31cd14", "55d3035d-7016-44ba-9fa2-775cec718d2a", "91d976d6-c381-4448-a2c9-842c02a65e05", "454f4bbd-2ad0-4df8-bb09-653157ec7e3c", "ca5cf6e6-cc39-4c3e-b275-199fa9b5e130", "e22bee21-a299-4769-a2ba-e848f2cefa5a", "627cb4e0-48e5-46ea-acf2-3f59d76275e2", "5c590812-2a53-4b62-87a9-12c5ac7a7d28", "9d82b2ae-74e2-4b9c-80d7-2c67f0512ab3", "5b047aab-965e-45a0-b82f-065461e1210e", "056ccf30-0d30-4f7a-be9b-b7c684c398b5", "e0128259-d292-4596-963a-c2b4e4c02cfc", "3fc90b30-64c4-4e0f-be78-002dfb32dfa4", "aba6770d-02da-40d2-8b19-5d1d279ac01a", "252e1376-cde2-44de-befe-ab9748e30aec", "a6539536-a781-4805-a0cf-ccfc217b203c", "0aa3fe7f-285c-4a7f-aa19-42644f47de98", "60f6ac8f-158a-4096-a803-eab3f596f008", "341ee217-b4fd-4301-a81b-4ec0b2b91a1e", "440e49cd-4d72-4fec-b769-2b6c55cd63c8", "47c725e1-0a2d-4f10-a3ab-59e597197075", "caaadf83-5edd-4f56-bb57-27f4c91444e3", "ce35295f-011a-4b5e-8dae-92f71fb8b0bd", "77e7c6da-0a3f-42a2-aa84-3f9bc6a5397a", "74910a33-288b-4b96-9853-131d861517d9", "991c013c-be25-47c0-8a70-cfb2c3267ded", "06272541-7437-4aab-83db-82ef07c4ed46", "038bc240-be0a-4acb-a4d2-4732c5861673", "42aab11b-7aa5-4460-8fc7-289937ccc96b", "61af48e9-1518-4cd6-b8d7-2c88231f7854", "f892fdd6-42ef-41d8-af9a-26ef69650e9f", "a06d28e9-745a-4ca1-88ea-41d5c8c2bd99", "0bfc03b3-4ef8-436c-bbd0-a07e4b8c0f52", "557405db-31d1-4086-8494-a815886456b6", "1a4c848c-7551-4e3d-92e0-76b4116a6be3", "e87e6854-ae3b-4517-8018-33c930e966b4", "dd0a56a6-0c20-48eb-9354-2ee28fa462ab", "5f955583-180c-4a6f-be3a-4a3c5c2ed4dd", "f6b3d042-7ed7-4a3a-b6b1-b7bb2647b548", "aa0491b2-92da-4741-b886-8067cc6dae0f", "d571ea47-695d-483a-9f6a-5b463ca2413f", "f867625b-3d7e-41ee-bcb3-a84dbcdc760d", "9969cacf-7317-4f67-9c2e-9dbf7c0c1477", "a56307ce-5144-424a-9402-d4bf3270859c", "6dcd6716-10c8-4b0f-977b-8ca829c120fd", "27b56a04-6119-400f-881e-6b004c4b67a8", "31764a5f-cbf0-4f96-a2ec-22657fe273b1", "6d6af897-1b7f-47dd-b1de-14e1702f80ce", "3a2b235c-f494-460f-87e0-879ff7665590", "51643b15-bbab-4dd3-9911-40a85379c2d8", "e3d447f6-2c15-43df-848a-51ab179049d4", "d9cfa2b5-a7ac-4db6-b6da-e7f0ef2cceef", "464cd720-66ab-4255-b5ee-5c6fcbb33476", "8dea1a89-455e-4d90-8764-263a18137138", "a4a106aa-77b1-44a1-a9b0-cf85c96f5097", "5bde4ce3-b3c1-4f71-b61e-7df29557b45e", "e66b6dd7-1bfb-431e-83f4-067a58a01a03", "d1f6003d-12b7-4f3d-95e6-d33ac2a7a4ef", "f5c1c844-dfa0-45f1-b5b0-79243e85cf6c", "69586e75-c98d-406f-a452-6b598282f010", "a3e249d1-8261-4fcd-b48a-e62558c6ae94", "801e00c8-db05-41f0-8031-13830d0e4b64", "1e89b30f-027a-4918-be2a-065f986fa763", "b8b20a69-80d2-4d8e-b967-73cc6754edb5", "2ba3016a-ca49-4e93-a4d7-b1731030631b", "1a161e95-ef6a-4ad1-9050-915821f6ec04", "73c15b6e-f222-42db-b0bf-cfbdf0bd3c75", "bae94b9d-4a7f-49b8-a5d1-0fa0dbf79e1f", "5e379dfc-142b-45f3-91b1-f6790e1e1086", "01c4b411-1967-4f14-a18f-f092d6919478", "1b2d301c-698c-4f47-a786-2bbfa15b393a", "730d66f9-667b-44fc-af4a-b6b14befb25f", "c45fbd9d-b41d-4d57-8a55-b252358eeabd", "5347c416-9553-4592-807d-e6f5b7cd4e7d", "5a597d0b-b6bd-46e2-8151-7b1e434bf736", "4fc9e885-04e1-4501-be6b-2e0da58b7afa", "bb80d879-a6cf-4b8a-adf2-fb2f2ae0a793", "79a45b1a-aa07-4793-819c-cf0c70352b33", "fe672838-95eb-4bd9-9b3b-689303be1352", "983e26e5-142e-40fa-9639-920740e1d20d", "7298885f-3318-460c-9893-d0f2ef3f2996", "128333d3-25f7-43f3-b121-ebd09f8be946", "ed333b7e-d722-4b58-84ef-ec8410e03751", "d14f6a93-430a-442a-9e16-1d2492bb5742", "7997f13e-4547-47b1-ae03-f9e614c8bb41", "8eaa0aff-c346-4362-b0aa-145997e3141f", "dd64500e-e0e3-4bb1-922c-7c120b69c99a", "8f815d6a-2fc6-43ef-8494-2ff0aea2f3b8", "2821b84b-63a1-4d82-a5a7-020971dc1d23", "65a3328c-14a0-4e18-b4fa-8bc0d4774428", "42d4b833-66ef-4d9a-a5c0-6d195504a585", "065db0a7-868b-4137-8933-70ed659d3317", "760d7539-6157-44fe-824f-3618fbf721a7", "72f0e5db-f80f-4d02-ae39-cb2bf8f1f6cd", "404729e0-0983-426b-b9bb-e4df1c31509c", "bab4ad72-e0fe-4f8e-b7c1-42826be21e2a", "483cd114-2628-4ee2-b940-59d79e038e91", "7afa1bed-3e88-4680-b6b5-76474beeeb17", "adcdad0f-5166-4e9b-8a52-280af7658003", "b3aa8962-939c-4896-9ece-57818cb98858", "febd3157-4f72-4964-93ab-ff417b363962", "f0d1a57e-8cb3-44b2-bc04-0926b9bed70c", "b5d3954a-dccc-4ebe-a28f-a877d5d6140f", "b2017362-ca23-40bd-8a19-b89eeb270d01", "4b6d1148-32db-465b-9a61-f5d9c300c558", "55fdad8b-65ef-4ea8-8785-8bb935d3dd66", "51e07f43-38c1-4d60-9835-893772d6e964", "9993bcb9-f0ed-4bb2-a256-482957753e8f", "58893bce-9b7f-4888-8376-cd66768b9270", "fcc18b8a-85c5-460a-917a-9d1cd756c76c", "fdb97497-8b81-466f-ab85-91ceeade6fd6", "d73a0644-d30f-4229-86b8-be02300f110e", "327cd162-2c6c-412d-84c1-d6595aa58037", "f0a39470-28d9-4085-9ee3-729cb2f3e997", "3a622a80-24bd-4dae-8dde-87ed12ef499b", "bf61c07c-e818-4ee4-9547-5465c337f69d" 
+2022-07-06 16:58:04,517 INFO root MainThread : Success of deleting 256
+2022-07-06 16:58:04,561 WARNING werkzeug MainThread :  * Debugger is active!
+2022-07-06 16:58:04,561 INFO werkzeug MainThread :  * Debugger PIN: 368-034-659
+2022-07-06 16:58:04,729 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:04,744 INFO root Thread-2 : INSERT VERTEX ServiceTemplateDefinition (tosca_definitions_version, name, vertex_type_system, namespace, description) VALUES "cluster":('1.3', 'cluster', 'ServiceTemplateDefinition', 'URI', 'test_template_type_description');
+2022-07-06 16:58:04,787 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:04,796 INFO root Thread-2 : INSERT VERTEX Metadata (name, value, vertex_type_system) VALUES "37de6be6-448c-4cca-82fb-fecd66f949a2":('metadata_key_0', 'metadata_value_0', 'Metadata');
+2022-07-06 16:58:04,798 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:04,808 INFO root Thread-2 : INSERT EDGE metadata() VALUE "cluster"->"37de6be6-448c-4cca-82fb-fecd66f949a2":()
+2022-07-06 16:58:04,851 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:04,860 INFO root Thread-2 : INSERT VERTEX Metadata (name, value, vertex_type_system) VALUES "7000e4b0-c8ad-4174-ba25-6323e34c0401":('metadata_key_1', 'metadata_value_1', 'Metadata');
+2022-07-06 16:58:04,862 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:04,881 INFO root Thread-2 : INSERT EDGE metadata() VALUE "cluster"->"7000e4b0-c8ad-4174-ba25-6323e34c0401":()
+2022-07-06 16:58:04,883 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:04,892 INFO root Thread-2 : INSERT VERTEX Metadata (name, value, vertex_type_system) VALUES "e7659b23-709b-4990-af62-7ff8f1d6543d":('metadata_key_2', 'metadata_value_2', 'Metadata');
+2022-07-06 16:58:04,935 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:04,945 INFO root Thread-2 : INSERT EDGE metadata() VALUE "cluster"->"e7659b23-709b-4990-af62-7ff8f1d6543d":()
+2022-07-06 16:58:04,948 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:04,957 INFO root Thread-2 : INSERT VERTEX RepositoryDefinition (name, vertex_type_system, url) VALUES "a9c7fc9f-8cf3-4b58-93f6-50a630f31017":('test_repository_name_0', 'RepositoryDefinition', 'test_repository_address_0');
+2022-07-06 16:58:05,008 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:05,019 INFO root Thread-2 : INSERT EDGE repositories() VALUE "cluster"->"a9c7fc9f-8cf3-4b58-93f6-50a630f31017":()
+2022-07-06 16:58:05,022 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:05,032 INFO root Thread-2 : INSERT VERTEX RepositoryDefinition (name, vertex_type_system, url) VALUES "744fc026-eb06-44cc-b426-bc811671318f":('test_repository_name_1', 'RepositoryDefinition', 'test_repository_address_1');
+2022-07-06 16:58:05,080 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:05,091 INFO root Thread-2 : INSERT EDGE repositories() VALUE "cluster"->"744fc026-eb06-44cc-b426-bc811671318f":()
+2022-07-06 16:58:05,095 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:05,104 INFO root Thread-2 : INSERT VERTEX ImportDefinition (vertex_type_system, file) VALUES "4b627e30-cef0-4cd8-a89c-a9c60b93ea08":('ImportDefinition', 'URI_0');
+2022-07-06 16:58:05,107 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:05,117 INFO root Thread-2 : INSERT EDGE imports() VALUE "cluster"->"4b627e30-cef0-4cd8-a89c-a9c60b93ea08":()
+2022-07-06 16:58:05,163 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:05,173 INFO root Thread-2 : INSERT VERTEX ImportDefinition (vertex_type_system, file) VALUES "ed3bf6a7-e661-477c-86fe-363dfc236bc6":('ImportDefinition', 'URI_1');
+2022-07-06 16:58:05,176 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:05,185 INFO root Thread-2 : INSERT EDGE imports() VALUE "cluster"->"ed3bf6a7-e661-477c-86fe-363dfc236bc6":()
+2022-07-06 16:58:05,231 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:05,241 INFO root Thread-2 : INSERT VERTEX ImportDefinition (vertex_type_system, file, repository, namespace_uri, namespace_prefix) VALUES "e15111f3-49ac-45ac-bd1a-273c64d278f0":('ImportDefinition', '<file_URI>', '<repository_name>', '<definition_namespace_uri>', '<definition_namespace_prefix>');
+2022-07-06 16:58:05,243 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:05,253 INFO root Thread-2 : INSERT EDGE imports() VALUE "cluster"->"e15111f3-49ac-45ac-bd1a-273c64d278f0":()
+2022-07-06 16:58:05,299 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:05,309 INFO root Thread-2 : INSERT VERTEX ArtifactType (vertex_type_system, name, description) VALUES "092920e5-a521-4d17-9bd1-fbbe59b62d51":('ArtifactType', 'test_parent_artifact_type_name', 'test_description');
+2022-07-06 16:58:05,311 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:05,321 INFO root Thread-2 : INSERT EDGE derived_from() VALUE "092920e5-a521-4d17-9bd1-fbbe59b62d51"->"092920e5-a521-4d17-9bd1-fbbe59b62d51":()
+2022-07-06 16:58:05,367 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:05,377 INFO root Thread-2 : INSERT VERTEX PropertyDefinition (name, vertex_type_system) VALUES "a1590ee4-b9e5-4f7f-afba-acd1690a7ec9":('test_property_name_0', 'PropertyDefinition');
+2022-07-06 16:58:05,381 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:05,390 INFO root Thread-2 : INSERT VERTEX DataType (vertex_type_system, name) VALUES "4a925a20-89ea-46e6-8cbf-d0c198d67f89":('DataType', 'test_data_type_name_0');
+2022-07-06 16:58:05,435 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:05,445 INFO root Thread-2 : INSERT VERTEX DataType (vertex_type_system, name, description) VALUES "61c33849-972e-4af4-b93b-ef2962409617":('DataType', 'test_existing_type_name', 'test_description');
+2022-07-06 16:58:05,448 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:05,458 INFO root Thread-2 : INSERT EDGE derived_from() VALUE "4a925a20-89ea-46e6-8cbf-d0c198d67f89"->"61c33849-972e-4af4-b93b-ef2962409617":()
+2022-07-06 16:58:05,507 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:05,518 INFO root Thread-2 : INSERT EDGE type() VALUE "a1590ee4-b9e5-4f7f-afba-acd1690a7ec9"->"4a925a20-89ea-46e6-8cbf-d0c198d67f89":()
+2022-07-06 16:58:05,522 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:05,532 INFO root Thread-2 : INSERT VERTEX ConstraintClause (operator, vertex_type_system, value) VALUES "8b80f041-8877-43cb-b751-81c22bb11c8c":('equal', 'ConstraintClause', '2');
+2022-07-06 16:58:05,575 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:05,585 INFO root Thread-2 : INSERT EDGE constraints() VALUE "a1590ee4-b9e5-4f7f-afba-acd1690a7ec9"->"8b80f041-8877-43cb-b751-81c22bb11c8c":()
+2022-07-06 16:58:05,589 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:05,599 INFO root Thread-2 : INSERT VERTEX ConstraintClause (operator, vertex_type_system, value) VALUES "de802d55-0a02-46da-9fb6-ae01e9f03810":('equal', 'ConstraintClause', '10');
+2022-07-06 16:58:05,643 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:05,654 INFO root Thread-2 : INSERT EDGE constraints() VALUE "a1590ee4-b9e5-4f7f-afba-acd1690a7ec9"->"de802d55-0a02-46da-9fb6-ae01e9f03810":()
+2022-07-06 16:58:05,657 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:05,666 INFO root Thread-2 : INSERT EDGE properties() VALUE "092920e5-a521-4d17-9bd1-fbbe59b62d51"->"a1590ee4-b9e5-4f7f-afba-acd1690a7ec9":()
+2022-07-06 16:58:05,712 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:05,722 INFO root Thread-2 : INSERT VERTEX PropertyDefinition (name, vertex_type_system) VALUES "c1b4f070-b8e0-46d8-81fb-688156c4842c":('test_property_name_1', 'PropertyDefinition');
+2022-07-06 16:58:05,727 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:05,736 INFO root Thread-2 : INSERT VERTEX SchemaDefinition (description, vertex_type_system) VALUES "c4e7f145-f651-40a8-9a64-2a80134c537e":('entry_schema_description_test', 'SchemaDefinition');
+2022-07-06 16:58:05,779 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:05,788 INFO root Thread-2 : INSERT EDGE type() VALUE "c4e7f145-f651-40a8-9a64-2a80134c537e"->"4a925a20-89ea-46e6-8cbf-d0c198d67f89":()
+2022-07-06 16:58:05,791 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:05,798 INFO root Thread-2 : INSERT VERTEX ConstraintClause (operator, vertex_type_system, value) VALUES "84f04ea6-b103-4968-99d3-ec534f6d0e0d":('entry_equal_4', 'ConstraintClause', 'entry_value_4');
+2022-07-06 16:58:05,799 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:05,806 INFO root Thread-2 : INSERT EDGE constraints() VALUE "c4e7f145-f651-40a8-9a64-2a80134c537e"->"84f04ea6-b103-4968-99d3-ec534f6d0e0d":()
+2022-07-06 16:58:05,851 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:05,859 INFO root Thread-2 : INSERT VERTEX ConstraintClause (operator, vertex_type_system, value) VALUES "62801823-4534-4505-9f3f-48b9a79b9d79":('entry_equal_5', 'ConstraintClause', 'entry_value_5');
+2022-07-06 16:58:05,861 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:05,869 INFO root Thread-2 : INSERT EDGE constraints() VALUE "c4e7f145-f651-40a8-9a64-2a80134c537e"->"62801823-4534-4505-9f3f-48b9a79b9d79":()
+2022-07-06 16:58:05,871 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:05,879 INFO root Thread-2 : INSERT EDGE entry_schema() VALUE "c1b4f070-b8e0-46d8-81fb-688156c4842c"->"c4e7f145-f651-40a8-9a64-2a80134c537e":()
+2022-07-06 16:58:05,923 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:05,932 INFO root Thread-2 : INSERT VERTEX SchemaDefinition (description, vertex_type_system) VALUES "69742d28-b1a0-4598-a426-2f22f4804f6f":('key_schema_description_test', 'SchemaDefinition');
+2022-07-06 16:58:05,935 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:05,943 INFO root Thread-2 : INSERT VERTEX DataType (vertex_type_system, name) VALUES "fc97e010-e139-48eb-b48c-7c9b08914252":('DataType', 'test_data_type_name_1');
+2022-07-06 16:58:05,987 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:05,997 INFO root Thread-2 : INSERT EDGE derived_from() VALUE "fc97e010-e139-48eb-b48c-7c9b08914252"->"61c33849-972e-4af4-b93b-ef2962409617":()
+2022-07-06 16:58:06,000 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:06,010 INFO root Thread-2 : INSERT EDGE type() VALUE "69742d28-b1a0-4598-a426-2f22f4804f6f"->"fc97e010-e139-48eb-b48c-7c9b08914252":()
+2022-07-06 16:58:06,055 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:06,066 INFO root Thread-2 : INSERT VERTEX ConstraintClause (operator, vertex_type_system, value) VALUES "1831881e-95c2-4893-898f-16e997f8c2fd":('key_equal_0', 'ConstraintClause', 'key_value_0');
+2022-07-06 16:58:06,068 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:06,078 INFO root Thread-2 : INSERT EDGE constraints() VALUE "69742d28-b1a0-4598-a426-2f22f4804f6f"->"1831881e-95c2-4893-898f-16e997f8c2fd":()
+2022-07-06 16:58:06,124 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:06,134 INFO root Thread-2 : INSERT VERTEX ConstraintClause (operator, vertex_type_system, value) VALUES "0d254483-68dd-4cce-a8e7-8e57e3fc25f5":('key_equal_1', 'ConstraintClause', 'key_value_1');
+2022-07-06 16:58:06,137 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:06,146 INFO root Thread-2 : INSERT EDGE constraints() VALUE "69742d28-b1a0-4598-a426-2f22f4804f6f"->"0d254483-68dd-4cce-a8e7-8e57e3fc25f5":()
+2022-07-06 16:58:06,150 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:06,159 INFO root Thread-2 : INSERT VERTEX SchemaDefinition (description, vertex_type_system) VALUES "8ec5f498-377d-4018-ac95-1b896c4bf9de":('key_schema_description_test', 'SchemaDefinition');
+2022-07-06 16:58:06,207 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:06,218 INFO root Thread-2 : INSERT EDGE type() VALUE "8ec5f498-377d-4018-ac95-1b896c4bf9de"->"4a925a20-89ea-46e6-8cbf-d0c198d67f89":()
+2022-07-06 16:58:06,222 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:06,231 INFO root Thread-2 : INSERT VERTEX ConstraintClause (operator, vertex_type_system, value) VALUES "ce25ea27-cf48-4f6e-abb0-61b6228cde6b":('key_equal_2', 'ConstraintClause', 'key_value_2');
+2022-07-06 16:58:06,276 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:06,288 INFO root Thread-2 : INSERT EDGE constraints() VALUE "8ec5f498-377d-4018-ac95-1b896c4bf9de"->"ce25ea27-cf48-4f6e-abb0-61b6228cde6b":()
+2022-07-06 16:58:06,292 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:06,301 INFO root Thread-2 : INSERT VERTEX ConstraintClause (operator, vertex_type_system, value) VALUES "85b72c33-0ea5-49f0-88c4-304e0a79ee2a":('key_equal_3', 'ConstraintClause', 'key_value_3');
+2022-07-06 16:58:06,347 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:06,357 INFO root Thread-2 : INSERT EDGE constraints() VALUE "8ec5f498-377d-4018-ac95-1b896c4bf9de"->"85b72c33-0ea5-49f0-88c4-304e0a79ee2a":()
+2022-07-06 16:58:06,360 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:06,370 INFO root Thread-2 : INSERT EDGE key_schema() VALUE "69742d28-b1a0-4598-a426-2f22f4804f6f"->"8ec5f498-377d-4018-ac95-1b896c4bf9de":()
+2022-07-06 16:58:06,415 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:06,424 INFO root Thread-2 : INSERT EDGE key_schema() VALUE "c1b4f070-b8e0-46d8-81fb-688156c4842c"->"69742d28-b1a0-4598-a426-2f22f4804f6f":()
+2022-07-06 16:58:06,426 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:06,434 INFO root Thread-2 : INSERT EDGE type() VALUE "c1b4f070-b8e0-46d8-81fb-688156c4842c"->"fc97e010-e139-48eb-b48c-7c9b08914252":()
+2022-07-06 16:58:06,436 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:06,445 INFO root Thread-2 : INSERT EDGE properties() VALUE "092920e5-a521-4d17-9bd1-fbbe59b62d51"->"c1b4f070-b8e0-46d8-81fb-688156c4842c":()
+2022-07-06 16:58:06,447 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:06,455 INFO root Thread-2 : INSERT EDGE artifact_types() VALUE "cluster"->"092920e5-a521-4d17-9bd1-fbbe59b62d51":()
+2022-07-06 16:58:06,499 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:06,508 INFO root Thread-2 : INSERT VERTEX ArtifactType (vertex_type_system, name) VALUES "bfe34849-9da4-4315-838c-2e7848a7bc46":('ArtifactType', 'test_artifact_type_name_0');
+2022-07-06 16:58:06,511 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:06,519 INFO root Thread-2 : INSERT EDGE derived_from() VALUE "bfe34849-9da4-4315-838c-2e7848a7bc46"->"092920e5-a521-4d17-9bd1-fbbe59b62d51":()
+2022-07-06 16:58:06,564 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:06,573 INFO root Thread-2 : INSERT EDGE artifact_types() VALUE "cluster"->"bfe34849-9da4-4315-838c-2e7848a7bc46":()
+2022-07-06 16:58:06,577 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:06,585 INFO root Thread-2 : INSERT VERTEX ArtifactType (vertex_type_system, name) VALUES "5d21c90c-233f-4849-9bb8-ddc332198e44":('ArtifactType', 'test_artifact_type_name_1');
+2022-07-06 16:58:06,631 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:06,641 INFO root Thread-2 : INSERT EDGE derived_from() VALUE "5d21c90c-233f-4849-9bb8-ddc332198e44"->"092920e5-a521-4d17-9bd1-fbbe59b62d51":()
+2022-07-06 16:58:06,643 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:06,651 INFO root Thread-2 : INSERT EDGE artifact_types() VALUE "cluster"->"5d21c90c-233f-4849-9bb8-ddc332198e44":()
+2022-07-06 16:58:06,696 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:06,707 INFO root Thread-2 : INSERT EDGE data_types() VALUE "cluster"->"61c33849-972e-4af4-b93b-ef2962409617":()
+2022-07-06 16:58:06,710 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:06,719 INFO root Thread-2 : INSERT EDGE data_types() VALUE "cluster"->"4a925a20-89ea-46e6-8cbf-d0c198d67f89":()
+2022-07-06 16:58:06,721 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:06,731 INFO root Thread-2 : INSERT EDGE data_types() VALUE "cluster"->"fc97e010-e139-48eb-b48c-7c9b08914252":()
+2022-07-06 16:58:06,776 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:06,788 INFO root Thread-2 : INSERT VERTEX CapabilityType (vertex_type_system, name) VALUES "0536f73c-faa6-44e2-9b26-1ecc5fb3c51f":('CapabilityType', 'test_parent_capability_type_name');
+2022-07-06 16:58:06,792 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:06,800 INFO root Thread-2 : INSERT VERTEX AttributeDefinition (vertex_type_system, name, description, default, status) VALUES "5aa74a03-528e-4bf5-b484-318da15a5e16":('AttributeDefinition', 'test_attribute_name', 'test_attribute_description', 'test_default_value', 'test_status_value');
+2022-07-06 16:58:06,843 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:06,853 INFO root Thread-2 : INSERT EDGE type() VALUE "5aa74a03-528e-4bf5-b484-318da15a5e16"->"4a925a20-89ea-46e6-8cbf-d0c198d67f89":()
+2022-07-06 16:58:06,856 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:06,864 INFO root Thread-2 : INSERT VERTEX SchemaDefinition (description, vertex_type_system) VALUES "9b895791-527e-42c2-93c9-a7b6392ec21d":('entry_schema_description_test', 'SchemaDefinition');
+2022-07-06 16:58:06,907 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:06,916 INFO root Thread-2 : INSERT EDGE type() VALUE "9b895791-527e-42c2-93c9-a7b6392ec21d"->"4a925a20-89ea-46e6-8cbf-d0c198d67f89":()
+2022-07-06 16:58:06,919 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:06,927 INFO root Thread-2 : INSERT VERTEX ConstraintClause (operator, vertex_type_system, value) VALUES "b190aa70-d0a4-494a-b58c-d2051b7c0bc4":('entry_equal_0', 'ConstraintClause', 'entry_value_0');
+2022-07-06 16:58:06,971 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:06,981 INFO root Thread-2 : INSERT EDGE constraints() VALUE "9b895791-527e-42c2-93c9-a7b6392ec21d"->"b190aa70-d0a4-494a-b58c-d2051b7c0bc4":()
+2022-07-06 16:58:06,985 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:06,993 INFO root Thread-2 : INSERT VERTEX ConstraintClause (operator, vertex_type_system, value) VALUES "42f019f4-ee58-4239-91f9-eb82e3001dce":('entry_equal_1', 'ConstraintClause', 'entry_value_1');
+2022-07-06 16:58:07,039 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:07,050 INFO root Thread-2 : INSERT EDGE constraints() VALUE "9b895791-527e-42c2-93c9-a7b6392ec21d"->"42f019f4-ee58-4239-91f9-eb82e3001dce":()
+2022-07-06 16:58:07,052 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:07,062 INFO root Thread-2 : INSERT EDGE entry_schema() VALUE "5aa74a03-528e-4bf5-b484-318da15a5e16"->"9b895791-527e-42c2-93c9-a7b6392ec21d":()
+2022-07-06 16:58:07,107 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:07,117 INFO root Thread-2 : INSERT VERTEX SchemaDefinition (description, vertex_type_system) VALUES "dc794fa9-4389-42ae-aa53-146cfed65de7":('key_schema_description_test', 'SchemaDefinition');
+2022-07-06 16:58:07,119 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:07,129 INFO root Thread-2 : INSERT EDGE type() VALUE "dc794fa9-4389-42ae-aa53-146cfed65de7"->"fc97e010-e139-48eb-b48c-7c9b08914252":()
+2022-07-06 16:58:07,175 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:07,185 INFO root Thread-2 : INSERT VERTEX ConstraintClause (operator, vertex_type_system, value) VALUES "da11321d-db3d-43f3-b4c6-fdb8434102a4":('key_equal_0', 'ConstraintClause', 'key_value_0');
+2022-07-06 16:58:07,187 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:07,196 INFO root Thread-2 : INSERT EDGE constraints() VALUE "dc794fa9-4389-42ae-aa53-146cfed65de7"->"da11321d-db3d-43f3-b4c6-fdb8434102a4":()
+2022-07-06 16:58:07,240 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:07,252 INFO root Thread-2 : INSERT VERTEX ConstraintClause (operator, vertex_type_system, value) VALUES "170d1d9d-9ca5-4a14-bafc-e1749e5b7de4":('key_equal_1', 'ConstraintClause', 'key_value_1');
+2022-07-06 16:58:07,255 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:07,264 INFO root Thread-2 : INSERT EDGE constraints() VALUE "dc794fa9-4389-42ae-aa53-146cfed65de7"->"170d1d9d-9ca5-4a14-bafc-e1749e5b7de4":()
+2022-07-06 16:58:07,266 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:07,275 INFO root Thread-2 : INSERT EDGE key_schema() VALUE "5aa74a03-528e-4bf5-b484-318da15a5e16"->"dc794fa9-4389-42ae-aa53-146cfed65de7":()
+2022-07-06 16:58:07,324 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:07,335 INFO root Thread-2 : INSERT EDGE attributes() VALUE "0536f73c-faa6-44e2-9b26-1ecc5fb3c51f"->"5aa74a03-528e-4bf5-b484-318da15a5e16":()
+2022-07-06 16:58:07,337 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:07,356 INFO root Thread-2 : INSERT EDGE capability_types() VALUE "cluster"->"0536f73c-faa6-44e2-9b26-1ecc5fb3c51f":()
+2022-07-06 16:58:07,359 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:07,369 INFO root Thread-2 : INSERT VERTEX CapabilityType (vertex_type_system, name) VALUES "acdd669d-6de2-488d-b5e1-4081601451f0":('CapabilityType', 'test_capability_type_name_0');
+2022-07-06 16:58:07,412 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:07,423 INFO root Thread-2 : INSERT EDGE derived_from() VALUE "acdd669d-6de2-488d-b5e1-4081601451f0"->"0536f73c-faa6-44e2-9b26-1ecc5fb3c51f":()
+2022-07-06 16:58:07,425 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:07,436 INFO root Thread-2 : INSERT EDGE capability_types() VALUE "cluster"->"acdd669d-6de2-488d-b5e1-4081601451f0":()
+2022-07-06 16:58:07,440 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:07,448 INFO root Thread-2 : INSERT VERTEX CapabilityType (vertex_type_system, name) VALUES "037f38c6-2641-4aea-87b7-9370da42f9b1":('CapabilityType', 'test_capability_type_name_1');
+2022-07-06 16:58:07,491 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:07,501 INFO root Thread-2 : INSERT EDGE derived_from() VALUE "037f38c6-2641-4aea-87b7-9370da42f9b1"->"0536f73c-faa6-44e2-9b26-1ecc5fb3c51f":()
+2022-07-06 16:58:07,504 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:07,513 INFO root Thread-2 : INSERT EDGE capability_types() VALUE "cluster"->"037f38c6-2641-4aea-87b7-9370da42f9b1":()
+2022-07-06 16:58:07,555 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:07,565 INFO root Thread-2 : INSERT VERTEX InterfaceType (vertex_type_system, name, description) VALUES "b7398fb7-c3f1-4eec-9ca8-32e40dc8cd97":('InterfaceType', 'test_parent_interface_type_name', 'test_description');
+2022-07-06 16:58:07,567 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:07,576 INFO root Thread-2 : INSERT EDGE interface_types() VALUE "cluster"->"b7398fb7-c3f1-4eec-9ca8-32e40dc8cd97":()
+2022-07-06 16:58:07,619 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:07,627 INFO root Thread-2 : INSERT VERTEX InterfaceType (vertex_type_system, name, version, description) VALUES "a1407354-a975-451d-93e7-2a978003e119":('InterfaceType', 'test_interface_type_name_0', 'test_version_number', 'test_interface_description');
+2022-07-06 16:58:07,629 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:07,637 INFO root Thread-2 : INSERT EDGE derived_from() VALUE "a1407354-a975-451d-93e7-2a978003e119"->"b7398fb7-c3f1-4eec-9ca8-32e40dc8cd97":()
+2022-07-06 16:58:07,683 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:07,692 INFO root Thread-2 : INSERT VERTEX Metadata (name, value, vertex_type_system) VALUES "fca3d940-c5db-4695-a466-d9440b6aefc6":('metadata_key_0', 'metadata_value_0', 'Metadata');
+2022-07-06 16:58:07,695 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:07,704 INFO root Thread-2 : INSERT EDGE metadata() VALUE "a1407354-a975-451d-93e7-2a978003e119"->"fca3d940-c5db-4695-a466-d9440b6aefc6":()
+2022-07-06 16:58:07,747 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:07,756 INFO root Thread-2 : INSERT VERTEX Metadata (name, value, vertex_type_system) VALUES "1210bccb-6144-4abe-96f4-1d9e87c5e211":('metadata_key_1', 'metadata_value_1', 'Metadata');
+2022-07-06 16:58:07,759 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:07,768 INFO root Thread-2 : INSERT EDGE metadata() VALUE "a1407354-a975-451d-93e7-2a978003e119"->"1210bccb-6144-4abe-96f4-1d9e87c5e211":()
+2022-07-06 16:58:07,811 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:07,822 INFO root Thread-2 : INSERT VERTEX Metadata (name, value, vertex_type_system) VALUES "07217147-4275-494b-991f-e8c6b286a0c9":('metadata_key_2', 'metadata_value_2', 'Metadata');
+2022-07-06 16:58:07,824 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:07,834 INFO root Thread-2 : INSERT EDGE metadata() VALUE "a1407354-a975-451d-93e7-2a978003e119"->"07217147-4275-494b-991f-e8c6b286a0c9":()
+2022-07-06 16:58:07,880 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:07,891 INFO root Thread-2 : INSERT VERTEX PropertyDefinition (name, vertex_type_system, description, required, default, status) VALUES "72f8f53b-df1f-436b-a57b-9d13433ee15d":('test_property_name', 'PropertyDefinition', 'test_property_description', 'True', 'test_default_value', 'test_status');
+2022-07-06 16:58:07,897 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:07,906 INFO root Thread-2 : INSERT VERTEX SchemaDefinition (description, vertex_type_system) VALUES "bc699ce8-60c1-4b6a-90cb-f21155a7ad37":('entry_schema_description_test', 'SchemaDefinition');
+2022-07-06 16:58:07,951 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:07,961 INFO root Thread-2 : INSERT EDGE type() VALUE "bc699ce8-60c1-4b6a-90cb-f21155a7ad37"->"4a925a20-89ea-46e6-8cbf-d0c198d67f89":()
+2022-07-06 16:58:07,964 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:07,972 INFO root Thread-2 : INSERT VERTEX ConstraintClause (operator, vertex_type_system, value) VALUES "cb3c10d9-51ce-4435-8660-540021731d42":('entry_equal_0', 'ConstraintClause', 'entry_value_0');
+2022-07-06 16:58:08,015 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:08,025 INFO root Thread-2 : INSERT EDGE constraints() VALUE "bc699ce8-60c1-4b6a-90cb-f21155a7ad37"->"cb3c10d9-51ce-4435-8660-540021731d42":()
+2022-07-06 16:58:08,028 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:08,037 INFO root Thread-2 : INSERT VERTEX ConstraintClause (operator, vertex_type_system, value) VALUES "0540ff80-b7d3-4c69-9573-a5cc54f89d46":('entry_equal_1', 'ConstraintClause', 'entry_value_1');
+2022-07-06 16:58:08,079 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:08,089 INFO root Thread-2 : INSERT EDGE constraints() VALUE "bc699ce8-60c1-4b6a-90cb-f21155a7ad37"->"0540ff80-b7d3-4c69-9573-a5cc54f89d46":()
+2022-07-06 16:58:08,091 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:08,101 INFO root Thread-2 : INSERT EDGE entry_schema() VALUE "72f8f53b-df1f-436b-a57b-9d13433ee15d"->"bc699ce8-60c1-4b6a-90cb-f21155a7ad37":()
+2022-07-06 16:58:08,143 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:08,152 INFO root Thread-2 : INSERT VERTEX SchemaDefinition (description, vertex_type_system) VALUES "a7e0f2f6-9034-43b0-b209-1e9dab6cd2df":('key_schema_description_test', 'SchemaDefinition');
+2022-07-06 16:58:08,155 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:08,163 INFO root Thread-2 : INSERT EDGE type() VALUE "a7e0f2f6-9034-43b0-b209-1e9dab6cd2df"->"fc97e010-e139-48eb-b48c-7c9b08914252":()
+2022-07-06 16:58:08,211 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:08,220 INFO root Thread-2 : INSERT VERTEX ConstraintClause (operator, vertex_type_system, value) VALUES "e2a369c5-a7b6-47b4-b656-91f2358c0fc5":('key_equal_0', 'ConstraintClause', 'key_value_0');
+2022-07-06 16:58:08,222 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:08,231 INFO root Thread-2 : INSERT EDGE constraints() VALUE "a7e0f2f6-9034-43b0-b209-1e9dab6cd2df"->"e2a369c5-a7b6-47b4-b656-91f2358c0fc5":()
+2022-07-06 16:58:08,275 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:08,284 INFO root Thread-2 : INSERT VERTEX ConstraintClause (operator, vertex_type_system, value) VALUES "f45a677d-0969-43a2-b446-67ba1c3a128d":('key_equal_1', 'ConstraintClause', 'key_value_1');
+2022-07-06 16:58:08,287 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:08,296 INFO root Thread-2 : INSERT EDGE constraints() VALUE "a7e0f2f6-9034-43b0-b209-1e9dab6cd2df"->"f45a677d-0969-43a2-b446-67ba1c3a128d":()
+2022-07-06 16:58:08,339 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:08,350 INFO root Thread-2 : INSERT EDGE key_schema() VALUE "72f8f53b-df1f-436b-a57b-9d13433ee15d"->"a7e0f2f6-9034-43b0-b209-1e9dab6cd2df":()
+2022-07-06 16:58:08,352 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:08,361 INFO root Thread-2 : INSERT EDGE type() VALUE "72f8f53b-df1f-436b-a57b-9d13433ee15d"->"4a925a20-89ea-46e6-8cbf-d0c198d67f89":()
+2022-07-06 16:58:08,403 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:08,413 INFO root Thread-2 : INSERT VERTEX ConstraintClause (operator, vertex_type_system, value) VALUES "44be5246-6e6f-4227-889f-c531b4412d38":('equal_0', 'ConstraintClause', 'value_0');
+2022-07-06 16:58:08,416 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:08,425 INFO root Thread-2 : INSERT EDGE constraints() VALUE "72f8f53b-df1f-436b-a57b-9d13433ee15d"->"44be5246-6e6f-4227-889f-c531b4412d38":()
+2022-07-06 16:58:08,471 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:08,480 INFO root Thread-2 : INSERT VERTEX ConstraintClause (operator, vertex_type_system, value) VALUES "b6dd0864-93f0-4a78-b6e9-9c35f01e2f63":('equal_1', 'ConstraintClause', 'value_1');
+2022-07-06 16:58:08,523 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:08,534 INFO root Thread-2 : INSERT EDGE constraints() VALUE "72f8f53b-df1f-436b-a57b-9d13433ee15d"->"b6dd0864-93f0-4a78-b6e9-9c35f01e2f63":()
+2022-07-06 16:58:08,538 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:08,546 INFO root Thread-2 : INSERT VERTEX Metadata (name, value, vertex_type_system) VALUES "89c0e202-f759-45f9-bb02-d272306e65bf":('metadata_key_0', 'metadata_value_0', 'Metadata');
+2022-07-06 16:58:08,591 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:08,601 INFO root Thread-2 : INSERT EDGE metadata() VALUE "72f8f53b-df1f-436b-a57b-9d13433ee15d"->"89c0e202-f759-45f9-bb02-d272306e65bf":()
+2022-07-06 16:58:08,606 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:08,614 INFO root Thread-2 : INSERT VERTEX Metadata (name, value, vertex_type_system) VALUES "ca659fa1-ebc8-46de-ba80-7ed0693ab47e":('metadata_key_1', 'metadata_value_1', 'Metadata');
+2022-07-06 16:58:08,659 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:08,669 INFO root Thread-2 : INSERT EDGE metadata() VALUE "72f8f53b-df1f-436b-a57b-9d13433ee15d"->"ca659fa1-ebc8-46de-ba80-7ed0693ab47e":()
+2022-07-06 16:58:08,673 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:08,682 INFO root Thread-2 : INSERT VERTEX Metadata (name, value, vertex_type_system) VALUES "40a694d7-5b9d-4e9f-9157-9d195dc0daa8":('metadata_key_2', 'metadata_value_2', 'Metadata');
+2022-07-06 16:58:08,727 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:08,737 INFO root Thread-2 : INSERT EDGE metadata() VALUE "72f8f53b-df1f-436b-a57b-9d13433ee15d"->"40a694d7-5b9d-4e9f-9157-9d195dc0daa8":()
+2022-07-06 16:58:08,740 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:08,749 INFO root Thread-2 : INSERT EDGE inputs() VALUE "a1407354-a975-451d-93e7-2a978003e119"->"72f8f53b-df1f-436b-a57b-9d13433ee15d":()
+2022-07-06 16:58:08,795 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:08,805 INFO root Thread-2 : INSERT VERTEX PropertyDefinition (name, vertex_type_system, description) VALUES "3baf952f-f2b0-40a2-aed2-ca9515b88a91":('test_property_name_1', 'PropertyDefinition', 'test_property_description_1');
+2022-07-06 16:58:08,808 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:08,817 INFO root Thread-2 : INSERT EDGE type() VALUE "3baf952f-f2b0-40a2-aed2-ca9515b88a91"->"fc97e010-e139-48eb-b48c-7c9b08914252":()
+2022-07-06 16:58:08,863 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:08,873 INFO root Thread-2 : INSERT EDGE inputs() VALUE "a1407354-a975-451d-93e7-2a978003e119"->"3baf952f-f2b0-40a2-aed2-ca9515b88a91":()
+2022-07-06 16:58:08,877 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:08,887 INFO root Thread-2 : INSERT VERTEX OperationDefinition (name, vertex_type_system, description, outputs) VALUES "19d9e559-f43c-41b1-9308-db5b778c32f2":('test_operation_name', 'OperationDefinition', 'test_operation_description', 'test_value');
+2022-07-06 16:58:08,931 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:08,941 INFO root Thread-2 : INSERT VERTEX OperationImplementationDefinition (vertex_type_system, operation_host, timeout) VALUES "6cde04d8-4507-4c41-872d-6d9ab028b20d":('OperationImplementationDefinition', 'SELF', '60');
+2022-07-06 16:58:08,945 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:08,953 INFO root Thread-2 : INSERT VERTEX ArtifactDefinition (name, vertex_type_system, artifact_file_URI) VALUES "95f64ae0-3fb5-4d9e-98ca-4cbf46336b2f":('test_artifact_name', 'ArtifactDefinition', 'test_artifact_file_URI');
+2022-07-06 16:58:08,999 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:09,007 INFO root Thread-2 : INSERT EDGE primary(type) VALUE "6cde04d8-4507-4c41-872d-6d9ab028b20d"->"95f64ae0-3fb5-4d9e-98ca-4cbf46336b2f":("definition")
+2022-07-06 16:58:09,010 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:09,017 INFO root Thread-2 : INSERT VERTEX ArtifactDefinition (name, vertex_type_system, artifact_file_URI) VALUES "8a047855-a7e1-4876-9e8a-c7929a84ac24":('test_artifact_name_0', 'ArtifactDefinition', '0_test_artifact_file_URI');
+2022-07-06 16:58:09,019 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:09,028 INFO root Thread-2 : INSERT EDGE dependencies(type) VALUE "6cde04d8-4507-4c41-872d-6d9ab028b20d"->"8a047855-a7e1-4876-9e8a-c7929a84ac24":("definition")
+2022-07-06 16:58:09,071 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:09,080 INFO root Thread-2 : INSERT VERTEX ArtifactDefinition (name, vertex_type_system, artifact_file_URI) VALUES "418cd910-cc5a-4aa5-ab82-cce20f4c52a0":('test_artifact_name_1', 'ArtifactDefinition', '1_test_artifact_file_URI');
+2022-07-06 16:58:09,083 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:09,092 INFO root Thread-2 : INSERT EDGE dependencies(type) VALUE "6cde04d8-4507-4c41-872d-6d9ab028b20d"->"418cd910-cc5a-4aa5-ab82-cce20f4c52a0":("definition")
+2022-07-06 16:58:09,096 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:09,104 INFO root Thread-2 : INSERT VERTEX ArtifactDefinition (name, vertex_type_system, artifact_file_URI) VALUES "5429d346-e859-47e9-8701-84ebb2b9c3e9":('test_artifact_name_2', 'ArtifactDefinition', '2_test_artifact_file_URI');
+2022-07-06 16:58:09,147 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:09,157 INFO root Thread-2 : INSERT EDGE dependencies(type) VALUE "6cde04d8-4507-4c41-872d-6d9ab028b20d"->"5429d346-e859-47e9-8701-84ebb2b9c3e9":("definition")
+2022-07-06 16:58:09,159 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:09,168 INFO root Thread-2 : INSERT EDGE implementation() VALUE "19d9e559-f43c-41b1-9308-db5b778c32f2"->"6cde04d8-4507-4c41-872d-6d9ab028b20d":()
+2022-07-06 16:58:09,212 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:09,224 INFO root Thread-2 : INSERT VERTEX PropertyDefinition (name, vertex_type_system, description) VALUES "93f80303-ad9d-4055-af3b-f002f15fd990":('test_property_name_0', 'PropertyDefinition', 'test_property_description_0');
+2022-07-06 16:58:09,227 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:09,236 INFO root Thread-2 : INSERT EDGE type() VALUE "93f80303-ad9d-4055-af3b-f002f15fd990"->"fc97e010-e139-48eb-b48c-7c9b08914252":()
+2022-07-06 16:58:09,238 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:09,247 INFO root Thread-2 : INSERT EDGE inputs() VALUE "19d9e559-f43c-41b1-9308-db5b778c32f2"->"93f80303-ad9d-4055-af3b-f002f15fd990":()
+2022-07-06 16:58:09,291 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:09,302 INFO root Thread-2 : INSERT VERTEX PropertyDefinition (name, vertex_type_system, description) VALUES "d60830d3-48b0-45f2-a765-118c32f47fc0":('test_property_name_1', 'PropertyDefinition', 'test_property_description_1');
+2022-07-06 16:58:09,305 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:09,314 INFO root Thread-2 : INSERT EDGE type() VALUE "d60830d3-48b0-45f2-a765-118c32f47fc0"->"fc97e010-e139-48eb-b48c-7c9b08914252":()
+2022-07-06 16:58:09,359 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:09,369 INFO root Thread-2 : INSERT EDGE inputs() VALUE "19d9e559-f43c-41b1-9308-db5b778c32f2"->"d60830d3-48b0-45f2-a765-118c32f47fc0":()
+2022-07-06 16:58:09,372 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:09,380 INFO root Thread-2 : INSERT EDGE operations() VALUE "a1407354-a975-451d-93e7-2a978003e119"->"19d9e559-f43c-41b1-9308-db5b778c32f2":()
+2022-07-06 16:58:09,427 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:09,433 INFO root Thread-2 : INSERT VERTEX OperationDefinition (name, vertex_type_system) VALUES "7a0b352f-a9a9-4119-aa1b-08ff23c64df5":('operation_test_name_1', 'OperationDefinition');
+2022-07-06 16:58:09,436 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:09,442 INFO root Thread-2 : INSERT VERTEX ArtifactDefinition (name, vertex_type_system, artifact_file_URI) VALUES "79e24070-892e-4a8c-aa61-001877841cd5":('test_artifact_name_1', 'ArtifactDefinition', 'test_artifact_file_URI_1');
+2022-07-06 16:58:09,491 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:09,499 INFO root Thread-2 : INSERT EDGE implementation() VALUE "7a0b352f-a9a9-4119-aa1b-08ff23c64df5"->"79e24070-892e-4a8c-aa61-001877841cd5":()
+2022-07-06 16:58:09,501 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:09,509 INFO root Thread-2 : INSERT EDGE operations() VALUE "a1407354-a975-451d-93e7-2a978003e119"->"7a0b352f-a9a9-4119-aa1b-08ff23c64df5":()
+2022-07-06 16:58:09,512 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:09,518 INFO root Thread-2 : INSERT VERTEX NotificationDefinition (name, vertex_type_system, description) VALUES "b4a05745-598e-44aa-862b-7bfadf44dd15":('notification_test_name_0', 'NotificationDefinition', 'test_notification_description_0');
+2022-07-06 16:58:09,563 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:09,570 INFO root Thread-2 : INSERT VERTEX NotificationImplementationDefinition (vertex_type_system) VALUES "f7839f1f-df48-4591-adc3-7fd4b78633dc":('NotificationImplementationDefinition');
+2022-07-06 16:58:09,573 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:09,579 INFO root Thread-2 : INSERT VERTEX ArtifactDefinition (name, vertex_type_system, artifact_file_URI) VALUES "ee7ebf2f-88da-42f5-8e20-586a42408c27":('test_artifact_name_0', 'ArtifactDefinition', 'test_artifact_file_URI_0');
+2022-07-06 16:58:09,627 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:09,634 INFO root Thread-2 : INSERT EDGE primary() VALUE "f7839f1f-df48-4591-adc3-7fd4b78633dc"->"ee7ebf2f-88da-42f5-8e20-586a42408c27":()
+2022-07-06 16:58:09,635 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:09,641 INFO root Thread-2 : INSERT EDGE implementation() VALUE "b4a05745-598e-44aa-862b-7bfadf44dd15"->"f7839f1f-df48-4591-adc3-7fd4b78633dc":()
+2022-07-06 16:58:09,687 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:09,697 INFO root Thread-2 : INSERT EDGE notifications() VALUE "a1407354-a975-451d-93e7-2a978003e119"->"b4a05745-598e-44aa-862b-7bfadf44dd15":()
+2022-07-06 16:58:09,701 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:09,710 INFO root Thread-2 : INSERT VERTEX NotificationDefinition (name, vertex_type_system, description) VALUES "e9fabe70-04cd-4b1a-bee9-07026f8dcf0c":('notification_test_name_1', 'NotificationDefinition', 'test_notification_description_1');
+2022-07-06 16:58:09,755 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:09,765 INFO root Thread-2 : INSERT VERTEX NotificationImplementationDefinition (vertex_type_system) VALUES "e7ae05cc-a723-4e30-848f-709f35b2c701":('NotificationImplementationDefinition');
+2022-07-06 16:58:09,768 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:09,777 INFO root Thread-2 : INSERT EDGE primary() VALUE "e7ae05cc-a723-4e30-848f-709f35b2c701"->"79e24070-892e-4a8c-aa61-001877841cd5":()
+2022-07-06 16:58:09,823 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:09,833 INFO root Thread-2 : INSERT EDGE implementation() VALUE "e9fabe70-04cd-4b1a-bee9-07026f8dcf0c"->"e7ae05cc-a723-4e30-848f-709f35b2c701":()
+2022-07-06 16:58:09,835 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:09,845 INFO root Thread-2 : INSERT EDGE notifications() VALUE "a1407354-a975-451d-93e7-2a978003e119"->"e9fabe70-04cd-4b1a-bee9-07026f8dcf0c":()
+2022-07-06 16:58:09,891 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:09,902 INFO root Thread-2 : INSERT EDGE interface_types() VALUE "cluster"->"a1407354-a975-451d-93e7-2a978003e119":()
+2022-07-06 16:58:09,905 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:09,914 INFO root Thread-2 : INSERT VERTEX InterfaceType (vertex_type_system, name) VALUES "a60c15d2-43bf-46fe-b85b-b9069eb0b34e":('InterfaceType', 'test_interface_type_name_1');
+2022-07-06 16:58:09,959 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:09,968 INFO root Thread-2 : INSERT EDGE derived_from() VALUE "a60c15d2-43bf-46fe-b85b-b9069eb0b34e"->"b7398fb7-c3f1-4eec-9ca8-32e40dc8cd97":()
+2022-07-06 16:58:09,970 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:09,979 INFO root Thread-2 : INSERT EDGE interface_types() VALUE "cluster"->"a60c15d2-43bf-46fe-b85b-b9069eb0b34e":()
+2022-07-06 16:58:10,023 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:10,030 INFO root Thread-2 : INSERT VERTEX RelationshipType (vertex_type_system, name, version, description) VALUES "07338b87-0c82-46a0-b3d5-c186a81dd2e4":('RelationshipType', 'test_parent_relationship_type_name', 'test_version_number', 'test_relationship_description');
+2022-07-06 16:58:10,032 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:10,039 INFO root Thread-2 : INSERT VERTEX Metadata (name, value, vertex_type_system) VALUES "4f8ca7bb-b1bd-4505-99ef-5a9fcffb96eb":('metadata_key_0', 'metadata_value_0', 'Metadata');
+2022-07-06 16:58:10,083 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:10,091 INFO root Thread-2 : INSERT EDGE metadata() VALUE "07338b87-0c82-46a0-b3d5-c186a81dd2e4"->"4f8ca7bb-b1bd-4505-99ef-5a9fcffb96eb":()
+2022-07-06 16:58:10,093 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:10,101 INFO root Thread-2 : INSERT VERTEX Metadata (name, value, vertex_type_system) VALUES "f55c9c51-c747-4451-b60d-7b6ae256401c":('metadata_key_1', 'metadata_value_1', 'Metadata');
+2022-07-06 16:58:10,147 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:10,158 INFO root Thread-2 : INSERT EDGE metadata() VALUE "07338b87-0c82-46a0-b3d5-c186a81dd2e4"->"f55c9c51-c747-4451-b60d-7b6ae256401c":()
+2022-07-06 16:58:10,161 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:10,170 INFO root Thread-2 : INSERT VERTEX Metadata (name, value, vertex_type_system) VALUES "cc5ab159-d781-446f-8093-2d3430a4d420":('metadata_key_2', 'metadata_value_2', 'Metadata');
+2022-07-06 16:58:10,215 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:10,225 INFO root Thread-2 : INSERT EDGE metadata() VALUE "07338b87-0c82-46a0-b3d5-c186a81dd2e4"->"cc5ab159-d781-446f-8093-2d3430a4d420":()
+2022-07-06 16:58:10,229 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:10,239 INFO root Thread-2 : INSERT VERTEX PropertyDefinition (name, vertex_type_system, description) VALUES "80d5a50f-b512-4df3-8107-651e45203404":('test_property_name_0', 'PropertyDefinition', 'test_property_description_0_from_relationship_type');
+2022-07-06 16:58:10,283 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:10,293 INFO root Thread-2 : INSERT EDGE type() VALUE "80d5a50f-b512-4df3-8107-651e45203404"->"4a925a20-89ea-46e6-8cbf-d0c198d67f89":()
+2022-07-06 16:58:10,295 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:10,305 INFO root Thread-2 : INSERT EDGE properties() VALUE "07338b87-0c82-46a0-b3d5-c186a81dd2e4"->"80d5a50f-b512-4df3-8107-651e45203404":()
+2022-07-06 16:58:10,351 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:10,360 INFO root Thread-2 : INSERT VERTEX PropertyDefinition (name, vertex_type_system, description) VALUES "c89e47eb-74c8-4c87-8c4f-19c42fc7b90e":('test_property_name_1', 'PropertyDefinition', 'test_property_description_1');
+2022-07-06 16:58:10,362 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:10,371 INFO root Thread-2 : INSERT EDGE type() VALUE "c89e47eb-74c8-4c87-8c4f-19c42fc7b90e"->"fc97e010-e139-48eb-b48c-7c9b08914252":()
+2022-07-06 16:58:10,415 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:10,423 INFO root Thread-2 : INSERT EDGE properties() VALUE "07338b87-0c82-46a0-b3d5-c186a81dd2e4"->"c89e47eb-74c8-4c87-8c4f-19c42fc7b90e":()
+2022-07-06 16:58:10,426 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:10,435 INFO root Thread-2 : INSERT VERTEX AttributeDefinition (vertex_type_system, name) VALUES "1bb95c0c-8e5d-4457-b610-36af8d2aeae9":('AttributeDefinition', 'attribute_name_0');
+2022-07-06 16:58:10,479 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:10,489 INFO root Thread-2 : INSERT EDGE type() VALUE "1bb95c0c-8e5d-4457-b610-36af8d2aeae9"->"4a925a20-89ea-46e6-8cbf-d0c198d67f89":()
+2022-07-06 16:58:10,492 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:10,504 INFO root Thread-2 : INSERT EDGE attributes() VALUE "07338b87-0c82-46a0-b3d5-c186a81dd2e4"->"1bb95c0c-8e5d-4457-b610-36af8d2aeae9":()
+2022-07-06 16:58:10,547 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:10,557 INFO root Thread-2 : INSERT VERTEX AttributeDefinition (vertex_type_system, name) VALUES "999db50a-3804-4b4f-8f59-17c053e5f2a3":('AttributeDefinition', 'attribute_name_1');
+2022-07-06 16:58:10,560 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:10,571 INFO root Thread-2 : INSERT EDGE type() VALUE "999db50a-3804-4b4f-8f59-17c053e5f2a3"->"fc97e010-e139-48eb-b48c-7c9b08914252":()
+2022-07-06 16:58:10,618 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:10,632 INFO root Thread-2 : INSERT EDGE attributes() VALUE "07338b87-0c82-46a0-b3d5-c186a81dd2e4"->"999db50a-3804-4b4f-8f59-17c053e5f2a3":()
+2022-07-06 16:58:10,636 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:10,644 INFO root Thread-2 : INSERT VERTEX InterfaceDefinition (name, vertex_type_system) VALUES "cffcf7dd-9e7b-4a5e-9707-253ec8b5d3c9":('test_interface_definition_name_0', 'InterfaceDefinition');
+2022-07-06 16:58:10,688 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:10,699 INFO root Thread-2 : INSERT EDGE type() VALUE "cffcf7dd-9e7b-4a5e-9707-253ec8b5d3c9"->"a1407354-a975-451d-93e7-2a978003e119":()
+2022-07-06 16:58:10,702 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:10,712 INFO root Thread-2 : INSERT EDGE interfaces() VALUE "07338b87-0c82-46a0-b3d5-c186a81dd2e4"->"cffcf7dd-9e7b-4a5e-9707-253ec8b5d3c9":()
+2022-07-06 16:58:10,715 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:10,724 INFO root Thread-2 : INSERT VERTEX InterfaceDefinition (name, vertex_type_system) VALUES "aea5e03c-3ddd-4388-9693-3c1621d07b93":('test_interface_definition_name_1', 'InterfaceDefinition');
+2022-07-06 16:58:10,767 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:10,778 INFO root Thread-2 : INSERT EDGE type() VALUE "aea5e03c-3ddd-4388-9693-3c1621d07b93"->"a60c15d2-43bf-46fe-b85b-b9069eb0b34e":()
+2022-07-06 16:58:10,789 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:10,800 INFO root Thread-2 : INSERT VERTEX PropertyDefinition (name, vertex_type_system, description) VALUES "74a21356-79b0-49d5-997f-9633fc44a644":('test_property_name_0', 'PropertyDefinition', 'test_property_description_from_interface_from_relationship_type');
+2022-07-06 16:58:10,844 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:10,854 INFO root Thread-2 : INSERT EDGE type() VALUE "74a21356-79b0-49d5-997f-9633fc44a644"->"4a925a20-89ea-46e6-8cbf-d0c198d67f89":()
+2022-07-06 16:58:10,857 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:10,867 INFO root Thread-2 : INSERT EDGE inputs() VALUE "aea5e03c-3ddd-4388-9693-3c1621d07b93"->"74a21356-79b0-49d5-997f-9633fc44a644":()
+2022-07-06 16:58:10,915 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:10,925 INFO root Thread-2 : INSERT VERTEX PropertyDefinition (name, vertex_type_system, description) VALUES "826038da-00a0-4e21-8e31-e530191eba68":('test_property_name_1', 'PropertyDefinition', 'test_property_description_1');
+2022-07-06 16:58:10,929 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:10,938 INFO root Thread-2 : INSERT EDGE type() VALUE "826038da-00a0-4e21-8e31-e530191eba68"->"fc97e010-e139-48eb-b48c-7c9b08914252":()
+2022-07-06 16:58:10,983 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:10,993 INFO root Thread-2 : INSERT EDGE inputs() VALUE "aea5e03c-3ddd-4388-9693-3c1621d07b93"->"826038da-00a0-4e21-8e31-e530191eba68":()
+2022-07-06 16:58:10,996 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:11,006 INFO root Thread-2 : INSERT VERTEX OperationDefinition (name, vertex_type_system) VALUES "95a73c96-7ad7-4be3-a4f6-c3d1bf3ad539":('operation_test_name_0', 'OperationDefinition');
+2022-07-06 16:58:11,008 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:11,017 INFO root Thread-2 : INSERT EDGE implementation() VALUE "95a73c96-7ad7-4be3-a4f6-c3d1bf3ad539"->"ee7ebf2f-88da-42f5-8e20-586a42408c27":()
+2022-07-06 16:58:11,059 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:11,069 INFO root Thread-2 : INSERT EDGE operations() VALUE "aea5e03c-3ddd-4388-9693-3c1621d07b93"->"95a73c96-7ad7-4be3-a4f6-c3d1bf3ad539":()
+2022-07-06 16:58:11,073 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:11,081 INFO root Thread-2 : INSERT VERTEX OperationDefinition (name, vertex_type_system) VALUES "18a1eb7e-20de-40cc-912f-982a27204288":('operation_test_name_1', 'OperationDefinition');
+2022-07-06 16:58:11,123 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:11,131 INFO root Thread-2 : INSERT EDGE implementation() VALUE "18a1eb7e-20de-40cc-912f-982a27204288"->"79e24070-892e-4a8c-aa61-001877841cd5":()
+2022-07-06 16:58:11,134 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:11,142 INFO root Thread-2 : INSERT EDGE operations() VALUE "aea5e03c-3ddd-4388-9693-3c1621d07b93"->"18a1eb7e-20de-40cc-912f-982a27204288":()
+2022-07-06 16:58:11,187 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:11,195 INFO root Thread-2 : INSERT VERTEX NotificationDefinition (name, vertex_type_system, description) VALUES "8064ef30-25c9-4774-9327-5e6cf42b1c68":('notification_test_name_0', 'NotificationDefinition', 'test_notification_description_0');
+2022-07-06 16:58:11,197 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:11,204 INFO root Thread-2 : INSERT VERTEX NotificationImplementationDefinition (vertex_type_system) VALUES "74b19e34-0100-41cc-9250-e577e5e2a884":('NotificationImplementationDefinition');
+2022-07-06 16:58:11,247 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:11,256 INFO root Thread-2 : INSERT EDGE primary() VALUE "74b19e34-0100-41cc-9250-e577e5e2a884"->"ee7ebf2f-88da-42f5-8e20-586a42408c27":()
+2022-07-06 16:58:11,258 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:11,266 INFO root Thread-2 : INSERT EDGE implementation() VALUE "8064ef30-25c9-4774-9327-5e6cf42b1c68"->"74b19e34-0100-41cc-9250-e577e5e2a884":()
+2022-07-06 16:58:11,268 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:11,277 INFO root Thread-2 : INSERT EDGE notifications() VALUE "aea5e03c-3ddd-4388-9693-3c1621d07b93"->"8064ef30-25c9-4774-9327-5e6cf42b1c68":()
+2022-07-06 16:58:11,279 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:11,287 INFO root Thread-2 : INSERT VERTEX NotificationDefinition (name, vertex_type_system, description) VALUES "6bb39fd7-8364-442c-bc40-59646549edfd":('notification_test_name_1', 'NotificationDefinition', 'test_notification_description_1');
+2022-07-06 16:58:11,331 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:11,340 INFO root Thread-2 : INSERT VERTEX NotificationImplementationDefinition (vertex_type_system) VALUES "d563364e-e3a3-4b6e-ad0f-a258fa6c7dc3":('NotificationImplementationDefinition');
+2022-07-06 16:58:11,342 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:11,350 INFO root Thread-2 : INSERT EDGE primary() VALUE "d563364e-e3a3-4b6e-ad0f-a258fa6c7dc3"->"79e24070-892e-4a8c-aa61-001877841cd5":()
+2022-07-06 16:58:11,353 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:11,361 INFO root Thread-2 : INSERT EDGE implementation() VALUE "6bb39fd7-8364-442c-bc40-59646549edfd"->"d563364e-e3a3-4b6e-ad0f-a258fa6c7dc3":()
+2022-07-06 16:58:11,403 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:11,411 INFO root Thread-2 : INSERT EDGE notifications() VALUE "aea5e03c-3ddd-4388-9693-3c1621d07b93"->"6bb39fd7-8364-442c-bc40-59646549edfd":()
+2022-07-06 16:58:11,412 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:11,420 INFO root Thread-2 : INSERT EDGE interfaces() VALUE "07338b87-0c82-46a0-b3d5-c186a81dd2e4"->"aea5e03c-3ddd-4388-9693-3c1621d07b93":()
+2022-07-06 16:58:11,422 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:11,430 INFO root Thread-2 : INSERT EDGE valid_target_types() VALUE "07338b87-0c82-46a0-b3d5-c186a81dd2e4"->"0536f73c-faa6-44e2-9b26-1ecc5fb3c51f":()
+2022-07-06 16:58:11,432 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:11,440 INFO root Thread-2 : INSERT EDGE valid_target_types() VALUE "07338b87-0c82-46a0-b3d5-c186a81dd2e4"->"acdd669d-6de2-488d-b5e1-4081601451f0":()
+2022-07-06 16:58:11,483 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:11,491 INFO root Thread-2 : INSERT EDGE relationship_types() VALUE "cluster"->"07338b87-0c82-46a0-b3d5-c186a81dd2e4":()
+2022-07-06 16:58:11,494 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:11,502 INFO root Thread-2 : INSERT VERTEX RelationshipType (vertex_type_system, name) VALUES "505e619e-b6e3-4654-8e56-1d4bb73894bf":('RelationshipType', 'test_relationship_type_name_0');
+2022-07-06 16:58:11,505 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:11,513 INFO root Thread-2 : INSERT EDGE derived_from() VALUE "505e619e-b6e3-4654-8e56-1d4bb73894bf"->"07338b87-0c82-46a0-b3d5-c186a81dd2e4":()
+2022-07-06 16:58:11,515 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:11,523 INFO root Thread-2 : INSERT EDGE relationship_types() VALUE "cluster"->"505e619e-b6e3-4654-8e56-1d4bb73894bf":()
+2022-07-06 16:58:11,571 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:11,582 INFO root Thread-2 : INSERT VERTEX RelationshipType (vertex_type_system, name) VALUES "e28bb80e-0313-4a38-b69f-ef1be7e3a3da":('RelationshipType', 'test_relationship_type_name_1');
+2022-07-06 16:58:11,584 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:11,592 INFO root Thread-2 : INSERT EDGE derived_from() VALUE "e28bb80e-0313-4a38-b69f-ef1be7e3a3da"->"07338b87-0c82-46a0-b3d5-c186a81dd2e4":()
+2022-07-06 16:58:11,594 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:11,603 INFO root Thread-2 : INSERT EDGE relationship_types() VALUE "cluster"->"e28bb80e-0313-4a38-b69f-ef1be7e3a3da":()
+2022-07-06 16:58:11,647 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:11,657 INFO root Thread-2 : INSERT VERTEX NodeType (vertex_type_system, name, version, description) VALUES "d2357bce-f958-4813-a316-e0c6bd03bfcd":('NodeType', 'test_parent_node_type_name', 'test_version_number', 'test_description');
+2022-07-06 16:58:11,660 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:11,669 INFO root Thread-2 : INSERT VERTEX Metadata (name, value, vertex_type_system) VALUES "a9c1cac6-7729-4e85-8bc2-cb2325a8aeaa":('metadata_key_0', 'metadata_value_0', 'Metadata');
+2022-07-06 16:58:11,712 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:11,722 INFO root Thread-2 : INSERT EDGE metadata() VALUE "d2357bce-f958-4813-a316-e0c6bd03bfcd"->"a9c1cac6-7729-4e85-8bc2-cb2325a8aeaa":()
+2022-07-06 16:58:11,726 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:11,735 INFO root Thread-2 : INSERT VERTEX Metadata (name, value, vertex_type_system) VALUES "3ed3ada7-c436-4c92-9c94-a4688f7aed0d":('metadata_key_1', 'metadata_value_1', 'Metadata');
+2022-07-06 16:58:11,779 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:11,790 INFO root Thread-2 : INSERT EDGE metadata() VALUE "d2357bce-f958-4813-a316-e0c6bd03bfcd"->"3ed3ada7-c436-4c92-9c94-a4688f7aed0d":()
+2022-07-06 16:58:11,793 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:11,802 INFO root Thread-2 : INSERT VERTEX Metadata (name, value, vertex_type_system) VALUES "bb5cc744-6774-4676-9571-518d8a2566e3":('metadata_key_2', 'metadata_value_2', 'Metadata');
+2022-07-06 16:58:11,848 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:11,860 INFO root Thread-2 : INSERT EDGE metadata() VALUE "d2357bce-f958-4813-a316-e0c6bd03bfcd"->"bb5cc744-6774-4676-9571-518d8a2566e3":()
+2022-07-06 16:58:11,864 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:11,873 INFO root Thread-2 : INSERT VERTEX PropertyDefinition (name, vertex_type_system, description) VALUES "c6b5326e-98ac-4862-b343-b80ac6301f15":('test_property_name_0', 'PropertyDefinition', 'test_property_description_0');
+2022-07-06 16:58:11,919 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:11,931 INFO root Thread-2 : INSERT EDGE type() VALUE "c6b5326e-98ac-4862-b343-b80ac6301f15"->"4a925a20-89ea-46e6-8cbf-d0c198d67f89":()
+2022-07-06 16:58:11,933 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:11,942 INFO root Thread-2 : INSERT EDGE properties() VALUE "d2357bce-f958-4813-a316-e0c6bd03bfcd"->"c6b5326e-98ac-4862-b343-b80ac6301f15":()
+2022-07-06 16:58:11,946 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:11,955 INFO root Thread-2 : INSERT VERTEX PropertyDefinition (name, vertex_type_system, description) VALUES "5ebc8bcd-cbef-42c6-b6bd-b2aaef555a69":('test_property_name_1', 'PropertyDefinition', 'test_property_description_1');
+2022-07-06 16:58:11,999 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:12,008 INFO root Thread-2 : INSERT EDGE type() VALUE "5ebc8bcd-cbef-42c6-b6bd-b2aaef555a69"->"fc97e010-e139-48eb-b48c-7c9b08914252":()
+2022-07-06 16:58:12,010 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:12,019 INFO root Thread-2 : INSERT EDGE properties() VALUE "d2357bce-f958-4813-a316-e0c6bd03bfcd"->"5ebc8bcd-cbef-42c6-b6bd-b2aaef555a69":()
+2022-07-06 16:58:12,063 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:12,073 INFO root Thread-2 : INSERT VERTEX AttributeDefinition (vertex_type_system, name) VALUES "1e2db609-648f-4161-910e-4d7212011bcf":('AttributeDefinition', 'attribute_name_0');
+2022-07-06 16:58:12,075 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:12,085 INFO root Thread-2 : INSERT EDGE type() VALUE "1e2db609-648f-4161-910e-4d7212011bcf"->"4a925a20-89ea-46e6-8cbf-d0c198d67f89":()
+2022-07-06 16:58:12,128 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:12,138 INFO root Thread-2 : INSERT EDGE attributes() VALUE "d2357bce-f958-4813-a316-e0c6bd03bfcd"->"1e2db609-648f-4161-910e-4d7212011bcf":()
+2022-07-06 16:58:12,140 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:12,148 INFO root Thread-2 : INSERT VERTEX AttributeDefinition (vertex_type_system, name) VALUES "af3dfad5-efcb-4c69-90db-3042099c42ea":('AttributeDefinition', 'attribute_name_1');
+2022-07-06 16:58:12,150 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:12,157 INFO root Thread-2 : INSERT EDGE type() VALUE "af3dfad5-efcb-4c69-90db-3042099c42ea"->"fc97e010-e139-48eb-b48c-7c9b08914252":()
+2022-07-06 16:58:12,159 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:12,167 INFO root Thread-2 : INSERT EDGE attributes() VALUE "d2357bce-f958-4813-a316-e0c6bd03bfcd"->"af3dfad5-efcb-4c69-90db-3042099c42ea":()
+2022-07-06 16:58:12,211 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:12,221 INFO root Thread-2 : INSERT VERTEX RequirementDefinition (vertex_type_system, name) VALUES "73b18644-f67d-408b-ad35-b90ec56f1b9e":('RequirementDefinition', 'test_requirement_definition_name_0');
+2022-07-06 16:58:12,223 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:12,232 INFO root Thread-2 : INSERT EDGE capability() VALUE "73b18644-f67d-408b-ad35-b90ec56f1b9e"->"acdd669d-6de2-488d-b5e1-4081601451f0":()
+2022-07-06 16:58:12,275 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:12,286 INFO root Thread-2 : INSERT EDGE requirements() VALUE "d2357bce-f958-4813-a316-e0c6bd03bfcd"->"73b18644-f67d-408b-ad35-b90ec56f1b9e":()
+2022-07-06 16:58:12,289 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:12,298 INFO root Thread-2 : INSERT VERTEX RequirementDefinition (vertex_type_system, name) VALUES "de8bb858-9c2b-4424-973b-8cbd5ec8903b":('RequirementDefinition', 'test_requirement_definition_name_1');
+2022-07-06 16:58:12,344 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:12,356 INFO root Thread-2 : INSERT EDGE capability() VALUE "de8bb858-9c2b-4424-973b-8cbd5ec8903b"->"037f38c6-2641-4aea-87b7-9370da42f9b1":()
+2022-07-06 16:58:12,359 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:12,369 INFO root Thread-2 : INSERT EDGE requirements() VALUE "d2357bce-f958-4813-a316-e0c6bd03bfcd"->"de8bb858-9c2b-4424-973b-8cbd5ec8903b":()
+2022-07-06 16:58:12,416 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:12,427 INFO root Thread-2 : INSERT VERTEX InterfaceDefinition (name, vertex_type_system) VALUES "f5b57e54-7b9f-4a53-b406-0e8442c24ff2":('test_interface_definition_name_0', 'InterfaceDefinition');
+2022-07-06 16:58:12,429 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:12,440 INFO root Thread-2 : INSERT EDGE type() VALUE "f5b57e54-7b9f-4a53-b406-0e8442c24ff2"->"a1407354-a975-451d-93e7-2a978003e119":()
+2022-07-06 16:58:12,442 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:12,453 INFO root Thread-2 : INSERT EDGE interfaces() VALUE "d2357bce-f958-4813-a316-e0c6bd03bfcd"->"f5b57e54-7b9f-4a53-b406-0e8442c24ff2":()
+2022-07-06 16:58:12,495 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:12,506 INFO root Thread-2 : INSERT VERTEX InterfaceDefinition (name, vertex_type_system) VALUES "32a28802-8190-49e4-8136-96253a813e13":('test_interface_definition_name_1', 'InterfaceDefinition');
+2022-07-06 16:58:12,508 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:12,519 INFO root Thread-2 : INSERT EDGE type() VALUE "32a28802-8190-49e4-8136-96253a813e13"->"a60c15d2-43bf-46fe-b85b-b9069eb0b34e":()
+2022-07-06 16:58:12,521 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:12,530 INFO root Thread-2 : INSERT EDGE interfaces() VALUE "d2357bce-f958-4813-a316-e0c6bd03bfcd"->"32a28802-8190-49e4-8136-96253a813e13":()
+2022-07-06 16:58:12,576 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:12,586 INFO root Thread-2 : INSERT VERTEX CapabilityDefinition (vertex_type_system, name, description) VALUES "7bcf3923-72c9-441e-9b72-ffeec55f34b1":('CapabilityDefinition', 'test_capability_definition_name', 'test_capability_description');
+2022-07-06 16:58:12,588 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:12,597 INFO root Thread-2 : INSERT EDGE type() VALUE "7bcf3923-72c9-441e-9b72-ffeec55f34b1"->"acdd669d-6de2-488d-b5e1-4081601451f0":()
+2022-07-06 16:58:12,643 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:12,653 INFO root Thread-2 : INSERT VERTEX PropertyDefinition (name, vertex_type_system, description) VALUES "a241e203-b146-44d8-b02f-6fc44f3e5157":('test_property_name_0', 'PropertyDefinition', 'test_property_description_0');
+2022-07-06 16:58:12,656 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:12,665 INFO root Thread-2 : INSERT EDGE type() VALUE "a241e203-b146-44d8-b02f-6fc44f3e5157"->"4a925a20-89ea-46e6-8cbf-d0c198d67f89":()
+2022-07-06 16:58:12,707 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:12,717 INFO root Thread-2 : INSERT EDGE properties() VALUE "7bcf3923-72c9-441e-9b72-ffeec55f34b1"->"a241e203-b146-44d8-b02f-6fc44f3e5157":()
+2022-07-06 16:58:12,721 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:12,731 INFO root Thread-2 : INSERT VERTEX PropertyDefinition (name, vertex_type_system, description) VALUES "648eb7a8-d505-441e-a5ad-a2c4c0b1e0cd":('test_property_name_1', 'PropertyDefinition', 'test_property_description_1');
+2022-07-06 16:58:12,775 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:12,786 INFO root Thread-2 : INSERT EDGE type() VALUE "648eb7a8-d505-441e-a5ad-a2c4c0b1e0cd"->"fc97e010-e139-48eb-b48c-7c9b08914252":()
+2022-07-06 16:58:12,788 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:12,797 INFO root Thread-2 : INSERT EDGE properties() VALUE "7bcf3923-72c9-441e-9b72-ffeec55f34b1"->"648eb7a8-d505-441e-a5ad-a2c4c0b1e0cd":()
+2022-07-06 16:58:12,843 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:12,853 INFO root Thread-2 : INSERT VERTEX AttributeDefinition (vertex_type_system, name) VALUES "f4712f2c-adc2-4c75-ae8a-adeaddb1a8f3":('AttributeDefinition', 'attribute_name_0');
+2022-07-06 16:58:12,855 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:12,865 INFO root Thread-2 : INSERT EDGE type() VALUE "f4712f2c-adc2-4c75-ae8a-adeaddb1a8f3"->"4a925a20-89ea-46e6-8cbf-d0c198d67f89":()
+2022-07-06 16:58:12,911 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:12,922 INFO root Thread-2 : INSERT EDGE attributes() VALUE "7bcf3923-72c9-441e-9b72-ffeec55f34b1"->"f4712f2c-adc2-4c75-ae8a-adeaddb1a8f3":()
+2022-07-06 16:58:12,926 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:12,935 INFO root Thread-2 : INSERT VERTEX AttributeDefinition (vertex_type_system, name) VALUES "0d15dc57-d180-48cf-b893-b4ef100b9f7e":('AttributeDefinition', 'attribute_name_1');
+2022-07-06 16:58:12,979 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:12,989 INFO root Thread-2 : INSERT EDGE type() VALUE "0d15dc57-d180-48cf-b893-b4ef100b9f7e"->"fc97e010-e139-48eb-b48c-7c9b08914252":()
+2022-07-06 16:58:12,992 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:13,000 INFO root Thread-2 : INSERT EDGE attributes() VALUE "7bcf3923-72c9-441e-9b72-ffeec55f34b1"->"0d15dc57-d180-48cf-b893-b4ef100b9f7e":()
+2022-07-06 16:58:13,043 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:13,054 INFO root Thread-2 : INSERT VERTEX NodeType (vertex_type_system, name) VALUES "e477cbfb-1a07-4daa-b066-be27cbfacc80":('NodeType', 'test_node_type_name_0');
+2022-07-06 16:58:13,056 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:13,064 INFO root Thread-2 : INSERT EDGE derived_from() VALUE "e477cbfb-1a07-4daa-b066-be27cbfacc80"->"d2357bce-f958-4813-a316-e0c6bd03bfcd":()
+2022-07-06 16:58:13,107 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:13,116 INFO root Thread-2 : INSERT EDGE valid_source_types() VALUE "7bcf3923-72c9-441e-9b72-ffeec55f34b1"->"e477cbfb-1a07-4daa-b066-be27cbfacc80":()
+2022-07-06 16:58:13,120 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:13,128 INFO root Thread-2 : INSERT VERTEX NodeType (vertex_type_system, name) VALUES "ac791803-72de-4b6a-a4ca-63d005fb19aa":('NodeType', 'test_node_type_name_1');
+2022-07-06 16:58:13,171 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:13,181 INFO root Thread-2 : INSERT EDGE derived_from() VALUE "ac791803-72de-4b6a-a4ca-63d005fb19aa"->"d2357bce-f958-4813-a316-e0c6bd03bfcd":()
+2022-07-06 16:58:13,183 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:13,191 INFO root Thread-2 : INSERT EDGE valid_source_types() VALUE "7bcf3923-72c9-441e-9b72-ffeec55f34b1"->"ac791803-72de-4b6a-a4ca-63d005fb19aa":()
+2022-07-06 16:58:13,234 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:13,242 INFO root Thread-2 : INSERT VERTEX Occurrences (vertex_type_system, minimum, maximum) VALUES "d22b5cbe-e6b0-420f-b8c1-49406ed62586":('Occurrences', '0', '10');
+2022-07-06 16:58:13,243 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:13,249 INFO root Thread-2 : INSERT EDGE occurrences() VALUE "7bcf3923-72c9-441e-9b72-ffeec55f34b1"->"d22b5cbe-e6b0-420f-b8c1-49406ed62586":()
+2022-07-06 16:58:13,251 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:13,258 INFO root Thread-2 : INSERT EDGE capabilities() VALUE "d2357bce-f958-4813-a316-e0c6bd03bfcd"->"7bcf3923-72c9-441e-9b72-ffeec55f34b1":()
+2022-07-06 16:58:13,303 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:13,311 INFO root Thread-2 : INSERT VERTEX CapabilityDefinition (vertex_type_system, name) VALUES "5dc1d054-85e0-47cd-abca-f610f354f6e8":('CapabilityDefinition', 'test_capability_definition_name_1');
+2022-07-06 16:58:13,313 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:13,320 INFO root Thread-2 : INSERT EDGE type() VALUE "5dc1d054-85e0-47cd-abca-f610f354f6e8"->"037f38c6-2641-4aea-87b7-9370da42f9b1":()
+2022-07-06 16:58:13,363 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:13,372 INFO root Thread-2 : INSERT EDGE capabilities() VALUE "d2357bce-f958-4813-a316-e0c6bd03bfcd"->"5dc1d054-85e0-47cd-abca-f610f354f6e8":()
+2022-07-06 16:58:13,373 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:13,380 INFO root Thread-2 : INSERT EDGE artifacts() VALUE "d2357bce-f958-4813-a316-e0c6bd03bfcd"->"ee7ebf2f-88da-42f5-8e20-586a42408c27":()
+2022-07-06 16:58:13,423 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:13,432 INFO root Thread-2 : INSERT EDGE artifacts() VALUE "d2357bce-f958-4813-a316-e0c6bd03bfcd"->"79e24070-892e-4a8c-aa61-001877841cd5":()
+2022-07-06 16:58:13,435 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:13,443 INFO root Thread-2 : INSERT EDGE node_types() VALUE "cluster"->"d2357bce-f958-4813-a316-e0c6bd03bfcd":()
+2022-07-06 16:58:13,487 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:13,496 INFO root Thread-2 : INSERT EDGE node_types() VALUE "cluster"->"e477cbfb-1a07-4daa-b066-be27cbfacc80":()
+2022-07-06 16:58:13,498 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:13,505 INFO root Thread-2 : INSERT EDGE node_types() VALUE "cluster"->"ac791803-72de-4b6a-a4ca-63d005fb19aa":()
+2022-07-06 16:58:13,509 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:13,515 INFO root Thread-2 : INSERT VERTEX GroupType (vertex_type_system, name) VALUES "5116f2d0-34f6-412c-8b48-f880747b5ade":('GroupType', 'test_parent_group_type_name');
+2022-07-06 16:58:13,559 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:13,566 INFO root Thread-2 : INSERT EDGE derived_from() VALUE "5116f2d0-34f6-412c-8b48-f880747b5ade"->"5116f2d0-34f6-412c-8b48-f880747b5ade":()
+2022-07-06 16:58:13,568 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:13,575 INFO root Thread-2 : INSERT EDGE group_types() VALUE "cluster"->"5116f2d0-34f6-412c-8b48-f880747b5ade":()
+2022-07-06 16:58:13,619 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:13,625 INFO root Thread-2 : INSERT VERTEX GroupType (vertex_type_system, name) VALUES "ac4aaa49-ee64-48cb-ae0c-25ab83edbd9b":('GroupType', 'test_group_type_name_0');
+2022-07-06 16:58:13,627 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:13,633 INFO root Thread-2 : INSERT EDGE derived_from() VALUE "ac4aaa49-ee64-48cb-ae0c-25ab83edbd9b"->"5116f2d0-34f6-412c-8b48-f880747b5ade":()
+2022-07-06 16:58:13,679 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:13,690 INFO root Thread-2 : INSERT EDGE group_types() VALUE "cluster"->"ac4aaa49-ee64-48cb-ae0c-25ab83edbd9b":()
+2022-07-06 16:58:13,694 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:13,703 INFO root Thread-2 : INSERT VERTEX GroupType (vertex_type_system, name) VALUES "785c862e-e95a-4c1f-8bf8-706f66e6efed":('GroupType', 'test_group_type_name_1');
+2022-07-06 16:58:13,706 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:13,715 INFO root Thread-2 : INSERT EDGE derived_from() VALUE "785c862e-e95a-4c1f-8bf8-706f66e6efed"->"5116f2d0-34f6-412c-8b48-f880747b5ade":()
+2022-07-06 16:58:13,718 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:13,727 INFO root Thread-2 : INSERT EDGE group_types() VALUE "cluster"->"785c862e-e95a-4c1f-8bf8-706f66e6efed":()
+2022-07-06 16:58:13,771 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:13,781 INFO root Thread-2 : INSERT VERTEX GroupType (vertex_type_system, name, version, description) VALUES "49856f23-a40e-42bb-a9ec-d94c9f598692":('GroupType', 'test_group_type_name', 'test_version_number', 'test_node_type_description');
+2022-07-06 16:58:13,784 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:13,792 INFO root Thread-2 : INSERT EDGE derived_from() VALUE "49856f23-a40e-42bb-a9ec-d94c9f598692"->"5116f2d0-34f6-412c-8b48-f880747b5ade":()
+2022-07-06 16:58:13,835 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:13,845 INFO root Thread-2 : INSERT VERTEX Metadata (name, value, vertex_type_system) VALUES "ace284fa-46de-409e-8813-2dd58c9df24c":('metadata_key_0', 'metadata_value_0', 'Metadata');
+2022-07-06 16:58:13,847 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:13,856 INFO root Thread-2 : INSERT EDGE metadata() VALUE "49856f23-a40e-42bb-a9ec-d94c9f598692"->"ace284fa-46de-409e-8813-2dd58c9df24c":()
+2022-07-06 16:58:13,899 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:13,909 INFO root Thread-2 : INSERT VERTEX Metadata (name, value, vertex_type_system) VALUES "1f700825-4039-410b-9987-fd002a15902c":('metadata_key_1', 'metadata_value_1', 'Metadata');
+2022-07-06 16:58:13,912 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:13,921 INFO root Thread-2 : INSERT EDGE metadata() VALUE "49856f23-a40e-42bb-a9ec-d94c9f598692"->"1f700825-4039-410b-9987-fd002a15902c":()
+2022-07-06 16:58:13,967 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:13,978 INFO root Thread-2 : INSERT VERTEX Metadata (name, value, vertex_type_system) VALUES "b9f74d47-53f2-4cdb-b2be-19d26fb8d209":('metadata_key_2', 'metadata_value_2', 'Metadata');
+2022-07-06 16:58:13,980 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:13,990 INFO root Thread-2 : INSERT EDGE metadata() VALUE "49856f23-a40e-42bb-a9ec-d94c9f598692"->"b9f74d47-53f2-4cdb-b2be-19d26fb8d209":()
+2022-07-06 16:58:14,036 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:14,056 INFO root Thread-2 : INSERT VERTEX AttributeDefinition (vertex_type_system, name) VALUES "6d542785-afed-44f1-9d39-132a3002d855":('AttributeDefinition', 'attribute_name_0');
+2022-07-06 16:58:14,058 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:14,067 INFO root Thread-2 : INSERT EDGE type() VALUE "6d542785-afed-44f1-9d39-132a3002d855"->"4a925a20-89ea-46e6-8cbf-d0c198d67f89":()
+2022-07-06 16:58:14,111 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:14,121 INFO root Thread-2 : INSERT EDGE attributes() VALUE "49856f23-a40e-42bb-a9ec-d94c9f598692"->"6d542785-afed-44f1-9d39-132a3002d855":()
+2022-07-06 16:58:14,125 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:14,134 INFO root Thread-2 : INSERT VERTEX AttributeDefinition (vertex_type_system, name) VALUES "f7186517-2ce0-47f5-9a01-1993be8ba9c8":('AttributeDefinition', 'attribute_name_1');
+2022-07-06 16:58:14,183 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:14,194 INFO root Thread-2 : INSERT EDGE type() VALUE "f7186517-2ce0-47f5-9a01-1993be8ba9c8"->"fc97e010-e139-48eb-b48c-7c9b08914252":()
+2022-07-06 16:58:14,196 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:14,205 INFO root Thread-2 : INSERT EDGE attributes() VALUE "49856f23-a40e-42bb-a9ec-d94c9f598692"->"f7186517-2ce0-47f5-9a01-1993be8ba9c8":()
+2022-07-06 16:58:14,251 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:14,260 INFO root Thread-2 : INSERT VERTEX PropertyDefinition (name, vertex_type_system, description) VALUES "0c70f12a-ca71-4973-9e54-c5d1a83cb181":('test_property_name_0', 'PropertyDefinition', 'test_property_description_0');
+2022-07-06 16:58:14,262 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:14,269 INFO root Thread-2 : INSERT EDGE type() VALUE "0c70f12a-ca71-4973-9e54-c5d1a83cb181"->"4a925a20-89ea-46e6-8cbf-d0c198d67f89":()
+2022-07-06 16:58:14,272 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:14,280 INFO root Thread-2 : INSERT EDGE properties() VALUE "49856f23-a40e-42bb-a9ec-d94c9f598692"->"0c70f12a-ca71-4973-9e54-c5d1a83cb181":()
+2022-07-06 16:58:14,283 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:14,290 INFO root Thread-2 : INSERT VERTEX PropertyDefinition (name, vertex_type_system, description) VALUES "a1f49ef8-503c-4853-ba0b-8e37e19a92ae":('test_property_name_1', 'PropertyDefinition', 'test_property_description_1');
+2022-07-06 16:58:14,335 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:14,343 INFO root Thread-2 : INSERT EDGE type() VALUE "a1f49ef8-503c-4853-ba0b-8e37e19a92ae"->"fc97e010-e139-48eb-b48c-7c9b08914252":()
+2022-07-06 16:58:14,346 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:14,353 INFO root Thread-2 : INSERT EDGE properties() VALUE "49856f23-a40e-42bb-a9ec-d94c9f598692"->"a1f49ef8-503c-4853-ba0b-8e37e19a92ae":()
+2022-07-06 16:58:14,399 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:14,408 INFO root Thread-2 : INSERT EDGE group_types() VALUE "cluster"->"49856f23-a40e-42bb-a9ec-d94c9f598692":()
+2022-07-06 16:58:14,411 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:14,419 INFO root Thread-2 : INSERT VERTEX PolicyType (vertex_type_system, name) VALUES "bc70d90e-e1e6-4137-b957-21ee30fdf053":('PolicyType', 'test_parent_policy_type_name');
+2022-07-06 16:58:14,463 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:14,473 INFO root Thread-2 : INSERT EDGE derived_from() VALUE "bc70d90e-e1e6-4137-b957-21ee30fdf053"->"bc70d90e-e1e6-4137-b957-21ee30fdf053":()
+2022-07-06 16:58:14,475 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:14,484 INFO root Thread-2 : INSERT EDGE policy_types() VALUE "cluster"->"bc70d90e-e1e6-4137-b957-21ee30fdf053":()
+2022-07-06 16:58:14,527 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:14,537 INFO root Thread-2 : INSERT VERTEX PolicyType (vertex_type_system, name) VALUES "ddb09269-a4f2-49cd-ba70-bbb30064330e":('PolicyType', 'test_policy_type_name_0');
+2022-07-06 16:58:14,540 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:14,548 INFO root Thread-2 : INSERT EDGE derived_from() VALUE "ddb09269-a4f2-49cd-ba70-bbb30064330e"->"bc70d90e-e1e6-4137-b957-21ee30fdf053":()
+2022-07-06 16:58:14,591 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:14,601 INFO root Thread-2 : INSERT EDGE policy_types() VALUE "cluster"->"ddb09269-a4f2-49cd-ba70-bbb30064330e":()
+2022-07-06 16:58:14,605 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:14,613 INFO root Thread-2 : INSERT VERTEX PolicyType (vertex_type_system, name) VALUES "32c48d59-9af2-4090-8f87-3d33eac3ba2a":('PolicyType', 'test_policy_type_name_1');
+2022-07-06 16:58:14,659 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:14,670 INFO root Thread-2 : INSERT EDGE derived_from() VALUE "32c48d59-9af2-4090-8f87-3d33eac3ba2a"->"bc70d90e-e1e6-4137-b957-21ee30fdf053":()
+2022-07-06 16:58:14,673 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:14,681 INFO root Thread-2 : INSERT EDGE policy_types() VALUE "cluster"->"32c48d59-9af2-4090-8f87-3d33eac3ba2a":()
+2022-07-06 16:58:14,686 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:14,695 INFO root Thread-2 : INSERT VERTEX PolicyType (vertex_type_system, name, version, description) VALUES "f53dde8f-8a5a-482a-aacd-83c39405d7ae":('PolicyType', 'test_policy_type_name', 'test_version_number', 'test_policy_description');
+2022-07-06 16:58:14,739 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:14,806 INFO root Thread-2 : INSERT EDGE derived_from() VALUE "f53dde8f-8a5a-482a-aacd-83c39405d7ae"->"bc70d90e-e1e6-4137-b957-21ee30fdf053":()
+2022-07-06 16:58:14,811 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:14,820 INFO root Thread-2 : INSERT VERTEX Metadata (name, value, vertex_type_system) VALUES "252adedf-129e-43a2-8882-b215564277be":('metadata_key_0', 'metadata_value_0', 'Metadata');
+2022-07-06 16:58:14,822 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:14,832 INFO root Thread-2 : INSERT EDGE metadata() VALUE "f53dde8f-8a5a-482a-aacd-83c39405d7ae"->"252adedf-129e-43a2-8882-b215564277be":()
+2022-07-06 16:58:14,875 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:14,884 INFO root Thread-2 : INSERT VERTEX Metadata (name, value, vertex_type_system) VALUES "daf81e54-99f1-4267-ad27-462e3a9e7bf3":('metadata_key_1', 'metadata_value_1', 'Metadata');
+2022-07-06 16:58:14,887 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:14,895 INFO root Thread-2 : INSERT EDGE metadata() VALUE "f53dde8f-8a5a-482a-aacd-83c39405d7ae"->"daf81e54-99f1-4267-ad27-462e3a9e7bf3":()
+2022-07-06 16:58:14,898 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:14,906 INFO root Thread-2 : INSERT VERTEX Metadata (name, value, vertex_type_system) VALUES "e52a6a81-2462-4bc0-bca9-666bf26debd1":('metadata_key_2', 'metadata_value_2', 'Metadata');
+2022-07-06 16:58:14,951 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:14,960 INFO root Thread-2 : INSERT EDGE metadata() VALUE "f53dde8f-8a5a-482a-aacd-83c39405d7ae"->"e52a6a81-2462-4bc0-bca9-666bf26debd1":()
+2022-07-06 16:58:14,963 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:14,971 INFO root Thread-2 : INSERT VERTEX PropertyDefinition (name, vertex_type_system, description) VALUES "46001d3d-9e70-4425-aa89-ee8c24fc4617":('test_property_name_0', 'PropertyDefinition', 'test_property_description_0');
+2022-07-06 16:58:15,015 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:15,024 INFO root Thread-2 : INSERT EDGE type() VALUE "46001d3d-9e70-4425-aa89-ee8c24fc4617"->"4a925a20-89ea-46e6-8cbf-d0c198d67f89":()
+2022-07-06 16:58:15,026 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:15,035 INFO root Thread-2 : INSERT EDGE properties() VALUE "f53dde8f-8a5a-482a-aacd-83c39405d7ae"->"46001d3d-9e70-4425-aa89-ee8c24fc4617":()
+2022-07-06 16:58:15,079 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:15,088 INFO root Thread-2 : INSERT VERTEX PropertyDefinition (name, vertex_type_system, description) VALUES "ffcb1945-390b-4158-8e08-52bc9dba5562":('test_property_name_1', 'PropertyDefinition', 'test_property_description_1');
+2022-07-06 16:58:15,090 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:15,099 INFO root Thread-2 : INSERT EDGE type() VALUE "ffcb1945-390b-4158-8e08-52bc9dba5562"->"fc97e010-e139-48eb-b48c-7c9b08914252":()
+2022-07-06 16:58:15,143 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:15,152 INFO root Thread-2 : INSERT EDGE properties() VALUE "f53dde8f-8a5a-482a-aacd-83c39405d7ae"->"ffcb1945-390b-4158-8e08-52bc9dba5562":()
+2022-07-06 16:58:15,154 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:15,163 INFO root Thread-2 : INSERT EDGE targets() VALUE "f53dde8f-8a5a-482a-aacd-83c39405d7ae"->"d2357bce-f958-4813-a316-e0c6bd03bfcd":()
+2022-07-06 16:58:15,165 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:15,174 INFO root Thread-2 : INSERT EDGE targets() VALUE "f53dde8f-8a5a-482a-aacd-83c39405d7ae"->"e477cbfb-1a07-4daa-b066-be27cbfacc80":()
+2022-07-06 16:58:15,219 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:15,228 INFO root Thread-2 : INSERT VERTEX TriggerDefinition (name, vertex_type_system, description, event, schedule_start, schedule_end, period, evaluations, method) VALUES "5162a16a-3c2a-4574-a064-5ed378bfdb56":('test_trigger_name', 'TriggerDefinition', 'test_trigger_description', 'test_event_name', '0', '1', '60 sec', '1', 'average');
+2022-07-06 16:58:15,231 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:15,238 INFO root Thread-2 : INSERT VERTEX EventFilterDefinition (vertex_type_system) VALUES "05850a89-3bdf-4530-8a0f-1fcadf8a0f64":('EventFilterDefinition');
+2022-07-06 16:58:15,240 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:15,249 INFO root Thread-2 : INSERT EDGE node() VALUE "05850a89-3bdf-4530-8a0f-1fcadf8a0f64"->"d2357bce-f958-4813-a316-e0c6bd03bfcd":()
+2022-07-06 16:58:15,295 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:15,305 INFO root Thread-2 : INSERT EDGE requirement() VALUE "05850a89-3bdf-4530-8a0f-1fcadf8a0f64"->"73b18644-f67d-408b-ad35-b90ec56f1b9e":()
+2022-07-06 16:58:15,307 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:15,316 INFO root Thread-2 : INSERT EDGE capability() VALUE "05850a89-3bdf-4530-8a0f-1fcadf8a0f64"->"7bcf3923-72c9-441e-9b72-ffeec55f34b1":()
+2022-07-06 16:58:15,359 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:15,369 INFO root Thread-2 : INSERT EDGE event_filter() VALUE "5162a16a-3c2a-4574-a064-5ed378bfdb56"->"05850a89-3bdf-4530-8a0f-1fcadf8a0f64":()
+2022-07-06 16:58:15,372 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:15,381 INFO root Thread-2 : INSERT VERTEX ConditionClauseDefinition (type, vertex_type_system) VALUES "32d85ccf-39d7-4764-b11d-83fa6a2c16a2":('constraint', 'ConditionClauseDefinition');
+2022-07-06 16:58:15,428 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:15,439 INFO root Thread-2 : INSERT VERTEX AssertDefinition (attribute_name, vertex_type_system) VALUES "2f7539ff-c564-492d-a684-fae375ba964f":('my_attribute', 'AssertDefinition');
+2022-07-06 16:58:15,442 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:15,451 INFO root Thread-2 : INSERT VERTEX ConstraintClause (operator, vertex_type_system, value) VALUES "d6cd0917-a572-4e40-b3e7-45962c0f4a3e":('equal', 'ConstraintClause', 'my_value');
+2022-07-06 16:58:15,453 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:15,462 INFO root Thread-2 : INSERT EDGE constraint_clauses() VALUE "2f7539ff-c564-492d-a684-fae375ba964f"->"d6cd0917-a572-4e40-b3e7-45962c0f4a3e":()
+2022-07-06 16:58:15,508 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:15,520 INFO root Thread-2 : INSERT EDGE condition_assert() VALUE "32d85ccf-39d7-4764-b11d-83fa6a2c16a2"->"2f7539ff-c564-492d-a684-fae375ba964f":()
+2022-07-06 16:58:15,523 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:15,532 INFO root Thread-2 : INSERT EDGE constraint() VALUE "5162a16a-3c2a-4574-a064-5ed378bfdb56"->"32d85ccf-39d7-4764-b11d-83fa6a2c16a2":()
+2022-07-06 16:58:15,537 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:15,546 INFO root Thread-2 : INSERT VERTEX CallOperationActivityDefinition (interface_name, vertex_type_system) VALUES "73db6727-cf14-429c-a0c5-97a4cbe6f5f7":('test_interface_definition_name_1', 'CallOperationActivityDefinition');
+2022-07-06 16:58:15,592 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:15,603 INFO root Thread-2 : INSERT EDGE operation() VALUE "73db6727-cf14-429c-a0c5-97a4cbe6f5f7"->"95a73c96-7ad7-4be3-a4f6-c3d1bf3ad539":()
+2022-07-06 16:58:15,606 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:15,617 INFO root Thread-2 : INSERT EDGE action() VALUE "5162a16a-3c2a-4574-a064-5ed378bfdb56"->"73db6727-cf14-429c-a0c5-97a4cbe6f5f7":()
+2022-07-06 16:58:15,664 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:15,675 INFO root Thread-2 : INSERT EDGE triggers() VALUE "f53dde8f-8a5a-482a-aacd-83c39405d7ae"->"5162a16a-3c2a-4574-a064-5ed378bfdb56":()
+2022-07-06 16:58:15,678 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:15,687 INFO root Thread-2 : INSERT VERTEX TriggerDefinition (name, vertex_type_system, description, event) VALUES "15ce2751-8514-4739-a5a7-b204a986b440":('test_trigger_name_1', 'TriggerDefinition', 'test_trigger_description', 'test_event_name');
+2022-07-06 16:58:15,731 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:15,739 INFO root Thread-2 : INSERT EDGE triggers() VALUE "f53dde8f-8a5a-482a-aacd-83c39405d7ae"->"15ce2751-8514-4739-a5a7-b204a986b440":()
+2022-07-06 16:58:15,741 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:15,750 INFO root Thread-2 : INSERT EDGE policy_types() VALUE "cluster"->"f53dde8f-8a5a-482a-aacd-83c39405d7ae":()
+2022-07-06 16:58:15,795 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:15,804 INFO root Thread-2 : INSERT VERTEX TopologyTemplateDefinition (vertex_type_system, description, substitution_mappings) VALUES "e077be69-41bc-48a9-a975-a850c99f5053":('TopologyTemplateDefinition', 'test_template_description', 'test_substitution_mappings');
+2022-07-06 16:58:15,808 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:15,817 INFO root Thread-2 : INSERT VERTEX ParameterDefinition (name, vertex_type_system, value) VALUES "a08ef905-e813-48f3-be36-5e2a79bc627a":('input_0', 'ParameterDefinition', 'test_input_value_0');
+2022-07-06 16:58:15,867 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:15,876 INFO root Thread-2 : INSERT EDGE inputs() VALUE "e077be69-41bc-48a9-a975-a850c99f5053"->"a08ef905-e813-48f3-be36-5e2a79bc627a":()
+2022-07-06 16:58:15,879 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:15,887 INFO root Thread-2 : INSERT VERTEX ParameterDefinition (name, vertex_type_system, value) VALUES "55efef7d-a661-4ca7-a556-721eb573c6b0":('input_1', 'ParameterDefinition', 'test_input_value_1');
+2022-07-06 16:58:15,931 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:15,940 INFO root Thread-2 : INSERT EDGE inputs() VALUE "e077be69-41bc-48a9-a975-a850c99f5053"->"55efef7d-a661-4ca7-a556-721eb573c6b0":()
+2022-07-06 16:58:15,943 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:15,952 INFO root Thread-2 : INSERT VERTEX ParameterDefinition (name, vertex_type_system, description, value, required, default, status) VALUES "28bd5cd2-c68e-400b-ba11-7add8bcc8d99":('test_parameter_name', 'ParameterDefinition', 'ssss', 'test_parameter_value', 'False', 'test_parameter_default_value', 'test_status_value');
+2022-07-06 16:58:15,995 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:16,005 INFO root Thread-2 : INSERT EDGE type() VALUE "28bd5cd2-c68e-400b-ba11-7add8bcc8d99"->"4a925a20-89ea-46e6-8cbf-d0c198d67f89":()
+2022-07-06 16:58:16,009 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:16,017 INFO root Thread-2 : INSERT VERTEX ConstraintClause (operator, vertex_type_system, value) VALUES "0835477c-3383-471e-a5b6-a6130ec0477b":('equal_0', 'ConstraintClause', 'value_0');
+2022-07-06 16:58:16,063 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:16,072 INFO root Thread-2 : INSERT EDGE constraints() VALUE "28bd5cd2-c68e-400b-ba11-7add8bcc8d99"->"0835477c-3383-471e-a5b6-a6130ec0477b":()
+2022-07-06 16:58:16,076 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:16,084 INFO root Thread-2 : INSERT VERTEX ConstraintClause (operator, vertex_type_system, value) VALUES "490d7f89-63e4-4f4d-9b8a-e756a4494259":('equal_1', 'ConstraintClause', 'value_1');
+2022-07-06 16:58:16,127 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:16,137 INFO root Thread-2 : INSERT EDGE constraints() VALUE "28bd5cd2-c68e-400b-ba11-7add8bcc8d99"->"490d7f89-63e4-4f4d-9b8a-e756a4494259":()
+2022-07-06 16:58:16,141 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:16,149 INFO root Thread-2 : INSERT VERTEX SchemaDefinition (description, vertex_type_system) VALUES "731e3c34-c6be-4528-b355-6c3b9df0560c":('key_schema_description_test', 'SchemaDefinition');
+2022-07-06 16:58:16,195 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:16,206 INFO root Thread-2 : INSERT EDGE type() VALUE "731e3c34-c6be-4528-b355-6c3b9df0560c"->"fc97e010-e139-48eb-b48c-7c9b08914252":()
+2022-07-06 16:58:16,209 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:16,219 INFO root Thread-2 : INSERT VERTEX ConstraintClause (operator, vertex_type_system, value) VALUES "10a99819-ef1b-4a0d-94f1-82a95bad798e":('key_equal_0', 'ConstraintClause', 'key_value_0');
+2022-07-06 16:58:16,263 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:16,275 INFO root Thread-2 : INSERT EDGE constraints() VALUE "731e3c34-c6be-4528-b355-6c3b9df0560c"->"10a99819-ef1b-4a0d-94f1-82a95bad798e":()
+2022-07-06 16:58:16,279 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:16,289 INFO root Thread-2 : INSERT VERTEX ConstraintClause (operator, vertex_type_system, value) VALUES "51b4f78f-f95d-4361-a80c-0ea65cbd056a":('key_equal_1', 'ConstraintClause', 'key_value_1');
+2022-07-06 16:58:16,291 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:16,301 INFO root Thread-2 : INSERT EDGE constraints() VALUE "731e3c34-c6be-4528-b355-6c3b9df0560c"->"51b4f78f-f95d-4361-a80c-0ea65cbd056a":()
+2022-07-06 16:58:16,343 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:16,352 INFO root Thread-2 : INSERT EDGE key_schema() VALUE "28bd5cd2-c68e-400b-ba11-7add8bcc8d99"->"731e3c34-c6be-4528-b355-6c3b9df0560c":()
+2022-07-06 16:58:16,355 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:16,362 INFO root Thread-2 : INSERT VERTEX SchemaDefinition (description, vertex_type_system) VALUES "7927a79e-27b7-4790-98a8-78f16c79acbc":('entry_schema_description_test', 'SchemaDefinition');
+2022-07-06 16:58:16,407 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:16,416 INFO root Thread-2 : INSERT EDGE type() VALUE "7927a79e-27b7-4790-98a8-78f16c79acbc"->"4a925a20-89ea-46e6-8cbf-d0c198d67f89":()
+2022-07-06 16:58:16,418 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:16,425 INFO root Thread-2 : INSERT VERTEX ConstraintClause (operator, vertex_type_system, value) VALUES "7d46af6b-9d05-4bfe-9db4-2bd938b92688":('entry_equal_0', 'ConstraintClause', 'entry_value_0');
+2022-07-06 16:58:16,428 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:16,436 INFO root Thread-2 : INSERT EDGE constraints() VALUE "7927a79e-27b7-4790-98a8-78f16c79acbc"->"7d46af6b-9d05-4bfe-9db4-2bd938b92688":()
+2022-07-06 16:58:16,479 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:16,489 INFO root Thread-2 : INSERT VERTEX ConstraintClause (operator, vertex_type_system, value) VALUES "cc98def3-a417-4638-ab6e-444e165d8b7e":('entry_equal_1', 'ConstraintClause', 'entry_value_1');
+2022-07-06 16:58:16,491 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:16,499 INFO root Thread-2 : INSERT EDGE constraints() VALUE "7927a79e-27b7-4790-98a8-78f16c79acbc"->"cc98def3-a417-4638-ab6e-444e165d8b7e":()
+2022-07-06 16:58:16,543 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:16,551 INFO root Thread-2 : INSERT EDGE entry_schema() VALUE "28bd5cd2-c68e-400b-ba11-7add8bcc8d99"->"7927a79e-27b7-4790-98a8-78f16c79acbc":()
+2022-07-06 16:58:16,553 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:16,560 INFO root Thread-2 : INSERT EDGE inputs() VALUE "e077be69-41bc-48a9-a975-a850c99f5053"->"28bd5cd2-c68e-400b-ba11-7add8bcc8d99":()
+2022-07-06 16:58:16,603 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:16,613 INFO root Thread-2 : INSERT VERTEX ParameterDefinition (name, vertex_type_system, value) VALUES "2a61acaf-7659-4f51-93eb-679165c63cde":('output_0', 'ParameterDefinition', 'test_output_value_0');
+2022-07-06 16:58:16,615 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:16,624 INFO root Thread-2 : INSERT EDGE outputs() VALUE "e077be69-41bc-48a9-a975-a850c99f5053"->"2a61acaf-7659-4f51-93eb-679165c63cde":()
+2022-07-06 16:58:16,628 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:16,636 INFO root Thread-2 : INSERT VERTEX ParameterDefinition (name, vertex_type_system, value) VALUES "5b3b8188-e61e-464f-a95c-350696d936d1":('output_1', 'ParameterDefinition', 'test_output_value_1');
+2022-07-06 16:58:16,679 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:16,688 INFO root Thread-2 : INSERT EDGE outputs() VALUE "e077be69-41bc-48a9-a975-a850c99f5053"->"5b3b8188-e61e-464f-a95c-350696d936d1":()
+2022-07-06 16:58:16,690 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:16,699 INFO root Thread-2 : INSERT VERTEX ParameterDefinition (name, vertex_type_system, description, value, required, default, status) VALUES "4d2c6091-2593-4d10-821f-ec5080aca3b6":('test_parameter_name', 'ParameterDefinition', 'test_parameter_description', 'test_parameter_value', 'False', 'test_parameter_default_value', 'test_status_value');
+2022-07-06 16:58:16,743 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:16,753 INFO root Thread-2 : INSERT EDGE type() VALUE "4d2c6091-2593-4d10-821f-ec5080aca3b6"->"4a925a20-89ea-46e6-8cbf-d0c198d67f89":()
+2022-07-06 16:58:16,757 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:16,765 INFO root Thread-2 : INSERT VERTEX ConstraintClause (operator, vertex_type_system, value) VALUES "453e9041-7943-42c2-af0f-b387e7f78a45":('equal_0', 'ConstraintClause', 'value_0');
+2022-07-06 16:58:16,815 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:16,825 INFO root Thread-2 : INSERT EDGE constraints() VALUE "4d2c6091-2593-4d10-821f-ec5080aca3b6"->"453e9041-7943-42c2-af0f-b387e7f78a45":()
+2022-07-06 16:58:16,828 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:16,837 INFO root Thread-2 : INSERT VERTEX ConstraintClause (operator, vertex_type_system, value) VALUES "8c304cbe-3283-42ff-afa9-9077bcdc0725":('equal_1', 'ConstraintClause', 'value_1');
+2022-07-06 16:58:16,883 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:16,891 INFO root Thread-2 : INSERT EDGE constraints() VALUE "4d2c6091-2593-4d10-821f-ec5080aca3b6"->"8c304cbe-3283-42ff-afa9-9077bcdc0725":()
+2022-07-06 16:58:16,894 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:16,901 INFO root Thread-2 : INSERT VERTEX SchemaDefinition (description, vertex_type_system) VALUES "aa36782d-1272-47c3-8c39-c4af06f42915":('key_schema_description_test', 'SchemaDefinition');
+2022-07-06 16:58:16,903 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:16,910 INFO root Thread-2 : INSERT EDGE type() VALUE "aa36782d-1272-47c3-8c39-c4af06f42915"->"4a925a20-89ea-46e6-8cbf-d0c198d67f89":()
+2022-07-06 16:58:16,955 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:16,963 INFO root Thread-2 : INSERT VERTEX ConstraintClause (operator, vertex_type_system, value) VALUES "65429cc9-1f53-4581-a162-57e7d9400817":('key_equal_0', 'ConstraintClause', 'key_value_0');
+2022-07-06 16:58:16,965 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:16,973 INFO root Thread-2 : INSERT EDGE constraints() VALUE "aa36782d-1272-47c3-8c39-c4af06f42915"->"65429cc9-1f53-4581-a162-57e7d9400817":()
+2022-07-06 16:58:17,019 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:17,028 INFO root Thread-2 : INSERT VERTEX ConstraintClause (operator, vertex_type_system, value) VALUES "6619ec4d-93ba-4e9b-9637-27a42509cf51":('key_equal_1', 'ConstraintClause', 'key_value_1');
+2022-07-06 16:58:17,031 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:17,040 INFO root Thread-2 : INSERT EDGE constraints() VALUE "aa36782d-1272-47c3-8c39-c4af06f42915"->"6619ec4d-93ba-4e9b-9637-27a42509cf51":()
+2022-07-06 16:58:17,084 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:17,095 INFO root Thread-2 : INSERT EDGE key_schema() VALUE "4d2c6091-2593-4d10-821f-ec5080aca3b6"->"aa36782d-1272-47c3-8c39-c4af06f42915":()
+2022-07-06 16:58:17,100 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:17,109 INFO root Thread-2 : INSERT VERTEX SchemaDefinition (description, vertex_type_system) VALUES "ff0d8b87-9652-4ad2-b495-95929fa46ad0":('entry_schema_description_test', 'SchemaDefinition');
+2022-07-06 16:58:17,156 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:17,168 INFO root Thread-2 : INSERT EDGE type() VALUE "ff0d8b87-9652-4ad2-b495-95929fa46ad0"->"fc97e010-e139-48eb-b48c-7c9b08914252":()
+2022-07-06 16:58:17,172 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:17,182 INFO root Thread-2 : INSERT VERTEX ConstraintClause (operator, vertex_type_system, value) VALUES "bdfb37ba-40da-4a20-804d-4a0a38a3a243":('entry_equal_0', 'ConstraintClause', 'entry_value_0');
+2022-07-06 16:58:17,227 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:17,238 INFO root Thread-2 : INSERT EDGE constraints() VALUE "ff0d8b87-9652-4ad2-b495-95929fa46ad0"->"bdfb37ba-40da-4a20-804d-4a0a38a3a243":()
+2022-07-06 16:58:17,241 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:17,248 INFO root Thread-2 : INSERT VERTEX ConstraintClause (operator, vertex_type_system, value) VALUES "e5d66fca-713e-43cb-8e1e-b4b23e3750d2":('entry_equal_1', 'ConstraintClause', 'entry_value_1');
+2022-07-06 16:58:17,291 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:17,302 INFO root Thread-2 : INSERT EDGE constraints() VALUE "ff0d8b87-9652-4ad2-b495-95929fa46ad0"->"e5d66fca-713e-43cb-8e1e-b4b23e3750d2":()
+2022-07-06 16:58:17,303 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:17,312 INFO root Thread-2 : INSERT EDGE entry_schema() VALUE "4d2c6091-2593-4d10-821f-ec5080aca3b6"->"ff0d8b87-9652-4ad2-b495-95929fa46ad0":()
+2022-07-06 16:58:17,313 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:17,321 INFO root Thread-2 : INSERT EDGE outputs() VALUE "e077be69-41bc-48a9-a975-a850c99f5053"->"4d2c6091-2593-4d10-821f-ec5080aca3b6":()
+2022-07-06 16:58:17,364 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:17,374 INFO root Thread-2 : INSERT VERTEX NodeTemplate (name, vertex_type_system) VALUES "27ff5ac7-213b-4c0e-a7c0-32f6907222da":('test_node_template_name_0', 'NodeTemplate');
+2022-07-06 16:58:17,376 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:17,385 INFO root Thread-2 : INSERT EDGE type() VALUE "27ff5ac7-213b-4c0e-a7c0-32f6907222da"->"e477cbfb-1a07-4daa-b066-be27cbfacc80":()
+2022-07-06 16:58:17,387 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:17,396 INFO root Thread-2 : INSERT VERTEX PropertyAssignment (name, value, vertex_type_system) VALUES "6ec6aab6-3b88-49ff-8bdb-6ee1bf2ab035":('test_property_name_0', 'host_value_0', 'PropertyAssignment');
+2022-07-06 16:58:17,439 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:17,450 INFO root Thread-2 : INSERT EDGE properties() VALUE "27ff5ac7-213b-4c0e-a7c0-32f6907222da"->"6ec6aab6-3b88-49ff-8bdb-6ee1bf2ab035":()
+2022-07-06 16:58:17,453 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:17,461 INFO root Thread-2 : INSERT VERTEX PropertyAssignment (name, value, vertex_type_system) VALUES "32e5a949-eb8f-4500-91f0-25a3662a78a1":('test_get_input_property', '{"get_input": ["input_0"]}', 'PropertyAssignment');
+2022-07-06 16:58:17,503 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:17,513 INFO root Thread-2 : INSERT EDGE get_input() VALUE "32e5a949-eb8f-4500-91f0-25a3662a78a1"->"a08ef905-e813-48f3-be36-5e2a79bc627a":()
+2022-07-06 16:58:17,515 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:17,522 INFO root Thread-2 : INSERT EDGE properties() VALUE "27ff5ac7-213b-4c0e-a7c0-32f6907222da"->"32e5a949-eb8f-4500-91f0-25a3662a78a1":()
+2022-07-06 16:58:17,568 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:17,577 INFO root Thread-2 : INSERT VERTEX RequirementAssignment (name, vertex_type_system) VALUES "814987e6-bc45-41e5-a080-5e24c7f29838":('get_property_source', 'RequirementAssignment');
+2022-07-06 16:58:17,580 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:17,589 INFO root Thread-2 : INSERT VERTEX NodeTemplate (name, vertex_type_system) VALUES "d35c9a1b-f268-456b-ad90-75708734130d":('test_node_template_name_1', 'NodeTemplate');
+2022-07-06 16:58:17,632 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:17,643 INFO root Thread-2 : INSERT EDGE type() VALUE "d35c9a1b-f268-456b-ad90-75708734130d"->"ac791803-72de-4b6a-a4ca-63d005fb19aa":()
+2022-07-06 16:58:17,648 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:17,656 INFO root Thread-2 : INSERT VERTEX PropertyAssignment (name, value, vertex_type_system) VALUES "9c9cff9a-b06e-4b75-b495-876d3ef66baa":('test_property_name_0', 'target_value_0', 'PropertyAssignment');
+2022-07-06 16:58:17,699 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:17,709 INFO root Thread-2 : INSERT EDGE properties() VALUE "d35c9a1b-f268-456b-ad90-75708734130d"->"9c9cff9a-b06e-4b75-b495-876d3ef66baa":()
+2022-07-06 16:58:17,712 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:17,720 INFO root Thread-2 : INSERT VERTEX PropertyAssignment (name, value, vertex_type_system) VALUES "a1b104d4-67a1-44c2-ba90-baeb0ed8d475":('get_property_0', '{"get_property": ["test_node_template_name", "test_property_name_0"]}', 'PropertyAssignment');
+2022-07-06 16:58:17,763 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:17,773 INFO root Thread-2 : INSERT VERTEX PropertyAssignment (name, value, vertex_type_system) VALUES "b6a9b355-ba7d-4334-996b-06f22b76ef0f":('test_property_name_0', '{"get_property": ["HOST", "test_property_name_0"]}', 'PropertyAssignment');
+2022-07-06 16:58:17,776 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:17,786 INFO root Thread-2 : INSERT EDGE get_property() VALUE "b6a9b355-ba7d-4334-996b-06f22b76ef0f"->"6ec6aab6-3b88-49ff-8bdb-6ee1bf2ab035":()
+2022-07-06 16:58:17,832 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:17,843 INFO root Thread-2 : INSERT EDGE get_property() VALUE "a1b104d4-67a1-44c2-ba90-baeb0ed8d475"->"b6a9b355-ba7d-4334-996b-06f22b76ef0f":()
+2022-07-06 16:58:17,846 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:17,855 INFO root Thread-2 : INSERT EDGE properties() VALUE "d35c9a1b-f268-456b-ad90-75708734130d"->"a1b104d4-67a1-44c2-ba90-baeb0ed8d475":()
+2022-07-06 16:58:17,859 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:17,869 INFO root Thread-2 : INSERT VERTEX PropertyAssignment (name, value, vertex_type_system) VALUES "b920396f-0edb-4271-9600-086057abc231":('get_property_1', '{"get_property": ["test_node_template_name", "test_capability_name_0", "test_property_name_0"]}', 'PropertyAssignment');
+2022-07-06 16:58:17,911 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:17,921 INFO root Thread-2 : INSERT VERTEX PropertyAssignment (name, value, vertex_type_system) VALUES "532b002e-9109-4f41-aea8-a78fd0c62c33":('test_property_name_0', 'property_value_test_0', 'PropertyAssignment');
+2022-07-06 16:58:17,923 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:17,932 INFO root Thread-2 : INSERT EDGE get_property() VALUE "b920396f-0edb-4271-9600-086057abc231"->"532b002e-9109-4f41-aea8-a78fd0c62c33":()
+2022-07-06 16:58:17,979 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:17,988 INFO root Thread-2 : INSERT EDGE properties() VALUE "d35c9a1b-f268-456b-ad90-75708734130d"->"b920396f-0edb-4271-9600-086057abc231":()
+2022-07-06 16:58:17,992 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:18,000 INFO root Thread-2 : INSERT VERTEX CapabilityAssignment (name, vertex_type_system) VALUES "348ade47-316d-46c4-b537-9e4b17bb80b9":('test_capability_name_0', 'CapabilityAssignment');
+2022-07-06 16:58:18,044 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:18,056 INFO root Thread-2 : INSERT VERTEX PropertyAssignment (name, value, vertex_type_system) VALUES "7b529cd4-1cb0-4e08-afd1-d423ee2490ee":('test_property_name_0', 'target_value_1', 'PropertyAssignment');
+2022-07-06 16:58:18,059 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:18,068 INFO root Thread-2 : INSERT EDGE properties() VALUE "348ade47-316d-46c4-b537-9e4b17bb80b9"->"7b529cd4-1cb0-4e08-afd1-d423ee2490ee":()
+2022-07-06 16:58:18,111 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:18,121 INFO root Thread-2 : INSERT EDGE capabilities() VALUE "d35c9a1b-f268-456b-ad90-75708734130d"->"348ade47-316d-46c4-b537-9e4b17bb80b9":()
+2022-07-06 16:58:18,123 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:18,130 INFO root Thread-2 : INSERT EDGE node() VALUE "814987e6-bc45-41e5-a080-5e24c7f29838"->"d35c9a1b-f268-456b-ad90-75708734130d":()
+2022-07-06 16:58:18,179 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:18,187 INFO root Thread-2 : INSERT VERTEX RelationshipTemplate (name, vertex_type_system) VALUES "14183600-3e73-440d-89f4-c3cdd99d6639":('test_relationship_template_name_0', 'RelationshipTemplate');
+2022-07-06 16:58:18,189 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:18,197 INFO root Thread-2 : INSERT EDGE type() VALUE "14183600-3e73-440d-89f4-c3cdd99d6639"->"505e619e-b6e3-4654-8e56-1d4bb73894bf":()
+2022-07-06 16:58:18,200 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:18,207 INFO root Thread-2 : INSERT VERTEX PropertyAssignment (name, value, vertex_type_system) VALUES "1444f83e-488c-438d-b0c3-1989ac5b8a77":('test_property_name_0', '{"get_property": ["SOURCE", "test_property_name_0"]}', 'PropertyAssignment');
+2022-07-06 16:58:18,251 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:18,259 INFO root Thread-2 : INSERT EDGE get_property() VALUE "1444f83e-488c-438d-b0c3-1989ac5b8a77"->"6ec6aab6-3b88-49ff-8bdb-6ee1bf2ab035":()
+2022-07-06 16:58:18,261 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:18,269 INFO root Thread-2 : INSERT EDGE get_property() VALUE "1444f83e-488c-438d-b0c3-1989ac5b8a77"->"b6a9b355-ba7d-4334-996b-06f22b76ef0f":()
+2022-07-06 16:58:18,315 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:18,323 INFO root Thread-2 : INSERT EDGE properties() VALUE "14183600-3e73-440d-89f4-c3cdd99d6639"->"1444f83e-488c-438d-b0c3-1989ac5b8a77":()
+2022-07-06 16:58:18,326 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:18,335 INFO root Thread-2 : INSERT VERTEX PropertyAssignment (name, value, vertex_type_system) VALUES "b9fde52a-f0a0-4367-b2dd-d894f4bc2f95":('test_property_name_1', '{"get_property": ["SOURCE", "test_capability_name_0", "test_property_name_0"]}', 'PropertyAssignment');
+2022-07-06 16:58:18,379 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:18,387 INFO root Thread-2 : INSERT VERTEX PropertyAssignment (name, value, vertex_type_system) VALUES "05bf8dcb-cdf7-4aa7-b5a3-597d1d9f346b":('test_property_name_0', 'host_value_1', 'PropertyAssignment');
+2022-07-06 16:58:18,389 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:18,397 INFO root Thread-2 : INSERT EDGE get_property() VALUE "b9fde52a-f0a0-4367-b2dd-d894f4bc2f95"->"05bf8dcb-cdf7-4aa7-b5a3-597d1d9f346b":()
+2022-07-06 16:58:18,439 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:18,452 INFO root Thread-2 : INSERT EDGE get_property() VALUE "b9fde52a-f0a0-4367-b2dd-d894f4bc2f95"->"532b002e-9109-4f41-aea8-a78fd0c62c33":()
+2022-07-06 16:58:18,454 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:18,462 INFO root Thread-2 : INSERT EDGE properties() VALUE "14183600-3e73-440d-89f4-c3cdd99d6639"->"b9fde52a-f0a0-4367-b2dd-d894f4bc2f95":()
+2022-07-06 16:58:18,507 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:18,517 INFO root Thread-2 : INSERT VERTEX PropertyAssignment (name, value, vertex_type_system) VALUES "a0653321-e93d-4cf3-a9a0-7d00b1beef0b":('test_property_name_2', '{"get_property": ["TARGET", "test_property_name_0"]}', 'PropertyAssignment');
+2022-07-06 16:58:18,518 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:18,526 INFO root Thread-2 : INSERT EDGE get_property() VALUE "a0653321-e93d-4cf3-a9a0-7d00b1beef0b"->"9c9cff9a-b06e-4b75-b495-876d3ef66baa":()
+2022-07-06 16:58:18,573 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:18,593 INFO root Thread-2 : INSERT EDGE get_property() VALUE "a0653321-e93d-4cf3-a9a0-7d00b1beef0b"->"6ec6aab6-3b88-49ff-8bdb-6ee1bf2ab035":()
+2022-07-06 16:58:18,639 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:18,648 INFO root Thread-2 : INSERT EDGE properties() VALUE "14183600-3e73-440d-89f4-c3cdd99d6639"->"a0653321-e93d-4cf3-a9a0-7d00b1beef0b":()
+2022-07-06 16:58:18,650 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:18,658 INFO root Thread-2 : INSERT VERTEX PropertyAssignment (name, value, vertex_type_system) VALUES "f2668885-b1eb-4a18-9556-63a709e826c7":('test_property_name_3', '{"get_property": ["TARGET", "test_capability_name_0", "test_property_name_0"]}', 'PropertyAssignment');
+2022-07-06 16:58:18,707 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:18,715 INFO root Thread-2 : INSERT EDGE get_property() VALUE "f2668885-b1eb-4a18-9556-63a709e826c7"->"7b529cd4-1cb0-4e08-afd1-d423ee2490ee":()
+2022-07-06 16:58:18,717 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:18,725 INFO root Thread-2 : INSERT EDGE get_property() VALUE "f2668885-b1eb-4a18-9556-63a709e826c7"->"05bf8dcb-cdf7-4aa7-b5a3-597d1d9f346b":()
+2022-07-06 16:58:18,771 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:18,779 INFO root Thread-2 : INSERT EDGE properties() VALUE "14183600-3e73-440d-89f4-c3cdd99d6639"->"f2668885-b1eb-4a18-9556-63a709e826c7":()
+2022-07-06 16:58:18,781 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:18,789 INFO root Thread-2 : INSERT EDGE relationship() VALUE "814987e6-bc45-41e5-a080-5e24c7f29838"->"14183600-3e73-440d-89f4-c3cdd99d6639":()
+2022-07-06 16:58:18,835 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:18,844 INFO root Thread-2 : INSERT EDGE requirements() VALUE "27ff5ac7-213b-4c0e-a7c0-32f6907222da"->"814987e6-bc45-41e5-a080-5e24c7f29838":()
+2022-07-06 16:58:18,847 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:18,856 INFO root Thread-2 : INSERT VERTEX CapabilityAssignment (name, vertex_type_system) VALUES "a1b2f95e-c7f7-44fa-ad3e-a919e9bc4f1b":('test_capability_name_0', 'CapabilityAssignment');
+2022-07-06 16:58:18,899 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:18,908 INFO root Thread-2 : INSERT EDGE properties() VALUE "a1b2f95e-c7f7-44fa-ad3e-a919e9bc4f1b"->"05bf8dcb-cdf7-4aa7-b5a3-597d1d9f346b":()
+2022-07-06 16:58:18,911 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:18,919 INFO root Thread-2 : INSERT VERTEX PropertyAssignment (name, value, vertex_type_system) VALUES "dfff3185-169e-4bb3-aa22-f21b18c97433":('test_get_input_property', '{"get_input": ["input_1"]}', 'PropertyAssignment');
+2022-07-06 16:58:18,963 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:18,971 INFO root Thread-2 : INSERT EDGE get_input() VALUE "dfff3185-169e-4bb3-aa22-f21b18c97433"->"55efef7d-a661-4ca7-a556-721eb573c6b0":()
+2022-07-06 16:58:18,973 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:18,980 INFO root Thread-2 : INSERT EDGE properties() VALUE "a1b2f95e-c7f7-44fa-ad3e-a919e9bc4f1b"->"dfff3185-169e-4bb3-aa22-f21b18c97433":()
+2022-07-06 16:58:19,034 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:19,047 INFO root Thread-2 : INSERT EDGE capabilities() VALUE "27ff5ac7-213b-4c0e-a7c0-32f6907222da"->"a1b2f95e-c7f7-44fa-ad3e-a919e9bc4f1b":()
+2022-07-06 16:58:19,048 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:19,056 INFO root Thread-2 : INSERT EDGE node_templates() VALUE "e077be69-41bc-48a9-a975-a850c99f5053"->"27ff5ac7-213b-4c0e-a7c0-32f6907222da":()
+2022-07-06 16:58:19,057 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:19,064 INFO root Thread-2 : INSERT EDGE node_templates() VALUE "e077be69-41bc-48a9-a975-a850c99f5053"->"d35c9a1b-f268-456b-ad90-75708734130d":()
+2022-07-06 16:58:19,107 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:19,115 INFO root Thread-2 : INSERT VERTEX NodeTemplate (description, name, vertex_type_system) VALUES "fb4b9c67-150a-42cf-9ec6-34e90077740b":('test_node_template_description', 'test_node_template_name', 'NodeTemplate');
+2022-07-06 16:58:19,117 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:19,125 INFO root Thread-2 : INSERT EDGE type() VALUE "fb4b9c67-150a-42cf-9ec6-34e90077740b"->"e477cbfb-1a07-4daa-b066-be27cbfacc80":()
+2022-07-06 16:58:19,167 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:19,176 INFO root Thread-2 : INSERT VERTEX Directives (value, vertex_type_system) VALUES "37be2458-c82a-4e3c-96ac-2473dd5bde24":('directive_0', 'Directives');
+2022-07-06 16:58:19,178 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:19,187 INFO root Thread-2 : INSERT EDGE directives() VALUE "fb4b9c67-150a-42cf-9ec6-34e90077740b"->"37be2458-c82a-4e3c-96ac-2473dd5bde24":()
+2022-07-06 16:58:19,190 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:19,199 INFO root Thread-2 : INSERT VERTEX Directives (value, vertex_type_system) VALUES "e430751a-2515-4078-91b1-9cd3ea6e3ee7":('directive_1', 'Directives');
+2022-07-06 16:58:19,243 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:19,251 INFO root Thread-2 : INSERT EDGE directives() VALUE "fb4b9c67-150a-42cf-9ec6-34e90077740b"->"e430751a-2515-4078-91b1-9cd3ea6e3ee7":()
+2022-07-06 16:58:19,253 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:19,261 INFO root Thread-2 : INSERT VERTEX Directives (value, vertex_type_system) VALUES "858911c8-f678-4063-af5f-028af0e4187c":('directive_2', 'Directives');
+2022-07-06 16:58:19,307 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:19,325 INFO root Thread-2 : INSERT EDGE directives() VALUE "fb4b9c67-150a-42cf-9ec6-34e90077740b"->"858911c8-f678-4063-af5f-028af0e4187c":()
+2022-07-06 16:58:19,371 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:19,378 INFO root Thread-2 : INSERT VERTEX Metadata (name, value, vertex_type_system) VALUES "50aaa247-28bb-463f-bf13-1722d1247136":('metadata_key_0', 'metadata_value_0', 'Metadata');
+2022-07-06 16:58:19,381 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:19,388 INFO root Thread-2 : INSERT EDGE metadata() VALUE "fb4b9c67-150a-42cf-9ec6-34e90077740b"->"50aaa247-28bb-463f-bf13-1722d1247136":()
+2022-07-06 16:58:19,431 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:19,438 INFO root Thread-2 : INSERT VERTEX Metadata (name, value, vertex_type_system) VALUES "1950276b-2c1c-447e-8052-25bb3cce9eaf":('metadata_key_1', 'metadata_value_1', 'Metadata');
+2022-07-06 16:58:19,440 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:19,447 INFO root Thread-2 : INSERT EDGE metadata() VALUE "fb4b9c67-150a-42cf-9ec6-34e90077740b"->"1950276b-2c1c-447e-8052-25bb3cce9eaf":()
+2022-07-06 16:58:19,449 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:19,456 INFO root Thread-2 : INSERT VERTEX Metadata (name, value, vertex_type_system) VALUES "bb0e0e50-96a9-472f-b314-49483d793792":('metadata_key_2', 'metadata_value_2', 'Metadata');
+2022-07-06 16:58:19,499 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:19,508 INFO root Thread-2 : INSERT EDGE metadata() VALUE "fb4b9c67-150a-42cf-9ec6-34e90077740b"->"bb0e0e50-96a9-472f-b314-49483d793792":()
+2022-07-06 16:58:19,510 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:19,518 INFO root Thread-2 : INSERT EDGE properties() VALUE "fb4b9c67-150a-42cf-9ec6-34e90077740b"->"b6a9b355-ba7d-4334-996b-06f22b76ef0f":()
+2022-07-06 16:58:19,567 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:19,574 INFO root Thread-2 : INSERT VERTEX PropertyAssignment (name, value, vertex_type_system) VALUES "853cb864-abf1-426c-923d-ab315b121e4e":('test_property_name_1', '{"get_property": ["HOST", "test_capability_name_0", "test_property_name_0"]}', 'PropertyAssignment');
+2022-07-06 16:58:19,576 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:19,584 INFO root Thread-2 : INSERT EDGE get_property() VALUE "853cb864-abf1-426c-923d-ab315b121e4e"->"05bf8dcb-cdf7-4aa7-b5a3-597d1d9f346b":()
+2022-07-06 16:58:19,585 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:19,593 INFO root Thread-2 : INSERT EDGE properties() VALUE "fb4b9c67-150a-42cf-9ec6-34e90077740b"->"853cb864-abf1-426c-923d-ab315b121e4e":()
+2022-07-06 16:58:19,635 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:19,642 INFO root Thread-2 : INSERT VERTEX AttributeAssignment (name, value, vertex_type_system) VALUES "c8055870-10e3-4251-9d94-9fe27aaa9620":('test_attribute_name_0', 'attribute_value_test_0', 'AttributeAssignment');
+2022-07-06 16:58:19,643 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:19,650 INFO root Thread-2 : INSERT EDGE attributes() VALUE "fb4b9c67-150a-42cf-9ec6-34e90077740b"->"c8055870-10e3-4251-9d94-9fe27aaa9620":()
+2022-07-06 16:58:19,695 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:19,702 INFO root Thread-2 : INSERT VERTEX AttributeAssignment (name, value, vertex_type_system) VALUES "0e430a17-8f8d-4870-b453-a49c6a1b9786":('test_attribute_name_1', 'attribute_value_test_1', 'AttributeAssignment');
+2022-07-06 16:58:19,704 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:19,712 INFO root Thread-2 : INSERT EDGE attributes() VALUE "fb4b9c67-150a-42cf-9ec6-34e90077740b"->"0e430a17-8f8d-4870-b453-a49c6a1b9786":()
+2022-07-06 16:58:19,715 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:19,721 INFO root Thread-2 : INSERT VERTEX RequirementAssignment (name, vertex_type_system) VALUES "e3e0a5fb-d26c-49f0-8e9e-4e592ca347cd":('host', 'RequirementAssignment');
+2022-07-06 16:58:19,767 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:19,775 INFO root Thread-2 : INSERT EDGE node() VALUE "e3e0a5fb-d26c-49f0-8e9e-4e592ca347cd"->"27ff5ac7-213b-4c0e-a7c0-32f6907222da":()
+2022-07-06 16:58:19,776 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:19,783 INFO root Thread-2 : INSERT EDGE requirements() VALUE "fb4b9c67-150a-42cf-9ec6-34e90077740b"->"e3e0a5fb-d26c-49f0-8e9e-4e592ca347cd":()
+2022-07-06 16:58:19,786 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:19,793 INFO root Thread-2 : INSERT VERTEX RequirementAssignment (name, vertex_type_system) VALUES "5f7ebe78-6211-4220-999b-69032b7ca64f":('test_requirement_name_1', 'RequirementAssignment');
+2022-07-06 16:58:19,794 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:19,801 INFO root Thread-2 : INSERT EDGE node() VALUE "5f7ebe78-6211-4220-999b-69032b7ca64f"->"d35c9a1b-f268-456b-ad90-75708734130d":()
+2022-07-06 16:58:19,843 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:19,851 INFO root Thread-2 : INSERT EDGE requirements() VALUE "fb4b9c67-150a-42cf-9ec6-34e90077740b"->"5f7ebe78-6211-4220-999b-69032b7ca64f":()
+2022-07-06 16:58:19,854 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:19,862 INFO root Thread-2 : INSERT VERTEX RequirementAssignment (name, vertex_type_system) VALUES "9a313ecc-074b-4e3e-b31e-77806c411af6":('get_property_source', 'RequirementAssignment');
+2022-07-06 16:58:19,908 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:19,918 INFO root Thread-2 : INSERT EDGE node() VALUE "9a313ecc-074b-4e3e-b31e-77806c411af6"->"27ff5ac7-213b-4c0e-a7c0-32f6907222da":()
+2022-07-06 16:58:19,920 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:19,930 INFO root Thread-2 : INSERT EDGE relationship() VALUE "9a313ecc-074b-4e3e-b31e-77806c411af6"->"14183600-3e73-440d-89f4-c3cdd99d6639":()
+2022-07-06 16:58:19,932 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:19,941 INFO root Thread-2 : INSERT EDGE requirements() VALUE "fb4b9c67-150a-42cf-9ec6-34e90077740b"->"9a313ecc-074b-4e3e-b31e-77806c411af6":()
+2022-07-06 16:58:19,992 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:20,003 INFO root Thread-2 : INSERT VERTEX CapabilityAssignment (name, vertex_type_system) VALUES "daa0a4a0-b037-4752-b9b5-f3ec06cb40c8":('test_capability_name_0', 'CapabilityAssignment');
+2022-07-06 16:58:20,005 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:20,014 INFO root Thread-2 : INSERT EDGE properties() VALUE "daa0a4a0-b037-4752-b9b5-f3ec06cb40c8"->"532b002e-9109-4f41-aea8-a78fd0c62c33":()
+2022-07-06 16:58:20,017 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:20,025 INFO root Thread-2 : INSERT EDGE capabilities() VALUE "fb4b9c67-150a-42cf-9ec6-34e90077740b"->"daa0a4a0-b037-4752-b9b5-f3ec06cb40c8":()
+2022-07-06 16:58:20,071 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:20,081 INFO root Thread-2 : INSERT VERTEX CapabilityAssignment (name, vertex_type_system) VALUES "58563a6f-b2aa-4442-92be-c705e6c90c7b":('test_capability_name_1', 'CapabilityAssignment');
+2022-07-06 16:58:20,098 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:20,108 INFO root Thread-2 : INSERT VERTEX PropertyAssignment (name, value, vertex_type_system) VALUES "0d5ae381-9532-44ae-bf76-009f847fa2a5":('test_property_name_1', 'property_value_test_1', 'PropertyAssignment');
+2022-07-06 16:58:20,151 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:20,161 INFO root Thread-2 : INSERT EDGE properties() VALUE "58563a6f-b2aa-4442-92be-c705e6c90c7b"->"0d5ae381-9532-44ae-bf76-009f847fa2a5":()
+2022-07-06 16:58:20,163 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:20,171 INFO root Thread-2 : INSERT EDGE capabilities() VALUE "fb4b9c67-150a-42cf-9ec6-34e90077740b"->"58563a6f-b2aa-4442-92be-c705e6c90c7b":()
+2022-07-06 16:58:20,215 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:20,224 INFO root Thread-2 : INSERT VERTEX InterfaceDefinition (name, vertex_type_system) VALUES "443c66f7-c045-4fb4-a262-d2a12407c836":('test_interface_definition_name_0', 'InterfaceDefinition');
+2022-07-06 16:58:20,226 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:20,233 INFO root Thread-2 : INSERT EDGE type() VALUE "443c66f7-c045-4fb4-a262-d2a12407c836"->"a1407354-a975-451d-93e7-2a978003e119":()
+2022-07-06 16:58:20,235 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:20,255 INFO root Thread-2 : INSERT EDGE interfaces() VALUE "fb4b9c67-150a-42cf-9ec6-34e90077740b"->"443c66f7-c045-4fb4-a262-d2a12407c836":()
+2022-07-06 16:58:20,299 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:20,310 INFO root Thread-2 : INSERT VERTEX InterfaceDefinition (name, vertex_type_system) VALUES "25ba9c09-863e-4d6b-b5cd-cf5bf1d59cad":('test_interface_definition_name_1', 'InterfaceDefinition');
+2022-07-06 16:58:20,312 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:20,321 INFO root Thread-2 : INSERT EDGE type() VALUE "25ba9c09-863e-4d6b-b5cd-cf5bf1d59cad"->"a60c15d2-43bf-46fe-b85b-b9069eb0b34e":()
+2022-07-06 16:58:20,323 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:20,331 INFO root Thread-2 : INSERT EDGE interfaces() VALUE "fb4b9c67-150a-42cf-9ec6-34e90077740b"->"25ba9c09-863e-4d6b-b5cd-cf5bf1d59cad":()
+2022-07-06 16:58:20,375 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:20,384 INFO root Thread-2 : INSERT VERTEX ArtifactDefinition (name, vertex_type_system, artifact_file_URI) VALUES "df33be3b-becf-43a1-bc73-1388586cc6ef":('test_artifact_name_0', 'ArtifactDefinition', 'test_artifact_file_URI_0');
+2022-07-06 16:58:20,386 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:20,393 INFO root Thread-2 : INSERT EDGE artifacts() VALUE "fb4b9c67-150a-42cf-9ec6-34e90077740b"->"df33be3b-becf-43a1-bc73-1388586cc6ef":()
+2022-07-06 16:58:20,439 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:20,447 INFO root Thread-2 : INSERT VERTEX ArtifactDefinition (name, vertex_type_system, artifact_file_URI) VALUES "155220fc-7b85-4961-97cd-09ff46a10267":('test_artifact_name_1', 'ArtifactDefinition', 'test_artifact_file_URI_1');
+2022-07-06 16:58:20,449 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:20,457 INFO root Thread-2 : INSERT EDGE artifacts() VALUE "fb4b9c67-150a-42cf-9ec6-34e90077740b"->"155220fc-7b85-4961-97cd-09ff46a10267":()
+2022-07-06 16:58:20,499 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:20,508 INFO root Thread-2 : INSERT VERTEX NodeFilterDefinition (vertex_type_system) VALUES "b3024251-e6d8-43b1-8a2c-966e477d1106":('NodeFilterDefinition');
+2022-07-06 16:58:20,511 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:20,519 INFO root Thread-2 : INSERT VERTEX PropertyFilterDefinition (name, vertex_type_system) VALUES "e473fdee-db9f-4514-978e-9e2f5f8b42e5":('test_property_name_0', 'PropertyFilterDefinition');
+2022-07-06 16:58:20,563 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:20,571 INFO root Thread-2 : INSERT VERTEX ConstraintClause (operator, vertex_type_system, value) VALUES "30b576d7-310b-4b39-8269-c9fc83e4ac31":('equal_0', 'ConstraintClause', 'value_0');
+2022-07-06 16:58:20,573 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:20,581 INFO root Thread-2 : INSERT EDGE property_constraint() VALUE "e473fdee-db9f-4514-978e-9e2f5f8b42e5"->"30b576d7-310b-4b39-8269-c9fc83e4ac31":()
+2022-07-06 16:58:20,631 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:20,642 INFO root Thread-2 : INSERT VERTEX ConstraintClause (operator, vertex_type_system, value) VALUES "ffb7a94d-1133-478e-bcaa-21c7c9098212":('equal_1', 'ConstraintClause', 'value_1');
+2022-07-06 16:58:20,644 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:20,677 INFO root Thread-2 : INSERT EDGE property_constraint() VALUE "e473fdee-db9f-4514-978e-9e2f5f8b42e5"->"ffb7a94d-1133-478e-bcaa-21c7c9098212":()
+2022-07-06 16:58:20,679 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:20,686 INFO root Thread-2 : INSERT EDGE properties() VALUE "b3024251-e6d8-43b1-8a2c-966e477d1106"->"e473fdee-db9f-4514-978e-9e2f5f8b42e5":()
+2022-07-06 16:58:20,731 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:20,742 INFO root Thread-2 : INSERT VERTEX PropertyFilterDefinition (name, vertex_type_system) VALUES "7496b741-463d-489f-89e0-23efdff818b8":('test_property_name_1', 'PropertyFilterDefinition');
+2022-07-06 16:58:20,745 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:20,753 INFO root Thread-2 : INSERT VERTEX ConstraintClause (operator, vertex_type_system, value) VALUES "7b10dc90-f01d-4a43-8a17-78970cdeb0b8":('equal_0', 'ConstraintClause', 'value_0');
+2022-07-06 16:58:20,795 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:20,805 INFO root Thread-2 : INSERT EDGE property_constraint() VALUE "7496b741-463d-489f-89e0-23efdff818b8"->"7b10dc90-f01d-4a43-8a17-78970cdeb0b8":()
+2022-07-06 16:58:20,808 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:20,816 INFO root Thread-2 : INSERT VERTEX ConstraintClause (operator, vertex_type_system, value) VALUES "41c1bfaa-c54a-4572-b0bd-2b66f7490512":('equal_1', 'ConstraintClause', 'value_1');
+2022-07-06 16:58:20,859 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:20,870 INFO root Thread-2 : INSERT EDGE property_constraint() VALUE "7496b741-463d-489f-89e0-23efdff818b8"->"41c1bfaa-c54a-4572-b0bd-2b66f7490512":()
+2022-07-06 16:58:20,872 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:20,881 INFO root Thread-2 : INSERT EDGE properties() VALUE "b3024251-e6d8-43b1-8a2c-966e477d1106"->"7496b741-463d-489f-89e0-23efdff818b8":()
+2022-07-06 16:58:20,932 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:20,942 INFO root Thread-2 : INSERT EDGE node_filter() VALUE "fb4b9c67-150a-42cf-9ec6-34e90077740b"->"b3024251-e6d8-43b1-8a2c-966e477d1106":()
+2022-07-06 16:58:20,944 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:20,953 INFO root Thread-2 : INSERT EDGE node_templates() VALUE "e077be69-41bc-48a9-a975-a850c99f5053"->"fb4b9c67-150a-42cf-9ec6-34e90077740b":()
+2022-07-06 16:58:20,955 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:20,963 INFO root Thread-2 : INSERT EDGE relationship_templates() VALUE "e077be69-41bc-48a9-a975-a850c99f5053"->"14183600-3e73-440d-89f4-c3cdd99d6639":()
+2022-07-06 16:58:21,007 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:21,016 INFO root Thread-2 : INSERT VERTEX RelationshipTemplate (name, vertex_type_system) VALUES "8c89cf45-a87e-4bca-acb3-6f111b519421":('test_relationship_template_name_1', 'RelationshipTemplate');
+2022-07-06 16:58:21,018 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:21,026 INFO root Thread-2 : INSERT EDGE type() VALUE "8c89cf45-a87e-4bca-acb3-6f111b519421"->"e28bb80e-0313-4a38-b69f-ef1be7e3a3da":()
+2022-07-06 16:58:21,028 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:21,035 INFO root Thread-2 : INSERT EDGE relationship_templates() VALUE "e077be69-41bc-48a9-a975-a850c99f5053"->"8c89cf45-a87e-4bca-acb3-6f111b519421":()
+2022-07-06 16:58:21,038 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:21,045 INFO root Thread-2 : INSERT VERTEX RelationshipTemplate (name, vertex_type_system, description) VALUES "d421b8b3-b78e-4c7e-88e9-2a94ebe32719":('test_relationship_template_name', 'RelationshipTemplate', 'test_relationship_type_description');
+2022-07-06 16:58:21,091 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:21,099 INFO root Thread-2 : INSERT EDGE type() VALUE "d421b8b3-b78e-4c7e-88e9-2a94ebe32719"->"505e619e-b6e3-4654-8e56-1d4bb73894bf":()
+2022-07-06 16:58:21,102 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:21,109 INFO root Thread-2 : INSERT VERTEX Metadata (name, value, vertex_type_system) VALUES "d3bf7d99-0f3d-4fe9-9325-602070c6ebb1":('metadata_key_0', 'metadata_value_0', 'Metadata');
+2022-07-06 16:58:21,111 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:21,119 INFO root Thread-2 : INSERT EDGE metadata() VALUE "d421b8b3-b78e-4c7e-88e9-2a94ebe32719"->"d3bf7d99-0f3d-4fe9-9325-602070c6ebb1":()
+2022-07-06 16:58:21,163 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:21,170 INFO root Thread-2 : INSERT VERTEX Metadata (name, value, vertex_type_system) VALUES "2edc4f64-407b-424e-857d-5bb948119b54":('metadata_key_1', 'metadata_value_1', 'Metadata');
+2022-07-06 16:58:21,173 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:21,180 INFO root Thread-2 : INSERT EDGE metadata() VALUE "d421b8b3-b78e-4c7e-88e9-2a94ebe32719"->"2edc4f64-407b-424e-857d-5bb948119b54":()
+2022-07-06 16:58:21,223 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:21,230 INFO root Thread-2 : INSERT VERTEX Metadata (name, value, vertex_type_system) VALUES "037570ba-af9a-4953-9f33-d87fae1d6315":('metadata_key_2', 'metadata_value_2', 'Metadata');
+2022-07-06 16:58:21,232 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:21,239 INFO root Thread-2 : INSERT EDGE metadata() VALUE "d421b8b3-b78e-4c7e-88e9-2a94ebe32719"->"037570ba-af9a-4953-9f33-d87fae1d6315":()
+2022-07-06 16:58:21,242 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:21,249 INFO root Thread-2 : INSERT VERTEX PropertyAssignment (name, value, vertex_type_system) VALUES "a7da1a5f-f3ef-4244-be60-cad4b940d336":('test_property_name_0', 'property_value_test_0', 'PropertyAssignment');
+2022-07-06 16:58:21,251 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:21,258 INFO root Thread-2 : INSERT EDGE properties() VALUE "d421b8b3-b78e-4c7e-88e9-2a94ebe32719"->"a7da1a5f-f3ef-4244-be60-cad4b940d336":()
+2022-07-06 16:58:21,303 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:21,310 INFO root Thread-2 : INSERT VERTEX PropertyAssignment (name, value, vertex_type_system) VALUES "48fc9646-e76b-40e4-976e-563cc8181918":('test_property_name_1', 'property_value_test_1', 'PropertyAssignment');
+2022-07-06 16:58:21,313 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:21,320 INFO root Thread-2 : INSERT EDGE properties() VALUE "d421b8b3-b78e-4c7e-88e9-2a94ebe32719"->"48fc9646-e76b-40e4-976e-563cc8181918":()
+2022-07-06 16:58:21,322 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:21,329 INFO root Thread-2 : INSERT VERTEX AttributeAssignment (name, value, vertex_type_system) VALUES "94a1d9f1-ccbc-4351-ac30-2ee2aab96f2b":('test_attribute_name_0', 'attribute_value_test_0', 'AttributeAssignment');
+2022-07-06 16:58:21,331 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:21,337 INFO root Thread-2 : INSERT EDGE attributes() VALUE "d421b8b3-b78e-4c7e-88e9-2a94ebe32719"->"94a1d9f1-ccbc-4351-ac30-2ee2aab96f2b":()
+2022-07-06 16:58:21,383 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:21,390 INFO root Thread-2 : INSERT VERTEX AttributeAssignment (name, value, vertex_type_system) VALUES "5d6a1fc2-15d1-48f6-82bf-390d7ce695dd":('test_attribute_name_1', 'attribute_value_test_1', 'AttributeAssignment');
+2022-07-06 16:58:21,391 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:21,399 INFO root Thread-2 : INSERT EDGE attributes() VALUE "d421b8b3-b78e-4c7e-88e9-2a94ebe32719"->"5d6a1fc2-15d1-48f6-82bf-390d7ce695dd":()
+2022-07-06 16:58:21,443 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:21,450 INFO root Thread-2 : INSERT VERTEX InterfaceDefinition (name, vertex_type_system) VALUES "f79ecc47-b7f3-4782-a692-c7c7fe390e4c":('test_interface_definition_name_0', 'InterfaceDefinition');
+2022-07-06 16:58:21,451 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:21,458 INFO root Thread-2 : INSERT EDGE type() VALUE "f79ecc47-b7f3-4782-a692-c7c7fe390e4c"->"a1407354-a975-451d-93e7-2a978003e119":()
+2022-07-06 16:58:21,503 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:21,510 INFO root Thread-2 : INSERT EDGE interfaces() VALUE "d421b8b3-b78e-4c7e-88e9-2a94ebe32719"->"f79ecc47-b7f3-4782-a692-c7c7fe390e4c":()
+2022-07-06 16:58:21,513 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:21,520 INFO root Thread-2 : INSERT VERTEX InterfaceDefinition (name, vertex_type_system) VALUES "3fc0241d-7b7c-4282-a6ea-ff1c33c4210c":('test_interface_definition_name_1', 'InterfaceDefinition');
+2022-07-06 16:58:21,563 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:21,571 INFO root Thread-2 : INSERT EDGE type() VALUE "3fc0241d-7b7c-4282-a6ea-ff1c33c4210c"->"a60c15d2-43bf-46fe-b85b-b9069eb0b34e":()
+2022-07-06 16:58:21,573 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:21,580 INFO root Thread-2 : INSERT EDGE interfaces() VALUE "d421b8b3-b78e-4c7e-88e9-2a94ebe32719"->"3fc0241d-7b7c-4282-a6ea-ff1c33c4210c":()
+2022-07-06 16:58:21,627 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:21,634 INFO root Thread-2 : INSERT EDGE relationship_templates() VALUE "e077be69-41bc-48a9-a975-a850c99f5053"->"d421b8b3-b78e-4c7e-88e9-2a94ebe32719":()
+2022-07-06 16:58:21,637 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:21,644 INFO root Thread-2 : INSERT VERTEX GroupDefinition (name, vertex_type_system) VALUES "43e58b6a-5d0d-43c1-b709-a0094c0af20a":('test_group_name_0', 'GroupDefinition');
+2022-07-06 16:58:21,691 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:21,700 INFO root Thread-2 : INSERT EDGE type() VALUE "43e58b6a-5d0d-43c1-b709-a0094c0af20a"->"ac4aaa49-ee64-48cb-ae0c-25ab83edbd9b":()
+2022-07-06 16:58:21,701 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:21,710 INFO root Thread-2 : INSERT EDGE groups() VALUE "e077be69-41bc-48a9-a975-a850c99f5053"->"43e58b6a-5d0d-43c1-b709-a0094c0af20a":()
+2022-07-06 16:58:21,756 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:21,765 INFO root Thread-2 : INSERT VERTEX GroupDefinition (name, vertex_type_system) VALUES "ddaac5ad-dca3-4ba3-86ed-1e9ada5ab65c":('test_group_name_1', 'GroupDefinition');
+2022-07-06 16:58:21,767 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:21,776 INFO root Thread-2 : INSERT EDGE type() VALUE "ddaac5ad-dca3-4ba3-86ed-1e9ada5ab65c"->"785c862e-e95a-4c1f-8bf8-706f66e6efed":()
+2022-07-06 16:58:21,823 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:21,831 INFO root Thread-2 : INSERT EDGE groups() VALUE "e077be69-41bc-48a9-a975-a850c99f5053"->"ddaac5ad-dca3-4ba3-86ed-1e9ada5ab65c":()
+2022-07-06 16:58:21,834 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:21,841 INFO root Thread-2 : INSERT VERTEX GroupDefinition (name, vertex_type_system, description) VALUES "8ef9d48d-dfe4-407f-ab8f-6a2e8a89d5e5":('test_group_name', 'GroupDefinition', 'test_group_description');
+2022-07-06 16:58:21,883 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:21,892 INFO root Thread-2 : INSERT EDGE type() VALUE "8ef9d48d-dfe4-407f-ab8f-6a2e8a89d5e5"->"49856f23-a40e-42bb-a9ec-d94c9f598692":()
+2022-07-06 16:58:21,895 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:21,903 INFO root Thread-2 : INSERT VERTEX Metadata (name, value, vertex_type_system) VALUES "ee9d1d85-7e73-4937-9fbd-c2403adbb52c":('metadata_key_0', 'metadata_value_0', 'Metadata');
+2022-07-06 16:58:21,947 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:21,956 INFO root Thread-2 : INSERT EDGE metadata() VALUE "8ef9d48d-dfe4-407f-ab8f-6a2e8a89d5e5"->"ee9d1d85-7e73-4937-9fbd-c2403adbb52c":()
+2022-07-06 16:58:21,959 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:21,968 INFO root Thread-2 : INSERT VERTEX Metadata (name, value, vertex_type_system) VALUES "d451a9ad-6e16-4811-b9e2-bc99120ea8bb":('metadata_key_1', 'metadata_value_1', 'Metadata');
+2022-07-06 16:58:22,011 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:22,019 INFO root Thread-2 : INSERT EDGE metadata() VALUE "8ef9d48d-dfe4-407f-ab8f-6a2e8a89d5e5"->"d451a9ad-6e16-4811-b9e2-bc99120ea8bb":()
+2022-07-06 16:58:22,022 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:22,030 INFO root Thread-2 : INSERT VERTEX Metadata (name, value, vertex_type_system) VALUES "f0501c82-e908-4d62-a0e6-e38fe539e3df":('metadata_key_2', 'metadata_value_2', 'Metadata');
+2022-07-06 16:58:22,075 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:22,086 INFO root Thread-2 : INSERT EDGE metadata() VALUE "8ef9d48d-dfe4-407f-ab8f-6a2e8a89d5e5"->"f0501c82-e908-4d62-a0e6-e38fe539e3df":()
+2022-07-06 16:58:22,089 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:22,098 INFO root Thread-2 : INSERT VERTEX AttributeAssignment (name, value, vertex_type_system) VALUES "07db256b-058c-4935-a7a0-5e8f38443e97":('test_attribute_name_0', 'attribute_value_test_0', 'AttributeAssignment');
+2022-07-06 16:58:22,143 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:22,155 INFO root Thread-2 : INSERT EDGE attributes() VALUE "8ef9d48d-dfe4-407f-ab8f-6a2e8a89d5e5"->"07db256b-058c-4935-a7a0-5e8f38443e97":()
+2022-07-06 16:58:22,159 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:22,170 INFO root Thread-2 : INSERT VERTEX AttributeAssignment (name, value, vertex_type_system) VALUES "19a2d9d6-d0a6-42f7-bee9-b119c7fd8072":('test_attribute_name_1', 'attribute_value_test_1', 'AttributeAssignment');
+2022-07-06 16:58:22,215 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:22,225 INFO root Thread-2 : INSERT EDGE attributes() VALUE "8ef9d48d-dfe4-407f-ab8f-6a2e8a89d5e5"->"19a2d9d6-d0a6-42f7-bee9-b119c7fd8072":()
+2022-07-06 16:58:22,229 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:22,238 INFO root Thread-2 : INSERT VERTEX PropertyAssignment (name, value, vertex_type_system) VALUES "aef971b6-562c-4a44-a776-d90f111869be":('test_property_name_0', 'property_value_test_0', 'PropertyAssignment');
+2022-07-06 16:58:22,283 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:22,294 INFO root Thread-2 : INSERT EDGE properties() VALUE "8ef9d48d-dfe4-407f-ab8f-6a2e8a89d5e5"->"aef971b6-562c-4a44-a776-d90f111869be":()
+2022-07-06 16:58:22,296 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:22,305 INFO root Thread-2 : INSERT VERTEX PropertyAssignment (name, value, vertex_type_system) VALUES "01c506b5-f626-4bd1-8cf5-0371abec55d5":('test_property_name_1', 'property_value_test_1', 'PropertyAssignment');
+2022-07-06 16:58:22,352 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:22,362 INFO root Thread-2 : INSERT EDGE properties() VALUE "8ef9d48d-dfe4-407f-ab8f-6a2e8a89d5e5"->"01c506b5-f626-4bd1-8cf5-0371abec55d5":()
+2022-07-06 16:58:22,365 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:22,373 INFO root Thread-2 : INSERT EDGE members() VALUE "8ef9d48d-dfe4-407f-ab8f-6a2e8a89d5e5"->"27ff5ac7-213b-4c0e-a7c0-32f6907222da":()
+2022-07-06 16:58:22,375 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:22,384 INFO root Thread-2 : INSERT EDGE members() VALUE "8ef9d48d-dfe4-407f-ab8f-6a2e8a89d5e5"->"d35c9a1b-f268-456b-ad90-75708734130d":()
+2022-07-06 16:58:22,427 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:22,438 INFO root Thread-2 : INSERT EDGE groups() VALUE "e077be69-41bc-48a9-a975-a850c99f5053"->"8ef9d48d-dfe4-407f-ab8f-6a2e8a89d5e5":()
+2022-07-06 16:58:22,441 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:22,450 INFO root Thread-2 : INSERT VERTEX PolicyDefinition (name, vertex_type_system) VALUES "c9f5b584-de5d-49fb-a1c3-6f3087308ae8":('test_policy_name_0', 'PolicyDefinition');
+2022-07-06 16:58:22,452 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:22,461 INFO root Thread-2 : INSERT EDGE type() VALUE "c9f5b584-de5d-49fb-a1c3-6f3087308ae8"->"ddb09269-a4f2-49cd-ba70-bbb30064330e":()
+2022-07-06 16:58:22,507 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:22,518 INFO root Thread-2 : INSERT EDGE policies() VALUE "e077be69-41bc-48a9-a975-a850c99f5053"->"c9f5b584-de5d-49fb-a1c3-6f3087308ae8":()
+2022-07-06 16:58:22,522 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:22,533 INFO root Thread-2 : INSERT VERTEX PolicyDefinition (name, vertex_type_system) VALUES "07f22044-cf94-46a4-933a-e3efa57be8f4":('test_policy_name_1', 'PolicyDefinition');
+2022-07-06 16:58:22,587 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:22,598 INFO root Thread-2 : INSERT EDGE type() VALUE "07f22044-cf94-46a4-933a-e3efa57be8f4"->"32c48d59-9af2-4090-8f87-3d33eac3ba2a":()
+2022-07-06 16:58:22,601 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:22,609 INFO root Thread-2 : INSERT EDGE policies() VALUE "e077be69-41bc-48a9-a975-a850c99f5053"->"07f22044-cf94-46a4-933a-e3efa57be8f4":()
+2022-07-06 16:58:22,651 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:22,659 INFO root Thread-2 : INSERT VERTEX PolicyDefinition (name, vertex_type_system, description) VALUES "33178bb0-beda-44bf-b087-260e36f20fa5":('test_policy_name', 'PolicyDefinition', 'test_policy_description');
+2022-07-06 16:58:22,662 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:22,672 INFO root Thread-2 : INSERT EDGE type() VALUE "33178bb0-beda-44bf-b087-260e36f20fa5"->"f53dde8f-8a5a-482a-aacd-83c39405d7ae":()
+2022-07-06 16:58:22,674 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:22,683 INFO root Thread-2 : INSERT VERTEX Metadata (name, value, vertex_type_system) VALUES "d834210a-d6f8-4919-ae98-6b6487b8a553":('metadata_key_0', 'metadata_value_0', 'Metadata');
+2022-07-06 16:58:22,728 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:22,741 INFO root Thread-2 : INSERT EDGE metadata() VALUE "33178bb0-beda-44bf-b087-260e36f20fa5"->"d834210a-d6f8-4919-ae98-6b6487b8a553":()
+2022-07-06 16:58:22,743 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:22,750 INFO root Thread-2 : INSERT VERTEX Metadata (name, value, vertex_type_system) VALUES "35595e76-7eaf-4712-bde2-cca089e697d9":('metadata_key_1', 'metadata_value_1', 'Metadata');
+2022-07-06 16:58:22,795 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:22,803 INFO root Thread-2 : INSERT EDGE metadata() VALUE "33178bb0-beda-44bf-b087-260e36f20fa5"->"35595e76-7eaf-4712-bde2-cca089e697d9":()
+2022-07-06 16:58:22,806 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:22,814 INFO root Thread-2 : INSERT VERTEX Metadata (name, value, vertex_type_system) VALUES "cd500525-858d-4c07-8db3-0e4caa2e7275":('metadata_key_2', 'metadata_value_2', 'Metadata');
+2022-07-06 16:58:22,816 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:22,824 INFO root Thread-2 : INSERT EDGE metadata() VALUE "33178bb0-beda-44bf-b087-260e36f20fa5"->"cd500525-858d-4c07-8db3-0e4caa2e7275":()
+2022-07-06 16:58:22,826 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:22,833 INFO root Thread-2 : INSERT VERTEX PropertyAssignment (name, value, vertex_type_system) VALUES "c0057eab-3da1-4a5c-bb8b-c716454d3af4":('test_property_name_0', 'property_value_test_0', 'PropertyAssignment');
+2022-07-06 16:58:22,879 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:22,887 INFO root Thread-2 : INSERT EDGE properties() VALUE "33178bb0-beda-44bf-b087-260e36f20fa5"->"c0057eab-3da1-4a5c-bb8b-c716454d3af4":()
+2022-07-06 16:58:22,890 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:22,898 INFO root Thread-2 : INSERT VERTEX PropertyAssignment (name, value, vertex_type_system) VALUES "c9ed2152-3423-43da-bc24-46005a81bb80":('test_property_name_1', 'property_value_test_1', 'PropertyAssignment');
+2022-07-06 16:58:22,900 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:22,908 INFO root Thread-2 : INSERT EDGE properties() VALUE "33178bb0-beda-44bf-b087-260e36f20fa5"->"c9ed2152-3423-43da-bc24-46005a81bb80":()
+2022-07-06 16:58:22,951 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:22,959 INFO root Thread-2 : INSERT EDGE targets() VALUE "33178bb0-beda-44bf-b087-260e36f20fa5"->"27ff5ac7-213b-4c0e-a7c0-32f6907222da":()
+2022-07-06 16:58:22,961 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:22,969 INFO root Thread-2 : INSERT EDGE targets() VALUE "33178bb0-beda-44bf-b087-260e36f20fa5"->"d35c9a1b-f268-456b-ad90-75708734130d":()
+2022-07-06 16:58:23,015 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:23,024 INFO root Thread-2 : INSERT VERTEX TriggerDefinition (name, vertex_type_system, description, event) VALUES "f209dafa-8d5a-4c5f-a7db-590edbebb928":('test_trigger_name_0', 'TriggerDefinition', 'test_trigger_description', 'test_event_name');
+2022-07-06 16:58:23,025 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:23,032 INFO root Thread-2 : INSERT EDGE triggers() VALUE "33178bb0-beda-44bf-b087-260e36f20fa5"->"f209dafa-8d5a-4c5f-a7db-590edbebb928":()
+2022-07-06 16:58:23,034 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:23,041 INFO root Thread-2 : INSERT VERTEX TriggerDefinition (name, vertex_type_system, description, event) VALUES "4838eafd-8382-4bb7-abd9-4ce1d8d6beb9":('test_trigger_name_1', 'TriggerDefinition', 'test_trigger_description', 'test_event_name');
+2022-07-06 16:58:23,043 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:23,050 INFO root Thread-2 : INSERT EDGE triggers() VALUE "33178bb0-beda-44bf-b087-260e36f20fa5"->"4838eafd-8382-4bb7-abd9-4ce1d8d6beb9":()
+2022-07-06 16:58:23,095 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:23,103 INFO root Thread-2 : INSERT EDGE policies() VALUE "e077be69-41bc-48a9-a975-a850c99f5053"->"33178bb0-beda-44bf-b087-260e36f20fa5":()
+2022-07-06 16:58:23,106 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:23,113 INFO root Thread-2 : INSERT VERTEX ImperativeWorkflowDefinition (vertex_type_system, description, name) VALUES "0457c938-da0f-4c81-a75b-bf464d96bd92":('ImperativeWorkflowDefinition', 'test_workflow_description_0', 'test_workflow_name_0');
+2022-07-06 16:58:23,115 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:23,125 INFO root Thread-2 : INSERT EDGE workflows() VALUE "e077be69-41bc-48a9-a975-a850c99f5053"->"0457c938-da0f-4c81-a75b-bf464d96bd92":()
+2022-07-06 16:58:23,171 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:23,178 INFO root Thread-2 : INSERT VERTEX ImperativeWorkflowDefinition (vertex_type_system, description, name) VALUES "5482b3e0-e979-4588-a2ae-a59840ab5aa0":('ImperativeWorkflowDefinition', 'test_workflow_description_1', 'test_workflow_name_1');
+2022-07-06 16:58:23,181 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:23,188 INFO root Thread-2 : INSERT EDGE workflows() VALUE "e077be69-41bc-48a9-a975-a850c99f5053"->"5482b3e0-e979-4588-a2ae-a59840ab5aa0":()
+2022-07-06 16:58:23,231 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:23,238 INFO root Thread-2 : INSERT VERTEX ImperativeWorkflowDefinition (vertex_type_system, description, name, outputs) VALUES "279017bc-338b-4e86-8c8d-b631081ffa0f":('ImperativeWorkflowDefinition', 'test_workflow_description', 'test_workflow_name', 'test_attribute_mappings');
+2022-07-06 16:58:23,241 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:23,248 INFO root Thread-2 : INSERT VERTEX Metadata (name, value, vertex_type_system) VALUES "103c9118-e081-4e54-87a0-7ac18ff7937e":('metadata_key_0', 'metadata_value_0', 'Metadata');
+2022-07-06 16:58:23,291 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:23,300 INFO root Thread-2 : INSERT EDGE metadata() VALUE "279017bc-338b-4e86-8c8d-b631081ffa0f"->"103c9118-e081-4e54-87a0-7ac18ff7937e":()
+2022-07-06 16:58:23,302 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:23,310 INFO root Thread-2 : INSERT VERTEX Metadata (name, value, vertex_type_system) VALUES "e9d696de-5ed9-4769-9a26-7bd0310ec651":('metadata_key_1', 'metadata_value_1', 'Metadata');
+2022-07-06 16:58:23,355 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:23,365 INFO root Thread-2 : INSERT EDGE metadata() VALUE "279017bc-338b-4e86-8c8d-b631081ffa0f"->"e9d696de-5ed9-4769-9a26-7bd0310ec651":()
+2022-07-06 16:58:23,368 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:23,378 INFO root Thread-2 : INSERT VERTEX Metadata (name, value, vertex_type_system) VALUES "58b11a24-71ff-4de8-926b-1fbd39e08850":('metadata_key_2', 'metadata_value_2', 'Metadata');
+2022-07-06 16:58:23,423 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:23,434 INFO root Thread-2 : INSERT EDGE metadata() VALUE "279017bc-338b-4e86-8c8d-b631081ffa0f"->"58b11a24-71ff-4de8-926b-1fbd39e08850":()
+2022-07-06 16:58:23,438 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:23,447 INFO root Thread-2 : INSERT VERTEX PropertyDefinition (name, vertex_type_system, description) VALUES "ef029774-18d4-429b-a923-4811039b67cd":('test_property_name_0', 'PropertyDefinition', 'test_property_description_0');
+2022-07-06 16:58:23,491 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:23,501 INFO root Thread-2 : INSERT EDGE type() VALUE "ef029774-18d4-429b-a923-4811039b67cd"->"61c33849-972e-4af4-b93b-ef2962409617":()
+2022-07-06 16:58:23,503 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:23,513 INFO root Thread-2 : INSERT EDGE inputs() VALUE "279017bc-338b-4e86-8c8d-b631081ffa0f"->"ef029774-18d4-429b-a923-4811039b67cd":()
+2022-07-06 16:58:23,555 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:23,564 INFO root Thread-2 : INSERT VERTEX PropertyDefinition (name, vertex_type_system, description) VALUES "f4bb408d-29c0-4026-8cc6-55e39b148d74":('test_property_name_1', 'PropertyDefinition', 'test_property_description_1');
+2022-07-06 16:58:23,565 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:23,574 INFO root Thread-2 : INSERT EDGE type() VALUE "f4bb408d-29c0-4026-8cc6-55e39b148d74"->"61c33849-972e-4af4-b93b-ef2962409617":()
+2022-07-06 16:58:23,619 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:23,628 INFO root Thread-2 : INSERT EDGE inputs() VALUE "279017bc-338b-4e86-8c8d-b631081ffa0f"->"f4bb408d-29c0-4026-8cc6-55e39b148d74":()
+2022-07-06 16:58:23,631 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:23,640 INFO root Thread-2 : INSERT VERTEX WorkflowPreconditionDefinition (vertex_type_system) VALUES "a79ed67d-ca5a-4bd7-b90e-c827aeecb7f4":('WorkflowPreconditionDefinition');
+2022-07-06 16:58:23,683 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:23,693 INFO root Thread-2 : INSERT EDGE target() VALUE "a79ed67d-ca5a-4bd7-b90e-c827aeecb7f4"->"43e58b6a-5d0d-43c1-b709-a0094c0af20a":()
+2022-07-06 16:58:23,695 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:23,703 INFO root Thread-2 : INSERT EDGE target_relationship() VALUE "a79ed67d-ca5a-4bd7-b90e-c827aeecb7f4"->"14183600-3e73-440d-89f4-c3cdd99d6639":()
+2022-07-06 16:58:23,747 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:23,758 INFO root Thread-2 : INSERT EDGE preconditions() VALUE "279017bc-338b-4e86-8c8d-b631081ffa0f"->"a79ed67d-ca5a-4bd7-b90e-c827aeecb7f4":()
+2022-07-06 16:58:23,761 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:23,770 INFO root Thread-2 : INSERT VERTEX WorkflowPreconditionDefinition (vertex_type_system) VALUES "4f06324f-e5f1-47aa-ab96-2de3306be013":('WorkflowPreconditionDefinition');
+2022-07-06 16:58:23,819 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:23,826 INFO root Thread-2 : INSERT EDGE target() VALUE "4f06324f-e5f1-47aa-ab96-2de3306be013"->"ddaac5ad-dca3-4ba3-86ed-1e9ada5ab65c":()
+2022-07-06 16:58:23,828 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:23,835 INFO root Thread-2 : INSERT EDGE target_relationship() VALUE "4f06324f-e5f1-47aa-ab96-2de3306be013"->"8c89cf45-a87e-4bca-acb3-6f111b519421":()
+2022-07-06 16:58:23,836 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:23,844 INFO root Thread-2 : INSERT EDGE preconditions() VALUE "279017bc-338b-4e86-8c8d-b631081ffa0f"->"4f06324f-e5f1-47aa-ab96-2de3306be013":()
+2022-07-06 16:58:23,846 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:23,853 INFO root Thread-2 : INSERT VERTEX WorkflowStepDefinition (vertex_type_system, name) VALUES "6b8b5c89-7f93-4c2a-88e1-d1a8794a5bdb":('WorkflowStepDefinition', 'test_step_name_0');
+2022-07-06 16:58:23,903 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:23,912 INFO root Thread-2 : INSERT EDGE target() VALUE "6b8b5c89-7f93-4c2a-88e1-d1a8794a5bdb"->"27ff5ac7-213b-4c0e-a7c0-32f6907222da":()
+2022-07-06 16:58:23,914 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:23,923 INFO root Thread-2 : INSERT EDGE target_relationship() VALUE "6b8b5c89-7f93-4c2a-88e1-d1a8794a5bdb"->"14183600-3e73-440d-89f4-c3cdd99d6639":()
+2022-07-06 16:58:23,926 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:23,934 INFO root Thread-2 : INSERT VERTEX CallOperationActivityDefinition (interface_name, vertex_type_system) VALUES "fa245fcd-8fe9-492a-a7ee-f4ef8c5894e3":('test_interface_definition_name_1', 'CallOperationActivityDefinition');
+2022-07-06 16:58:23,936 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:23,944 INFO root Thread-2 : INSERT EDGE operation() VALUE "fa245fcd-8fe9-492a-a7ee-f4ef8c5894e3"->"95a73c96-7ad7-4be3-a4f6-c3d1bf3ad539":()
+2022-07-06 16:58:23,947 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:23,955 INFO root Thread-2 : INSERT EDGE activities() VALUE "6b8b5c89-7f93-4c2a-88e1-d1a8794a5bdb"->"fa245fcd-8fe9-492a-a7ee-f4ef8c5894e3":()
+2022-07-06 16:58:24,003 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:24,013 INFO root Thread-2 : INSERT EDGE steps_tosca() VALUE "279017bc-338b-4e86-8c8d-b631081ffa0f"->"6b8b5c89-7f93-4c2a-88e1-d1a8794a5bdb":()
+2022-07-06 16:58:24,016 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:24,023 INFO root Thread-2 : INSERT VERTEX WorkflowStepDefinition (vertex_type_system, name) VALUES "3f2903a7-06b7-445c-9242-dc334e5e3dea":('WorkflowStepDefinition', 'test_step_name_1');
+2022-07-06 16:58:24,067 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:24,076 INFO root Thread-2 : INSERT EDGE target() VALUE "3f2903a7-06b7-445c-9242-dc334e5e3dea"->"d35c9a1b-f268-456b-ad90-75708734130d":()
+2022-07-06 16:58:24,079 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:24,087 INFO root Thread-2 : INSERT EDGE target_relationship() VALUE "3f2903a7-06b7-445c-9242-dc334e5e3dea"->"8c89cf45-a87e-4bca-acb3-6f111b519421":()
+2022-07-06 16:58:24,131 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:24,139 INFO root Thread-2 : INSERT VERTEX CallOperationActivityDefinition (interface_name, vertex_type_system) VALUES "157358af-ff15-4eb3-a2ea-b9a792e34715":('test_interface_definition_name_1', 'CallOperationActivityDefinition');
+2022-07-06 16:58:24,141 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:24,149 INFO root Thread-2 : INSERT EDGE operation() VALUE "157358af-ff15-4eb3-a2ea-b9a792e34715"->"95a73c96-7ad7-4be3-a4f6-c3d1bf3ad539":()
+2022-07-06 16:58:24,191 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:24,201 INFO root Thread-2 : INSERT EDGE activities() VALUE "3f2903a7-06b7-445c-9242-dc334e5e3dea"->"157358af-ff15-4eb3-a2ea-b9a792e34715":()
+2022-07-06 16:58:24,204 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:24,212 INFO root Thread-2 : INSERT EDGE steps_tosca() VALUE "279017bc-338b-4e86-8c8d-b631081ffa0f"->"3f2903a7-06b7-445c-9242-dc334e5e3dea":()
+2022-07-06 16:58:24,255 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:24,265 INFO root Thread-2 : INSERT VERTEX OperationImplementationDefinition (vertex_type_system) VALUES "87ea8c71-2cc7-417e-87c9-26c85371fb84":('OperationImplementationDefinition');
+2022-07-06 16:58:24,311 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:24,322 INFO root Thread-2 : INSERT EDGE primary() VALUE "87ea8c71-2cc7-417e-87c9-26c85371fb84"->"ee7ebf2f-88da-42f5-8e20-586a42408c27":()
+2022-07-06 16:58:24,324 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:24,332 INFO root Thread-2 : INSERT EDGE implementation() VALUE "279017bc-338b-4e86-8c8d-b631081ffa0f"->"87ea8c71-2cc7-417e-87c9-26c85371fb84":()
+2022-07-06 16:58:24,375 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:24,383 INFO root Thread-2 : INSERT EDGE workflows() VALUE "e077be69-41bc-48a9-a975-a850c99f5053"->"279017bc-338b-4e86-8c8d-b631081ffa0f":()
+2022-07-06 16:58:24,385 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 16:58:24,393 INFO root Thread-2 : INSERT EDGE topology_template() VALUE "cluster"->"e077be69-41bc-48a9-a975-a850c99f5053":()
+2022-07-06 16:58:24,395 INFO werkzeug Thread-2 : 127.0.0.1 - - [06/Jul/2022 16:58:24] "POST /yaml-template/?cluster_name=cluster HTTP/1.1" 200 -
+2022-07-06 16:58:26,999 INFO werkzeug MainThread :  * Detected change in '/home/dmitrytulin/PycharmProjects/API_COURSE/app/views.py', reloading

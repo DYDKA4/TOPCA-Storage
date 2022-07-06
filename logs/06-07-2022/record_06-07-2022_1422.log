@@ -1,0 +1,6 @@
+2022-07-06 14:22:21,102 WARNING werkzeug MainThread :  * Debugger is active!
+2022-07-06 14:22:21,102 INFO werkzeug MainThread :  * Debugger PIN: 136-752-524
+2022-07-06 14:22:56,005 INFO werkzeug MainThread :  * Detected change in '/home/dmitrytulin/PycharmProjects/API_COURSE/nebula_communication/redis_communication.py', reloading
+2022-07-06 14:22:56,402 WARNING werkzeug MainThread :  * Debugger is active!
+2022-07-06 14:22:56,403 INFO werkzeug MainThread :  * Debugger PIN: 523-774-048
+2022-07-06 14:23:37,620 INFO werkzeug MainThread :  * Detected change in '/home/dmitrytulin/PycharmProjects/API_COURSE/nebula_communication/redis_communication.py', reloading

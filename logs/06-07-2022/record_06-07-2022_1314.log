@@ -1,0 +1,8 @@
+2022-07-06 13:14:16,922 INFO werkzeug MainThread :  * Running on http://127.0.0.1:5000 (Press CTRL+C to quit)
+2022-07-06 13:14:16,924 INFO werkzeug MainThread :  * Restarting with stat
+2022-07-06 13:14:17,247 WARNING werkzeug MainThread :  * Debugger is active!
+2022-07-06 13:14:17,248 INFO werkzeug MainThread :  * Debugger PIN: 527-197-728
+2022-07-06 13:14:27,235 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 13:14:27,263 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-07-06 13:28:14,205 INFO werkzeug MainThread :  * Detected change in '/home/dmitrytulin/PycharmProjects/API_COURSE/nebula_communication/nebula_functions.py', reloading
+2022-07-06 13:28:14,262 INFO werkzeug MainThread :  * Restarting with stat

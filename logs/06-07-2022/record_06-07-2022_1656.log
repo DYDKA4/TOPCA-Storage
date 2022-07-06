@@ -1,0 +1,12 @@
+2022-07-06 16:56:03,103 WARNING werkzeug MainThread :  * Debugger is active!
+2022-07-06 16:56:03,103 INFO werkzeug MainThread :  * Debugger PIN: 340-372-923
+2022-07-06 16:56:08,422 INFO werkzeug Thread-2 : 127.0.0.1 - - [06/Jul/2022 16:56:08] "[31m[1mPOST /yaml-template/?cluster_name=cluster HTTP/1.1[0m" 400 -
+2022-07-06 16:56:22,165 INFO werkzeug MainThread :  * Detected change in '/home/dmitrytulin/PycharmProjects/API_COURSE/app/views.py', reloading
+2022-07-06 16:56:22,590 WARNING werkzeug MainThread :  * Debugger is active!
+2022-07-06 16:56:22,591 INFO werkzeug MainThread :  * Debugger PIN: 639-785-562
+2022-07-06 16:56:22,761 INFO werkzeug Thread-2 : 127.0.0.1 - - [06/Jul/2022 16:56:22] "[31m[1mPOST /yaml-template/?cluster_name=cluster HTTP/1.1[0m" 400 -
+2022-07-06 16:56:32,317 INFO werkzeug MainThread :  * Detected change in '/home/dmitrytulin/PycharmProjects/API_COURSE/app/views.py', reloading
+2022-07-06 16:56:32,749 WARNING werkzeug MainThread :  * Debugger is active!
+2022-07-06 16:56:32,749 INFO werkzeug MainThread :  * Debugger PIN: 116-930-706
+2022-07-06 16:56:33,494 INFO werkzeug Thread-2 : 127.0.0.1 - - [06/Jul/2022 16:56:33] "[31m[1mPOST /yaml-template/?cluster_name=cluster HTTP/1.1[0m" 400 -
+2022-07-06 16:57:03,427 INFO werkzeug MainThread :  * Detected change in '/home/dmitrytulin/PycharmProjects/API_COURSE/nebula_communication/redis_communication.py', reloading

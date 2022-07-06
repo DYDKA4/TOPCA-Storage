@@ -1,0 +1,11 @@
+2022-07-06 16:43:41,001 WARNING werkzeug MainThread :  * Debugger is active!
+2022-07-06 16:43:41,001 INFO werkzeug MainThread :  * Debugger PIN: 529-646-058
+2022-07-06 16:43:41,093 INFO werkzeug Thread-2 : 127.0.0.1 - - [06/Jul/2022 16:43:41] "[32mPOST /yaml-template?cluster_name=cluster HTTP/1.1[0m" 308 -
+2022-07-06 16:43:48,143 INFO werkzeug Thread-3 : 127.0.0.1 - - [06/Jul/2022 16:43:48] "[31m[1mPOST /yaml-template/?cluster_name=cluster HTTP/1.1[0m" 400 -
+2022-07-06 16:43:52,230 INFO werkzeug Thread-4 : 127.0.0.1 - - [06/Jul/2022 16:43:52] "[32mPOST /yaml-template?cluster_name=cluster HTTP/1.1[0m" 308 -
+2022-07-06 16:44:08,989 INFO werkzeug Thread-5 : 127.0.0.1 - - [06/Jul/2022 16:44:08] "[31m[1mPOST /yaml-template/?cluster_name=cluster HTTP/1.1[0m" 400 -
+2022-07-06 16:50:27,304 INFO werkzeug Thread-6 : 127.0.0.1 - - [06/Jul/2022 16:50:27] "[31m[1mPOST /yaml-template/?cluster_name=cluster HTTP/1.1[0m" 400 -
+2022-07-06 16:50:39,941 INFO werkzeug Thread-7 : 127.0.0.1 - - [06/Jul/2022 16:50:39] "[31m[1mPOST /yaml-template/?cluster_name=cluster HTTP/1.1[0m" 400 -
+2022-07-06 16:51:06,960 INFO werkzeug Thread-8 : 127.0.0.1 - - [06/Jul/2022 16:51:06] "[31m[1mPOST /yaml-template/?cluster_name=cluster HTTP/1.1[0m" 400 -
+2022-07-06 16:55:19,584 INFO werkzeug Thread-9 : 127.0.0.1 - - [06/Jul/2022 16:55:19] "[31m[1mPOST /yaml-template/?cluster_name=cluster HTTP/1.1[0m" 400 -
+2022-07-06 16:55:56,881 INFO werkzeug MainThread :  * Detected change in '/home/dmitrytulin/PycharmProjects/API_COURSE/app/views.py', reloading

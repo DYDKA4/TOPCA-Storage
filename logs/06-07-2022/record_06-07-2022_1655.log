@@ -1,0 +1,4 @@
+2022-07-06 16:55:57,305 WARNING werkzeug MainThread :  * Debugger is active!
+2022-07-06 16:55:57,306 INFO werkzeug MainThread :  * Debugger PIN: 417-622-833
+2022-07-06 16:55:57,450 INFO werkzeug Thread-2 : 127.0.0.1 - - [06/Jul/2022 16:55:57] "POST /yaml-template/?cluster_name=cluster HTTP/1.1" 200 -
+2022-07-06 16:56:02,689 INFO werkzeug MainThread :  * Detected change in '/home/dmitrytulin/PycharmProjects/API_COURSE/app/views.py', reloading

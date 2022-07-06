@@ -113,3 +113,10 @@ def is_unique_vid(vid):
             return False
     return True
 
+
+def delete_vertex(session, vertex):
+    result = session.execute(f'DELETE VERTEX {vertex}')
+    logging.info(f'DELETE VERTEX {vertex} ')
+    assert result.is_succeeded(), result.error_msg()
+    session.release()
+    return

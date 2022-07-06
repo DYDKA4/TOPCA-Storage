@@ -226,9 +226,11 @@ def yaml_patch():
 
         tag = tag.as_string()
         vertexes = communication_with_nebula.get_all_vertex(session, tag)
+        print(vertexes)
         for vertex in vertexes:
             vertex = vertex.as_string()
             communication_with_nebula.delete_vertex(session, f'"{vertex}"')
+    session.release()
     return '''
             400 Bad Request 
             '''

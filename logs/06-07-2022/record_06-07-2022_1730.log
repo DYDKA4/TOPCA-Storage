@@ -1,0 +1,4 @@
+2022-07-06 17:30:46,789 WARNING werkzeug MainThread :  * Debugger is active!
+2022-07-06 17:30:46,790 INFO werkzeug MainThread :  * Debugger PIN: 781-341-982
+2022-07-06 17:30:46,834 INFO werkzeug Thread-2 : 127.0.0.1 - - [06/Jul/2022 17:30:46] "PATCH /yaml-template/cluster/acd/as/?value_name=namespace&&value=new_value HTTP/1.1" 200 -
+2022-07-06 17:31:19,423 INFO werkzeug MainThread :  * Detected change in '/home/dmitrytulin/PycharmProjects/API_COURSE/app/views.py', reloading

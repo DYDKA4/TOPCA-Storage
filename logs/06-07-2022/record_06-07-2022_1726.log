@@ -1,0 +1,17 @@
+2022-07-06 17:26:09,635 WARNING werkzeug MainThread :  * Debugger is active!
+2022-07-06 17:26:09,635 INFO werkzeug MainThread :  * Debugger PIN: 187-420-699
+2022-07-06 17:26:09,680 INFO werkzeug Thread-2 : 127.0.0.1 - - [06/Jul/2022 17:26:09] "PATCH /yaml-template/cluster/acd/as HTTP/1.1" 200 -
+2022-07-06 17:26:43,360 INFO werkzeug MainThread :  * Detected change in '/home/dmitrytulin/PycharmProjects/API_COURSE/app/views.py', reloading
+2022-07-06 17:26:49,821 INFO werkzeug MainThread :  * Running on http://127.0.0.1:5000 (Press CTRL+C to quit)
+2022-07-06 17:26:49,822 INFO werkzeug MainThread :  * Restarting with stat
+2022-07-06 17:26:50,196 WARNING werkzeug MainThread :  * Debugger is active!
+2022-07-06 17:26:50,197 INFO werkzeug MainThread :  * Debugger PIN: 130-176-525
+2022-07-06 17:26:51,665 INFO werkzeug Thread-2 : 127.0.0.1 - - [06/Jul/2022 17:26:51] "PATCH /yaml-template/cluster/acd/as HTTP/1.1" 200 -
+2022-07-06 17:27:09,185 INFO werkzeug MainThread :  * Detected change in '/home/dmitrytulin/PycharmProjects/API_COURSE/app/views.py', reloading
+2022-07-06 17:27:09,229 INFO werkzeug MainThread :  * Restarting with stat
+2022-07-06 17:28:08,482 INFO werkzeug MainThread :  * Restarting with stat
+2022-07-06 17:29:00,418 INFO werkzeug MainThread :  * Restarting with stat
+2022-07-06 17:29:38,757 INFO werkzeug MainThread :  * Restarting with stat
+2022-07-06 17:30:46,411 INFO werkzeug MainThread :  * Restarting with stat
+2022-07-06 17:31:19,467 INFO werkzeug MainThread :  * Restarting with stat
+2022-07-06 17:32:30,322 INFO werkzeug MainThread :  * Restarting with stat

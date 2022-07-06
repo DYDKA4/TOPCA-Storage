@@ -10,8 +10,8 @@
                - my_attribute_0: [ { equal: my_value_0 } ]
                - my_attribute_1: [ { equal: my_value_0 } ]
      activities:
-       - activity_definition_0
-       - activity_definition_1
+       - activity_definition_0: test
+       - activity_definition_1: test
      on_success:
        - on_success_step_name_0
        - on_success_step_name_1

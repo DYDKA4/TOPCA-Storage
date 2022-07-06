@@ -15,4 +15,4 @@ test_trigger_name:
   condition:
     - my_attribute: [{equal: my_value}]
   action:
-    - test_value
+             - call_operation: test_interface_definition_name_1.operation_test_name_0

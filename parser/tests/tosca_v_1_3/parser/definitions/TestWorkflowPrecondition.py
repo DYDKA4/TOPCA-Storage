@@ -2,7 +2,9 @@ import unittest
 
 import yaml
 
+from parser.parser.tosca_v_1_3.definitions.AssertDefinition import AssertDefinition
 from parser.parser.tosca_v_1_3.definitions.WorkflowPreconditionDefinition import workflow_precondition_definition_parser
+from parser.parser.tosca_v_1_3.others.ConstraintСlause import ConstraintClause
 
 
 class TestWorkflowPrecondition(unittest.TestCase):
@@ -21,7 +23,9 @@ class TestWorkflowPrecondition(unittest.TestCase):
         self.assertEqual(workflow_prediction.target, 'test_target_name')
         self.assertEqual(workflow_prediction.target_relationship, 'test_target_requirement_name')
         workflow_prediction_condition = workflow_prediction.conditions[0]
-        self.assertNotEqual(workflow_prediction_condition, [])
-        #todo Remake
-        # for assert_value in workflow_prediction_condition.operands.get('assert')[0].values():
-        #     self.assertEqual(assert_value[0].value, 'my_value')
+        self.assertNotEqual(workflow_prediction_condition.condition_assert, [])
+        for assert_value in workflow_prediction_condition.condition_assert:
+            assert_value: AssertDefinition
+            for constraint_clause in assert_value.constraint_clauses:
+                constraint_clause: ConstraintClause
+                self.assertEqual(constraint_clause.value, 'my_value')

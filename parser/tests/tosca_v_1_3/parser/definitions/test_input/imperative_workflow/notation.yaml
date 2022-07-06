@@ -21,12 +21,13 @@
        target: test_target_name
        target_relationship: test_target_requirement_name
        activities:
-         - activity_definition_0
+         - call_operation: test_interface_definition_name_1.operation_test_name_0
      test_step_name_1:
        target: test_target_name
        target_relationship: test_target_requirement_name
        activities:
-         - activity_definition_0
+         - call_operation: test_interface_definition_name_1.operation_test_name_0
+
    implementation: test_primary_artifact_name
    outputs:
      test_attribute_mappings

@@ -3,6 +3,7 @@ import unittest
 import yaml
 
 from parser.parser.tosca_v_1_3.assignments.RequirementAssignment import requirement_assignment_parser
+from parser.parser.tosca_v_1_3.definitions.PropertyFilterDefinition import PropertyFilterDefinition
 
 
 class TestRequirement(unittest.TestCase):
@@ -23,8 +24,6 @@ class TestRequirement(unittest.TestCase):
             self.assertEqual(requirement.vertex_type_system, 'RequirementAssignment')
             self.assertEqual(requirement.node, 'test_node_template_name')
             self.assertEqual(requirement.relationship, None)
-            #todo Remake
-            # self.assertEqual(requirement.relationship_complex, None)
             self.assertEqual(requirement.properties, [])
             self.assertEqual(requirement.interfaces, [])
             self.assertEqual(requirement.capability, None)
@@ -46,17 +45,14 @@ class TestRequirement(unittest.TestCase):
             self.assertEqual(requirement.properties, [])
             self.assertEqual(requirement.interfaces, [])
             self.assertEqual(requirement.capability, 'test_capability_symbolic_name')
-            # todo Remake
-            # for index, properties in enumerate(requirement.node_filter.properties):
-            #     self.assertEqual(properties.name, 'test_property_name_' + str(index))
-            #     for index_2, property_constraint in enumerate(properties.property_constraint_list):
-            #         self.assertEqual(property_constraint.operator, 'equal_' + str(index_2))
-            #         self.assertEqual(property_constraint.value, 'value_' + str(index_2))
-            # for capabilities_name, capabilities_value in requirement.node_filter.capabilities.items():
-            #     for capabilities in capabilities_value:
-            #         for index_2, property_constraint in enumerate(capabilities.property_constraint_list):
-            #             self.assertEqual(property_constraint.operator, 'equal_' + str(index_2))
-            #             self.assertEqual(property_constraint.value, 'value_' + str(index_2))
+            self.assertEqual(len(requirement.node_filter.properties), 2)
+            for index, properties in enumerate(requirement.node_filter.properties):
+                properties: PropertyFilterDefinition
+                self.assertEqual(properties.name, 'test_property_name_' + str(index))
+                for index_2, property_constraint in enumerate(properties.property_constraint):
+                    self.assertEqual(property_constraint.operator, 'equal_' + str(index_2))
+                    self.assertEqual(property_constraint.value, 'value_' + str(index_2))
+            self.assertEqual(len(requirement.node_filter.capabilities), 0)
             self.assertEqual(requirement.occurrences.minimum, 0)
             self.assertEqual(requirement.occurrences.maximum, 10)
 
@@ -70,8 +66,7 @@ class TestRequirement(unittest.TestCase):
             self.assertEqual(requirement.name, 'test_requirement_name')
             self.assertEqual(requirement.vertex_type_system, 'RequirementAssignment')
             self.assertEqual(requirement.node, 'test_node_template_name')
-            # todo Remake
-            # self.assertEqual(requirement.relationship, None)
+            self.assertEqual(requirement.relationship, 'test_relationship_template_name')
             for index, properties in enumerate(requirement.properties):
                 self.assertEqual(properties.name, 'test_property_name_' + str(index))
                 self.assertEqual(properties.value, 'property_value_test_' + str(index))

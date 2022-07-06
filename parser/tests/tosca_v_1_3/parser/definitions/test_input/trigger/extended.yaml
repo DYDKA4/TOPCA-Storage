@@ -21,4 +21,4 @@ test_trigger_name:
 
     method: average
   action:
-    - test_value
+             - call_operation: test_interface_definition_name_1.operation_test_name_0

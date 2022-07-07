@@ -122,6 +122,15 @@ def delete_vertex(session, vertex):
     return
 
 
+def delete_edge(edge_type, source_vertex, destination_vertex):
+    session = start_session()
+    result = session.execute(f'DELETE EDGE {edge_type} {source_vertex} -> {destination_vertex}')
+    logging.info(f'DELETE EDGE {edge_type} {source_vertex} -> {destination_vertex}')
+    assert result.is_succeeded(), result.error_msg()
+    session.release()
+    return
+
+
 def update_vertex(vertex_name, vid, value_name, value):
     session = start_session()
     result = session.execute(f"{'UPDATE'} VERTEX ON {vertex_name} {vid} SET {value_name} = {value}")

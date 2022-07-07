@@ -24,3 +24,27 @@ UPDATE:
         метод строго PATCH
         http://.../yaml-template/imports/*file*
         value_name = repository	| namespace_uri | namespace_prefix | file
+
+    для ArtifactType:
+        метод строго PATCH
+        http://.../yaml-template/artifact_types/*name*
+        value_name = name | version	| description | mime_type
+
+    для PropertyDefinition:
+        метод строго PATCH
+        http://.../yaml-template/<path:varargs>/properties/*name*
+        value_name = name | description | required | status | default
+
+    для SchemaDefinition:
+        метод строго PATCH
+        http://.../yaml-template/<path:varargs>/key_schema OR
+        http://.../yaml-template/<path:varargs>/entry_schema
+        value_name = description
+
+    для ConstraintClause:
+        метод строго PATCH
+        Attention! constraint's operator can be not unique
+        http://.../yaml-template/<path:varargs>/constraints/*operator*
+        value_name = value
+
+

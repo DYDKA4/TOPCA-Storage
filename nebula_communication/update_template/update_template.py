@@ -4,6 +4,7 @@ from nebula_communication.nebula_functions import update_vertex, fetch_vertex
 from nebula_communication.update_template.Definition.ImportDefinitionUpdater import update_import_definition
 from nebula_communication.update_template.Definition.RepositoryDefinitionUpdater import update_repository_definition
 from nebula_communication.update_template.Other.MetadataUpdater import update_metadata
+from nebula_communication.update_template.Type.ArtifactTypeUpdater import update_artifact_type
 
 
 def update_template(cluster_name: str, value, value_name, varargs: list):
@@ -21,8 +22,12 @@ def update_template(cluster_name: str, value, value_name, varargs: list):
         update_repository_definition(cluster_vid, value, value_name, varargs)
     elif varargs[0] == 'imports':
         update_import_definition(cluster_vid, value, value_name, varargs)
+    elif varargs[0] == 'artifact_types':
+        update_artifact_type(cluster_vid, value, value_name, varargs)
     else:
         abort(400)
 
 
-update_template('cluster', 'new_repository', 'repository', ['imports', 'URI_0'])
+update_template('cluster', 'new_key_value_2', 'value', ['artifact_types', 'test_parent_artifact_type_name',
+                                                             'properties', 'test_property_name_1', 'key_schema',
+                                                             'key_schema', 'constraints', 'key_equal_2'])

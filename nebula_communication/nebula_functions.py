@@ -125,7 +125,6 @@ def delete_vertex(session, vertex):
 def update_vertex(vertex_name, vid, value_name, value):
     session = start_session()
     result = session.execute(f"{'UPDATE'} VERTEX ON {vertex_name} {vid} SET {value_name} = {value}")
-    print(f"{'UPDATE'} VERTEX ON {vertex_name} {vid} SET {value_name} = {value}")
     logging.info(f"{'UPDATE'} VERTEX ON {vertex_name} {vid} SET {value_name} = {value}")
     assert result.is_succeeded(), result.error_msg()
     session.release()

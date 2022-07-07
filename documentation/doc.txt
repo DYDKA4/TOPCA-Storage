@@ -6,5 +6,21 @@ UPDATE:
 
     update для ServiceTemplateDefinition:
         метод строго PATCH
-        http://.../yaml-template/
+        http://.../yaml-template
         value_name = tosca_definitions_version | namespace | description | dsl_definitions
+
+    update для Metadata:
+        метод строго PATCH
+        http://.../yaml-template/metadata/*name*
+        http://.../<path:varargs>/metadata/*name*
+        value_name = value
+
+    update для RepositoryDefinition:
+        метод строго PATCH
+        http://.../yaml-template/repositories/*name*
+        value_name = name | url | description | credential
+
+    update для ImportDefinition:
+        метод строго PATCH
+        http://.../yaml-template/imports/*file*
+        value_name = repository	| namespace_uri | namespace_prefix | file

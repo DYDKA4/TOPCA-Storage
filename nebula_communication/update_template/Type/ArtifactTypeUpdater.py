@@ -2,6 +2,7 @@ from werkzeug.exceptions import abort
 
 from nebula_communication.nebula_functions import find_destination, fetch_vertex, update_vertex, add_edge, delete_edge
 from nebula_communication.update_template.Definition.PropertyDefinitionUpdater import update_property_definition
+from nebula_communication.update_template.Other.MetadataUpdater import update_metadata
 
 
 def update_artifact_type(father_node_vid, value, value_name, varargs: list):
@@ -44,7 +45,9 @@ def update_artifact_type(father_node_vid, value, value_name, varargs: list):
         else:
             abort(501)
     elif varargs[2] == 'properties':
-        update_property_definition(father_node_vid,artifact_vid_to_update, value, value_name, varargs[2:])
+        update_property_definition(father_node_vid, artifact_vid_to_update, value, value_name, varargs[2:])
+    elif varargs[2] == 'metadata':
+        update_metadata(artifact_vid_to_update, value, value_name, varargs[2:])
     else:
         abort(400)
 

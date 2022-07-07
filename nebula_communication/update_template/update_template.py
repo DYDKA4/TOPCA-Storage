@@ -24,9 +24,15 @@ def update_template(cluster_name: str, value, value_name, varargs: list):
         update_import_definition(cluster_vid, value, value_name, varargs)
     elif varargs[0] == 'artifact_types':
         update_artifact_type(cluster_vid, value, value_name, varargs)
+    elif varargs[0] == 'data_types':
+        update_artifact_type(cluster_vid, value, value_name, varargs)
     else:
         abort(400)
 
+
+# update_template('cluster', 'new_key_value_2', 'value', ['artifact_types', 'test_parent_artifact_type_name',
+#                                                              'properties', 'test_property_name_1', 'key_schema',
+#                                                              'key_schema', 'constraints', 'key_equal_2'])
 
 update_template('cluster', 'new_key_value_2', 'value', ['artifact_types', 'test_parent_artifact_type_name',
                                                              'properties', 'test_property_name_1', 'key_schema',

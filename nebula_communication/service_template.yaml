@@ -55,7 +55,7 @@
       test_data_type_name_0:
         derived_from: test_existing_type_name
       test_data_type_name_1:
-           derived_from: test_existing_type_name
+        derived_from: test_existing_type_name
  capability_types:
       test_parent_capability_type_name:
            attributes:

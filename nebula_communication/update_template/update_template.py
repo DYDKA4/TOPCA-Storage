@@ -5,6 +5,8 @@ from nebula_communication.update_template.Definition.ImportDefinitionUpdater imp
 from nebula_communication.update_template.Definition.RepositoryDefinitionUpdater import update_repository_definition
 from nebula_communication.update_template.Other.MetadataUpdater import update_metadata
 from nebula_communication.update_template.Type.ArtifactTypeUpdater import update_artifact_type
+from nebula_communication.update_template.Type.CapabilityTypeUpdater import update_capability_type
+from nebula_communication.update_template.Type.DataTypeUpdater import update_data_type
 
 
 def update_template(cluster_name: str, value, value_name, varargs: list):
@@ -25,7 +27,9 @@ def update_template(cluster_name: str, value, value_name, varargs: list):
     elif varargs[0] == 'artifact_types':
         update_artifact_type(cluster_vid, value, value_name, varargs)
     elif varargs[0] == 'data_types':
-        update_artifact_type(cluster_vid, value, value_name, varargs)
+        update_data_type(cluster_vid, value, value_name, varargs)
+    elif varargs[0] == 'capability_types':
+        update_capability_type(cluster_vid, value, value_name, varargs)
     else:
         abort(400)
 
@@ -34,6 +38,5 @@ def update_template(cluster_name: str, value, value_name, varargs: list):
 #                                                              'properties', 'test_property_name_1', 'key_schema',
 #                                                              'key_schema', 'constraints', 'key_equal_2'])
 
-update_template('cluster', 'new_key_value_2', 'value', ['artifact_types', 'test_parent_artifact_type_name',
-                                                             'properties', 'test_property_name_1', 'key_schema',
-                                                             'key_schema', 'constraints', 'key_equal_2'])
+update_template('SSNLEHCCGKGF', 'test_node_type_name_0', 'valid_source_types', ['capability_types', 'test_capability_type_name_0',
+                                                            ])

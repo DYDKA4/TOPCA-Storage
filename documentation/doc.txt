@@ -6,28 +6,28 @@ UPDATE:
 
     update для ServiceTemplateDefinition:
         метод строго PATCH
-        http://.../yaml-template
+        http://.../yaml-template/*cluster_name*
         value_name = tosca_definitions_version | namespace | description | dsl_definitions
 
     update для Metadata:
         метод строго PATCH
-        http://.../yaml-template/metadata/*name*
+        http://.../yaml-template/*cluster_name*/metadata/*name*
         http://.../<path:varargs>/metadata/*name*
         value_name = value
 
     update для RepositoryDefinition:
         метод строго PATCH
-        http://.../yaml-template/repositories/*name*
+        http://.../yaml-template/*cluster_name*/repositories/*name*
         value_name = name | url | description | credential
 
     update для ImportDefinition:
         метод строго PATCH
-        http://.../yaml-template/imports/*file*
+        http://.../yaml-template/*cluster_name*/imports/*file*
         value_name = repository	| namespace_uri | namespace_prefix | file
 
     для ArtifactType:
         метод строго PATCH
-        http://.../yaml-template/artifact_types/*name*
+        http://.../yaml-template/*cluster_name*/artifact_types/*name*
         value_name = name | version	| description | mime_type
 
     для PropertyDefinition:
@@ -47,4 +47,17 @@ UPDATE:
         http://.../yaml-template/<path:varargs>/constraints/*operator*
         value_name = value
 
+    для DataType:
+        метод строго PATCH
+        http://.../yaml-template/*cluster_name*/data_types/*name*
+        value_name = name | version	| description | derived_from
+
+    для CapabilityType:
+        метод строго PATCH
+        http://.../yaml-template/*cluster_name*/data_types/*name*
+        value_name = name | version	| description | derived_from | valid_source_types
+        if value_name valid_source_types if value in valid_source_types it will be removed from valid_source_types,
+        if value not in valid_source_type it will be added into valid_source_type
+        http://.../yaml-template/*cluster_name*/data_types/*name*/valid_source_types/{delete | add}
+        value_name = name
 

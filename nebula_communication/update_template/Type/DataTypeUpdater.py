@@ -7,7 +7,7 @@ from nebula_communication.update_template.Other.ConstraintClauseUpdater import u
 from nebula_communication.update_template.Other.MetadataUpdater import update_metadata
 
 
-def update_artifact_type(father_node_vid, value, value_name, varargs: list):
+def update_data_type(father_node_vid, value, value_name, varargs: list):
     if len(varargs) < 2:
         abort(400)
     destination = find_destination(father_node_vid, varargs[0])
@@ -43,7 +43,7 @@ def update_artifact_type(father_node_vid, value, value_name, varargs: list):
             add_edge(value_name, '', data_type_vid_to_update, new_derived_artifact_vid, '')
 
         elif value_name in vertex_value.keys():
-            update_vertex('ArtifactType', data_type_vid_to_update, value_name, value)
+            update_vertex('DataType', data_type_vid_to_update, value_name, value)
         else:
             abort(501)
     elif varargs[2] == 'properties':

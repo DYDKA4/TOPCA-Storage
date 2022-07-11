@@ -39,6 +39,8 @@ def update_template(cluster_name: str, value, value_name, varargs: list):
         update_relationship_type(cluster_vid, value, value_name, varargs)
     elif varargs[0] == 'node_types':  # todo Тестить
         update_node_type(cluster_vid, value, value_name, varargs)
+    elif varargs[0] == 'group_types':
+        update_group_type(cluster_vid, value, value_name, varargs)
     else:
         abort(400)
 

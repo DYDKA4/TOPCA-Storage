@@ -118,5 +118,12 @@ UPDATE:
 
     для NodeType:
         метод строго PATCH
-        http://.../yaml-template/*cluster*/relationship_types/*name*
+        http://.../yaml-template/*cluster*/node_types/*name*
         value_name = name | version | description | derived_from
+
+    для GroupType:
+        метод строго PATCH
+        http://.../yaml-template/*cluster*/group_types/*name*
+        value_name = name | version | description | derived_from | members
+        if value_name members if value in members it will be removed from members,
+        if value not in members it will be added into members

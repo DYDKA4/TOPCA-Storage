@@ -143,3 +143,4 @@ UPDATE:
         Only method PATCH
         http://.../yaml-template/<path:varargs>/triggers/*name*
         value_name = name | description	| event	| schedule_start | schedule_end	| evaluations | method	| period
+        Doesn't support update of event_filter and condition_clause

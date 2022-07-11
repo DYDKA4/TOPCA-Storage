@@ -23,7 +23,6 @@ class ArtifactDefinition:
         self.name = name
         self.vid = None
         self.vertex_type_system = 'ArtifactDefinition'
-        self.artifact_file_URI = None
         self.description = None
         self.type = None
         self.file = None
@@ -35,7 +34,7 @@ class ArtifactDefinition:
         self.properties = []
 
     def set_artifact_file_uri(self, uri: str):
-        self.artifact_file_URI = uri
+        self.file = uri
 
     def set_description(self, description: str):
         self.description = description

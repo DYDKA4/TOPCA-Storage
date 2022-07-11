@@ -2,6 +2,7 @@ import logging
 
 import config
 from nebula_communication import connection_pool
+from nebula_communication.redis_communication import del_by_vid, get_all_vid_from_cluster
 
 
 def start_session():
@@ -99,25 +100,12 @@ def get_all_tags():
     return result.column_values('Name')
 
 
-def is_unique_vid(vid):
-    # return true if unique else false
-    tags = get_all_tags()
-
+def delete_vertex(vertex):
     session = start_session()
-    for tag_name in tags:
-        tag_name = tag_name.as_string()
-        result = session.execute(f'MATCH (v:{tag_name}) WHERE id(v) == "{vid}" RETURN v')
-        # logging.info(f'MATCH (v:{tag_name}) WHERE id(v) == "{vid}" RETURN v')
-        assert result.is_succeeded(), result.error_msg()
-        if result.column_values('v'):
-            return False
-    return True
-
-
-def delete_vertex(session, vertex):
     result = session.execute(f'DELETE VERTEX {vertex}')
     logging.info(f'DELETE VERTEX {vertex} ')
     assert result.is_succeeded(), result.error_msg()
+    del_by_vid(vertex)
     session.release()
     return
 
@@ -138,3 +126,21 @@ def update_vertex(vertex_name, vid, value_name, value):
     assert result.is_succeeded(), result.error_msg()
     session.release()
     return
+
+
+def get_all_vid_from_cluster_by_type(cluster_name, vertex_type_system):
+    clusters_vid = get_all_vid_from_cluster(cluster_name)
+    session = start_session()
+    result = session.execute(f'LOOKUP ON {vertex_type_system}')
+    logging.info(f'LOOKUP ON {vertex_type_system}')
+    assert result.is_succeeded(), result.error_msg()
+    session.release()
+    result = result.column_values("VertexID")
+    vertex_type_system_vid = []
+    for vid in result:
+        vertex_type_system_vid.append(vid.as_string())
+    result = list(set(clusters_vid) & set(vertex_type_system_vid))
+    return result
+
+
+get_all_vid_from_cluster_by_type('cluster', 'AttributeDefinition')

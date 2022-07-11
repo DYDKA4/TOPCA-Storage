@@ -32,7 +32,9 @@ UPDATE:
 
     для PropertyDefinition:
         метод строго PATCH
-        http://.../yaml-template/<path:varargs>/properties/*name*
+        http://.../yaml-template/<path:varargs>/properties/*name* OR
+        http://.../yaml-template/<path:varargs>/inputs/*name*
+
         value_name = name | description | required | status | default
 
     для SchemaDefinition:
@@ -61,3 +63,40 @@ UPDATE:
         http://.../yaml-template/*cluster_name*/data_types/*name*/valid_source_types/{delete | add}
         value_name = name
 
+    для OperationDefinition:
+        метод строго PATCH
+        http://.../yaml-template/<path:varargs>/operations/*name*
+        value_name = name | description	| outputs | implementation (ONLY SYMBOLIC LINK)
+
+    для ArtifactDefinition:
+        метод строго PATCH
+        http://.../yaml-template/<path:varargs>/implementation/*name* OR
+        http://.../yaml-template/<path:varargs>/primary/*name*
+        http://.../yaml-template/<path:varargs>/dependencies/*name* OR
+        value_name = name  | description | file | repository | deploy_path | version | checksum | checksum_algorithm
+
+    для PropertyAssognment:
+        метод строго PATCH
+        http://.../yaml-template/<path:varargs>/inputs/*name*
+        value_name = name | value
+        get_... link rebuilder not done yet
+
+    для OperationImplementationDefinition:
+        метод строго PATCH
+        http://.../yaml-template/<path:varargs>/implementation
+        value_name = operation_host	| timeout | primary (ONLY SYMBOLIC LINK) | dependencies
+
+    для NotificationImplementationDefinition:
+        метод строго PATCH
+        http://.../yaml-template/<path:varargs>/implementation
+        value_name = operation_host	| timeout | primary (ONLY SYMBOLIC LINK) | dependencies
+
+    для NotificationDefinition:
+        метод строго PATCH
+        http://.../yaml-template/<path:varargs>/notifications/*name*
+        value_name = description | name
+
+    для InterfaceType:
+        метод строго PATCH
+        http://.../yaml-template/*cluster*/interface_types/*name*
+        value_name = name | version | description

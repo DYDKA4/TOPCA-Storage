@@ -30,6 +30,8 @@ def update_template(cluster_name: str, value, value_name, varargs: list):
         update_data_type(cluster_vid, value, value_name, varargs)
     elif varargs[0] == 'capability_types':
         update_capability_type(cluster_vid, value, value_name, varargs)
+    elif varargs[0] == 'interface_type':
+        update_interface_type(cluster_vid, value, value_name, varargs)
     else:
         abort(400)
 

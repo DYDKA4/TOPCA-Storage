@@ -8,6 +8,7 @@ from nebula_communication.update_template.Type.ArtifactTypeUpdater import update
 from nebula_communication.update_template.Type.CapabilityTypeUpdater import update_capability_type
 from nebula_communication.update_template.Type.DataTypeUpdater import update_data_type
 from nebula_communication.update_template.Type.InterfaceTypeUpdater import update_interface_type
+from nebula_communication.update_template.Type.RelationshipTypeUpdater import update_relationship_type
 
 
 def update_template(cluster_name: str, value, value_name, varargs: list):

@@ -7,6 +7,7 @@ from nebula_communication.update_template.Other.MetadataUpdater import update_me
 from nebula_communication.update_template.Type.ArtifactTypeUpdater import update_artifact_type
 from nebula_communication.update_template.Type.CapabilityTypeUpdater import update_capability_type
 from nebula_communication.update_template.Type.DataTypeUpdater import update_data_type
+from nebula_communication.update_template.Type.InterfaceTypeUpdater import update_interface_type
 
 
 def update_template(cluster_name: str, value, value_name, varargs: list):
@@ -30,8 +31,10 @@ def update_template(cluster_name: str, value, value_name, varargs: list):
         update_data_type(cluster_vid, value, value_name, varargs)
     elif varargs[0] == 'capability_types':
         update_capability_type(cluster_vid, value, value_name, varargs)
-    elif varargs[0] == 'interface_type':
+    elif varargs[0] == 'interface_types':  # todo Тестить
         update_interface_type(cluster_vid, value, value_name, varargs)
+    elif varargs[0] == 'relationship_types':  # todo Тестить
+        update_relationship_type(cluster_vid, value, value_name, varargs)
     else:
         abort(400)
 
@@ -40,5 +43,6 @@ def update_template(cluster_name: str, value, value_name, varargs: list):
 #                                                              'properties', 'test_property_name_1', 'key_schema',
 #                                                              'key_schema', 'constraints', 'key_equal_2'])
 
-update_template('SSNLEHCCGKGF', 'test_node_type_name_0', 'valid_source_types', ['capability_types', 'test_capability_type_name_0',
-                                                            ])
+update_template('SSNLEHCCGKGF', 'test_node_type_name_0', 'valid_source_types',
+                ['capability_types', 'test_capability_type_name_0',
+                 ])

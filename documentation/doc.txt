@@ -28,7 +28,7 @@ UPDATE:
     для ArtifactType:
         метод строго PATCH
         http://.../yaml-template/*cluster_name*/artifact_types/*name*
-        value_name = name | version	| description | mime_type
+        value_name = name | version	| description | mime_type | derived_from
 
     для PropertyDefinition:
         метод строго PATCH
@@ -97,11 +97,26 @@ UPDATE:
     для InterfaceType:
         метод строго PATCH
         http://.../yaml-template/*cluster*/interface_types/*name*
-        value_name = name | version | description
+        value_name = name | version | description | derived_from
 
     для RelationshipType:
         метод строго PATCH
         http://.../yaml-template/*cluster*/relationship_types/*name*
-        value_name = name | version | description | valid_source_types
+        value_name = name | version | description | valid_source_types | derived_from
         if value_name valid_source_types if value in valid_source_types it will be removed from valid_source_types,
         if value not in valid_source_type it will be added into valid_source_type
+
+    для Occurrences:
+        метод строго PATCH
+        http://.../yaml-template/<path:varargs>/occurrences
+        value_name = minimum | maximum
+
+    для RelationshipDefinition:
+        метод строго PATCH
+        http://.../yaml-template/<path:varargs>/relationships/*name*
+        value_name = name | capability | node | relationship
+
+    для NodeType:
+        метод строго PATCH
+        http://.../yaml-template/*cluster*/relationship_types/*name*
+        value_name = name | version | description | derived_from

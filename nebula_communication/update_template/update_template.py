@@ -8,6 +8,7 @@ from nebula_communication.update_template.Type.ArtifactTypeUpdater import update
 from nebula_communication.update_template.Type.CapabilityTypeUpdater import update_capability_type
 from nebula_communication.update_template.Type.DataTypeUpdater import update_data_type
 from nebula_communication.update_template.Type.InterfaceTypeUpdater import update_interface_type
+from nebula_communication.update_template.Type.NodeTypeUpdater import update_node_type
 from nebula_communication.update_template.Type.RelationshipTypeUpdater import update_relationship_type
 
 
@@ -36,6 +37,8 @@ def update_template(cluster_name: str, value, value_name, varargs: list):
         update_interface_type(cluster_vid, value, value_name, varargs)
     elif varargs[0] == 'relationship_types':  # todo Тестить
         update_relationship_type(cluster_vid, value, value_name, varargs)
+    elif varargs[0] == 'node_types':  # todo Тестить
+        update_node_type(cluster_vid, value, value_name, varargs)
     else:
         abort(400)
 

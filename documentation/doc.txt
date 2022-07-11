@@ -5,125 +5,137 @@ UPDATE:
 
 
     update для ServiceTemplateDefinition:
-        метод строго PATCH
+        Only method PATCH
         http://.../yaml-template/*cluster_name*
         value_name = tosca_definitions_version | namespace | description | dsl_definitions
 
     update для Metadata:
-        метод строго PATCH
+        Only method PATCH
         http://.../yaml-template/*cluster_name*/metadata/*name*
         http://.../<path:varargs>/metadata/*name*
         value_name = value
 
     update для RepositoryDefinition:
-        метод строго PATCH
+        Only method PATCH
         http://.../yaml-template/*cluster_name*/repositories/*name*
         value_name = name | url | description | credential
 
     update для ImportDefinition:
-        метод строго PATCH
+        Only method PATCH
         http://.../yaml-template/*cluster_name*/imports/*file*
         value_name = repository	| namespace_uri | namespace_prefix | file
 
     для ArtifactType:
-        метод строго PATCH
+        Only method PATCH
         http://.../yaml-template/*cluster_name*/artifact_types/*name*
         value_name = name | version	| description | mime_type | derived_from
 
     для PropertyDefinition:
-        метод строго PATCH
+        Only method PATCH
         http://.../yaml-template/<path:varargs>/properties/*name* OR
         http://.../yaml-template/<path:varargs>/inputs/*name*
 
         value_name = name | description | required | status | default
 
     для SchemaDefinition:
-        метод строго PATCH
+        Only method PATCH
         http://.../yaml-template/<path:varargs>/key_schema OR
         http://.../yaml-template/<path:varargs>/entry_schema
         value_name = description
 
     для ConstraintClause:
-        метод строго PATCH
+        Only method PATCH
         Attention! constraint's operator can be not unique
         http://.../yaml-template/<path:varargs>/constraints/*operator*
         value_name = value
 
     для DataType:
-        метод строго PATCH
+        Only method PATCH
         http://.../yaml-template/*cluster_name*/data_types/*name*
         value_name = name | version	| description | derived_from
 
     для CapabilityType:
-        метод строго PATCH
+        Only method PATCH
         http://.../yaml-template/*cluster_name*/data_types/*name*
         value_name = name | version	| description | derived_from | valid_source_types
-        if value_name valid_source_types if value in valid_source_types it will be removed from valid_source_types,
-        if value not in valid_source_type it will be added into valid_source_type
+        if value_name is valid_source_types:
+            if value in valid_source_types it will be removed from valid_source_types,
+            if value not in valid_source_type it will be added into valid_source_type
 
     для OperationDefinition:
-        метод строго PATCH
+        Only method PATCH
         http://.../yaml-template/<path:varargs>/operations/*name*
         value_name = name | description	| outputs | implementation (ONLY SYMBOLIC LINK)
 
     для ArtifactDefinition:
-        метод строго PATCH
+        Only method PATCH
         http://.../yaml-template/<path:varargs>/implementation/*name* OR
         http://.../yaml-template/<path:varargs>/primary/*name*
         http://.../yaml-template/<path:varargs>/dependencies/*name* OR
         value_name = name  | description | file | repository | deploy_path | version | checksum | checksum_algorithm
 
-    для PropertyAssognment:
-        метод строго PATCH
+    для PropertyAssignment:
+        Only method PATCH
         http://.../yaml-template/<path:varargs>/inputs/*name*
         value_name = name | value
         get_... link rebuilder not done yet
 
     для OperationImplementationDefinition:
-        метод строго PATCH
+        Only method PATCH
         http://.../yaml-template/<path:varargs>/implementation
         value_name = operation_host	| timeout | primary (ONLY SYMBOLIC LINK) | dependencies
 
     для NotificationImplementationDefinition:
-        метод строго PATCH
+        Only method PATCH
         http://.../yaml-template/<path:varargs>/implementation
         value_name = operation_host	| timeout | primary (ONLY SYMBOLIC LINK) | dependencies
 
     для NotificationDefinition:
-        метод строго PATCH
+        Only method PATCH
         http://.../yaml-template/<path:varargs>/notifications/*name*
         value_name = description | name
 
     для InterfaceType:
-        метод строго PATCH
+        Only method PATCH
         http://.../yaml-template/*cluster*/interface_types/*name*
         value_name = name | version | description | derived_from
 
     для RelationshipType:
-        метод строго PATCH
+        Only method PATCH
         http://.../yaml-template/*cluster*/relationship_types/*name*
         value_name = name | version | description | valid_source_types | derived_from
-        if value_name valid_source_types if value in valid_source_types it will be removed from valid_source_types,
-        if value not in valid_source_type it will be added into valid_source_type
+        if value_name is valid_source_types:
+            if value in valid_source_types it will be removed from valid_source_types,
+            if value not in valid_source_type it will be added into valid_source_type
 
     для Occurrences:
-        метод строго PATCH
+        Only method PATCH
         http://.../yaml-template/<path:varargs>/occurrences
         value_name = minimum | maximum
 
     для RelationshipDefinition:
-        метод строго PATCH
+        Only method PATCH
         http://.../yaml-template/<path:varargs>/relationships/*name*
         value_name = name | capability | node | relationship
 
     для NodeType:
-        метод строго PATCH
+        Only method PATCH
         http://.../yaml-template/*cluster*/node_types/*name*
         value_name = name | version | description | derived_from
 
     для GroupType:
-        метод строго PATCH
+        Only method PATCH
         http://.../yaml-template/*cluster*/group_types/*name*
         value_name = name | version | description | derived_from | members
-        if value_name members if value in members it will be removed from members,
-        if value not in members it will be added into members
+        if value_name is members:
+            if value in members it will be removed from members,
+            if value not in members it will be added into members
+
+    для PolicyType:
+        Only method PATCH
+        http://.../yaml-template/*cluster*/policy_types/*name*
+        value_name = name | version | description | derived_from | targets
+        if value_name is targets:
+            if value in members it will be removed from members,
+            if value not in members it will be added into members
+        triggers is not supported

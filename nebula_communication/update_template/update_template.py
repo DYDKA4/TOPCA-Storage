@@ -10,6 +10,7 @@ from nebula_communication.update_template.Type.DataTypeUpdater import update_dat
 from nebula_communication.update_template.Type.GroupTypeUpdater import update_group_type
 from nebula_communication.update_template.Type.InterfaceTypeUpdater import update_interface_type
 from nebula_communication.update_template.Type.NodeTypeUpdater import update_node_type
+from nebula_communication.update_template.Type.PolicyTypeUpdater import update_policy_type
 from nebula_communication.update_template.Type.RelationshipTypeUpdater import update_relationship_type
 
 
@@ -40,8 +41,10 @@ def update_template(cluster_name: str, value, value_name, varargs: list):
         update_relationship_type(cluster_vid, value, value_name, varargs)
     elif varargs[0] == 'node_types':  # todo Тестить
         update_node_type(cluster_vid, value, value_name, varargs)
-    elif varargs[0] == 'group_types':
+    elif varargs[0] == 'group_types':  # todo Тестить
         update_group_type(cluster_vid, value, value_name, varargs)
+    elif varargs[0] == 'policy_types':  # todo Тестить
+        update_policy_type(cluster_vid, value, value_name, varargs)
     else:
         abort(400)
 

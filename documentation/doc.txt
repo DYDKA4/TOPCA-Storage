@@ -138,4 +138,8 @@ UPDATE:
         if value_name is targets:
             if value in members it will be removed from members,
             if value not in members it will be added into members
-        triggers is not supported
+
+    для TriggerDefinition:
+        Only method PATCH
+        http://.../yaml-template/<path:varargs>/triggers/*name*
+        value_name = name | description	| event	| schedule_start | schedule_end	| evaluations | method	| period

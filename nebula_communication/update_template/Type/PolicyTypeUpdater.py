@@ -2,6 +2,7 @@ from werkzeug.exceptions import abort
 
 from nebula_communication.nebula_functions import find_destination, fetch_vertex, update_vertex, add_edge, delete_edge
 from nebula_communication.update_template.Definition.PropertyDefinitionUpdater import update_property_definition
+from nebula_communication.update_template.Definition.TriggerDefinitionUpdater import update_trigger_definition
 from nebula_communication.update_template.Other.MetadataUpdater import update_metadata
 
 
@@ -84,6 +85,6 @@ def update_policy_type(father_node_vid, value, value_name, varargs: list):
     elif varargs[2] == 'metadata':
         update_metadata(group_type_vid_to_update, value, value_name, varargs[2:])
     elif varargs[2] == 'triggers':
-        abort(501)
+        update_trigger_definition(father_node_vid, group_type_vid_to_update, value, value_name, varargs[2:])
     else:
         abort(400)

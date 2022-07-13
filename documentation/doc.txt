@@ -186,3 +186,25 @@ UPDATE:
         Only method PATCH
         http://.../yaml-template/<path:varargs>/capabilities/*name*
         value_name = name | values | description | value
+
+    для GroupDefinition:
+        Only method PATCH
+        http://.../yaml-template/*cluster_name*/topology_template/groups/*name*
+        value_name = name | description | type | members
+        if value_name is members:
+            if value in members it will be removed from members,
+            if value not in members it will be added into members
+
+    для PolicyDefinition:
+        Only method PATCH
+        http://.../yaml-template/*cluster_name*/topology_template/groups/*name*
+        value_name = name | description | type | targets
+        if value_name is targets:
+            if value in targets it will be removed from targets,
+            if value not in targets it will be added into targets
+
+    для RelationshipTemplate:
+        Only method PATCH
+        http://.../yaml-template/*cluster_name*/topology_template/relationship_templates/*name*
+        value_name = name | description | type | copy
+

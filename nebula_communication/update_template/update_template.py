@@ -3,6 +3,8 @@ from werkzeug.exceptions import abort
 from nebula_communication.nebula_functions import update_vertex, fetch_vertex
 from nebula_communication.update_template.Definition.ImportDefinitionUpdater import update_import_definition
 from nebula_communication.update_template.Definition.RepositoryDefinitionUpdater import update_repository_definition
+from nebula_communication.update_template.Definition.TopologyTemplateDefinitionUpdater import \
+    update_topology_template_definition
 from nebula_communication.update_template.Other.MetadataUpdater import update_metadata
 from nebula_communication.update_template.Type.ArtifactTypeUpdater import update_artifact_type
 from nebula_communication.update_template.Type.CapabilityTypeUpdater import update_capability_type
@@ -45,6 +47,8 @@ def update_template(cluster_name: str, value, value_name, varargs: list):
         update_group_type(cluster_vid, value, value_name, varargs)
     elif varargs[0] == 'policy_types':  # todo Тестить
         update_policy_type(cluster_vid, value, value_name, varargs)
+    elif varargs[0] == 'topology_template':  # todo Тестить
+        update_topology_template_definition(cluster_vid, value, value_name, varargs)
     else:
         abort(400)
 

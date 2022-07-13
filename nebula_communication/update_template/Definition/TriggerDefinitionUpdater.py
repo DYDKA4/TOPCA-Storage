@@ -1,8 +1,6 @@
 from werkzeug.exceptions import abort
 
 from nebula_communication.nebula_functions import find_destination, fetch_vertex, update_vertex, delete_edge, add_edge
-from nebula_communication.update_template.Definition.InterfaceDefinitionUpdater import update_interface_definition
-from nebula_communication.update_template.Other.OccurrencesUpdater import update_occurrences
 
 
 def update_trigger_definition(service_template_vid, father_node_vid, value, value_name, varargs: list):

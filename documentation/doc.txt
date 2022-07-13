@@ -144,3 +144,45 @@ UPDATE:
         http://.../yaml-template/<path:varargs>/triggers/*name*
         value_name = name | description	| event	| schedule_start | schedule_end	| evaluations | method	| period
         Doesn't support update of event_filter and condition_clause
+
+    для NodeTemplate:
+        Only method PATCH
+        http://.../yaml-template/*cluster_name*/topology_template/node_templates/*name*
+        value_name = name | description	| copy | type
+
+    для NodeFilterDefinition:
+        Only method PATCH
+        http://.../yaml-template/<path:varargs>/node_filter
+        value_name = NONE
+
+    для CapabilityFilterDefinition:
+        Only method PATCH
+        http://.../yaml-template/<path:varargs>/node_filter/capabilities/*name*
+        value_name = name
+
+    для PropertyFilterDefinition:
+        Only method PATCH
+        http://.../yaml-template/<path:varargs>/node_filter/capabilities/*capability_name*/properties/*name* OR
+        http://.../yaml-template/<path:varargs>/node_filter/properties/*name*
+        value_name = name
+
+    для ParameterDefinition:
+        Only method PATCH
+        http://.../yaml-template/*cluster_name*/topology_template/inputs/*name*
+        http://.../yaml-template/*cluster_name*/topology_template/inputs/*name*
+        value_name = name | description	| value	| required | default | status | type
+
+    для RequirementAssignment:
+        Only method PATCH
+        http://.../yaml-template/<path:varargs>/requirements/*name*
+        value_name = name | capability | node | relationship
+
+    для CapabilityAssignment:
+        Only method PATCH
+        http://.../yaml-template/<path:varargs>/capabilities/*name*
+        value_name = name
+
+    для AttributeAssignment:
+        Only method PATCH
+        http://.../yaml-template/<path:varargs>/capabilities/*name*
+        value_name = name | values | description | value

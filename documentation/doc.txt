@@ -208,3 +208,23 @@ UPDATE:
         http://.../yaml-template/*cluster_name*/topology_template/relationship_templates/*name*
         value_name = name | description | type | copy
 
+    для ImperativeWorkflowDefinition:
+        Only method PATCH
+        http://.../yaml-template/<path:varargs>/workflows/*name*
+        value_name = description | outputs | name
+
+    для WorkflowPreconditionDefinition:
+        Only method PATCH
+        http://.../yaml-template/<path:varargs>/workflows/precondition
+        value_name = condition (Not Supported) | target_relationship | target
+
+    для WorkflowStepDefinition:
+        Only method PATCH
+        http://.../yaml-template/<path:varargs>/workflows/steps/*name*
+        value_name = name | operation_host | on_success | on_failure | target_relationship | target |
+            filter (Not Supported) | activities (Not Supported)
+
+    для TopologyTemplateDefinition:
+        Only method PATCH
+        http://.../yaml-template/*cluster_name*/topology_template
+        value_name = description | substitution_mappings

@@ -34,7 +34,7 @@ def update_operation_implementation_definition(service_template_vid, father_node
 
             else:
                 add_vertex = None
-                artifact_definitions = get_all_vid_from_cluster_by_type(service_template_vid,'ArtifactDefinition')
+                artifact_definitions = get_all_vid_from_cluster_by_type(service_template_vid, 'ArtifactDefinition')
                 if artifact_definitions is None:
                     abort(500)
                 for artifact_definition in artifact_definitions:

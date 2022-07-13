@@ -5,7 +5,7 @@
 #     filter:
 #       - <list_of_condition_clause_definition>
 #     activities: Required
-#       - <list_of_activity_definition> #todo Remake if need it
+#       - <list_of_activity_definition>
 #     on_success:
 #       - <target_step_name>
 #     on_failure:

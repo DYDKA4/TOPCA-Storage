@@ -6,6 +6,8 @@ UPDATE:
 
     update для ServiceTemplateDefinition:
         Only method PATCH
+        if type_update == 'delete': ERROR
+        if type_update == 'add' : ERROR
         http://.../yaml-template/*cluster_name*
         value_name = tosca_definitions_version | namespace | description | dsl_definitions
 

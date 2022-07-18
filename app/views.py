@@ -60,10 +60,13 @@ def yaml_update(varargs=None):
     varargs = varargs[1:]
     value = request.args.get('value')
     value_name = request.args.get('value_name')
+    type_update = request.args.get('type_update')
+    if type_update is None or type_update not in {'delete', 'add'}:
+        abort(400)
     print(value_name, value, cluster_name, varargs)
     if not value_name or not value:
         abort(400)
-    update_template(cluster_name, value, value_name, varargs)
+    update_template(cluster_name, value, value_name, varargs, type_update)
     return f'{value_name} = {value} in cluster: {cluster_name}'
 
 

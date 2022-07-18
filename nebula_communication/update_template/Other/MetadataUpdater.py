@@ -1,9 +1,9 @@
 from werkzeug.exceptions import abort
 
-from nebula_communication.nebula_functions import fetch_vertex, update_vertex, find_destination
+from nebula_communication.nebula_functions import fetch_vertex, update_vertex, find_destination, delete_vertex
 
 
-def update_metadata(father_node_vid, value, value_name, varargs: list):
+def update_metadata(father_node_vid, value, value_name, varargs: list, type_update):
     if len(varargs) != 2:
         abort(400)
     destination = find_destination(father_node_vid, varargs[0])
@@ -18,6 +18,9 @@ def update_metadata(father_node_vid, value, value_name, varargs: list):
             break
     if metadata_vid_to_update is None:
         abort(400)
+    if type_update == 'delete':
+        delete_vertex('"' + metadata_vid_to_update.as_string() + '"')
+        return
     if value_name != 'value':
         abort(400)
     else:

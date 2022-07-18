@@ -1,6 +1,7 @@
 from werkzeug.exceptions import abort
 
-from nebula_communication.nebula_functions import update_vertex, fetch_vertex
+from nebula_communication.generate_uuid import generate_uuid
+from nebula_communication.nebula_functions import update_vertex, fetch_vertex, add_in_vertex, add_edge
 from nebula_communication.update_template.Definition.ImportDefinitionUpdater import update_import_definition
 from nebula_communication.update_template.Definition.RepositoryDefinitionUpdater import update_repository_definition
 from nebula_communication.update_template.Definition.TopologyTemplateDefinitionUpdater import \
@@ -14,19 +15,28 @@ from nebula_communication.update_template.Type.InterfaceTypeUpdater import updat
 from nebula_communication.update_template.Type.NodeTypeUpdater import update_node_type
 from nebula_communication.update_template.Type.PolicyTypeUpdater import update_policy_type
 from nebula_communication.update_template.Type.RelationshipTypeUpdater import update_relationship_type
+from parser.parser.tosca_v_1_3.others.Metadata import Metadata
 
 
-def update_template(cluster_name: str, value, value_name, varargs: list):
+def update_template(cluster_name: str, value, value_name, varargs: list, type_update):
     cluster_vid = '"' + cluster_name + '"'
     value = '"' + value + '"'
     if len(varargs) == 0:
         vertex_value = fetch_vertex(cluster_vid, 'ServiceTemplateDefinition')
         vertex_value = vertex_value.as_map()
-        if value_name not in vertex_value.keys():
+        if value_name not in vertex_value.keys() or type_update is not None:
             abort(400)
         update_vertex('ServiceTemplateDefinition', cluster_vid, value_name, value)
     elif varargs[0] == 'metadata':
-        update_metadata(cluster_vid, value, value_name, varargs)
+        if type_update == 'add':
+            metadata = Metadata('"' + varargs[1] + '"', value)
+            metadata.vertex_type_system = '"Metadata"'
+            generate_uuid(metadata, cluster_name)
+            add_in_vertex('Metadata', 'name, ' + value_name + ', vertex_type_system',
+                          metadata.name + ',' + value + ',' + metadata.vertex_type_system, metadata.vid)
+            add_edge('metadata', '', cluster_vid, metadata.vid, '')
+        else:
+            update_metadata(cluster_vid, value, value_name, varargs, type_update)
     elif varargs[0] == 'repositories':
         update_repository_definition(cluster_vid, value, value_name, varargs)
     elif varargs[0] == 'imports':
@@ -56,7 +66,11 @@ def update_template(cluster_name: str, value, value_name, varargs: list):
 # update_template('cluster', 'new_key_value_2', 'value', ['artifact_types', 'test_parent_artifact_type_name',
 #                                                              'properties', 'test_property_name_1', 'key_schema',
 #                                                              'key_schema', 'constraints', 'key_equal_2'])
+#
+# update_template('SSNLEHCCGKGF', 'test_node_type_name_0', 'valid_source_types',
+#                 ['capability_types', 'test_capability_type_name_0',
+#                  ])
 
-update_template('SSNLEHCCGKGF', 'test_node_type_name_0', 'valid_source_types',
-                ['capability_types', 'test_capability_type_name_0',
-                 ])
+update_template('SSNLEHCCGKGF', 'new_metadata_value', 'value',
+                ['metadata', 'new_metadata'], 'delete')
+#                  ])

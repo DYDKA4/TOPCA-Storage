@@ -30,14 +30,36 @@ UPDATE:
             value_name = value
 
     update для RepositoryDefinition:
-        Only method PATCH
-        http://.../yaml-template/*cluster_name*/repositories/*name*
-        value_name = name | url | description | credential
+        update:
+            Only method PATCH
+            http://.../yaml-template/*cluster_name*/repositories/*name*
+            value_name = name | url | description | credential
+        delete: required type_update = delete
+            Only method PATCH
+            http://.../yaml-template/*cluster_name*/repositories/*name*
+            value_name = ANY
+            value = ANY
+        add: required type_update = add
+            Only method PATCH
+            http://.../yaml-template/*cluster_name*/repositories/*name*
+            value_name = ANY
+            value = ANY
 
     update для ImportDefinition:
-        Only method PATCH
-        http://.../yaml-template/*cluster_name*/imports/*file*
-        value_name = repository	| namespace_uri | namespace_prefix | file
+        update:
+            Only method PATCH
+            http://.../yaml-template/*cluster_name*/imports/*file*
+            value_name = repository	| namespace_uri | namespace_prefix | file
+        delete: required type_update = delete
+            Only method PATCH
+            http://.../yaml-template/*cluster_name*/imports/*file*
+            value_name = ANY
+            value = ANY
+        add: required type_update = add
+            Only method PATCH
+            http://.../yaml-template/*cluster_name*/imports/*file*
+            value_name = ANY
+            value = ANY
 
     для ArtifactType:
         Only method PATCH

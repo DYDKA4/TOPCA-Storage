@@ -61,7 +61,9 @@ def yaml_update(varargs=None):
     value = request.args.get('value')
     value_name = request.args.get('value_name')
     type_update = request.args.get('type_update')
-    if type_update is None or type_update not in {'delete', 'add'}:
+    if type_update is None:
+        type_update = ""
+    elif type_update not in {'delete', 'add'}:
         abort(400)
     print(value_name, value, cluster_name, varargs)
     if not value_name or not value:

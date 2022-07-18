@@ -2,8 +2,10 @@ from werkzeug.exceptions import abort
 
 from nebula_communication.generate_uuid import generate_uuid
 from nebula_communication.nebula_functions import update_vertex, fetch_vertex, add_in_vertex, add_edge
-from nebula_communication.update_template.Definition.ImportDefinitionUpdater import update_import_definition
-from nebula_communication.update_template.Definition.RepositoryDefinitionUpdater import update_repository_definition
+from nebula_communication.update_template.Definition.ImportDefinitionUpdater import update_import_definition, \
+    add_import_definition
+from nebula_communication.update_template.Definition.RepositoryDefinitionUpdater import update_repository_definition, \
+    add_repository
 from nebula_communication.update_template.Definition.TopologyTemplateDefinitionUpdater import \
     update_topology_template_definition
 from nebula_communication.update_template.Other.MetadataUpdater import update_metadata, add_metadata
@@ -31,9 +33,11 @@ def update_template(cluster_name: str, value, value_name, varargs: list, type_up
         if not add_metadata(type_update, varargs, value, value_name, cluster_name, cluster_vid):
             update_metadata(cluster_vid, value, value_name, varargs, type_update)
     elif varargs[0] == 'repositories':
-        update_repository_definition(cluster_vid, value, value_name, varargs)
+        if not add_repository(type_update, varargs, cluster_name, cluster_vid, varargs[0]):
+            update_repository_definition(cluster_vid, value, value_name, varargs, type_update)
     elif varargs[0] == 'imports':
-        update_import_definition(cluster_vid, value, value_name, varargs)
+        if not add_import_definition(type_update, varargs, cluster_name, cluster_vid, varargs[0]):
+            update_import_definition(cluster_vid, value, value_name, varargs, type_update)
     elif varargs[0] == 'artifact_types':
         update_artifact_type(cluster_vid, value, value_name, varargs)
     elif varargs[0] == 'data_types':
@@ -65,5 +69,5 @@ def update_template(cluster_name: str, value, value_name, varargs: list, type_up
 #                  ])
 
 update_template('SSNLEHCCGKGF', 'new_metadata_value', 'value',
-                ['metadata', 'new_metadata_2'], 'delete')
+                ['imports', 'new_import_file'], 'delete')
 #                  ])

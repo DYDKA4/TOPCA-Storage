@@ -126,9 +126,20 @@ UPDATE:
             value = ANY
 
     для DataType:
-        Only method PATCH
-        http://.../yaml-template/*cluster_name*/data_types/*name*
-        value_name = name | version	| description | derived_from
+        update:
+            Only method PATCH
+            http://.../yaml-template/*cluster_name*/data_types/*name*
+            value_name = name | version	| description | derived_from
+        delete: required type_update = delete
+            Only method PATCH
+            http://.../yaml-template/*cluster_name*/data_types/*name*
+            value_name = ANY
+            value = ANY
+        add: required type_update = add
+            Only method PATCH
+            http://.../yaml-template/*cluster_name*/data_types/*name*
+            value_name = ANY
+            value = ANY
 
     для CapabilityType:
         Only method PATCH

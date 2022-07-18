@@ -57,9 +57,11 @@ def update_property_definition(service_template_vid, father_node_vid, value, val
         if not add_constraint_clause(type_update, varargs[3:], cluster_name, property_vid_to_update, varargs[2]):
             update_constraint_clause(property_vid_to_update, value, value_name, varargs[2:], type_update)
     elif varargs[2] == 'key_schema':
-        update_schema_definition(service_template_vid, property_vid_to_update, value, value_name, varargs[2:])
+        update_schema_definition(service_template_vid, property_vid_to_update, value, value_name, varargs[2:],
+                                 type_update)
     elif varargs[2] == 'entry_schema':
-        update_schema_definition(service_template_vid, property_vid_to_update, value, value_name, varargs[2:])
+        update_schema_definition(service_template_vid, property_vid_to_update, value, value_name, varargs[2:],
+                                 type_update)
     else:
         abort(400)
 

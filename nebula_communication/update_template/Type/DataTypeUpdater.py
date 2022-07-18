@@ -66,9 +66,13 @@ def update_data_type(father_node_vid, value, value_name, varargs: list, type_upd
         if not add_metadata(type_update, varargs[2:], value, value_name, cluster_name, data_type_vid_to_update):
             update_metadata(data_type_vid_to_update, value, value_name, varargs[2:], type_update)
     elif varargs[2] == 'key_schema':
-        update_schema_definition(father_node_vid, data_type_vid_to_update, value, value_name, varargs[2:], type_update)
+        if not add_constraint_clause(type_update, varargs[1:], cluster_name, data_type_vid_to_update, varargs[0]):
+            update_schema_definition(father_node_vid, data_type_vid_to_update, value, value_name, varargs[2:],
+                                     type_update, cluster_name)
     elif varargs[2] == 'entry_schema':
-        update_schema_definition(father_node_vid, data_type_vid_to_update, value, value_name, varargs[2:], type_update)
+        if not add_constraint_clause(type_update, varargs[1:], cluster_name, data_type_vid_to_update, varargs[0]):
+            update_schema_definition(father_node_vid, data_type_vid_to_update, value, value_name, varargs[2:],
+                                     type_update, cluster_name)
     else:
         abort(400)
 

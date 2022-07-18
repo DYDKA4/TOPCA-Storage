@@ -3,7 +3,8 @@ from werkzeug.exceptions import abort
 from nebula_communication.generate_uuid import generate_uuid
 from nebula_communication.nebula_functions import find_destination, fetch_vertex, update_vertex, delete_edge, add_edge, \
     delete_vertex, add_in_vertex
-from nebula_communication.update_template.Definition.SchemaDefinitionUpdate import update_schema_definition
+from nebula_communication.update_template.Definition.SchemaDefinitionUpdate import update_schema_definition, \
+    add_schema_definition
 from nebula_communication.update_template.Other.ConstraintClauseUpdater import update_constraint_clause, \
     add_constraint_clause
 from parser.parser.tosca_v_1_3.definitions.PropertyDefinition import PropertyDefinition
@@ -57,11 +58,13 @@ def update_property_definition(service_template_vid, father_node_vid, value, val
         if not add_constraint_clause(type_update, varargs[3:], cluster_name, property_vid_to_update, varargs[2]):
             update_constraint_clause(property_vid_to_update, value, value_name, varargs[2:], type_update)
     elif varargs[2] == 'key_schema':
-        update_schema_definition(service_template_vid, property_vid_to_update, value, value_name, varargs[2:],
-                                 type_update)
+        if not add_schema_definition(type_update, varargs[2:], cluster_name, property_vid_to_update, varargs[2]):
+            update_schema_definition(service_template_vid, property_vid_to_update, value, value_name, varargs[2:],
+                                     type_update, cluster_name)
     elif varargs[2] == 'entry_schema':
-        update_schema_definition(service_template_vid, property_vid_to_update, value, value_name, varargs[2:],
-                                 type_update)
+        if not add_schema_definition(type_update, varargs[2:], cluster_name, property_vid_to_update, varargs[2]):
+            update_schema_definition(service_template_vid, property_vid_to_update, value, value_name, varargs[2:],
+                                     type_update, cluster_name)
     else:
         abort(400)
 

@@ -103,10 +103,18 @@ UPDATE:
             http://.../yaml-template/<path:varargs>/entry_schema
             value_name = description
         delete: required type_update = delete
-            doesn't support
+            Only method PATCH
+            DELETE ALL key_schema or entry_schema, to avoid error
+            http://.../yaml-template/<path:varargs>/key_schema OR
+            http://.../yaml-template/<path:varargs>/entry_schema
+            value_name = ANY
+            value = ANY
         add: required type_update = add
-            doesn't support
-
+            Only method PATCH
+            http://.../yaml-template/<path:varargs>/key_schema OR
+            http://.../yaml-template/<path:varargs>/entry_schema
+            value_name = ANY
+            value = ANY
 
     для ConstraintClause:
         update:

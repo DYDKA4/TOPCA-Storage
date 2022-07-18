@@ -5,7 +5,7 @@ from nebula_communication.nebula_functions import find_destination, fetch_vertex
     delete_vertex, add_in_vertex
 from nebula_communication.update_template.Definition.PropertyDefinitionUpdater import update_property_definition, \
     add_property_definition
-from nebula_communication.update_template.Other.MetadataUpdater import update_metadata
+from nebula_communication.update_template.Other.MetadataUpdater import update_metadata, add_metadata
 from parser.parser.tosca_v_1_3.types.ArtifactType import ArtifactType
 
 
@@ -56,7 +56,8 @@ def update_artifact_type(father_node_vid, value, value_name, varargs: list, type
             update_property_definition(father_node_vid, artifact_vid_to_update, value, value_name, varargs[2:],
                                        type_update, cluster_name)
     elif varargs[2] == 'metadata':
-        update_metadata(artifact_vid_to_update, value, value_name, varargs[2:], type_update)
+        if not add_metadata(type_update, varargs[2:], value, value_name, cluster_name, artifact_vid_to_update):
+            update_metadata(artifact_vid_to_update, value, value_name, varargs[2:], type_update)
     else:
         abort(400)
 

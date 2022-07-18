@@ -6,7 +6,7 @@ from nebula_communication.update_template.Definition.ImportDefinitionUpdater imp
 from nebula_communication.update_template.Definition.RepositoryDefinitionUpdater import update_repository_definition
 from nebula_communication.update_template.Definition.TopologyTemplateDefinitionUpdater import \
     update_topology_template_definition
-from nebula_communication.update_template.Other.MetadataUpdater import update_metadata
+from nebula_communication.update_template.Other.MetadataUpdater import update_metadata, add_metadata
 from nebula_communication.update_template.Type.ArtifactTypeUpdater import update_artifact_type
 from nebula_communication.update_template.Type.CapabilityTypeUpdater import update_capability_type
 from nebula_communication.update_template.Type.DataTypeUpdater import update_data_type
@@ -28,14 +28,7 @@ def update_template(cluster_name: str, value, value_name, varargs: list, type_up
             abort(400)
         update_vertex('ServiceTemplateDefinition', cluster_vid, value_name, value)
     elif varargs[0] == 'metadata':
-        if type_update == 'add':
-            metadata = Metadata('"' + varargs[1] + '"', value)
-            metadata.vertex_type_system = '"Metadata"'
-            generate_uuid(metadata, cluster_name)
-            add_in_vertex('Metadata', 'name, ' + value_name + ', vertex_type_system',
-                          metadata.name + ',' + value + ',' + metadata.vertex_type_system, metadata.vid)
-            add_edge('metadata', '', cluster_vid, metadata.vid, '')
-        else:
+        if not add_metadata(type_update, varargs, value, value_name, cluster_name, cluster_vid):
             update_metadata(cluster_vid, value, value_name, varargs, type_update)
     elif varargs[0] == 'repositories':
         update_repository_definition(cluster_vid, value, value_name, varargs)
@@ -72,5 +65,5 @@ def update_template(cluster_name: str, value, value_name, varargs: list, type_up
 #                  ])
 
 update_template('SSNLEHCCGKGF', 'new_metadata_value', 'value',
-                ['metadata', 'new_metadata'], 'delete')
+                ['metadata', 'new_metadata_2'], 'delete')
 #                  ])

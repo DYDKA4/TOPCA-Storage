@@ -1,6 +1,9 @@
 from werkzeug.exceptions import abort
 
-from nebula_communication.nebula_functions import fetch_vertex, update_vertex, find_destination, delete_vertex
+from nebula_communication.generate_uuid import generate_uuid
+from nebula_communication.nebula_functions import fetch_vertex, update_vertex, find_destination, delete_vertex, \
+    add_in_vertex, add_edge
+from parser.parser.tosca_v_1_3.others.Metadata import Metadata
 
 
 def update_metadata(father_node_vid, value, value_name, varargs: list, type_update):
@@ -26,3 +29,15 @@ def update_metadata(father_node_vid, value, value_name, varargs: list, type_upda
     else:
         value_name = 'values'
     update_vertex('Metadata', metadata_vid_to_update, value_name, value)
+
+
+def add_metadata(type_update, varargs, value, value_name, cluster_name, parent_vid):
+    if type_update == 'add':
+        metadata = Metadata('"' + varargs[1] + '"', value)
+        metadata.vertex_type_system = '"Metadata"'
+        generate_uuid(metadata, cluster_name)
+        add_in_vertex('Metadata', 'name, ' + value_name + ', vertex_type_system',
+                      metadata.name + ',' + value + ',' + metadata.vertex_type_system, metadata.vid)
+        add_edge('metadata', '', parent_vid, metadata.vid, '')
+        return True
+    return False

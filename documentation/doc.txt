@@ -1,21 +1,33 @@
 
 
 UPDATE:
-    http://.../yaml-template/<path:varargs>/cluster_name?&value_name=*value_name*&value=*value*
+    http://.../yaml-template/<path:varargs>/cluster_name?&value_name=*value_name*&&value=*value*&&type_update==*{add|delete}*
 
 
-    update для ServiceTemplateDefinition:
-        Only method PATCH
-        if type_update == 'delete': ERROR
-        if type_update == 'add' : ERROR
-        http://.../yaml-template/*cluster_name*
-        value_name = tosca_definitions_version | namespace | description | dsl_definitions
+    ServiceTemplateDefinition:
+        update:
+            Only method PATCH
+            if type_update == 'delete': ERROR
+            if type_update == 'add' : ERROR
+            http://.../yaml-template/*cluster_name*
+            value_name = tosca_definitions_version | namespace | description | dsl_definitions
 
-    update для Metadata:
-        Only method PATCH
-        http://.../yaml-template/*cluster_name*/metadata/*name*
-        http://.../<path:varargs>/metadata/*name*
-        value_name = value
+    Metadata:
+        update:
+            Only method PATCH
+            http://.../yaml-template/*cluster_name*/metadata/*name*
+            http://.../<path:varargs>/metadata/*name*
+            value_name = value
+        delete: required type_update = delete
+            Only method PATCH
+            http://.../yaml-template/*cluster_name*/metadata/*name*
+            http://.../<path:varargs>/metadata/*name*
+            value_name = ANY
+            value = ANY
+        add: required type_update = add
+            Only method PATCH
+            http://.../yaml-template/*cluster_name*/metadata/*name*
+            value_name = value
 
     update для RepositoryDefinition:
         Only method PATCH

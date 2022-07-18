@@ -150,12 +150,23 @@ UPDATE:
             value = ANY
 
     для CapabilityType:
-        Only method PATCH
-        http://.../yaml-template/*cluster_name*/data_types/*name*
-        value_name = name | version	| description | derived_from | valid_source_types
-        if value_name is valid_source_types:
-            if value in valid_source_types it will be removed from valid_source_types,
-            if value not in valid_source_type it will be added into valid_source_type
+        update:
+            Only method PATCH
+            http://.../yaml-template/*cluster_name*/data_types/*name*
+            value_name = name | version	| description | derived_from | valid_source_types
+            if value_name is valid_source_types:
+                if value in valid_source_types it will be removed from valid_source_types,
+                if value not in valid_source_type it will be added into valid_source_type
+        delete: required type_update = delete
+            Only method PATCH
+            http://.../yaml-template/*cluster_name*/data_types/*name*
+            value_name = ANY
+            value = ANY
+        add: required type_update = add
+            Only method PATCH
+            http://.../yaml-template/*cluster_name*/data_types/*name*
+            value_name = ANY
+            value = ANY
 
     для OperationDefinition:
         Only method PATCH

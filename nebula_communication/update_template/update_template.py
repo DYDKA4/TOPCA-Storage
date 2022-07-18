@@ -10,8 +10,8 @@ from nebula_communication.update_template.Definition.TopologyTemplateDefinitionU
     update_topology_template_definition
 from nebula_communication.update_template.Other.MetadataUpdater import update_metadata, add_metadata
 from nebula_communication.update_template.Type.ArtifactTypeUpdater import update_artifact_type, add_artifact_type
-from nebula_communication.update_template.Type.CapabilityTypeUpdater import update_capability_type
-from nebula_communication.update_template.Type.DataTypeUpdater import update_data_type
+from nebula_communication.update_template.Type.CapabilityTypeUpdater import update_capability_type, add_capability_type
+from nebula_communication.update_template.Type.DataTypeUpdater import update_data_type, add_data_type
 from nebula_communication.update_template.Type.GroupTypeUpdater import update_group_type
 from nebula_communication.update_template.Type.InterfaceTypeUpdater import update_interface_type
 from nebula_communication.update_template.Type.NodeTypeUpdater import update_node_type
@@ -42,9 +42,11 @@ def update_template(cluster_name: str, value, value_name, varargs: list, type_up
         if not add_artifact_type(type_update, varargs, cluster_name, cluster_vid, varargs[0]):
             update_artifact_type(cluster_vid, value, value_name, varargs, type_update, cluster_name)
     elif varargs[0] == 'data_types':
-        update_data_type(cluster_vid, value, value_name, varargs, type_update, cluster_name)
+        if not add_data_type(type_update, varargs, cluster_name, cluster_vid, varargs[0]):
+            update_data_type(cluster_vid, value, value_name, varargs, type_update, cluster_name)
     elif varargs[0] == 'capability_types':
-        update_capability_type(cluster_vid, value, value_name, varargs)
+        if not add_capability_type(type_update, varargs, cluster_name, cluster_vid, varargs[0]):
+            update_capability_type(cluster_vid, value, value_name, varargs, type_update, cluster_name)
     elif varargs[0] == 'interface_types':  # todo Тестить
         update_interface_type(cluster_vid, value, value_name, varargs)
     elif varargs[0] == 'relationship_types':  # todo Тестить

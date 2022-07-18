@@ -77,7 +77,7 @@ def update_data_type(father_node_vid, value, value_name, varargs: list, type_upd
         abort(400)
 
 
-def add_artifact_type(type_update, varargs, cluster_name, parent_vid, edge_name):
+def add_data_type(type_update, varargs, cluster_name, parent_vid, edge_name):
     if type_update == 'add' and len(varargs) == 2:
         data_type = DataType('"' + varargs[1] + '"')
         generate_uuid(data_type, cluster_name)

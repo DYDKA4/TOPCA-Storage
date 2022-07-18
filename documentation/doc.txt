@@ -62,28 +62,68 @@ UPDATE:
             value = ANY
 
     для ArtifactType:
-        Only method PATCH
-        http://.../yaml-template/*cluster_name*/artifact_types/*name*
-        value_name = name | version	| description | mime_type | derived_from
+        update:
+            Only method PATCH
+            http://.../yaml-template/*cluster_name*/artifact_types/*name*
+            value_name = name | version	| description | mime_type | derived_from
+        delete: required type_update = delete
+            Only method PATCH
+            http://.../yaml-template/*cluster_name*/artifact_types/*name*
+            value_name = ANY
+            value = ANY
+        add: required type_update = add
+            Only method PATCH
+            http://.../yaml-template/*cluster_name*/artifact_types/*name*
+            value_name = ANY
+            value = ANY
 
     для PropertyDefinition:
+        update:
         Only method PATCH
-        http://.../yaml-template/<path:varargs>/properties/*name* OR
-        http://.../yaml-template/<path:varargs>/inputs/*name*
-
-        value_name = name | description | required | status | default
+            http://.../yaml-template/<path:varargs>/properties/*name* OR
+            http://.../yaml-template/<path:varargs>/inputs/*name*
+            value_name = name | description | required | status | default
+        delete: required type_update = delete
+            Only method PATCH
+            http://.../yaml-template/<path:varargs>/properties/*name* OR
+            http://.../yaml-template/<path:varargs>/inputs/*name*
+            value_name = ANY
+            value = ANY
+        add: required type_update = add
+            Only method PATCH
+            http://.../yaml-template/<path:varargs>/properties/*name* OR
+            http://.../yaml-template/<path:varargs>/inputs/*name*
+            value_name = ANY
+            value = ANY
 
     для SchemaDefinition:
-        Only method PATCH
-        http://.../yaml-template/<path:varargs>/key_schema OR
-        http://.../yaml-template/<path:varargs>/entry_schema
-        value_name = description
+        update:
+            Only method PATCH
+            http://.../yaml-template/<path:varargs>/key_schema OR
+            http://.../yaml-template/<path:varargs>/entry_schema
+            value_name = description
+        delete: required type_update = delete
+            doesn't support
+        add: required type_update = add
+            doesn't support
+
 
     для ConstraintClause:
-        Only method PATCH
-        Attention! constraint's operator can be not unique
-        http://.../yaml-template/<path:varargs>/constraints/*operator*
-        value_name = value
+        update:
+            Only method PATCH
+            Attention! constraint's operator can be not unique
+            http://.../yaml-template/<path:varargs>/constraints/*operator*
+            value_name = value
+        delete: required type_update = delete
+            http://.../yaml-template/<path:varargs>/constraints/*operator*
+            Attention! constraint's operator can be not unique
+            value_name = ANY
+            value = ANY
+        add: required type_update = add
+            http://.../yaml-template/<path:varargs>/constraints/*operator*
+            Attention! constraint's operator can be not unique
+            value_name = ANY
+            value = ANY
 
     для DataType:
         Only method PATCH

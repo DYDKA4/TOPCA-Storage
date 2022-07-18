@@ -9,7 +9,7 @@ from nebula_communication.update_template.Definition.RepositoryDefinitionUpdater
 from nebula_communication.update_template.Definition.TopologyTemplateDefinitionUpdater import \
     update_topology_template_definition
 from nebula_communication.update_template.Other.MetadataUpdater import update_metadata, add_metadata
-from nebula_communication.update_template.Type.ArtifactTypeUpdater import update_artifact_type
+from nebula_communication.update_template.Type.ArtifactTypeUpdater import update_artifact_type, add_artifact_type
 from nebula_communication.update_template.Type.CapabilityTypeUpdater import update_capability_type
 from nebula_communication.update_template.Type.DataTypeUpdater import update_data_type
 from nebula_communication.update_template.Type.GroupTypeUpdater import update_group_type
@@ -39,7 +39,8 @@ def update_template(cluster_name: str, value, value_name, varargs: list, type_up
         if not add_import_definition(type_update, varargs, cluster_name, cluster_vid, varargs[0]):
             update_import_definition(cluster_vid, value, value_name, varargs, type_update)
     elif varargs[0] == 'artifact_types':
-        update_artifact_type(cluster_vid, value, value_name, varargs)
+        if not add_artifact_type(type_update, varargs, cluster_name, cluster_vid, varargs[0]):
+            update_artifact_type(cluster_vid, value, value_name, varargs, type_update, cluster_name)
     elif varargs[0] == 'data_types':
         update_data_type(cluster_vid, value, value_name, varargs)
     elif varargs[0] == 'capability_types':
@@ -68,6 +69,9 @@ def update_template(cluster_name: str, value, value_name, varargs: list, type_up
 #                 ['capability_types', 'test_capability_type_name_0',
 #                  ])
 
+# update_template('SSNLEHCCGKGF', 'new_metadata_value', 'value',
+#                 ['artifact_types', 'new_artifact_type', 'properties', 'new_property_definition'], 'delete')
+
 update_template('SSNLEHCCGKGF', 'new_metadata_value', 'value',
-                ['imports', 'new_import_file'], 'delete')
-#                  ])
+                ['artifact_types', 'new_artifact_type', 'properties', 'new_property_definition', 'constraints',
+                 'constraints'], 'delete')

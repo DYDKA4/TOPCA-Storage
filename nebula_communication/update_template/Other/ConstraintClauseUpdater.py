@@ -1,9 +1,12 @@
 from werkzeug.exceptions import abort
 
-from nebula_communication.nebula_functions import fetch_vertex, update_vertex, find_destination
+from nebula_communication.generate_uuid import generate_uuid
+from nebula_communication.nebula_functions import fetch_vertex, update_vertex, find_destination, delete_vertex, \
+    add_in_vertex, add_edge
+from parser.parser.tosca_v_1_3.others.ConstraintСlause import ConstraintClause
 
 
-def update_constraint_clause(father_node_vid, value, value_name, varargs: list):
+def update_constraint_clause(father_node_vid, value, value_name, varargs: list, type_update):
     if len(varargs) != 2:
         abort(400)
     destination = find_destination(father_node_vid, varargs[0])
@@ -18,8 +21,24 @@ def update_constraint_clause(father_node_vid, value, value_name, varargs: list):
             break
     if constraint_clause_vid_to_update is None:
         abort(400)
+    if type_update == 'delete':
+        delete_vertex('"' + constraint_clause_vid_to_update.as_string() + '"')
+        return
     if value_name != 'value':
         abort(400)
     else:
         value_name = 'values'
     update_vertex('ConstraintClause', constraint_clause_vid_to_update, value_name, value)
+
+
+def add_constraint_clause(type_update, varargs, cluster_name, parent_vid, edge_name):
+    if type_update == 'add':
+        constraint_clause = ConstraintClause()
+        constraint_clause.operator = '"' + varargs[0] + '"'
+        generate_uuid(constraint_clause, cluster_name)
+        add_in_vertex(constraint_clause.vertex_type_system, 'operator, vertex_type_system',
+                      constraint_clause.operator + ',"' + constraint_clause.vertex_type_system + '"',
+                      constraint_clause.vid)
+        add_edge(edge_name, '', parent_vid, constraint_clause.vid, '')
+        return True
+    return False

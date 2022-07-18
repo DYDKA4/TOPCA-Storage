@@ -1,10 +1,11 @@
 from werkzeug.exceptions import abort
 
-from nebula_communication.nebula_functions import find_destination, fetch_vertex, update_vertex, delete_edge, add_edge
+from nebula_communication.nebula_functions import find_destination, fetch_vertex, update_vertex, delete_edge, add_edge, \
+    delete_vertex
 from nebula_communication.update_template.Other.ConstraintClauseUpdater import update_constraint_clause
 
 
-def update_schema_definition(service_template_vid, father_node_vid, value, value_name, varargs: list):
+def update_schema_definition(service_template_vid, father_node_vid, value, value_name, varargs: list, type_update):
     if len(varargs) < 1:
         abort(400)
     destination = find_destination(father_node_vid, varargs[0])
@@ -37,11 +38,13 @@ def update_schema_definition(service_template_vid, father_node_vid, value, value
             abort(501)
     elif len(varargs) > 1:
         if varargs[1] == 'key_schema':
-            update_schema_definition(service_template_vid, schema_vid_to_update, value, value_name, varargs[1:])
+            update_schema_definition(service_template_vid, schema_vid_to_update, value, value_name, varargs[1:],
+                                     type_update)
         elif varargs[1] == 'entry_schema':
-            update_schema_definition(service_template_vid, schema_vid_to_update, value, value_name, varargs[1:])
+            update_schema_definition(service_template_vid, schema_vid_to_update, value, value_name, varargs[1:],
+                                     type_update)
         elif varargs[1] == 'constraints':
-            update_constraint_clause(schema_vid_to_update, value, value_name, varargs[1:])
+            update_constraint_clause(schema_vid_to_update, value, value_name, varargs[1:], type_update)
         else:
             abort(400)
     else:

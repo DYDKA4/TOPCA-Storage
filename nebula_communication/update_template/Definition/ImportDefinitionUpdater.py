@@ -21,9 +21,6 @@ def update_import_definition(father_node_vid, value, value_name, varargs: list, 
             break
     if repository_vid_to_update is None:
         abort(400)
-    if type_update == 'delete':
-        delete_vertex('"' + repository_vid_to_update.as_string() + '"')
-        return
     vertex_value = fetch_vertex(repository_vid_to_update, 'ImportDefinition')
     vertex_value = vertex_value.as_map()
     if value_name not in vertex_value.keys():

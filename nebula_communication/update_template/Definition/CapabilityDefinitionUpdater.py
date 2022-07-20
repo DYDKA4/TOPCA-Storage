@@ -1,12 +1,18 @@
 from werkzeug.exceptions import abort
 
-from nebula_communication.nebula_functions import find_destination, fetch_vertex, update_vertex, delete_edge, add_edge
-from nebula_communication.update_template.Definition.AttributeDefinitionUpdater import update_attribute_definition
-from nebula_communication.update_template.Definition.PropertyDefinitionUpdater import update_property_definition
-from nebula_communication.update_template.Other.OccurrencesUpdater import update_occurrences
+from nebula_communication.generate_uuid import generate_uuid
+from nebula_communication.nebula_functions import find_destination, fetch_vertex, update_vertex, delete_edge, add_edge, \
+    add_in_vertex, delete_vertex
+from nebula_communication.update_template.Definition.AttributeDefinitionUpdater import update_attribute_definition, \
+    add_attribute_definition
+from nebula_communication.update_template.Definition.PropertyDefinitionUpdater import update_property_definition, \
+    add_property_definition
+from nebula_communication.update_template.Other.OccurrencesUpdater import update_occurrences, add_occurrences
+from parser.parser.tosca_v_1_3.definitions.CapabilityDefinition import CapabilityDefinition
 
 
-def update_capability_definition(service_template_vid, father_node_vid, value, value_name, varargs: list):
+def update_capability_definition(service_template_vid, father_node_vid, value, value_name, varargs: list,
+                                 type_update, cluster_name):
     if len(varargs) < 2:
         abort(400)
     destination = find_destination(father_node_vid, varargs[0])
@@ -22,6 +28,9 @@ def update_capability_definition(service_template_vid, father_node_vid, value, v
     if capability_vid_to_update is None:
         abort(400)
     if len(varargs) == 2:
+        if type_update == 'delete':
+            delete_vertex('"' + capability_vid_to_update.as_string() + '"')
+            return
         vertex_value = fetch_vertex(capability_vid_to_update, 'CapabilityDefinition')
         vertex_value = vertex_value.as_map()
         if value_name == 'type':
@@ -43,15 +52,15 @@ def update_capability_definition(service_template_vid, father_node_vid, value, v
             add_edge(value_name, '', capability_vid_to_update, new_type_vid, '')
         elif value_name == 'valid_source_type':
             valid_source_type_vertexes = find_destination(capability_vid_to_update, value_name)
-            delete_vertex = None
+            delete_vertex_vid = None
             for valid_source_type_vid in valid_source_type_vertexes:
                 valid_source_value = fetch_vertex(valid_source_type_vid, 'NodeType')
                 valid_source_value = valid_source_value.as_map()
                 if '"' + valid_source_value.get('name').as_string() + '"' == value:
-                    delete_vertex = valid_source_type_vid
+                    delete_vertex_vid = valid_source_type_vid
                     break
-            if delete_vertex:
-                delete_edge(value_name, capability_vid_to_update, delete_vertex)
+            if delete_vertex_vid:
+                delete_edge(value_name, capability_vid_to_update, delete_vertex_vid)
             else:
                 add_vertex = None
                 node_types_vertexes = find_destination(father_node_vid, 'node_types')
@@ -71,10 +80,26 @@ def update_capability_definition(service_template_vid, father_node_vid, value, v
         else:
             abort(501)
     elif varargs[2] == 'properties':
-        update_property_definition(service_template_vid, capability_vid_to_update, value, value_name, varargs[2:])
+        if add_property_definition(type_update, varargs[2:],cluster_name, capability_vid_to_update,varargs[2]):
+            update_property_definition(service_template_vid, capability_vid_to_update, value, value_name, varargs[2:],
+                                       type_update, cluster_name)
     elif varargs[2] == 'attributes':
-        update_attribute_definition(service_template_vid, capability_vid_to_update, value, value_name, varargs[2:])
+        if add_attribute_definition(type_update, varargs[2:], cluster_name, capability_vid_to_update, varargs[2]):
+            update_attribute_definition(service_template_vid, capability_vid_to_update, value, value_name, varargs[2:],
+                                        type_update, cluster_name)
     elif varargs[2] == 'occurrences':
-        update_occurrences(capability_vid_to_update, value, value_name, varargs[2:])
+        if add_occurrences(type_update, varargs[2:], cluster_name, capability_vid_to_update, varargs[2]):
+            update_occurrences(capability_vid_to_update, value, value_name, varargs[2:], type_update,)
     else:
         abort(400)
+
+
+def add_capability_definition(type_update, varargs, cluster_name, parent_vid, edge_name):
+    if type_update == 'add' and len(varargs) == 2:
+        data_type = CapabilityDefinition('"' + varargs[1] + '"')
+        generate_uuid(data_type, cluster_name)
+        add_in_vertex(data_type.vertex_type_system, 'name, vertex_type_system',
+                      data_type.name + ',"' + data_type.vertex_type_system + '"', data_type.vid)
+        add_edge(edge_name, '', parent_vid, data_type.vid, '')
+        return True
+    return False

@@ -317,19 +317,69 @@ UPDATE:
             value = ANY
 
     для Occurrences:
-        Only method PATCH
-        http://.../yaml-template/<path:varargs>/occurrences
-        value_name = minimum | maximum
+        update:
+            Only method PATCH
+            http://.../yaml-template/<path:varargs>/occurrences
+            value_name = minimum | maximum
+        delete: required type_update = delete
+            Only method PATCH
+            DELETE ALL key_schema or entry_schema, to avoid error
+            http://.../yaml-template/<path:varargs>/occurrences
+            value_name = ANY
+            value = ANY
+        add: required type_update = add
+            Only method PATCH
+            http://.../yaml-template/<path:varargs>/occurrences
+            value_name = ANY
+            value = ANY
 
-    для RelationshipDefinition:
-        Only method PATCH
-        http://.../yaml-template/<path:varargs>/relationships/*name*
-        value_name = name | capability | node | relationship
+    для RequirementDefinition:
+        update:
+            Only method PATCH
+            http://.../yaml-template/<path:varargs>/requirements/*name*
+            value_name = name | relationship | capability | node
+        delete: required type_update = delete
+            Only method PATCH
+            http://.../yaml-template/<path:varargs>/requirements/*name*
+            value_name = ANY
+            value = ANY
+        add: required type_update = add
+            Only method PATCH
+            http://.../yaml-template/<path:varargs>/requirements/*name*
+            value_name = ANY
+            value = ANY
+
+    для CapabilityDefinition:
+        update:
+            Only method PATCH
+            http://.../yaml-template/<path:varargs>/capabilities/*name*
+            value_name = name | description | type | valid_source_type
+        delete: required type_update = delete
+            Only method PATCH
+            http://.../yaml-template/<path:varargs>/capabilities/*name*
+            value_name = ANY
+            value = ANY
+        add: required type_update = add
+            Only method PATCH
+            http://.../yaml-template/<path:varargs>/capabilities/*name*
+            value_name = ANY
+            value = ANY
 
     для NodeType:
-        Only method PATCH
-        http://.../yaml-template/*cluster*/node_types/*name*
-        value_name = name | version | description | derived_from
+        update:
+            Only method PATCH
+            http://.../yaml-template/*cluster*/node_types/*name*
+            value_name = name | version | description | derived_from
+        delete: required type_update = delete
+            Only method PATCH
+            http://.../yaml-template/*cluster*/node_types/*name*
+            value_name = ANY
+            value = ANY
+        add: required type_update = add
+            Only method PATCH
+            http://.../yaml-template/*cluster*/node_types/*name*
+            value_name = ANY
+            value = ANY
 
     для GroupType:
         Only method PATCH

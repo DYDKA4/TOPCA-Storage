@@ -12,7 +12,8 @@ from nebula_communication.update_template.Definition.InterfaceDefinitionUpdater 
     add_interface_definition
 from nebula_communication.update_template.Definition.NodeFilterDefinitionUpdater import update_node_filter_definition
 from nebula_communication.update_template.Definition.PropertyDefinitionUpdater import update_property_definition
-from nebula_communication.update_template.Definition.RequirementDefinitionUpdater import update_requirement_definition
+from nebula_communication.update_template.Definition.RequirementDefinitionUpdater import update_requirement_definition, \
+    add_requirement_definition
 from nebula_communication.update_template.Other.MetadataUpdater import update_metadata, add_metadata
 
 
@@ -79,14 +80,17 @@ def update_node_template(service_template, father_node_vid, value, value_name, v
     elif varargs[2] == 'attributes':
         update_attribute_assignment(service_template, node_template_vid_to_update, value, value_name, varargs[2:])
     elif varargs[2] == 'properties':
-        if not add_property_assignment(type_update, varargs, value, value_name, cluster_name,
+        if not add_property_assignment(type_update, varargs[2:], value, value_name, cluster_name,
                                        node_template_vid_to_update):
             update_property_assignment(service_template, node_template_vid_to_update, value, value_name, varargs[2:],
                                        type_update)
     elif varargs[2] == 'requirements':
-        update_requirement_definition(service_template, node_template_vid_to_update, value, value_name, varargs[2:])
+        if not add_requirement_definition(type_update, varargs[2:], value_name, cluster_name, varargs[2]):
+            update_requirement_definition(service_template, node_template_vid_to_update, value, value_name, varargs[2:],
+                                          type_update, cluster_name)
     elif varargs[2] == 'capabilities':
-        update_capability_assignment(service_template, node_template_vid_to_update, value, value_name, varargs[2:])
+            update_capability_assignment(service_template, node_template_vid_to_update, value, value_name, varargs[2:],
+                                         type_update, cluster_name)
     elif varargs[2] == 'interfaces':
         if not add_interface_definition(type_update, varargs[2:], cluster_name, node_template_vid_to_update,
                                         varargs[2]):

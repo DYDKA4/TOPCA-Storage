@@ -6,7 +6,7 @@ from nebula_communication.update_template.Definition.InterfaceDefinitionUpdater 
 from nebula_communication.update_template.Definition.NodeFilterDefinitionUpdater import update_node_filter_definition
 from nebula_communication.update_template.Definition.PropertyDefinitionUpdater import update_property_definition, \
     add_property_definition
-from nebula_communication.update_template.Other.OccurrencesUpdater import update_occurrences
+from nebula_communication.update_template.Other.OccurrencesUpdater import update_occurrences, add_occurrences
 
 
 def update_requirement_assignment(service_template_vid, father_node_vid, value, value_name, varargs: list, type_update,
@@ -133,7 +133,8 @@ def update_requirement_assignment(service_template_vid, father_node_vid, value, 
         else:
             abort(501)
     elif varargs[2] == 'occurrences':
-        update_occurrences(requirement_vid_to_update, value, value_name, varargs[2:])
+        if add_occurrences(type_update, varargs[2:], cluster_name, requirement_vid_to_update, varargs[2]):
+            update_occurrences(requirement_vid_to_update, value, value_name, varargs[2:],type_update)
     elif varargs[2] == 'interfaces':
         if not add_interface_definition(type_update, varargs[2:], cluster_name, requirement_vid_to_update, varargs[2]):
             update_interface_definition(service_template_vid, requirement_vid_to_update, value, value_name, varargs[2:],

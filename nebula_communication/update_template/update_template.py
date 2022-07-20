@@ -16,7 +16,8 @@ from nebula_communication.update_template.Type.GroupTypeUpdater import update_gr
 from nebula_communication.update_template.Type.InterfaceTypeUpdater import update_interface_type, add_interface_type
 from nebula_communication.update_template.Type.NodeTypeUpdater import update_node_type
 from nebula_communication.update_template.Type.PolicyTypeUpdater import update_policy_type
-from nebula_communication.update_template.Type.RelationshipTypeUpdater import update_relationship_type
+from nebula_communication.update_template.Type.RelationshipTypeUpdater import update_relationship_type, \
+    add_relationship_type
 from parser.parser.tosca_v_1_3.others.Metadata import Metadata
 
 
@@ -51,7 +52,8 @@ def update_template(cluster_name: str, value, value_name, varargs: list, type_up
         if not add_interface_type(type_update, varargs, cluster_name, cluster_vid, varargs[0]):
             update_interface_type(cluster_vid, value, value_name, varargs, type_update, cluster_name)
     elif varargs[0] == 'relationship_types':  # todo Тестить
-        update_relationship_type(cluster_vid, value, value_name, varargs)
+        if not add_relationship_type(type_update, varargs, cluster_name, cluster_vid, varargs[0]):
+            update_relationship_type(cluster_vid, value, value_name, varargs,type_update,cluster_name)
     elif varargs[0] == 'node_types':  # todo Тестить
         update_node_type(cluster_vid, value, value_name, varargs)
     elif varargs[0] == 'group_types':  # todo Тестить

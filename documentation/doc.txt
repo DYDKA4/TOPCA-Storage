@@ -571,43 +571,114 @@ UPDATE:
             value = ANY
 
     для GroupDefinition:
-        Only method PATCH
-        http://.../yaml-template/*cluster_name*/topology_template/groups/*name*
-        value_name = name | description | type | members
-        if value_name is members:
-            if value in members it will be removed from members,
-            if value not in members it will be added into members
+        update:
+            Only method PATCH
+            http://.../yaml-template/*cluster_name*/topology_template/groups/*name*
+            value_name = name | description | type | members
+            if value_name is members:
+                if value in members it will be removed from members,
+                if value not in members it will be added into members
+        delete: required type_update = delete
+            Only method PATCH
+            http://.../yaml-template/*cluster_name*/topology_template/groups/*name*
+            value_name = ANY
+            value = ANY
+        add: required type_update = add
+            Only method PATCH
+            http://.../yaml-template/*cluster_name*/topology_template/groups/*name*
+            value_name = ANY
+            value = ANY
 
     для PolicyDefinition:
-        Only method PATCH
-        http://.../yaml-template/*cluster_name*/topology_template/groups/*name*
-        value_name = name | description | type | targets
-        if value_name is targets:
-            if value in targets it will be removed from targets,
-            if value not in targets it will be added into targets
+        update:
+            Only method PATCH
+            http://.../yaml-template/*cluster_name*/topology_template/policies/*name*
+            value_name = name | description | type | targets
+            if value_name is targets:
+                if value in targets it will be removed from targets,
+                if value not in targets it will be added into targets
+        delete: required type_update = delete
+            Only method PATCH
+            http://.../yaml-template/*cluster_name*/topology_template/policies/*name*
+            value_name = ANY
+            value = ANY
+        add: required type_update = add
+            Only method PATCH
+            http://.../yaml-template/*cluster_name*/topology_template/policies/*name*
+            value_name = ANY
+            value = ANY
 
     для RelationshipTemplate:
-        Only method PATCH
-        http://.../yaml-template/*cluster_name*/topology_template/relationship_templates/*name*
-        value_name = name | description | type | copy
+        update:
+            Only method PATCH
+            http://.../yaml-template/*cluster_name*/topology_template/relationship_templates/*name*
+            value_name = name | description | type | copy
+        delete: required type_update = delete
+            Only method PATCH
+            http://.../yaml-template/*cluster_name*/topology_template/relationship_templates/*name*
+            value_name = ANY
+            value = ANY
+        add: required type_update = add
+            Only method PATCH
+            http://.../yaml-template/*cluster_name*/topology_template/relationship_templates/*name*
+            value_name = ANY
+            value = ANY
 
     для ImperativeWorkflowDefinition:
-        Only method PATCH
-        http://.../yaml-template/<path:varargs>/workflows/*name*
-        value_name = description | outputs | name
+        update:
+            Only method PATCH
+            http://.../yaml-template/<path:varargs>/workflows/*name*
+            value_name = description | outputs | name
+        delete: required type_update = delete
+            Only method PATCH
+            http://.../yaml-template/<path:varargs>/workflows/*name*
+            value_name = ANY
+            value = ANY
+        add: required type_update = add
+            Only method PATCH
+            http://.../yaml-template/<path:varargs>/workflows/*name*
+            value_name = ANY
+            value = ANY
 
     для WorkflowPreconditionDefinition:
-        Only method PATCH
-        http://.../yaml-template/<path:varargs>/workflows/precondition
-        value_name = condition (Not Supported) | target_relationship | target
+        update:
+            Only method PATCH
+            http://.../yaml-template/<path:varargs>/workflows/*workflow_name*/precondition
+            value_name = condition (Not Supported) | target_relationship | target
+        delete: required type_update = delete
+            Only method PATCH
+            http://.../yaml-template/<path:varargs>/workflows/*workflow_name*/precondition
+            value_name = ANY
+            value = ANY
+        add: required type_update = add
+            Only method PATCH
+            http://.../yaml-template/<path:varargs>/workflows/*workflow_name*/precondition
+            value_name = ANY
+            value = ANY
 
     для WorkflowStepDefinition:
-        Only method PATCH
-        http://.../yaml-template/<path:varargs>/workflows/steps/*name*
-        value_name = name | operation_host | on_success | on_failure | target_relationship | target |
-            filter (Not Supported) | activities (Not Supported)
+        update:
+            Only method PATCH
+            http://.../yaml-template/<path:varargs>/workflows/*workflow_name*/steps/*name*
+            value_name = name | operation_host | on_success | on_failure | target_relationship | target |
+                filter (Not Supported) | activities (Not Supported)
+        delete: required type_update = delete
+            Only method PATCH
+            http://.../yaml-template/<path:varargs>/workflows/*workflow_name*/steps/*name*
+            value_name = ANY
+            value = ANY
+        add: required type_update = add
+            Only method PATCH
+            http://.../yaml-template/<path:varargs>/workflows/*workflow_name*/steps/*name*
+            value_name = ANY
+            value = ANY
 
     для TopologyTemplateDefinition:
-        Only method PATCH
-        http://.../yaml-template/*cluster_name*/topology_template
-        value_name = description | substitution_mappings
+        update:
+            Only method PATCH
+            http://.../yaml-template/*cluster_name*/topology_template
+            value_name = description | substitution_mappings
+        delete:
+            Not supported
+        add:
+            Not supported

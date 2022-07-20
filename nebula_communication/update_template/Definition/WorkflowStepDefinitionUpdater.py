@@ -1,10 +1,13 @@
 from werkzeug.exceptions import abort
 
+from nebula_communication.generate_uuid import generate_uuid
 from nebula_communication.nebula_functions import find_destination, fetch_vertex, update_vertex, delete_edge, add_edge, \
-    get_all_vid_from_cluster_by_type
+    get_all_vid_from_cluster_by_type, delete_vertex, add_in_vertex
+from parser.parser.tosca_v_1_3.definitions.WorkflowStepDefinition import WorkflowStepDefinition
 
 
-def update_workflow_step_definition(service_template_vid, father_node_vid, value, value_name, varargs: list):
+def update_workflow_step_definition(service_template_vid, father_node_vid, value, value_name, varargs: list,
+                                    type_update):
     if len(varargs) < 2:
         abort(400)
     destination = find_destination(father_node_vid, varargs[0])
@@ -20,6 +23,9 @@ def update_workflow_step_definition(service_template_vid, father_node_vid, value
     if workflow_step_vid_to_update is None:
         abort(400)
     if len(varargs) == 2:
+        if type_update == 'delete':
+            delete_vertex('"' + workflow_step_vid_to_update.as_string() + '"')
+            return
         vertex_value = fetch_vertex(workflow_step_vid_to_update, 'WorkflowStepDefinition')
         vertex_value = vertex_value.as_map()
         topology_template = find_destination(service_template_vid, 'topology_template')
@@ -67,3 +73,14 @@ def update_workflow_step_definition(service_template_vid, father_node_vid, value
         abort(501)
     else:
         abort(400)
+
+
+def add_workflow_step_definition(type_update, varargs, cluster_name, parent_vid, edge_name):
+    if type_update == 'add' and len(varargs) == 2:
+        data_type = WorkflowStepDefinition('"' + varargs[1] + '"')
+        generate_uuid(data_type, cluster_name)
+        add_in_vertex(data_type.vertex_type_system, 'name, vertex_type_system',
+                      data_type.name + ',"' + data_type.vertex_type_system + '"', data_type.vid)
+        add_edge(edge_name, '', parent_vid, data_type.vid, '')
+        return True
+    return False

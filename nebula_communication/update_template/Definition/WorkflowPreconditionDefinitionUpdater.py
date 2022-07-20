@@ -1,24 +1,38 @@
 from werkzeug.exceptions import abort
 
-from nebula_communication.nebula_functions import find_destination, fetch_vertex, update_vertex, delete_edge, add_edge
+from nebula_communication.generate_uuid import generate_uuid
+from nebula_communication.nebula_functions import find_destination, fetch_vertex, update_vertex, delete_edge, add_edge, \
+    delete_vertex, add_in_vertex
 from nebula_communication.update_template.Assignment.PropertyAssignmentUpdater import update_property_assignment
 from nebula_communication.update_template.Definition.InterfaceDefinitionUpdater import update_interface_definition
 from nebula_communication.update_template.Definition.OperationImplementationDefinitionUpdater import \
     update_operation_implementation_definition
 from nebula_communication.update_template.Other.MetadataUpdater import update_metadata
 from nebula_communication.update_template.Other.OccurrencesUpdater import update_occurrences
+from parser.parser.tosca_v_1_3.definitions.WorkflowPreconditionDefinition import WorkflowPreconditionDefinition
 
 
-def update_workflow_precondition_definition(service_template_vid, father_node_vid, value, value_name, varargs: list):
+def update_workflow_precondition_definition(service_template_vid, father_node_vid, value, value_name, varargs: list,
+                                            type_update):
     if len(varargs) < 2:
         abort(400)
     destination = find_destination(father_node_vid, varargs[0])
-    if destination is None or len(destination) > 1:
+    if destination is None:
         abort(400)
+    if len(destination) > 1:
+        if type_update == 'delete':
+            for destination_vid in destination:
+                delete_vertex('"' + destination_vid.as_string() + '"')
+            return
+        else:
+            abort(400)
     workflow_precondition_vid_to_update = destination[0]
     if workflow_precondition_vid_to_update is None:
         abort(400)
     if len(varargs) == 2:
+        if type_update == 'delete':
+            delete_vertex('"' + workflow_precondition_vid_to_update.as_string() + '"')
+            return
         vertex_value = fetch_vertex(workflow_precondition_vid_to_update, 'WorkflowPreconditionDefinition')
         vertex_value = vertex_value.as_map()
         topology_template = find_destination(service_template_vid, 'topology_template')
@@ -72,3 +86,14 @@ def update_workflow_precondition_definition(service_template_vid, father_node_vi
         abort(501)
     else:
         abort(400)
+
+
+def add_workflow_precondition_definition(type_update, varargs, cluster_name, parent_vid, edge_name):
+    if type_update == 'add' and len(varargs) == 1:
+        schema_definition = WorkflowPreconditionDefinition()
+        generate_uuid(schema_definition, cluster_name)
+        add_in_vertex(schema_definition.vertex_type_system, 'vertex_type_system',
+                      '"' + schema_definition.vertex_type_system + '"', schema_definition.vid)
+        add_edge(edge_name, '', parent_vid, schema_definition.vid, '')
+        return True
+    return False

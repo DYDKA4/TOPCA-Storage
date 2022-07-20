@@ -3,7 +3,8 @@ from werkzeug.exceptions import abort
 from nebula_communication.nebula_functions import find_destination, fetch_vertex, update_vertex, add_edge, delete_edge
 from nebula_communication.update_template.Assignment.AttributeAssignmentUpdater import update_attribute_assignment
 from nebula_communication.update_template.Assignment.CapabilityAssignmentUpdater import update_capability_assignment
-from nebula_communication.update_template.Assignment.PropertyAssignmentUpdater import update_property_assignment
+from nebula_communication.update_template.Assignment.PropertyAssignmentUpdater import update_property_assignment, \
+    add_property_assignment
 from nebula_communication.update_template.Definition.ArtifactDefinition import update_artifact_definition
 from nebula_communication.update_template.Definition.AttributeDefinitionUpdater import update_attribute_definition
 from nebula_communication.update_template.Definition.CapabilityDefinitionUpdater import update_capability_definition
@@ -14,7 +15,8 @@ from nebula_communication.update_template.Definition.RequirementDefinitionUpdate
 from nebula_communication.update_template.Other.MetadataUpdater import update_metadata
 
 
-def update_node_template(service_template, father_node_vid, value, value_name, varargs: list):
+def update_node_template(service_template, father_node_vid, value, value_name, varargs: list, type_update,
+                         cluster_name):
     if len(varargs) < 2:
         abort(400)
     destination = find_destination(father_node_vid, varargs[0])
@@ -75,7 +77,10 @@ def update_node_template(service_template, father_node_vid, value, value_name, v
     elif varargs[2] == 'attributes':
         update_attribute_assignment(service_template, node_template_vid_to_update, value, value_name, varargs[2:])
     elif varargs[2] == 'properties':
-        update_property_assignment(service_template, node_template_vid_to_update, value, value_name, varargs[2:])
+        if not add_property_assignment(type_update, varargs, value, value_name, cluster_name,
+                                       node_template_vid_to_update):
+            update_property_assignment(service_template, node_template_vid_to_update, value, value_name, varargs[2:],
+                                       type_update)
     elif varargs[2] == 'requirements':
         update_requirement_definition(service_template, node_template_vid_to_update, value, value_name, varargs[2:])
     elif varargs[2] == 'capabilities':

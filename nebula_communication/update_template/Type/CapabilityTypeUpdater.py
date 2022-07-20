@@ -1,15 +1,12 @@
 from werkzeug.exceptions import abort
 
 from nebula_communication.generate_uuid import generate_uuid
-from nebula_communication.nebula_functions import find_destination, fetch_vertex, update_vertex, add_edge, delete_edge, \
-    add_in_vertex
+from nebula_communication.nebula_functions import find_destination, fetch_vertex, delete_edge, add_edge, update_vertex, \
+    add_in_vertex, delete_vertex
 from nebula_communication.update_template.Definition.AttributeDefinitionUpdater import update_attribute_definition, \
     add_attribute_definition
 from nebula_communication.update_template.Definition.PropertyDefinitionUpdater import update_property_definition, \
     add_property_definition
-from nebula_communication.update_template.Definition.SchemaDefinitionUpdate import update_schema_definition
-from nebula_communication.update_template.Other.ConstraintClauseUpdater import update_constraint_clause
-from nebula_communication.update_template.Other.MetadataUpdater import update_metadata
 from parser.parser.tosca_v_1_3.types.CapabilityType import CapabilityType
 
 
@@ -29,6 +26,9 @@ def update_capability_type(father_node_vid, value, value_name, varargs: list, ty
     if capability_type_vid_to_update is None:
         abort(400)
     if len(varargs) == 2:
+        if type_update == 'delete':
+            delete_vertex('"' + capability_type_vid_to_update.as_string() + '"')
+            return
         vertex_value = fetch_vertex(capability_type_vid_to_update, 'CapabilityType')
         vertex_value = vertex_value.as_map()
         if value_name == 'derived_from':
@@ -49,15 +49,15 @@ def update_capability_type(father_node_vid, value, value_name, varargs: list, ty
             add_edge(value_name, '', capability_type_vid_to_update, new_derived_artifact_vid, '')
         elif value_name == 'valid_source_types':
             valid_source_type_vertexes = find_destination(capability_type_vid_to_update, value_name)
-            delete_vertex = None
+            cap_delete_vertex = None
             for valid_source_type_vid in valid_source_type_vertexes:
                 valid_source_value = fetch_vertex(valid_source_type_vid, 'NodeType')
                 valid_source_value = valid_source_value.as_map()
                 if '"' + valid_source_value.get('name').as_string() + '"' == value:
-                    delete_vertex = valid_source_type_vid
+                    cap_delete_vertex = valid_source_type_vid
                     break
-            if delete_vertex:
-                delete_edge(value_name, capability_type_vid_to_update, delete_vertex)
+            if cap_delete_vertex:
+                delete_edge(value_name, capability_type_vid_to_update, cap_delete_vertex)
             else:
                 add_vertex = None
                 node_types_vertexes = find_destination(father_node_vid, 'node_types')

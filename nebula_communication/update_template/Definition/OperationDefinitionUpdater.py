@@ -1,21 +1,37 @@
 from werkzeug.exceptions import abort
 
+from nebula_communication.generate_uuid import generate_uuid
 from nebula_communication.nebula_functions import find_destination, fetch_vertex, update_vertex, delete_edge, add_edge, \
-    get_all_vid_from_cluster_by_type
-from nebula_communication.update_template.Assignment.PropertyAssignmentUpdater import update_property_assignment
+    get_all_vid_from_cluster_by_type, delete_vertex, add_in_vertex
+from nebula_communication.update_template.Assignment.PropertyAssignmentUpdater import update_property_assignment, \
+    add_property_assignment
 from nebula_communication.update_template.Definition.OperationImplementationDefinitionUpdater import \
-    update_operation_implementation_definition
-from nebula_communication.update_template.Definition.PropertyDefinitionUpdater import update_property_definition
+    update_operation_implementation_definition, add_operation_implementation_definition
+from nebula_communication.update_template.Definition.PropertyDefinitionUpdater import update_property_definition, \
+    add_property_definition
+from parser.parser.tosca_v_1_3.definitions.OperationDefinition import OperationDefinition
 
 
-def update_operation_definition(service_template_vid, father_node_vid, value, value_name, varargs: list):
-    if len(varargs) < 1:
+def update_operation_definition(service_template_vid, father_node_vid, value, value_name, varargs: list,
+                                type_update, cluster_name):
+    if len(varargs) < 2:
         abort(400)
     destination = find_destination(father_node_vid, varargs[0])
-    if destination is None or len(destination) > 1:
+    if destination is None:
         abort(400)
-    operation_vid_to_update = destination[0]
-    if len(varargs) == 1:
+    operation_vid_to_update = None
+    for operation_type_vid in destination:
+        operation_type_value = fetch_vertex(operation_type_vid, 'OperationDefinition')
+        operation_type_value = operation_type_value.as_map()
+        if operation_type_value.get('name').as_string() == varargs[1]:
+            operation_vid_to_update = operation_type_vid
+            break
+    if operation_vid_to_update is None:
+        abort(400)
+    if len(varargs) == 2:
+        if type_update == 'delete':
+            delete_vertex('"' + operation_vid_to_update.as_string() + '"')
+            return
         if value_name == 'implementation':
             implementation = find_destination(operation_vid_to_update, value_name)
             if implementation and fetch_vertex(implementation[0], 'OperationImplementationDefinition'):
@@ -42,26 +58,42 @@ def update_operation_definition(service_template_vid, father_node_vid, value, va
             if value_name not in vertex_value.keys():
                 abort(400)
             update_vertex('OperationDefinition', operation_vid_to_update, value_name, value)
-    elif len(varargs) > 1:
-        if varargs[1] == 'implementation':
+    elif len(varargs) > 2:
+        if varargs[2] == 'implementation':
             implementation = find_destination(operation_vid_to_update, varargs[2])
             if implementation and fetch_vertex(implementation[0], 'ArtifactDefinition'):
                 abort(400)
             elif implementation and fetch_vertex(implementation[0], 'OperationImplementationDefinition'):
-                update_operation_implementation_definition(service_template_vid, operation_vid_to_update, value,
-                                                           value_name, varargs[2:])
+                if not add_operation_implementation_definition(type_update, varargs, cluster_name,
+                                                               operation_vid_to_update, varargs[2]):
+                    update_operation_implementation_definition(service_template_vid, operation_vid_to_update, value,
+                                                               value_name, varargs[2:],type_update, cluster_name)
             else:
                 abort(400)
-        elif varargs[1] == 'inputs':
+        elif varargs[2] == 'inputs':
             inputs_vertex = find_destination(operation_vid_to_update, varargs[2])
             if inputs_vertex and fetch_vertex(inputs_vertex[0], 'PropertyDefinition'):
-                update_property_definition(service_template_vid, operation_vid_to_update, value, value_name,
-                                           varargs[2:])
+                if not add_property_definition(type_update, varargs[2:], cluster_name, operation_vid_to_update,
+                                               varargs[2]):
+                    update_property_definition(service_template_vid, operation_vid_to_update, value, value_name,
+                                               varargs[2:], type_update, cluster_name)
             elif inputs_vertex and fetch_vertex(inputs_vertex[0], 'PropertyAssignment'):
-                update_property_assignment(service_template_vid, operation_vid_to_update, value, value_name,
-                                           varargs[2:])
-
+                if not add_property_assignment(type_update, varargs, value, value_name, cluster_name,
+                                               operation_vid_to_update):
+                    update_property_assignment(service_template_vid, operation_vid_to_update, value,
+                                               value_name, varargs[2:], type_update)
         else:
             abort(400)
     else:
         abort(400)
+
+
+def add_operation_definition(type_update, varargs, cluster_name, parent_vid, edge_name):
+    if type_update == 'add' and len(varargs) == 2:
+        import_definition = OperationDefinition('"' + varargs[1] + '"')
+        generate_uuid(import_definition, cluster_name)
+        add_in_vertex(import_definition.vertex_type_system, 'name, vertex_type_system',
+                      import_definition.name + ',"' + import_definition.vertex_type_system + '"', import_definition.vid)
+        add_edge(edge_name, '', parent_vid, import_definition.vid, '')
+        return True
+    return False

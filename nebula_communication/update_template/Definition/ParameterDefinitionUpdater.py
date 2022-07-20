@@ -48,8 +48,6 @@ def update_parameter_definition(service_template_vid, father_node_vid, value, va
             update_vertex('ParameterDefinition', property_vid_to_update, value_name, value)
         else:
             abort(501)
-    elif varargs[2] == 'property':
-        update_property_assignment(property_vid_to_update, value, value_name, varargs[2:])
     elif varargs[2] == 'key_schema':
         update_schema_definition(service_template_vid, property_vid_to_update, value, value_name, varargs[2:])
     elif varargs[2] == 'entry_schema':

@@ -2,11 +2,13 @@ from werkzeug.exceptions import abort
 
 from nebula_communication.nebula_functions import find_destination, fetch_vertex, update_vertex, delete_edge, add_edge
 from nebula_communication.update_template.Assignment.AttributeAssignmentUpdater import update_attribute_assignment
-from nebula_communication.update_template.Assignment.PropertyAssignmentUpdater import update_property_assignment
+from nebula_communication.update_template.Assignment.PropertyAssignmentUpdater import update_property_assignment, \
+    add_property_assignment
 from nebula_communication.update_template.Other.MetadataUpdater import update_metadata
 
 
-def update_group_definition(service_template_vid, father_node_vid, value, value_name, varargs: list):
+def update_group_definition(service_template_vid, father_node_vid, value, value_name, varargs: list, type_update,
+                            cluster_name):
     if len(varargs) < 2:
         abort(400)
     destination = find_destination(father_node_vid, varargs[0])
@@ -73,10 +75,12 @@ def update_group_definition(service_template_vid, father_node_vid, value, value_
         else:
             abort(501)
     elif varargs[2] == 'metadata':
-        update_metadata(group_vid_to_update, value, value_name, varargs[2:])
+        update_metadata(group_vid_to_update, value, value_name, varargs[2:], type_update)
     elif varargs[2] == 'attributes':
         update_attribute_assignment(service_template_vid, group_vid_to_update, value, value_name, varargs[2:])
     elif varargs[2] == 'properties':
-        update_property_assignment(service_template_vid, group_vid_to_update, value, value_name, varargs[2:])
+        if not add_property_assignment(type_update, varargs, value, value_name, cluster_name, group_vid_to_update):
+            update_property_assignment(service_template_vid, group_vid_to_update, value, value_name, varargs[2:],
+                                       type_update)
     else:
         abort(400)

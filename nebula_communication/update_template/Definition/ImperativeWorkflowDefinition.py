@@ -1,9 +1,10 @@
 from werkzeug.exceptions import abort
 
 from nebula_communication.nebula_functions import find_destination, fetch_vertex, update_vertex, delete_edge, add_edge
-from nebula_communication.update_template.Assignment.PropertyAssignmentUpdater import update_property_assignment
+from nebula_communication.update_template.Assignment.PropertyAssignmentUpdater import update_property_assignment, \
+    add_property_assignment
 from nebula_communication.update_template.Definition.OperationImplementationDefinitionUpdater import \
-    update_operation_implementation_definition
+    update_operation_implementation_definition, add_operation_implementation_definition
 from nebula_communication.update_template.Definition.WorkflowPreconditionDefinitionUpdater import \
     update_workflow_precondition_definition
 from nebula_communication.update_template.Definition.WorkflowStepDefinitionUpdater import \
@@ -12,7 +13,8 @@ from nebula_communication.update_template.Other.MetadataUpdater import update_me
 from nebula_communication.update_template.Other.OccurrencesUpdater import update_occurrences
 
 
-def update_imperative_workflow_definition(service_template_vid, father_node_vid, value, value_name, varargs: list):
+def update_imperative_workflow_definition(service_template_vid, father_node_vid, value, value_name, varargs: list,
+                                          type_update, cluster_name):
     if len(varargs) < 2:
         abort(400)
     destination = find_destination(father_node_vid, varargs[0])
@@ -37,8 +39,10 @@ def update_imperative_workflow_definition(service_template_vid, father_node_vid,
     elif varargs[2] == 'metadata':
         update_metadata(imperative_workflow_vid_to_update, value, value_name, varargs[2:])
     elif varargs[2] == 'inputs':
-        update_property_assignment(service_template_vid, imperative_workflow_vid_to_update, value, value_name,
-                                   varargs[2:])
+        if not add_property_assignment(type_update, varargs, value, value_name, cluster_name,
+                                       imperative_workflow_vid_to_update):
+            update_property_assignment(service_template_vid, imperative_workflow_vid_to_update, value, value_name,
+                                       varargs[2:], type_update)
     elif varargs[2] == 'preconditions':
         update_workflow_precondition_definition(service_template_vid, imperative_workflow_vid_to_update, value,
                                                 value_name, varargs[2:])
@@ -46,7 +50,10 @@ def update_imperative_workflow_definition(service_template_vid, father_node_vid,
         update_workflow_step_definition(service_template_vid, imperative_workflow_vid_to_update, value, value_name,
                                         varargs[2:])
     elif varargs[2] == 'implementation':
-        update_operation_implementation_definition(service_template_vid, imperative_workflow_vid_to_update, value,
-                                                   value_name, varargs[2:])
+        if not add_operation_implementation_definition(type_update, varargs[2:], cluster_name,
+                                                       imperative_workflow_vid_to_update,
+                                                       varargs[2]):
+            update_operation_implementation_definition(service_template_vid, imperative_workflow_vid_to_update, value,
+                                                       value_name, varargs[2:], type_update, cluster_name)
     else:
         abort(400)

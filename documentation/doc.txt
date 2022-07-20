@@ -169,9 +169,20 @@ UPDATE:
             value = ANY
 
     для OperationDefinition:
-        Only method PATCH
-        http://.../yaml-template/<path:varargs>/operations/*name*
-        value_name = name | description	| outputs | implementation (ONLY SYMBOLIC LINK)
+        update:
+            Only method PATCH
+            http://.../yaml-template/<path:varargs>/operations/*name*
+            value_name = name | description	| outputs | implementation (ONLY SYMBOLIC LINK)
+        delete: required type_update = delete
+            Only method PATCH
+            http://.../yaml-template/<path:varargs>/operations/*name*
+            value_name = ANY
+            value = ANY
+        add: required type_update = add
+            Only method PATCH
+            http://.../yaml-template/<path:varargs>/operations/*name*
+            value_name = ANY
+            value = ANY
 
     для ArtifactDefinition:
         Only method PATCH
@@ -181,25 +192,75 @@ UPDATE:
         value_name = name  | description | file | repository | deploy_path | version | checksum | checksum_algorithm
 
     для PropertyAssignment:
-        Only method PATCH
-        http://.../yaml-template/<path:varargs>/inputs/*name*
-        value_name = name | value
-        get_... link rebuilder not done yet
+        update:
+            Only method PATCH
+            http://.../yaml-template/<path:varargs>/inputs/*name* OR
+            http://.../yaml-template/<path:varargs>/properties/*name*
+            value_name = name | value
+            get_... link rebuilder not done yet
+        delete: required type_update = delete
+            Only method PATCH
+            http://.../yaml-template/<path:varargs>/inputs/*name* OR
+            http://.../yaml-template/<path:varargs>/properties/*name*
+            value_name = ANY
+            value = ANY
+        add: required type_update = add
+            Only method PATCH
+            http://.../yaml-template/<path:varargs>/inputs/*name* OR
+            http://.../yaml-template/<path:varargs>/properties/*name*
+            value_name = values
+            value = ANY
 
     для OperationImplementationDefinition:
-        Only method PATCH
-        http://.../yaml-template/<path:varargs>/implementation
-        value_name = operation_host	| timeout | primary (ONLY SYMBOLIC LINK) | dependencies
+        update:
+            Only method PATCH
+            http://.../yaml-template/<path:varargs>/implementation
+            value_name = operation_host	| timeout | primary (ONLY SYMBOLIC LINK) | dependencies
+        delete: required type_update = delete
+            Only method PATCH
+            DELETE ALL operation implementation, to avoid error
+            http://.../yaml-template/<path:varargs>/operations/*name*
+            value_name = ANY
+            value = ANY
+        add: required type_update = add
+            Only method PATCH
+            http://.../yaml-template/<path:varargs>/operations/*name*
+            value_name = ANY
+            value = ANY
 
     для NotificationImplementationDefinition:
-        Only method PATCH
-        http://.../yaml-template/<path:varargs>/implementation
-        value_name = operation_host	| timeout | primary (ONLY SYMBOLIC LINK) | dependencies
+        update:
+            Only method PATCH
+            http://.../yaml-template/<path:varargs>/implementation
+            value_name = operation_host	| timeout | primary (ONLY SYMBOLIC LINK) | dependencies
+        delete: required type_update = delete
+            Only method PATCH
+            DELETE ALL notification implementation, to avoid error
+            http://.../yaml-template/<path:varargs>/implementation
+            value_name = ANY
+            value = ANY
+        add: required type_update = add
+            Only method PATCH
+            http://.../yaml-template/<path:varargs>/implementation
+            value_name = ANY
+            value = ANY
+
 
     для NotificationDefinition:
-        Only method PATCH
-        http://.../yaml-template/<path:varargs>/notifications/*name*
-        value_name = description | name
+        update:
+            Only method PATCH
+            http://.../yaml-template/<path:varargs>/notifications/*name*
+            value_name = description | name
+        delete: required type_update = delete
+            Only method PATCH
+            http://.../yaml-template/<path:varargs>/notifications/*name*
+            value_name = ANY
+            value = ANY
+        add: required type_update = add
+            Only method PATCH
+            http://.../yaml-template/<path:varargs>/notifications/*name*
+            value_name = ANY
+            value = ANY
 
     для InterfaceType:
         Only method PATCH

@@ -2,18 +2,32 @@ import warnings
 
 from werkzeug.exceptions import abort
 
+from nebula_communication.generate_uuid import generate_uuid
 from nebula_communication.nebula_functions import find_destination, fetch_vertex, update_vertex, delete_edge, \
-    add_edge, fetch_edge, delete_vertex, get_all_vid_from_cluster_by_type
+    add_edge, fetch_edge, delete_vertex, get_all_vid_from_cluster_by_type, add_in_vertex
 from nebula_communication.update_template.Definition.ArtifactDefinition import update_artifact_definition
+from parser.parser.tosca_v_1_3.definitions.OperationImplementationDefinition import OperationImplementationDefinition
 
 
-def update_operation_implementation_definition(service_template_vid, father_node_vid, value, value_name, varargs: list):
+def update_operation_implementation_definition(service_template_vid, father_node_vid, value, value_name, varargs: list,
+                                               type_update, cluster_name):
     if len(varargs) < 1:
         abort(400)
     destination = find_destination(father_node_vid, varargs[0])
-    if destination is None or len(destination) > 1:
+    if destination is None:
         abort(400)
+    elif len(destination) > 1:
+        if type_update == 'delete':
+            for destination_vid in destination:
+                delete_vertex('"' + destination_vid.as_string() + '"')
+            return
+        else:
+            abort(400)
     operation_implementation_vid_to_update = destination[0]
+    if type_update == 'delete':
+        delete_vertex('"' + operation_implementation_vid_to_update.as_string() + '"')
+        return
+
     if len(varargs) == 1:
         if value_name == 'dependencies':
             dependencies_vertexes = find_destination(operation_implementation_vid_to_update, value_name)
@@ -103,3 +117,14 @@ def update_operation_implementation_definition(service_template_vid, father_node
             abort(400)
     else:
         abort(400)
+
+
+def add_operation_implementation_definition(type_update, varargs, cluster_name, parent_vid, edge_name):
+    if type_update == 'add' and len(varargs) == 1:
+        import_definition = OperationImplementationDefinition()
+        generate_uuid(import_definition, cluster_name)
+        add_in_vertex(import_definition.vertex_type_system, 'vertex_type_system',
+                      '"' + import_definition.vertex_type_system + '"', import_definition.vid)
+        add_edge(edge_name, '', parent_vid, import_definition.vid, '')
+        return True
+    return False

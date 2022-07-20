@@ -8,11 +8,12 @@ from nebula_communication.update_template.Assignment.PropertyAssignmentUpdater i
 from nebula_communication.update_template.Definition.ArtifactDefinition import update_artifact_definition
 from nebula_communication.update_template.Definition.AttributeDefinitionUpdater import update_attribute_definition
 from nebula_communication.update_template.Definition.CapabilityDefinitionUpdater import update_capability_definition
-from nebula_communication.update_template.Definition.InterfaceDefinitionUpdater import update_interface_definition
+from nebula_communication.update_template.Definition.InterfaceDefinitionUpdater import update_interface_definition, \
+    add_interface_definition
 from nebula_communication.update_template.Definition.NodeFilterDefinitionUpdater import update_node_filter_definition
 from nebula_communication.update_template.Definition.PropertyDefinitionUpdater import update_property_definition
 from nebula_communication.update_template.Definition.RequirementDefinitionUpdater import update_requirement_definition
-from nebula_communication.update_template.Other.MetadataUpdater import update_metadata
+from nebula_communication.update_template.Other.MetadataUpdater import update_metadata, add_metadata
 
 
 def update_node_template(service_template, father_node_vid, value, value_name, varargs: list, type_update,
@@ -73,7 +74,8 @@ def update_node_template(service_template, father_node_vid, value, value_name, v
         else:
             abort(400)
     elif varargs[2] == 'metadata':
-        update_metadata(node_template_vid_to_update, value, value_name, varargs[2:])
+        if not add_metadata(type_update, varargs[2:], value, value_name, cluster_name, node_template_vid_to_update):
+            update_metadata(node_template_vid_to_update, value, value_name, varargs[2:],type_update)
     elif varargs[2] == 'attributes':
         update_attribute_assignment(service_template, node_template_vid_to_update, value, value_name, varargs[2:])
     elif varargs[2] == 'properties':
@@ -86,7 +88,10 @@ def update_node_template(service_template, father_node_vid, value, value_name, v
     elif varargs[2] == 'capabilities':
         update_capability_assignment(service_template, node_template_vid_to_update, value, value_name, varargs[2:])
     elif varargs[2] == 'interfaces':
-        update_interface_definition(service_template, node_template_vid_to_update, value, value_name, varargs[2:])
+        if not add_interface_definition(type_update, varargs[2:], cluster_name, node_template_vid_to_update,
+                                        varargs[2]):
+            update_interface_definition(service_template, node_template_vid_to_update, value, value_name, varargs[2:],
+                                        type_update, cluster_name)
     elif varargs[2] == 'artifacts':
         update_artifact_definition(service_template, node_template_vid_to_update, value, value_name, varargs[2:])
     elif varargs[2] == 'node_filter':

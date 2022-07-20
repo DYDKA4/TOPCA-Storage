@@ -263,17 +263,58 @@ UPDATE:
             value = ANY
 
     для InterfaceType:
-        Only method PATCH
-        http://.../yaml-template/*cluster*/interface_types/*name*
-        value_name = name | version | description | derived_from
+        update:
+            Only method PATCH
+            http://.../yaml-template/*cluster*/interface_types/*name*
+            value_name = name | version | description | derived_from
+        delete: required type_update = delete
+            Only method PATCH
+            http://.../yaml-template/*cluster*/interface_types/*name*
+            value_name = ANY
+            value = ANY
+        add: required type_update = add
+            Only method PATCH
+            http://.../yaml-template/*cluster*/interface_types/*name*
+            value_name = ANY
+            value = ANY
 
     для RelationshipType:
-        Only method PATCH
-        http://.../yaml-template/*cluster*/relationship_types/*name*
-        value_name = name | version | description | valid_source_types | derived_from
-        if value_name is valid_source_types:
-            if value in valid_source_types it will be removed from valid_source_types,
-            if value not in valid_source_type it will be added into valid_source_type
+        update:
+            Only method PATCH
+            http://.../yaml-template/*cluster*/relationship_types/*name*
+            value_name = name | version | description | valid_source_types | derived_from
+            if value_name is valid_source_types:
+                if value in valid_source_types it will be removed from valid_source_types,
+                if value not in valid_source_type it will be added into valid_source_type
+        delete: required type_update = delete
+            Only method PATCH
+            http://.../yaml-template/*cluster*/relationship_types/*name*
+            value_name = ANY
+            value = ANY
+        add: required type_update = add
+            Only method PATCH
+            http://.../yaml-template/*cluster*/relationship_types/*name*
+            value_name = ANY
+            value = ANY
+
+    для InterfaceDefinition:
+        update:
+            Only method PATCH
+            http://.../yaml-template/<path:varargs>/interfaces/*name*
+            value_name = name | version | description | valid_source_types | derived_from
+            if value_name is valid_source_types:
+                if value in valid_source_types it will be removed from valid_source_types,
+                if value not in valid_source_type it will be added into valid_source_type
+        delete: required type_update = delete
+            Only method PATCH
+            http://.../yaml-template/<path:varargs>/interfaces/*name*
+            value_name = ANY
+            value = ANY
+        add: required type_update = add
+            Only method PATCH
+            http://.../yaml-template/<path:varargs>/interfaces/*name*
+            value_name = ANY
+            value = ANY
 
     для Occurrences:
         Only method PATCH

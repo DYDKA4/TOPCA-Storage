@@ -1,13 +1,16 @@
 from werkzeug.exceptions import abort
 
 from nebula_communication.nebula_functions import find_destination, fetch_vertex, update_vertex, delete_edge, add_edge
-from nebula_communication.update_template.Definition.InterfaceDefinitionUpdater import update_interface_definition
+from nebula_communication.update_template.Definition.InterfaceDefinitionUpdater import update_interface_definition, \
+    add_interface_definition
 from nebula_communication.update_template.Definition.NodeFilterDefinitionUpdater import update_node_filter_definition
-from nebula_communication.update_template.Definition.PropertyDefinitionUpdater import update_property_definition
+from nebula_communication.update_template.Definition.PropertyDefinitionUpdater import update_property_definition, \
+    add_property_definition
 from nebula_communication.update_template.Other.OccurrencesUpdater import update_occurrences
 
 
-def update_requirement_assignment(service_template_vid, father_node_vid, value, value_name, varargs: list):
+def update_requirement_assignment(service_template_vid, father_node_vid, value, value_name, varargs: list, type_update,
+                                  cluster_name):
     if len(varargs) < 2:
         abort(400)
     destination = find_destination(father_node_vid, varargs[0])
@@ -132,9 +135,13 @@ def update_requirement_assignment(service_template_vid, father_node_vid, value, 
     elif varargs[2] == 'occurrences':
         update_occurrences(requirement_vid_to_update, value, value_name, varargs[2:])
     elif varargs[2] == 'interfaces':
-        update_interface_definition(service_template_vid, requirement_vid_to_update, value, value_name, varargs[2:])
+        if not add_interface_definition(type_update, varargs[2:], cluster_name, requirement_vid_to_update, varargs[2]):
+            update_interface_definition(service_template_vid, requirement_vid_to_update, value, value_name, varargs[2:],
+                                        type_update, cluster_name)
     elif varargs[2] == 'properties':
-        update_property_definition(service_template_vid, requirement_vid_to_update, value, value_name, varargs[2:])
+        if not add_property_definition(type_update, varargs[2:], cluster_name, requirement_vid_to_update, varargs[2]):
+            update_property_definition(service_template_vid, requirement_vid_to_update, value, value_name, varargs[2:],
+                                       type_update, cluster_name)
     elif varargs[2] == 'node_filter':
         update_node_filter_definition(service_template_vid, requirement_vid_to_update, value, value_name, varargs[2:])
     else:

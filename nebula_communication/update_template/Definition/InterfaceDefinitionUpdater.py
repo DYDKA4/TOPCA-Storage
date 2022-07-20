@@ -1,6 +1,8 @@
 from werkzeug.exceptions import abort
 
-from nebula_communication.nebula_functions import find_destination, fetch_vertex, update_vertex, add_edge, delete_edge
+from nebula_communication.generate_uuid import generate_uuid
+from nebula_communication.nebula_functions import find_destination, fetch_vertex, update_vertex, add_edge, delete_edge, \
+    delete_vertex, add_in_vertex
 from nebula_communication.update_template.Assignment.PropertyAssignmentUpdater import update_property_assignment, \
     add_property_assignment
 from nebula_communication.update_template.Definition.NotificationDefinitionUpdater import \
@@ -10,6 +12,7 @@ from nebula_communication.update_template.Definition.OperationDefinitionUpdater 
 from nebula_communication.update_template.Definition.PropertyDefinitionUpdater import update_property_definition, \
     add_property_definition
 from nebula_communication.update_template.Other.MetadataUpdater import update_metadata
+from parser.parser.tosca_v_1_3.definitions.InterfaceDefinition import InterfaceDefinition
 
 
 def update_interface_definition(service_template_vid, father_node_vid, value, value_name, varargs: list, type_update,
@@ -29,6 +32,9 @@ def update_interface_definition(service_template_vid, father_node_vid, value, va
     if interface_definition_vid_to_update is None:
         abort(400)
     if len(varargs) == 2:
+        if type_update == 'delete':
+            delete_vertex('"' + interface_definition_vid_to_update.as_string() + '"')
+            return
         vertex_value = fetch_vertex(interface_definition_vid_to_update, 'InterfaceDefinition')
         vertex_value = vertex_value.as_map()
         if value_name in vertex_value.keys():
@@ -61,3 +67,14 @@ def update_interface_definition(service_template_vid, father_node_vid, value, va
                                            varargs[2:], type_update, cluster_name)
     else:
         abort(400)
+
+
+def add_interface_definition(type_update, varargs, cluster_name, parent_vid, edge_name):
+    if type_update == 'add' and len(varargs) == 2:
+        data_type = InterfaceDefinition('"' + varargs[1] + '"')
+        generate_uuid(data_type, cluster_name)
+        add_in_vertex(data_type.vertex_type_system, 'name, vertex_type_system',
+                      data_type.name + ',"' + data_type.vertex_type_system + '"', data_type.vid)
+        add_edge(edge_name, '', parent_vid, data_type.vid, '')
+        return True
+    return False

@@ -4,8 +4,9 @@ from nebula_communication.nebula_functions import find_destination, fetch_vertex
 from nebula_communication.update_template.Assignment.AttributeAssignmentUpdater import update_attribute_assignment
 from nebula_communication.update_template.Assignment.PropertyAssignmentUpdater import update_property_assignment, \
     add_property_assignment
-from nebula_communication.update_template.Definition.InterfaceDefinitionUpdater import update_interface_definition
-from nebula_communication.update_template.Other.MetadataUpdater import update_metadata
+from nebula_communication.update_template.Definition.InterfaceDefinitionUpdater import update_interface_definition, \
+    add_interface_definition
+from nebula_communication.update_template.Other.MetadataUpdater import update_metadata, add_metadata
 
 
 def update_relationship_template(service_template, father_node_vid, value, value_name, varargs: list, type_update,
@@ -70,10 +71,14 @@ def update_relationship_template(service_template, father_node_vid, value, value
             update_property_assignment(service_template, relationship_template_vid_to_update, value, value_name,
                                        varargs[2:], type_update)
     elif varargs[2] == 'metadata':
-        update_metadata(relationship_template_vid_to_update, value, value_name, varargs[2:])
+        if not add_metadata(type_update, varargs[2:], value, value_name, cluster_name,
+                            relationship_template_vid_to_update):
+            update_metadata(relationship_template_vid_to_update, value, value_name, varargs[2:], type_update)
     elif varargs[2] == 'interfaces':
-        update_interface_definition(service_template, relationship_template_vid_to_update, value, value_name,
-                                    varargs[2:])
+        if not add_interface_definition(type_update, varargs[2:], cluster_name, relationship_template_vid_to_update,
+                                        varargs[2]):
+            update_interface_definition(service_template, relationship_template_vid_to_update, value, value_name,
+                                        varargs[2:], type_update, cluster_name)
     elif varargs[2] == 'attributes':
         update_attribute_assignment(service_template, relationship_template_vid_to_update, value, value_name,
                                     varargs[2:])

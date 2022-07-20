@@ -1,12 +1,17 @@
 from werkzeug.exceptions import abort
 
-from nebula_communication.nebula_functions import find_destination, fetch_vertex, update_vertex, add_edge, delete_edge
-from nebula_communication.update_template.Definition.InterfaceDefinitionUpdater import update_interface_definition
-from nebula_communication.update_template.Definition.PropertyDefinitionUpdater import update_property_definition
-from nebula_communication.update_template.Other.MetadataUpdater import update_metadata
+from nebula_communication.generate_uuid import generate_uuid
+from nebula_communication.nebula_functions import find_destination, fetch_vertex, update_vertex, add_edge, delete_edge, \
+    delete_vertex, add_in_vertex
+from nebula_communication.update_template.Definition.InterfaceDefinitionUpdater import update_interface_definition, \
+    add_interface_definition
+from nebula_communication.update_template.Definition.PropertyDefinitionUpdater import update_property_definition, \
+    add_property_definition
+from nebula_communication.update_template.Other.MetadataUpdater import update_metadata, add_metadata
+from parser.parser.tosca_v_1_3.types.RelationshipType import RelationshipType
 
 
-def update_relationship_type(father_node_vid, value, value_name, varargs: list):
+def update_relationship_type(father_node_vid, value, value_name, varargs: list, type_update, cluster_name):
     if len(varargs) < 2:
         abort(400)
     destination = find_destination(father_node_vid, varargs[0])
@@ -22,6 +27,9 @@ def update_relationship_type(father_node_vid, value, value_name, varargs: list):
     if relationship_type_vid_to_update is None:
         abort(400)
     if len(varargs) == 2:
+        if type_update == 'delete':
+            delete_vertex('"' + relationship_type_vid_to_update.as_string() + '"')
+            return
         vertex_value = fetch_vertex(relationship_type_vid_to_update, 'RelationshipType')
         vertex_value = vertex_value.as_map()
         if value_name == 'derived_from':
@@ -42,15 +50,15 @@ def update_relationship_type(father_node_vid, value, value_name, varargs: list):
             add_edge(value_name, '', relationship_type_vid_to_update, new_derived_relationship_vid, '')
         elif value_name == 'valid_source_type':
             valid_source_type_vertexes = find_destination(relationship_type_vid_to_update, value_name)
-            delete_vertex = None
+            delete_vertex_vid = None
             for valid_source_type_vid in valid_source_type_vertexes:
                 valid_source_value = fetch_vertex(valid_source_type_vid, 'NodeType')
                 valid_source_value = valid_source_value.as_map()
                 if '"' + valid_source_value.get('name').as_string() + '"' == value:
-                    delete_vertex = valid_source_type_vid
+                    delete_vertex_vid = valid_source_type_vid
                     break
-            if delete_vertex:
-                delete_edge(value_name, relationship_type_vid_to_update, delete_vertex)
+            if delete_vertex_vid:
+                delete_edge(value_name, relationship_type_vid_to_update, delete_vertex_vid)
             else:
                 add_vertex = None
                 node_types_vertexes = find_destination(father_node_vid, 'node_types')
@@ -70,10 +78,28 @@ def update_relationship_type(father_node_vid, value, value_name, varargs: list):
         else:
             abort(501)
     elif varargs[2] == 'properties':
-        update_property_definition(father_node_vid, relationship_type_vid_to_update, value, value_name, varargs[2:])
+        if not add_property_definition(type_update, varargs[2:], cluster_name, relationship_type_vid_to_update,
+                                       varargs[2]):
+            update_property_definition(father_node_vid, relationship_type_vid_to_update, value, value_name,
+                                       varargs[2:], type_update, cluster_name)
     elif varargs[2] == 'metadata':
-        update_metadata(relationship_type_vid_to_update, value, value_name, varargs[2:])
+        if not add_metadata(type_update, varargs[2:], value, value_name, cluster_name, relationship_type_vid_to_update):
+            update_metadata(relationship_type_vid_to_update, value, value_name, varargs[2:], type_update)
     elif varargs[2] == 'interfaces':
-        update_interface_definition(father_node_vid, relationship_type_vid_to_update, value, value_name, varargs[2:])
+        if not add_interface_definition(type_update, varargs[2:], cluster_name, relationship_type_vid_to_update,
+                                        varargs[2]):
+            update_interface_definition(father_node_vid, relationship_type_vid_to_update, value, value_name,
+                                        varargs[2:], type_update, cluster_name)
     else:
         abort(400)
+
+
+def add_relationship_type(type_update, varargs, cluster_name, parent_vid, edge_name):
+    if type_update == 'add' and len(varargs) == 2:
+        data_type = RelationshipType('"' + varargs[1] + '"')
+        generate_uuid(data_type, cluster_name)
+        add_in_vertex(data_type.vertex_type_system, 'name, vertex_type_system',
+                      data_type.name + ',"' + data_type.vertex_type_system + '"', data_type.vid)
+        add_edge(edge_name, '', parent_vid, data_type.vid, '')
+        return True
+    return False

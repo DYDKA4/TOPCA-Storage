@@ -4,14 +4,15 @@ from nebula_communication.nebula_functions import find_destination, fetch_vertex
 from nebula_communication.update_template.Definition.GroupDefinitionUpdater import update_group_definition
 from nebula_communication.update_template.Definition.ImperativeWorkflowDefinition import \
     update_imperative_workflow_definition
-from nebula_communication.update_template.Definition.ParameterDefinitionUpdater import update_parameter_definition
+from nebula_communication.update_template.Definition.ParameterDefinitionUpdater import update_parameter_definition, \
+    add_parameter_definition
 from nebula_communication.update_template.Definition.PolicyDefinitionUpdater import update_policy_definition
-from nebula_communication.update_template.Other.MetadataUpdater import update_metadata
-from nebula_communication.update_template.Other.NodeTemplateUpdater import update_node_template
+from nebula_communication.update_template.Other.MetadataUpdater import update_metadata, add_metadata
+from nebula_communication.update_template.Other.NodeTemplateUpdater import update_node_template, add_node_template
 from nebula_communication.update_template.Other.RelationshipTemplateUpdater import update_relationship_template
 
 
-def update_topology_template_definition(father_node_vid, value, value_name, varargs: list):
+def update_topology_template_definition(father_node_vid, value, value_name, varargs: list, type_update, cluster_name):
     if len(varargs) < 1:
         abort(400)
     topology_template_definition = find_destination(father_node_vid, varargs[0])
@@ -26,13 +27,22 @@ def update_topology_template_definition(father_node_vid, value, value_name, vara
         else:
             abort(400)
     elif varargs[1] == 'metadata':
-        update_metadata(topology_template_definition, value, value_name, varargs[1:])
+        if not add_metadata(type_update, varargs[2:], value, value_name, cluster_name, topology_template_definition):
+            update_metadata(topology_template_definition, value, value_name, varargs[1:], type_update)
     elif varargs[1] == 'inputs':
-        update_parameter_definition(father_node_vid, topology_template_definition, value, value_name, varargs[1:])
+        if not add_parameter_definition(type_update, varargs[2:], cluster_name, topology_template_definition,
+                                        varargs[1:]):
+            update_parameter_definition(father_node_vid, topology_template_definition, value, value_name, varargs[1:],
+                                        type_update, cluster_name)
     elif varargs[1] == 'outputs':
-        update_parameter_definition(father_node_vid, topology_template_definition, value, value_name, varargs[1:])
+        if not add_parameter_definition(type_update, varargs[2:], cluster_name, topology_template_definition,
+                                        varargs[1:]):
+            update_parameter_definition(father_node_vid, topology_template_definition, value, value_name, varargs[1:],
+                                        type_update, cluster_name)
     elif varargs[1] == 'node_template':
-        update_node_template(father_node_vid, topology_template_definition, value, value_name, varargs[1:])
+        if not add_node_template(type_update, varargs[2:], cluster_name, topology_template_definition, varargs[1:]):
+            update_node_template(father_node_vid, topology_template_definition, value, value_name, varargs[1:],
+                                 type_update, cluster_name)
     elif varargs[1] == 'relationship_templates':
         update_relationship_template(father_node_vid, topology_template_definition, value, value_name, varargs[1:])
     elif varargs[1] == 'groups':

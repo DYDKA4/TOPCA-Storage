@@ -1,9 +1,13 @@
 from werkzeug.exceptions import abort
 
-from nebula_communication.nebula_functions import find_destination, fetch_vertex, update_vertex, delete_edge, add_edge
+from nebula_communication.generate_uuid import generate_uuid
+from nebula_communication.nebula_functions import find_destination, fetch_vertex, update_vertex, delete_edge, add_edge, \
+    delete_vertex, add_in_vertex
+from parser.parser.tosca_v_1_3.definitions.ArtifactDefinition import ArtifactDefinition
 
 
-def update_artifact_definition(service_template_vid, father_node_vid, value, value_name, varargs: list):
+def update_artifact_definition(service_template_vid, father_node_vid, value, value_name, varargs: list,
+                               type_update):
     if len(varargs) < 2:
         abort(400)
     destination = find_destination(father_node_vid, varargs[0])
@@ -19,6 +23,9 @@ def update_artifact_definition(service_template_vid, father_node_vid, value, val
     if artifact_vid_to_update is None:
         abort(400)
     if len(varargs) == 2:
+        if type_update == 'delete':
+            delete_vertex('"' + artifact_vid_to_update.as_string() + '"')
+            return
         vertex_value = fetch_vertex(artifact_vid_to_update, 'ArtifactDefinition')
         vertex_value = vertex_value.as_map()
         if value_name == 'type':
@@ -44,3 +51,14 @@ def update_artifact_definition(service_template_vid, father_node_vid, value, val
             abort(501)
     else:
         abort(400)
+
+
+def add_artifact_definition(type_update, varargs, cluster_name, parent_vid, edge_name):
+    if type_update == 'add' and len(varargs) == 2:
+        data_type = ArtifactDefinition('"' + varargs[1] + '"')
+        generate_uuid(data_type, cluster_name)
+        add_in_vertex(data_type.vertex_type_system, 'name, vertex_type_system',
+                      data_type.name + ',"' + data_type.vertex_type_system + '"', data_type.vid)
+        add_edge(edge_name, '', parent_vid, data_type.vid, '')
+        return True
+    return False

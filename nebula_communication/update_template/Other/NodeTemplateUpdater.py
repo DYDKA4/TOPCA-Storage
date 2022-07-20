@@ -1,20 +1,26 @@
 from werkzeug.exceptions import abort
 
-from nebula_communication.nebula_functions import find_destination, fetch_vertex, update_vertex, add_edge, delete_edge
-from nebula_communication.update_template.Assignment.AttributeAssignmentUpdater import update_attribute_assignment
-from nebula_communication.update_template.Assignment.CapabilityAssignmentUpdater import update_capability_assignment
+from nebula_communication.generate_uuid import generate_uuid
+from nebula_communication.nebula_functions import find_destination, fetch_vertex, update_vertex, add_edge, delete_edge, \
+    delete_vertex, add_in_vertex
+from nebula_communication.update_template.Assignment.AttributeAssignmentUpdater import update_attribute_assignment, \
+    add_attribute_assignment
+from nebula_communication.update_template.Assignment.CapabilityAssignmentUpdater import update_capability_assignment, \
+    add_capability_assignment
 from nebula_communication.update_template.Assignment.PropertyAssignmentUpdater import update_property_assignment, \
     add_property_assignment
-from nebula_communication.update_template.Definition.ArtifactDefinition import update_artifact_definition
-from nebula_communication.update_template.Definition.AttributeDefinitionUpdater import update_attribute_definition
-from nebula_communication.update_template.Definition.CapabilityDefinitionUpdater import update_capability_definition
+from nebula_communication.update_template.Assignment.RequirementAssignment import update_requirement_assignment, \
+    add_requirement_assignment
+from nebula_communication.update_template.Definition.ArtifactDefinition import update_artifact_definition, \
+    add_artifact_definition
 from nebula_communication.update_template.Definition.InterfaceDefinitionUpdater import update_interface_definition, \
     add_interface_definition
-from nebula_communication.update_template.Definition.NodeFilterDefinitionUpdater import update_node_filter_definition
-from nebula_communication.update_template.Definition.PropertyDefinitionUpdater import update_property_definition
+from nebula_communication.update_template.Definition.NodeFilterDefinitionUpdater import update_node_filter_definition, \
+    add_node_filter_definition
 from nebula_communication.update_template.Definition.RequirementDefinitionUpdater import update_requirement_definition, \
     add_requirement_definition
 from nebula_communication.update_template.Other.MetadataUpdater import update_metadata, add_metadata
+from parser.parser.tosca_v_1_3.others.NodeTemplate import NodeTemplate
 
 
 def update_node_template(service_template, father_node_vid, value, value_name, varargs: list, type_update,
@@ -34,6 +40,9 @@ def update_node_template(service_template, father_node_vid, value, value_name, v
     if node_template_vid_to_update is None:
         abort(400)
     if len(varargs) == 2:
+        if type_update == 'delete':
+            delete_vertex('"' + node_template_vid_to_update.as_string() + '"')
+            return
         vertex_value = fetch_vertex(node_template_vid_to_update, 'NodeTemplate')
         vertex_value = vertex_value.as_map()
         if value_name == 'type':
@@ -76,19 +85,25 @@ def update_node_template(service_template, father_node_vid, value, value_name, v
             abort(400)
     elif varargs[2] == 'metadata':
         if not add_metadata(type_update, varargs[2:], value, value_name, cluster_name, node_template_vid_to_update):
-            update_metadata(node_template_vid_to_update, value, value_name, varargs[2:],type_update)
+            update_metadata(node_template_vid_to_update, value, value_name, varargs[2:], type_update)
     elif varargs[2] == 'attributes':
-        update_attribute_assignment(service_template, node_template_vid_to_update, value, value_name, varargs[2:])
+        if not add_attribute_assignment(type_update, varargs[2:], cluster_name, node_template_vid_to_update,
+                                        varargs[2]):
+            update_attribute_assignment(service_template, node_template_vid_to_update, value, value_name, varargs[2:],
+                                        type_update)
     elif varargs[2] == 'properties':
         if not add_property_assignment(type_update, varargs[2:], value, value_name, cluster_name,
                                        node_template_vid_to_update):
             update_property_assignment(service_template, node_template_vid_to_update, value, value_name, varargs[2:],
                                        type_update)
     elif varargs[2] == 'requirements':
-        if not add_requirement_definition(type_update, varargs[2:], value_name, cluster_name, varargs[2]):
-            update_requirement_definition(service_template, node_template_vid_to_update, value, value_name, varargs[2:],
+        if not add_requirement_assignment(type_update, varargs[2:], cluster_name, node_template_vid_to_update,
+                                          varargs[2]):
+            update_requirement_assignment(service_template, node_template_vid_to_update, value, value_name, varargs[2:],
                                           type_update, cluster_name)
     elif varargs[2] == 'capabilities':
+        if not add_capability_assignment(type_update, varargs[2:], cluster_name, node_template_vid_to_update,
+                                         varargs[2]):
             update_capability_assignment(service_template, node_template_vid_to_update, value, value_name, varargs[2:],
                                          type_update, cluster_name)
     elif varargs[2] == 'interfaces':
@@ -97,8 +112,24 @@ def update_node_template(service_template, father_node_vid, value, value_name, v
             update_interface_definition(service_template, node_template_vid_to_update, value, value_name, varargs[2:],
                                         type_update, cluster_name)
     elif varargs[2] == 'artifacts':
-        update_artifact_definition(service_template, node_template_vid_to_update, value, value_name, varargs[2:])
+        if not add_artifact_definition(type_update, varargs[2:], cluster_name, node_template_vid_to_update, varargs[2]):
+            update_artifact_definition(service_template, node_template_vid_to_update, value, value_name, varargs[2:],
+                                       type_update)
     elif varargs[2] == 'node_filter':
-        update_node_filter_definition(service_template, node_template_vid_to_update, value, value_name, varargs[2:])
+        if not add_node_filter_definition(type_update, varargs[2:], cluster_name, node_template_vid_to_update,
+                                          varargs[2]):
+            update_node_filter_definition(service_template, node_template_vid_to_update, value, value_name, varargs[2:],
+                                          type_update, cluster_name)
     else:
         abort(400)
+
+
+def add_node_template(type_update, varargs, cluster_name, parent_vid, edge_name):
+    if type_update == 'add' and len(varargs) == 2:
+        data_type = NodeTemplate('"' + varargs[1] + '"')
+        generate_uuid(data_type, cluster_name)
+        add_in_vertex(data_type.vertex_type_system, 'name, vertex_type_system',
+                      data_type.name + ',"' + data_type.vertex_type_system + '"', data_type.vid)
+        add_edge(edge_name, '', parent_vid, data_type.vid, '')
+        return True
+    return False

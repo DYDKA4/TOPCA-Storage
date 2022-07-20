@@ -437,46 +437,138 @@ UPDATE:
             value = ANY
 
     для NodeTemplate:
-        Only method PATCH
-        http://.../yaml-template/*cluster_name*/topology_template/node_templates/*name*
-        value_name = name | description	| copy | type
+        update:
+            Only method PATCH
+            http://.../yaml-template/*cluster_name*/topology_template/node_templates/*name*
+            value_name = name | description	| copy | type
+        delete: required type_update = delete
+            Only method PATCH
+            http://.../yaml-template/*cluster_name*/topology_template/node_templates/*name*
+            value_name = ANY
+            value = ANY
+        add: required type_update = add
+            Only method PATCH
+            http://.../yaml-template/*cluster_name*/topology_template/node_templates/*name*
+            value_name = ANY
+            value = ANY
 
     для NodeFilterDefinition:
-        Only method PATCH
-        http://.../yaml-template/<path:varargs>/node_filter
-        value_name = NONE
+        update:
+            Only method PATCH
+            http://.../yaml-template/<path:varargs>/node_filter
+            value_name = NONE
+        delete: required type_update = delete
+            Only method PATCH
+            http://.../yaml-template/<path:varargs>/node_filter
+            value_name = ANY
+            value = ANY
+        add: required type_update = add
+            Only method PATCH
+            http://.../yaml-template/<path:varargs>/node_filter
+            value_name = ANY
+            value = ANY
 
     для CapabilityFilterDefinition:
-        Only method PATCH
-        http://.../yaml-template/<path:varargs>/node_filter/capabilities/*name*
-        value_name = name
+        update:
+            Only method PATCH
+            http://.../yaml-template/<path:varargs>/node_filter/capabilities/*name*
+            value_name = name
+        delete: required type_update = delete
+            Only method PATCH
+            http://.../yaml-template/<path:varargs>/node_filter/capabilities/*name*
+            value_name = ANY
+            value = ANY
+        add: required type_update = add
+            Only method PATCH
+            http://.../yaml-template/<path:varargs>/node_filter/capabilities/*name*
+            value_name = ANY
+            value = ANY
 
     для PropertyFilterDefinition:
-        Only method PATCH
-        http://.../yaml-template/<path:varargs>/node_filter/capabilities/*capability_name*/properties/*name* OR
-        http://.../yaml-template/<path:varargs>/node_filter/properties/*name*
-        value_name = name
+        update:
+            Only method PATCH
+            http://.../yaml-template/<path:varargs>/node_filter/capabilities/*capability_name*/properties/*name* OR
+            http://.../yaml-template/<path:varargs>/node_filter/properties/*name*
+            value_name = name
+        delete: required type_update = delete
+            Only method PATCH
+            http://.../yaml-template/<path:varargs>/node_filter/capabilities/*capability_name*/properties/*name* OR
+            http://.../yaml-template/<path:varargs>/node_filter/properties/*name*
+            value_name = ANY
+            value = ANY
+        add: required type_update = add
+            Only method PATCH
+            http://.../yaml-template/<path:varargs>/node_filter/capabilities/*capability_name*/properties/*name* OR
+            http://.../yaml-template/<path:varargs>/node_filter/properties/*name*
+            value_name = ANY
+            value = ANY
 
     для ParameterDefinition:
-        Only method PATCH
-        http://.../yaml-template/*cluster_name*/topology_template/inputs/*name*
-        http://.../yaml-template/*cluster_name*/topology_template/inputs/*name*
-        value_name = name | description	| value	| required | default | status | type
+        update:
+            Only method PATCH
+            http://.../yaml-template/*cluster_name*/topology_template/inputs/*name*
+            http://.../yaml-template/*cluster_name*/topology_template/inputs/*name*
+            value_name = name | description	| value	| required | default | status | type
+        delete: required type_update = delete
+            Only method PATCH
+            http://.../yaml-template/*cluster_name*/topology_template/inputs/*name*
+            http://.../yaml-template/*cluster_name*/topology_template/inputs/*name*
+            value_name = ANY
+            value = ANY
+        add: required type_update = add
+            Only method PATCH
+            http://.../yaml-template/*cluster_name*/topology_template/inputs/*name*
+            http://.../yaml-template/*cluster_name*/topology_template/inputs/*name*
+            value_name = ANY
+            value = ANY
 
     для RequirementAssignment:
-        Only method PATCH
-        http://.../yaml-template/<path:varargs>/requirements/*name*
-        value_name = name | capability | node | relationship
+        update:
+            Only method PATCH
+            http://.../yaml-template/<path:varargs>/requirements/*name*
+            value_name = name | capability | node | relationship
+        delete: required type_update = delete
+            Only method PATCH
+            http://.../yaml-template/<path:varargs>/requirements/*name*
+            value_name = ANY
+            value = ANY
+        add: required type_update = add
+            Only method PATCH
+            http://.../yaml-template/<path:varargs>/requirements/*name*
+            value_name = ANY
+            value = ANY
 
     для CapabilityAssignment:
-        Only method PATCH
-        http://.../yaml-template/<path:varargs>/capabilities/*name*
-        value_name = name
+        update:
+            Only method PATCH
+            http://.../yaml-template/<path:varargs>/capabilities/*name*
+            value_name = name
+        delete: required type_update = delete
+            Only method PATCH
+            http://.../yaml-template/<path:varargs>/capabilities/*name*
+            value_name = ANY
+            value = ANY
+        add: required type_update = add
+            Only method PATCH
+            http://.../yaml-template/<path:varargs>/capabilities/*name*
+            value_name = ANY
+            value = ANY
 
     для AttributeAssignment:
-        Only method PATCH
-        http://.../yaml-template/<path:varargs>/capabilities/*name*
-        value_name = name | values | description | value
+        update:
+            Only method PATCH
+            http://.../yaml-template/<path:varargs>/capabilities/*name*
+            value_name = name | values | description | value
+        delete: required type_update = delete
+            Only method PATCH
+            http://.../yaml-template/<path:varargs>/capabilities/*name*
+            value_name = ANY
+            value = ANY
+        add: required type_update = add
+            Only method PATCH
+            http://.../yaml-template/<path:varargs>/capabilities/*name*
+            value_name = ANY
+            value = ANY
 
     для GroupDefinition:
         Only method PATCH

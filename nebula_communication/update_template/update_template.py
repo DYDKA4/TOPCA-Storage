@@ -12,10 +12,10 @@ from nebula_communication.update_template.Other.MetadataUpdater import update_me
 from nebula_communication.update_template.Type.ArtifactTypeUpdater import update_artifact_type, add_artifact_type
 from nebula_communication.update_template.Type.CapabilityTypeUpdater import update_capability_type, add_capability_type
 from nebula_communication.update_template.Type.DataTypeUpdater import update_data_type, add_data_type
-from nebula_communication.update_template.Type.GroupTypeUpdater import update_group_type
+from nebula_communication.update_template.Type.GroupTypeUpdater import update_group_type, add_group_type
 from nebula_communication.update_template.Type.InterfaceTypeUpdater import update_interface_type, add_interface_type
 from nebula_communication.update_template.Type.NodeTypeUpdater import update_node_type, add_node_type
-from nebula_communication.update_template.Type.PolicyTypeUpdater import update_policy_type
+from nebula_communication.update_template.Type.PolicyTypeUpdater import update_policy_type, add_policy_type
 from nebula_communication.update_template.Type.RelationshipTypeUpdater import update_relationship_type, \
     add_relationship_type
 from parser.parser.tosca_v_1_3.others.Metadata import Metadata
@@ -58,9 +58,11 @@ def update_template(cluster_name: str, value, value_name, varargs: list, type_up
         if not add_node_type(type_update, varargs, cluster_name, cluster_vid, varargs[0]):
             update_node_type(cluster_vid, value, value_name, varargs, type_update, cluster_name)
     elif varargs[0] == 'group_types':  # todo Тестить
-        update_group_type(cluster_vid, value, value_name, varargs)
+        if not add_group_type(type_update, varargs, cluster_name, cluster_vid, varargs[0]):
+            update_group_type(cluster_vid, value, value_name, varargs, type_update, cluster_name)
     elif varargs[0] == 'policy_types':  # todo Тестить
-        update_policy_type(cluster_vid, value, value_name, varargs)
+        if not add_policy_type(type_update, varargs, cluster_name, cluster_vid, varargs[0]):
+            update_policy_type(cluster_vid, value, value_name, varargs, type_update, cluster_name)
     elif varargs[0] == 'topology_template':  # todo Тестить
         update_topology_template_definition(cluster_vid, value, value_name, varargs)
     else:

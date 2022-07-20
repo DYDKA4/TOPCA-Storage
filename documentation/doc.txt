@@ -382,26 +382,59 @@ UPDATE:
             value = ANY
 
     для GroupType:
-        Only method PATCH
-        http://.../yaml-template/*cluster*/group_types/*name*
-        value_name = name | version | description | derived_from | members
-        if value_name is members:
-            if value in members it will be removed from members,
-            if value not in members it will be added into members
+        update:
+            Only method PATCH
+            http://.../yaml-template/*cluster*/group_types/*name*
+            value_name = name | version | description | derived_from | members
+            if value_name is members:
+                if value in members it will be removed from members,
+                if value not in members it will be added into members
+        delete: required type_update = delete
+            Only method PATCH
+            http://.../yaml-template/*cluster*/group_types/*name*
+            value_name = ANY
+            value = ANY
+        add: required type_update = add
+            Only method PATCH
+            http://.../yaml-template/*cluster*/group_types/*name*
+            value_name = ANY
+            value = ANY
 
     для PolicyType:
-        Only method PATCH
-        http://.../yaml-template/*cluster*/policy_types/*name*
-        value_name = name | version | description | derived_from | targets
-        if value_name is targets:
-            if value in members it will be removed from members,
-            if value not in members it will be added into members
+        update:
+            Only method PATCH
+            http://.../yaml-template/*cluster*/policy_types/*name*
+            value_name = name | version | description | derived_from | targets
+            if value_name is targets:
+                if value in members it will be removed from members,
+                if value not in members it will be added into members
+        delete: required type_update = delete
+            Only method PATCH
+            http://.../yaml-template/*cluster*/policy_types/*name*
+            value_name = ANY
+            value = ANY
+        add: required type_update = add
+            Only method PATCH
+            http://.../yaml-template/*cluster*/policy_types/*name*
+            value_name = ANY
+            value = ANY
 
     для TriggerDefinition:
-        Only method PATCH
-        http://.../yaml-template/<path:varargs>/triggers/*name*
-        value_name = name | description	| event	| schedule_start | schedule_end	| evaluations | method	| period
-        Doesn't support update of event_filter and condition_clause
+        update:
+            Only method PATCH
+            http://.../yaml-template/<path:varargs>/triggers/*name*
+            value_name = name | description	| event	| schedule_start | schedule_end	| evaluations | method	| period
+            Doesn't support update of event_filter and condition_clause
+        delete: required type_update = delete
+            Only method PATCH
+            http://.../yaml-template/<path:varargs>/triggers/*name*
+            value_name = ANY
+            value = ANY
+        add: required type_update = add
+            Only method PATCH
+            http://.../yaml-template/<path:varargs>/triggers/*name*
+            value_name = ANY
+            value = ANY
 
     для NodeTemplate:
         Only method PATCH

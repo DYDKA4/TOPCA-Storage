@@ -4,8 +4,9 @@ from nebula_communication.nebula_functions import find_destination, fetch_vertex
 from nebula_communication.update_template.Assignment.PropertyAssignmentUpdater import update_property_assignment, \
     add_property_assignment
 from nebula_communication.update_template.Definition.PropertyDefinitionUpdater import update_property_definition
-from nebula_communication.update_template.Definition.TriggerDefinitionUpdater import update_trigger_definition
-from nebula_communication.update_template.Other.MetadataUpdater import update_metadata
+from nebula_communication.update_template.Definition.TriggerDefinitionUpdater import update_trigger_definition, \
+    add_trigger_definition
+from nebula_communication.update_template.Other.MetadataUpdater import update_metadata, add_metadata
 
 
 def update_policy_definition(service_template, father_node_vid, value, value_name, varargs: list, type_update,
@@ -87,13 +88,16 @@ def update_policy_definition(service_template, father_node_vid, value, value_nam
         else:
             abort(400)
     elif varargs[2] == 'properties':
-        if not add_property_assignment(type_update, varargs, value, value_name, cluster_name,
+        if not add_property_assignment(type_update, varargs[2:], value, value_name, cluster_name,
                                        group_type_vid_to_update):
             update_property_assignment(service_template, group_type_vid_to_update, value, value_name, varargs[2:],
                                        type_update)
     elif varargs[2] == 'metadata':
-        update_metadata(group_type_vid_to_update, value, value_name, varargs[2:])
+        if not add_metadata(type_update, varargs[2:], value, value_name, cluster_name, group_type_vid_to_update):
+            update_metadata(group_type_vid_to_update, value, value_name, varargs[2:], type_update)
     elif varargs[2] == 'triggers':
-        update_trigger_definition(service_template, group_type_vid_to_update, value, value_name, varargs[2:])
+        if not add_trigger_definition(type_update, varargs[2:], cluster_name, group_type_vid_to_update, varargs[2:]):
+            update_trigger_definition(service_template, group_type_vid_to_update, value, value_name, varargs[2:],
+                                      type_update, cluster_name)
     else:
         abort(400)

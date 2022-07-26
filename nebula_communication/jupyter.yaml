@@ -86,21 +86,19 @@ Supported versions: >= 1.0.0, <= 2.3.0"
           occurrences: [1, 1]
   tosca.nodes.SoftwareComponent:
     derived_from: tosca.nodes.Root
-    metadata:
-      abstract: "false"
-      final: "false"
-      targetNamespace: "tosca.nodes"
-    #    properties:
-    #      component_version:
-    #        type: version
-    #        required: false
-    #        status: supported
+    properties:
+      # domain-specific software component version
+      component_version:
+        type: version
+        required: false
+      admin_credential:
+        type: tosca.datatypes.Credential
+        required: false
     requirements:
       - host:
           capability: tosca.capabilities.Compute
           node: tosca.nodes.Compute
           relationship: tosca.relationships.HostedOn
-          occurrences: [ 1, 1 ]
   tosca.nodes.Abstract.Compute:
     derived_from: tosca.nodes.Root
     capabilities:
@@ -404,6 +402,25 @@ interface_types:
       description: Standard lifecycle delete operation.
 
 data_types:
+  tosca.datatypes.Credential:
+    derived_from: tosca.datatypes.Root
+    properties:
+      protocol:
+        type: string
+        required: false
+      token_type:
+        type: string
+        default: password
+      token:
+        type: string
+      keys:
+        type: map
+        required: false
+        entry_schema:
+          type: string
+      user:
+        type: string
+        required: false
   tosca.datatypes.network.PortInfo:
     derived_from: tosca.datatypes.Root
     properties:

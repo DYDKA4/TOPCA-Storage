@@ -12,7 +12,8 @@
 #     <notification definitions>
 from parser.parser.tosca_v_1_3.definitions.DescriptionDefinition import description_parser
 from parser.parser.tosca_v_1_3.others.Metadata import Metadata
-from parser.parser.tosca_v_1_3.definitions.NotificationDefinition import NotificationDefinition, notification_definition_parser
+from parser.parser.tosca_v_1_3.definitions.NotificationDefinition import NotificationDefinition, \
+    notification_definition_parser
 from parser.parser.tosca_v_1_3.definitions.OperationDefinition import OperationDefinition, operation_definition_parser
 from parser.parser.tosca_v_1_3.definitions.PropertyDefinition import PropertyDefinition, property_definition_parser
 
@@ -74,4 +75,9 @@ def interface_type_parser(name: str, data: dict) -> InterfaceType:
     if data.get('notifications'):
         for notification_name, notification_value in data.get('notifications').items():
             interface.add_notification(notification_definition_parser(notification_name, notification_value))
+    if not (interface.version or interface.metadata != [] or interface.description or interface.inputs != [] or
+            interface.operations != [] or interface.notifications != []):
+        for key, value in data.items():
+            if key != 'derived_from':
+                interface.add_operation(operation_definition_parser(key, value))
     return interface

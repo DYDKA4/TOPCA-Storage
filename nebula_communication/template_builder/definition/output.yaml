@@ -40,6 +40,7 @@ capability_types:
         entry_schema: {}
         key_schema: {}
         metadata: {}
+        required: false
         status: supported
         type: frequency
       disk_size:
@@ -48,6 +49,7 @@ capability_types:
         entry_schema: {}
         key_schema: {}
         metadata: {}
+        required: false
         status: supported
         type: size
       mem_size:
@@ -56,6 +58,7 @@ capability_types:
         entry_schema: {}
         key_schema: {}
         metadata: {}
+        required: false
         status: supported
         type: size
       name:
@@ -63,6 +66,7 @@ capability_types:
         entry_schema: {}
         key_schema: {}
         metadata: {}
+        required: false
         status: supported
         type: string
       num_cpus:
@@ -71,6 +75,7 @@ capability_types:
         entry_schema: {}
         key_schema: {}
         metadata: {}
+        required: false
         status: supported
         type: integer
     valid_source_types: []
@@ -94,11 +99,15 @@ capability_types:
     properties:
       initiator:
         constraints:
-        - valid_values: '[''source'', ''target'', ''peer'']'
+        - valid_values:
+          - source
+          - target
+          - peer
         default: source
         entry_schema: {}
         key_schema: {}
         metadata: {}
+        required: false
         type: string
       network_name:
         constraints: []
@@ -106,18 +115,21 @@ capability_types:
         entry_schema: {}
         key_schema: {}
         metadata: {}
+        required: false
         type: string
       port:
         constraints: []
         entry_schema: {}
         key_schema: {}
         metadata: {}
+        required: false
         type: tosca.datatypes.network.PortDef
       port_name:
         constraints: []
         entry_schema: {}
         key_schema: {}
         metadata: {}
+        required: false
         type: string
       ports:
         constraints:
@@ -129,6 +141,7 @@ capability_types:
           type: tosca.datatypes.network.PortSpec
         key_schema: {}
         metadata: {}
+        required: false
         type: map
       protocol:
         constraints: []
@@ -140,15 +153,18 @@ capability_types:
         type: string
       secure:
         constraints: []
+        default: false
         entry_schema: {}
         key_schema: {}
         metadata: {}
+        required: false
         type: boolean
       url_path:
         constraints: []
         entry_schema: {}
         key_schema: {}
         metadata: {}
+        required: false
         type: string
     valid_source_types: []
   tosca.capabilities.Endpoint.Admin:
@@ -181,24 +197,28 @@ capability_types:
         entry_schema: {}
         key_schema: {}
         metadata: {}
+        required: false
         type: string
       distribution:
         constraints: []
         entry_schema: {}
         key_schema: {}
         metadata: {}
+        required: false
         type: string
       type:
         constraints: []
         entry_schema: {}
         key_schema: {}
         metadata: {}
+        required: false
         type: string
       version:
         constraints: []
         entry_schema: {}
         key_schema: {}
         metadata: {}
+        required: false
         type: version
     valid_source_types: []
   tosca.capabilities.Root:
@@ -241,12 +261,51 @@ capability_types:
     properties: {}
     valid_source_types: []
 data_types:
-  integer:
+  tosca.datatypes.Credential:
     constraints: []
+    derived_from: tosca.datatypes.Root
     entry_schema: {}
     key_schema: {}
     metadata: {}
-    properties: {}
+    properties:
+      keys:
+        constraints: []
+        entry_schema:
+          constraints: []
+          entry_schema: {}
+          key_schema: {}
+          type: string
+        key_schema: {}
+        metadata: {}
+        required: false
+        type: map
+      protocol:
+        constraints: []
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        required: false
+        type: string
+      token:
+        constraints: []
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        type: string
+      token_type:
+        constraints: []
+        default: password
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        type: string
+      user:
+        constraints: []
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        required: false
+        type: string
   tosca.datatypes.Root:
     constraints: []
     description: The TOSCA root Data Type all other TOSCA base Data Types derive from
@@ -285,7 +344,9 @@ data_types:
         type: string
   tosca.datatypes.network.PortDef:
     constraints:
-    - in_range: '[1, 65535]'
+    - in_range:
+      - 1
+      - 65535
     derived_from: integer
     entry_schema: {}
     key_schema: {}
@@ -341,7 +402,10 @@ data_types:
     properties:
       protocol:
         constraints:
-        - valid_values: '[''udp'', ''tcp'', ''igmp'']'
+        - valid_values:
+          - udp
+          - tcp
+          - igmp
         default: tcp
         entry_schema: {}
         key_schema: {}
@@ -353,26 +417,34 @@ data_types:
         entry_schema: {}
         key_schema: {}
         metadata: {}
+        required: false
         type: tosca.datatypes.network.PortDef
       source_range:
         constraints:
-        - in_range: '[1, 65535]'
+        - in_range:
+          - 1
+          - 65535
         entry_schema: {}
         key_schema: {}
         metadata: {}
+        required: false
         type: range
       target:
         constraints: []
         entry_schema: {}
         key_schema: {}
         metadata: {}
+        required: false
         type: tosca.datatypes.network.PortDef
       target_range:
         constraints:
-        - in_range: '[1, 65535]'
+        - in_range:
+          - 1
+          - 65535
         entry_schema: {}
         key_schema: {}
         metadata: {}
+        required: false
         type: range
 interface_types:
   tosca.interfaces.Root:
@@ -387,13 +459,42 @@ interface_types:
     inputs: {}
     metadata: {}
     notifications: {}
-    operations: {}
+    operations:
+      configure:
+        description: Standard lifecycle configure operation.
+      create:
+        description: Standard lifecycle create operation.
+      delete:
+        description: Standard lifecycle delete operation.
+      start:
+        description: Standard lifecycle start operation.
+      stop:
+        description: Standard lifecycle stop operation.
   tosca.interfaces.relationship.Configure:
     derived_from: tosca.interfaces.Root
     inputs: {}
     metadata: {}
     notifications: {}
-    operations: {}
+    operations:
+      add_source:
+        description: Operation to notify the target node of a source node which is
+          now available via a relationship.
+      add_target:
+        description: Operation to notify the source node of a target node being added
+          via a relationship.
+      post_configure_source:
+        description: Operation to post-configure the source endpoint.
+      post_configure_target:
+        description: Operation to post-configure the target endpoint.
+      pre_configure_source:
+        description: Operation to pre-configure the source endpoint.
+      pre_configure_target:
+        description: Operation to pre-configure the target endpoint.
+      remove_target:
+        description: Operation to remove a target node.
+      target_changed:
+        description: Operation to notify source some property or attribute of the
+          target changed
 node_types:
   michman.nodes.Jupyter.Jupyter-6-0-1:
     artifacts: {}
@@ -420,15 +521,18 @@ node_types:
         entry_schema: {}
         key_schema: {}
         metadata: {}
+        required: false
         type: string
       core:
         constraints:
-        - valid_values: '[''4.5.0'']'
+        - valid_values:
+          - 4.5.0
         default: 4.5.0
         description: default jupyter core version (now this config param is not supported)
         entry_schema: {}
         key_schema: {}
         metadata: {}
+        required: false
         type: string
       ipykernel:
         constraints: []
@@ -437,6 +541,7 @@ node_types:
         entry_schema: {}
         key_schema: {}
         metadata: {}
+        required: false
         type: string
       ipython:
         constraints: []
@@ -445,6 +550,7 @@ node_types:
         entry_schema: {}
         key_schema: {}
         metadata: {}
+        required: false
         type: string
       ipywidgets:
         constraints: []
@@ -454,6 +560,7 @@ node_types:
         entry_schema: {}
         key_schema: {}
         metadata: {}
+        required: false
         type: string
       lab:
         constraints: []
@@ -462,6 +569,7 @@ node_types:
         entry_schema: {}
         key_schema: {}
         metadata: {}
+        required: false
         type: string
       nbconvert:
         constraints: []
@@ -470,6 +578,7 @@ node_types:
         entry_schema: {}
         key_schema: {}
         metadata: {}
+        required: false
         type: string
       nbformat:
         constraints: []
@@ -478,23 +587,48 @@ node_types:
         entry_schema: {}
         key_schema: {}
         metadata: {}
+        required: false
         type: string
       qtconsole:
         constraints:
-        - valid_values: '[''-'']'
+        - valid_values:
+          - '-'
         default: '-'
         description: now qtconsole is not installed (now this config param is not
           supported)
         entry_schema: {}
         key_schema: {}
         metadata: {}
+        required: false
         type: string
       spark_component_version:
         constraints:
-        - valid_values: '[''1.0.0'', ''1.0.1'', ''1.0.2'', ''1.1.0'', ''1.1.1'', ''1.2.0'',
-            ''1.2.1'', ''1.2.2'', ''1.3.0'', ''1.3.1'', ''1.4.0'', ''1.4.1'', ''1.5.0'',
-            ''1.5.1'', ''1.5.2'', ''1.6.0'', ''1.6.1'', ''1.6.2'', ''2.0.0'', ''2.0.1'',
-            ''2.0.2'', ''2.1.0'', ''2.2.0'', ''2.2.1'', ''2.3.0'']'
+        - valid_values:
+          - 1.0.0
+          - 1.0.1
+          - 1.0.2
+          - 1.1.0
+          - 1.1.1
+          - 1.2.0
+          - 1.2.1
+          - 1.2.2
+          - 1.3.0
+          - 1.3.1
+          - 1.4.0
+          - 1.4.1
+          - 1.5.0
+          - 1.5.1
+          - 1.5.2
+          - 1.6.0
+          - 1.6.1
+          - 1.6.2
+          - 2.0.0
+          - 2.0.1
+          - 2.0.2
+          - 2.1.0
+          - 2.2.0
+          - 2.2.1
+          - 2.3.0
         description: 'Setup version required. Default version is 2.3.0. Supported
           versions: >= 1.0.0, <= 2.3.0'
         entry_schema: {}
@@ -509,10 +643,12 @@ node_types:
         entry_schema: {}
         key_schema: {}
         metadata: {}
+        required: false
         type: string
       version:
         constraints:
-        - valid_values: '[''6.0.1'']'
+        - valid_values:
+          - 6.0.1
         default: 6.0.1
         entry_schema: {}
         key_schema: {}
@@ -625,7 +761,7 @@ node_types:
     requirements:
     - local_storage:
         capability: tosca.capabilities.Attachment
-        node: tosca.relationships.AttachesTo
+        node: tosca.nodes.Storage.BlockStorage
         occurrences:
         - 0
         - UNBOUNDED
@@ -670,7 +806,7 @@ node_types:
     requirements:
     - dependency:
         capability: tosca.capabilities.Node
-        node: tosca.relationships.DependsOn
+        node: tosca.nodes.Root
         occurrences:
         - 0
         - UNBOUNDED
@@ -682,18 +818,26 @@ node_types:
     capabilities: {}
     derived_from: tosca.nodes.Root
     interfaces: {}
-    metadata:
-      abstract: 'false'
-      final: 'false'
-      targetNamespace: tosca.nodes
-    properties: {}
+    metadata: {}
+    properties:
+      admin_credential:
+        constraints: []
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        required: false
+        type: tosca.datatypes.Credential
+      component_version:
+        constraints: []
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        required: false
+        type: version
     requirements:
     - host:
         capability: tosca.capabilities.Compute
-        node: tosca.relationships.HostedOn
-        occurrences:
-        - 1
-        - 1
+        node: tosca.nodes.Compute
         relationship:
           type: tosca.relationships.HostedOn
   tosca.nodes.Storage.BlockStorage:
@@ -720,6 +864,7 @@ node_types:
         entry_schema: {}
         key_schema: {}
         metadata: {}
+        required: false
         status: supported
         type: string
       volume_id:
@@ -727,6 +872,7 @@ node_types:
         entry_schema: {}
         key_schema: {}
         metadata: {}
+        required: false
         status: supported
         type: string
     requirements: []
@@ -742,6 +888,7 @@ relationship_types:
         entry_schema: {}
         key_schema: {}
         metadata: {}
+        required: false
         type: string
       location:
         constraints:

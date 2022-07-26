@@ -26,16 +26,18 @@ def construct_operation_definition(list_of_vid) -> dict:
         for edge in edges:
             destination = find_destination(vid, edge)
             if edge == 'implementation':
-                data = fetch_vertex(destination[0], 'ArtifactDefinition')
-                if data is None:
-                    tmp_result['implementation'] = construct_operation_implementation_definition(destination)
-                else:
-                    primary = fetch_vertex(destination[0], 'ArtifactDefinition')
-                    primary = primary.as_map()
-                    primary = primary['name'].as_string()
-                    short_notation = primary
+                if destination:
+                    data = fetch_vertex(destination[0], 'ArtifactDefinition')
+                    if data is None:
+                        tmp_result['implementation'] = construct_operation_implementation_definition(destination)
+                    else:
+                        primary = fetch_vertex(destination[0], 'ArtifactDefinition')
+                        primary = primary.as_map()
+                        primary = primary['name'].as_string()
+                        short_notation = primary
             elif edge == 'outputs':
-                print(edge, destination)
+                if destination:
+                    print(edge, destination)
             elif edge == 'inputs':
                 if destination:
                     if fetch_vertex(destination[0], 'PropertyDefinition'):

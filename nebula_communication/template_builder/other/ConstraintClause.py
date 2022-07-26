@@ -23,6 +23,19 @@ def construct_constraint_schema(list_of_vid) -> list:
             value: int = int(value)
         elif value.replace('.', '', 1).isdigit():
             value: float = float(value)
-
+        elif value[0] == '[' and value[-1] == ']':
+            value: str = value[1:-1]
+            value: list = value.split(',')
+            for index, item in enumerate(value):
+                while (item[0] == item[-1] and item[0] in {'"', "'"}) or item[0] == ' ':
+                    if item[0] == ' ':
+                        item = item[1:]
+                    else:
+                        item = item[1:-1]
+                value[index] = item
+                if item.isnumeric():
+                    value[index] = int(item)
+                elif item.replace('.', '', 1).isdigit():
+                    value[index] = float(item)
         result.append({vertex_value['operator'].as_string(): value})
     return result

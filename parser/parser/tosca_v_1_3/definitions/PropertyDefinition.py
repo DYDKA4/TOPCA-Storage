@@ -40,9 +40,9 @@ class PropertyDefinition:
         self.description = description
 
     def set_required(self, required: str):
-        if {required}.union({"false", "False", "0"}):
+        if required in {"false", "False", "0", False, 0}:
             self.required = False
-        if {required}.union({"true", "True", "1"}):
+        if required in {"true", "True", "1", True, 1}:
             self.required = True
 
     def set_default(self, default: str):
@@ -73,9 +73,9 @@ def property_definition_parser(name: str, data: dict) -> PropertyDefinition:
     if data.get('description'):
         description = description_parser(data)
         property_definition.set_description(description)
-    if data.get('required'):
+    if data.get('required') is not None:
         property_definition.set_required(data.get('required'))
-    if data.get('default'):  # Data type?
+    if data.get('default') is not None:  # Data type?
         property_definition.set_default(data.get('default'))
     if data.get('status'):
         property_definition.set_status(data.get('status'))

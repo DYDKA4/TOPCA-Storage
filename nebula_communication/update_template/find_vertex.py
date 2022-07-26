@@ -38,7 +38,14 @@ def find_vertex(cluster_name, vertex_type_system, search_by, search_by_value):
         if search_by is None:
             return vid
         elif search_by and search_by_value:
-            for vid in
+            result = []
+            for vid_tmp in vid:
+                vid_value = fetch_vertex(vid, vertex_type_system)
+                vid_value = vid_value.as_map()
+                if not vid_value.get(search_by).is_null():
+                    if vid_value.get(search_by).as_string() == search_by_value:
+                        result.append(vid_tmp.as_string())
+            return result
     vid = None
 #
     return vid

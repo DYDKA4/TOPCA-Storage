@@ -140,7 +140,13 @@ def get_all_vid_from_cluster_by_type(cluster_name, vertex_type_system):
     for vid in result:
         vertex_type_system_vid.append(vid.as_string())
     result = list(set(clusters_vid) & set(vertex_type_system_vid))
+    session.release()
     return result
 
 
-get_all_vid_from_cluster_by_type('cluster', 'AttributeDefinition')
+def get_all_vertex(tag):
+    session = start_session()
+    result = session.execute(f'LOOKUP ON {tag}')
+    assert result.is_succeeded(), result.error_msg()
+    session.release()
+    return result.column_values('VertexID')

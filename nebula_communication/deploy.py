@@ -39,11 +39,11 @@ def deploy(template, cluster_name) -> None:
                 if name_of_key_value == '':
                     if attribute_value is not None:
                         name_of_key_value = attribute_name
-                        key_value = "'" + str(attribute_value) + "'"
+                        key_value = '"' + str(attribute_value) + '"'
                 else:
                     if attribute_value is not None:
                         name_of_key_value = name_of_key_value + ", " + attribute_name
-                        key_value = key_value + ", '" + str(attribute_value) + "'"
+                        key_value = key_value + ', "' + str(attribute_value) + '"'
             elif attribute_name not in {'vid', 'vertex_type_system'} and attribute_value is not None:
                 complex_vertex[attribute_name] = attribute_value
         if template.vid is None:
@@ -122,12 +122,12 @@ def deploy(template, cluster_name) -> None:
     return
 
 
-# file = open('service_template.yaml')
-# data = file.read()
-# file.close()
-# data = yaml.safe_load(data)
-# template = service_template_definition_parser(''.join(choice(ascii_uppercase) for i in range(12)), data)
-# main_linker(template)
-# if add_vid(template.name, template.name):
-#     abort(400)
-# deploy(template, template.name)
+file = open('jupyter.yaml')
+data = file.read()
+file.close()
+data = yaml.safe_load(data)
+template = service_template_definition_parser(''.join(choice(ascii_uppercase) for i in range(12)), data)
+main_linker(template)
+if add_vid(template.name, template.name):
+    abort(400)
+deploy(template, template.name)

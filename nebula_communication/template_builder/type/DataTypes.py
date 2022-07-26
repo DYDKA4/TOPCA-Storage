@@ -41,6 +41,8 @@ def construct_data_type(list_of_vid) -> dict:
                 tmp_result['key_schema'] = construct_schema_definition(destination)
             else:
                 abort(500)
-        result[vertex_value['name'].as_string()] = tmp_result
+        if vertex_value['name'].as_string() not in {'string', 'boolean', 'int', 'float', 'timestamp', 'size',
+                                                    'frequency', 'map', 'list', 'range', 'version'}:
+            result[vertex_value['name'].as_string()] = tmp_result
 
     return result

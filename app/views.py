@@ -6,6 +6,7 @@ from app import constructor_yaml
 from app import find as find_method
 from nebula_communication.deploy import deploy
 from nebula_communication.redis_communication import add_vid, delete_all
+from nebula_communication.update_template.find_vertex import find_vertex
 from nebula_communication.update_template.update_template import update_template
 from parser.linker.tosca_v_1_3.main_linker import main_linker
 from parser.parser.tosca_v_1_3.definitions.ServiceTemplateDefinition import service_template_definition_parser
@@ -82,11 +83,14 @@ def yaml_patch():
 @app.route('/find/<path:varargs>', methods=['GET'])
 def find(varargs=None):
     search_by = request.args.get('search_by')
+    search_by_value = request.args.get('search_by_value')
     cluster_name = request.args.get('cluster_name')
+    vertex_type_system = request.args.get('vertex_type_system')
     find_cluster_name = request.args.get('find_cluster_name')
     node_vid = request.args.get('node_vid')
     requirement_name = request.args.get('requirement_name')
-    return find_method.find_node(varargs, search_by, cluster_name, find_cluster_name, requirement_name)
+    result = find_vertex(cluster_name, vertex_type_system)
+    return "200 OK"
 
 
 @app.route('/download_yaml', methods=['GET'])

@@ -46,7 +46,8 @@ from parser.parser.tosca_v_1_3.types.InterfaceType import InterfaceType, interfa
 from parser.parser.tosca_v_1_3.types.NodeType import node_type_parser, NodeType
 from parser.parser.tosca_v_1_3.types.PolicyTypes import policy_type_parser, PolicyType
 from parser.parser.tosca_v_1_3.types.RelationshipType import relationship_type_parser, RelationshipType
-from parser.parser.tosca_v_1_3.definitions.RepositoryDefinition import RepositoryDefinition, repository_definition_parser
+from parser.parser.tosca_v_1_3.definitions.RepositoryDefinition import RepositoryDefinition, \
+    repository_definition_parser
 from parser.parser.tosca_v_1_3.definitions.TemplateDefinition import TemplateDefinition, template_definition_parser
 
 
@@ -54,7 +55,7 @@ class ServiceTemplateDefinition:
     def __init__(self, cluster_name: str):
         self.tosca_definitions_version = None
         self.name = cluster_name
-        self.vid = '"'+cluster_name+'"'
+        self.vid = '"' + cluster_name + '"'
         self.vertex_type_system = 'ServiceTemplateDefinition'
         self.namespace = None
         self.metadata = []
@@ -63,7 +64,9 @@ class ServiceTemplateDefinition:
         self.repositories = []
         self.imports = []
         self.artifact_types = []
-        self.data_types = []
+        self.data_types = [DataType('string'), DataType('boolean'), DataType('float'), DataType('integer'),
+                           DataType('timestamp'), DataType('size'), DataType('frequency'), DataType('map'),
+                           DataType('list'), DataType('range'), DataType('version')]
         self.capability_types = []
         self.interface_types = []
         self.relationship_types = []

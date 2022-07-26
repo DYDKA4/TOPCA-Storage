@@ -6,7 +6,7 @@ from nebula_communication.nebula_functions import fetch_vertex, update_vertex, f
 from parser.parser.tosca_v_1_3.assignments.AttributeAssignment import AttributeAssignment
 
 
-def update_attribute_assignment(service_template_vid, father_node_vid, value, value_name, varargs: list, type_update):
+def start_attribute_assignment(father_node_vid, varargs):
     if len(varargs) != 2:
         abort(400)
     destination = find_destination(father_node_vid, varargs[0])
@@ -21,6 +21,11 @@ def update_attribute_assignment(service_template_vid, father_node_vid, value, va
             break
     if property_vid_to_update is None:
         abort(400)
+    return property_vid_to_update
+
+
+def update_attribute_assignment(service_template_vid, father_node_vid, value, value_name, varargs: list, type_update):
+    property_vid_to_update = start_attribute_assignment(father_node_vid, varargs)
     if type_update == 'delete':
         delete_vertex('"' + property_vid_to_update.as_string() + '"')
         return
@@ -43,3 +48,14 @@ def add_attribute_assignment(type_update, varargs, cluster_name, parent_vid, edg
         add_edge(edge_name, '', parent_vid, data_type.vid, '')
         return True
     return False
+
+
+def get_attribute_assignment(father_node_vid, value, value_name, varargs: list):
+    property_vid_to_update = start_attribute_assignment(father_node_vid, varargs)
+    property_value = fetch_vertex(property_vid_to_update, 'AttributeAssignment')
+    property_value = property_value.as_map()
+    if value_name in property_value.keys():
+        if value == property_value.get(value_name).as_string():
+            return property_vid_to_update.as_string()
+    else:
+        abort(400)

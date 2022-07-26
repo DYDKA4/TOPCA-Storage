@@ -67,5 +67,4 @@ def construct_service_template_definition(name: str):
     with open('./output.yaml', 'w') as file:
         documents = yaml.dump(template, file)
 
-
-construct_service_template_definition('REXYVLRKCDRC')
+construct_service_template_definition('ZFLBESWGLTOM')

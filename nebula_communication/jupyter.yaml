@@ -101,40 +101,27 @@ Supported versions: >= 1.0.0, <= 2.3.0"
           node: tosca.nodes.Compute
           relationship: tosca.relationships.HostedOn
           occurrences: [ 1, 1 ]
-  tosca.nodes.Compute:
+  tosca.nodes.Abstract.Compute:
     derived_from: tosca.nodes.Root
-    metadata:
-      abstract: "false"
-      final: "false"
-      targetNamespace: "tosca.nodes"
-    properties:
-      tosca_name:
-        type: string
-        required: false
-      meta:
-        type: string
-        required: false
-      keypair:
-        type: string
-        required: false
-      boot_from_volume:
-        type: string
-        default: false
-        required: false
+    capabilities:
+      host:
+        type: tosca.capabilities.Compute
+        valid_source_types: [ ]
+  tosca.nodes.Compute:
+    derived_from: tosca.nodes.Abstract.Compute
+    attributes:
       private_address:
         type: string
-        required: false
       public_address:
         type: string
-        required: false
       networks:
         type: map
-        required: false
         entry_schema:
           type: tosca.datatypes.network.NetworkInfo
       ports:
         type: map
-        required: false
+        entry_schema:
+          type: tosca.datatypes.network.PortInfo
     requirements:
       - local_storage:
           capability: tosca.capabilities.Attachment
@@ -142,21 +129,16 @@ Supported versions: >= 1.0.0, <= 2.3.0"
           relationship: tosca.relationships.AttachesTo
           occurrences: [ 0, UNBOUNDED ]
     capabilities:
-      scalable:
-        occurrences: [ 1, UNBOUNDED ]
-        type: tosca.capabilities.Scalable
-      endpoint:
-        occurrences: [ 1, UNBOUNDED ]
-        type: tosca.capabilities.Endpoint
-      os:
-        occurrences: [ 1, UNBOUNDED ]
-        type: tosca.capabilities.OperatingSystem
       host:
-        occurrences: [ 1, UNBOUNDED ]
-        valid_source_types: [ tosca.nodes.SoftwareComponent ]
         type: tosca.capabilities.Compute
+        valid_source_types: [ tosca.nodes.SoftwareComponent ]
+      endpoint:
+        type: tosca.capabilities.Endpoint.Admin
+      os:
+        type: tosca.capabilities.OperatingSystem
+      scalable:
+        type: tosca.capabilities.Scalable
       binding:
-        occurrences: [ 1, UNBOUNDED ]
         type: tosca.capabilities.network.Bindable
   tosca.nodes.Root:
     description: The TOSCA Node Type all other TOSCA base Node Types derive from
@@ -215,6 +197,15 @@ Supported versions: >= 1.0.0, <= 2.3.0"
         constraints:
           - greater_or_equal: 0 MB
 capability_types:
+  tosca.capabilities.Endpoint.Admin:
+    derived_from: tosca.capabilities.Endpoint
+    # Change Endpoint secure indicator to true from its default of false
+    properties:
+      secure:
+        type: boolean
+        default: true
+        constraints:
+          - equal: true
   tosca.capabilities.Scalable:
     derived_from: tosca.capabilities.Root
     properties:
@@ -413,6 +404,21 @@ interface_types:
       description: Standard lifecycle delete operation.
 
 data_types:
+  tosca.datatypes.network.PortInfo:
+    derived_from: tosca.datatypes.Root
+    properties:
+      port_name:
+        type: string
+      port_id:
+        type: string
+      network_id:
+        type: string
+      mac_address:
+        type: string
+      addresses:
+        type: list
+        entry_schema:
+          type: string
   tosca.datatypes.network.PortSpec:
     derived_from: tosca.datatypes.Root
     properties:

@@ -1,933 +1,802 @@
-artifact_types:
-  test_artifact_type_name_0:
-    derived_from: test_parent_artifact_type_name
-    metadata: {}
+capability_types:
+  michman.capabilities.Jupyter:
+    attributes: {}
+    derived_from: tosca.capabilities.Root
+    metadata:
+      abstract: 'false'
+      final: 'false'
+      targetNamespace: michman.capabilities
     properties: {}
-  test_artifact_type_name_1:
-    derived_from: test_parent_artifact_type_name
-    metadata: {}
+    valid_source_types: []
+  michman.capabilities.Spark:
+    attributes: {}
+    derived_from: tosca.capabilities.Root
+    metadata:
+      abstract: 'false'
+      final: 'false'
+      targetNamespace: michman.capabilities
     properties: {}
-  test_parent_artifact_type_name:
-    derived_from: test_parent_artifact_type_name
-    description: test_description
-    metadata: {}
+    valid_source_types: []
+  tosca.capabilities.Attachment:
+    attributes: {}
+    derived_from: tosca.capabilities.Root
+    metadata:
+      abstract: 'false'
+      final: 'false'
+      targetNamespace: tosca.capabilities
+    properties: {}
+    valid_source_types: []
+  tosca.capabilities.Compute:
+    attributes: {}
+    derived_from: tosca.capabilities.Container
+    metadata:
+      abstract: 'false'
+      final: 'false'
+      targetNamespace: tosca.capabilities
     properties:
-      test_property_name_0:
+      cpu_frequency:
         constraints:
-        - equal: 2
-        - equal: 10
+        - greater_or_equal: 0.1 GHz
         entry_schema: {}
         key_schema: {}
         metadata: {}
-        type: test_data_type_name_0
-      test_property_name_1:
-        constraints: []
-        entry_schema:
-          constraints:
-          - entry_equal_4: entry_value_4
-          - entry_equal_5: entry_value_5
-          description: entry_schema_description_test
-          entry_schema: {}
-          key_schema: {}
-          type: test_data_type_name_0
-        key_schema:
-          constraints:
-          - key_equal_0: key_value_0
-          - key_equal_1: key_value_1
-          description: key_schema_description_test
-          entry_schema: {}
-          key_schema:
-            constraints:
-            - key_equal_2: key_value_2
-            - key_equal_3: key_value_3
-            description: key_schema_description_test
-            entry_schema: {}
-            key_schema: {}
-            type: test_data_type_name_0
-          type: test_data_type_name_1
+        status: supported
+        type: frequency
+      disk_size:
+        constraints:
+        - greater_or_equal: 0 MB
+        entry_schema: {}
+        key_schema: {}
         metadata: {}
-        type: test_data_type_name_1
-capability_types:
-  test_capability_type_name_0:
+        status: supported
+        type: size
+      mem_size:
+        constraints:
+        - greater_or_equal: 0 MB
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        status: supported
+        type: size
+      name:
+        constraints: []
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        status: supported
+        type: string
+      num_cpus:
+        constraints:
+        - greater_or_equal: 1
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        status: supported
+        type: integer
+    valid_source_types: []
+  tosca.capabilities.Container:
     attributes: {}
-    derived_from: test_parent_capability_type_name
+    derived_from: tosca.capabilities.Root
+    metadata:
+      abstract: 'false'
+      final: 'false'
+      targetNamespace: tosca.capabilities
     properties: {}
     valid_source_types: []
-  test_capability_type_name_1:
-    attributes: {}
-    derived_from: test_parent_capability_type_name
-    properties: {}
-    valid_source_types: []
-  test_parent_capability_type_name:
+  tosca.capabilities.Endpoint:
     attributes:
-      test_attribute_name:
-        default: test_default_value
-        description: test_attribute_description
+      ip_address:
+        entry_schema: {}
+        key_schema: {}
+        type: string
+    derived_from: tosca.capabilities.Root
+    metadata: {}
+    properties:
+      initiator:
+        constraints:
+        - valid_values: '[''source'', ''target'', ''peer'']'
+        default: source
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        type: string
+      network_name:
+        constraints: []
+        default: PRIVATE
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        type: string
+      port:
+        constraints: []
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        type: tosca.datatypes.network.PortDef
+      port_name:
+        constraints: []
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        type: string
+      ports:
+        constraints:
+        - min_length: 1
         entry_schema:
-          constraints:
-          - entry_equal_1: entry_value_1
-          - entry_equal_0: entry_value_0
-          description: entry_schema_description_test
+          constraints: []
           entry_schema: {}
           key_schema: {}
-          type: test_data_type_name_0
-        key_schema:
-          constraints:
-          - key_equal_0: key_value_0
-          - key_equal_1: key_value_1
-          description: key_schema_description_test
-          entry_schema: {}
-          key_schema: {}
-          type: test_data_type_name_1
-        status: test_status_value
-        type: test_data_type_name_0
+          type: tosca.datatypes.network.PortSpec
+        key_schema: {}
+        metadata: {}
+        type: map
+      protocol:
+        constraints: []
+        default: tcp
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        required: true
+        type: string
+      secure:
+        constraints: []
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        type: boolean
+      url_path:
+        constraints: []
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        type: string
+    valid_source_types: []
+  tosca.capabilities.Endpoint.Admin:
+    attributes: {}
+    derived_from: tosca.capabilities.Endpoint
+    metadata: {}
+    properties:
+      secure:
+        constraints:
+        - equal: 'True'
+        default: true
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        type: boolean
+    valid_source_types: []
+  tosca.capabilities.Node:
+    attributes: {}
+    derived_from: tosca.capabilities.Root
+    metadata: {}
+    properties: {}
+    valid_source_types: []
+  tosca.capabilities.OperatingSystem:
+    attributes: {}
+    derived_from: tosca.capabilities.Root
+    metadata: {}
+    properties:
+      architecture:
+        constraints: []
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        type: string
+      distribution:
+        constraints: []
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        type: string
+      type:
+        constraints: []
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        type: string
+      version:
+        constraints: []
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        type: version
+    valid_source_types: []
+  tosca.capabilities.Root:
+    attributes: {}
+    description: The TOSCA root Capability Type all other TOSCA Capability Types derive
+      from
+    metadata: {}
+    properties: {}
+    valid_source_types: []
+  tosca.capabilities.Scalable:
+    attributes: {}
+    derived_from: tosca.capabilities.Root
+    metadata: {}
+    properties:
+      default_instances:
+        constraints: []
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        type: integer
+      max_instances:
+        constraints: []
+        default: '1'
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        type: integer
+      min_instances:
+        constraints: []
+        default: '1'
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        type: integer
+    valid_source_types: []
+  tosca.capabilities.network.Bindable:
+    attributes: {}
+    derived_from: tosca.capabilities.Node
+    metadata: {}
     properties: {}
     valid_source_types: []
 data_types:
-  test_data_type_name_0:
+  integer:
     constraints: []
-    derived_from: test_existing_type_name
     entry_schema: {}
     key_schema: {}
     metadata: {}
     properties: {}
-  test_data_type_name_1:
+  tosca.datatypes.Root:
     constraints: []
-    derived_from: test_existing_type_name
+    description: The TOSCA root Data Type all other TOSCA base Data Types derive from
     entry_schema: {}
     key_schema: {}
     metadata: {}
     properties: {}
-  test_existing_type_name:
+  tosca.datatypes.network.NetworkInfo:
     constraints: []
-    description: test_description
+    derived_from: tosca.datatypes.Root
     entry_schema: {}
     key_schema: {}
     metadata: {}
-    properties: {}
-description: test_template_type_description
-group_types:
-  test_group_type_name:
-    attributes:
-      attribute_name_0:
-        entry_schema: {}
-        key_schema: {}
-        type: test_data_type_name_0
-      attribute_name_1:
-        entry_schema: {}
-        key_schema: {}
-        type: test_data_type_name_1
-    derived_from: test_parent_group_type_name
-    description: test_node_type_description
-    members: []
-    metadata:
-      metadata_key_0: metadata_value_0
-      metadata_key_1: metadata_value_1
-      metadata_key_2: metadata_value_2
     properties:
-      test_property_name_0:
+      addresses:
         constraints: []
-        description: test_property_description_0
-        entry_schema: {}
-        key_schema: {}
-        metadata: {}
-        type: test_data_type_name_0
-      test_property_name_1:
-        constraints: []
-        description: test_property_description_1
-        entry_schema: {}
-        key_schema: {}
-        metadata: {}
-        type: test_data_type_name_1
-    version: test_version_number
-  test_group_type_name_0:
-    attributes: {}
-    derived_from: test_parent_group_type_name
-    members: []
-    metadata: {}
-    properties: {}
-  test_group_type_name_1:
-    attributes: {}
-    derived_from: test_parent_group_type_name
-    members: []
-    metadata: {}
-    properties: {}
-  test_parent_group_type_name:
-    attributes: {}
-    derived_from: test_parent_group_type_name
-    members: []
-    metadata: {}
-    properties: {}
-imports:
-- file: URI_1
-- file: URI_0
-- file: <file_URI>
-  namespace_prefix: <definition_namespace_prefix>
-  namespace_uri: <definition_namespace_uri>
-  repository: <repository_name>
-interface_types:
-  test_interface_type_name_0:
-    derived_from: test_parent_interface_type_name
-    description: test_interface_description
-    inputs:
-      test_property_name:
-        constraints:
-        - equal_1: value_1
-        - equal_0: value_0
-        default: test_default_value
-        description: test_property_description
         entry_schema:
-          constraints:
-          - entry_equal_0: entry_value_0
-          - entry_equal_1: entry_value_1
-          description: entry_schema_description_test
+          constraints: []
           entry_schema: {}
           key_schema: {}
-          type: test_data_type_name_0
-        key_schema:
-          constraints:
-          - key_equal_1: key_value_1
-          - key_equal_0: key_value_0
-          description: key_schema_description_test
-          entry_schema: {}
-          key_schema: {}
-          type: test_data_type_name_1
-        metadata:
-          metadata_key_0: metadata_value_0
-          metadata_key_1: metadata_value_1
-          metadata_key_2: metadata_value_2
-        required: true
-        status: test_status
-        type: test_data_type_name_0
-      test_property_name_1:
+          type: string
+        key_schema: {}
+        metadata: {}
+        type: list
+      network_id:
         constraints: []
-        description: test_property_description_1
         entry_schema: {}
         key_schema: {}
         metadata: {}
-        type: test_data_type_name_1
-    metadata:
-      metadata_key_0: metadata_value_0
-      metadata_key_1: metadata_value_1
-      metadata_key_2: metadata_value_2
-    notifications:
-      notification_test_name_0:
-        description: test_notification_description_0
-        implementation:
-          dependencies: []
-          primary: test_artifact_name_0
-      notification_test_name_1:
-        description: test_notification_description_1
-        implementation:
-          dependencies: []
-          primary: test_artifact_name_1
-    operations:
-      operation_test_name_1: test_artifact_name_1
-      test_operation_name:
-        description: test_operation_description
-        implementation:
-          dependencies:
-          - test_artifact_name_0: 0_test_artifact_file_URI
-          - test_artifact_name_2: 2_test_artifact_file_URI
-          - test_artifact_name_1: 1_test_artifact_file_URI
-          primary:
-            test_artifact_name: test_artifact_file_URI
-        inputs:
-          test_property_name_0:
-            constraints: []
-            description: test_property_description_0
-            entry_schema: {}
-            key_schema: {}
-            metadata: {}
-            type: test_data_type_name_1
-          test_property_name_1:
-            constraints: []
-            description: test_property_description_1
-            entry_schema: {}
-            key_schema: {}
-            metadata: {}
-            type: test_data_type_name_1
-        outputs: test_value
-    version: test_version_number
-  test_interface_type_name_1:
-    derived_from: test_parent_interface_type_name
+        type: string
+      network_name:
+        constraints: []
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        type: string
+  tosca.datatypes.network.PortDef:
+    constraints:
+    - in_range: '[1, 65535]'
+    derived_from: integer
+    entry_schema: {}
+    key_schema: {}
+    metadata: {}
+    properties: {}
+  tosca.datatypes.network.PortInfo:
+    constraints: []
+    derived_from: tosca.datatypes.Root
+    entry_schema: {}
+    key_schema: {}
+    metadata: {}
+    properties:
+      addresses:
+        constraints: []
+        entry_schema:
+          constraints: []
+          entry_schema: {}
+          key_schema: {}
+          type: string
+        key_schema: {}
+        metadata: {}
+        type: list
+      mac_address:
+        constraints: []
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        type: string
+      network_id:
+        constraints: []
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        type: string
+      port_id:
+        constraints: []
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        type: string
+      port_name:
+        constraints: []
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        type: string
+  tosca.datatypes.network.PortSpec:
+    constraints: []
+    derived_from: tosca.datatypes.Root
+    entry_schema: {}
+    key_schema: {}
+    metadata: {}
+    properties:
+      protocol:
+        constraints:
+        - valid_values: '[''udp'', ''tcp'', ''igmp'']'
+        default: tcp
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        required: true
+        type: string
+      source:
+        constraints: []
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        type: tosca.datatypes.network.PortDef
+      source_range:
+        constraints:
+        - in_range: '[1, 65535]'
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        type: range
+      target:
+        constraints: []
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        type: tosca.datatypes.network.PortDef
+      target_range:
+        constraints:
+        - in_range: '[1, 65535]'
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        type: range
+interface_types:
+  tosca.interfaces.Root:
+    description: The TOSCA root Interface Type all other TOSCA Interface Types derive
+      from
     inputs: {}
     metadata: {}
     notifications: {}
     operations: {}
-  test_parent_interface_type_name:
-    description: test_description
+  tosca.interfaces.node.lifecycle.Standard:
+    derived_from: tosca.interfaces.Root
     inputs: {}
     metadata: {}
     notifications: {}
     operations: {}
-metadata:
-  metadata_key_0: metadata_value_0
-  metadata_key_1: metadata_value_1
-  metadata_key_2: metadata_value_2
-namespace: URI
+  tosca.interfaces.relationship.Configure:
+    derived_from: tosca.interfaces.Root
+    inputs: {}
+    metadata: {}
+    notifications: {}
+    operations: {}
 node_types:
-  test_node_type_name_0:
+  michman.nodes.Jupyter.Jupyter-6-0-1:
     artifacts: {}
     attributes: {}
-    capabilities: {}
-    derived_from: test_parent_node_type_name
-    interfaces: {}
-    metadata: {}
-    properties: {}
-    requirements: []
-  test_node_type_name_1:
-    artifacts: {}
-    attributes: {}
-    capabilities: {}
-    derived_from: test_parent_node_type_name
-    interfaces: {}
-    metadata: {}
-    properties: {}
-    requirements: []
-  test_parent_node_type_name:
-    artifacts:
-      test_artifact_name_0: test_artifact_file_URI_0
-      test_artifact_name_1: test_artifact_file_URI_1
-    attributes:
-      attribute_name_0:
-        entry_schema: {}
-        key_schema: {}
-        type: test_data_type_name_0
-      attribute_name_1:
-        entry_schema: {}
-        key_schema: {}
-        type: test_data_type_name_1
     capabilities:
-      test_capability_definition_name:
-        attributes:
-          attribute_name_0:
-            entry_schema: {}
-            key_schema: {}
-            type: test_data_type_name_0
-          attribute_name_1:
-            entry_schema: {}
-            key_schema: {}
-            type: test_data_type_name_1
-        description: test_capability_description
-        occurrences:
-        - 0
-        - 10
-        properties:
-          test_property_name_0:
-            constraints: []
-            description: test_property_description_0
-            entry_schema: {}
-            key_schema: {}
-            metadata: {}
-            type: test_data_type_name_0
-          test_property_name_1:
-            constraints: []
-            description: test_property_description_1
-            entry_schema: {}
-            key_schema: {}
-            metadata: {}
-            type: test_data_type_name_1
-        type: test_capability_type_name_0
-        valid_source_types:
-        - test_node_type_name_0
-        - test_node_type_name_1
-      test_capability_definition_name_1:
+      dependence:
         attributes: {}
         properties: {}
-        type: test_capability_type_name_1
+        type: michman.capabilities.Jupyter
         valid_source_types: []
-    description: test_description
-    interfaces:
-      test_interface_definition_name_0:
-        notifications: {}
-        operations: {}
-        type: test_interface_type_name_0
-      test_interface_definition_name_1:
-        notifications: {}
-        operations: {}
-        type: test_interface_type_name_1
+    derived_from: tosca.nodes.SoftwareComponent
+    description: Jupyter version 6.0.1 (latest for pip install)
+    interfaces: {}
     metadata:
-      metadata_key_0: metadata_value_0
-      metadata_key_1: metadata_value_1
-      metadata_key_2: metadata_value_2
+      abstract: 'false'
+      final: 'false'
+      targetNamespace: michman.nodes.Jupyter
     properties:
-      test_property_name_0:
+      client:
         constraints: []
-        description: test_property_description_0
+        default: 5.3.1
+        description: default jupyter client version (now this config param is not
+          supported)
         entry_schema: {}
         key_schema: {}
         metadata: {}
-        type: test_data_type_name_0
-      test_property_name_1:
-        constraints: []
-        description: test_property_description_1
+        type: string
+      core:
+        constraints:
+        - valid_values: '[''4.5.0'']'
+        default: 4.5.0
+        description: default jupyter core version (now this config param is not supported)
         entry_schema: {}
         key_schema: {}
         metadata: {}
-        type: test_data_type_name_1
+        type: string
+      ipykernel:
+        constraints: []
+        default: 5.1.2
+        description: default ipykernel version (now this config param is not supported)
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        type: string
+      ipython:
+        constraints: []
+        default: 7.8.0
+        description: default ipython version (now this config param is not supported)
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        type: string
+      ipywidgets:
+        constraints: []
+        default: '-'
+        description: now ipywidgets is not installed (now this config param is not
+          supported)
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        type: string
+      lab:
+        constraints: []
+        default: 1.1.1
+        description: default jupyter lab version (now this config param is not supported)
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        type: string
+      nbconvert:
+        constraints: []
+        default: 5.6.0
+        description: default nbconvert version (now this config param is not supported)
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        type: string
+      nbformat:
+        constraints: []
+        default: 4.4.0
+        description: default nbformat version (now this config param is not supported)
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        type: string
+      qtconsole:
+        constraints:
+        - valid_values: '[''-'']'
+        default: '-'
+        description: now qtconsole is not installed (now this config param is not
+          supported)
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        type: string
+      spark_component_version:
+        constraints:
+        - valid_values: '[''1.0.0'', ''1.0.1'', ''1.0.2'', ''1.1.0'', ''1.1.1'', ''1.2.0'',
+            ''1.2.1'', ''1.2.2'', ''1.3.0'', ''1.3.1'', ''1.4.0'', ''1.4.1'', ''1.5.0'',
+            ''1.5.1'', ''1.5.2'', ''1.6.0'', ''1.6.1'', ''1.6.2'', ''2.0.0'', ''2.0.1'',
+            ''2.0.2'', ''2.1.0'', ''2.2.0'', ''2.2.1'', ''2.3.0'']'
+        description: 'Setup version required. Default version is 2.3.0. Supported
+          versions: >= 1.0.0, <= 2.3.0'
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        required: true
+        type: string
+      traitlets:
+        constraints: []
+        default: 4.3.2
+        description: default traitlets version (now this config param is not supported)
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        type: string
+      version:
+        constraints:
+        - valid_values: '[''6.0.1'']'
+        default: 6.0.1
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        type: string
     requirements:
-    - test_requirement_definition_name_0:
-        capability: test_capability_type_name_0
-    - test_requirement_definition_name_1:
-        capability: test_capability_type_name_1
-    version: test_version_number
-policy_types:
-  test_parent_policy_type_name:
-    derived_from: test_parent_policy_type_name
+    - spark:
+        capability: michman.capabilities.Spark
+        node: tosca.relationships.DependsOn
+        occurrences:
+        - 1
+        - 1
+        relationship:
+          type: tosca.relationships.DependsOn
+  tosca.nodes.Abstract.Compute:
+    artifacts: {}
+    attributes: {}
+    capabilities:
+      host:
+        attributes: {}
+        properties: {}
+        type: tosca.capabilities.Compute
+        valid_source_types: []
+    derived_from: tosca.nodes.Root
+    interfaces: {}
     metadata: {}
     properties: {}
-    targets: []
-    triggers: {}
-  test_policy_type_name:
-    derived_from: test_parent_policy_type_name
-    description: test_policy_description
-    metadata:
-      metadata_key_0: metadata_value_0
-      metadata_key_1: metadata_value_1
-      metadata_key_2: metadata_value_2
+    requirements: []
+  tosca.nodes.Abstract.Storage:
+    artifacts: {}
+    attributes: {}
+    capabilities: {}
+    derived_from: tosca.nodes.Root
+    interfaces: {}
+    metadata: {}
     properties:
-      test_property_name_0:
+      name:
         constraints: []
-        description: test_property_description_0
         entry_schema: {}
         key_schema: {}
         metadata: {}
-        type: test_data_type_name_0
-      test_property_name_1:
-        constraints: []
-        description: test_property_description_1
+        type: string
+      size:
+        constraints:
+        - greater_or_equal: 0 MB
+        default: 0 MB
         entry_schema: {}
         key_schema: {}
         metadata: {}
-        type: test_data_type_name_1
-    targets:
-    - test_node_type_name_0
-    - test_parent_node_type_name
-    triggers:
-      test_trigger_name:
-        action:
-        - call_operation:
-            inputs: []
-            operation: test_interface_definition_name_1.operation_test_name_0
-        condition:
-          constraint:
-          - attribute_name:
-            - equal: my_value
-          evaluations: 1
-          method: average
-          period: 60 sec
-        description: test_trigger_description
-        event: test_event_name
-        schedule:
-          end_time: 1
-          start_time: 0
-        target_filter:
-          capability: test_capability_definition_name
-          node: test_parent_node_type_name
-          requirement: test_requirement_definition_name_0
-      test_trigger_name_1:
-        action: []
-        description: test_trigger_description
-        event: test_event_name
-        target_filter: {}
-    version: test_version_number
-  test_policy_type_name_0:
-    derived_from: test_parent_policy_type_name
-    metadata: {}
-    properties: {}
-    targets: []
-    triggers: {}
-  test_policy_type_name_1:
-    derived_from: test_parent_policy_type_name
-    metadata: {}
-    properties: {}
-    targets: []
-    triggers: {}
-relationship_types:
-  test_parent_relationship_type_name:
+        type: size
+    requirements: []
+  tosca.nodes.Compute:
+    artifacts: {}
     attributes:
-      attribute_name_0:
+      networks:
+        entry_schema:
+          constraints: []
+          entry_schema: {}
+          key_schema: {}
+          type: tosca.datatypes.network.NetworkInfo
+        key_schema: {}
+        type: map
+      ports:
+        entry_schema:
+          constraints: []
+          entry_schema: {}
+          key_schema: {}
+          type: tosca.datatypes.network.PortInfo
+        key_schema: {}
+        type: map
+      private_address:
         entry_schema: {}
         key_schema: {}
-        type: test_data_type_name_0
-      attribute_name_1:
+        type: string
+      public_address:
         entry_schema: {}
         key_schema: {}
-        type: test_data_type_name_1
-    description: test_relationship_description
+        type: string
+    capabilities:
+      binding:
+        attributes: {}
+        properties: {}
+        type: tosca.capabilities.network.Bindable
+        valid_source_types: []
+      endpoint:
+        attributes: {}
+        properties: {}
+        type: tosca.capabilities.Endpoint.Admin
+        valid_source_types: []
+      host:
+        attributes: {}
+        properties: {}
+        type: tosca.capabilities.Compute
+        valid_source_types:
+        - tosca.nodes.SoftwareComponent
+      os:
+        attributes: {}
+        properties: {}
+        type: tosca.capabilities.OperatingSystem
+        valid_source_types: []
+      scalable:
+        attributes: {}
+        properties: {}
+        type: tosca.capabilities.Scalable
+        valid_source_types: []
+    derived_from: tosca.nodes.Abstract.Compute
+    interfaces: {}
+    metadata: {}
+    properties: {}
+    requirements:
+    - local_storage:
+        capability: tosca.capabilities.Attachment
+        node: tosca.relationships.AttachesTo
+        occurrences:
+        - 0
+        - UNBOUNDED
+        relationship:
+          type: tosca.relationships.AttachesTo
+  tosca.nodes.Root:
+    artifacts: {}
+    attributes:
+      state:
+        default: initial
+        entry_schema: {}
+        key_schema: {}
+        type: string
+      tosca_id:
+        entry_schema: {}
+        key_schema: {}
+        type: string
+      tosca_name:
+        entry_schema: {}
+        key_schema: {}
+        type: string
+    capabilities:
+      feature:
+        attributes: {}
+        occurrences:
+        - 1
+        - UNBOUNDED
+        properties: {}
+        type: tosca.capabilities.Node
+        valid_source_types: []
+    description: The TOSCA Node Type all other TOSCA base Node Types derive from
     interfaces:
-      test_interface_definition_name_0:
+      Standard:
         notifications: {}
         operations: {}
-        type: test_interface_type_name_0
-      test_interface_definition_name_1:
-        inputs:
-          test_property_name_0:
-            constraints: []
-            description: test_property_description_from_interface_from_relationship_type
-            entry_schema: {}
-            key_schema: {}
-            metadata: {}
-            type: test_data_type_name_0
-          test_property_name_1:
-            constraints: []
-            description: test_property_description_1
-            entry_schema: {}
-            key_schema: {}
-            metadata: {}
-            type: test_data_type_name_1
-        notifications:
-          notification_test_name_0:
-            description: test_notification_description_0
-            implementation:
-              dependencies: []
-              primary: test_artifact_name_0
-          notification_test_name_1:
-            description: test_notification_description_1
-            implementation:
-              dependencies: []
-              primary: test_artifact_name_1
-        operations:
-          operation_test_name_0: test_artifact_name_0
-          operation_test_name_1: test_artifact_name_1
-        type: test_interface_type_name_1
+        type: tosca.interfaces.node.lifecycle.Standard
     metadata:
-      metadata_key_0: metadata_value_0
-      metadata_key_1: metadata_value_1
-      metadata_key_2: metadata_value_2
+      abstract: 'false'
+      final: 'false'
+      targetNamespace: tosca.nodes
+    properties: {}
+    requirements:
+    - dependency:
+        capability: tosca.capabilities.Node
+        node: tosca.relationships.DependsOn
+        occurrences:
+        - 0
+        - UNBOUNDED
+        relationship:
+          type: tosca.relationships.DependsOn
+  tosca.nodes.SoftwareComponent:
+    artifacts: {}
+    attributes: {}
+    capabilities: {}
+    derived_from: tosca.nodes.Root
+    interfaces: {}
+    metadata:
+      abstract: 'false'
+      final: 'false'
+      targetNamespace: tosca.nodes
+    properties: {}
+    requirements:
+    - host:
+        capability: tosca.capabilities.Compute
+        node: tosca.relationships.HostedOn
+        occurrences:
+        - 1
+        - 1
+        relationship:
+          type: tosca.relationships.HostedOn
+  tosca.nodes.Storage.BlockStorage:
+    artifacts: {}
+    attributes: {}
+    capabilities:
+      attachment:
+        attributes: {}
+        occurrences:
+        - 1
+        - UNBOUNDED
+        properties: {}
+        type: tosca.capabilities.Attachment
+        valid_source_types: []
+    derived_from: tosca.nodes.Abstract.Storage
+    interfaces: {}
+    metadata:
+      abstract: 'false'
+      final: 'false'
+      targetNamespace: tosca.nodes.Storage
     properties:
-      test_property_name_0:
+      snapshot_id:
         constraints: []
-        description: test_property_description_0_from_relationship_type
         entry_schema: {}
         key_schema: {}
         metadata: {}
-        type: test_data_type_name_0
-      test_property_name_1:
+        status: supported
+        type: string
+      volume_id:
         constraints: []
-        description: test_property_description_1
         entry_schema: {}
         key_schema: {}
         metadata: {}
-        type: test_data_type_name_1
+        status: supported
+        type: string
+    requirements: []
+relationship_types:
+  tosca.relationships.AttachesTo:
+    attributes: {}
+    derived_from: tosca.relationships.Root
+    interfaces: {}
+    metadata: {}
+    properties:
+      device:
+        constraints: []
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        type: string
+      location:
+        constraints:
+        - min_length: 1
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        type: string
     valid_target_types:
-    - test_capability_type_name_0
-    - test_parent_capability_type_name
-    version: test_version_number
-  test_relationship_type_name_0:
+    - tosca.capabilities.Attachment
+  tosca.relationships.DependsOn:
     attributes: {}
-    derived_from: test_parent_relationship_type_name
+    derived_from: tosca.relationships.Root
+    interfaces: {}
+    metadata:
+      abstract: 'false'
+      final: 'false'
+      targetNamespace: tosca.relationships
+    properties: {}
+    valid_target_types:
+    - tosca.capabilities.Container
+  tosca.relationships.HostedOn:
+    attributes: {}
+    derived_from: tosca.relationships.Root
     interfaces: {}
     metadata: {}
     properties: {}
-    valid_target_types: []
-  test_relationship_type_name_1:
-    attributes: {}
-    derived_from: test_parent_relationship_type_name
-    interfaces: {}
+    valid_target_types:
+    - tosca.capabilities.Container
+  tosca.relationships.Root:
+    attributes:
+      tosca_id:
+        entry_schema: {}
+        key_schema: {}
+        type: string
+      tosca_name:
+        entry_schema: {}
+        key_schema: {}
+        type: string
+    description: The TOSCA root Relationship Type all other TOSCA base Relationship
+      Types derive from
+    interfaces:
+      Configure:
+        notifications: {}
+        operations: {}
+        type: tosca.interfaces.relationship.Configure
     metadata: {}
     properties: {}
     valid_target_types: []
-repositories:
-  test_repository_name_0:
-    url: test_repository_address_0
-  test_repository_name_1:
-    url: test_repository_address_1
 topology_template:
-  description: test_template_description
-  groups:
-    test_group_name:
-      attributes:
-        test_attribute_name_0:
-          value: attribute_value_test_0
-        test_attribute_name_1:
-          value: attribute_value_test_1
-      description: test_group_description
-      members:
-      - test_node_template_name_0
-      - test_node_template_name_1
-      metadata:
-        metadata_key_0: metadata_value_0
-        metadata_key_1: metadata_value_1
-        metadata_key_2: metadata_value_2
-      properties:
-        test_property_name_0: property_value_test_0
-        test_property_name_1: property_value_test_1
-      type: test_group_type_name
-    test_group_name_0:
-      attributes: {}
-      members: []
-      metadata: {}
-      properties: {}
-      type: test_group_type_name_0
-    test_group_name_1:
-      attributes: {}
-      members: []
-      metadata: {}
-      properties: {}
-      type: test_group_type_name_1
-  inputs:
-    input_0:
-      constraints: []
-      entry_schema: {}
-      key_schema: {}
-      value: test_input_value_0
-    input_1:
-      constraints: []
-      entry_schema: {}
-      key_schema: {}
-      value: test_input_value_1
-    test_parameter_name:
-      constraints:
-      - equal_1: value_1
-      - equal_0: value_0
-      default: test_parameter_default_value
-      description: ssss
-      entry_schema:
-        constraints:
-        - entry_equal_0: entry_value_0
-        - entry_equal_1: entry_value_1
-        description: entry_schema_description_test
-        entry_schema: {}
-        key_schema: {}
-        type: test_data_type_name_0
-      key_schema:
-        constraints:
-        - key_equal_0: key_value_0
-        - key_equal_1: key_value_1
-        description: key_schema_description_test
-        entry_schema: {}
-        key_schema: {}
-        type: test_data_type_name_1
-      required: false
-      status: test_status_value
-      type: test_data_type_name_0
-      value: test_parameter_value
-  node_templates:
-    test_node_template_name:
-      artifacts:
-        test_artifact_name_0: test_artifact_file_URI_0
-        test_artifact_name_1: test_artifact_file_URI_1
-      attributes:
-        test_attribute_name_0:
-          value: attribute_value_test_0
-        test_attribute_name_1:
-          value: attribute_value_test_1
-      capabilities:
-        test_capability_name_0:
-          attributes: {}
-          properties:
-            test_property_name_0: property_value_test_0
-        test_capability_name_1:
-          attributes: {}
-          properties:
-            test_property_name_1: property_value_test_1
-      description: test_node_template_description
-      directives:
-      - directive_2
-      - directive_1
-      - directive_0
-      interfaces:
-        test_interface_definition_name_0:
-          notifications: {}
-          operations: {}
-          type: test_interface_type_name_0
-        test_interface_definition_name_1:
-          notifications: {}
-          operations: {}
-          type: test_interface_type_name_1
-      metadata:
-        metadata_key_0: metadata_value_0
-        metadata_key_1: metadata_value_1
-        metadata_key_2: metadata_value_2
-      node_filter:
-        capabilities: []
-        properties:
-        - test_property_name_1:
-          - equal_1: value_1
-          - equal_0: value_0
-        - test_property_name_0:
-          - equal_1: value_1
-          - equal_0: value_0
-      properties:
-        test_property_name_0:
-          get_property:
-          - HOST
-          - test_property_name_0
-        test_property_name_1:
-          get_property:
-          - HOST
-          - test_capability_name_0
-          - test_property_name_0
-      requirements:
-      - get_property_source:
-          node: test_node_template_name_0
-          node_filter: {}
-          relationship:
-            interfaces: {}
-            type: test_relationship_template_name_0
-      - host:
-          node: test_node_template_name_0
-          node_filter: {}
-          relationship:
-            interfaces: {}
-      - test_requirement_name_1:
-          node: test_node_template_name_1
-          node_filter: {}
-          relationship:
-            interfaces: {}
-      type: test_node_type_name_0
-    test_node_template_name_0:
-      artifacts: {}
-      attributes: {}
-      capabilities:
-        test_capability_name_0:
-          attributes: {}
-          properties:
-            test_get_input_property:
-              get_input:
-              - input_1
-            test_property_name_0: host_value_1
-      directives: []
-      interfaces: {}
-      metadata: {}
-      node_filter: {}
-      properties:
-        test_get_input_property:
-          get_input:
-          - input_0
-        test_property_name_0: host_value_0
-      requirements:
-      - get_property_source:
-          node: test_node_template_name_1
-          node_filter: {}
-          relationship:
-            interfaces: {}
-            type: test_relationship_template_name_0
-      type: test_node_type_name_0
-    test_node_template_name_1:
-      artifacts: {}
-      attributes: {}
-      capabilities:
-        test_capability_name_0:
-          attributes: {}
-          properties:
-            test_property_name_0: target_value_1
-      directives: []
-      interfaces: {}
-      metadata: {}
-      node_filter: {}
-      properties:
-        get_property_0:
-          get_property:
-          - test_node_template_name
-          - test_property_name_0
-        get_property_1:
-          get_property:
-          - test_node_template_name
-          - test_capability_name_0
-          - test_property_name_0
-        test_property_name_0: target_value_0
-      requirements: []
-      type: test_node_type_name_1
-  outputs:
-    output_0:
-      constraints: []
-      entry_schema: {}
-      key_schema: {}
-      value: test_output_value_0
-    output_1:
-      constraints: []
-      entry_schema: {}
-      key_schema: {}
-      value: test_output_value_1
-    test_parameter_name:
-      constraints:
-      - equal_0: value_0
-      - equal_1: value_1
-      default: test_parameter_default_value
-      description: test_parameter_description
-      entry_schema:
-        constraints:
-        - entry_equal_1: entry_value_1
-        - entry_equal_0: entry_value_0
-        description: entry_schema_description_test
-        entry_schema: {}
-        key_schema: {}
-        type: test_data_type_name_1
-      key_schema:
-        constraints:
-        - key_equal_1: key_value_1
-        - key_equal_0: key_value_0
-        description: key_schema_description_test
-        entry_schema: {}
-        key_schema: {}
-        type: test_data_type_name_0
-      required: false
-      status: test_status_value
-      type: test_data_type_name_0
-      value: test_parameter_value
-  policies:
-  - test_policy_name:
-      description: test_policy_description
-      metadata:
-        metadata_key_0: metadata_value_0
-        metadata_key_1: metadata_value_1
-        metadata_key_2: metadata_value_2
-      properties:
-        test_property_name_0: property_value_test_0
-        test_property_name_1: property_value_test_1
-      targets:
-      - test_node_template_name_0
-      - test_node_template_name_1
-      triggers:
-        test_trigger_name_0:
-          action: []
-          description: test_trigger_description
-          event: test_event_name
-          target_filter: {}
-        test_trigger_name_1:
-          action: []
-          description: test_trigger_description
-          event: test_event_name
-          target_filter: {}
-      type: test_policy_type_name
-  - test_policy_name_0:
-      metadata: {}
-      properties: {}
-      targets: []
-      triggers: {}
-      type: test_policy_type_name_0
-  - test_policy_name_1:
-      metadata: {}
-      properties: {}
-      targets: []
-      triggers: {}
-      type: test_policy_type_name_1
-  relationship_templates:
-    test_relationship_template_name:
-      attributes:
-        test_attribute_name_0:
-          value: attribute_value_test_0
-        test_attribute_name_1:
-          value: attribute_value_test_1
-      description: test_relationship_type_description
-      interfaces:
-        test_interface_definition_name_0:
-          notifications: {}
-          operations: {}
-          type: test_interface_type_name_0
-        test_interface_definition_name_1:
-          notifications: {}
-          operations: {}
-          type: test_interface_type_name_1
-      metadata:
-        metadata_key_0: metadata_value_0
-        metadata_key_1: metadata_value_1
-        metadata_key_2: metadata_value_2
-      properties:
-        test_property_name_0: property_value_test_0
-        test_property_name_1: property_value_test_1
-      type: test_relationship_type_name_0
-    test_relationship_template_name_0:
-      attributes: {}
-      interfaces: {}
-      metadata: {}
-      properties:
-        test_property_name_0:
-          get_property:
-          - SOURCE
-          - test_property_name_0
-        test_property_name_1:
-          get_property:
-          - SOURCE
-          - test_capability_name_0
-          - test_property_name_0
-        test_property_name_2:
-          get_property:
-          - TARGET
-          - test_property_name_0
-        test_property_name_3:
-          get_property:
-          - TARGET
-          - test_capability_name_0
-          - test_property_name_0
-      type: test_relationship_type_name_0
-    test_relationship_template_name_1:
-      attributes: {}
-      interfaces: {}
-      metadata: {}
-      properties: {}
-      type: test_relationship_type_name_1
-  substitution_mappings: test_substitution_mappings
-  workflows:
-    test_workflow_name:
-      description: test_workflow_description
-      implementation:
-        dependencies: []
-        primary:
-          test_artifact_name_0: test_artifact_file_URI_0
-      inputs:
-        test_property_name_0:
-          constraints: []
-          description: test_property_description_0
-          entry_schema: {}
-          key_schema: {}
-          metadata: {}
-          type: test_existing_type_name
-        test_property_name_1:
-          constraints: []
-          description: test_property_description_1
-          entry_schema: {}
-          key_schema: {}
-          metadata: {}
-          type: test_existing_type_name
-      metadata:
-        metadata_key_0: metadata_value_0
-        metadata_key_1: metadata_value_1
-        metadata_key_2: metadata_value_2
-      outputs: test_attribute_mappings
-      preconditions:
-      - condition: {}
-        target: test_group_name_1
-        target_relationship: test_relationship_template_name_1
-      - condition: {}
-        target: test_group_name_0
-        target_relationship: test_relationship_template_name_0
-      steps:
-        test_step_name_0:
-          activities:
-          - call_operation:
-              inputs: []
-              operation: test_interface_definition_name_1.operation_test_name_0
-          filter: []
-          on_failure: []
-          on_success: []
-          target: test_node_template_name_0
-          target_relationship: test_relationship_template_name_0
-        test_step_name_1:
-          activities:
-          - call_operation:
-              inputs: []
-              operation: test_interface_definition_name_1.operation_test_name_0
-          filter: []
-          on_failure: []
-          on_success: []
-          target: test_node_template_name_1
-          target_relationship: test_relationship_template_name_1
-    test_workflow_name_0:
-      description: test_workflow_description_0
-      implementation: {}
-      inputs: {}
-      metadata: {}
-      preconditions: []
-      steps: {}
-    test_workflow_name_1:
-      description: test_workflow_description_1
-      implementation: {}
-      inputs: {}
-      metadata: {}
-      preconditions: []
-      steps: {}
+  groups: {}
+  inputs: {}
+  node_templates: {}
+  outputs: {}
+  policies: []
+  relationship_templates: {}
+  workflows: {}
 tosca_definitions_version: 1.3

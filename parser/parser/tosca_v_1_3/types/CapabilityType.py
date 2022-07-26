@@ -10,6 +10,7 @@
 from parser.parser.tosca_v_1_3.definitions.AttributeDefinition import AttributeDefinition, attribute_definition_parser
 from parser.parser.tosca_v_1_3.definitions.DescriptionDefinition import description_parser
 from parser.parser.tosca_v_1_3.definitions.PropertyDefinition import PropertyDefinition, property_definition_parser
+from parser.parser.tosca_v_1_3.others.Metadata import Metadata
 
 
 class CapabilityType:
@@ -17,6 +18,7 @@ class CapabilityType:
         self.vid = None
         self.vertex_type_system = 'CapabilityType'
         self.name = name
+        self.metadata = []
         self.derived_from = None
         self.version = None
         self.description = None
@@ -42,6 +44,9 @@ class CapabilityType:
     def add_valid_source_type(self, valid_source_type: str):
         self.valid_source_types.append(valid_source_type)
 
+    def add_metadata(self, metadata: Metadata):
+        self.metadata.append(metadata)
+
 
 def capability_type_parser(name: str, data: dict) -> CapabilityType:
     capability_type = CapabilityType(name)
@@ -49,6 +54,9 @@ def capability_type_parser(name: str, data: dict) -> CapabilityType:
         capability_type.set_derived_from(data.get('derived_from'))
     if data.get('version'):
         capability_type.set_version(data.get('version'))
+    if data.get('metadata'):
+        for metadata_name, metadata_value in data.get('metadata').items():
+            capability_type.add_metadata(Metadata(metadata_name, metadata_value))
     if data.get('description'):
         if data.get('description'):
             description = description_parser(data)

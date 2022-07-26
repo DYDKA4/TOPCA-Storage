@@ -2,6 +2,7 @@ from werkzeug.exceptions import abort
 
 from nebula_communication.nebula_functions import fetch_vertex, find_destination
 from nebula_communication.template_builder.definition.AttributeDefinition import construct_attribute_definition
+from nebula_communication.template_builder.definition.MetadataDefinition import construct_metadata_definition
 from nebula_communication.template_builder.definition.ProperyDefinition import construct_property_definition
 from parser.parser.tosca_v_1_3.types.CapabilityType import CapabilityType
 
@@ -38,6 +39,8 @@ def construct_capability_type(list_of_vid) -> dict:
                     data = data.as_map()
                     valid_source_types.append(data['name'].as_string())
                 tmp_result['valid_source_types'] = valid_source_types
+            elif edge == 'metadata':
+                tmp_result['metadata'] = construct_metadata_definition(destination)
             else:
                 abort(500)
         result[vertex_value['name'].as_string()] = tmp_result

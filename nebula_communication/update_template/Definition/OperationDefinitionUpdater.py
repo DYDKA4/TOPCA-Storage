@@ -7,7 +7,8 @@ from nebula_communication.update_template.Assignment.PropertyAssignmentUpdater i
     add_property_assignment, get_property_assignment
 from nebula_communication.update_template.Definition.InterfaceDefinitionUpdater import return_all
 from nebula_communication.update_template.Definition.OperationImplementationDefinitionUpdater import \
-    update_operation_implementation_definition, add_operation_implementation_definition
+    update_operation_implementation_definition, add_operation_implementation_definition, \
+    get_operation_implementation_definition
 from nebula_communication.update_template.Definition.PropertyDefinitionUpdater import update_property_definition, \
     add_property_definition, get_property_definition
 from parser.parser.tosca_v_1_3.definitions.OperationDefinition import OperationDefinition
@@ -142,6 +143,10 @@ def get_operation_definition(father_node_vid, value, value_name, varargs: list):
         elif implementation and fetch_vertex(implementation[0], 'OperationImplementationDefinition'):
             if len(implementation) > 1:
                 abort(500)
-            return implementation
+            destination = find_destination(operation_vid_to_update, value_name)
+            result, flag = return_all(value, value_name, destination)
+            if flag:
+                return result
+            return get_operation_implementation_definition(father_node_vid, value, value_name, varargs[2:])
     else:
         abort(400)

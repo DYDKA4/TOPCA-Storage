@@ -3,10 +3,11 @@ from werkzeug.exceptions import abort
 from nebula_communication.generate_uuid import generate_uuid
 from nebula_communication.nebula_functions import find_destination, fetch_vertex, update_vertex, delete_edge, add_edge, \
     delete_vertex, add_in_vertex
+from nebula_communication.update_template.Assignment.RequirementAssignment import return_all
 from nebula_communication.update_template.Definition.CapabilityFilterDefinition import \
-    update_capability_filter_definition, add_capability_filter_definition
+    update_capability_filter_definition, add_capability_filter_definition, get_capability_filter_definition
 from nebula_communication.update_template.Definition.PropertyFilterDefinitionUpdater import \
-    update_property_filter_definition, add_property_filter_definition
+    update_property_filter_definition, add_property_filter_definition, get_property_filter_definition
 from parser.parser.tosca_v_1_3.definitions.NodeFilterDefinition import NodeFilterDefinition
 
 
@@ -53,3 +54,30 @@ def add_node_filter_definition(type_update, varargs, cluster_name, parent_vid, e
         add_edge(edge_name, '', parent_vid, data_type.vid, '')
         return True
     return False
+
+
+def get_node_filter_definition(father_node_vid, value, value_name, varargs: list):
+    if len(varargs) < 2:
+        abort(400)
+    destination = find_destination(father_node_vid, varargs[0])
+    if destination is None:
+        abort(400)
+    if len(destination) > 1:
+        abort(400)
+    node_filter_vid_to_update = destination[0]
+    if node_filter_vid_to_update is None:
+        abort(400)
+    if varargs[2] == 'properties':
+        destination = find_destination(node_filter_vid_to_update, value_name)
+        result, flag = return_all(value, value_name, destination)
+        if flag:
+            return result
+        return get_property_filter_definition(father_node_vid, value, value_name, varargs[1:])
+    elif varargs[2] == 'capability':
+        destination = find_destination(node_filter_vid_to_update, value_name)
+        result, flag = return_all(value, value_name, destination)
+        if flag:
+            return result
+        return get_capability_filter_definition(father_node_vid, value, value_name, varargs[1:])
+    else:
+        abort(400)

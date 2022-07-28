@@ -8,7 +8,7 @@ from nebula_communication.update_template.Assignment.PropertyAssignmentUpdater i
 from nebula_communication.update_template.Definition.InterfaceDefinitionUpdater import update_interface_definition, \
     add_interface_definition, get_interface_definition
 from nebula_communication.update_template.Definition.NodeFilterDefinitionUpdater import update_node_filter_definition, \
-    add_node_filter_definition
+    add_node_filter_definition, get_node_filter_definition
 from nebula_communication.update_template.Other.OccurrencesUpdater import update_occurrences, add_occurrences, \
     get_occurrences
 from parser.parser.tosca_v_1_3.assignments.RequirementAssignment import RequirementAssignment
@@ -197,7 +197,7 @@ def return_all(value, value_name, destination):
 def get_requirement_assignment(father_node_vid, value, value_name, varargs: list):
     requirement_vid_to_update = start_requirement_assignment(father_node_vid, varargs)
     if len(varargs) == 2:
-        vertex_value = fetch_vertex(requirement_vid_to_update, 'CapabilityAssignment')
+        vertex_value = fetch_vertex(requirement_vid_to_update, 'RequirementAssignment')
         vertex_value = vertex_value.as_map()
         if value_name == 'relationship':
             return form_result(requirement_vid_to_update, value_name)

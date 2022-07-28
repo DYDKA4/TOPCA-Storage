@@ -9,8 +9,7 @@ from nebula_communication.update_template.Other.ConstraintClauseUpdater import u
 from parser.parser.tosca_v_1_3.definitions.PropertyFilterDefinition import PropertyFilterDefinition
 
 
-def update_property_filter_definition(service_template_vid, father_node_vid, value, value_name, varargs: list,
-                                      type_update, cluster_name):
+def start_property_filter_definition(father_node_vid, varargs):
     if len(varargs) < 2:
         abort(400)
     destination = find_destination(father_node_vid, varargs[0])
@@ -25,6 +24,12 @@ def update_property_filter_definition(service_template_vid, father_node_vid, val
             break
     if property_filter_vid_to_update is None:
         abort(400)
+    return property_filter_vid_to_update
+
+
+def update_property_filter_definition(service_template_vid, father_node_vid, value, value_name, varargs: list,
+                                      type_update, cluster_name):
+    property_filter_vid_to_update = start_property_filter_definition(father_node_vid, varargs)
     if len(varargs) == 2:
         if type_update == 'delete':
             delete_vertex('"' + property_filter_vid_to_update.as_string() + '"')
@@ -38,7 +43,7 @@ def update_property_filter_definition(service_template_vid, father_node_vid, val
     elif varargs[2] == 'property_constraint':
         if not add_constraint_clause(type_update, varargs[2:], cluster_name, property_filter_vid_to_update, varargs[2]):
             update_constraint_clause(property_filter_vid_to_update, value, value_name,
-                                     varargs[2:],type_update)
+                                     varargs[2:], type_update)
     else:
         abort(400)
 
@@ -52,3 +57,14 @@ def add_property_filter_definition(type_update, varargs, cluster_name, parent_vi
         add_edge(edge_name, '', parent_vid, data_type.vid, '')
         return True
     return False
+
+
+def get_property_filter_definition(father_node_vid, value, value_name, varargs: list):
+    property_vid_to_update = start_property_filter_definition(father_node_vid, varargs)
+    property_value = fetch_vertex(property_vid_to_update, 'PropertyFilterDefinition')
+    property_value = property_value.as_map()
+    if value_name in property_value.keys():
+        if value == property_value.get(value_name).as_string():
+            return property_vid_to_update.as_string()
+    else:
+        abort(400)

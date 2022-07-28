@@ -7,12 +7,14 @@ from nebula_communication.update_template.Assignment.AttributeAssignmentUpdater 
     add_attribute_assignment
 from nebula_communication.update_template.Assignment.PropertyAssignmentUpdater import update_property_assignment, \
     add_property_assignment
-from nebula_communication.update_template.Other.MetadataUpdater import update_metadata, add_metadata
+from nebula_communication.update_template.Assignment.RequirementAssignment import form_result, return_all
+from nebula_communication.update_template.Definition.AttributeDefinitionUpdater import get_attribute_definition
+from nebula_communication.update_template.Definition.PropertyDefinitionUpdater import get_property_definition
+from nebula_communication.update_template.Other.MetadataUpdater import update_metadata, add_metadata, get_metadata
 from parser.parser.tosca_v_1_3.definitions.GroupDefinition import GroupDefinition
 
 
-def update_group_definition(service_template_vid, father_node_vid, value, value_name, varargs: list, type_update,
-                            cluster_name):
+def start_group_definition(father_node_vid, varargs):
     if len(varargs) < 2:
         abort(400)
     destination = find_destination(father_node_vid, varargs[0])
@@ -27,6 +29,12 @@ def update_group_definition(service_template_vid, father_node_vid, value, value_
             break
     if group_vid_to_update is None:
         abort(400)
+    return group_vid_to_update
+
+
+def update_group_definition(service_template_vid, father_node_vid, value, value_name, varargs: list, type_update,
+                            cluster_name):
+    group_vid_to_update = start_group_definition(father_node_vid, varargs)
     if len(varargs) == 2:
         if type_update == 'delete':
             delete_vertex('"' + group_vid_to_update.as_string() + '"')
@@ -105,3 +113,49 @@ def add_group_definition(type_update, varargs, cluster_name, parent_vid, edge_na
         add_edge(edge_name, '', parent_vid, data_type.vid, '')
         return True
     return False
+
+def get_group_definition(father_node_vid, value, value_name, varargs: list):
+    group_vid_to_update = start_group_definition(father_node_vid, varargs)
+    if len(varargs) == 2:
+        vertex_value = fetch_vertex(group_vid_to_update, 'GroupDefinition')
+        vertex_value = vertex_value.as_map()
+        if value_name == 'type':
+            return form_result(group_vid_to_update, value_name)
+        elif value_name == 'members':
+            destination = find_destination(group_vid_to_update, value_name)
+            if value is None:
+                result = []
+                for vid in destination:
+                    result.append(vid.as_string())
+                return result
+            for vid in destination:
+                destination_value = fetch_vertex(vid, 'NodeType')
+                destination_value = destination_value.as_map()
+                if value == destination_value.get('name'):
+                    return vid.as_string()
+            return None
+        elif value_name in vertex_value.keys():
+            if value == vertex_value.get(value_name).as_string():
+                return group_vid_to_update.as_string()
+        else:
+            abort(501)
+    elif varargs[2] == 'metadata':
+        destination = find_destination(group_vid_to_update, value_name)
+        result, flag = return_all(value, value_name, destination)
+        if flag:
+            return result
+        return get_metadata(father_node_vid, value, value_name, varargs[2:])
+    elif varargs[2] == 'attributes':
+        destination = find_destination(group_vid_to_update, value_name)
+        result, flag = return_all(value, value_name, destination)
+        if flag:
+            return result
+        return get_attribute_definition(father_node_vid, value, value_name, varargs[2:])
+    elif varargs[2] == 'properties':
+        destination = find_destination(group_vid_to_update, value_name)
+        result, flag = return_all(value, value_name, destination)
+        if flag:
+            return result
+        return get_property_definition(father_node_vid, value, value_name, varargs[2:])
+    else:
+        abort(400)

@@ -1,7 +1,7 @@
 from werkzeug.exceptions import abort
 
 from nebula_communication.generate_uuid import generate_uuid
-from nebula_communication.nebula_functions import find_destination, fetch_vertex, update_vertex, delete_edge, add_edge, \
+from nebula_communication.nebula_functions import find_destination, fetch_vertex, update_vertex, add_edge, \
     delete_vertex, add_in_vertex
 from parser.parser.tosca_v_1_3.definitions.TriggerDefinition import TriggerDefinition
 

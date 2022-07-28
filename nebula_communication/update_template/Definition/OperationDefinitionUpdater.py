@@ -127,12 +127,12 @@ def get_operation_definition(father_node_vid, value, value_name, varargs: list):
         if destination is None:
             return None
         if fetch_vertex(destination[0], 'PropertyAssignment'):
-            result, flag = return_all(value, value_name, destination)
+            result, flag = return_all(value, value_name, destination, varargs, 4)
             if flag:
                 return result
             return get_property_assignment(father_node_vid, value, value_name, varargs[2:])
         if fetch_vertex(destination[0], 'PropertyDefinition'):
-            result, flag = return_all(value, value_name, destination)
+            result, flag = return_all(value, value_name, destination, varargs, 4)
             if flag:
                 return result
             return get_property_definition(father_node_vid, value, value_name, varargs[2:])
@@ -144,7 +144,7 @@ def get_operation_definition(father_node_vid, value, value_name, varargs: list):
             if len(implementation) > 1:
                 abort(500)
             destination = find_destination(operation_vid_to_update, value_name)
-            result, flag = return_all(value, value_name, destination)
+            result, flag = return_all(value, value_name, destination, varargs, 3)
             if flag:
                 return result
             return get_operation_implementation_definition(father_node_vid, value, value_name, varargs[2:])

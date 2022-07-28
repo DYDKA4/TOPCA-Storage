@@ -3,11 +3,9 @@ from werkzeug.exceptions import abort
 from nebula_communication.generate_uuid import generate_uuid
 from nebula_communication.nebula_functions import find_destination, fetch_vertex, update_vertex, delete_edge, add_edge, \
     delete_vertex, add_in_vertex
-from nebula_communication.update_template.Assignment.PropertyAssignmentUpdater import update_property_assignment
 from nebula_communication.update_template.Assignment.RequirementAssignment import return_all, form_result
 from nebula_communication.update_template.Definition.SchemaDefinitionUpdate import update_schema_definition, \
     add_schema_definition, get_schema_definition
-from nebula_communication.update_template.Other.ConstraintClauseUpdater import update_constraint_clause
 from parser.parser.tosca_v_1_3.definitions.ParameterDefinition import ParameterDefinition
 
 
@@ -99,13 +97,13 @@ def get_parameter_definition(father_node_vid, value, value_name, varargs: list):
             abort(501)
     elif varargs[2] == 'key_schema':
         destination = find_destination(parameter_vid_to_update, value_name)
-        result, flag = return_all(value, value_name, destination)
+        result, flag = return_all(value, value_name, destination, varargs, 3)
         if flag:
             return result
         return get_schema_definition(father_node_vid, value, value_name, varargs[2:])
     elif varargs[2] == 'entry_schema':
         destination = find_destination(parameter_vid_to_update, value_name)
-        result, flag = return_all(value, value_name, destination)
+        result, flag = return_all(value, value_name, destination, varargs, 3)
         if flag:
             return result
         return get_schema_definition(father_node_vid, value, value_name, varargs[2:])

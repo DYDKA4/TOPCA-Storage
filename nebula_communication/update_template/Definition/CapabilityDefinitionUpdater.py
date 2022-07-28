@@ -141,19 +141,19 @@ def get_capability_definition(father_node_vid, value, value_name, varargs: list)
             abort(501)
     elif varargs[2] == 'properties':
         destination = find_destination(capability_vid_to_update, value_name)
-        result, flag = return_all(value, value_name, destination)
+        result, flag = return_all(value, value_name, destination, varargs, 4)
         if flag:
             return result
         return get_property_definition(father_node_vid, value, value_name, varargs[2:])
     elif varargs[2] == 'attributes':
         destination = find_destination(capability_vid_to_update, value_name)
-        result, flag = return_all(value, value_name, destination)
+        result, flag = return_all(value, value_name, destination, varargs, 4)
         if flag:
             return result
         return get_attribute_definition(father_node_vid, value, value_name, varargs[2:])
     elif varargs[2] == 'occurrences':
         destination = find_destination(capability_vid_to_update, value_name)
-        result, flag = return_all(value, value_name, destination)
+        result, flag = return_all(value, value_name, destination, varargs, 3)
         if flag:
             return result
         return get_occurrences(father_node_vid, value, value_name, varargs[2:])

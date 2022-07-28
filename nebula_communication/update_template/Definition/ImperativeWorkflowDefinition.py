@@ -103,31 +103,31 @@ def get_imperative_workflow_definition(father_node_vid, value, value_name, varar
             abort(501)
     elif varargs[2] == 'metadata':
         destination = find_destination(imperative_workflow_vid_to_update, value_name)
-        result, flag = return_all(value, value_name, destination)
+        result, flag = return_all(value, value_name, destination, varargs, 3)
         if flag:
             return result
         return get_metadata(father_node_vid, value, value_name, varargs[2:])
     elif varargs[2] == 'inputs':
         destination = find_destination(imperative_workflow_vid_to_update, value_name)
-        result, flag = return_all(value, value_name, destination)
+        result, flag = return_all(value, value_name, destination, varargs, 4)
         if flag:
             return result
         return get_property_assignment(father_node_vid, value, value_name, varargs[2:])
     elif varargs[2] == 'preconditions':
         destination = find_destination(imperative_workflow_vid_to_update, value_name)
-        result, flag = return_all(value, value_name, destination)
+        result, flag = return_all(value, value_name, destination, varargs, 4)
         if flag:
             return result
         return get_workflow_precondition_definition(father_node_vid, value, value_name, varargs[2:])
     elif varargs[2] == 'steps':
         destination = find_destination(imperative_workflow_vid_to_update, value_name)
-        result, flag = return_all(value, value_name, destination)
+        result, flag = return_all(value, value_name, destination, varargs, 4)
         if flag:
             return result
         return get_workflow_step_definition(father_node_vid, value, value_name, varargs[2:])
     elif varargs[2] == 'implementation':
         destination = find_destination(imperative_workflow_vid_to_update, value_name)
-        result, flag = return_all(value, value_name, destination)
+        result, flag = return_all(value, value_name, destination, varargs, 4)
         if flag:
             return result
         return get_operation_implementation_definition(father_node_vid, value, value_name, varargs[2:])

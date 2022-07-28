@@ -69,13 +69,13 @@ def get_node_filter_definition(father_node_vid, value, value_name, varargs: list
         abort(400)
     if varargs[2] == 'properties':
         destination = find_destination(node_filter_vid_to_update, value_name)
-        result, flag = return_all(value, value_name, destination)
+        result, flag = return_all(value, value_name, destination, varargs, 4)
         if flag:
             return result
         return get_property_filter_definition(father_node_vid, value, value_name, varargs[1:])
     elif varargs[2] == 'capability':
         destination = find_destination(node_filter_vid_to_update, value_name)
-        result, flag = return_all(value, value_name, destination)
+        result, flag = return_all(value, value_name, destination, varargs, 4)
         if flag:
             return result
         return get_capability_filter_definition(father_node_vid, value, value_name, varargs[1:])

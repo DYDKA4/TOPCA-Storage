@@ -142,19 +142,19 @@ def get_group_definition(father_node_vid, value, value_name, varargs: list):
             abort(501)
     elif varargs[2] == 'metadata':
         destination = find_destination(group_vid_to_update, value_name)
-        result, flag = return_all(value, value_name, destination)
+        result, flag = return_all(value, value_name, destination, varargs, 4)
         if flag:
             return result
         return get_metadata(father_node_vid, value, value_name, varargs[2:])
     elif varargs[2] == 'attributes':
         destination = find_destination(group_vid_to_update, value_name)
-        result, flag = return_all(value, value_name, destination)
+        result, flag = return_all(value, value_name, destination, varargs, 4)
         if flag:
             return result
         return get_attribute_definition(father_node_vid, value, value_name, varargs[2:])
     elif varargs[2] == 'properties':
         destination = find_destination(group_vid_to_update, value_name)
-        result, flag = return_all(value, value_name, destination)
+        result, flag = return_all(value, value_name, destination, varargs, 4)
         if flag:
             return result
         return get_property_definition(father_node_vid, value, value_name, varargs[2:])

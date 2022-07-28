@@ -69,7 +69,7 @@ def get_capability_filter_definition(father_node_vid, value, value_name, varargs
             return capability_vid_to_update.as_string()
     elif varargs[2] == 'properties':
         destination = find_destination(capability_vid_to_update, value_name)
-        result, flag = return_all(value, value_name, destination)
+        result, flag = return_all(value, value_name, destination, varargs, 4)
         if flag:
             return result
         return get_property_filter_definition(father_node_vid, value, value_name, varargs[2:])

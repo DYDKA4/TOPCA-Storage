@@ -1,6 +1,6 @@
 from werkzeug.exceptions import abort
 
-from nebula_communication.nebula_functions import find_destination, fetch_vertex, update_vertex, add_edge, delete_edge
+from nebula_communication.nebula_functions import find_destination, fetch_vertex, update_vertex
 from nebula_communication.update_template.Definition.GroupDefinitionUpdater import update_group_definition, \
     add_group_definition
 from nebula_communication.update_template.Definition.ImperativeWorkflowDefinition import \

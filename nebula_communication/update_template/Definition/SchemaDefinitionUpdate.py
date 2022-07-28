@@ -101,19 +101,19 @@ def get_schema_definition(father_node_vid, value, value_name, varargs: list):
             abort(501)
     elif varargs[1] == 'constraints':
         destination = find_destination(schema_vid_to_update, value_name)
-        result, flag = return_all(value, value_name, destination)
+        result, flag = return_all(value, value_name, destination, varargs, 3)
         if flag:
             return result
         return get_constraint_clause(father_node_vid, value, value_name, varargs[1:])
     elif varargs[1] == 'key_schema':
         destination = find_destination(schema_vid_to_update, value_name)
-        result, flag = return_all(value, value_name, destination)
+        result, flag = return_all(value, value_name, destination, varargs, 2)
         if flag:
             return result
         return get_schema_definition(father_node_vid, value, value_name, varargs[1:])
     elif varargs[1] == 'entry_schema':
         destination = find_destination(schema_vid_to_update, value_name)
-        result, flag = return_all(value, value_name, destination)
+        result, flag = return_all(value, value_name, destination, varargs, 2)
         if flag:
             return result
         return get_schema_definition(father_node_vid, value, value_name, varargs[1:])

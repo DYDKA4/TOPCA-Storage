@@ -5,7 +5,6 @@ from nebula_communication.nebula_functions import find_destination, fetch_vertex
     delete_vertex, add_in_vertex
 from nebula_communication.update_template.Assignment.PropertyAssignmentUpdater import update_property_assignment, \
     add_property_assignment
-from nebula_communication.update_template.Definition.PropertyDefinitionUpdater import update_property_definition
 from nebula_communication.update_template.Definition.TriggerDefinitionUpdater import update_trigger_definition, \
     add_trigger_definition
 from nebula_communication.update_template.Other.MetadataUpdater import update_metadata, add_metadata

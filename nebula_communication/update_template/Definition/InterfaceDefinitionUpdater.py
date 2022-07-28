@@ -5,6 +5,7 @@ from nebula_communication.nebula_functions import find_destination, fetch_vertex
     delete_vertex, add_in_vertex
 from nebula_communication.update_template.Assignment.PropertyAssignmentUpdater import update_property_assignment, \
     add_property_assignment, get_property_assignment
+from nebula_communication.update_template.Assignment.RequirementAssignment import return_all
 from nebula_communication.update_template.Definition.NotificationDefinitionUpdater import \
     update_notification_definition, add_notification_definition, get_notification_definition
 from nebula_communication.update_template.Definition.OperationDefinitionUpdater import update_operation_definition, \
@@ -85,17 +86,6 @@ def add_interface_definition(type_update, varargs, cluster_name, parent_vid, edg
     return False
 
 
-def return_all(value, value_name, destination):
-    if destination is None:
-        return True, None
-    if not value or not value_name:
-        result = []
-        for vid in destination:
-            result.append(vid.as_string())
-        return True, result
-    return False, None
-
-
 def get_interface_definition(father_node_vid, value, value_name, varargs: list):
     interface_vid_to_update = start_interface_definition(father_node_vid, varargs)
     if len(varargs) == 2:
@@ -111,24 +101,24 @@ def get_interface_definition(father_node_vid, value, value_name, varargs: list):
         if destination is None:
             return None
         if fetch_vertex(destination[0], 'PropertyAssignment'):
-            result, flag = return_all(value, value_name, destination)
+            result, flag = return_all(value, value_name, destination, varargs, 4)
             if flag:
                 return result
             return get_property_assignment(father_node_vid, value, value_name, varargs[2:])
         if fetch_vertex(destination[0], 'PropertyDefinition'):
-            result, flag = return_all(value, value_name, destination)
+            result, flag = return_all(value, value_name, destination, varargs, 4)
             if flag:
                 return result
             return get_property_definition(father_node_vid, value, value_name, varargs[2:])
     elif varargs[2] == 'operations':
         destination = find_destination(interface_vid_to_update, value_name)
-        result, flag = return_all(value, value_name, destination)
+        result, flag = return_all(value, value_name, destination, varargs, 4)
         if flag:
             return result
         return get_operation_definition(father_node_vid, value, value_name, varargs[2:])
     elif varargs[2] == 'notifications':
         destination = find_destination(interface_vid_to_update, value_name)
-        result, flag = return_all(value, value_name, destination)
+        result, flag = return_all(value, value_name, destination, varargs, 4)
         if flag:
             return result
         return get_notification_definition(father_node_vid, value, value_name, varargs[2:])

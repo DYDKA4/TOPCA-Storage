@@ -100,19 +100,19 @@ def get_property_definition(father_node_vid, value, value_name, varargs: list):
             abort(501)
     elif varargs[2] == 'constraints':
         destination = find_destination(interface_vid_to_update, value_name)
-        result, flag = return_all(value, value_name, destination)
+        result, flag = return_all(value, value_name, destination, varargs, 4)
         if flag:
             return result
         return get_constraint_clause(father_node_vid, value, value_name, varargs[2:])
     elif varargs[2] == 'key_schema':
         destination = find_destination(interface_vid_to_update, value_name)
-        result, flag = return_all(value, value_name, destination)
+        result, flag = return_all(value, value_name, destination, varargs, 3)
         if flag:
             return result
         return get_schema_definition(father_node_vid, value, value_name, varargs[2:])
     elif varargs[2] == 'entry_schema':
         destination = find_destination(interface_vid_to_update, value_name)
-        result, flag = return_all(value, value_name, destination)
+        result, flag = return_all(value, value_name, destination, varargs, 3)
         if flag:
             return result
         return get_schema_definition(father_node_vid, value, value_name, varargs[2:])

@@ -184,15 +184,16 @@ def form_result(vid_to_update, value_name):
         return None
 
 
-def return_all(value, value_name, destination):
+def return_all(value, value_name, destination, varargs, length):
     if destination is None:
-        return True, None
+        return len(varargs) == length, None
     if not value or not value_name:
         result = []
         for vid in destination:
             result.append(vid.as_string())
-        return True, result
+        return len(varargs) == length, result
     return False, None
+
 
 def get_requirement_assignment(father_node_vid, value, value_name, varargs: list):
     requirement_vid_to_update = start_requirement_assignment(father_node_vid, varargs)
@@ -212,25 +213,25 @@ def get_requirement_assignment(father_node_vid, value, value_name, varargs: list
             abort(501)
     elif varargs[2] == 'occurrences':
         destination = find_destination(requirement_vid_to_update, value_name)
-        result, flag = return_all(value, value_name, destination)
+        result, flag = return_all(value, value_name, destination, varargs, 3)
         if flag:
             return result
         return get_occurrences(father_node_vid, value, value_name, varargs[2:])
     elif varargs[2] == 'interfaces':
         destination = find_destination(requirement_vid_to_update, value_name)
-        result, flag = return_all(value, value_name, destination)
+        result, flag = return_all(value, value_name, destination, varargs, 4)
         if flag:
             return result
         return get_interface_definition(father_node_vid, value, value_name, varargs[2:])
     elif varargs[2] == 'properties':
         destination = find_destination(requirement_vid_to_update, value_name)
-        result, flag = return_all(value, value_name, destination)
+        result, flag = return_all(value, value_name, destination, varargs, 4)
         if flag:
             return result
         return get_property_assignment(father_node_vid, value, value_name, varargs[2:])
     elif varargs[2] == 'node_filter':
         destination = find_destination(requirement_vid_to_update, value_name)
-        result, flag = return_all(value, value_name, destination)
+        result, flag = return_all(value, value_name, destination, varargs, 4)
         if flag:
             return result
         return get_node_filter_definition(father_node_vid, value, value_name, varargs[2:])

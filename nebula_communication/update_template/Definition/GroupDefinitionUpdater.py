@@ -114,6 +114,7 @@ def add_group_definition(type_update, varargs, cluster_name, parent_vid, edge_na
         return True
     return False
 
+
 def get_group_definition(father_node_vid, value, value_name, varargs: list):
     group_vid_to_update = start_group_definition(father_node_vid, varargs)
     if len(varargs) == 2:

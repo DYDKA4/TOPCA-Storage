@@ -5,6 +5,7 @@ from werkzeug.exceptions import abort
 from nebula_communication.generate_uuid import generate_uuid
 from nebula_communication.nebula_functions import find_destination, fetch_vertex, update_vertex, delete_edge, \
     add_edge, fetch_edge, delete_vertex, get_all_vid_from_cluster_by_type, add_in_vertex
+from nebula_communication.update_template.Assignment.RequirementAssignment import form_result
 from nebula_communication.update_template.Definition.ArtifactDefinition import update_artifact_definition
 from parser.parser.tosca_v_1_3.definitions.OperationImplementationDefinition import OperationImplementationDefinition
 
@@ -128,3 +129,38 @@ def add_operation_implementation_definition(type_update, varargs, cluster_name, 
         add_edge(edge_name, '', parent_vid, import_definition.vid, '')
         return True
     return False
+
+
+def get_operation_implementation_definition(father_node_vid, value, value_name, varargs: list):
+    if len(varargs) < 1:
+        abort(400)
+    destination = find_destination(father_node_vid, varargs[0])
+    if destination is None:
+        abort(400)
+    elif len(destination) > 1:
+        abort(400)
+    operation_implementation_vid_to_update = destination[0]
+    if len(varargs) == 2:
+        vertex_value = fetch_vertex(operation_implementation_vid_to_update, 'WorkflowStepDefinition')
+        vertex_value = vertex_value.as_map()
+        if value_name == 'dependencies':
+            destination = find_destination(operation_implementation_vid_to_update, value_name)
+            if value is None:
+                result = []
+                for vid in destination:
+                    result.append(vid.as_string())
+                return result
+            for vid in destination:
+                destination_value = fetch_vertex(vid, 'ArtifactDefinition')
+                destination_value = destination_value.as_map()
+                if value == destination_value.get('name'):
+                    return vid.as_string()
+        elif value_name == 'primary':
+            return form_result(operation_implementation_vid_to_update, value_name)
+        elif value_name in vertex_value.keys():
+            if value == vertex_value.get(value_name).as_string():
+                return operation_implementation_vid_to_update.as_string()
+        else:
+            abort(501)
+    else:
+        abort(400)

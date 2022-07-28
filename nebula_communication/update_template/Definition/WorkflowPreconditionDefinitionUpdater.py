@@ -3,12 +3,7 @@ from werkzeug.exceptions import abort
 from nebula_communication.generate_uuid import generate_uuid
 from nebula_communication.nebula_functions import find_destination, fetch_vertex, update_vertex, delete_edge, add_edge, \
     delete_vertex, add_in_vertex
-from nebula_communication.update_template.Assignment.PropertyAssignmentUpdater import update_property_assignment
-from nebula_communication.update_template.Definition.InterfaceDefinitionUpdater import update_interface_definition
-from nebula_communication.update_template.Definition.OperationImplementationDefinitionUpdater import \
-    update_operation_implementation_definition
-from nebula_communication.update_template.Other.MetadataUpdater import update_metadata
-from nebula_communication.update_template.Other.OccurrencesUpdater import update_occurrences
+from nebula_communication.update_template.Assignment.RequirementAssignment import form_result
 from parser.parser.tosca_v_1_3.definitions.WorkflowPreconditionDefinition import WorkflowPreconditionDefinition
 
 
@@ -97,3 +92,45 @@ def add_workflow_precondition_definition(type_update, varargs, cluster_name, par
         add_edge(edge_name, '', parent_vid, schema_definition.vid, '')
         return True
     return False
+
+
+def get_workflow_precondition_definition(father_node_vid, value, value_name, varargs: list):
+    if len(varargs) < 2:
+        abort(400)
+    destination = find_destination(father_node_vid, varargs[0])
+    if destination is None:
+        abort(400)
+    if len(destination) > 1:
+        abort(400)
+    workflow_precondition_vid_to_update = destination[0]
+    if workflow_precondition_vid_to_update is None:
+        abort(400)
+    if len(varargs) == 2:
+        vertex_value = fetch_vertex(workflow_precondition_vid_to_update, 'WorkflowPreconditionDefinition')
+        vertex_value = vertex_value.as_map()
+        if value_name == 'target':
+            destination = find_destination(workflow_precondition_vid_to_update, value_name)
+            if value is None:
+                result = []
+                for vid in destination:
+                    result.append(vid.as_string())
+                return result
+            for vid in destination:
+                destination_value = fetch_vertex(vid, 'GroupDefinition')
+                if destination_value is None:
+                    destination_value = find_destination(vid, 'NodeTemplate')
+                destination_value = destination_value.as_map()
+                if value == destination_value.get('name'):
+                    return vid.as_string()
+            return None
+        elif value_name == 'target_relationship':
+            return form_result(workflow_precondition_vid_to_update, value_name)
+        elif value_name in vertex_value.keys():
+            if value == vertex_value.get(value_name).as_string():
+                return workflow_precondition_vid_to_update.as_string()
+        else:
+            abort(501)
+    elif varargs[2] == 'condition':
+        abort(501)
+    else:
+        abort(400)

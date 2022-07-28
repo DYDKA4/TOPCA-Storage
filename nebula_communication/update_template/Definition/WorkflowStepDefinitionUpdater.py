@@ -3,11 +3,11 @@ from werkzeug.exceptions import abort
 from nebula_communication.generate_uuid import generate_uuid
 from nebula_communication.nebula_functions import find_destination, fetch_vertex, update_vertex, delete_edge, add_edge, \
     get_all_vid_from_cluster_by_type, delete_vertex, add_in_vertex
+from nebula_communication.update_template.Assignment.RequirementAssignment import form_result
 from parser.parser.tosca_v_1_3.definitions.WorkflowStepDefinition import WorkflowStepDefinition
 
 
-def update_workflow_step_definition(service_template_vid, father_node_vid, value, value_name, varargs: list,
-                                    type_update):
+def start_workflow_step_definition(father_node_vid, varargs):
     if len(varargs) < 2:
         abort(400)
     destination = find_destination(father_node_vid, varargs[0])
@@ -22,6 +22,12 @@ def update_workflow_step_definition(service_template_vid, father_node_vid, value
             break
     if workflow_step_vid_to_update is None:
         abort(400)
+    return workflow_step_vid_to_update
+
+
+def update_workflow_step_definition(service_template_vid, father_node_vid, value, value_name, varargs: list,
+                                    type_update):
+    workflow_step_vid_to_update = start_workflow_step_definition(father_node_vid, varargs)
     if len(varargs) == 2:
         if type_update == 'delete':
             delete_vertex('"' + workflow_step_vid_to_update.as_string() + '"')
@@ -46,7 +52,7 @@ def update_workflow_step_definition(service_template_vid, father_node_vid, value
                     abort(500)
                 delete_edge(value_name, workflow_step_vid_to_update, target_relationship_vertex[0])
             add_edge(value_name, '', workflow_step_vid_to_update, new_target_relationship_vid, '')
-        if value_name == 'on_success' or value_name == 'on_failure':
+        elif value_name == 'on_success' or value_name == 'on_failure':
             all_step = get_all_vid_from_cluster_by_type(service_template_vid, 'WorkflowStepDefinition')
             target_step_vertex = find_destination(workflow_step_vid_to_update, value_name)
             new_step_vid = None
@@ -84,3 +90,36 @@ def add_workflow_step_definition(type_update, varargs, cluster_name, parent_vid,
         add_edge(edge_name, '', parent_vid, data_type.vid, '')
         return True
     return False
+
+
+def get_workflow_step_definition(father_node_vid, value, value_name, varargs: list):
+    workflow_step_vid_to_update = start_workflow_step_definition(father_node_vid, varargs)
+    if len(varargs) == 2:
+        vertex_value = fetch_vertex(workflow_step_vid_to_update, 'WorkflowStepDefinition')
+        vertex_value = vertex_value.as_map()
+        if value_name == 'on_success' or value_name == 'on_failure':
+            destination = find_destination(workflow_step_vid_to_update, value_name)
+            if value is None:
+                result = []
+                for vid in destination:
+                    result.append(vid.as_string())
+                return result
+            for vid in destination:
+                destination_value = fetch_vertex(vid, 'WorkflowStepDefinition')
+                destination_value = destination_value.as_map()
+                if value == destination_value.get('name'):
+                    return vid.as_string()
+            return None
+        elif value_name == 'target_relationship':
+            return form_result(workflow_step_vid_to_update, value_name)
+        elif value_name in vertex_value.keys():
+            if value == vertex_value.get(value_name).as_string():
+                return workflow_step_vid_to_update.as_string()
+        else:
+            abort(501)
+    elif varargs[2] == 'filter':
+        abort(501)
+    elif varargs[2] == 'activities':
+        abort(501)
+    else:
+        abort(400)

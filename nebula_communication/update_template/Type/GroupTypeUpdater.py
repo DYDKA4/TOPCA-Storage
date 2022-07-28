@@ -3,15 +3,16 @@ from werkzeug.exceptions import abort
 from nebula_communication.generate_uuid import generate_uuid
 from nebula_communication.nebula_functions import find_destination, fetch_vertex, update_vertex, add_edge, delete_edge, \
     add_in_vertex, delete_vertex
+from nebula_communication.update_template.Assignment.RequirementAssignment import form_result, return_all
 from nebula_communication.update_template.Definition.AttributeDefinitionUpdater import update_attribute_definition, \
-    add_attribute_definition
+    add_attribute_definition, get_attribute_definition
 from nebula_communication.update_template.Definition.PropertyDefinitionUpdater import update_property_definition, \
-    add_property_definition
-from nebula_communication.update_template.Other.MetadataUpdater import update_metadata, add_metadata
+    add_property_definition, get_property_definition
+from nebula_communication.update_template.Other.MetadataUpdater import update_metadata, add_metadata, get_metadata
 from parser.parser.tosca_v_1_3.types.GroupType import GroupType
 
 
-def update_group_type(father_node_vid, value, value_name, varargs: list, type_update, cluster_name):
+def start_group_type(father_node_vid, varargs):
     if len(varargs) < 2:
         abort(400)
     destination = find_destination(father_node_vid, varargs[0])
@@ -26,6 +27,11 @@ def update_group_type(father_node_vid, value, value_name, varargs: list, type_up
             break
     if group_type_vid_to_update is None:
         abort(400)
+    return group_type_vid_to_update
+
+
+def update_group_type(father_node_vid, value, value_name, varargs: list, type_update, cluster_name):
+    group_type_vid_to_update = start_group_type(father_node_vid, varargs)
     if len(varargs) == 2:
         if type_update == 'delete':
             delete_vertex('"' + group_type_vid_to_update.as_string() + '"')
@@ -36,6 +42,7 @@ def update_group_type(father_node_vid, value, value_name, varargs: list, type_up
         if value_name == 'derived_from':
             derived_from_vertex = find_destination(group_type_vid_to_update, value_name)
             new_derived_group_vid = None
+            destination = find_destination(father_node_vid, varargs[0])
             for group_type_vid in destination:
                 group_type_value = fetch_vertex(group_type_vid, 'GroupType')
                 group_type_value = group_type_value.as_map()
@@ -80,7 +87,7 @@ def update_group_type(father_node_vid, value, value_name, varargs: list, type_up
         else:
             abort(400)
     elif varargs[2] == 'properties':
-        if not add_property_definition(type_update, varargs[2:], value,group_type_vid_to_update,varargs[2]):
+        if not add_property_definition(type_update, varargs[2:], value, group_type_vid_to_update, varargs[2]):
             update_property_definition(father_node_vid, group_type_vid_to_update, value, value_name, varargs[2:],
                                        type_update, cluster_name)
     elif varargs[2] == 'metadata':
@@ -104,3 +111,50 @@ def add_group_type(type_update, varargs, cluster_name, parent_vid, edge_name):
         add_edge(edge_name, '', parent_vid, data_type.vid, '')
         return True
     return False
+
+
+def get_group_type(father_node_vid, value, value_name, varargs: list):
+    group_vid_to_update = start_group_type(father_node_vid, varargs)
+    if len(varargs) == 2:
+        vertex_value = fetch_vertex(group_vid_to_update, 'GroupType')
+        vertex_value = vertex_value.as_map()
+        if value_name == 'derived_from':
+            return form_result(group_vid_to_update, value_name)
+        elif value_name == 'members':
+            destination = find_destination(group_vid_to_update, value_name)
+            if value is None:
+                result = []
+                for vid in destination:
+                    result.append(vid.as_string())
+                return result
+            for vid in destination:
+                destination_value = fetch_vertex(vid, 'NodeType')
+                destination_value = destination_value.as_map()
+                if value == destination_value.get('name'):
+                    return vid.as_string()
+            return None
+        elif value_name in vertex_value.keys():
+            if value == vertex_value.get(value_name).as_string():
+                return group_vid_to_update.as_string()
+        else:
+            abort(501)
+    elif varargs[2] == 'metadata':
+        destination = find_destination(group_vid_to_update, value_name)
+        result, flag = return_all(value, value_name, destination, varargs, 4)
+        if flag:
+            return result
+        return get_metadata(father_node_vid, value, value_name, varargs[2:])
+    elif varargs[2] == 'properties':
+        destination = find_destination(group_vid_to_update, value_name)
+        result, flag = return_all(value, value_name, destination, varargs, 4)
+        if flag:
+            return result
+        return get_property_definition(father_node_vid, value, value_name, varargs[2:])
+    elif varargs[2] == 'attributes':
+        destination = find_destination(group_vid_to_update, value_name)
+        result, flag = return_all(value, value_name, destination, varargs, 4)
+        if flag:
+            return result
+        return get_attribute_definition(father_node_vid, value, value_name, varargs[2:])
+    else:
+        abort(400)

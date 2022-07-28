@@ -5,6 +5,7 @@ from nebula_communication.nebula_functions import fetch_vertex, update_vertex, f
     add_in_vertex, add_edge
 from parser.parser.tosca_v_1_3.assignments.PropertyAssignment import PropertyAssignment
 
+
 def start_property_assignment(father_node_vid, varargs):
     if len(varargs) != 2:
         abort(400)
@@ -21,6 +22,7 @@ def start_property_assignment(father_node_vid, varargs):
     if property_vid_to_update is None:
         abort(400)
     return property_vid_to_update
+
 
 def update_property_assignment(service_template_vid, father_node_vid, value, value_name, varargs: list, type_update):
     property_vid_to_update = start_property_assignment(father_node_vid, varargs)
@@ -48,6 +50,7 @@ def add_property_assignment(type_update, varargs, value, value_name, cluster_nam
         add_edge(varargs[0], '', parent_vid, property_assignment.vid, '')
         return True
     return False
+
 
 def get_property_assignment(father_node_vid, value, value_name, varargs: list):
     property_vid_to_update = start_property_assignment(father_node_vid, varargs)

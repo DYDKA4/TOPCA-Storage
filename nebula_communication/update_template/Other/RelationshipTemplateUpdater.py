@@ -4,17 +4,17 @@ from nebula_communication.generate_uuid import generate_uuid
 from nebula_communication.nebula_functions import find_destination, fetch_vertex, update_vertex, add_edge, delete_edge, \
     delete_vertex, add_in_vertex
 from nebula_communication.update_template.Assignment.AttributeAssignmentUpdater import update_attribute_assignment, \
-    add_attribute_assignment
+    add_attribute_assignment, get_attribute_assignment
 from nebula_communication.update_template.Assignment.PropertyAssignmentUpdater import update_property_assignment, \
-    add_property_assignment
+    add_property_assignment, get_property_assignment
+from nebula_communication.update_template.Assignment.RequirementAssignment import form_result, return_all
 from nebula_communication.update_template.Definition.InterfaceDefinitionUpdater import update_interface_definition, \
-    add_interface_definition
-from nebula_communication.update_template.Other.MetadataUpdater import update_metadata, add_metadata
+    add_interface_definition, get_interface_definition
+from nebula_communication.update_template.Other.MetadataUpdater import update_metadata, add_metadata, get_metadata
 from parser.parser.tosca_v_1_3.others.RelationshipTemplate import RelationshipTemplate
 
 
-def update_relationship_template(service_template, father_node_vid, value, value_name, varargs: list, type_update,
-                                 cluster_name):
+def start_relationship_template(father_node_vid, varargs):
     if len(varargs) < 2:
         abort(400)
     destination = find_destination(father_node_vid, varargs[0])
@@ -29,6 +29,12 @@ def update_relationship_template(service_template, father_node_vid, value, value
             break
     if relationship_template_vid_to_update is None:
         abort(400)
+    return relationship_template_vid_to_update
+
+
+def update_relationship_template(service_template, father_node_vid, value, value_name, varargs: list, type_update,
+                                 cluster_name):
+    relationship_template_vid_to_update = service_template(father_node_vid, varargs)
     if len(varargs) == 2:
         if type_update == 'delete':
             delete_vertex('"' + relationship_template_vid_to_update.as_string() + '"')
@@ -69,7 +75,7 @@ def update_relationship_template(service_template, father_node_vid, value, value
                 delete_edge(value_name, relationship_template_vid_to_update, copy_from_vertex[0])
             add_edge(value_name, '', relationship_template_vid_to_update, new_derived_relationship_vid, '')
         elif value_name in vertex_value.keys():
-            update_vertex('InterfaceType', relationship_template_vid_to_update, value_name, value)
+            update_vertex('RelationshipTemplate', relationship_template_vid_to_update, value_name, value)
         else:
             abort(501)
     elif varargs[2] == 'properties':
@@ -104,3 +110,45 @@ def add_relationship_template(type_update, varargs, cluster_name, parent_vid, ed
         add_edge(edge_name, '', parent_vid, data_type.vid, '')
         return True
     return False
+
+
+def get_relationship_template(father_node_vid, value, value_name, varargs: list):
+    relationship_vid_to_update = start_relationship_template(father_node_vid, varargs)
+    if len(varargs) == 2:
+        vertex_value = fetch_vertex(relationship_vid_to_update, 'RelationshipTemplate')
+        vertex_value = vertex_value.as_map()
+        if value_name == 'type':
+            return form_result(relationship_vid_to_update, value_name)
+        elif value_name == 'copy':
+            return form_result(relationship_vid_to_update, value_name)
+        elif value_name in vertex_value.keys():
+            if value == vertex_value.get(value_name).as_string():
+                return relationship_vid_to_update.as_string()
+        else:
+            abort(501)
+    elif varargs[2] == 'metadata':
+        destination = find_destination(relationship_vid_to_update, value_name)
+        result, flag = return_all(value, value_name, destination, varargs, 4)
+        if flag:
+            return result
+        return get_metadata(father_node_vid, value, value_name, varargs[2:])
+    elif varargs[2] == 'attributes':
+        destination = find_destination(relationship_vid_to_update, value_name)
+        result, flag = return_all(value, value_name, destination, varargs, 4)
+        if flag:
+            return result
+        return get_attribute_assignment(father_node_vid, value, value_name, varargs[2:])
+    elif varargs[2] == 'properties':
+        destination = find_destination(relationship_vid_to_update, value_name)
+        result, flag = return_all(value, value_name, destination, varargs, 4)
+        if flag:
+            return result
+        return get_property_assignment(father_node_vid, value, value_name, varargs[2:])
+    elif varargs[2] == 'interfaces':
+        destination = find_destination(relationship_vid_to_update, value_name)
+        result, flag = return_all(value, value_name, destination, varargs, 4)
+        if flag:
+            return result
+        return get_interface_definition(father_node_vid, value, value_name, varargs[2:])
+    else:
+        abort(400)

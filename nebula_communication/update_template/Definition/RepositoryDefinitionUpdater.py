@@ -6,7 +6,7 @@ from nebula_communication.nebula_functions import find_destination, fetch_vertex
 from parser.parser.tosca_v_1_3.definitions.RepositoryDefinition import RepositoryDefinition
 
 
-def update_repository_definition(father_node_vid, value, value_name, varargs: list, type_update):
+def start_repository_definition(father_node_vid, varargs):
     if len(varargs) != 2:
         abort(400)
     destination = find_destination(father_node_vid, varargs[0])
@@ -21,6 +21,11 @@ def update_repository_definition(father_node_vid, value, value_name, varargs: li
             break
     if repository_vid_to_update is None:
         abort(400)
+    return repository_vid_to_update
+
+
+def update_repository_definition(father_node_vid, value, value_name, varargs: list, type_update):
+    repository_vid_to_update = start_repository_definition(father_node_vid, varargs)
     if type_update == 'delete':
         delete_vertex('"' + repository_vid_to_update.as_string() + '"')
         return
@@ -40,3 +45,14 @@ def add_repository(type_update, varargs, cluster_name, parent_vid, edge_name):
         add_edge(edge_name, '', parent_vid, repository.vid, '')
         return True
     return False
+
+
+def get_repository_definition(father_node_vid, value, value_name, varargs: list):
+    repository_vid_to_update = start_repository_definition(father_node_vid, varargs)
+    property_value = fetch_vertex(repository_vid_to_update, 'RepositoryDefinition')
+    property_value = property_value.as_map()
+    if value_name in property_value.keys():
+        if value == property_value.get(value_name).as_string():
+            return repository_vid_to_update.as_string()
+    else:
+        abort(400)

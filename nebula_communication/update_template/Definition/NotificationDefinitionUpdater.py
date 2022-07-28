@@ -8,8 +8,7 @@ from nebula_communication.update_template.Definition.NotificationImplementationD
 from parser.parser.tosca_v_1_3.definitions.NotificationDefinition import NotificationDefinition
 
 
-def update_notification_definition(service_template_vid, father_node_vid, value, value_name, varargs: list, type_update,
-                                   cluster_name):
+def start_notification_definition(father_node_vid, varargs):
     if len(varargs) < 1:
         abort(400)
     destination = find_destination(father_node_vid, varargs[0])
@@ -20,9 +19,14 @@ def update_notification_definition(service_template_vid, father_node_vid, value,
         if notification_value.get('name').as_string() == varargs[1]:
             notification_vid_to_update = notification_type_vid
             break
-
     if notification_vid_to_update is None:
         abort(400)
+    return notification_vid_to_update
+
+
+def update_notification_definition(service_template_vid, father_node_vid, value, value_name, varargs: list, type_update,
+                                   cluster_name):
+    notification_vid_to_update = start_notification_definition(father_node_vid, varargs)
     if len(varargs) == 2:
         if type_update == 'delete':
             delete_vertex('"' + notification_vid_to_update.as_string() + '"')
@@ -53,3 +57,31 @@ def add_notification_definition(type_update, varargs, cluster_name, parent_vid, 
         add_edge(edge_name, '', parent_vid, import_definition.vid, '')
         return True
     return False
+
+
+def get_notification_definition(father_node_vid, value, value_name, varargs: list):
+    notification_vid_to_update = start_notification_definition(father_node_vid, varargs)
+    if len(varargs) == 2:
+        vertex_value = fetch_vertex(notification_vid_to_update, 'NotificationDefinition')
+        vertex_value = vertex_value.as_map()
+        if value_name == 'implementation':
+            implementation = find_destination(notification_vid_to_update, value_name)
+            if implementation and fetch_vertex(implementation[0], 'NotificationImplementationDefinition'):
+                abort(400)
+            elif implementation and fetch_vertex(implementation[0], 'ArtifactDefinition'):
+                return implementation[0].as_string()
+        elif value_name in vertex_value.keys():
+            if value == vertex_value.get(value_name).as_string():
+                return notification_vid_to_update.as_string()
+        else:
+            abort(501)
+    elif varargs[2] == 'implementation':
+        implementation = find_destination(notification_vid_to_update, varargs[2])
+        if implementation and fetch_vertex(implementation[0], 'ArtifactDefinition'):
+            abort(400)
+        elif implementation and fetch_vertex(implementation[0], 'NotificationImplementationDefinition'):
+            if len(implementation) > 1:
+                abort(500)
+            return implementation
+    else:
+        abort(400)

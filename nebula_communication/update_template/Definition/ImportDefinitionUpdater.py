@@ -6,7 +6,7 @@ from nebula_communication.nebula_functions import find_destination, fetch_vertex
 from parser.parser.tosca_v_1_3.definitions.ImportDefinition import ImportDefinition
 
 
-def update_import_definition(father_node_vid, value, value_name, varargs: list, type_update):
+def start_import_definition(father_node_vid, varargs):
     if len(varargs) != 2:
         abort(400)
     destination = find_destination(father_node_vid, varargs[0])
@@ -21,6 +21,11 @@ def update_import_definition(father_node_vid, value, value_name, varargs: list, 
             break
     if repository_vid_to_update is None:
         abort(400)
+    return repository_vid_to_update
+
+
+def update_import_definition(father_node_vid, value, value_name, varargs: list, type_update):
+    repository_vid_to_update = start_import_definition(father_node_vid, varargs)
     vertex_value = fetch_vertex(repository_vid_to_update, 'ImportDefinition')
     vertex_value = vertex_value.as_map()
     if value_name not in vertex_value.keys():
@@ -38,3 +43,15 @@ def add_import_definition(type_update, varargs, cluster_name, parent_vid, edge_n
         add_edge(edge_name, '', parent_vid, import_definition.vid, '')
         return True
     return False
+
+
+def get_import_definition(father_node_vid, value, value_name, varargs: list):
+    repository_vid_to_update = start_import_definition(father_node_vid, varargs)
+    if len(varargs) == 2:
+        vertex_value = fetch_vertex(repository_vid_to_update, 'ImportDefinition')
+        vertex_value = vertex_value.as_map()
+        if value_name in vertex_value.keys():
+            if value == vertex_value.get(value_name).as_string():
+                return repository_vid_to_update.as_string()
+        else:
+            abort(501)

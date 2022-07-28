@@ -110,7 +110,7 @@ def add_capability_type(type_update, varargs, cluster_name, parent_vid, edge_nam
     return False
 
 
-def get_artifact_type(father_node_vid, value, value_name, varargs: list):
+def get_capability_type(father_node_vid, value, value_name, varargs: list):
     capability_vid_to_update = start_capability_type(father_node_vid, varargs)
     if len(varargs) == 2:
         vertex_value = fetch_vertex(capability_vid_to_update, 'CapabilityType')

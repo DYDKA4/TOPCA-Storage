@@ -3,11 +3,11 @@ from werkzeug.exceptions import abort
 from nebula_communication.generate_uuid import generate_uuid
 from nebula_communication.nebula_functions import find_destination, fetch_vertex, update_vertex, delete_edge, add_edge, \
     delete_vertex, add_in_vertex
+from nebula_communication.update_template.Assignment.RequirementAssignment import form_result
 from parser.parser.tosca_v_1_3.definitions.ArtifactDefinition import ArtifactDefinition
 
 
-def update_artifact_definition(service_template_vid, father_node_vid, value, value_name, varargs: list,
-                               type_update):
+def start_artifact_definition(father_node_vid, varargs):
     if len(varargs) < 2:
         abort(400)
     destination = find_destination(father_node_vid, varargs[0])
@@ -22,6 +22,11 @@ def update_artifact_definition(service_template_vid, father_node_vid, value, val
             break
     if artifact_vid_to_update is None:
         abort(400)
+    return artifact_vid_to_update
+
+def update_artifact_definition(service_template_vid, father_node_vid, value, value_name, varargs: list,
+                               type_update):
+    artifact_vid_to_update = start_artifact_definition(father_node_vid, varargs)
     if len(varargs) == 2:
         if type_update == 'delete':
             delete_vertex('"' + artifact_vid_to_update.as_string() + '"')
@@ -62,3 +67,16 @@ def add_artifact_definition(type_update, varargs, cluster_name, parent_vid, edge
         add_edge(edge_name, '', parent_vid, data_type.vid, '')
         return True
     return False
+
+
+def get_artifact_definition(father_node_vid, value, value_name, varargs: list):
+    artifact_vid_to_update = start_artifact_definition(father_node_vid, varargs)
+    artifact_value = fetch_vertex(artifact_vid_to_update, 'ArtifactDefinition')
+    artifact_value = artifact_value.as_map()
+    if value_name == 'type':
+        return form_result(artifact_vid_to_update, value_name)
+    if value_name in artifact_value.keys():
+        if value == artifact_value.get(value_name).as_string():
+            return artifact_vid_to_update.as_string()
+    else:
+        abort(400)

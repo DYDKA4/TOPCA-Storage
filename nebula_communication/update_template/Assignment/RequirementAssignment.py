@@ -6,12 +6,11 @@ from nebula_communication.nebula_functions import find_destination, fetch_vertex
 from nebula_communication.update_template.Assignment.PropertyAssignmentUpdater import add_property_assignment, \
     update_property_assignment, get_property_assignment
 from nebula_communication.update_template.Definition.InterfaceDefinitionUpdater import update_interface_definition, \
-    add_interface_definition
+    add_interface_definition, get_interface_definition
 from nebula_communication.update_template.Definition.NodeFilterDefinitionUpdater import update_node_filter_definition, \
     add_node_filter_definition
-from nebula_communication.update_template.Definition.PropertyDefinitionUpdater import update_property_definition, \
-    add_property_definition
-from nebula_communication.update_template.Other.OccurrencesUpdater import update_occurrences, add_occurrences
+from nebula_communication.update_template.Other.OccurrencesUpdater import update_occurrences, add_occurrences, \
+    get_occurrences
 from parser.parser.tosca_v_1_3.assignments.RequirementAssignment import RequirementAssignment
 
 
@@ -185,6 +184,16 @@ def form_result(vid_to_update, value_name):
         return None
 
 
+def return_all(value, value_name, destination):
+    if destination is None:
+        return True, None
+    if not value or not value_name:
+        result = []
+        for vid in destination:
+            result.append(vid.as_string())
+        return True, result
+    return False, None
+
 def get_requirement_assignment(father_node_vid, value, value_name, varargs: list):
     requirement_vid_to_update = start_requirement_assignment(father_node_vid, varargs)
     if len(varargs) == 2:
@@ -202,12 +211,28 @@ def get_requirement_assignment(father_node_vid, value, value_name, varargs: list
         else:
             abort(501)
     elif varargs[2] == 'occurrences':
-        return get_occurenses(father_node_vid, value, value_name, varargs[2:])
+        destination = find_destination(requirement_vid_to_update, value_name)
+        result, flag = return_all(value, value_name, destination)
+        if flag:
+            return result
+        return get_occurrences(father_node_vid, value, value_name, varargs[2:])
     elif varargs[2] == 'interfaces':
+        destination = find_destination(requirement_vid_to_update, value_name)
+        result, flag = return_all(value, value_name, destination)
+        if flag:
+            return result
         return get_interface_definition(father_node_vid, value, value_name, varargs[2:])
     elif varargs[2] == 'properties':
+        destination = find_destination(requirement_vid_to_update, value_name)
+        result, flag = return_all(value, value_name, destination)
+        if flag:
+            return result
         return get_property_assignment(father_node_vid, value, value_name, varargs[2:])
     elif varargs[2] == 'node_filter':
+        destination = find_destination(requirement_vid_to_update, value_name)
+        result, flag = return_all(value, value_name, destination)
+        if flag:
+            return result
         return get_node_filter_definition(father_node_vid, value, value_name, varargs[2:])
     else:
         abort(400)

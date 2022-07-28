@@ -83,7 +83,7 @@ Supported versions: >= 1.0.0, <= 2.3.0"
       - spark:
           capability: michman.capabilities.Spark
           relationship: tosca.relationships.DependsOn
-          occurrences: [1, 1]
+          occurrences: [0, 1]
   tosca.nodes.SoftwareComponent:
     derived_from: tosca.nodes.Root
     properties:

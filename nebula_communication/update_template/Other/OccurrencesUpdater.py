@@ -40,3 +40,22 @@ def add_occurrences(type_update, varargs, cluster_name, parent_vid, edge_name):
         add_edge(edge_name, '', parent_vid, schema_definition.vid, '')
         return True
     return False
+
+
+def get_occurrences(father_node_vid, value, value_name, varargs: list):
+    if len(varargs) != 1:
+        abort(400)
+    destination = find_destination(father_node_vid, varargs[0])
+    if destination is None:
+        abort(400)
+    if len(destination) > 1:
+        abort(400)
+    occurrences_vid_to_update = destination[0]
+    property_value = fetch_vertex(occurrences_vid_to_update, 'Occurrences')
+    property_value = property_value.as_map()
+    if value_name in property_value.keys():
+        if value == property_value.get(value_name).as_string():
+            return occurrences_vid_to_update.as_string()
+    else:
+        abort(400)
+

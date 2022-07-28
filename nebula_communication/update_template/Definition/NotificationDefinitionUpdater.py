@@ -15,7 +15,7 @@ def update_notification_definition(service_template_vid, father_node_vid, value,
     destination = find_destination(father_node_vid, varargs[0])
     notification_vid_to_update = None
     for notification_type_vid in destination:
-        notification_value = fetch_vertex(notification_type_vid, 'OperationDefinition')
+        notification_value = fetch_vertex(notification_type_vid, 'NotificationDefinition')
         notification_value = notification_value.as_map()
         if notification_value.get('name').as_string() == varargs[1]:
             notification_vid_to_update = notification_type_vid

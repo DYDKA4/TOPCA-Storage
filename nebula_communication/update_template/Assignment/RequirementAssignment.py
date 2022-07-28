@@ -3,6 +3,8 @@ from werkzeug.exceptions import abort
 from nebula_communication.generate_uuid import generate_uuid
 from nebula_communication.nebula_functions import find_destination, fetch_vertex, update_vertex, delete_edge, add_edge, \
     delete_vertex, add_in_vertex
+from nebula_communication.update_template.Assignment.PropertyAssignmentUpdater import add_property_assignment, \
+    update_property_assignment, get_property_assignment
 from nebula_communication.update_template.Definition.InterfaceDefinitionUpdater import update_interface_definition, \
     add_interface_definition
 from nebula_communication.update_template.Definition.NodeFilterDefinitionUpdater import update_node_filter_definition, \
@@ -13,8 +15,7 @@ from nebula_communication.update_template.Other.OccurrencesUpdater import update
 from parser.parser.tosca_v_1_3.assignments.RequirementAssignment import RequirementAssignment
 
 
-def update_requirement_assignment(service_template_vid, father_node_vid, value, value_name, varargs: list, type_update,
-                                  cluster_name):
+def start_requirement_assignment(father_node_vid, varargs):
     if len(varargs) < 2:
         abort(400)
     destination = find_destination(father_node_vid, varargs[0])
@@ -29,6 +30,12 @@ def update_requirement_assignment(service_template_vid, father_node_vid, value, 
             break
     if requirement_vid_to_update is None:
         abort(400)
+    return requirement_vid_to_update
+
+
+def update_requirement_assignment(service_template_vid, father_node_vid, value, value_name, varargs: list, type_update,
+                                  cluster_name):
+    requirement_vid_to_update = start_requirement_assignment(father_node_vid, varargs)
     if len(varargs) == 2:
         if type_update == 'delete':
             delete_vertex('"' + requirement_vid_to_update.as_string() + '"')
@@ -147,9 +154,9 @@ def update_requirement_assignment(service_template_vid, father_node_vid, value, 
             update_interface_definition(service_template_vid, requirement_vid_to_update, value, value_name, varargs[2:],
                                         type_update, cluster_name)
     elif varargs[2] == 'properties':
-        if not add_property_definition(type_update, varargs[2:], cluster_name, requirement_vid_to_update, varargs[2]):
-            update_property_definition(service_template_vid, requirement_vid_to_update, value, value_name, varargs[2:],
-                                       type_update, cluster_name)
+        if not add_property_assignment(type_update, varargs[2:], cluster_name, requirement_vid_to_update, varargs[2]):
+            update_property_assignment(service_template_vid, requirement_vid_to_update, value, value_name, varargs[2:],
+                                       type_update)
     elif varargs[2] == 'node_filter':
         if not add_node_filter_definition(type_update, varargs[2:], cluster_name, requirement_vid_to_update,
                                           varargs[2]):
@@ -168,3 +175,39 @@ def add_requirement_assignment(type_update, varargs, cluster_name, parent_vid, e
         add_edge(edge_name, '', parent_vid, data_type.vid, '')
         return True
     return False
+
+
+def form_result(vid_to_update, value_name):
+    result = find_destination(vid_to_update, value_name)
+    if result:
+        return result[0].as_string()
+    else:
+        return None
+
+
+def get_requirement_assignment(father_node_vid, value, value_name, varargs: list):
+    requirement_vid_to_update = start_requirement_assignment(father_node_vid, varargs)
+    if len(varargs) == 2:
+        vertex_value = fetch_vertex(requirement_vid_to_update, 'CapabilityAssignment')
+        vertex_value = vertex_value.as_map()
+        if value_name == 'relationship':
+            return form_result(requirement_vid_to_update, value_name)
+        elif value_name == 'node':
+            return form_result(requirement_vid_to_update, value_name)
+        elif value_name == 'capability':
+            return form_result(requirement_vid_to_update, value_name)
+        elif value_name in vertex_value.keys():
+            if value == vertex_value.get(value_name).as_string():
+                return requirement_vid_to_update.as_string()
+        else:
+            abort(501)
+    elif varargs[2] == 'occurrences':
+        return get_occurenses(father_node_vid, value, value_name, varargs[2:])
+    elif varargs[2] == 'interfaces':
+        return get_interface_definition(father_node_vid, value, value_name, varargs[2:])
+    elif varargs[2] == 'properties':
+        return get_property_assignment(father_node_vid, value, value_name, varargs[2:])
+    elif varargs[2] == 'node_filter':
+        return get_node_filter_definition(father_node_vid, value, value_name, varargs[2:])
+    else:
+        abort(400)

@@ -506,7 +506,10 @@ topology_template:
             cpu_frequency: 4.0 GHz
             mem_size: 16 GB
         endpoint:
-          type: tosca.capabilities.Endpoint.Admin ???
+          properties:
+            protocol: tcp
+            port: 7777
+            secure: true
         os:
           properties:
             architecture: x86_64

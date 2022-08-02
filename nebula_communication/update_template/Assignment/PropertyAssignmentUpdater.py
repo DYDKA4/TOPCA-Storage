@@ -56,7 +56,9 @@ def get_property_assignment(father_node_vid, value, value_name, varargs: list):
     property_vid_to_update = start_property_assignment(father_node_vid, varargs)
     property_value = fetch_vertex(property_vid_to_update, 'PropertyAssignment')
     property_value = property_value.as_map()
-    if value_name in property_value.keys():
+    if not value_name:
+        return property_vid_to_update.as_string()
+    elif value_name in property_value.keys():
         if value == property_value.get(value_name).as_string():
             return property_vid_to_update.as_string()
     else:

@@ -12,7 +12,7 @@ def start_attribute_assignment(father_node_vid, varargs):
     if len(varargs) < 2:
         abort(400)
     destination = find_destination(father_node_vid, varargs[0])
-    if destination is None or len(destination) > 1:
+    if destination is None:
         abort(400)
     capability_vid_to_update = None
     for capability_vid in destination:

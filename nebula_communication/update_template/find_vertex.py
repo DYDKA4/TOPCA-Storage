@@ -15,6 +15,7 @@ from nebula_communication.update_template.Type.InterfaceTypeUpdater import get_i
 from nebula_communication.update_template.Type.NodeTypeUpdater import get_node_type
 from nebula_communication.update_template.Type.PolicyTypeUpdater import get_policy_type
 from nebula_communication.update_template.Type.RelationshipTypeUpdater import get_relationship_type
+from nebula_communication.update_template.find_functions import get_names, get_attribute
 
 
 def find_vertex(cluster_name, vertex_type_system, search_by, search_by_value):
@@ -53,47 +54,74 @@ def find_vertex(cluster_name, vertex_type_system, search_by, search_by_value):
         elif search_by and search_by_value:
             result = []
             for vid_tmp in vid:
-                vid_value = fetch_vertex(vid, vertex_type_system)
+                vid_value = fetch_vertex('"' + vid_tmp + '"', vertex_type_system)
                 vid_value = vid_value.as_map()
                 if not vid_value.get(search_by).is_null():
                     if vid_value.get(search_by).as_string() == search_by_value:
-                        result.append(vid_tmp.as_string())
+                        result.append(vid_tmp)
             return result
     vid = None
     #
     return vid
 
 
-def find_template(cluster_name: str, value, value_name, varargs: list):
+def find_template(cluster_name: str, value, value_name, vertex_type_system: str, varargs: list, ):
+    if not varargs:
+        result = find_vertex(cluster_name, vertex_type_system, value_name, value)
+        if result is not None:
+            return result
     cluster_vid = '"' + cluster_name + '"'
     value = '"' + value + '"'
     if varargs[0] == 'metadata':  # todo Тестить
-        get_metadata(cluster_vid, value, value_name, varargs)
+        result = get_metadata(cluster_vid, value, value_name, varargs)
     elif varargs[0] == 'repositories':  # todo Тестить
-        get_repository_definition(cluster_vid, value, value_name, varargs)
+        result = get_repository_definition(cluster_vid, value, value_name, varargs)
     elif varargs[0] == 'imports':  # todo Тестить
-        get_import_definition(cluster_vid, value, value_name, varargs)
+        result = get_import_definition(cluster_vid, value, value_name, varargs)
     elif varargs[0] == 'artifact_types':  # todo Тестить
-        get_artifact_type(cluster_vid, value, value_name, varargs)
+        result = get_artifact_type(cluster_vid, value, value_name, varargs)
     elif varargs[0] == 'data_types':  # todo Тестить
-        get_data_type(cluster_vid, value, value_name, varargs)
+        result = get_data_type(cluster_vid, value, value_name, varargs)
     elif varargs[0] == 'capability_types':  # todo Тестить
-        get_capability_type(cluster_vid, value, value_name, varargs)
+        result = get_capability_type(cluster_vid, value, value_name, varargs)
     elif varargs[0] == 'interface_types':  # todo Тестить
-        get_interface_type(cluster_vid, value, value_name, varargs)
+        result = get_interface_type(cluster_vid, value, value_name, varargs)
     elif varargs[0] == 'relationship_types':  # todo Тестить
-        get_relationship_type(cluster_vid, value, value_name, varargs)
+        result = get_relationship_type(cluster_vid, value, value_name, varargs)
     elif varargs[0] == 'node_types':  # todo Тестить
-        get_node_type(cluster_vid, value, value_name, varargs)
+        result = get_node_type(cluster_vid, value, value_name, varargs)
     elif varargs[0] == 'group_types':  # todo Тестить
-        get_group_type(cluster_vid, value, value_name, varargs)
+        result = get_group_type(cluster_vid, value, value_name, varargs)
     elif varargs[0] == 'policy_types':  # todo Тестить
-        get_policy_type(cluster_vid, value, value_name, varargs)
+        result = get_policy_type(cluster_vid, value, value_name, varargs)
     elif varargs[0] == 'topology_template':  # todo Тестить
-        get_topology_template_definition(cluster_vid, value, value_name, varargs)
+        result = get_topology_template_definition(cluster_vid, value, value_name, varargs)
     else:
         abort(400)
+    return result
 
 
-res = find_vertex(None, 'PropertyDefinition', 'description', 'test_property_description_0_from_relationship_type')
+res = find_template('Jupyter_0', None, None, 'NodeTemplate',
+                    [])
+# res = find_template('Jupyter_0', 'michman.nodes.Jupyter.Jupyter-6-0-1', 'type', 'NodeTemplate',
+#                     ['topology_template', 'node_templates', 'jupyter_1'])
+res = get_names(res, 'NodeTemplate')
+res_type = find_template('Jupyter_0', 'michman.nodes.Jupyter.Jupyter-6-0-1', 'name', 'NodeType',
+                         [])[0]
+print(res_type)
+print(res)
+source_name = ''
+for uuid, name in res.items():
+    res_type_new = find_template('Jupyter_0', 'does not meter', 'type', 'NodeTemplate',
+                                 ['topology_template', 'node_templates', name])
+    # print(res_type_new, res_type)
+    if res_type_new == res_type:
+        print(name, uuid)
+        source_name = name
+        break
+res = find_template('Jupyter_0', 'does not meter', 'node', 'NodeTemplate',
+                                 ['topology_template', 'node_templates', source_name, 'requirements', 'host'])
+res = get_attribute(res, 'NodeTemplate', 'name')
+res = find_template('Jupyter_0', 'does not meter', '', 'NodeTemplate',
+                    ['topology_template', 'node_templates', res, 'capabilities', 'endpoint', 'properties', 'port'])
 print(res)

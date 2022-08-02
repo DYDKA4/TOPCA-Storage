@@ -153,52 +153,52 @@ def get_node_template(father_node_vid, value, value_name, varargs: list):
         else:
             abort(501)
     elif varargs[2] == 'metadata':
-        destination = find_destination(node_vid_to_update, value_name)
+        destination = find_destination(node_vid_to_update, varargs[2])
         result, flag = return_all(value, value_name, destination, varargs, 4)
         if flag:
             return result
-        return get_metadata(father_node_vid, value, value_name, varargs[2:])
+        return get_metadata(node_vid_to_update, value, value_name, varargs[2:])
     elif varargs[2] == 'attributes':
-        destination = find_destination(node_vid_to_update, value_name)
+        destination = find_destination(node_vid_to_update, varargs[2])
         result, flag = return_all(value, value_name, destination, varargs, 4)
         if flag:
             return result
-        return get_attribute_assignment(father_node_vid, value, value_name, varargs[2:])
+        return get_attribute_assignment(node_vid_to_update, value, value_name, varargs[2:])
     elif varargs[2] == 'properties':
-        destination = find_destination(node_vid_to_update, value_name)
+        destination = find_destination(node_vid_to_update, varargs[2])
         result, flag = return_all(value, value_name, destination, varargs, 4)
         if flag:
             return result
-        return get_property_assignment(father_node_vid, value, value_name, varargs[2:])
+        return get_property_assignment(node_vid_to_update, value, value_name, varargs[2:])
     elif varargs[2] == 'requirements':
-        destination = find_destination(node_vid_to_update, value_name)
+        destination = find_destination(node_vid_to_update, varargs[2])
         result, flag = return_all(value, value_name, destination, varargs, 4)
         if flag:
             return result
-        return get_requirement_assignment(father_node_vid, value, value_name, varargs[2:])
+        return get_requirement_assignment(node_vid_to_update, value, value_name, varargs[2:])
     elif varargs[2] == 'capabilities':
-        destination = find_destination(node_vid_to_update, value_name)
+        destination = find_destination(node_vid_to_update, varargs[2])
         result, flag = return_all(value, value_name, destination, varargs, 4)
         if flag:
             return result
-        return get_capability_assignment(father_node_vid, value, value_name, varargs[2:])
+        return get_capability_assignment(node_vid_to_update, value, value_name, varargs[2:])
     elif varargs[2] == 'interfaces':
-        destination = find_destination(node_vid_to_update, value_name)
+        destination = find_destination(node_vid_to_update, varargs[2])
         result, flag = return_all(value, value_name, destination, varargs, 4)
         if flag:
             return result
-        return get_interface_definition(father_node_vid, value, value_name, varargs[2:])
+        return get_interface_definition(node_vid_to_update, value, value_name, varargs[2:])
     elif varargs[2] == 'artifacts':
-        destination = find_destination(node_vid_to_update, value_name)
+        destination = find_destination(node_vid_to_update, varargs[2])
         result, flag = return_all(value, value_name, destination, varargs, 4)
         if flag:
             return result
-        return get_artifact_definition(father_node_vid, value, value_name, varargs[2:])
+        return get_artifact_definition(node_vid_to_update, value, value_name, varargs[2:])
     elif varargs[2] == 'node_filter':
-        destination = find_destination(node_vid_to_update, value_name)
+        destination = find_destination(node_vid_to_update, varargs[2])
         result, flag = return_all(value, value_name, destination, varargs, 4)
         if flag:
             return result
-        return get_node_filter_definition(father_node_vid, value, value_name, varargs[2:])
+        return get_node_filter_definition(node_vid_to_update, value, value_name, varargs[2:])
     else:
         abort(400)

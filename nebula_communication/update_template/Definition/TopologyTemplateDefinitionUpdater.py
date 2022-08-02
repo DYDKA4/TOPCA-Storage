@@ -86,52 +86,52 @@ def get_topology_template_definition(father_node_vid, value, value_name, varargs
         else:
             abort(400)
     elif varargs[1] == 'metadata':
-        destination = find_destination(topology_template_definition, value_name)
+        destination = find_destination(topology_template_definition, varargs[1])
         result, flag = return_all(value, value_name, destination, varargs, 3)
         if flag:
             return result
-        return get_metadata(father_node_vid, value, value_name, varargs[1:])
+        return get_metadata(topology_template_definition, value, value_name, varargs[1:])
     elif varargs[1] == 'inputs':
-        destination = find_destination(topology_template_definition, value_name)
+        destination = find_destination(topology_template_definition, varargs[1])
         result, flag = return_all(value, value_name, destination, varargs, 3)
         if flag:
             return result
-        return get_parameter_definition(father_node_vid, value, value_name, varargs[1:])
+        return get_parameter_definition(topology_template_definition, value, value_name, varargs[1:])
     elif varargs[1] == 'outputs':
-        destination = find_destination(topology_template_definition, value_name)
+        destination = find_destination(topology_template_definition, varargs[1])
         result, flag = return_all(value, value_name, destination, varargs, 3)
         if flag:
             return result
-        return get_parameter_definition(father_node_vid, value, value_name, varargs[1:])
-    elif varargs[1] == 'node_template':
-        destination = find_destination(topology_template_definition, value_name)
+        return get_parameter_definition(topology_template_definition, value, value_name, varargs[1:])
+    elif varargs[1] == 'node_templates':
+        destination = find_destination(topology_template_definition, varargs[1])
         result, flag = return_all(value, value_name, destination, varargs, 3)
         if flag:
             return result
-        return get_node_template(father_node_vid, value, value_name, varargs[1:])
+        return get_node_template(topology_template_definition, value, value_name, varargs[1:])
     elif varargs[1] == 'relationship_templates':
-        destination = find_destination(topology_template_definition, value_name)
+        destination = find_destination(topology_template_definition, varargs[1])
         result, flag = return_all(value, value_name, destination, varargs, 3)
         if flag:
             return result
-        return get_relationship_template(father_node_vid, value, value_name, varargs[1:])
+        return get_relationship_template(topology_template_definition, value, value_name, varargs[1:])
     elif varargs[1] == 'groups':
-        destination = find_destination(topology_template_definition, value_name)
+        destination = find_destination(topology_template_definition, varargs[1])
         result, flag = return_all(value, value_name, destination, varargs, 3)
         if flag:
             return result
-        return get_group_definition(father_node_vid, value, value_name, varargs[1:])
+        return get_group_definition(topology_template_definition, value, value_name, varargs[1:])
     elif varargs[1] == 'policies':
-        destination = find_destination(topology_template_definition, value_name)
+        destination = find_destination(topology_template_definition, varargs[1])
         result, flag = return_all(value, value_name, destination, varargs, 3)
         if flag:
             return result
-        return get_policy_definition(father_node_vid, value, value_name, varargs[1:])
+        return get_policy_definition(topology_template_definition, value, value_name, varargs[1:])
     elif varargs[1] == 'workflows':
-        destination = find_destination(topology_template_definition, value_name)
+        destination = find_destination(topology_template_definition, varargs[1])
         result, flag = return_all(value, value_name, destination, varargs, 3)
         if flag:
             return result
-        return get_imperative_workflow_definition(father_node_vid, value, value_name, varargs[1:])
+        return get_imperative_workflow_definition(topology_template_definition, value, value_name, varargs[1:])
     else:
         abort(400)

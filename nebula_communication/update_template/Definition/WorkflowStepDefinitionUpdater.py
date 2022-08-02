@@ -3,7 +3,7 @@ from werkzeug.exceptions import abort
 from nebula_communication.generate_uuid import generate_uuid
 from nebula_communication.nebula_functions import find_destination, fetch_vertex, update_vertex, delete_edge, add_edge, \
     get_all_vid_from_cluster_by_type, delete_vertex, add_in_vertex
-from nebula_communication.update_template.Assignment.RequirementAssignment import form_result
+from nebula_communication.update_template.find_functions import form_result
 from parser.parser.tosca_v_1_3.definitions.WorkflowStepDefinition import WorkflowStepDefinition
 
 

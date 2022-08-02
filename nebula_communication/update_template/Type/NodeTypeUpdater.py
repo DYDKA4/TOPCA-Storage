@@ -3,7 +3,7 @@ from werkzeug.exceptions import abort
 from nebula_communication.generate_uuid import generate_uuid
 from nebula_communication.nebula_functions import find_destination, fetch_vertex, update_vertex, add_edge, delete_edge, \
     delete_vertex, add_in_vertex
-from nebula_communication.update_template.Assignment.RequirementAssignment import form_result, return_all
+from nebula_communication.update_template.find_functions import  form_result, return_all
 from nebula_communication.update_template.Definition.AttributeDefinitionUpdater import update_attribute_definition, \
     add_attribute_definition, get_attribute_definition
 from nebula_communication.update_template.Definition.CapabilityDefinitionUpdater import update_capability_definition, \

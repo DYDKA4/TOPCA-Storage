@@ -5,7 +5,6 @@ from nebula_communication.nebula_functions import find_destination, fetch_vertex
     delete_vertex, add_in_vertex
 from nebula_communication.update_template.Assignment.PropertyAssignmentUpdater import update_property_assignment, \
     add_property_assignment, get_property_assignment
-from nebula_communication.update_template.Assignment.RequirementAssignment import return_all
 from nebula_communication.update_template.Definition.NotificationDefinitionUpdater import \
     update_notification_definition, add_notification_definition, get_notification_definition
 from nebula_communication.update_template.Definition.OperationDefinitionUpdater import update_operation_definition, \
@@ -13,6 +12,7 @@ from nebula_communication.update_template.Definition.OperationDefinitionUpdater 
 from nebula_communication.update_template.Definition.PropertyDefinitionUpdater import update_property_definition, \
     add_property_definition, get_property_definition
 from nebula_communication.update_template.Other.MetadataUpdater import update_metadata
+from nebula_communication.update_template.find_functions import return_all
 from parser.parser.tosca_v_1_3.definitions.InterfaceDefinition import InterfaceDefinition
 
 

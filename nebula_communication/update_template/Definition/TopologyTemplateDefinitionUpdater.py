@@ -1,7 +1,6 @@
 from werkzeug.exceptions import abort
 
 from nebula_communication.nebula_functions import find_destination, fetch_vertex, update_vertex
-from nebula_communication.update_template.Assignment.RequirementAssignment import return_all
 from nebula_communication.update_template.Definition.GroupDefinitionUpdater import update_group_definition, \
     add_group_definition, get_group_definition
 from nebula_communication.update_template.Definition.ImperativeWorkflowDefinition import \
@@ -15,6 +14,7 @@ from nebula_communication.update_template.Other.NodeTemplateUpdater import updat
     get_node_template
 from nebula_communication.update_template.Other.RelationshipTemplateUpdater import update_relationship_template, \
     add_relationship_template, get_relationship_template
+from nebula_communication.update_template.find_functions import return_all
 
 
 def update_topology_template_definition(father_node_vid, value, value_name, varargs: list, type_update, cluster_name):

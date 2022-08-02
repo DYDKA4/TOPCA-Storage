@@ -67,17 +67,17 @@ def find_vertex(cluster_name, vertex_type_system, search_by, search_by_value):
 def find_template(cluster_name: str, value, value_name, varargs: list):
     cluster_vid = '"' + cluster_name + '"'
     value = '"' + value + '"'
-    if varargs[0] == 'metadata': # todo Тестить
+    if varargs[0] == 'metadata':  # todo Тестить
         get_metadata(cluster_vid, value, value_name, varargs)
-    elif varargs[0] == 'repositories': # todo Тестить
+    elif varargs[0] == 'repositories':  # todo Тестить
         get_repository_definition(cluster_vid, value, value_name, varargs)
-    elif varargs[0] == 'imports': # todo Тестить
+    elif varargs[0] == 'imports':  # todo Тестить
         get_import_definition(cluster_vid, value, value_name, varargs)
-    elif varargs[0] == 'artifact_types': # todo Тестить
+    elif varargs[0] == 'artifact_types':  # todo Тестить
         get_artifact_type(cluster_vid, value, value_name, varargs)
-    elif varargs[0] == 'data_types': # todo Тестить
+    elif varargs[0] == 'data_types':  # todo Тестить
         get_data_type(cluster_vid, value, value_name, varargs)
-    elif varargs[0] == 'capability_types': # todo Тестить
+    elif varargs[0] == 'capability_types':  # todo Тестить
         get_capability_type(cluster_vid, value, value_name, varargs)
     elif varargs[0] == 'interface_types':  # todo Тестить
         get_interface_type(cluster_vid, value, value_name, varargs)
@@ -94,7 +94,6 @@ def find_template(cluster_name: str, value, value_name, varargs: list):
     else:
         abort(400)
 
-#
-#
-# res = find_vertex(None, 'PropertyDefinition', 'description', 'test_property_description_0_from_relationship_type')
-# print(res)
+
+res = find_vertex(None, 'PropertyDefinition', 'description', 'test_property_description_0_from_relationship_type')
+print(res)

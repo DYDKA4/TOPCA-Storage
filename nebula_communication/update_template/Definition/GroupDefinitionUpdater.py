@@ -7,7 +7,7 @@ from nebula_communication.update_template.Assignment.AttributeAssignmentUpdater 
     add_attribute_assignment
 from nebula_communication.update_template.Assignment.PropertyAssignmentUpdater import update_property_assignment, \
     add_property_assignment
-from nebula_communication.update_template.Assignment.RequirementAssignment import form_result, return_all
+from nebula_communication.update_template.find_functions import  form_result, return_all
 from nebula_communication.update_template.Definition.AttributeDefinitionUpdater import get_attribute_definition
 from nebula_communication.update_template.Definition.PropertyDefinitionUpdater import get_property_definition
 from nebula_communication.update_template.Other.MetadataUpdater import update_metadata, add_metadata, get_metadata

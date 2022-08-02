@@ -3,7 +3,7 @@ from werkzeug.exceptions import abort
 from nebula_communication.generate_uuid import generate_uuid
 from nebula_communication.nebula_functions import find_destination, fetch_vertex, update_vertex, delete_edge, add_edge, \
     delete_vertex, add_in_vertex
-from nebula_communication.update_template.Assignment.RequirementAssignment import form_result, return_all
+from nebula_communication.update_template.find_functions import  form_result, return_all
 from nebula_communication.update_template.Other.ConstraintClauseUpdater import update_constraint_clause, \
     add_constraint_clause, get_constraint_clause
 from parser.parser.tosca_v_1_3.definitions.SchemaDefinition import SchemaDefinition

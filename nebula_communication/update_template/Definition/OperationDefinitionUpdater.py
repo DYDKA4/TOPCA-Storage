@@ -5,12 +5,12 @@ from nebula_communication.nebula_functions import find_destination, fetch_vertex
     get_all_vid_from_cluster_by_type, delete_vertex, add_in_vertex
 from nebula_communication.update_template.Assignment.PropertyAssignmentUpdater import update_property_assignment, \
     add_property_assignment, get_property_assignment
-from nebula_communication.update_template.Definition.InterfaceDefinitionUpdater import return_all
 from nebula_communication.update_template.Definition.OperationImplementationDefinitionUpdater import \
     update_operation_implementation_definition, add_operation_implementation_definition, \
     get_operation_implementation_definition
 from nebula_communication.update_template.Definition.PropertyDefinitionUpdater import update_property_definition, \
     add_property_definition, get_property_definition
+from nebula_communication.update_template.find_functions import return_all
 from parser.parser.tosca_v_1_3.definitions.OperationDefinition import OperationDefinition
 
 

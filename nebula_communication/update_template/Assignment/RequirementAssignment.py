@@ -11,6 +11,7 @@ from nebula_communication.update_template.Definition.NodeFilterDefinitionUpdater
     add_node_filter_definition, get_node_filter_definition
 from nebula_communication.update_template.Other.OccurrencesUpdater import update_occurrences, add_occurrences, \
     get_occurrences
+from nebula_communication.update_template.find_functions import return_all, form_result
 from parser.parser.tosca_v_1_3.assignments.RequirementAssignment import RequirementAssignment
 
 
@@ -174,25 +175,6 @@ def add_requirement_assignment(type_update, varargs, cluster_name, parent_vid, e
         add_edge(edge_name, '', parent_vid, data_type.vid, '')
         return True
     return False
-
-
-def form_result(vid_to_update, value_name):
-    result = find_destination(vid_to_update, value_name)
-    if result:
-        return result[0].as_string()
-    else:
-        return None
-
-
-def return_all(value, value_name, destination, varargs, length):
-    if destination is None:
-        return len(varargs) == length, None
-    if not value or not value_name:
-        result = []
-        for vid in destination:
-            result.append(vid.as_string())
-        return len(varargs) == length, result
-    return False, None
 
 
 def get_requirement_assignment(father_node_vid, value, value_name, varargs: list):

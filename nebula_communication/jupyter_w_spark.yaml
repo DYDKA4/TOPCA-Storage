@@ -492,7 +492,7 @@ topology_template:
           spark_component_version: 2.3.0
           core: 4.5.0
       requirements:
-        - host: compute_0
+        - host: Compute_0
     compute_0:
       type: tosca.nodes.Compute
       requirements:
@@ -516,8 +516,8 @@ topology_template:
             type: Linux
             distribution: Fedora
             version: 18.0
-    block_storage_0:
-      type: tosca.nodes.Storage.BlockStorage
-      properties:
-        size: 256 GB
-        snapshot_id: { get_input: storage_snapshot_id }
+      block_storage_0:
+        type: tosca.nodes.Storage.BlockStorage
+        properties:
+          size: 256 GB
+          snapshot_id: { get_input: storage_snapshot_id }

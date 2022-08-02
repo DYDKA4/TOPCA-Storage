@@ -478,3 +478,43 @@ data_types:
           type: string
   tosca.datatypes.Root:
     description: The TOSCA root Data Type all other TOSCA base Data Types derive from
+topology_template:
+  inputs:
+    storage_snapshot_id:
+      type: string
+      description: >
+        Optional identifier for an existing snapshot to use when creating storage.
+  node_templates:
+    jupyter_1:
+      type: michman.nodes.Jupyter.Jupyter-6-0-1
+      properties:
+          version: 6.0.1
+          spark_component_version: 2.3.0
+          core: 4.5.0
+      requirements:
+        - host: Compute_0
+    compute_0:
+      type: tosca.nodes.Compute
+      requirements:
+        - local_storage: block_storage_0
+      capabilities:
+        host:
+          properties:
+            num_cpus: 1
+            name: jupyter_host
+            disk_size: 256 GB
+            cpu_frequency: 4.0 GHz
+            mem_size: 16 GB
+        endpoint:
+          type: tosca.capabilities.Endpoint.Admin ???
+        os:
+          properties:
+            architecture: x86_64
+            type: Linux
+            distribution: Fedora
+            version: 18.0
+      block_storage_0:
+        type: tosca.nodes.Storage.BlockStorage
+        properties:
+          size: 256 GB
+          snapshot_id: { get_input: storage_snapshot_id }

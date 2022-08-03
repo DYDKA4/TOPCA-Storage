@@ -13,3 +13,6 @@ logging.basicConfig(filename=f'logs/{now.strftime("%d-%m-%Y")}/record_{now.strft
                     format=f'%(asctime)s %(levelname)s %(name)s %(threadName)s : %(message)s')
 
 from app import views
+
+if __name__ == "__main__":
+    app.run(host='0.0.0.0')

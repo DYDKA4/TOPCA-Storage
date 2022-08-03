@@ -1,11 +1,8 @@
 from flask import request, abort
 from app import app
-from nebula_communication import communication_with_nebula
 import yaml
-from app import constructor_yaml
-from app import find as find_method
 from nebula_communication.deploy import deploy
-from nebula_communication.redis_communication import add_vid, delete_all
+from nebula_communication.redis_communication import add_vid
 from nebula_communication.update_template.find_vertex import find_vertex
 from nebula_communication.update_template.update_template import update_template
 from parser.linker.tosca_v_1_3.main_linker import main_linker
@@ -39,9 +36,8 @@ def yaml_add():
         """
         curl -X GET 'http://127.0.0.1:5000/yaml-template/?cluster_name=cluster_tosca_59'
         """
-        yaml_collection = constructor_yaml.get_yaml(cluster_name)
 
-        return f'{yaml_collection}'
+        return f'{12}'
 
     return '''
             400 Bad Request 
@@ -76,7 +72,7 @@ def yaml_update(varargs=None):
 @app.route('/yaml-delete', methods=['PATCH'])
 # curl -X PATCH http://127.0.0.1:5000/yaml-delete
 def yaml_patch():
-    delete_all()
+    # delete_all()
     return "200 OK"
 
 
@@ -100,5 +96,4 @@ def get_yaml_from_vertex():
     :return:
     """
     vid = request.args.get('vid')
-    result = constructor_yaml.separated_vertex(vid)
-    return f'{result}'
+    return f'{12}'

@@ -139,7 +139,10 @@ def add_node_template(type_update, varargs, cluster_name, parent_vid, edge_name)
 
 
 def get_node_template(father_node_vid, value, value_name, varargs: list):
-    node_vid_to_update = start_node_template(father_node_vid, varargs)
+    try:
+        node_vid_to_update = start_node_template(father_node_vid, varargs)
+    except:
+        return None
     if len(varargs) == 2:
         vertex_value = fetch_vertex(node_vid_to_update, 'NodeTemplate')
         vertex_value = vertex_value.as_map()

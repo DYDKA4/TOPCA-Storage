@@ -150,3 +150,38 @@ def get_all_vertex(tag):
     assert result.is_succeeded(), result.error_msg()
     session.release()
     return result.column_values('VertexID')
+
+
+def go_from_over(vertex_id, edge_name):
+    session = start_session()
+    result = session.execute(f"GO FROM {vertex_id} OVER {edge_name} YIELD dst(edge) as id")
+    logging.info(f"GO FROM {vertex_id} OVER {edge_name} YIELD dst(edge) as id")
+    assert result.is_succeeded(), result.error_msg()
+    session.release()
+    return result.column_values('id')
+
+
+def complex_go_from_over_2dst_vertex_param(vertex_id, edge_name_1, edge_name_2, param):
+    session = start_session()
+    result = session.execute(f"GO FROM {vertex_id} OVER {edge_name_1} YIELD dst(edge) "
+                             f"AS id | GO FROM $-.id OVER {edge_name_2} WHERE properties($$).name == '{param}'"
+                             f" YIELD id($^) as id, id($$)")
+    logging.info(f"GO FROM {vertex_id} OVER {edge_name_1} YIELD dst(edge) "
+                 f"AS id | GO FROM $-.id OVER {edge_name_2} WHERE properties($$).name == '{param}'"
+                 f" YIELD id($^) as id, id($$) as id2")
+    assert result.is_succeeded(), result.error_msg()
+    session.release()
+    return result
+
+
+def complex_go_from_over_1dst_vertex_param(vertex_id, edge_name_1, edge_name_2, edge_param):
+    session = start_session()
+    result = session.execute(f"GO FROM {vertex_id} OVER {edge_name_1} WHERE properties($$).name == '{edge_param}'"
+                             f"YIELD id($$) AS id  | GO FROM $-.id OVER {edge_name_2}"
+                             f" YIELD id($^) as id, id($$) as id2 , properties($$) as props")
+    logging.info(f"GO FROM {vertex_id} OVER {edge_name_1} WHERE properties($$).name == '{edge_param}'"
+                 f"YIELD id($$) AS id  | GO FROM $-.id OVER {edge_name_2}"
+                 f" YIELD id($^) as id, id($$) as id2, properties($$) as props")
+    assert result.is_succeeded(), result.error_msg()
+    session.release()
+    return result

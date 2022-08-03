@@ -67,4 +67,4 @@ def construct_service_template_definition(name: str):
     with open('./output.yaml', 'w') as file:
         documents = yaml.dump(template, file)
 
-construct_service_template_definition('BHDYKHIUBEVM')
+# construct_service_template_definition('BHDYKHIUBEVM')

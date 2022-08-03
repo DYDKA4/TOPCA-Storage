@@ -15,7 +15,7 @@ from nebula_communication.update_template.Type.InterfaceTypeUpdater import get_i
 from nebula_communication.update_template.Type.NodeTypeUpdater import get_node_type
 from nebula_communication.update_template.Type.PolicyTypeUpdater import get_policy_type
 from nebula_communication.update_template.Type.RelationshipTypeUpdater import get_relationship_type
-from nebula_communication.update_template.find_functions import get_names, get_attribute
+from nebula_communication.update_template.find_functions import get_names, get_attribute, get_cluster_name
 
 
 def find_vertex(cluster_name, vertex_type_system, search_by, search_by_value):
@@ -66,6 +66,7 @@ def find_vertex(cluster_name, vertex_type_system, search_by, search_by_value):
 
 
 def find_template(cluster_name: str, value, value_name, vertex_type_system: str, varargs: list, ):
+    result = None
     if not varargs:
         result = find_vertex(cluster_name, vertex_type_system, value_name, value)
         if result is not None:
@@ -101,27 +102,61 @@ def find_template(cluster_name: str, value, value_name, vertex_type_system: str,
     return result
 
 
-res = find_template('Jupyter_0', None, None, 'NodeTemplate',
-                    [])
-# res = find_template('Jupyter_0', 'michman.nodes.Jupyter.Jupyter-6-0-1', 'type', 'NodeTemplate',
-#                     ['topology_template', 'node_templates', 'jupyter_1'])
-res = get_names(res, 'NodeTemplate')
-res_type = find_template('Jupyter_0', 'michman.nodes.Jupyter.Jupyter-6-0-1', 'name', 'NodeType',
-                         [])[0]
-print(res_type)
-print(res)
-source_name = ''
-for uuid, name in res.items():
-    res_type_new = find_template('Jupyter_0', 'does not meter', 'type', 'NodeTemplate',
-                                 ['topology_template', 'node_templates', name])
-    # print(res_type_new, res_type)
-    if res_type_new == res_type:
-        print(name, uuid)
-        source_name = name
-        break
-res = find_template('Jupyter_0', 'does not meter', 'node', 'NodeTemplate',
-                                 ['topology_template', 'node_templates', source_name, 'requirements', 'host'])
-res = get_attribute(res, 'NodeTemplate', 'name')
-res = find_template('Jupyter_0', 'does not meter', '', 'NodeTemplate',
-                    ['topology_template', 'node_templates', res, 'capabilities', 'endpoint', 'properties', 'port'])
-print(res)
+# res = find_template('Jupyter_0', None, None, 'NodeTemplate',
+#                     [])
+# # res = find_template('Jupyter_0', 'michman.nodes.Jupyter.Jupyter-6-0-1', 'type', 'NodeTemplate',
+# #                     ['topology_template', 'node_templates', 'jupyter_1'])
+# res = get_names(res, 'NodeTemplate')
+# res_type = find_template('Jupyter_0', 'michman.nodes.Jupyter.Jupyter-6-0-1', 'name', 'NodeType',
+#                          [])[0]
+# print(res_type)
+# print(res)
+# source_name = ''
+# for uuid, name in res.items():
+#     res_type_new = find_template('Jupyter_0', 'does not meter', 'type', 'NodeTemplate',
+#                                  ['topology_template', 'node_templates', name])
+#     # print(res_type_new, res_type)
+#     if res_type_new == res_type:
+#         print(name, uuid)
+#         source_name = name
+#         break
+# res = find_template('Jupyter_0', 'does not meter', 'node', 'NodeTemplate',
+#                                  ['topology_template', 'node_templates', source_name, 'requirements', 'host'])
+# res = get_attribute(res, 'NodeTemplate', 'name')
+# res = find_template('Jupyter_0', 'does not meter', '', 'NodeTemplate',
+#                     ['topology_template', 'node_templates', res, 'capabilities', 'endpoint', 'properties', 'port'])
+# print(res)
+# print(get_attribute(res, 'PropertyAssignment', 'value'))
+
+
+
+
+# res = find_template(None, None, None, 'NodeTemplate',
+#                     [])
+#
+# cluster_name = get_cluster_name(res)
+# res = get_names(res, 'NodeTemplate')
+#
+# for cluster in list(set(cluster_name.values())):
+#     res_type = find_template(cluster, 'michman.nodes.Jupyter.Jupyter-6-0-1', 'name', 'NodeType',
+#                              [])
+#     result = None
+#     if res_type:
+#         res_type = res_type[0]
+#         source_name = ''
+#         res_type_new = None
+#         for uuid, name in res.items():
+#             res_type_new = find_template(cluster, 'does not meter', 'type', 'NodeTemplate',
+#                                          ['topology_template', 'node_templates', name])
+#             if res_type_new == res_type:
+#                 source_name = name
+#                 break
+#         if res_type_new:
+#             result = find_template(cluster, 'does not meter', 'node', 'NodeTemplate',
+#                                    ['topology_template', 'node_templates', source_name, 'requirements', 'host'])
+#             result = get_attribute(result, 'NodeTemplate', 'name')
+#             result = find_template(cluster, 'does not meter', '', 'NodeTemplate',
+#                                    ['topology_template', 'node_templates', result, 'capabilities', 'endpoint',
+#                                     'properties',
+#                                     'port'])
+#     print(result)

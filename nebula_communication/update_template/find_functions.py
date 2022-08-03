@@ -1,4 +1,5 @@
 from nebula_communication.nebula_functions import find_destination, fetch_vertex
+from nebula_communication.redis_communication import get_cluster_name_from_redis
 
 
 def form_result(vid_to_update, value_name):
@@ -23,7 +24,7 @@ def return_all(value, value_name, destination, varargs, length):
 def get_names(list_of_vid: list, vertex_type):
     answer = {}
     for vid in list_of_vid:
-        result = fetch_vertex('"'+vid+'"', vertex_type)
+        result = fetch_vertex('"' + vid + '"', vertex_type)
         result = result.as_map().get('name').as_string()
         answer[vid] = result
     return answer
@@ -35,3 +36,11 @@ def get_attribute(vid, vertex_type, value_name):
     result = fetch_vertex('"' + vid + '"', vertex_type)
     result = result.as_map().get(value_name).as_string()
     return result
+
+
+def get_cluster_name(list_of_vid):
+    answer = {}
+    for vid in list_of_vid:
+        answer[vid] = get_cluster_name_from_redis(vid)
+    return answer
+

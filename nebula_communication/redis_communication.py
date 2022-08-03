@@ -47,3 +47,6 @@ def get_all_vid_from_cluster(cluster_name):
             clusters_vid.append(it.decode("utf-8"))
     return clusters_vid
 
+
+def get_cluster_name_from_redis(vid):
+    return r.get(vid).decode("utf-8")

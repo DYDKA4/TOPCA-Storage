@@ -84,5 +84,5 @@ def update_template(cluster_name: str, value, value_name, varargs: list, type_up
 #                 ['artifact_types', 'new_artifact_type', 'properties', 'new_property_definition', 'key_schema',
 #                  'key_schema'], 'add')
 
-update_template('SSNLEHCCGKGF', 'new_metadata_value', 'value',
-                ['capability_types', 'new_capability_type'], 'delete')
+# update_template('SSNLEHCCGKGF', 'new_metadata_value', 'value',
+#                 ['capability_types', 'new_capability_type'], 'delete')

@@ -14,5 +14,3 @@ logging.basicConfig(filename=f'logs/{now.strftime("%d-%m-%Y")}/record_{now.strft
 
 from app import views
 
-if __name__ == "__main__":
-    app.run(host='0.0.0.0')

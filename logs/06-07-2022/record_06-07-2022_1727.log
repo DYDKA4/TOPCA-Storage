@@ -1,6 +1,0 @@
-2022-07-06 17:27:09,601 WARNING werkzeug MainThread :  * Debugger is active!
-2022-07-06 17:27:09,601 INFO werkzeug MainThread :  * Debugger PIN: 128-395-061
-2022-07-06 17:27:09,861 INFO werkzeug Thread-2 : 127.0.0.1 - - [06/Jul/2022 17:27:09] "[31m[1mPATCH /yaml-template/cluster/acd/as HTTP/1.1[0m" 400 -
-2022-07-06 17:27:38,400 INFO werkzeug Thread-3 : 127.0.0.1 - - [06/Jul/2022 17:27:38] "[31m[1mPATCH /yaml-template/cluster/acd/as?value_name=namespace HTTP/1.1[0m" 400 -
-2022-07-06 17:27:58,062 INFO werkzeug Thread-4 : 127.0.0.1 - - [06/Jul/2022 17:27:58] "[31m[1mPATCH /yaml-template/cluster/acd/as/?value_name=namespace HTTP/1.1[0m" 400 -
-2022-07-06 17:28:08,435 INFO werkzeug MainThread :  * Detected change in '/home/dmitrytulin/PycharmProjects/API_COURSE/app/views.py', reloading

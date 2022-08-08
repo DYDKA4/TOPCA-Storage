@@ -4,7 +4,7 @@ from flask import request, abort
 from app import app
 import yaml
 from nebula_communication.deploy import deploy
-from nebula_communication.nebula_functions import delete_all
+from nebula_communication.nebula_functions import delete_all, delete_cluster
 from nebula_communication.redis_communication import add_vid
 from nebula_communication.search.search_of_endpoint import search_of_endpoint_from_son
 from nebula_communication.template_builder.definition.ServiceTemplateDefinition import \
@@ -75,12 +75,25 @@ def yaml_update(varargs=None):
     return f'{value_name} = {value} in cluster: {cluster_name}'
 
 
-@app.route('/yaml-delete', methods=['PATCH'])
+@app.route('/yaml_delete_all', methods=['PATCH'])
 # curl -X PATCH http://127.0.0.1:5000/yaml-delete
-def yaml_patch():
+def yaml_delete_all():
     delete_all()
     return "200 OK"
 
+
+@app.route('/yaml_delete_cluster', methods=['POST'])
+def yaml_delete_cluster():
+    """
+        curl -X POST http://127.0.0.1:5000/yaml_delete_cluster
+
+    :return:
+    """
+    cluster_name = request.args.get('cluster_name')
+    if not cluster_name:
+        abort(400)
+    delete_cluster(cluster_name)
+    return f'Deleted {cluster_name}'
 
 @app.route('/find/<path:varargs>', methods=['GET'])
 def find(varargs=None):

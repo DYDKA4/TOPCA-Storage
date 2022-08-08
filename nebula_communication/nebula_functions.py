@@ -214,7 +214,23 @@ def delete_all():
         else:
             on_delete += ', "' + it.decode("utf-8") + '"'
             count += 1
+        r.delete(it)
     delete_vertex(on_delete)
     logging.info(f'Success of deleting {count}')
+
+
+def delete_cluster(cluster_name):
+    on_delete = ''
+    count = 0
     for it in r.scan_iter('*'):
-        r.delete(it)
+        if r.get(it).decode("utf-8") == cluster_name:
+            if on_delete == '':
+                on_delete = '"' + it.decode("utf-8") + '"'
+                count += 1
+                r.delete(it)
+            else:
+                on_delete += ', "' + it.decode("utf-8") + '"'
+                count += 1
+                r.delete(it)
+    delete_vertex(on_delete)
+    logging.info(f'Success of deleting {count}')

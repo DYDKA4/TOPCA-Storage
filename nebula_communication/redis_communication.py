@@ -22,7 +22,6 @@ def del_by_vid(vid):
     r.delete(vid)
 
 
-
 def get_all_vid_from_cluster(cluster_name):
     clusters_vid = []
     for it in r.scan_iter('*'):

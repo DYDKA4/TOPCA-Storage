@@ -1,8 +1,0 @@
-2022-07-06 17:54:09,129 WARNING werkzeug MainThread :  * Debugger is active!
-2022-07-06 17:54:09,130 INFO werkzeug MainThread :  * Debugger PIN: 125-958-938
-2022-07-06 17:54:09,450 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
-2022-07-06 17:54:09,461 INFO root Thread-2 : FETCH PROP ON ServiceTemplateDefinition "cluster" YIELD properties(vertex)
-2022-07-06 17:54:09,463 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
-2022-07-06 17:54:09,471 INFO root Thread-2 : UPDATE VERTEX ON ServiceTemplateDefinition "cluster" SET dsl_definitions = dsl_definitions
-2022-07-06 17:54:09,472 INFO werkzeug Thread-2 : 127.0.0.1 - - [06/Jul/2022 17:54:09] "PATCH /yaml-template/cluster?value_name=dsl_definitions&&value=dsl_definitions HTTP/1.1" 200 -
-2022-07-06 17:55:39,634 INFO werkzeug MainThread :  * Detected change in '/home/dmitrytulin/PycharmProjects/API_COURSE/nebula_communication/update_template/update_template.py', reloading

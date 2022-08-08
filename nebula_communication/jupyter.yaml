@@ -487,6 +487,8 @@ topology_template:
   node_templates:
     jupyter_1:
       type: michman.nodes.Jupyter.Jupyter-6-0-1
+      metadata:
+        status: busy
       properties:
           version: 6.0.1
           spark_component_version: 2.3.0

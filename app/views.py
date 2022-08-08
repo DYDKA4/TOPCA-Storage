@@ -5,6 +5,7 @@ from app import app
 import yaml
 from nebula_communication.deploy import deploy
 from nebula_communication.redis_communication import add_vid
+from nebula_communication.search.search_of_endpoint import search_of_endpoint_from_son
 from nebula_communication.template_builder.definition.ServiceTemplateDefinition import \
     construct_service_template_definition
 from nebula_communication.update_template.find_vertex import find_vertex
@@ -32,10 +33,8 @@ def yaml_add():
             if request.method == 'POST':
                 print('DEPLOY START')
                 deploy(template, template.name)
-            # else:
-            #     end_code = communication_with_nebula.yaml_deploy(cluster_vertex, method_put=True)
-            print()
-            return f'{200}'
+            print('DEPLOY FINISH')
+            return cluster_name
     if request.method == 'GET':
         """
         curl -X GET 'http://127.0.0.1:5000/yaml-template/?cluster_name=cluster_tosca_59'
@@ -96,10 +95,24 @@ def find(varargs=None):
 @app.route('/get_yaml_template', methods=['GET'])
 def get_yaml_from_vertex():
     """
-     curl -X GET 'http://127.0.0.1:5000/get_yaml_template?vid=AssignmentVertex3'
+     curl -X GET 'http://127.0.0.1:5000/get_yaml_template?cluster_name=AssignmentVertex3'
     :return:
     """
     cluster_name = request.args.get('cluster_name')
     result = construct_service_template_definition(cluster_name)
     logging.info(yaml.dump(result, default_flow_style=False))
     return str(result)
+
+@app.route('/get_endpoint_of_service', methods=['GET'])
+def get_endpoint_of_service():
+    """
+         curl -X GET 'http://127.0.0.1:5000/get_endpoint_of_service?type_of_service=AssignmentVertex3'
+    :return:
+    """
+    cluster_name = request.args.get('cluster_name')
+    type_of_service = request.args.get('type_of_service')
+    if not type_of_service:
+        abort(400)
+    result = search_of_endpoint_from_son(type_of_service, cluster_name)
+    print(yaml.dump(result, default_flow_style=False))
+    return result

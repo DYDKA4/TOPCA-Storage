@@ -1,3 +1,5 @@
+import logging
+
 from flask import request, abort
 from app import app
 import yaml
@@ -99,5 +101,5 @@ def get_yaml_from_vertex():
     """
     cluster_name = request.args.get('cluster_name')
     result = construct_service_template_definition(cluster_name)
-    print(yaml.dump(result, default_flow_style=False))
-    return {result}
+    logging.info(yaml.dump(result, default_flow_style=False))
+    return str(result)

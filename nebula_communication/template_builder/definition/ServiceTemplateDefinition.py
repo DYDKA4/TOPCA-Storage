@@ -63,11 +63,11 @@ def construct_service_template_definition(name: str):
                 template['topology_template'] = construct_topology_template_definition(destination)
             else:
                 abort(500)
-
-    # with open('./output.yaml', 'w') as file:
-    #     documents = yaml.dump(template, file)
-
-
-cluster_name = "Jupyter_20"
-result = construct_service_template_definition(cluster_name)
-print(yaml.dump(result, default_flow_style=False))
+    return template
+#     # with open('./output.yaml', 'w') as file:
+#     #     documents = yaml.dump(template, file)
+#
+#
+# cluster_name = "Jupyter_19"
+# result = construct_service_template_definition(cluster_name)
+# print(yaml.dump(result, default_flow_style=False))

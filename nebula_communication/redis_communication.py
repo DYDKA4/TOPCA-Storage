@@ -1,8 +1,6 @@
 import logging
 
 from nebula_communication import r
-# from nebula_communication.nebula_functions import delete_vertex
-
 
 
 def add_vid(vid, cluster_name):
@@ -23,21 +21,6 @@ def del_all_by_service_template_name(name):
 def del_by_vid(vid):
     r.delete(vid)
 
-
-# def delete_all():
-#     on_delete = ''
-#     count = 0
-#     for it in r.scan_iter('*'):
-#         if on_delete == '':
-#             on_delete = '"' + it.decode("utf-8") + '"'
-#             count += 1
-#         else:
-#             on_delete += ', "' + it.decode("utf-8") + '"'
-#             count += 1
-#     delete_vertex(on_delete)
-#     logging.info(f'Success of deleting {count}')
-#     for it in r.scan_iter('*'):
-#         r.delete(it)
 
 
 def get_all_vid_from_cluster(cluster_name):

@@ -1,7 +1,7 @@
 import logging
 
 import config
-from nebula_communication import connection_pool
+from nebula_communication import connection_pool, r
 from nebula_communication.redis_communication import del_by_vid, get_all_vid_from_cluster
 
 
@@ -155,17 +155,34 @@ def get_all_vertex(tag):
 def go_from_over(vertex_id, edge_name):
     session = start_session()
     result = session.execute(f"GO FROM {vertex_id} OVER {edge_name} YIELD dst(edge) as id")
-    logging.info(f"GO FROM {vertex_id} OVER {edge_name} YIELD dst(edge) as id")
+    logging.info(f"DST GO FROM {vertex_id} OVER {edge_name} YIELD dst(edge) as id")
     assert result.is_succeeded(), result.error_msg()
     session.release()
     return result.column_values('id')
+
+
+def go_from_over_dst_params(vertex_id, edge_name, **params):
+    condition = ''
+    for name, value in params.items():
+        if not condition:
+            condition = f"WHERE properties($$).{name} == '{value}'"
+        else:
+            condition += f"and properties($$).{name} == '{value}'"
+    session = start_session()
+    result = session.execute(f"GO FROM {vertex_id} OVER {edge_name} {condition} "
+                             f"YIELD id($$) as id, properties($$) as props")
+    logging.info(f"GO FROM {vertex_id} OVER {edge_name} {condition} "
+                 f"YIELD id($$) as id, properties($$) as props")
+    assert result.is_succeeded(), result.error_msg()
+    session.release()
+    return result
 
 
 def complex_go_from_over_2dst_vertex_param(vertex_id, edge_name_1, edge_name_2, param):
     session = start_session()
     result = session.execute(f"GO FROM {vertex_id} OVER {edge_name_1} YIELD dst(edge) "
                              f"AS id | GO FROM $-.id OVER {edge_name_2} WHERE properties($$).name == '{param}'"
-                             f" YIELD id($^) as id, id($$)")
+                             f" YIELD id($^) as id, id($$) as id2")
     logging.info(f"GO FROM {vertex_id} OVER {edge_name_1} YIELD dst(edge) "
                  f"AS id | GO FROM $-.id OVER {edge_name_2} WHERE properties($$).name == '{param}'"
                  f" YIELD id($^) as id, id($$) as id2")
@@ -185,3 +202,19 @@ def complex_go_from_over_1dst_vertex_param(vertex_id, edge_name_1, edge_name_2, 
     assert result.is_succeeded(), result.error_msg()
     session.release()
     return result
+
+
+def delete_all():
+    on_delete = ''
+    count = 0
+    for it in r.scan_iter('*'):
+        if on_delete == '':
+            on_delete = '"' + it.decode("utf-8") + '"'
+            count += 1
+        else:
+            on_delete += ', "' + it.decode("utf-8") + '"'
+            count += 1
+    delete_vertex(on_delete)
+    logging.info(f'Success of deleting {count}')
+    for it in r.scan_iter('*'):
+        r.delete(it)

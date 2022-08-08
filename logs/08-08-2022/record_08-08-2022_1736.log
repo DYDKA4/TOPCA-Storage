@@ -1,0 +1,29 @@
+2022-08-08 17:36:10,741 INFO werkzeug MainThread :  * Running on all addresses (0.0.0.0)
+   WARNING: This is a development server. Do not use it in a production deployment.
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.10.10.235:5000 (Press CTRL+C to quit)
+2022-08-08 17:36:20,167 INFO werkzeug MainThread :  * Running on all addresses (0.0.0.0)
+   WARNING: This is a development server. Do not use it in a production deployment.
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.10.10.235:5000 (Press CTRL+C to quit)
+2022-08-08 17:36:43,989 INFO werkzeug Thread-5 : 127.0.0.1 - - [08/Aug/2022 17:36:43] "[31m[1mPATCH /set_service_free?cluster_name=Jupyter_1 HTTP/1.1[0m" 400 -
+2022-08-08 17:39:05,326 INFO werkzeug Thread-7 : 127.0.0.1 - - [08/Aug/2022 17:39:05] "[31m[1mGET /set_service_free HTTP/1.1[0m" 405 -
+2022-08-08 17:40:42,986 INFO werkzeug Thread-10 : 127.0.0.1 - - [08/Aug/2022 17:40:42] "[31m[1mPATCH /set_service_free?cluster_name=Jupyter_1%3Fservice_name%3Djupyter_1 HTTP/1.1[0m" 400 -
+2022-08-08 17:40:42,988 INFO werkzeug Thread-8 : 127.0.0.1 - - [08/Aug/2022 17:40:42] "[31m[1mPATCH /set_service_free HTTP/1.1[0m" 400 -
+2022-08-08 17:40:42,990 INFO werkzeug Thread-9 : 127.0.0.1 - - [08/Aug/2022 17:40:42] "[31m[1mPATCH /set_service_free?cluster_name=Jupyter_1 HTTP/1.1[0m" 400 -
+2022-08-08 17:40:42,994 INFO root Thread-11 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 17:40:42,996 INFO werkzeug Thread-6 : 127.0.0.1 - - [08/Aug/2022 17:40:42] "[31m[1mPATCH /set_service_busy?cluster_name=Jupyter_1 HTTP/1.1[0m" 400 -
+2022-08-08 17:40:43,027 INFO root Thread-11 : GO FROM "Jupyter_1" OVER topology_template YIELD dst(edge) AS id | GO FROM $-.id OVER node_templates WHERE properties($$).name == 'jupyter_1' YIELD id($^) as id, id($$) as id2
+2022-08-08 17:40:43,031 INFO root Thread-11 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 17:40:43,048 INFO root Thread-11 : GO FROM "73a6e919-6187-42bc-ba00-89de331e6faf" OVER metadata WHERE properties($$).name == 'status' YIELD id($$) as id, properties($$) as props
+2022-08-08 17:40:43,050 INFO root Thread-11 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 17:40:43,069 INFO root Thread-11 : GO FROM "Jupyter_1" OVER topology_template YIELD dst(edge) AS id | GO FROM $-.id OVER node_templates WHERE properties($$).name == 'jupyter_1' YIELD id($^) as id, id($$) as id2
+2022-08-08 17:40:43,071 INFO root Thread-11 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 17:40:43,081 INFO root Thread-11 : GO FROM "73a6e919-6187-42bc-ba00-89de331e6faf" over metadata YIELD dst(edge) as vid
+2022-08-08 17:40:43,128 INFO root Thread-11 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 17:40:43,142 INFO root Thread-11 : FETCH PROP ON Metadata "8547a645-3346-46ec-9fd3-91a1f6fd238e" YIELD properties(vertex)
+2022-08-08 17:40:43,145 INFO root Thread-11 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 17:40:43,156 INFO root Thread-11 : UPDATE VERTEX ON Metadata "8547a645-3346-46ec-9fd3-91a1f6fd238e" SET values = "free"
+2022-08-08 17:40:43,157 INFO werkzeug Thread-11 : 127.0.0.1 - - [08/Aug/2022 17:40:43] "PATCH /set_service_free?cluster_name=Jupyter_1&service_name=jupyter_1 HTTP/1.1" 200 -
+2022-08-08 17:41:08,360 INFO werkzeug Thread-12 : 127.0.0.1 - - [08/Aug/2022 17:41:08] "[31m[1mPATCH /set_service_busy?cluster_name=Jupyter_1 HTTP/1.1[0m" 400 -
+2022-08-08 17:42:09,419 INFO werkzeug Thread-13 : 127.0.0.1 - - [08/Aug/2022 17:42:09] "[31m[1mPATCH /set_service_busy HTTP/1.1[0m" 400 -

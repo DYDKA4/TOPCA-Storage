@@ -1,0 +1,120 @@
+2022-08-08 17:53:11,469 INFO werkzeug MainThread :  * Running on all addresses (0.0.0.0)
+   WARNING: This is a development server. Do not use it in a production deployment.
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.10.10.235:5000 (Press CTRL+C to quit)
+2022-08-08 17:53:21,197 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 17:53:21,223 INFO root Thread-1 : GO FROM "Jupyter_1" OVER topology_template YIELD dst(edge) AS id | GO FROM $-.id OVER node_templates WHERE properties($$).name == 'jupyter_1' YIELD id($^) as id, id($$) as id2
+2022-08-08 17:53:21,225 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 17:53:21,238 INFO root Thread-1 : GO FROM "73a6e919-6187-42bc-ba00-89de331e6faf" OVER metadata WHERE properties($$).name == 'status' YIELD id($$) as id, properties($$) as props
+2022-08-08 17:53:21,240 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 17:53:21,255 INFO root Thread-1 : GO FROM "Jupyter_1" OVER topology_template YIELD dst(edge) AS id | GO FROM $-.id OVER node_templates WHERE properties($$).name == 'jupyter_1' YIELD id($^) as id, id($$) as id2
+2022-08-08 17:53:21,258 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 17:53:21,266 INFO root Thread-1 : GO FROM "73a6e919-6187-42bc-ba00-89de331e6faf" over metadata YIELD dst(edge) as vid
+2022-08-08 17:53:21,268 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 17:53:21,276 INFO root Thread-1 : FETCH PROP ON Metadata "8547a645-3346-46ec-9fd3-91a1f6fd238e" YIELD properties(vertex)
+2022-08-08 17:53:21,322 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 17:53:21,333 INFO root Thread-1 : UPDATE VERTEX ON Metadata "8547a645-3346-46ec-9fd3-91a1f6fd238e" SET values = "busy"
+2022-08-08 17:53:21,335 INFO werkzeug Thread-1 : 127.0.0.1 - - [08/Aug/2022 17:53:21] "PATCH /set_service_busy?cluster_name=Jupyter_1&service_name=jupyter_1 HTTP/1.1" 200 -
+2022-08-08 17:53:24,541 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 17:53:24,559 INFO root Thread-2 : GO FROM "Jupyter_2" OVER topology_template YIELD dst(edge) AS id | GO FROM $-.id OVER node_templates WHERE properties($$).name == 'jupyter_1' YIELD id($^) as id, id($$) as id2
+2022-08-08 17:53:24,602 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 17:53:24,616 INFO root Thread-2 : GO FROM "228649e6-b428-4215-b8fc-8afaa2bb87b6" OVER metadata WHERE properties($$).name == 'status' YIELD id($$) as id, properties($$) as props
+2022-08-08 17:53:24,622 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 17:53:24,639 INFO root Thread-2 : GO FROM "Jupyter_2" OVER topology_template YIELD dst(edge) AS id | GO FROM $-.id OVER node_templates WHERE properties($$).name == 'jupyter_1' YIELD id($^) as id, id($$) as id2
+2022-08-08 17:53:24,683 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 17:53:24,694 INFO root Thread-2 : GO FROM "228649e6-b428-4215-b8fc-8afaa2bb87b6" over metadata YIELD dst(edge) as vid
+2022-08-08 17:53:24,697 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 17:53:24,706 INFO root Thread-2 : FETCH PROP ON Metadata "da1b9fe2-13ac-4069-805d-e884d4c51ee6" YIELD properties(vertex)
+2022-08-08 17:53:24,750 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 17:53:24,761 INFO root Thread-2 : UPDATE VERTEX ON Metadata "da1b9fe2-13ac-4069-805d-e884d4c51ee6" SET values = "busy"
+2022-08-08 17:53:24,762 INFO werkzeug Thread-2 : 127.0.0.1 - - [08/Aug/2022 17:53:24] "PATCH /set_service_busy?cluster_name=Jupyter_2&service_name=jupyter_1 HTTP/1.1" 200 -
+2022-08-08 17:53:28,355 INFO root Thread-3 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 17:53:28,414 INFO root Thread-3 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 17:53:28,422 INFO root Thread-3 : DST GO FROM "Jupyter_1" OVER topology_template YIELD dst(edge) as id
+2022-08-08 17:53:28,424 INFO root Thread-3 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 17:53:28,439 INFO root Thread-3 : GO FROM "ed0a6d60-73ca-4355-80db-67fc7e9db788" OVER node_templates YIELD dst(edge) AS id | GO FROM $-.id OVER type WHERE properties($$).name == 'michman.nodes.Jupyter.Jupyter-6-0-1' YIELD id($^) as id, id($$) as id2
+2022-08-08 17:53:28,441 INFO root Thread-3 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 17:53:28,447 INFO root Thread-3 : DST GO FROM "Jupyter_2" OVER topology_template YIELD dst(edge) as id
+2022-08-08 17:53:28,490 INFO root Thread-3 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 17:53:28,505 INFO root Thread-3 : GO FROM "77d9498e-b247-4786-bcee-dd1c0f8b48fa" OVER node_templates YIELD dst(edge) AS id | GO FROM $-.id OVER type WHERE properties($$).name == 'michman.nodes.Jupyter.Jupyter-6-0-1' YIELD id($^) as id, id($$) as id2
+2022-08-08 17:53:28,507 INFO root Thread-3 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 17:53:28,514 INFO root Thread-3 : DST GO FROM "Jupyter_3" OVER topology_template YIELD dst(edge) as id
+2022-08-08 17:53:28,558 INFO root Thread-3 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 17:53:28,571 INFO root Thread-3 : GO FROM "5589c76e-596a-4529-b744-4688bc8417b2" OVER node_templates YIELD dst(edge) AS id | GO FROM $-.id OVER type WHERE properties($$).name == 'michman.nodes.Jupyter.Jupyter-6-0-1' YIELD id($^) as id, id($$) as id2
+2022-08-08 17:53:28,573 INFO root Thread-3 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 17:53:28,586 INFO root Thread-3 : GO FROM "73a6e919-6187-42bc-ba00-89de331e6faf" OVER requirements WHERE properties($$).name == 'host'YIELD id($$) AS id  | GO FROM $-.id OVER node YIELD id($^) as id, id($$) as id2, properties($$) as props
+2022-08-08 17:53:28,588 INFO root Thread-3 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 17:53:28,604 INFO root Thread-3 : GO FROM "21d8c840-455c-4bb3-be8b-9b036ed1f153" OVER capabilities WHERE properties($$).name == 'endpoint'YIELD id($$) AS id  | GO FROM $-.id OVER properties YIELD id($^) as id, id($$) as id2, properties($$) as props
+2022-08-08 17:53:28,608 INFO root Thread-3 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 17:53:28,620 INFO root Thread-3 : GO FROM "228649e6-b428-4215-b8fc-8afaa2bb87b6" OVER requirements WHERE properties($$).name == 'host'YIELD id($$) AS id  | GO FROM $-.id OVER node YIELD id($^) as id, id($$) as id2, properties($$) as props
+2022-08-08 17:53:28,662 INFO root Thread-3 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 17:53:28,678 INFO root Thread-3 : GO FROM "20770d12-6b5a-44e7-a905-85942d457ef9" OVER capabilities WHERE properties($$).name == 'endpoint'YIELD id($$) AS id  | GO FROM $-.id OVER properties YIELD id($^) as id, id($$) as id2, properties($$) as props
+2022-08-08 17:53:28,680 INFO root Thread-3 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 17:53:28,693 INFO root Thread-3 : GO FROM "155bdb52-3a94-42c3-a1db-f9fb67071e6f" OVER requirements WHERE properties($$).name == 'host'YIELD id($$) AS id  | GO FROM $-.id OVER node YIELD id($^) as id, id($$) as id2, properties($$) as props
+2022-08-08 17:53:28,738 INFO root Thread-3 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 17:53:28,756 INFO root Thread-3 : GO FROM "a9af5a35-d9af-47cc-bfec-2a946647ff75" OVER capabilities WHERE properties($$).name == 'endpoint'YIELD id($$) AS id  | GO FROM $-.id OVER properties YIELD id($^) as id, id($$) as id2, properties($$) as props
+2022-08-08 17:53:28,770 INFO werkzeug Thread-3 : 127.0.0.1 - - [08/Aug/2022 17:53:28] "GET /get_endpoint_of_service?type_of_service=michman.nodes.Jupyter.Jupyter-6-0-1 HTTP/1.1" 200 -
+2022-08-08 17:53:38,126 INFO root Thread-4 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 17:53:38,194 INFO root Thread-4 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 17:53:38,204 INFO root Thread-4 : DST GO FROM "Jupyter_1" OVER topology_template YIELD dst(edge) as id
+2022-08-08 17:53:38,206 INFO root Thread-4 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 17:53:38,226 INFO root Thread-4 : GO FROM "ed0a6d60-73ca-4355-80db-67fc7e9db788" OVER node_templates YIELD dst(edge) AS id | GO FROM $-.id OVER type WHERE properties($$).name == 'michman.nodes.Jupyter.Jupyter-6-0-1' YIELD id($^) as id, id($$) as id2
+2022-08-08 17:53:38,270 INFO root Thread-4 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 17:53:38,281 INFO root Thread-4 : DST GO FROM "Jupyter_2" OVER topology_template YIELD dst(edge) as id
+2022-08-08 17:53:38,283 INFO root Thread-4 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 17:53:38,303 INFO root Thread-4 : GO FROM "77d9498e-b247-4786-bcee-dd1c0f8b48fa" OVER node_templates YIELD dst(edge) AS id | GO FROM $-.id OVER type WHERE properties($$).name == 'michman.nodes.Jupyter.Jupyter-6-0-1' YIELD id($^) as id, id($$) as id2
+2022-08-08 17:53:38,347 INFO root Thread-4 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 17:53:38,358 INFO root Thread-4 : DST GO FROM "Jupyter_3" OVER topology_template YIELD dst(edge) as id
+2022-08-08 17:53:38,360 INFO root Thread-4 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 17:53:38,379 INFO root Thread-4 : GO FROM "5589c76e-596a-4529-b744-4688bc8417b2" OVER node_templates YIELD dst(edge) AS id | GO FROM $-.id OVER type WHERE properties($$).name == 'michman.nodes.Jupyter.Jupyter-6-0-1' YIELD id($^) as id, id($$) as id2
+2022-08-08 17:53:38,422 INFO root Thread-4 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 17:53:38,437 INFO root Thread-4 : GO FROM "73a6e919-6187-42bc-ba00-89de331e6faf" OVER metadata WHERE properties($$).name == 'status'and properties($$).values == 'free' YIELD id($$) as id, properties($$) as props
+2022-08-08 17:53:38,439 INFO root Thread-4 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 17:53:38,461 INFO root Thread-4 : GO FROM "73a6e919-6187-42bc-ba00-89de331e6faf" OVER requirements WHERE properties($$).name == 'host'YIELD id($$) AS id  | GO FROM $-.id OVER node YIELD id($^) as id, id($$) as id2, properties($$) as props
+2022-08-08 17:53:38,506 INFO root Thread-4 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 17:53:38,531 INFO root Thread-4 : GO FROM "21d8c840-455c-4bb3-be8b-9b036ed1f153" OVER capabilities WHERE properties($$).name == 'endpoint'YIELD id($$) AS id  | GO FROM $-.id OVER properties YIELD id($^) as id, id($$) as id2, properties($$) as props
+2022-08-08 17:53:38,534 INFO root Thread-4 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 17:53:38,547 INFO root Thread-4 : GO FROM "228649e6-b428-4215-b8fc-8afaa2bb87b6" OVER metadata WHERE properties($$).name == 'status'and properties($$).values == 'free' YIELD id($$) as id, properties($$) as props
+2022-08-08 17:53:38,590 INFO root Thread-4 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 17:53:38,612 INFO root Thread-4 : GO FROM "228649e6-b428-4215-b8fc-8afaa2bb87b6" OVER requirements WHERE properties($$).name == 'host'YIELD id($$) AS id  | GO FROM $-.id OVER node YIELD id($^) as id, id($$) as id2, properties($$) as props
+2022-08-08 17:53:38,614 INFO root Thread-4 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 17:53:38,638 INFO root Thread-4 : GO FROM "20770d12-6b5a-44e7-a905-85942d457ef9" OVER capabilities WHERE properties($$).name == 'endpoint'YIELD id($$) AS id  | GO FROM $-.id OVER properties YIELD id($^) as id, id($$) as id2, properties($$) as props
+2022-08-08 17:53:38,690 INFO root Thread-4 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 17:53:38,707 INFO root Thread-4 : GO FROM "155bdb52-3a94-42c3-a1db-f9fb67071e6f" OVER metadata WHERE properties($$).name == 'status'and properties($$).values == 'free' YIELD id($$) as id, properties($$) as props
+2022-08-08 17:53:38,709 INFO root Thread-4 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 17:53:38,731 INFO root Thread-4 : GO FROM "155bdb52-3a94-42c3-a1db-f9fb67071e6f" OVER requirements WHERE properties($$).name == 'host'YIELD id($$) AS id  | GO FROM $-.id OVER node YIELD id($^) as id, id($$) as id2, properties($$) as props
+2022-08-08 17:53:38,774 INFO root Thread-4 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 17:53:38,799 INFO root Thread-4 : GO FROM "a9af5a35-d9af-47cc-bfec-2a946647ff75" OVER capabilities WHERE properties($$).name == 'endpoint'YIELD id($$) AS id  | GO FROM $-.id OVER properties YIELD id($^) as id, id($$) as id2, properties($$) as props
+2022-08-08 17:53:38,812 INFO werkzeug Thread-4 : 127.0.0.1 - - [08/Aug/2022 17:53:38] "GET /get_free_endpoint_of_service?type_of_service=michman.nodes.Jupyter.Jupyter-6-0-1 HTTP/1.1" 200 -
+2022-08-08 17:53:52,440 INFO root Thread-5 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 17:53:52,506 INFO root Thread-5 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 17:53:52,516 INFO root Thread-5 : DST GO FROM "Jupyter_1" OVER topology_template YIELD dst(edge) as id
+2022-08-08 17:53:52,518 INFO root Thread-5 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 17:53:52,538 INFO root Thread-5 : GO FROM "ed0a6d60-73ca-4355-80db-67fc7e9db788" OVER node_templates YIELD dst(edge) AS id | GO FROM $-.id OVER type WHERE properties($$).name == 'michman.nodes.Jupyter.Jupyter-6-0-1' YIELD id($^) as id, id($$) as id2
+2022-08-08 17:53:52,583 INFO root Thread-5 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 17:53:52,594 INFO root Thread-5 : DST GO FROM "Jupyter_2" OVER topology_template YIELD dst(edge) as id
+2022-08-08 17:53:52,596 INFO root Thread-5 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 17:53:52,615 INFO root Thread-5 : GO FROM "77d9498e-b247-4786-bcee-dd1c0f8b48fa" OVER node_templates YIELD dst(edge) AS id | GO FROM $-.id OVER type WHERE properties($$).name == 'michman.nodes.Jupyter.Jupyter-6-0-1' YIELD id($^) as id, id($$) as id2
+2022-08-08 17:53:52,618 INFO root Thread-5 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 17:53:52,627 INFO root Thread-5 : DST GO FROM "Jupyter_3" OVER topology_template YIELD dst(edge) as id
+2022-08-08 17:53:52,629 INFO root Thread-5 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 17:53:52,649 INFO root Thread-5 : GO FROM "5589c76e-596a-4529-b744-4688bc8417b2" OVER node_templates YIELD dst(edge) AS id | GO FROM $-.id OVER type WHERE properties($$).name == 'michman.nodes.Jupyter.Jupyter-6-0-1' YIELD id($^) as id, id($$) as id2
+2022-08-08 17:53:52,652 INFO root Thread-5 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 17:53:52,665 INFO root Thread-5 : GO FROM "73a6e919-6187-42bc-ba00-89de331e6faf" OVER metadata WHERE properties($$).name == 'status'and properties($$).values == 'free' YIELD id($$) as id, properties($$) as props
+2022-08-08 17:53:52,710 INFO root Thread-5 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 17:53:52,733 INFO root Thread-5 : GO FROM "73a6e919-6187-42bc-ba00-89de331e6faf" OVER requirements WHERE properties($$).name == 'host'YIELD id($$) AS id  | GO FROM $-.id OVER node YIELD id($^) as id, id($$) as id2, properties($$) as props
+2022-08-08 17:53:52,735 INFO root Thread-5 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 17:53:52,759 INFO root Thread-5 : GO FROM "21d8c840-455c-4bb3-be8b-9b036ed1f153" OVER capabilities WHERE properties($$).name == 'endpoint'YIELD id($$) AS id  | GO FROM $-.id OVER properties YIELD id($^) as id, id($$) as id2, properties($$) as props
+2022-08-08 17:53:52,803 INFO root Thread-5 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 17:53:52,817 INFO root Thread-5 : GO FROM "228649e6-b428-4215-b8fc-8afaa2bb87b6" OVER metadata WHERE properties($$).name == 'status'and properties($$).values == 'free' YIELD id($$) as id, properties($$) as props
+2022-08-08 17:53:52,819 INFO root Thread-5 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 17:53:52,841 INFO root Thread-5 : GO FROM "228649e6-b428-4215-b8fc-8afaa2bb87b6" OVER requirements WHERE properties($$).name == 'host'YIELD id($$) AS id  | GO FROM $-.id OVER node YIELD id($^) as id, id($$) as id2, properties($$) as props
+2022-08-08 17:53:52,886 INFO root Thread-5 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 17:53:52,911 INFO root Thread-5 : GO FROM "20770d12-6b5a-44e7-a905-85942d457ef9" OVER capabilities WHERE properties($$).name == 'endpoint'YIELD id($$) AS id  | GO FROM $-.id OVER properties YIELD id($^) as id, id($$) as id2, properties($$) as props
+2022-08-08 17:53:52,913 INFO root Thread-5 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 17:53:52,925 INFO root Thread-5 : GO FROM "155bdb52-3a94-42c3-a1db-f9fb67071e6f" OVER metadata WHERE properties($$).name == 'status'and properties($$).values == 'free' YIELD id($$) as id, properties($$) as props
+2022-08-08 17:53:52,927 INFO root Thread-5 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 17:53:52,947 INFO root Thread-5 : GO FROM "155bdb52-3a94-42c3-a1db-f9fb67071e6f" OVER requirements WHERE properties($$).name == 'host'YIELD id($$) AS id  | GO FROM $-.id OVER node YIELD id($^) as id, id($$) as id2, properties($$) as props
+2022-08-08 17:53:52,990 INFO root Thread-5 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 17:53:53,013 INFO root Thread-5 : GO FROM "a9af5a35-d9af-47cc-bfec-2a946647ff75" OVER capabilities WHERE properties($$).name == 'endpoint'YIELD id($$) AS id  | GO FROM $-.id OVER properties YIELD id($^) as id, id($$) as id2, properties($$) as props
+2022-08-08 17:53:53,023 INFO werkzeug Thread-5 : 127.0.0.1 - - [08/Aug/2022 17:53:53] "GET /get_free_endpoint_of_service?type_of_service=michman.nodes.Jupyter.Jupyter-6-0-1 HTTP/1.1" 200 -

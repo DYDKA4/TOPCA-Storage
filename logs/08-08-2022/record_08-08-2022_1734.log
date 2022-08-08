@@ -1,0 +1,20 @@
+2022-08-08 17:34:08,219 INFO werkzeug MainThread :  * Running on all addresses (0.0.0.0)
+   WARNING: This is a development server. Do not use it in a production deployment.
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.10.10.235:5000 (Press CTRL+C to quit)
+2022-08-08 17:34:29,384 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 17:34:29,401 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 17:34:29,406 INFO root Thread-1 : DST GO FROM "Jupyter_1" OVER topology_template YIELD dst(edge) as id
+2022-08-08 17:34:29,407 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 17:34:29,417 INFO root Thread-1 : GO FROM "ed0a6d60-73ca-4355-80db-67fc7e9db788" OVER node_templates YIELD dst(edge) AS id | GO FROM $-.id OVER type WHERE properties($$).name == 'michman.nodes.Jupyter.Jupyter-6-0-1' YIELD id($^) as id, id($$) as id2
+2022-08-08 17:34:29,463 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 17:34:29,470 INFO root Thread-1 : DST GO FROM "Jupyter_2" OVER topology_template YIELD dst(edge) as id
+2022-08-08 17:34:29,471 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 17:34:29,481 INFO root Thread-1 : GO FROM "77d9498e-b247-4786-bcee-dd1c0f8b48fa" OVER node_templates YIELD dst(edge) AS id | GO FROM $-.id OVER type WHERE properties($$).name == 'michman.nodes.Jupyter.Jupyter-6-0-1' YIELD id($^) as id, id($$) as id2
+2022-08-08 17:34:29,527 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 17:34:29,534 INFO root Thread-1 : DST GO FROM "Jupyter_3" OVER topology_template YIELD dst(edge) as id
+2022-08-08 17:34:29,536 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 17:34:29,546 INFO root Thread-1 : GO FROM "5589c76e-596a-4529-b744-4688bc8417b2" OVER node_templates YIELD dst(edge) AS id | GO FROM $-.id OVER type WHERE properties($$).name == 'michman.nodes.Jupyter.Jupyter-6-0-1' YIELD id($^) as id, id($$) as id2
+2022-08-08 17:34:29,549 INFO werkzeug Thread-1 : 127.0.0.1 - - [08/Aug/2022 17:34:29] "GET /get_endpoint_of_service?type_of_service=michman.nodes.Jupyter.Jupyter-6-0-1 HTTP/1.1" 200 -
+2022-08-08 17:34:53,573 INFO werkzeug Thread-2 : 127.0.0.1 - - [08/Aug/2022 17:34:53] "[31m[1mPATCH /set_service_busy?cluster_name=Jupyter_1 HTTP/1.1[0m" 405 -
+2022-08-08 17:35:09,649 INFO werkzeug Thread-3 : 127.0.0.1 - - [08/Aug/2022 17:35:09] "[31m[1mPATCH /set_service_busy?cluster_name=Jupyter_1 HTTP/1.1[0m" 405 -

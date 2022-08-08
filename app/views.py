@@ -4,18 +4,21 @@ from flask import request, abort
 from app import app
 import yaml
 from nebula_communication.deploy import deploy
+from nebula_communication.nebula_functions import delete_all
 from nebula_communication.redis_communication import add_vid
 from nebula_communication.search.search_of_endpoint import search_of_endpoint_from_son
 from nebula_communication.template_builder.definition.ServiceTemplateDefinition import \
     construct_service_template_definition
 from nebula_communication.update_template.find_vertex import find_vertex
+from nebula_communication.update_template.update_functions import is_service_status_exist, add_service_status, \
+    set_service_status
 from nebula_communication.update_template.update_template import update_template
 from parser.linker.tosca_v_1_3.main_linker import main_linker
 from parser.parser.tosca_v_1_3.definitions.ServiceTemplateDefinition import service_template_definition_parser
 
 
 @app.route('/yaml-template/', methods=['POST', 'PUT', 'GET'])
-# curl -X POST -F file=@jamlExamples/service_template.yaml  http://127.0.0.1:5000/yaml-template/?cluster_name=cluster
+# curl -X POST -F file=@nebula_communication/jupyter.yaml  http://127.0.0.1:5000/yaml-template/?cluster_name=Jupyter_3
 def yaml_add():
     cluster_name = request.args.get('cluster_name')
     if request.method in ['POST', 'PUT']:
@@ -75,7 +78,7 @@ def yaml_update(varargs=None):
 @app.route('/yaml-delete', methods=['PATCH'])
 # curl -X PATCH http://127.0.0.1:5000/yaml-delete
 def yaml_patch():
-    # delete_all()
+    delete_all()
     return "200 OK"
 
 
@@ -103,16 +106,48 @@ def get_yaml_from_vertex():
     logging.info(yaml.dump(result, default_flow_style=False))
     return str(result)
 
+
 @app.route('/get_endpoint_of_service', methods=['GET'])
-def get_endpoint_of_service():
+def get_endpoint_of_service(find_free=False):
     """
-         curl -X GET 'http://127.0.0.1:5000/get_endpoint_of_service?type_of_service=AssignmentVertex3'
+         curl -X GET 'http://127.0.0.1:5000/get_endpoint_of_service?type_of_service=michman.nodes.Jupyter.Jupyter-6-0-1'
     :return:
     """
     cluster_name = request.args.get('cluster_name')
     type_of_service = request.args.get('type_of_service')
     if not type_of_service:
         abort(400)
-    result = search_of_endpoint_from_son(type_of_service, cluster_name)
+    result = search_of_endpoint_from_son(type_of_service, cluster_name, find_free=find_free)
     print(yaml.dump(result, default_flow_style=False))
     return result
+
+
+@app.route('/get_free_endpoint_of_service', methods=['GET'])
+def get_free_endpoint_of_service():
+    """
+         curl -X GET 'http://127.0.0.1:5000/get_free_endpoint_of_service?type_of_service=michman.nodes.Jupyter.Jupyter-6-0-1'
+    :return:
+    """
+    return get_endpoint_of_service(find_free=True)
+
+@app.route('/set_service_free', methods=['PATCH'])
+def set_service_free(status='free'):
+    """
+        curl -X PATCH "http://127.0.0.1:5000/set_service_busy?cluster_name=Jupyter_1&service_name=jupyter_1"
+
+    :return:
+    """
+    cluster_name = request.args.get('cluster_name')
+    service_name = request.args.get('service_name')
+    if not cluster_name or not service_name:
+        abort(400)
+    flag = is_service_status_exist(cluster_name, service_name)
+    if not flag:
+        add_service_status(cluster_name, service_name)
+    set_service_status(cluster_name, service_name, status=status)
+    return 'OK'
+
+
+@app.route('/set_service_busy', methods=['PATCH'])
+def set_service_busy():
+    return set_service_free(status='busy')

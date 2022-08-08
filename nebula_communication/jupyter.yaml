@@ -520,4 +520,4 @@ topology_template:
       type: tosca.nodes.Storage.BlockStorage
       properties:
         size: 256 GB
-        snapshot_id: { get_input: storage_snapshot_id }
+        snapshot_id: { get_input: [storage_snapshot_id] }

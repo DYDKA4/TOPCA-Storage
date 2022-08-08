@@ -39,11 +39,17 @@ def deploy(template, cluster_name) -> None:
                 if name_of_key_value == '':
                     if attribute_value is not None:
                         name_of_key_value = attribute_name
-                        key_value = '"' + str(attribute_value) + '"'
+                        if type(attribute_value) == str and "'" in attribute_value:
+                            key_value = '"' + str(attribute_value) + '"'
+                        else:
+                            key_value = "'" + str(attribute_value) + "'"
                 else:
                     if attribute_value is not None:
                         name_of_key_value = name_of_key_value + ", " + attribute_name
-                        key_value = key_value + ', "' + str(attribute_value) + '"'
+                        if type(attribute_value) == str and "'" in attribute_value:
+                            key_value = key_value + ', "' + str(attribute_value) + '"'
+                        else:
+                            key_value = key_value + ", '" + str(attribute_value) + "'"
             elif attribute_name not in {'vid', 'vertex_type_system'} and attribute_value is not None:
                 complex_vertex[attribute_name] = attribute_value
         if template.vid is None:
@@ -53,6 +59,8 @@ def deploy(template, cluster_name) -> None:
             template.vid = '"' + str(template.vid) + '"'
 
         # print(template.__dict__)
+        if key_value == "['udp', 'tcp', 'igmp']" or name_of_key_value == 'valid_values' or template.vertex_type_system == 'ConstraintClause':
+            a = 1
         add_in_vertex(template.vertex_type_system, name_of_key_value, key_value, template.vid)
     # for edge in edges:
     #     add_edge(edge[0], edge[1], edge[2].vid, edge[3].vid, edge[4]) # todo Thing about it
@@ -122,14 +130,14 @@ def deploy(template, cluster_name) -> None:
     return
 
 
-# file = open('jupyter.yaml')
-# data = file.read()
-# file.close()
-# data = yaml.safe_load(data)
-# # template = service_template_definition_parser(''.join(choice(ascii_uppercase) for i in range(12)), data)
-# template = service_template_definition_parser("Jupyter_5", data)
-# main_linker(template)
-# print(template)
-# if add_vid(template.name, template.name):
-#     abort(400)
-# deploy(template, template.name)
+file = open('service_template.yaml')
+data = file.read()
+file.close()
+data = yaml.safe_load(data)
+# template = service_template_definition_parser(''.join(choice(ascii_uppercase) for i in range(12)), data)
+template = service_template_definition_parser("template_20", data)
+main_linker(template)
+print(template)
+if add_vid(template.name, template.name):
+    abort(400)
+deploy(template, template.name)

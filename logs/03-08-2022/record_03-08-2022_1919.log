@@ -1,0 +1,16 @@
+2022-08-03 19:19:26,900 INFO werkzeug MainThread :  * Running on http://127.0.0.1:5000 (Press CTRL+C to quit)
+2022-08-03 19:19:26,901 INFO werkzeug MainThread :  * Restarting with stat
+2022-08-03 19:19:27,301 WARNING werkzeug MainThread :  * Debugger is active!
+2022-08-03 19:19:27,302 INFO werkzeug MainThread :  * Debugger PIN: 480-654-360
+2022-08-03 19:19:31,913 WARNING werkzeug MainThread :  * Debugger is active!
+2022-08-03 19:19:31,913 INFO werkzeug MainThread :  * Debugger PIN: 480-654-360
+2022-08-03 19:19:32,750 INFO werkzeug MainThread :  * Running on http://127.0.0.1:5000 (Press CTRL+C to quit)
+2022-08-03 19:19:32,751 INFO werkzeug MainThread :  * Restarting with stat
+2022-08-03 19:19:33,210 WARNING werkzeug MainThread :  * Debugger is active!
+2022-08-03 19:19:33,210 INFO werkzeug MainThread :  * Debugger PIN: 138-790-548
+2022-08-03 19:19:35,670 WARNING werkzeug MainThread :  * Debugger is active!
+2022-08-03 19:19:35,670 INFO werkzeug MainThread :  * Debugger PIN: 138-790-548
+2022-08-03 19:19:40,140 INFO werkzeug MainThread :  * Running on all addresses (0.0.0.0)
+   WARNING: This is a development server. Do not use it in a production deployment.
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.10.10.235:5000 (Press CTRL+C to quit)

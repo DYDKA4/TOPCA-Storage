@@ -18,7 +18,7 @@ from parser.parser.tosca_v_1_3.definitions.ServiceTemplateDefinition import Serv
 
 
 def construct_service_template_definition(name: str):
-    name = '"'+name + '"'
+    name = '"' + name + '"'
     vertex_value = fetch_vertex(name, 'ServiceTemplateDefinition')
     vertex_value = vertex_value.as_map()
     vertex_keys = vertex_value.keys()
@@ -64,7 +64,10 @@ def construct_service_template_definition(name: str):
             else:
                 abort(500)
 
-    with open('./output.yaml', 'w') as file:
-        documents = yaml.dump(template, file)
+    # with open('./output.yaml', 'w') as file:
+    #     documents = yaml.dump(template, file)
 
-# construct_service_template_definition('BHDYKHIUBEVM')
+
+cluster_name = "Jupyter_1"
+result = construct_service_template_definition(cluster_name)
+print(yaml.dump(result, default_flow_style=False))

@@ -1,0 +1,162 @@
+2022-08-03 17:58:22,670 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:25,370 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:25,383 INFO root MainThread : FETCH PROP ON NodeTemplate "e2a5d154-bb5d-4f0d-ab73-7823112c179e" YIELD properties(vertex)
+2022-08-03 17:58:25,428 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:25,437 INFO root MainThread : FETCH PROP ON NodeTemplate "7c15e2e7-1073-4ceb-995d-f59f0fabeda9" YIELD properties(vertex)
+2022-08-03 17:58:25,439 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:25,447 INFO root MainThread : FETCH PROP ON NodeTemplate "3c7fc105-3278-47c5-8de3-a29006ef80ea" YIELD properties(vertex)
+2022-08-03 17:58:25,492 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:28,116 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:28,123 INFO root MainThread : FETCH PROP ON NodeType "ef5b0407-85d5-40a6-9cdc-29f53614f280" YIELD properties(vertex)
+2022-08-03 17:58:28,168 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:28,175 INFO root MainThread : FETCH PROP ON NodeType "d144ae0e-7bb5-4c2e-aeda-02b1d011b358" YIELD properties(vertex)
+2022-08-03 17:58:28,177 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:28,183 INFO root MainThread : FETCH PROP ON NodeType "1351057a-a034-4b3f-ae94-7a239d6a993c" YIELD properties(vertex)
+2022-08-03 17:58:28,228 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:28,235 INFO root MainThread : FETCH PROP ON NodeType "70a751f9-794c-4236-bc30-709606e30051" YIELD properties(vertex)
+2022-08-03 17:58:28,236 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:28,241 INFO root MainThread : FETCH PROP ON NodeType "10adb642-4924-429b-a333-059b8b4a6ad3" YIELD properties(vertex)
+2022-08-03 17:58:28,284 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:28,291 INFO root MainThread : FETCH PROP ON NodeType "70a8d5e8-73ab-4efb-accc-7dd2e88c8c6d" YIELD properties(vertex)
+2022-08-03 17:58:28,293 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:28,299 INFO root MainThread : FETCH PROP ON NodeType "f7ec8502-aa14-45d1-b2eb-d2f172c5b9bb" YIELD properties(vertex)
+2022-08-03 17:58:28,344 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:28,351 INFO root MainThread : GO FROM "Jupyter_0" over topology_template YIELD dst(edge) as vid
+2022-08-03 17:58:28,352 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:28,358 INFO root MainThread : GO FROM "010de8f3-a7cf-4ede-a082-732680a98aed" over node_templates YIELD dst(edge) as vid
+2022-08-03 17:58:28,404 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:28,411 INFO root MainThread : GO FROM "010de8f3-a7cf-4ede-a082-732680a98aed" over node_templates YIELD dst(edge) as vid
+2022-08-03 17:58:28,413 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:28,419 INFO root MainThread : FETCH PROP ON NodeTemplate "3c7fc105-3278-47c5-8de3-a29006ef80ea" YIELD properties(vertex)
+2022-08-03 17:58:28,463 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:28,469 INFO root MainThread : FETCH PROP ON NodeTemplate "7c15e2e7-1073-4ceb-995d-f59f0fabeda9" YIELD properties(vertex)
+2022-08-03 17:58:28,471 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:28,475 INFO root MainThread : FETCH PROP ON NodeTemplate "e2a5d154-bb5d-4f0d-ab73-7823112c179e" YIELD properties(vertex)
+2022-08-03 17:58:28,477 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:28,482 INFO root MainThread : FETCH PROP ON NodeTemplate "e2a5d154-bb5d-4f0d-ab73-7823112c179e" YIELD properties(vertex)
+2022-08-03 17:58:28,483 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:28,489 INFO root MainThread : GO FROM "e2a5d154-bb5d-4f0d-ab73-7823112c179e" over type YIELD dst(edge) as vid
+2022-08-03 17:58:28,532 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:28,538 INFO root MainThread : GO FROM "Jupyter_0" over topology_template YIELD dst(edge) as vid
+2022-08-03 17:58:28,539 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:28,546 INFO root MainThread : GO FROM "010de8f3-a7cf-4ede-a082-732680a98aed" over node_templates YIELD dst(edge) as vid
+2022-08-03 17:58:28,591 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:28,597 INFO root MainThread : GO FROM "010de8f3-a7cf-4ede-a082-732680a98aed" over node_templates YIELD dst(edge) as vid
+2022-08-03 17:58:28,599 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:28,605 INFO root MainThread : FETCH PROP ON NodeTemplate "3c7fc105-3278-47c5-8de3-a29006ef80ea" YIELD properties(vertex)
+2022-08-03 17:58:28,648 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:28,654 INFO root MainThread : FETCH PROP ON NodeTemplate "7c15e2e7-1073-4ceb-995d-f59f0fabeda9" YIELD properties(vertex)
+2022-08-03 17:58:28,656 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:28,663 INFO root MainThread : FETCH PROP ON NodeTemplate "7c15e2e7-1073-4ceb-995d-f59f0fabeda9" YIELD properties(vertex)
+2022-08-03 17:58:28,708 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:28,714 INFO root MainThread : GO FROM "7c15e2e7-1073-4ceb-995d-f59f0fabeda9" over type YIELD dst(edge) as vid
+2022-08-03 17:58:28,716 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:28,721 INFO root MainThread : GO FROM "Jupyter_0" over topology_template YIELD dst(edge) as vid
+2022-08-03 17:58:28,763 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:28,770 INFO root MainThread : GO FROM "010de8f3-a7cf-4ede-a082-732680a98aed" over node_templates YIELD dst(edge) as vid
+2022-08-03 17:58:28,771 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:28,778 INFO root MainThread : GO FROM "010de8f3-a7cf-4ede-a082-732680a98aed" over node_templates YIELD dst(edge) as vid
+2022-08-03 17:58:28,780 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:28,785 INFO root MainThread : FETCH PROP ON NodeTemplate "3c7fc105-3278-47c5-8de3-a29006ef80ea" YIELD properties(vertex)
+2022-08-03 17:58:28,827 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:28,834 INFO root MainThread : FETCH PROP ON NodeTemplate "7c15e2e7-1073-4ceb-995d-f59f0fabeda9" YIELD properties(vertex)
+2022-08-03 17:58:28,835 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:28,840 INFO root MainThread : GO FROM "7c15e2e7-1073-4ceb-995d-f59f0fabeda9" over requirements YIELD dst(edge) as vid
+2022-08-03 17:58:28,884 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:28,891 INFO root MainThread : GO FROM "7c15e2e7-1073-4ceb-995d-f59f0fabeda9" over requirements YIELD dst(edge) as vid
+2022-08-03 17:58:28,893 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:28,898 INFO root MainThread : FETCH PROP ON RequirementAssignment "1769ea56-8939-4da2-8460-a4d09c5ae283" YIELD properties(vertex)
+2022-08-03 17:58:28,900 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:28,904 INFO root MainThread : FETCH PROP ON RequirementAssignment "1769ea56-8939-4da2-8460-a4d09c5ae283" YIELD properties(vertex)
+2022-08-03 17:58:28,947 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:28,954 INFO root MainThread : GO FROM "1769ea56-8939-4da2-8460-a4d09c5ae283" over node YIELD dst(edge) as vid
+2022-08-03 17:58:28,955 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:28,962 INFO root MainThread : FETCH PROP ON NodeTemplate "3c7fc105-3278-47c5-8de3-a29006ef80ea" YIELD properties(vertex)
+2022-08-03 17:58:28,964 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:28,971 INFO root MainThread : GO FROM "Jupyter_0" over topology_template YIELD dst(edge) as vid
+2022-08-03 17:58:29,015 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:29,023 INFO root MainThread : GO FROM "010de8f3-a7cf-4ede-a082-732680a98aed" over node_templates YIELD dst(edge) as vid
+2022-08-03 17:58:29,024 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:29,029 INFO root MainThread : GO FROM "010de8f3-a7cf-4ede-a082-732680a98aed" over node_templates YIELD dst(edge) as vid
+2022-08-03 17:58:29,071 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:29,077 INFO root MainThread : FETCH PROP ON NodeTemplate "3c7fc105-3278-47c5-8de3-a29006ef80ea" YIELD properties(vertex)
+2022-08-03 17:58:29,079 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:29,084 INFO root MainThread : GO FROM "3c7fc105-3278-47c5-8de3-a29006ef80ea" over capabilities YIELD dst(edge) as vid
+2022-08-03 17:58:29,127 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:29,138 INFO root MainThread : GO FROM "3c7fc105-3278-47c5-8de3-a29006ef80ea" over capabilities YIELD dst(edge) as vid
+2022-08-03 17:58:29,140 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:29,146 INFO root MainThread : FETCH PROP ON CapabilityAssignment "1ef134ba-07fd-4ec7-92da-1ce74cf0dd45" YIELD properties(vertex)
+2022-08-03 17:58:29,191 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:29,197 INFO root MainThread : GO FROM "1ef134ba-07fd-4ec7-92da-1ce74cf0dd45" over properties YIELD dst(edge) as vid
+2022-08-03 17:58:29,199 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:29,204 INFO root MainThread : FETCH PROP ON PropertyAssignment "7905ecd9-b9c3-42bc-9960-f1e92dc3fc2f" YIELD properties(vertex)
+2022-08-03 17:58:29,247 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:29,253 INFO root MainThread : FETCH PROP ON PropertyAssignment "af61baab-0dfa-4d1f-ae39-14ac71273c4b" YIELD properties(vertex)
+2022-08-03 17:58:29,254 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:29,260 INFO root MainThread : FETCH PROP ON PropertyAssignment "af61baab-0dfa-4d1f-ae39-14ac71273c4b" YIELD properties(vertex)
+2022-08-03 17:58:29,261 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:29,265 INFO root MainThread : FETCH PROP ON PropertyAssignment "af61baab-0dfa-4d1f-ae39-14ac71273c4b" YIELD properties(vertex)
+2022-08-03 17:58:29,277 INFO werkzeug MainThread :  * Running on http://127.0.0.1:5000 (Press CTRL+C to quit)
+2022-08-03 17:58:29,277 INFO werkzeug MainThread :  * Restarting with stat
+2022-08-03 17:58:29,661 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:32,578 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:32,591 INFO root MainThread : FETCH PROP ON NodeTemplate "7c15e2e7-1073-4ceb-995d-f59f0fabeda9" YIELD properties(vertex)
+2022-08-03 17:58:32,594 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:32,602 INFO root MainThread : FETCH PROP ON NodeTemplate "e2a5d154-bb5d-4f0d-ab73-7823112c179e" YIELD properties(vertex)
+2022-08-03 17:58:32,648 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:32,660 INFO root MainThread : FETCH PROP ON NodeTemplate "3c7fc105-3278-47c5-8de3-a29006ef80ea" YIELD properties(vertex)
+2022-08-03 17:58:32,662 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:35,384 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:35,395 INFO root MainThread : FETCH PROP ON NodeType "d144ae0e-7bb5-4c2e-aeda-02b1d011b358" YIELD properties(vertex)
+2022-08-03 17:58:35,440 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:35,449 INFO root MainThread : FETCH PROP ON NodeType "ef5b0407-85d5-40a6-9cdc-29f53614f280" YIELD properties(vertex)
+2022-08-03 17:58:35,452 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:35,461 INFO root MainThread : FETCH PROP ON NodeType "70a751f9-794c-4236-bc30-709606e30051" YIELD properties(vertex)
+2022-08-03 17:58:35,504 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:35,513 INFO root MainThread : FETCH PROP ON NodeType "1351057a-a034-4b3f-ae94-7a239d6a993c" YIELD properties(vertex)
+2022-08-03 17:58:35,516 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:35,524 INFO root MainThread : FETCH PROP ON NodeType "10adb642-4924-429b-a333-059b8b4a6ad3" YIELD properties(vertex)
+2022-08-03 17:58:35,568 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:35,578 INFO root MainThread : FETCH PROP ON NodeType "70a8d5e8-73ab-4efb-accc-7dd2e88c8c6d" YIELD properties(vertex)
+2022-08-03 17:58:35,581 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:35,589 INFO root MainThread : FETCH PROP ON NodeType "f7ec8502-aa14-45d1-b2eb-d2f172c5b9bb" YIELD properties(vertex)
+2022-08-03 17:58:35,631 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:35,640 INFO root MainThread : GO FROM "Jupyter_0" over topology_template YIELD dst(edge) as vid
+2022-08-03 17:58:35,642 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:35,650 INFO root MainThread : GO FROM "010de8f3-a7cf-4ede-a082-732680a98aed" over node_templates YIELD dst(edge) as vid
+2022-08-03 17:58:35,696 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:35,704 INFO root MainThread : GO FROM "010de8f3-a7cf-4ede-a082-732680a98aed" over node_templates YIELD dst(edge) as vid
+2022-08-03 17:58:35,707 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:35,715 INFO root MainThread : FETCH PROP ON NodeTemplate "3c7fc105-3278-47c5-8de3-a29006ef80ea" YIELD properties(vertex)
+2022-08-03 17:58:35,760 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:35,769 INFO root MainThread : FETCH PROP ON NodeTemplate "7c15e2e7-1073-4ceb-995d-f59f0fabeda9" YIELD properties(vertex)
+2022-08-03 17:58:35,771 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:35,780 INFO root MainThread : FETCH PROP ON NodeTemplate "7c15e2e7-1073-4ceb-995d-f59f0fabeda9" YIELD properties(vertex)
+2022-08-03 17:58:35,828 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:35,837 INFO root MainThread : GO FROM "7c15e2e7-1073-4ceb-995d-f59f0fabeda9" over type YIELD dst(edge) as vid
+2022-08-03 17:58:35,839 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:35,847 INFO root MainThread : GO FROM "Jupyter_0" over topology_template YIELD dst(edge) as vid
+2022-08-03 17:58:35,849 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:35,859 INFO root MainThread : GO FROM "010de8f3-a7cf-4ede-a082-732680a98aed" over node_templates YIELD dst(edge) as vid
+2022-08-03 17:58:35,861 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:35,869 INFO root MainThread : GO FROM "010de8f3-a7cf-4ede-a082-732680a98aed" over node_templates YIELD dst(edge) as vid
+2022-08-03 17:58:35,912 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:35,921 INFO root MainThread : FETCH PROP ON NodeTemplate "3c7fc105-3278-47c5-8de3-a29006ef80ea" YIELD properties(vertex)
+2022-08-03 17:58:35,923 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:35,933 INFO root MainThread : FETCH PROP ON NodeTemplate "7c15e2e7-1073-4ceb-995d-f59f0fabeda9" YIELD properties(vertex)
+2022-08-03 17:58:35,976 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:35,985 INFO root MainThread : GO FROM "7c15e2e7-1073-4ceb-995d-f59f0fabeda9" over requirements YIELD dst(edge) as vid
+2022-08-03 17:58:35,988 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:35,996 INFO root MainThread : GO FROM "7c15e2e7-1073-4ceb-995d-f59f0fabeda9" over requirements YIELD dst(edge) as vid
+2022-08-03 17:58:36,040 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:36,049 INFO root MainThread : FETCH PROP ON RequirementAssignment "1769ea56-8939-4da2-8460-a4d09c5ae283" YIELD properties(vertex)
+2022-08-03 17:58:36,050 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:36,058 INFO root MainThread : FETCH PROP ON RequirementAssignment "1769ea56-8939-4da2-8460-a4d09c5ae283" YIELD properties(vertex)
+2022-08-03 17:58:36,104 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:36,113 INFO root MainThread : GO FROM "1769ea56-8939-4da2-8460-a4d09c5ae283" over node YIELD dst(edge) as vid
+2022-08-03 17:58:36,116 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:36,125 INFO root MainThread : FETCH PROP ON NodeTemplate "3c7fc105-3278-47c5-8de3-a29006ef80ea" YIELD properties(vertex)
+2022-08-03 17:58:36,168 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:36,177 INFO root MainThread : GO FROM "Jupyter_0" over topology_template YIELD dst(edge) as vid
+2022-08-03 17:58:36,179 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-03 17:58:36,189 INFO root MainThread : GO FROM "010de8f3-a7cf-4ede-a082-732680a98aed" over node_templates YIELD dst(edge) as vid

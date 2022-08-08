@@ -1,0 +1,4 @@
+2022-08-03 18:06:08,772 INFO werkzeug MainThread :  * Running on http://127.0.0.1:5000 (Press CTRL+C to quit)
+2022-08-03 18:06:08,772 INFO werkzeug MainThread :  * Restarting with stat
+2022-08-03 18:06:09,179 WARNING werkzeug MainThread :  * Debugger is active!
+2022-08-03 18:06:09,179 INFO werkzeug MainThread :  * Debugger PIN: 206-685-188

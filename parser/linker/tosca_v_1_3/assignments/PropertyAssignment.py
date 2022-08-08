@@ -400,7 +400,7 @@ def link_property_assignment(service_template: ServiceTemplateDefinition,
             property_assignment.value = json.dumps(property_assignment.value)
     elif value.get('get_input'):
         target_name = value.get('get_input')
-        target_name = target_name[0]
+        target_name = target_name
         for inputs in template_definition.inputs:
             inputs: ParameterDefinition
             if inputs.name == target_name:

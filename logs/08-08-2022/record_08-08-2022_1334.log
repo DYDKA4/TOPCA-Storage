@@ -1,0 +1,952 @@
+2022-08-08 13:34:46,441 INFO werkzeug MainThread :  * Running on all addresses (0.0.0.0)
+   WARNING: This is a development server. Do not use it in a production deployment.
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.10.10.235:5000 (Press CTRL+C to quit)
+2022-08-08 13:35:40,279 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:40,290 INFO root Thread-1 : FETCH PROP ON ServiceTemplateDefinition "Jupyter_1" YIELD properties(vertex)
+2022-08-08 13:35:40,292 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:40,372 INFO root Thread-1 : GO FROM "Jupyter_1" over node_types YIELD dst(edge) as vid
+2022-08-08 13:35:40,374 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:40,393 INFO root Thread-1 : FETCH PROP ON NodeType "57354182-8ae4-4443-9e44-2339e0017b90" YIELD properties(vertex)
+2022-08-08 13:35:40,439 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:40,450 INFO root Thread-1 : GO FROM "57354182-8ae4-4443-9e44-2339e0017b90" over properties YIELD dst(edge) as vid
+2022-08-08 13:35:40,453 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:40,462 INFO root Thread-1 : GO FROM "57354182-8ae4-4443-9e44-2339e0017b90" over interfaces YIELD dst(edge) as vid
+2022-08-08 13:35:40,507 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:40,518 INFO root Thread-1 : GO FROM "57354182-8ae4-4443-9e44-2339e0017b90" over artifacts YIELD dst(edge) as vid
+2022-08-08 13:35:40,520 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:40,529 INFO root Thread-1 : GO FROM "57354182-8ae4-4443-9e44-2339e0017b90" over derived_from YIELD dst(edge) as vid
+2022-08-08 13:35:40,575 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:40,590 INFO root Thread-1 : FETCH PROP ON NodeType "d29c47e6-28ba-4ae2-b4ae-175fc6d30cdc" YIELD properties(vertex)
+2022-08-08 13:35:40,592 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:40,602 INFO root Thread-1 : GO FROM "57354182-8ae4-4443-9e44-2339e0017b90" over requirements YIELD dst(edge) as vid
+2022-08-08 13:35:40,647 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:40,659 INFO root Thread-1 : FETCH PROP ON RequirementDefinition "4e122e1b-1413-4714-a17b-ea0c109e0db8" YIELD properties(vertex)
+2022-08-08 13:35:40,661 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:40,672 INFO root Thread-1 : GO FROM "4e122e1b-1413-4714-a17b-ea0c109e0db8" over node YIELD dst(edge) as vid
+2022-08-08 13:35:40,674 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:40,684 INFO root Thread-1 : FETCH PROP ON NodeType "8d1f4c46-c479-43b9-a1d1-cc5fcbf0828a" YIELD properties(vertex)
+2022-08-08 13:35:40,731 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:40,742 INFO root Thread-1 : GO FROM "4e122e1b-1413-4714-a17b-ea0c109e0db8" over capability YIELD dst(edge) as vid
+2022-08-08 13:35:40,744 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:40,755 INFO root Thread-1 : FETCH PROP ON CapabilityType "39278d1c-728c-4dfb-a89e-51e8256edc88" YIELD properties(vertex)
+2022-08-08 13:35:40,799 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:40,808 INFO root Thread-1 : GO FROM "4e122e1b-1413-4714-a17b-ea0c109e0db8" over interfaces YIELD dst(edge) as vid
+2022-08-08 13:35:40,811 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:40,820 INFO root Thread-1 : GO FROM "4e122e1b-1413-4714-a17b-ea0c109e0db8" over relationship YIELD dst(edge) as vid
+2022-08-08 13:35:40,863 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:40,874 INFO root Thread-1 : FETCH PROP ON RelationshipType "8cdfa721-ce2e-4b41-959c-37cdcfa433c3" YIELD properties(vertex)
+2022-08-08 13:35:40,877 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:40,886 INFO root Thread-1 : GO FROM "4e122e1b-1413-4714-a17b-ea0c109e0db8" over occurrences YIELD dst(edge) as vid
+2022-08-08 13:35:40,931 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:40,942 INFO root Thread-1 : FETCH PROP ON Occurrences "cd4c2942-ba4a-4238-937b-d8fec2545cf9" YIELD properties(vertex)
+2022-08-08 13:35:40,945 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:40,954 INFO root Thread-1 : GO FROM "57354182-8ae4-4443-9e44-2339e0017b90" over metadata YIELD dst(edge) as vid
+2022-08-08 13:35:40,998 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:41,007 INFO root Thread-1 : GO FROM "57354182-8ae4-4443-9e44-2339e0017b90" over capabilities YIELD dst(edge) as vid
+2022-08-08 13:35:41,009 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:41,019 INFO root Thread-1 : FETCH PROP ON CapabilityDefinition "2dffd6b4-47ec-45e2-8009-10d24c559186" YIELD properties(vertex)
+2022-08-08 13:35:41,063 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:41,081 INFO root Thread-1 : GO FROM "2dffd6b4-47ec-45e2-8009-10d24c559186" over type YIELD dst(edge) as vid
+2022-08-08 13:35:41,083 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:41,093 INFO root Thread-1 : FETCH PROP ON CapabilityType "7e63e2e0-c1c9-4530-9777-2e6045ec940a" YIELD properties(vertex)
+2022-08-08 13:35:41,139 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:41,149 INFO root Thread-1 : GO FROM "2dffd6b4-47ec-45e2-8009-10d24c559186" over properties YIELD dst(edge) as vid
+2022-08-08 13:35:41,151 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:41,160 INFO root Thread-1 : GO FROM "2dffd6b4-47ec-45e2-8009-10d24c559186" over valid_source_types YIELD dst(edge) as vid
+2022-08-08 13:35:41,203 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:41,214 INFO root Thread-1 : GO FROM "2dffd6b4-47ec-45e2-8009-10d24c559186" over attributes YIELD dst(edge) as vid
+2022-08-08 13:35:41,217 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:41,227 INFO root Thread-1 : GO FROM "2dffd6b4-47ec-45e2-8009-10d24c559186" over occurrences YIELD dst(edge) as vid
+2022-08-08 13:35:41,229 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:41,239 INFO root Thread-1 : FETCH PROP ON CapabilityDefinition "72596923-5154-41ed-8e63-fbc3bab2bd1b" YIELD properties(vertex)
+2022-08-08 13:35:41,283 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:41,295 INFO root Thread-1 : GO FROM "72596923-5154-41ed-8e63-fbc3bab2bd1b" over type YIELD dst(edge) as vid
+2022-08-08 13:35:41,297 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:41,308 INFO root Thread-1 : FETCH PROP ON CapabilityType "b39dbedc-4aa2-418b-b616-b8ef4380310d" YIELD properties(vertex)
+2022-08-08 13:35:41,310 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:41,320 INFO root Thread-1 : GO FROM "72596923-5154-41ed-8e63-fbc3bab2bd1b" over properties YIELD dst(edge) as vid
+2022-08-08 13:35:41,322 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:41,331 INFO root Thread-1 : GO FROM "72596923-5154-41ed-8e63-fbc3bab2bd1b" over valid_source_types YIELD dst(edge) as vid
+2022-08-08 13:35:41,374 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:41,384 INFO root Thread-1 : FETCH PROP ON NodeType "ae7a3a9f-aeb7-4b9c-a7ba-6d1c4d81d89f" YIELD properties(vertex)
+2022-08-08 13:35:41,386 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:41,395 INFO root Thread-1 : GO FROM "72596923-5154-41ed-8e63-fbc3bab2bd1b" over attributes YIELD dst(edge) as vid
+2022-08-08 13:35:41,443 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:41,454 INFO root Thread-1 : GO FROM "72596923-5154-41ed-8e63-fbc3bab2bd1b" over occurrences YIELD dst(edge) as vid
+2022-08-08 13:35:41,456 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:41,468 INFO root Thread-1 : FETCH PROP ON CapabilityDefinition "93b2fac5-5a7b-4805-a271-05fae4c755ca" YIELD properties(vertex)
+2022-08-08 13:35:41,470 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:41,480 INFO root Thread-1 : GO FROM "93b2fac5-5a7b-4805-a271-05fae4c755ca" over type YIELD dst(edge) as vid
+2022-08-08 13:35:41,527 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:41,539 INFO root Thread-1 : FETCH PROP ON CapabilityType "53b617fa-8951-4551-bd2e-c3f9daa24345" YIELD properties(vertex)
+2022-08-08 13:35:41,542 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:41,552 INFO root Thread-1 : GO FROM "93b2fac5-5a7b-4805-a271-05fae4c755ca" over properties YIELD dst(edge) as vid
+2022-08-08 13:35:41,595 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:41,603 INFO root Thread-1 : GO FROM "93b2fac5-5a7b-4805-a271-05fae4c755ca" over valid_source_types YIELD dst(edge) as vid
+2022-08-08 13:35:41,606 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:41,614 INFO root Thread-1 : GO FROM "93b2fac5-5a7b-4805-a271-05fae4c755ca" over attributes YIELD dst(edge) as vid
+2022-08-08 13:35:41,616 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:41,624 INFO root Thread-1 : GO FROM "93b2fac5-5a7b-4805-a271-05fae4c755ca" over occurrences YIELD dst(edge) as vid
+2022-08-08 13:35:41,626 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:41,636 INFO root Thread-1 : FETCH PROP ON CapabilityDefinition "ae8cd3d1-ace7-40de-9a70-3b02ef618e7b" YIELD properties(vertex)
+2022-08-08 13:35:41,679 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:41,695 INFO root Thread-1 : GO FROM "ae8cd3d1-ace7-40de-9a70-3b02ef618e7b" over type YIELD dst(edge) as vid
+2022-08-08 13:35:41,697 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:41,708 INFO root Thread-1 : FETCH PROP ON CapabilityType "ad9618b2-9071-4959-9f14-4a25481de8aa" YIELD properties(vertex)
+2022-08-08 13:35:41,756 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:41,768 INFO root Thread-1 : GO FROM "ae8cd3d1-ace7-40de-9a70-3b02ef618e7b" over properties YIELD dst(edge) as vid
+2022-08-08 13:35:41,770 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:41,780 INFO root Thread-1 : GO FROM "ae8cd3d1-ace7-40de-9a70-3b02ef618e7b" over valid_source_types YIELD dst(edge) as vid
+2022-08-08 13:35:41,827 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:41,838 INFO root Thread-1 : GO FROM "ae8cd3d1-ace7-40de-9a70-3b02ef618e7b" over attributes YIELD dst(edge) as vid
+2022-08-08 13:35:41,840 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:41,850 INFO root Thread-1 : GO FROM "ae8cd3d1-ace7-40de-9a70-3b02ef618e7b" over occurrences YIELD dst(edge) as vid
+2022-08-08 13:35:41,895 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:41,907 INFO root Thread-1 : FETCH PROP ON CapabilityDefinition "cf9357eb-0588-4a95-aa2d-a281633d5b72" YIELD properties(vertex)
+2022-08-08 13:35:41,909 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:41,920 INFO root Thread-1 : GO FROM "cf9357eb-0588-4a95-aa2d-a281633d5b72" over type YIELD dst(edge) as vid
+2022-08-08 13:35:41,963 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:41,977 INFO root Thread-1 : FETCH PROP ON CapabilityType "20327319-830d-4c9d-b488-4a8aecdf8d80" YIELD properties(vertex)
+2022-08-08 13:35:41,980 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:41,990 INFO root Thread-1 : GO FROM "cf9357eb-0588-4a95-aa2d-a281633d5b72" over properties YIELD dst(edge) as vid
+2022-08-08 13:35:41,993 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:42,003 INFO root Thread-1 : GO FROM "cf9357eb-0588-4a95-aa2d-a281633d5b72" over valid_source_types YIELD dst(edge) as vid
+2022-08-08 13:35:42,047 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:42,059 INFO root Thread-1 : GO FROM "cf9357eb-0588-4a95-aa2d-a281633d5b72" over attributes YIELD dst(edge) as vid
+2022-08-08 13:35:42,061 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:42,072 INFO root Thread-1 : GO FROM "cf9357eb-0588-4a95-aa2d-a281633d5b72" over occurrences YIELD dst(edge) as vid
+2022-08-08 13:35:42,074 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:42,084 INFO root Thread-1 : GO FROM "57354182-8ae4-4443-9e44-2339e0017b90" over attributes YIELD dst(edge) as vid
+2022-08-08 13:35:42,126 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:42,136 INFO root Thread-1 : FETCH PROP ON AttributeDefinition "1578c526-2247-43dd-9563-78a64f0291cd" YIELD properties(vertex)
+2022-08-08 13:35:42,138 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:42,147 INFO root Thread-1 : GO FROM "1578c526-2247-43dd-9563-78a64f0291cd" over key_schema YIELD dst(edge) as vid
+2022-08-08 13:35:42,191 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:42,201 INFO root Thread-1 : GO FROM "1578c526-2247-43dd-9563-78a64f0291cd" over type YIELD dst(edge) as vid
+2022-08-08 13:35:42,204 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:42,214 INFO root Thread-1 : FETCH PROP ON DataType "def83e30-97a4-4ce4-b136-99e4a13e64fb" YIELD properties(vertex)
+2022-08-08 13:35:42,259 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:42,269 INFO root Thread-1 : GO FROM "1578c526-2247-43dd-9563-78a64f0291cd" over entry_schema YIELD dst(edge) as vid
+2022-08-08 13:35:42,272 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:42,283 INFO root Thread-1 : FETCH PROP ON SchemaDefinition "626dcbea-2c18-4342-af0a-38249548ad95" YIELD properties(vertex)
+2022-08-08 13:35:42,327 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:42,338 INFO root Thread-1 : GO FROM "626dcbea-2c18-4342-af0a-38249548ad95" over key_schema YIELD dst(edge) as vid
+2022-08-08 13:35:42,340 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:42,348 INFO root Thread-1 : GO FROM "626dcbea-2c18-4342-af0a-38249548ad95" over type YIELD dst(edge) as vid
+2022-08-08 13:35:42,350 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:42,359 INFO root Thread-1 : FETCH PROP ON DataType "b5788e12-8259-4d6f-86dd-448cc4171123" YIELD properties(vertex)
+2022-08-08 13:35:42,403 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:42,411 INFO root Thread-1 : GO FROM "626dcbea-2c18-4342-af0a-38249548ad95" over constraints YIELD dst(edge) as vid
+2022-08-08 13:35:42,414 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:42,423 INFO root Thread-1 : GO FROM "626dcbea-2c18-4342-af0a-38249548ad95" over entry_schema YIELD dst(edge) as vid
+2022-08-08 13:35:42,426 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:42,436 INFO root Thread-1 : FETCH PROP ON AttributeDefinition "9ea7bddb-530d-4045-9634-db814ecce115" YIELD properties(vertex)
+2022-08-08 13:35:42,439 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:42,449 INFO root Thread-1 : GO FROM "9ea7bddb-530d-4045-9634-db814ecce115" over key_schema YIELD dst(edge) as vid
+2022-08-08 13:35:42,495 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:42,507 INFO root Thread-1 : GO FROM "9ea7bddb-530d-4045-9634-db814ecce115" over type YIELD dst(edge) as vid
+2022-08-08 13:35:42,510 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:42,522 INFO root Thread-1 : FETCH PROP ON DataType "eb00ee36-c355-4fc4-860a-8bb0726ddbb8" YIELD properties(vertex)
+2022-08-08 13:35:42,567 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:42,580 INFO root Thread-1 : GO FROM "9ea7bddb-530d-4045-9634-db814ecce115" over entry_schema YIELD dst(edge) as vid
+2022-08-08 13:35:42,583 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:42,593 INFO root Thread-1 : FETCH PROP ON AttributeDefinition "d61bf101-d180-46e7-a0e5-3f511572bf78" YIELD properties(vertex)
+2022-08-08 13:35:42,638 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:42,648 INFO root Thread-1 : GO FROM "d61bf101-d180-46e7-a0e5-3f511572bf78" over key_schema YIELD dst(edge) as vid
+2022-08-08 13:35:42,651 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:42,659 INFO root Thread-1 : GO FROM "d61bf101-d180-46e7-a0e5-3f511572bf78" over type YIELD dst(edge) as vid
+2022-08-08 13:35:42,703 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:42,713 INFO root Thread-1 : FETCH PROP ON DataType "eb00ee36-c355-4fc4-860a-8bb0726ddbb8" YIELD properties(vertex)
+2022-08-08 13:35:42,716 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:42,726 INFO root Thread-1 : GO FROM "d61bf101-d180-46e7-a0e5-3f511572bf78" over entry_schema YIELD dst(edge) as vid
+2022-08-08 13:35:42,771 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:42,784 INFO root Thread-1 : FETCH PROP ON AttributeDefinition "e2ad38ff-b2dd-4431-838a-60f86e54e182" YIELD properties(vertex)
+2022-08-08 13:35:42,786 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:42,796 INFO root Thread-1 : GO FROM "e2ad38ff-b2dd-4431-838a-60f86e54e182" over key_schema YIELD dst(edge) as vid
+2022-08-08 13:35:42,839 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:42,850 INFO root Thread-1 : GO FROM "e2ad38ff-b2dd-4431-838a-60f86e54e182" over type YIELD dst(edge) as vid
+2022-08-08 13:35:42,853 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:42,863 INFO root Thread-1 : FETCH PROP ON DataType "def83e30-97a4-4ce4-b136-99e4a13e64fb" YIELD properties(vertex)
+2022-08-08 13:35:42,907 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:42,916 INFO root Thread-1 : GO FROM "e2ad38ff-b2dd-4431-838a-60f86e54e182" over entry_schema YIELD dst(edge) as vid
+2022-08-08 13:35:42,919 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:42,928 INFO root Thread-1 : FETCH PROP ON SchemaDefinition "5d74482b-1bf7-4feb-b70d-43bd1bc0173a" YIELD properties(vertex)
+2022-08-08 13:35:42,975 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:42,986 INFO root Thread-1 : GO FROM "5d74482b-1bf7-4feb-b70d-43bd1bc0173a" over key_schema YIELD dst(edge) as vid
+2022-08-08 13:35:42,990 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:43,000 INFO root Thread-1 : GO FROM "5d74482b-1bf7-4feb-b70d-43bd1bc0173a" over type YIELD dst(edge) as vid
+2022-08-08 13:35:43,043 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:43,054 INFO root Thread-1 : FETCH PROP ON DataType "487cf4ab-b11f-4c97-8a58-2ffd08c3d368" YIELD properties(vertex)
+2022-08-08 13:35:43,057 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:43,066 INFO root Thread-1 : GO FROM "5d74482b-1bf7-4feb-b70d-43bd1bc0173a" over constraints YIELD dst(edge) as vid
+2022-08-08 13:35:43,111 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:43,121 INFO root Thread-1 : GO FROM "5d74482b-1bf7-4feb-b70d-43bd1bc0173a" over entry_schema YIELD dst(edge) as vid
+2022-08-08 13:35:43,123 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:43,130 INFO root Thread-1 : FETCH PROP ON NodeType "580fc9b2-46b9-4999-8caf-eb7ebe5cfd4f" YIELD properties(vertex)
+2022-08-08 13:35:43,175 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:43,188 INFO root Thread-1 : GO FROM "580fc9b2-46b9-4999-8caf-eb7ebe5cfd4f" over properties YIELD dst(edge) as vid
+2022-08-08 13:35:43,190 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:43,200 INFO root Thread-1 : FETCH PROP ON PropertyDefinition "2c388e28-85e3-458a-9df8-8b4c08d1e06b" YIELD properties(vertex)
+2022-08-08 13:35:43,243 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:43,253 INFO root Thread-1 : GO FROM "2c388e28-85e3-458a-9df8-8b4c08d1e06b" over type YIELD dst(edge) as vid
+2022-08-08 13:35:43,256 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:43,265 INFO root Thread-1 : FETCH PROP ON DataType "eb00ee36-c355-4fc4-860a-8bb0726ddbb8" YIELD properties(vertex)
+2022-08-08 13:35:43,311 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:43,321 INFO root Thread-1 : GO FROM "2c388e28-85e3-458a-9df8-8b4c08d1e06b" over key_schema YIELD dst(edge) as vid
+2022-08-08 13:35:43,323 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:43,332 INFO root Thread-1 : GO FROM "2c388e28-85e3-458a-9df8-8b4c08d1e06b" over constraints YIELD dst(edge) as vid
+2022-08-08 13:35:43,374 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:43,385 INFO root Thread-1 : GO FROM "2c388e28-85e3-458a-9df8-8b4c08d1e06b" over metadata YIELD dst(edge) as vid
+2022-08-08 13:35:43,431 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:43,443 INFO root Thread-1 : GO FROM "2c388e28-85e3-458a-9df8-8b4c08d1e06b" over entry_schema YIELD dst(edge) as vid
+2022-08-08 13:35:43,446 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:43,458 INFO root Thread-1 : FETCH PROP ON PropertyDefinition "494f6e81-6e40-47a0-8d59-3cf3920307c0" YIELD properties(vertex)
+2022-08-08 13:35:43,460 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:43,471 INFO root Thread-1 : GO FROM "494f6e81-6e40-47a0-8d59-3cf3920307c0" over type YIELD dst(edge) as vid
+2022-08-08 13:35:43,515 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:43,526 INFO root Thread-1 : FETCH PROP ON DataType "eb00ee36-c355-4fc4-860a-8bb0726ddbb8" YIELD properties(vertex)
+2022-08-08 13:35:43,529 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:43,539 INFO root Thread-1 : GO FROM "494f6e81-6e40-47a0-8d59-3cf3920307c0" over key_schema YIELD dst(edge) as vid
+2022-08-08 13:35:43,542 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:43,552 INFO root Thread-1 : GO FROM "494f6e81-6e40-47a0-8d59-3cf3920307c0" over constraints YIELD dst(edge) as vid
+2022-08-08 13:35:43,595 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:43,606 INFO root Thread-1 : FETCH PROP ON ConstraintClause "a6280287-db8e-49fa-96b9-802c3045a2a1" YIELD properties(vertex)
+2022-08-08 13:35:43,609 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:43,618 INFO root Thread-1 : GO FROM "494f6e81-6e40-47a0-8d59-3cf3920307c0" over metadata YIELD dst(edge) as vid
+2022-08-08 13:35:43,662 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:43,672 INFO root Thread-1 : GO FROM "494f6e81-6e40-47a0-8d59-3cf3920307c0" over entry_schema YIELD dst(edge) as vid
+2022-08-08 13:35:43,715 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:43,727 INFO root Thread-1 : FETCH PROP ON PropertyDefinition "59540936-3012-4d65-a344-1d4fa79ab59c" YIELD properties(vertex)
+2022-08-08 13:35:43,729 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:43,739 INFO root Thread-1 : GO FROM "59540936-3012-4d65-a344-1d4fa79ab59c" over type YIELD dst(edge) as vid
+2022-08-08 13:35:43,783 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:43,795 INFO root Thread-1 : FETCH PROP ON DataType "eb00ee36-c355-4fc4-860a-8bb0726ddbb8" YIELD properties(vertex)
+2022-08-08 13:35:43,798 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:43,809 INFO root Thread-1 : GO FROM "59540936-3012-4d65-a344-1d4fa79ab59c" over key_schema YIELD dst(edge) as vid
+2022-08-08 13:35:43,812 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:43,821 INFO root Thread-1 : GO FROM "59540936-3012-4d65-a344-1d4fa79ab59c" over constraints YIELD dst(edge) as vid
+2022-08-08 13:35:43,867 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:43,876 INFO root Thread-1 : GO FROM "59540936-3012-4d65-a344-1d4fa79ab59c" over metadata YIELD dst(edge) as vid
+2022-08-08 13:35:43,879 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:43,888 INFO root Thread-1 : GO FROM "59540936-3012-4d65-a344-1d4fa79ab59c" over entry_schema YIELD dst(edge) as vid
+2022-08-08 13:35:43,935 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:43,948 INFO root Thread-1 : FETCH PROP ON PropertyDefinition "59915428-5270-4209-94a7-c15267fd92d9" YIELD properties(vertex)
+2022-08-08 13:35:43,951 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:43,961 INFO root Thread-1 : GO FROM "59915428-5270-4209-94a7-c15267fd92d9" over type YIELD dst(edge) as vid
+2022-08-08 13:35:44,007 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:44,018 INFO root Thread-1 : FETCH PROP ON DataType "eb00ee36-c355-4fc4-860a-8bb0726ddbb8" YIELD properties(vertex)
+2022-08-08 13:35:44,021 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:44,030 INFO root Thread-1 : GO FROM "59915428-5270-4209-94a7-c15267fd92d9" over key_schema YIELD dst(edge) as vid
+2022-08-08 13:35:44,075 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:44,085 INFO root Thread-1 : GO FROM "59915428-5270-4209-94a7-c15267fd92d9" over constraints YIELD dst(edge) as vid
+2022-08-08 13:35:44,087 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:44,097 INFO root Thread-1 : GO FROM "59915428-5270-4209-94a7-c15267fd92d9" over metadata YIELD dst(edge) as vid
+2022-08-08 13:35:44,143 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:44,154 INFO root Thread-1 : GO FROM "59915428-5270-4209-94a7-c15267fd92d9" over entry_schema YIELD dst(edge) as vid
+2022-08-08 13:35:44,156 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:44,167 INFO root Thread-1 : FETCH PROP ON PropertyDefinition "7233b301-9609-49b7-a4c9-300be9a232c3" YIELD properties(vertex)
+2022-08-08 13:35:44,169 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:44,179 INFO root Thread-1 : GO FROM "7233b301-9609-49b7-a4c9-300be9a232c3" over type YIELD dst(edge) as vid
+2022-08-08 13:35:44,181 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:44,190 INFO root Thread-1 : FETCH PROP ON DataType "eb00ee36-c355-4fc4-860a-8bb0726ddbb8" YIELD properties(vertex)
+2022-08-08 13:35:44,236 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:44,251 INFO root Thread-1 : GO FROM "7233b301-9609-49b7-a4c9-300be9a232c3" over key_schema YIELD dst(edge) as vid
+2022-08-08 13:35:44,253 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:44,263 INFO root Thread-1 : GO FROM "7233b301-9609-49b7-a4c9-300be9a232c3" over constraints YIELD dst(edge) as vid
+2022-08-08 13:35:44,265 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:44,277 INFO root Thread-1 : GO FROM "7233b301-9609-49b7-a4c9-300be9a232c3" over metadata YIELD dst(edge) as vid
+2022-08-08 13:35:44,323 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:44,335 INFO root Thread-1 : GO FROM "7233b301-9609-49b7-a4c9-300be9a232c3" over entry_schema YIELD dst(edge) as vid
+2022-08-08 13:35:44,338 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:44,350 INFO root Thread-1 : FETCH PROP ON PropertyDefinition "7b07d0a0-44ad-47c8-a9d1-04d50a419b22" YIELD properties(vertex)
+2022-08-08 13:35:44,353 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:44,364 INFO root Thread-1 : GO FROM "7b07d0a0-44ad-47c8-a9d1-04d50a419b22" over type YIELD dst(edge) as vid
+2022-08-08 13:35:44,407 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:44,419 INFO root Thread-1 : FETCH PROP ON DataType "eb00ee36-c355-4fc4-860a-8bb0726ddbb8" YIELD properties(vertex)
+2022-08-08 13:35:44,422 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:44,432 INFO root Thread-1 : GO FROM "7b07d0a0-44ad-47c8-a9d1-04d50a419b22" over key_schema YIELD dst(edge) as vid
+2022-08-08 13:35:44,434 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:44,443 INFO root Thread-1 : GO FROM "7b07d0a0-44ad-47c8-a9d1-04d50a419b22" over constraints YIELD dst(edge) as vid
+2022-08-08 13:35:44,445 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:44,456 INFO root Thread-1 : FETCH PROP ON ConstraintClause "b1c36951-926a-485f-9ab8-a360d38fcde1" YIELD properties(vertex)
+2022-08-08 13:35:44,499 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:44,511 INFO root Thread-1 : GO FROM "7b07d0a0-44ad-47c8-a9d1-04d50a419b22" over metadata YIELD dst(edge) as vid
+2022-08-08 13:35:44,513 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:44,522 INFO root Thread-1 : GO FROM "7b07d0a0-44ad-47c8-a9d1-04d50a419b22" over entry_schema YIELD dst(edge) as vid
+2022-08-08 13:35:44,524 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:44,534 INFO root Thread-1 : FETCH PROP ON PropertyDefinition "a1ed9a03-f779-4bc5-9372-2aca1d9460b9" YIELD properties(vertex)
+2022-08-08 13:35:44,536 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:44,546 INFO root Thread-1 : GO FROM "a1ed9a03-f779-4bc5-9372-2aca1d9460b9" over type YIELD dst(edge) as vid
+2022-08-08 13:35:44,591 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:44,601 INFO root Thread-1 : FETCH PROP ON DataType "eb00ee36-c355-4fc4-860a-8bb0726ddbb8" YIELD properties(vertex)
+2022-08-08 13:35:44,602 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:44,610 INFO root Thread-1 : GO FROM "a1ed9a03-f779-4bc5-9372-2aca1d9460b9" over key_schema YIELD dst(edge) as vid
+2022-08-08 13:35:44,655 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:44,665 INFO root Thread-1 : GO FROM "a1ed9a03-f779-4bc5-9372-2aca1d9460b9" over constraints YIELD dst(edge) as vid
+2022-08-08 13:35:44,668 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:44,678 INFO root Thread-1 : FETCH PROP ON ConstraintClause "d059255c-2cc0-4c77-a68f-af7cd9b7eb67" YIELD properties(vertex)
+2022-08-08 13:35:44,722 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:44,731 INFO root Thread-1 : GO FROM "a1ed9a03-f779-4bc5-9372-2aca1d9460b9" over metadata YIELD dst(edge) as vid
+2022-08-08 13:35:44,734 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:44,742 INFO root Thread-1 : GO FROM "a1ed9a03-f779-4bc5-9372-2aca1d9460b9" over entry_schema YIELD dst(edge) as vid
+2022-08-08 13:35:44,744 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:44,753 INFO root Thread-1 : FETCH PROP ON PropertyDefinition "ae20f78f-d478-43a0-8edd-81ce1d93c0bd" YIELD properties(vertex)
+2022-08-08 13:35:44,799 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:44,810 INFO root Thread-1 : GO FROM "ae20f78f-d478-43a0-8edd-81ce1d93c0bd" over type YIELD dst(edge) as vid
+2022-08-08 13:35:44,813 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:44,823 INFO root Thread-1 : FETCH PROP ON DataType "eb00ee36-c355-4fc4-860a-8bb0726ddbb8" YIELD properties(vertex)
+2022-08-08 13:35:44,867 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:44,878 INFO root Thread-1 : GO FROM "ae20f78f-d478-43a0-8edd-81ce1d93c0bd" over key_schema YIELD dst(edge) as vid
+2022-08-08 13:35:44,880 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:44,889 INFO root Thread-1 : GO FROM "ae20f78f-d478-43a0-8edd-81ce1d93c0bd" over constraints YIELD dst(edge) as vid
+2022-08-08 13:35:44,935 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:44,944 INFO root Thread-1 : GO FROM "ae20f78f-d478-43a0-8edd-81ce1d93c0bd" over metadata YIELD dst(edge) as vid
+2022-08-08 13:35:44,947 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:44,955 INFO root Thread-1 : GO FROM "ae20f78f-d478-43a0-8edd-81ce1d93c0bd" over entry_schema YIELD dst(edge) as vid
+2022-08-08 13:35:44,999 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:45,011 INFO root Thread-1 : FETCH PROP ON PropertyDefinition "b376fe9a-63f3-428e-8a1c-99d60e3268c0" YIELD properties(vertex)
+2022-08-08 13:35:45,014 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:45,024 INFO root Thread-1 : GO FROM "b376fe9a-63f3-428e-8a1c-99d60e3268c0" over type YIELD dst(edge) as vid
+2022-08-08 13:35:45,026 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:45,036 INFO root Thread-1 : FETCH PROP ON DataType "eb00ee36-c355-4fc4-860a-8bb0726ddbb8" YIELD properties(vertex)
+2022-08-08 13:35:45,079 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:45,092 INFO root Thread-1 : GO FROM "b376fe9a-63f3-428e-8a1c-99d60e3268c0" over key_schema YIELD dst(edge) as vid
+2022-08-08 13:35:45,094 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:45,104 INFO root Thread-1 : GO FROM "b376fe9a-63f3-428e-8a1c-99d60e3268c0" over constraints YIELD dst(edge) as vid
+2022-08-08 13:35:45,150 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:45,160 INFO root Thread-1 : GO FROM "b376fe9a-63f3-428e-8a1c-99d60e3268c0" over metadata YIELD dst(edge) as vid
+2022-08-08 13:35:45,162 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:45,170 INFO root Thread-1 : GO FROM "b376fe9a-63f3-428e-8a1c-99d60e3268c0" over entry_schema YIELD dst(edge) as vid
+2022-08-08 13:35:45,215 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:45,227 INFO root Thread-1 : FETCH PROP ON PropertyDefinition "c7d9d064-a7d8-4f2a-8327-ec8cea0f8312" YIELD properties(vertex)
+2022-08-08 13:35:45,229 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:45,240 INFO root Thread-1 : GO FROM "c7d9d064-a7d8-4f2a-8327-ec8cea0f8312" over type YIELD dst(edge) as vid
+2022-08-08 13:35:45,242 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:45,252 INFO root Thread-1 : FETCH PROP ON DataType "eb00ee36-c355-4fc4-860a-8bb0726ddbb8" YIELD properties(vertex)
+2022-08-08 13:35:45,295 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:45,305 INFO root Thread-1 : GO FROM "c7d9d064-a7d8-4f2a-8327-ec8cea0f8312" over key_schema YIELD dst(edge) as vid
+2022-08-08 13:35:45,308 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:45,317 INFO root Thread-1 : GO FROM "c7d9d064-a7d8-4f2a-8327-ec8cea0f8312" over constraints YIELD dst(edge) as vid
+2022-08-08 13:35:45,363 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:45,375 INFO root Thread-1 : FETCH PROP ON ConstraintClause "d94a0eb5-45a8-4d73-a83a-171e2694ab66" YIELD properties(vertex)
+2022-08-08 13:35:45,379 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:45,388 INFO root Thread-1 : GO FROM "c7d9d064-a7d8-4f2a-8327-ec8cea0f8312" over metadata YIELD dst(edge) as vid
+2022-08-08 13:35:45,431 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:45,443 INFO root Thread-1 : GO FROM "c7d9d064-a7d8-4f2a-8327-ec8cea0f8312" over entry_schema YIELD dst(edge) as vid
+2022-08-08 13:35:45,446 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:45,457 INFO root Thread-1 : FETCH PROP ON PropertyDefinition "cd2167f6-850d-4d7e-ba34-3e005ff388a6" YIELD properties(vertex)
+2022-08-08 13:35:45,459 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:45,471 INFO root Thread-1 : GO FROM "cd2167f6-850d-4d7e-ba34-3e005ff388a6" over type YIELD dst(edge) as vid
+2022-08-08 13:35:45,515 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:45,526 INFO root Thread-1 : FETCH PROP ON DataType "eb00ee36-c355-4fc4-860a-8bb0726ddbb8" YIELD properties(vertex)
+2022-08-08 13:35:45,529 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:45,538 INFO root Thread-1 : GO FROM "cd2167f6-850d-4d7e-ba34-3e005ff388a6" over key_schema YIELD dst(edge) as vid
+2022-08-08 13:35:45,583 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:45,593 INFO root Thread-1 : GO FROM "cd2167f6-850d-4d7e-ba34-3e005ff388a6" over constraints YIELD dst(edge) as vid
+2022-08-08 13:35:45,596 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:45,606 INFO root Thread-1 : GO FROM "cd2167f6-850d-4d7e-ba34-3e005ff388a6" over metadata YIELD dst(edge) as vid
+2022-08-08 13:35:45,651 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:45,662 INFO root Thread-1 : GO FROM "cd2167f6-850d-4d7e-ba34-3e005ff388a6" over entry_schema YIELD dst(edge) as vid
+2022-08-08 13:35:45,663 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:45,674 INFO root Thread-1 : FETCH PROP ON PropertyDefinition "f4ddef09-7a31-431b-acb9-75e0e29db073" YIELD properties(vertex)
+2022-08-08 13:35:45,675 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:45,685 INFO root Thread-1 : GO FROM "f4ddef09-7a31-431b-acb9-75e0e29db073" over type YIELD dst(edge) as vid
+2022-08-08 13:35:45,731 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:45,742 INFO root Thread-1 : FETCH PROP ON DataType "eb00ee36-c355-4fc4-860a-8bb0726ddbb8" YIELD properties(vertex)
+2022-08-08 13:35:45,744 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:45,754 INFO root Thread-1 : GO FROM "f4ddef09-7a31-431b-acb9-75e0e29db073" over key_schema YIELD dst(edge) as vid
+2022-08-08 13:35:45,757 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:45,767 INFO root Thread-1 : GO FROM "f4ddef09-7a31-431b-acb9-75e0e29db073" over constraints YIELD dst(edge) as vid
+2022-08-08 13:35:45,769 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:45,779 INFO root Thread-1 : GO FROM "f4ddef09-7a31-431b-acb9-75e0e29db073" over metadata YIELD dst(edge) as vid
+2022-08-08 13:35:45,823 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:45,834 INFO root Thread-1 : GO FROM "f4ddef09-7a31-431b-acb9-75e0e29db073" over entry_schema YIELD dst(edge) as vid
+2022-08-08 13:35:45,837 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:45,847 INFO root Thread-1 : GO FROM "580fc9b2-46b9-4999-8caf-eb7ebe5cfd4f" over interfaces YIELD dst(edge) as vid
+2022-08-08 13:35:45,850 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:45,860 INFO root Thread-1 : GO FROM "580fc9b2-46b9-4999-8caf-eb7ebe5cfd4f" over artifacts YIELD dst(edge) as vid
+2022-08-08 13:35:45,903 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:45,914 INFO root Thread-1 : GO FROM "580fc9b2-46b9-4999-8caf-eb7ebe5cfd4f" over derived_from YIELD dst(edge) as vid
+2022-08-08 13:35:45,917 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:45,928 INFO root Thread-1 : FETCH PROP ON NodeType "ae7a3a9f-aeb7-4b9c-a7ba-6d1c4d81d89f" YIELD properties(vertex)
+2022-08-08 13:35:45,971 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:45,983 INFO root Thread-1 : GO FROM "580fc9b2-46b9-4999-8caf-eb7ebe5cfd4f" over requirements YIELD dst(edge) as vid
+2022-08-08 13:35:45,985 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:46,002 INFO root Thread-1 : FETCH PROP ON RequirementDefinition "913174f7-16ab-4b1d-812c-f2343308b12b" YIELD properties(vertex)
+2022-08-08 13:35:46,047 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:46,059 INFO root Thread-1 : GO FROM "913174f7-16ab-4b1d-812c-f2343308b12b" over node YIELD dst(edge) as vid
+2022-08-08 13:35:46,061 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:46,071 INFO root Thread-1 : GO FROM "913174f7-16ab-4b1d-812c-f2343308b12b" over capability YIELD dst(edge) as vid
+2022-08-08 13:35:46,072 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:46,081 INFO root Thread-1 : FETCH PROP ON CapabilityType "d36b51e0-abb7-4144-910b-1c69c355be98" YIELD properties(vertex)
+2022-08-08 13:35:46,084 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:46,093 INFO root Thread-1 : GO FROM "913174f7-16ab-4b1d-812c-f2343308b12b" over interfaces YIELD dst(edge) as vid
+2022-08-08 13:35:46,139 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:46,151 INFO root Thread-1 : GO FROM "913174f7-16ab-4b1d-812c-f2343308b12b" over relationship YIELD dst(edge) as vid
+2022-08-08 13:35:46,154 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:46,163 INFO root Thread-1 : FETCH PROP ON RelationshipType "e6ac17b5-6c35-4366-ae89-8ee924b3b00b" YIELD properties(vertex)
+2022-08-08 13:35:46,165 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:46,173 INFO root Thread-1 : GO FROM "913174f7-16ab-4b1d-812c-f2343308b12b" over occurrences YIELD dst(edge) as vid
+2022-08-08 13:35:46,175 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:46,184 INFO root Thread-1 : FETCH PROP ON Occurrences "aa69f707-59e4-461c-aab5-319b00f03fee" YIELD properties(vertex)
+2022-08-08 13:35:46,227 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:46,238 INFO root Thread-1 : GO FROM "580fc9b2-46b9-4999-8caf-eb7ebe5cfd4f" over metadata YIELD dst(edge) as vid
+2022-08-08 13:35:46,241 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:46,251 INFO root Thread-1 : FETCH PROP ON Metadata "3209f282-3231-49f8-86cc-85390303845f" YIELD properties(vertex)
+2022-08-08 13:35:46,253 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:46,262 INFO root Thread-1 : FETCH PROP ON Metadata "4f198dad-fa47-4589-a8c7-0a99f33a88b8" YIELD properties(vertex)
+2022-08-08 13:35:46,307 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:46,318 INFO root Thread-1 : FETCH PROP ON Metadata "fe1eae28-efb6-4cbc-a457-2971cd8020b2" YIELD properties(vertex)
+2022-08-08 13:35:46,321 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:46,331 INFO root Thread-1 : GO FROM "580fc9b2-46b9-4999-8caf-eb7ebe5cfd4f" over capabilities YIELD dst(edge) as vid
+2022-08-08 13:35:46,379 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:46,391 INFO root Thread-1 : FETCH PROP ON CapabilityDefinition "fb2ee394-dc8d-4c32-8cf1-078373e6a993" YIELD properties(vertex)
+2022-08-08 13:35:46,394 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:46,405 INFO root Thread-1 : GO FROM "fb2ee394-dc8d-4c32-8cf1-078373e6a993" over type YIELD dst(edge) as vid
+2022-08-08 13:35:46,407 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:46,419 INFO root Thread-1 : FETCH PROP ON CapabilityType "1e7ee03b-2c6c-45f2-a8aa-36539b83edd6" YIELD properties(vertex)
+2022-08-08 13:35:46,421 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:46,430 INFO root Thread-1 : GO FROM "fb2ee394-dc8d-4c32-8cf1-078373e6a993" over properties YIELD dst(edge) as vid
+2022-08-08 13:35:46,479 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:46,489 INFO root Thread-1 : GO FROM "fb2ee394-dc8d-4c32-8cf1-078373e6a993" over valid_source_types YIELD dst(edge) as vid
+2022-08-08 13:35:46,492 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:46,500 INFO root Thread-1 : GO FROM "fb2ee394-dc8d-4c32-8cf1-078373e6a993" over attributes YIELD dst(edge) as vid
+2022-08-08 13:35:46,547 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:46,558 INFO root Thread-1 : GO FROM "fb2ee394-dc8d-4c32-8cf1-078373e6a993" over occurrences YIELD dst(edge) as vid
+2022-08-08 13:35:46,560 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:46,568 INFO root Thread-1 : GO FROM "580fc9b2-46b9-4999-8caf-eb7ebe5cfd4f" over attributes YIELD dst(edge) as vid
+2022-08-08 13:35:46,614 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:46,624 INFO root Thread-1 : FETCH PROP ON NodeType "6485e247-8c80-4fcc-b751-2152653fb644" YIELD properties(vertex)
+2022-08-08 13:35:46,626 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:46,633 INFO root Thread-1 : GO FROM "6485e247-8c80-4fcc-b751-2152653fb644" over properties YIELD dst(edge) as vid
+2022-08-08 13:35:46,635 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:46,642 INFO root Thread-1 : GO FROM "6485e247-8c80-4fcc-b751-2152653fb644" over interfaces YIELD dst(edge) as vid
+2022-08-08 13:35:46,687 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:46,697 INFO root Thread-1 : FETCH PROP ON InterfaceDefinition "574b7f0d-a7da-4b6d-80d8-94ff1e911113" YIELD properties(vertex)
+2022-08-08 13:35:46,698 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:46,707 INFO root Thread-1 : GO FROM "574b7f0d-a7da-4b6d-80d8-94ff1e911113" over type YIELD dst(edge) as vid
+2022-08-08 13:35:46,751 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:46,760 INFO root Thread-1 : FETCH PROP ON InterfaceType "f7d08e8e-da3a-45ba-acfa-62a385062036" YIELD properties(vertex)
+2022-08-08 13:35:46,762 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:46,769 INFO root Thread-1 : GO FROM "574b7f0d-a7da-4b6d-80d8-94ff1e911113" over inputs YIELD dst(edge) as vid
+2022-08-08 13:35:46,771 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:46,778 INFO root Thread-1 : GO FROM "574b7f0d-a7da-4b6d-80d8-94ff1e911113" over operations YIELD dst(edge) as vid
+2022-08-08 13:35:46,823 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:46,830 INFO root Thread-1 : GO FROM "574b7f0d-a7da-4b6d-80d8-94ff1e911113" over notifications YIELD dst(edge) as vid
+2022-08-08 13:35:46,832 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:46,839 INFO root Thread-1 : GO FROM "6485e247-8c80-4fcc-b751-2152653fb644" over artifacts YIELD dst(edge) as vid
+2022-08-08 13:35:46,840 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:46,847 INFO root Thread-1 : GO FROM "6485e247-8c80-4fcc-b751-2152653fb644" over derived_from YIELD dst(edge) as vid
+2022-08-08 13:35:46,849 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:46,856 INFO root Thread-1 : GO FROM "6485e247-8c80-4fcc-b751-2152653fb644" over requirements YIELD dst(edge) as vid
+2022-08-08 13:35:46,899 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:46,909 INFO root Thread-1 : FETCH PROP ON RequirementDefinition "38173ed8-7b6a-4309-a257-110ff8fd69a0" YIELD properties(vertex)
+2022-08-08 13:35:46,910 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:46,918 INFO root Thread-1 : GO FROM "38173ed8-7b6a-4309-a257-110ff8fd69a0" over node YIELD dst(edge) as vid
+2022-08-08 13:35:46,920 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:46,926 INFO root Thread-1 : FETCH PROP ON NodeType "6485e247-8c80-4fcc-b751-2152653fb644" YIELD properties(vertex)
+2022-08-08 13:35:46,928 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:46,933 INFO root Thread-1 : GO FROM "38173ed8-7b6a-4309-a257-110ff8fd69a0" over capability YIELD dst(edge) as vid
+2022-08-08 13:35:46,935 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:46,940 INFO root Thread-1 : FETCH PROP ON CapabilityType "9caccfba-43c7-4881-b3c5-95698a7624a2" YIELD properties(vertex)
+2022-08-08 13:35:46,982 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:46,990 INFO root Thread-1 : GO FROM "38173ed8-7b6a-4309-a257-110ff8fd69a0" over interfaces YIELD dst(edge) as vid
+2022-08-08 13:35:46,991 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:46,997 INFO root Thread-1 : GO FROM "38173ed8-7b6a-4309-a257-110ff8fd69a0" over relationship YIELD dst(edge) as vid
+2022-08-08 13:35:47,042 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:47,049 INFO root Thread-1 : FETCH PROP ON RelationshipType "e6ac17b5-6c35-4366-ae89-8ee924b3b00b" YIELD properties(vertex)
+2022-08-08 13:35:47,050 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:47,057 INFO root Thread-1 : GO FROM "38173ed8-7b6a-4309-a257-110ff8fd69a0" over occurrences YIELD dst(edge) as vid
+2022-08-08 13:35:47,058 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:47,063 INFO root Thread-1 : FETCH PROP ON Occurrences "d5a5d482-ecf7-4557-912d-bccc788034b4" YIELD properties(vertex)
+2022-08-08 13:35:47,106 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:47,113 INFO root Thread-1 : GO FROM "6485e247-8c80-4fcc-b751-2152653fb644" over metadata YIELD dst(edge) as vid
+2022-08-08 13:35:47,114 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:47,120 INFO root Thread-1 : FETCH PROP ON Metadata "2763f39e-f004-416d-a3e5-7f3a8e286169" YIELD properties(vertex)
+2022-08-08 13:35:47,162 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:47,168 INFO root Thread-1 : FETCH PROP ON Metadata "944d0f9a-ac0d-4338-a195-2f41e1076c21" YIELD properties(vertex)
+2022-08-08 13:35:47,169 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:47,174 INFO root Thread-1 : FETCH PROP ON Metadata "f1b8d8f8-201e-478b-81a7-9b0e8301b655" YIELD properties(vertex)
+2022-08-08 13:35:47,175 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:47,179 INFO root Thread-1 : GO FROM "6485e247-8c80-4fcc-b751-2152653fb644" over capabilities YIELD dst(edge) as vid
+2022-08-08 13:35:47,180 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:47,185 INFO root Thread-1 : FETCH PROP ON CapabilityDefinition "c6c3b29b-323d-488e-80e2-bdad7bc4fe60" YIELD properties(vertex)
+2022-08-08 13:35:47,186 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:47,191 INFO root Thread-1 : GO FROM "c6c3b29b-323d-488e-80e2-bdad7bc4fe60" over type YIELD dst(edge) as vid
+2022-08-08 13:35:47,235 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:47,242 INFO root Thread-1 : FETCH PROP ON CapabilityType "9caccfba-43c7-4881-b3c5-95698a7624a2" YIELD properties(vertex)
+2022-08-08 13:35:47,244 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:47,250 INFO root Thread-1 : GO FROM "c6c3b29b-323d-488e-80e2-bdad7bc4fe60" over properties YIELD dst(edge) as vid
+2022-08-08 13:35:47,295 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:47,302 INFO root Thread-1 : GO FROM "c6c3b29b-323d-488e-80e2-bdad7bc4fe60" over valid_source_types YIELD dst(edge) as vid
+2022-08-08 13:35:47,304 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:47,309 INFO root Thread-1 : GO FROM "c6c3b29b-323d-488e-80e2-bdad7bc4fe60" over attributes YIELD dst(edge) as vid
+2022-08-08 13:35:47,310 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:47,315 INFO root Thread-1 : GO FROM "c6c3b29b-323d-488e-80e2-bdad7bc4fe60" over occurrences YIELD dst(edge) as vid
+2022-08-08 13:35:47,362 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:47,369 INFO root Thread-1 : FETCH PROP ON Occurrences "66acec7f-5984-4f97-baa5-78ddaff8e4eb" YIELD properties(vertex)
+2022-08-08 13:35:47,371 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:47,376 INFO root Thread-1 : GO FROM "6485e247-8c80-4fcc-b751-2152653fb644" over attributes YIELD dst(edge) as vid
+2022-08-08 13:35:47,378 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:47,383 INFO root Thread-1 : FETCH PROP ON AttributeDefinition "63596c1e-ccd1-4f17-8896-ac2c518ec97f" YIELD properties(vertex)
+2022-08-08 13:35:47,426 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:47,434 INFO root Thread-1 : GO FROM "63596c1e-ccd1-4f17-8896-ac2c518ec97f" over key_schema YIELD dst(edge) as vid
+2022-08-08 13:35:47,436 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:47,442 INFO root Thread-1 : GO FROM "63596c1e-ccd1-4f17-8896-ac2c518ec97f" over type YIELD dst(edge) as vid
+2022-08-08 13:35:47,443 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:47,448 INFO root Thread-1 : FETCH PROP ON DataType "eb00ee36-c355-4fc4-860a-8bb0726ddbb8" YIELD properties(vertex)
+2022-08-08 13:35:47,494 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:47,500 INFO root Thread-1 : GO FROM "63596c1e-ccd1-4f17-8896-ac2c518ec97f" over entry_schema YIELD dst(edge) as vid
+2022-08-08 13:35:47,501 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:47,506 INFO root Thread-1 : FETCH PROP ON AttributeDefinition "cb6d5f95-5de4-4cfa-a074-c85b190ca0d8" YIELD properties(vertex)
+2022-08-08 13:35:47,507 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:47,512 INFO root Thread-1 : GO FROM "cb6d5f95-5de4-4cfa-a074-c85b190ca0d8" over key_schema YIELD dst(edge) as vid
+2022-08-08 13:35:47,554 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:47,560 INFO root Thread-1 : GO FROM "cb6d5f95-5de4-4cfa-a074-c85b190ca0d8" over type YIELD dst(edge) as vid
+2022-08-08 13:35:47,561 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:47,566 INFO root Thread-1 : FETCH PROP ON DataType "eb00ee36-c355-4fc4-860a-8bb0726ddbb8" YIELD properties(vertex)
+2022-08-08 13:35:47,567 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:47,571 INFO root Thread-1 : GO FROM "cb6d5f95-5de4-4cfa-a074-c85b190ca0d8" over entry_schema YIELD dst(edge) as vid
+2022-08-08 13:35:47,573 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:47,577 INFO root Thread-1 : FETCH PROP ON AttributeDefinition "d420b3e5-a3fc-4dee-b1c8-95742e47f203" YIELD properties(vertex)
+2022-08-08 13:35:47,579 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:47,584 INFO root Thread-1 : GO FROM "d420b3e5-a3fc-4dee-b1c8-95742e47f203" over key_schema YIELD dst(edge) as vid
+2022-08-08 13:35:47,626 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:47,631 INFO root Thread-1 : GO FROM "d420b3e5-a3fc-4dee-b1c8-95742e47f203" over type YIELD dst(edge) as vid
+2022-08-08 13:35:47,632 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:47,636 INFO root Thread-1 : FETCH PROP ON DataType "eb00ee36-c355-4fc4-860a-8bb0726ddbb8" YIELD properties(vertex)
+2022-08-08 13:35:47,638 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:47,642 INFO root Thread-1 : GO FROM "d420b3e5-a3fc-4dee-b1c8-95742e47f203" over entry_schema YIELD dst(edge) as vid
+2022-08-08 13:35:47,686 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:47,692 INFO root Thread-1 : FETCH PROP ON NodeType "8d1f4c46-c479-43b9-a1d1-cc5fcbf0828a" YIELD properties(vertex)
+2022-08-08 13:35:47,693 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:47,699 INFO root Thread-1 : GO FROM "8d1f4c46-c479-43b9-a1d1-cc5fcbf0828a" over properties YIELD dst(edge) as vid
+2022-08-08 13:35:47,700 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:47,705 INFO root Thread-1 : FETCH PROP ON PropertyDefinition "aa9084fd-7ada-48fa-afe9-68118e4502d3" YIELD properties(vertex)
+2022-08-08 13:35:47,707 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:47,712 INFO root Thread-1 : GO FROM "aa9084fd-7ada-48fa-afe9-68118e4502d3" over type YIELD dst(edge) as vid
+2022-08-08 13:35:47,713 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:47,718 INFO root Thread-1 : FETCH PROP ON DataType "eb00ee36-c355-4fc4-860a-8bb0726ddbb8" YIELD properties(vertex)
+2022-08-08 13:35:47,720 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:47,725 INFO root Thread-1 : GO FROM "aa9084fd-7ada-48fa-afe9-68118e4502d3" over key_schema YIELD dst(edge) as vid
+2022-08-08 13:35:47,727 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:47,731 INFO root Thread-1 : GO FROM "aa9084fd-7ada-48fa-afe9-68118e4502d3" over constraints YIELD dst(edge) as vid
+2022-08-08 13:35:47,774 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:47,780 INFO root Thread-1 : GO FROM "aa9084fd-7ada-48fa-afe9-68118e4502d3" over metadata YIELD dst(edge) as vid
+2022-08-08 13:35:47,782 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:47,788 INFO root Thread-1 : GO FROM "aa9084fd-7ada-48fa-afe9-68118e4502d3" over entry_schema YIELD dst(edge) as vid
+2022-08-08 13:35:47,831 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:47,839 INFO root Thread-1 : FETCH PROP ON PropertyDefinition "cac14815-23e6-41d1-a0f9-13ca0756664d" YIELD properties(vertex)
+2022-08-08 13:35:47,841 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:47,849 INFO root Thread-1 : GO FROM "cac14815-23e6-41d1-a0f9-13ca0756664d" over type YIELD dst(edge) as vid
+2022-08-08 13:35:47,850 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:47,858 INFO root Thread-1 : FETCH PROP ON DataType "eb00ee36-c355-4fc4-860a-8bb0726ddbb8" YIELD properties(vertex)
+2022-08-08 13:35:47,859 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:47,866 INFO root Thread-1 : GO FROM "cac14815-23e6-41d1-a0f9-13ca0756664d" over key_schema YIELD dst(edge) as vid
+2022-08-08 13:35:47,910 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:47,916 INFO root Thread-1 : GO FROM "cac14815-23e6-41d1-a0f9-13ca0756664d" over constraints YIELD dst(edge) as vid
+2022-08-08 13:35:47,918 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:47,923 INFO root Thread-1 : GO FROM "cac14815-23e6-41d1-a0f9-13ca0756664d" over metadata YIELD dst(edge) as vid
+2022-08-08 13:35:47,971 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:47,979 INFO root Thread-1 : GO FROM "cac14815-23e6-41d1-a0f9-13ca0756664d" over entry_schema YIELD dst(edge) as vid
+2022-08-08 13:35:47,981 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:47,989 INFO root Thread-1 : GO FROM "8d1f4c46-c479-43b9-a1d1-cc5fcbf0828a" over interfaces YIELD dst(edge) as vid
+2022-08-08 13:35:48,035 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:48,044 INFO root Thread-1 : GO FROM "8d1f4c46-c479-43b9-a1d1-cc5fcbf0828a" over artifacts YIELD dst(edge) as vid
+2022-08-08 13:35:48,047 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:48,056 INFO root Thread-1 : GO FROM "8d1f4c46-c479-43b9-a1d1-cc5fcbf0828a" over derived_from YIELD dst(edge) as vid
+2022-08-08 13:35:48,098 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:48,108 INFO root Thread-1 : FETCH PROP ON NodeType "b869ce88-0abd-4ada-8ea4-1b43c7ba34fc" YIELD properties(vertex)
+2022-08-08 13:35:48,110 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:48,118 INFO root Thread-1 : GO FROM "8d1f4c46-c479-43b9-a1d1-cc5fcbf0828a" over requirements YIELD dst(edge) as vid
+2022-08-08 13:35:48,120 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:48,129 INFO root Thread-1 : GO FROM "8d1f4c46-c479-43b9-a1d1-cc5fcbf0828a" over metadata YIELD dst(edge) as vid
+2022-08-08 13:35:48,131 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:48,138 INFO root Thread-1 : FETCH PROP ON Metadata "44b2616f-3546-44cd-8a34-a3fd52978fd0" YIELD properties(vertex)
+2022-08-08 13:35:48,182 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:48,192 INFO root Thread-1 : FETCH PROP ON Metadata "bd15d810-f2e4-4e88-a320-ec71bd5f963a" YIELD properties(vertex)
+2022-08-08 13:35:48,195 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:48,204 INFO root Thread-1 : FETCH PROP ON Metadata "bf0d7d28-7c5d-4fec-816b-929f33c76f68" YIELD properties(vertex)
+2022-08-08 13:35:48,247 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:48,256 INFO root Thread-1 : GO FROM "8d1f4c46-c479-43b9-a1d1-cc5fcbf0828a" over capabilities YIELD dst(edge) as vid
+2022-08-08 13:35:48,258 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:48,267 INFO root Thread-1 : FETCH PROP ON CapabilityDefinition "06180d78-3700-42b7-8646-4c2e801c6f51" YIELD properties(vertex)
+2022-08-08 13:35:48,310 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:48,319 INFO root Thread-1 : GO FROM "06180d78-3700-42b7-8646-4c2e801c6f51" over type YIELD dst(edge) as vid
+2022-08-08 13:35:48,322 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:48,330 INFO root Thread-1 : FETCH PROP ON CapabilityType "39278d1c-728c-4dfb-a89e-51e8256edc88" YIELD properties(vertex)
+2022-08-08 13:35:48,374 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:48,383 INFO root Thread-1 : GO FROM "06180d78-3700-42b7-8646-4c2e801c6f51" over properties YIELD dst(edge) as vid
+2022-08-08 13:35:48,384 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:48,392 INFO root Thread-1 : GO FROM "06180d78-3700-42b7-8646-4c2e801c6f51" over valid_source_types YIELD dst(edge) as vid
+2022-08-08 13:35:48,434 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:48,442 INFO root Thread-1 : GO FROM "06180d78-3700-42b7-8646-4c2e801c6f51" over attributes YIELD dst(edge) as vid
+2022-08-08 13:35:48,444 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:48,451 INFO root Thread-1 : GO FROM "06180d78-3700-42b7-8646-4c2e801c6f51" over occurrences YIELD dst(edge) as vid
+2022-08-08 13:35:48,494 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:48,503 INFO root Thread-1 : FETCH PROP ON Occurrences "dfc44774-4c4e-46da-bbf2-458958deebc0" YIELD properties(vertex)
+2022-08-08 13:35:48,504 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:48,512 INFO root Thread-1 : GO FROM "8d1f4c46-c479-43b9-a1d1-cc5fcbf0828a" over attributes YIELD dst(edge) as vid
+2022-08-08 13:35:48,554 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:48,563 INFO root Thread-1 : FETCH PROP ON NodeType "ae7a3a9f-aeb7-4b9c-a7ba-6d1c4d81d89f" YIELD properties(vertex)
+2022-08-08 13:35:48,566 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:48,574 INFO root Thread-1 : GO FROM "ae7a3a9f-aeb7-4b9c-a7ba-6d1c4d81d89f" over properties YIELD dst(edge) as vid
+2022-08-08 13:35:48,577 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:48,585 INFO root Thread-1 : FETCH PROP ON PropertyDefinition "378f1189-aebd-4c04-9de2-9af226956af1" YIELD properties(vertex)
+2022-08-08 13:35:48,586 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:48,594 INFO root Thread-1 : GO FROM "378f1189-aebd-4c04-9de2-9af226956af1" over type YIELD dst(edge) as vid
+2022-08-08 13:35:48,638 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:48,648 INFO root Thread-1 : FETCH PROP ON DataType "53b8329e-9574-418d-956d-c1f0e8cc231f" YIELD properties(vertex)
+2022-08-08 13:35:48,650 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:48,658 INFO root Thread-1 : GO FROM "378f1189-aebd-4c04-9de2-9af226956af1" over key_schema YIELD dst(edge) as vid
+2022-08-08 13:35:48,703 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:48,711 INFO root Thread-1 : GO FROM "378f1189-aebd-4c04-9de2-9af226956af1" over constraints YIELD dst(edge) as vid
+2022-08-08 13:35:48,713 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:48,721 INFO root Thread-1 : GO FROM "378f1189-aebd-4c04-9de2-9af226956af1" over metadata YIELD dst(edge) as vid
+2022-08-08 13:35:48,722 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:48,729 INFO root Thread-1 : GO FROM "378f1189-aebd-4c04-9de2-9af226956af1" over entry_schema YIELD dst(edge) as vid
+2022-08-08 13:35:48,731 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:48,739 INFO root Thread-1 : FETCH PROP ON PropertyDefinition "9d8529f0-6285-4b36-acdd-3ae6e4c4ea5b" YIELD properties(vertex)
+2022-08-08 13:35:48,782 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:48,790 INFO root Thread-1 : GO FROM "9d8529f0-6285-4b36-acdd-3ae6e4c4ea5b" over type YIELD dst(edge) as vid
+2022-08-08 13:35:48,792 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:48,798 INFO root Thread-1 : FETCH PROP ON DataType "0044a102-8545-47f6-b784-90e8754168f4" YIELD properties(vertex)
+2022-08-08 13:35:48,801 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:48,807 INFO root Thread-1 : GO FROM "9d8529f0-6285-4b36-acdd-3ae6e4c4ea5b" over key_schema YIELD dst(edge) as vid
+2022-08-08 13:35:48,857 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:48,887 INFO root Thread-1 : GO FROM "9d8529f0-6285-4b36-acdd-3ae6e4c4ea5b" over constraints YIELD dst(edge) as vid
+2022-08-08 13:35:48,889 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:48,897 INFO root Thread-1 : GO FROM "9d8529f0-6285-4b36-acdd-3ae6e4c4ea5b" over metadata YIELD dst(edge) as vid
+2022-08-08 13:35:48,943 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:48,954 INFO root Thread-1 : GO FROM "9d8529f0-6285-4b36-acdd-3ae6e4c4ea5b" over entry_schema YIELD dst(edge) as vid
+2022-08-08 13:35:48,955 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:48,963 INFO root Thread-1 : GO FROM "ae7a3a9f-aeb7-4b9c-a7ba-6d1c4d81d89f" over interfaces YIELD dst(edge) as vid
+2022-08-08 13:35:48,965 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:48,973 INFO root Thread-1 : GO FROM "ae7a3a9f-aeb7-4b9c-a7ba-6d1c4d81d89f" over artifacts YIELD dst(edge) as vid
+2022-08-08 13:35:48,975 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:48,984 INFO root Thread-1 : GO FROM "ae7a3a9f-aeb7-4b9c-a7ba-6d1c4d81d89f" over derived_from YIELD dst(edge) as vid
+2022-08-08 13:35:48,986 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:48,995 INFO root Thread-1 : FETCH PROP ON NodeType "6485e247-8c80-4fcc-b751-2152653fb644" YIELD properties(vertex)
+2022-08-08 13:35:48,997 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:49,005 INFO root Thread-1 : GO FROM "ae7a3a9f-aeb7-4b9c-a7ba-6d1c4d81d89f" over requirements YIELD dst(edge) as vid
+2022-08-08 13:35:49,051 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:49,060 INFO root Thread-1 : FETCH PROP ON RequirementDefinition "c1c21857-03a0-4ff5-86cf-acfeb29a0a55" YIELD properties(vertex)
+2022-08-08 13:35:49,062 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:49,071 INFO root Thread-1 : GO FROM "c1c21857-03a0-4ff5-86cf-acfeb29a0a55" over node YIELD dst(edge) as vid
+2022-08-08 13:35:49,115 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:49,124 INFO root Thread-1 : FETCH PROP ON NodeType "57354182-8ae4-4443-9e44-2339e0017b90" YIELD properties(vertex)
+2022-08-08 13:35:49,127 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:49,137 INFO root Thread-1 : GO FROM "c1c21857-03a0-4ff5-86cf-acfeb29a0a55" over capability YIELD dst(edge) as vid
+2022-08-08 13:35:49,183 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:49,193 INFO root Thread-1 : FETCH PROP ON CapabilityType "b39dbedc-4aa2-418b-b616-b8ef4380310d" YIELD properties(vertex)
+2022-08-08 13:35:49,195 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:49,204 INFO root Thread-1 : GO FROM "c1c21857-03a0-4ff5-86cf-acfeb29a0a55" over interfaces YIELD dst(edge) as vid
+2022-08-08 13:35:49,246 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:49,255 INFO root Thread-1 : GO FROM "c1c21857-03a0-4ff5-86cf-acfeb29a0a55" over relationship YIELD dst(edge) as vid
+2022-08-08 13:35:49,257 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:49,266 INFO root Thread-1 : FETCH PROP ON RelationshipType "432a3ecb-2b82-4cea-9b28-c05ea5615793" YIELD properties(vertex)
+2022-08-08 13:35:49,314 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:49,324 INFO root Thread-1 : GO FROM "c1c21857-03a0-4ff5-86cf-acfeb29a0a55" over occurrences YIELD dst(edge) as vid
+2022-08-08 13:35:49,326 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:49,335 INFO root Thread-1 : GO FROM "ae7a3a9f-aeb7-4b9c-a7ba-6d1c4d81d89f" over metadata YIELD dst(edge) as vid
+2022-08-08 13:35:49,378 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:49,386 INFO root Thread-1 : GO FROM "ae7a3a9f-aeb7-4b9c-a7ba-6d1c4d81d89f" over capabilities YIELD dst(edge) as vid
+2022-08-08 13:35:49,389 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:49,397 INFO root Thread-1 : GO FROM "ae7a3a9f-aeb7-4b9c-a7ba-6d1c4d81d89f" over attributes YIELD dst(edge) as vid
+2022-08-08 13:35:49,443 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:49,452 INFO root Thread-1 : FETCH PROP ON NodeType "b869ce88-0abd-4ada-8ea4-1b43c7ba34fc" YIELD properties(vertex)
+2022-08-08 13:35:49,455 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:49,464 INFO root Thread-1 : GO FROM "b869ce88-0abd-4ada-8ea4-1b43c7ba34fc" over properties YIELD dst(edge) as vid
+2022-08-08 13:35:49,467 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:49,477 INFO root Thread-1 : FETCH PROP ON PropertyDefinition "d0d825cb-90a4-4162-9d8c-981b466e848e" YIELD properties(vertex)
+2022-08-08 13:35:49,523 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:49,535 INFO root Thread-1 : GO FROM "d0d825cb-90a4-4162-9d8c-981b466e848e" over type YIELD dst(edge) as vid
+2022-08-08 13:35:49,538 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:49,548 INFO root Thread-1 : FETCH PROP ON DataType "eb00ee36-c355-4fc4-860a-8bb0726ddbb8" YIELD properties(vertex)
+2022-08-08 13:35:49,550 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:49,560 INFO root Thread-1 : GO FROM "d0d825cb-90a4-4162-9d8c-981b466e848e" over key_schema YIELD dst(edge) as vid
+2022-08-08 13:35:49,602 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:49,611 INFO root Thread-1 : GO FROM "d0d825cb-90a4-4162-9d8c-981b466e848e" over constraints YIELD dst(edge) as vid
+2022-08-08 13:35:49,613 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:49,621 INFO root Thread-1 : GO FROM "d0d825cb-90a4-4162-9d8c-981b466e848e" over metadata YIELD dst(edge) as vid
+2022-08-08 13:35:49,667 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:49,677 INFO root Thread-1 : GO FROM "d0d825cb-90a4-4162-9d8c-981b466e848e" over entry_schema YIELD dst(edge) as vid
+2022-08-08 13:35:49,680 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:49,690 INFO root Thread-1 : FETCH PROP ON PropertyDefinition "fe3c9700-a46a-4f33-a8f7-e13f6df7a578" YIELD properties(vertex)
+2022-08-08 13:35:49,734 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:49,744 INFO root Thread-1 : GO FROM "fe3c9700-a46a-4f33-a8f7-e13f6df7a578" over type YIELD dst(edge) as vid
+2022-08-08 13:35:49,747 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:49,756 INFO root Thread-1 : FETCH PROP ON DataType "d4832332-e2ac-4867-a4bd-6754e69a8d4d" YIELD properties(vertex)
+2022-08-08 13:35:49,799 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:49,808 INFO root Thread-1 : GO FROM "fe3c9700-a46a-4f33-a8f7-e13f6df7a578" over key_schema YIELD dst(edge) as vid
+2022-08-08 13:35:49,811 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:49,819 INFO root Thread-1 : GO FROM "fe3c9700-a46a-4f33-a8f7-e13f6df7a578" over constraints YIELD dst(edge) as vid
+2022-08-08 13:35:49,863 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:49,873 INFO root Thread-1 : FETCH PROP ON ConstraintClause "e5043a77-e6af-46a3-9a60-6f4651c79933" YIELD properties(vertex)
+2022-08-08 13:35:49,876 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:49,884 INFO root Thread-1 : GO FROM "fe3c9700-a46a-4f33-a8f7-e13f6df7a578" over metadata YIELD dst(edge) as vid
+2022-08-08 13:35:49,930 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:49,938 INFO root Thread-1 : GO FROM "fe3c9700-a46a-4f33-a8f7-e13f6df7a578" over entry_schema YIELD dst(edge) as vid
+2022-08-08 13:35:49,940 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:49,948 INFO root Thread-1 : GO FROM "b869ce88-0abd-4ada-8ea4-1b43c7ba34fc" over interfaces YIELD dst(edge) as vid
+2022-08-08 13:35:49,990 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:49,999 INFO root Thread-1 : GO FROM "b869ce88-0abd-4ada-8ea4-1b43c7ba34fc" over artifacts YIELD dst(edge) as vid
+2022-08-08 13:35:50,000 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:50,009 INFO root Thread-1 : GO FROM "b869ce88-0abd-4ada-8ea4-1b43c7ba34fc" over derived_from YIELD dst(edge) as vid
+2022-08-08 13:35:50,011 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:50,020 INFO root Thread-1 : FETCH PROP ON NodeType "6485e247-8c80-4fcc-b751-2152653fb644" YIELD properties(vertex)
+2022-08-08 13:35:50,062 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:50,072 INFO root Thread-1 : GO FROM "b869ce88-0abd-4ada-8ea4-1b43c7ba34fc" over requirements YIELD dst(edge) as vid
+2022-08-08 13:35:50,075 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:50,085 INFO root Thread-1 : GO FROM "b869ce88-0abd-4ada-8ea4-1b43c7ba34fc" over metadata YIELD dst(edge) as vid
+2022-08-08 13:35:50,131 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:50,141 INFO root Thread-1 : GO FROM "b869ce88-0abd-4ada-8ea4-1b43c7ba34fc" over capabilities YIELD dst(edge) as vid
+2022-08-08 13:35:50,144 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:50,152 INFO root Thread-1 : GO FROM "b869ce88-0abd-4ada-8ea4-1b43c7ba34fc" over attributes YIELD dst(edge) as vid
+2022-08-08 13:35:50,199 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:50,208 INFO root Thread-1 : FETCH PROP ON NodeType "d29c47e6-28ba-4ae2-b4ae-175fc6d30cdc" YIELD properties(vertex)
+2022-08-08 13:35:50,211 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:50,219 INFO root Thread-1 : GO FROM "d29c47e6-28ba-4ae2-b4ae-175fc6d30cdc" over properties YIELD dst(edge) as vid
+2022-08-08 13:35:50,263 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:50,273 INFO root Thread-1 : GO FROM "d29c47e6-28ba-4ae2-b4ae-175fc6d30cdc" over interfaces YIELD dst(edge) as vid
+2022-08-08 13:35:50,275 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:50,285 INFO root Thread-1 : GO FROM "d29c47e6-28ba-4ae2-b4ae-175fc6d30cdc" over artifacts YIELD dst(edge) as vid
+2022-08-08 13:35:50,331 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:50,341 INFO root Thread-1 : GO FROM "d29c47e6-28ba-4ae2-b4ae-175fc6d30cdc" over derived_from YIELD dst(edge) as vid
+2022-08-08 13:35:50,344 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:50,354 INFO root Thread-1 : FETCH PROP ON NodeType "6485e247-8c80-4fcc-b751-2152653fb644" YIELD properties(vertex)
+2022-08-08 13:35:50,399 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:50,409 INFO root Thread-1 : GO FROM "d29c47e6-28ba-4ae2-b4ae-175fc6d30cdc" over requirements YIELD dst(edge) as vid
+2022-08-08 13:35:50,412 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:50,421 INFO root Thread-1 : GO FROM "d29c47e6-28ba-4ae2-b4ae-175fc6d30cdc" over metadata YIELD dst(edge) as vid
+2022-08-08 13:35:50,471 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:50,482 INFO root Thread-1 : GO FROM "d29c47e6-28ba-4ae2-b4ae-175fc6d30cdc" over capabilities YIELD dst(edge) as vid
+2022-08-08 13:35:50,484 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:50,493 INFO root Thread-1 : FETCH PROP ON CapabilityDefinition "e16f1bb2-810c-4ed2-87e4-f37782e509f3" YIELD properties(vertex)
+2022-08-08 13:35:50,495 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:50,552 INFO root Thread-1 : GO FROM "e16f1bb2-810c-4ed2-87e4-f37782e509f3" over type YIELD dst(edge) as vid
+2022-08-08 13:35:50,554 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:50,563 INFO root Thread-1 : FETCH PROP ON CapabilityType "b39dbedc-4aa2-418b-b616-b8ef4380310d" YIELD properties(vertex)
+2022-08-08 13:35:50,565 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:50,573 INFO root Thread-1 : GO FROM "e16f1bb2-810c-4ed2-87e4-f37782e509f3" over properties YIELD dst(edge) as vid
+2022-08-08 13:35:50,619 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:50,628 INFO root Thread-1 : GO FROM "e16f1bb2-810c-4ed2-87e4-f37782e509f3" over valid_source_types YIELD dst(edge) as vid
+2022-08-08 13:35:50,630 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:50,638 INFO root Thread-1 : GO FROM "e16f1bb2-810c-4ed2-87e4-f37782e509f3" over attributes YIELD dst(edge) as vid
+2022-08-08 13:35:50,683 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:50,694 INFO root Thread-1 : GO FROM "e16f1bb2-810c-4ed2-87e4-f37782e509f3" over occurrences YIELD dst(edge) as vid
+2022-08-08 13:35:50,696 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:50,704 INFO root Thread-1 : GO FROM "d29c47e6-28ba-4ae2-b4ae-175fc6d30cdc" over attributes YIELD dst(edge) as vid
+2022-08-08 13:35:50,706 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:50,714 INFO root Thread-1 : GO FROM "Jupyter_1" over policy_types YIELD dst(edge) as vid
+2022-08-08 13:35:50,759 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:50,768 INFO root Thread-1 : GO FROM "Jupyter_1" over topology_template YIELD dst(edge) as vid
+2022-08-08 13:35:50,770 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:52,353 INFO root Thread-1 : FETCH PROP ON TopologyTemplateDefinition "149d87f8-5604-4638-9792-3496e7158b5c" YIELD properties(vertex)
+2022-08-08 13:35:52,355 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:53,792 INFO root Thread-1 : GO FROM "149d87f8-5604-4638-9792-3496e7158b5c" over inputs YIELD dst(edge) as vid
+2022-08-08 13:35:53,795 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:53,859 INFO root Thread-1 : FETCH PROP ON ParameterDefinition "bf07fc57-4b84-4eb2-9b90-9963d58fb9cc" YIELD properties(vertex)
+2022-08-08 13:35:53,861 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:53,950 INFO root Thread-1 : GO FROM "bf07fc57-4b84-4eb2-9b90-9963d58fb9cc" over key_schema YIELD dst(edge) as vid
+2022-08-08 13:35:53,953 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:53,962 INFO root Thread-1 : GO FROM "bf07fc57-4b84-4eb2-9b90-9963d58fb9cc" over type YIELD dst(edge) as vid
+2022-08-08 13:35:53,965 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:53,973 INFO root Thread-1 : FETCH PROP ON DataType "eb00ee36-c355-4fc4-860a-8bb0726ddbb8" YIELD properties(vertex)
+2022-08-08 13:35:53,976 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:53,985 INFO root Thread-1 : GO FROM "bf07fc57-4b84-4eb2-9b90-9963d58fb9cc" over constraints YIELD dst(edge) as vid
+2022-08-08 13:35:54,031 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:54,040 INFO root Thread-1 : GO FROM "bf07fc57-4b84-4eb2-9b90-9963d58fb9cc" over entry_schema YIELD dst(edge) as vid
+2022-08-08 13:35:54,043 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:54,052 INFO root Thread-1 : GO FROM "149d87f8-5604-4638-9792-3496e7158b5c" over node_templates YIELD dst(edge) as vid
+2022-08-08 13:35:54,094 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:54,193 INFO root Thread-1 : FETCH PROP ON NodeTemplate "1f5dcbf4-5118-41ec-b49a-9bd24671903d" YIELD properties(vertex)
+2022-08-08 13:35:54,196 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:54,277 INFO root Thread-1 : GO FROM "1f5dcbf4-5118-41ec-b49a-9bd24671903d" over type YIELD dst(edge) as vid
+2022-08-08 13:35:54,279 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:54,289 INFO root Thread-1 : FETCH PROP ON NodeType "57354182-8ae4-4443-9e44-2339e0017b90" YIELD properties(vertex)
+2022-08-08 13:35:54,292 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:54,300 INFO root Thread-1 : GO FROM "1f5dcbf4-5118-41ec-b49a-9bd24671903d" over interfaces YIELD dst(edge) as vid
+2022-08-08 13:35:54,343 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:54,352 INFO root Thread-1 : GO FROM "1f5dcbf4-5118-41ec-b49a-9bd24671903d" over artifacts YIELD dst(edge) as vid
+2022-08-08 13:35:54,354 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:54,363 INFO root Thread-1 : GO FROM "1f5dcbf4-5118-41ec-b49a-9bd24671903d" over properties YIELD dst(edge) as vid
+2022-08-08 13:35:54,407 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:54,417 INFO root Thread-1 : GO FROM "1f5dcbf4-5118-41ec-b49a-9bd24671903d" over directives YIELD dst(edge) as vid
+2022-08-08 13:35:54,419 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:54,429 INFO root Thread-1 : GO FROM "1f5dcbf4-5118-41ec-b49a-9bd24671903d" over node_filter YIELD dst(edge) as vid
+2022-08-08 13:35:54,475 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:54,486 INFO root Thread-1 : GO FROM "1f5dcbf4-5118-41ec-b49a-9bd24671903d" over requirements YIELD dst(edge) as vid
+2022-08-08 13:35:54,488 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:54,498 INFO root Thread-1 : FETCH PROP ON RequirementAssignment "88ec0634-dd7b-48c0-9984-ff56a7c4b258" YIELD properties(vertex)
+2022-08-08 13:35:54,543 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:54,590 INFO root Thread-1 : GO FROM "88ec0634-dd7b-48c0-9984-ff56a7c4b258" over node YIELD dst(edge) as vid
+2022-08-08 13:35:54,593 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:54,602 INFO root Thread-1 : FETCH PROP ON NodeType "a0aa19d7-87a1-4a13-8adb-da6f4738b6da" YIELD properties(vertex)
+2022-08-08 13:35:54,604 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:54,611 INFO root Thread-1 : FETCH PROP ON NodeTemplate "a0aa19d7-87a1-4a13-8adb-da6f4738b6da" YIELD properties(vertex)
+2022-08-08 13:35:54,613 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:54,621 INFO root Thread-1 : FETCH PROP ON NodeTemplate "a0aa19d7-87a1-4a13-8adb-da6f4738b6da" YIELD properties(vertex)
+2022-08-08 13:35:54,667 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:54,676 INFO root Thread-1 : GO FROM "88ec0634-dd7b-48c0-9984-ff56a7c4b258" over properties YIELD dst(edge) as vid
+2022-08-08 13:35:54,678 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:54,686 INFO root Thread-1 : GO FROM "88ec0634-dd7b-48c0-9984-ff56a7c4b258" over capability YIELD dst(edge) as vid
+2022-08-08 13:35:54,689 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:54,698 INFO root Thread-1 : GO FROM "88ec0634-dd7b-48c0-9984-ff56a7c4b258" over interfaces YIELD dst(edge) as vid
+2022-08-08 13:35:54,743 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:54,753 INFO root Thread-1 : GO FROM "88ec0634-dd7b-48c0-9984-ff56a7c4b258" over node_filter YIELD dst(edge) as vid
+2022-08-08 13:35:54,755 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:54,764 INFO root Thread-1 : GO FROM "88ec0634-dd7b-48c0-9984-ff56a7c4b258" over relationship YIELD dst(edge) as vid
+2022-08-08 13:35:54,811 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:54,821 INFO root Thread-1 : GO FROM "88ec0634-dd7b-48c0-9984-ff56a7c4b258" over occurrences YIELD dst(edge) as vid
+2022-08-08 13:35:54,823 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:54,832 INFO root Thread-1 : GO FROM "1f5dcbf4-5118-41ec-b49a-9bd24671903d" over metadata YIELD dst(edge) as vid
+2022-08-08 13:35:54,879 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:54,890 INFO root Thread-1 : GO FROM "1f5dcbf4-5118-41ec-b49a-9bd24671903d" over capabilities YIELD dst(edge) as vid
+2022-08-08 13:35:54,892 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:54,902 INFO root Thread-1 : FETCH PROP ON CapabilityAssignment "5f798b4f-751c-4095-9297-c89906c784b5" YIELD properties(vertex)
+2022-08-08 13:35:54,946 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:54,961 INFO root Thread-1 : GO FROM "5f798b4f-751c-4095-9297-c89906c784b5" over occurrences YIELD dst(edge) as vid
+2022-08-08 13:35:54,963 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:54,972 INFO root Thread-1 : GO FROM "5f798b4f-751c-4095-9297-c89906c784b5" over attributes YIELD dst(edge) as vid
+2022-08-08 13:35:55,015 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:55,025 INFO root Thread-1 : GO FROM "5f798b4f-751c-4095-9297-c89906c784b5" over properties YIELD dst(edge) as vid
+2022-08-08 13:35:55,027 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:55,035 INFO root Thread-1 : FETCH PROP ON PropertyAssignment "06896bc0-a70f-4201-9c21-4a01acaefcf4" YIELD properties(vertex)
+2022-08-08 13:35:55,037 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:55,046 INFO root Thread-1 : FETCH PROP ON PropertyAssignment "1a9d889a-45e8-4f41-8fca-d99451ec18db" YIELD properties(vertex)
+2022-08-08 13:35:55,048 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:55,056 INFO root Thread-1 : FETCH PROP ON PropertyAssignment "72fa19f5-cc19-459f-bc4e-8b41234c5b71" YIELD properties(vertex)
+2022-08-08 13:35:55,099 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:55,108 INFO root Thread-1 : FETCH PROP ON PropertyAssignment "e6a1d676-7abf-4c20-a959-91563eaddea1" YIELD properties(vertex)
+2022-08-08 13:35:55,110 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:55,118 INFO root Thread-1 : FETCH PROP ON CapabilityAssignment "f6c19175-5509-463f-bb7d-8a3a3f5acb5d" YIELD properties(vertex)
+2022-08-08 13:35:55,119 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:55,129 INFO root Thread-1 : GO FROM "f6c19175-5509-463f-bb7d-8a3a3f5acb5d" over occurrences YIELD dst(edge) as vid
+2022-08-08 13:35:55,130 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:55,138 INFO root Thread-1 : GO FROM "f6c19175-5509-463f-bb7d-8a3a3f5acb5d" over attributes YIELD dst(edge) as vid
+2022-08-08 13:35:55,183 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:55,194 INFO root Thread-1 : GO FROM "f6c19175-5509-463f-bb7d-8a3a3f5acb5d" over properties YIELD dst(edge) as vid
+2022-08-08 13:35:55,196 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:55,210 INFO root Thread-1 : FETCH PROP ON PropertyAssignment "89230fb4-f0d2-494f-b34e-79b62911049a" YIELD properties(vertex)
+2022-08-08 13:35:55,255 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:55,265 INFO root Thread-1 : FETCH PROP ON PropertyAssignment "a9161ae2-258d-46ec-8d96-56f951ae88d9" YIELD properties(vertex)
+2022-08-08 13:35:55,267 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:55,277 INFO root Thread-1 : FETCH PROP ON PropertyAssignment "c536197f-0a4c-4a1b-88dd-ee4b3a907960" YIELD properties(vertex)
+2022-08-08 13:35:55,323 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:55,343 INFO root Thread-1 : FETCH PROP ON PropertyAssignment "e74cf1eb-577f-4ca0-81d9-c32bb9a7c508" YIELD properties(vertex)
+2022-08-08 13:35:55,345 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:55,355 INFO root Thread-1 : FETCH PROP ON PropertyAssignment "ea4c9ad6-3aba-4e16-8511-71fe382b877a" YIELD properties(vertex)
+2022-08-08 13:35:55,357 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:55,367 INFO root Thread-1 : FETCH PROP ON CapabilityAssignment "fc8af194-30fb-4bad-b6a1-40cbec74a080" YIELD properties(vertex)
+2022-08-08 13:35:55,411 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:55,423 INFO root Thread-1 : GO FROM "fc8af194-30fb-4bad-b6a1-40cbec74a080" over occurrences YIELD dst(edge) as vid
+2022-08-08 13:35:55,426 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:55,435 INFO root Thread-1 : GO FROM "fc8af194-30fb-4bad-b6a1-40cbec74a080" over attributes YIELD dst(edge) as vid
+2022-08-08 13:35:55,437 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:55,447 INFO root Thread-1 : GO FROM "fc8af194-30fb-4bad-b6a1-40cbec74a080" over properties YIELD dst(edge) as vid
+2022-08-08 13:35:55,491 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:55,504 INFO root Thread-1 : FETCH PROP ON PropertyAssignment "18324cf6-6ccc-4b61-9ad7-98427f04b525" YIELD properties(vertex)
+2022-08-08 13:35:55,507 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:55,517 INFO root Thread-1 : FETCH PROP ON PropertyAssignment "bc093632-65ed-46d0-aebe-9cc4623c40fe" YIELD properties(vertex)
+2022-08-08 13:35:55,563 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:55,576 INFO root Thread-1 : FETCH PROP ON PropertyAssignment "e3a52b3c-7be5-4fd6-8b07-388f8d950b3c" YIELD properties(vertex)
+2022-08-08 13:35:55,579 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:55,591 INFO root Thread-1 : GO FROM "1f5dcbf4-5118-41ec-b49a-9bd24671903d" over attributes YIELD dst(edge) as vid
+2022-08-08 13:35:55,594 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:55,603 INFO root Thread-1 : GO FROM "1f5dcbf4-5118-41ec-b49a-9bd24671903d" over copy YIELD dst(edge) as vid
+2022-08-08 13:35:55,647 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:55,656 INFO root Thread-1 : FETCH PROP ON NodeTemplate "9c72f6b3-a131-4b7d-98db-e6ec2df2246d" YIELD properties(vertex)
+2022-08-08 13:35:55,659 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:55,669 INFO root Thread-1 : GO FROM "9c72f6b3-a131-4b7d-98db-e6ec2df2246d" over type YIELD dst(edge) as vid
+2022-08-08 13:35:55,715 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:55,726 INFO root Thread-1 : FETCH PROP ON NodeType "580fc9b2-46b9-4999-8caf-eb7ebe5cfd4f" YIELD properties(vertex)
+2022-08-08 13:35:55,728 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:55,737 INFO root Thread-1 : GO FROM "9c72f6b3-a131-4b7d-98db-e6ec2df2246d" over interfaces YIELD dst(edge) as vid
+2022-08-08 13:35:55,783 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:55,793 INFO root Thread-1 : GO FROM "9c72f6b3-a131-4b7d-98db-e6ec2df2246d" over artifacts YIELD dst(edge) as vid
+2022-08-08 13:35:55,795 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:55,804 INFO root Thread-1 : GO FROM "9c72f6b3-a131-4b7d-98db-e6ec2df2246d" over properties YIELD dst(edge) as vid
+2022-08-08 13:35:55,851 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:55,861 INFO root Thread-1 : FETCH PROP ON PropertyAssignment "34c88318-460e-44cf-b00d-252099bbfc08" YIELD properties(vertex)
+2022-08-08 13:35:55,863 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:55,873 INFO root Thread-1 : FETCH PROP ON PropertyAssignment "7056acf8-3d2d-46e9-b067-bb5d624d127d" YIELD properties(vertex)
+2022-08-08 13:35:55,919 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:55,931 INFO root Thread-1 : FETCH PROP ON PropertyAssignment "d05fcca2-481e-4edc-b6f0-c90905d17517" YIELD properties(vertex)
+2022-08-08 13:35:55,933 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:55,942 INFO root Thread-1 : GO FROM "9c72f6b3-a131-4b7d-98db-e6ec2df2246d" over directives YIELD dst(edge) as vid
+2022-08-08 13:35:55,945 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:55,954 INFO root Thread-1 : GO FROM "9c72f6b3-a131-4b7d-98db-e6ec2df2246d" over node_filter YIELD dst(edge) as vid
+2022-08-08 13:35:56,003 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:56,014 INFO root Thread-1 : GO FROM "9c72f6b3-a131-4b7d-98db-e6ec2df2246d" over requirements YIELD dst(edge) as vid
+2022-08-08 13:35:56,016 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:56,026 INFO root Thread-1 : FETCH PROP ON RequirementAssignment "c8d7b318-db1c-403d-a853-b76abb38b397" YIELD properties(vertex)
+2022-08-08 13:35:56,028 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:56,038 INFO root Thread-1 : GO FROM "c8d7b318-db1c-403d-a853-b76abb38b397" over node YIELD dst(edge) as vid
+2022-08-08 13:35:56,083 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:56,097 INFO root Thread-1 : FETCH PROP ON NodeType "1f5dcbf4-5118-41ec-b49a-9bd24671903d" YIELD properties(vertex)
+2022-08-08 13:35:56,099 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:56,109 INFO root Thread-1 : FETCH PROP ON NodeTemplate "1f5dcbf4-5118-41ec-b49a-9bd24671903d" YIELD properties(vertex)
+2022-08-08 13:35:56,155 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:56,166 INFO root Thread-1 : FETCH PROP ON NodeTemplate "1f5dcbf4-5118-41ec-b49a-9bd24671903d" YIELD properties(vertex)
+2022-08-08 13:35:56,168 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:56,178 INFO root Thread-1 : GO FROM "c8d7b318-db1c-403d-a853-b76abb38b397" over properties YIELD dst(edge) as vid
+2022-08-08 13:35:56,223 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:56,233 INFO root Thread-1 : GO FROM "c8d7b318-db1c-403d-a853-b76abb38b397" over capability YIELD dst(edge) as vid
+2022-08-08 13:35:56,235 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:56,244 INFO root Thread-1 : GO FROM "c8d7b318-db1c-403d-a853-b76abb38b397" over interfaces YIELD dst(edge) as vid
+2022-08-08 13:35:56,291 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:56,301 INFO root Thread-1 : GO FROM "c8d7b318-db1c-403d-a853-b76abb38b397" over node_filter YIELD dst(edge) as vid
+2022-08-08 13:35:56,303 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:56,313 INFO root Thread-1 : GO FROM "c8d7b318-db1c-403d-a853-b76abb38b397" over relationship YIELD dst(edge) as vid
+2022-08-08 13:35:56,359 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:56,367 INFO root Thread-1 : GO FROM "c8d7b318-db1c-403d-a853-b76abb38b397" over occurrences YIELD dst(edge) as vid
+2022-08-08 13:35:56,369 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:56,377 INFO root Thread-1 : GO FROM "9c72f6b3-a131-4b7d-98db-e6ec2df2246d" over metadata YIELD dst(edge) as vid
+2022-08-08 13:35:56,379 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:56,385 INFO root Thread-1 : GO FROM "9c72f6b3-a131-4b7d-98db-e6ec2df2246d" over capabilities YIELD dst(edge) as vid
+2022-08-08 13:35:56,430 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:56,439 INFO root Thread-1 : GO FROM "9c72f6b3-a131-4b7d-98db-e6ec2df2246d" over attributes YIELD dst(edge) as vid
+2022-08-08 13:35:56,441 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:56,449 INFO root Thread-1 : GO FROM "9c72f6b3-a131-4b7d-98db-e6ec2df2246d" over copy YIELD dst(edge) as vid
+2022-08-08 13:35:56,451 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:56,460 INFO root Thread-1 : FETCH PROP ON NodeTemplate "a0aa19d7-87a1-4a13-8adb-da6f4738b6da" YIELD properties(vertex)
+2022-08-08 13:35:56,503 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:56,513 INFO root Thread-1 : GO FROM "a0aa19d7-87a1-4a13-8adb-da6f4738b6da" over type YIELD dst(edge) as vid
+2022-08-08 13:35:56,515 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:56,525 INFO root Thread-1 : FETCH PROP ON NodeType "8d1f4c46-c479-43b9-a1d1-cc5fcbf0828a" YIELD properties(vertex)
+2022-08-08 13:35:56,571 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:56,581 INFO root Thread-1 : GO FROM "a0aa19d7-87a1-4a13-8adb-da6f4738b6da" over interfaces YIELD dst(edge) as vid
+2022-08-08 13:35:56,584 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:56,593 INFO root Thread-1 : GO FROM "a0aa19d7-87a1-4a13-8adb-da6f4738b6da" over artifacts YIELD dst(edge) as vid
+2022-08-08 13:35:56,639 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:56,648 INFO root Thread-1 : GO FROM "a0aa19d7-87a1-4a13-8adb-da6f4738b6da" over properties YIELD dst(edge) as vid
+2022-08-08 13:35:56,649 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:56,658 INFO root Thread-1 : FETCH PROP ON PropertyAssignment "9aab84be-6933-43a5-b035-2d434933f21e" YIELD properties(vertex)
+2022-08-08 13:35:56,660 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-08 13:35:56,669 INFO root Thread-1 : FETCH PROP ON PropertyAssignment "e9728642-8795-441e-8b4b-ae2d724553b2" YIELD properties(vertex)
+2022-08-08 13:35:56,669 ERROR app Thread-1 : Exception on /get_yaml_template [GET]
+Traceback (most recent call last):
+  File "/home/dmitrytulin/PycharmProjects/API_COURSE/venv/lib/python3.9/site-packages/flask/app.py", line 2077, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/dmitrytulin/PycharmProjects/API_COURSE/venv/lib/python3.9/site-packages/flask/app.py", line 1525, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/dmitrytulin/PycharmProjects/API_COURSE/venv/lib/python3.9/site-packages/flask/app.py", line 1523, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/dmitrytulin/PycharmProjects/API_COURSE/venv/lib/python3.9/site-packages/flask/app.py", line 1509, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/dmitrytulin/PycharmProjects/API_COURSE/app/views.py", line 101, in get_yaml_from_vertex
+    result = construct_service_template_definition(cluster_name)
+  File "/home/dmitrytulin/PycharmProjects/API_COURSE/nebula_communication/template_builder/definition/ServiceTemplateDefinition.py", line 63, in construct_service_template_definition
+    template['topology_template'] = construct_topology_template_definition(destination)
+  File "/home/dmitrytulin/PycharmProjects/API_COURSE/nebula_communication/template_builder/definition/TemplateDefinition.py", line 37, in construct_topology_template_definition
+    tmp_result['node_templates'] = construct_node_template(destination)
+  File "/home/dmitrytulin/PycharmProjects/API_COURSE/nebula_communication/template_builder/other/NodeTemplate.py", line 49, in construct_node_template
+    tmp_result['properties'] = construct_property_assignment(destination)
+  File "/home/dmitrytulin/PycharmProjects/API_COURSE/nebula_communication/template_builder/assignment/PropertyAssignment.py", line 12, in construct_property_assignment
+    value: str = vertex_value['values'].as_string()
+  File "/home/dmitrytulin/PycharmProjects/API_COURSE/venv/lib/python3.9/site-packages/nebula2/data/DataObject.py", line 457, in as_string
+    raise InvalidValueTypeException(
+nebula2.Exception.InvalidValueTypeException: expect string type, but is null
+2022-08-08 13:35:56,790 INFO werkzeug Thread-1 : 127.0.0.1 - - [08/Aug/2022 13:35:56] "[35m[1mGET /get_yaml_template?cluster_name=Jupyter_1 HTTP/1.1[0m" 500 -

@@ -3,6 +3,8 @@ from app import app
 import yaml
 from nebula_communication.deploy import deploy
 from nebula_communication.redis_communication import add_vid
+from nebula_communication.template_builder.definition.ServiceTemplateDefinition import \
+    construct_service_template_definition
 from nebula_communication.update_template.find_vertex import find_vertex
 from nebula_communication.update_template.update_template import update_template
 from parser.linker.tosca_v_1_3.main_linker import main_linker
@@ -89,11 +91,13 @@ def find(varargs=None):
     return "200 OK"
 
 
-@app.route('/download_yaml', methods=['GET'])
+@app.route('/get_yaml_template', methods=['GET'])
 def get_yaml_from_vertex():
     """
-     curl -X GET 'http://127.0.0.1:5000/download_yaml?vid=AssignmentVertex3'
+     curl -X GET 'http://127.0.0.1:5000/get_yaml_template?vid=AssignmentVertex3'
     :return:
     """
-    vid = request.args.get('vid')
-    return f'{12}'
+    cluster_name = request.args.get('cluster_name')
+    result = construct_service_template_definition(cluster_name)
+    print(yaml.dump(result, default_flow_style=False))
+    return {result}

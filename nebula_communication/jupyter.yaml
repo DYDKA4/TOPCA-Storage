@@ -486,7 +486,7 @@ topology_template:
         Optional identifier for an existing snapshot to use when creating storage.
   node_templates:
     jupyter_1:
-      type: michman.nodes.Jupyter.Jupyter-6-0-1michman.nodes.Jupyter.Jupyter-6-0-1
+      type: michman.nodes.Jupyter.Jupyter-6-0-1
       properties:
           version: 6.0.1
           spark_component_version: 2.3.0

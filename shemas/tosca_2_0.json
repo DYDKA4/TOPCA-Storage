@@ -1,0 +1,260 @@
+{
+  "title": "Service Template definition",
+  "description": "A TOSCA schema for 2.0 version.",
+  "type": "object",
+  "properties": {
+    "tosca_definitions_version": {
+      "description": "Defines the version of the TOSCA specification the template (grammar) complies with. ",
+      "type": "string"
+    },
+    "profile": {
+      "description": "The optional profile name that can be used by other TOSCA service templates to import the type definitions in this document.",
+      "type": "string"
+    },
+    "metadata": {"$ref": "#/definitions/MapOfStr"},
+    "description": {
+      "description": "Declares a description for this Service Template and its contents.",
+      "type": "string"
+    },
+    "dsl_definitions":{
+      "description": "Declares language specific definitions and conventions.  For example, in YAML, this allows defining reusable YAML macros (i.e., YAML alias anchors) for use throughout the TOSCA Service Template.",
+      "type": "object"
+    },
+    "repositories": {
+      "type": "object",
+      "additionalProperties": {
+        "anyOf": [
+        {"$ref": "#/definitions/OneLineRepositoryDefinition"},
+        {"$ref": "#/definitions/MultiLineRepositoryDefinition"}
+      ]
+      }
+    },
+    "imports": {
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "$ref": "#/definitions/Single-line grammar Import definition"
+          },
+          {
+            "$ref": "#/definitions/Multi-line grammar Import definition"
+          }
+        ]
+      }
+    },
+    "artifact_types": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/definitions/Artifact Type"
+      }
+
+    }
+  },
+  "additionalProperties": true,
+  "required": [ "tosca_definitions_version" ],
+  "definitions": {
+        "MapOfStr": {
+            "type": "object",
+            "additionalProperties": {"type": "string"}
+        },
+        "OneLineRepositoryDefinition": {
+          "type": "string",
+          "additionalProperties": false
+        },
+        "MultiLineRepositoryDefinition": {
+          "type": "object",
+          "properties": {
+            "description":{
+              "description": "The optional description for the repository.",
+              "type": "string"
+            },
+            "url": {
+              "description": "The mandatory URL or network address used to access the repository.",
+              "type": "string"
+            }
+          },
+          "required": ["url"]
+        },
+        "Single-line grammar Import definition": {
+          "type": "string",
+          "additionalProperties": false
+        },
+        "Multi-line grammar Import definition": {
+          "type": "object",
+          "properties": {
+            "url": {
+              "type": "string"
+            },
+            "profile": {
+              "type": "string"
+            },
+            "repository": {
+              "type": "string"
+            },
+            "namespace": {
+              "type": "string"
+            },
+            "additionalProperties": false
+          },
+          "oneOf": [
+            {
+              "anyOf": [
+                {
+              "required": ["repository", "url"]
+                },
+                {
+              "required": ["url"]
+                }
+              ]
+            },
+
+            {
+              "required": ["profile"]
+            }
+
+          ]
+        },
+      "Common keynames in type definitions": {
+        "type": "object",
+        "properties": {
+          "derived_from": {
+            "type": "string"
+          },
+          "version": {
+            "type": "string"
+          },
+          "metadata": {
+            "$ref": "#/definitions/MapOfStr"
+          },
+          "description": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Artifact Type": {
+        "type": "object",
+        "properties": {
+          "derived_from": {
+            "type": "string"
+          },
+          "version": {
+            "type": "string"
+          },
+          "metadata": {
+            "$ref": "#/definitions/MapOfStr"
+          },
+          "description": {
+            "type": "string"
+          },
+          "mime_type": {
+            "type": "string"
+          },
+          "file_ext": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "properties": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/definitions/Property Definition"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+    "Property Definition": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "required": {
+          "type": "boolean",
+          "default": true
+        },
+        "default": {
+          "type": ["object","boolean","string","array","integer","null", "number"]
+        },
+        "value": {
+          "type": ["object","boolean","string","array","integer","null", "number"]
+        },
+        "status": {
+          "type": "string",
+          "default": "supported"
+        },
+        "constraints": {
+          "type": "array",
+          "items": {
+            "anyOf": [
+              {
+                "$ref": "#/definitions/Constraint clause definition scalar grammar"
+              },
+              {
+                "$ref": "#/definitions/Constraint clause list scalar grammar"
+              },
+              {
+                "$ref": "#/definitions/Constraint clause Schema grammar"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "Constraint clause definition scalar grammar": {
+      "type": "string"
+      },
+    "Constraint clause list scalar grammar": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "Constraint clause Schema grammar": {
+      "type": "object",
+      "additionalProperties": {"$ref": "#/definitions/Schema Definition"}
+    },
+    "Schema Definition": {
+      "type": "object",
+      "properties": {
+        "type":{
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "constraints": {
+          "type": "array",
+          "items": {
+            "anyOf": [
+              {
+                "$ref": "#/definitions/Constraint clause definition scalar grammar"
+              },
+              {
+                "$ref": "#/definitions/Constraint clause list scalar grammar"
+              },
+              {
+                "$ref": "#/definitions/Constraint clause Schema grammar"
+              }
+            ]
+          }
+        },
+        "key_schema": {
+          "$ref": "#/definitions/Schema Definition",
+          "default": null
+        },
+        "entry_schema": {
+          "$ref": "#/definitions/Schema Definition"
+        }
+      },
+      "required": ["type"]
+    }
+  }
+}
+

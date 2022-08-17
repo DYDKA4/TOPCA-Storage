@@ -6,6 +6,7 @@ import yaml
 from nebula_communication.deploy import deploy
 from nebula_communication.nebula_functions import delete_all, delete_cluster
 from nebula_communication.redis_communication import add_vid
+from nebula_communication.search.property_search import find_node_template_of_property
 from nebula_communication.search.search_of_endpoint import search_of_endpoint_from_son
 from nebula_communication.template_builder.definition.ServiceTemplateDefinition import \
     construct_service_template_definition
@@ -95,6 +96,7 @@ def yaml_delete_cluster():
     delete_cluster(cluster_name)
     return f'Deleted {cluster_name}'
 
+
 @app.route('/find/<path:varargs>', methods=['GET'])
 def find(varargs=None):
     search_by = request.args.get('search_by')
@@ -143,6 +145,7 @@ def get_free_endpoint_of_service():
     """
     return get_endpoint_of_service(find_free=True)
 
+
 @app.route('/set_service_free', methods=['PATCH'])
 def set_service_free(status='free'):
     """
@@ -164,3 +167,18 @@ def set_service_free(status='free'):
 @app.route('/set_service_busy', methods=['PATCH'])
 def set_service_busy():
     return set_service_free(status='busy')
+
+
+@app.route('/find_node_with_property', methods=['GET'])
+def find_node_with_property():
+    """
+    curl -X GET "http://127.0.0.1:5000/find_node_with_property?r_name=Jupyter_1&service_name=jupyter_1"
+    :return:
+    """
+    kwargs = request.args
+    cluster_name = request.args.get('cluster_name')
+    # if cluster_name:
+    #     kwargs.pop(cluster_name, None)
+    # kwargs.to_dict()
+    result = find_node_template_of_property(**(kwargs.to_dict()))
+    return result

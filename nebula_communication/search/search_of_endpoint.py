@@ -30,7 +30,7 @@ def search_of_endpoint_from_son(type_of_template, cluster_name=None, find_free=N
     if cluster_name is None:
         cluster_names = get_all_vertex("ServiceTemplateDefinition")
         for cluster_vid in cluster_names:
-            topology_template = go_from_over(cluster_vid, 'topology_template')
+            topology_template = go_from_over(cluster_vid, 'topology_template').column_values('id')
             if len(topology_template) > 1:
                 abort(500)
             if topology_template:
@@ -39,7 +39,7 @@ def search_of_endpoint_from_son(type_of_template, cluster_name=None, find_free=N
                                                                     "type", type_of_template).column_values('id')
                 target_list += target_vid
     else:
-        topology_template = go_from_over('"' + cluster_name + '"', 'topology_template')
+        topology_template = go_from_over('"' + cluster_name + '"', 'topology_template').column_values('id')
         if len(topology_template) > 1:
             abort(500)
         if topology_template:

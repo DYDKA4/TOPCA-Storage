@@ -152,13 +152,14 @@ def get_all_vertex(tag):
     return result.column_values('VertexID')
 
 
-def go_from_over(vertex_id, edge_name):
+def go_from_over(vertex_id, edge_name, type_edge=''):
     session = start_session()
-    result = session.execute(f"GO FROM {vertex_id} OVER {edge_name} YIELD dst(edge) as id")
-    logging.info(f"DST GO FROM {vertex_id} OVER {edge_name} YIELD dst(edge) as id")
+    result = session.execute(f"GO FROM {vertex_id} OVER {edge_name} {type_edge} YIELD dst(edge) as id,"
+                             f" src(edge) as id2")
+    logging.info(f"GO FROM {vertex_id} OVER {edge_name} {type_edge} YIELD dst(edge) as id, src(edge) as id2")
     assert result.is_succeeded(), result.error_msg()
     session.release()
-    return result.column_values('id')
+    return result
 
 
 def go_from_over_dst_params(vertex_id, edge_name, **params):
@@ -234,3 +235,27 @@ def delete_cluster(cluster_name):
                 r.delete(it)
     delete_vertex(on_delete)
     logging.info(f'Success of deleting {count}')
+
+
+def find_path(start_vid, end_vid, type_path=""):
+    session = start_session()
+    result = session.execute(f"FIND SHORTEST PATH FROM {start_vid} to {end_vid}  over * {type_path}")
+    logging.info(f"FIND SHORTEST PATH FROM {start_vid} to {end_vid}  over * {type_path}")
+    assert result.is_succeeded(), result.error_msg()
+    session.release()
+    return result
+
+
+def find_vertex_by_properties(vid_type, **params):
+    condition = ''
+    for name, value in params.items():
+        if not condition:
+            condition = f"WHERE {vid_type}.{name} == '{value}'"
+        else:
+            condition += f"and {vid_type}.{name} == '{value}'"
+    session = start_session()
+    result = session.execute(f"LOOKUP ON {vid_type} {condition} YIELD properties(vertex) as props, id(vertex) as id")
+    logging.info(f"LOOKUP ON {vid_type} {condition} ")
+    assert result.is_succeeded(), result.error_msg()
+    session.release()
+    return result

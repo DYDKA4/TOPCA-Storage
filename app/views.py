@@ -172,13 +172,50 @@ def set_service_busy():
 @app.route('/find_node_with_property', methods=['GET'])
 def find_node_with_property():
     """
-    curl -X GET "http://127.0.0.1:5000/find_node_with_property?r_name=Jupyter_1&service_name=jupyter_1"
+     curl -X GET "http://127.0.0.1:5000/find_node_with_property?values=256%20GB&cluster_name=Jupyter_1"
     :return:
     """
     kwargs = request.args
-    cluster_name = request.args.get('cluster_name')
-    # if cluster_name:
-    #     kwargs.pop(cluster_name, None)
-    # kwargs.to_dict()
     result = find_node_template_of_property(**(kwargs.to_dict()))
     return result
+
+
+@app.route('/find_node_with_mutual_properties', methods=['GET'])
+def find_node_with_mutual_property():
+    kwargs = request.args
+    """
+     curl -X GET "http://127.0.0.1:5000/find_node_with_mutual_properties?values_1=256%20GB&cluster_name=Jupyter_1"
+    """
+    result = {}
+    dict_to_operate = {}
+    for key, value in kwargs.items():
+        digit = key.split("_")
+        if digit[-1].isdigit():
+            if dict_to_operate.get(digit[-1]):
+                dict_to_operate[digit[-1]] = dict_to_operate[digit[-1]] | ({'_'.join(digit[:-1]): value})
+            else:
+                dict_to_operate[digit[-1]] = {'_'.join(digit[:-1]): value}
+                if kwargs.get('cluster_name'):
+                    dict_to_operate[digit[-1]] = dict_to_operate[digit[-1]] | {'cluster_name': kwargs.get('cluster_name')}
+            kwargs.get('cluster_name')
+
+    print(yaml.dump(dict_to_operate, default_flow_style=False))
+    fl = list(dict_to_operate.values())
+    result = find_node_template_of_property(**fl[0])
+    for value in fl[1:]:
+        new_result = find_node_template_of_property(**value)
+        if result == {} or new_result == {}:
+            return {}
+        tmp_answer = {}
+        for key, values in result.items():
+            for key_2, values_2 in new_result.items():
+                if key_2 == key and values_2.keys() & values.keys():
+                    tmp_result = {}
+                    for key_tmp in values_2.keys() & values.keys():
+                        tmp_result = tmp_result | {key_tmp: values_2.get(key_tmp)}
+                    tmp_answer = tmp_answer | {key_2: tmp_result}
+        result = tmp_answer
+    return result
+
+
+

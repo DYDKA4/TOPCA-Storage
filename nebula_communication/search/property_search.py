@@ -28,9 +28,12 @@ def find_node_template_of_property(cluster_name=None, **parameters):
                         tmp_dict[key] = value.as_string()
                 answer[node_vid.get_id().as_string()] = tmp_dict
         if answer:
-            exit_answer[path.start_node().get_id().as_string()] = answer
+            if exit_answer != {}:
+                exit_answer[path.start_node().get_id().as_string()] = exit_answer[
+                                                                      path.start_node().get_id().as_string()] | answer
+            else:
+                exit_answer[path.start_node().get_id().as_string()] = answer
     return exit_answer
-
 
 # res = find_node_template_of_property()
 # print(yaml.dump(res, default_flow_style=False))

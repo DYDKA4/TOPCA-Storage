@@ -25,7 +25,12 @@ class ConstraintClause:
 
 def constraint_clause_parser(data: dict) -> ConstraintClause:
     constraint = ConstraintClause()
-    for operator, scalar_value in data.items():
-        constraint.set_operator(operator)
-        constraint.set_value(str(scalar_value))
+    print(data)
+    if type(data) != dict:
+        constraint.set_operator('equal')
+        constraint.set_value(str(data))
+    else:
+        for operator, scalar_value in data.items():
+            constraint.set_operator(operator)
+            constraint.set_value(str(scalar_value))
     return constraint

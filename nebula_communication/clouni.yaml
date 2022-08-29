@@ -1,4 +1,5 @@
-amazon.nodes.Group:
+node_types:
+  amazon.nodes.Group:
     capabilities:
       feature:
         occurrences:
@@ -384,6 +385,11 @@ topology_template:
       requirements:
       - key_name:
           node: testing_tosca_key
+          node_filter:
+            properties:
+            - key_material: '{{ lookup(''file'', ''~/.ssh/id_rsa.pub'') }}'
+            - name: testing_tosca_key
+            - id: '{{ testing_tosca_key_delete }}'
       - vpc_subnet_id:
           node_filter:
             properties:
@@ -419,4 +425,4 @@ topology_template:
         key_material: '{{ lookup(''file'', ''~/.ssh/id_rsa.pub'') }}'
         name: testing_tosca_key
       type: amazon.nodes.Key
-tosca_definitions_version: tosca_simple_yaml_1_3
+tosca_definitions_version: tosca_simple_yaml_1_0

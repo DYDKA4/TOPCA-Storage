@@ -411,4 +411,5 @@ def link_property_assignment(service_template: ServiceTemplateDefinition,
                                                                [inputs]]}
     else:
         warnings.warn(f'Unsuccessful try to link {value}')
-        abort(501)
+        property_assignment.value = str(value)
+        # abort(501)

@@ -1,6 +1,6 @@
 import logging
 
-from flask import request, abort, render_template
+from flask import request, abort, render_template, Response, jsonify, make_response
 from app import app
 import yaml
 from nebula_communication.deploy import deploy
@@ -57,14 +57,26 @@ def cluster_names(varargs=None):
     if varargs is None:
         vid = find_vertex_by_properties("ServiceTemplateDefinition")
         print(vid.column_values('id'))
-        return render_template("LIST_OF_cluster_names.html", cluster_names=vid.column_values('id'))
+        message = []
+        for vid in vid.column_values('id'):
+            message.append(vid.as_string())
+        message = {'status': 200,
+                   'cluster_names': message}
+        message = jsonify(message)
+        return message
+        # return render_template("LIST_OF_cluster_names.html", cluster_names=vid.column_values('id'))
     else:
         varargs = varargs.split("/")
         if len(varargs) > 1:
             abort(400)
-        result = fetch_vertex('"'+varargs[0]+'"', "ServiceTemplateDefinition")
-        print(result)
-        return render_template("Cluster_name_is_taken.html", cluster_name=varargs[0], result=result)
+        result = fetch_vertex('"' + varargs[0] + '"', "ServiceTemplateDefinition")
+        if result is None:
+            result = False
+        else:
+            result = True
+        message = jsonify({'status': 200,
+                           'message': result})
+        return message
 
 
 @app.route('/yaml-template/<path:varargs>', methods=['PATCH'])

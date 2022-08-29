@@ -23,13 +23,24 @@ class ConstraintClause:
         self.value = value
 
 
+operator_keynames = {'equal', 'greater_than', 'greater_or_equal', 'less_than', 'less_or_equal', 'in_range',
+                     'valid_values', 'length', 'min_length', 'max_length', 'pattern', 'schema'}
+
+
+def short_notation(constraint: ConstraintClause, data):
+    constraint.set_operator('equal')
+    constraint.set_value(str(data))
+
+
 def constraint_clause_parser(data: dict) -> ConstraintClause:
     constraint = ConstraintClause()
     if type(data) != dict:
-        constraint.set_operator('equal')
-        constraint.set_value(str(data))
+        short_notation(constraint, data)
     else:
         for operator, scalar_value in data.items():
-            constraint.set_operator(operator)
-            constraint.set_value(str(scalar_value))
+            if operator not in operator_keynames:
+                short_notation(constraint, {operator: scalar_value})
+            else:
+                constraint.set_operator(operator)
+                constraint.set_value(str(scalar_value))
     return constraint

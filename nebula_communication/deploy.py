@@ -130,7 +130,7 @@ def deploy(template, cluster_name) -> None:
     return
 
 
-# file = open('clouni.yaml')
+# file = open('jupyter.yaml')
 # data = file.read()
 # file.close()
 # data = yaml.safe_load(data)

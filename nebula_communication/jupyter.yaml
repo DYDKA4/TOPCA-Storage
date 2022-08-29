@@ -190,7 +190,7 @@ Supported versions: >= 1.0.0, <= 2.3.0"
       name:
         type: string
       size:
-        type: size
+        type: scalar-unit.size
         default: 0 MB
         constraints:
           - greater_or_equal: 0 MB
@@ -239,19 +239,19 @@ capability_types:
         required: false
         status: supported
       disk_size:
-        type: size
+        type: scalar-unit.size
         required: false
         status: supported
         constraints:
           - greater_or_equal: 0 MB
       cpu_frequency:
-        type: frequency
+        type: scalar-unit.frequency
         required: false
         status: supported
         constraints:
           - greater_or_equal: 0.1 GHz
       mem_size:
-        type: size
+        type: scalar-unit.size
         required: false
         status: supported
         constraints:

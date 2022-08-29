@@ -33,7 +33,8 @@ def yaml_add():
             template = service_template_definition_parser(cluster_name, file)
             main_linker(template)
             if add_vid(template.name, template.name):
-                return render_template("ERROR_name_is_taken.html", name=cluster_name)
+                return jsonify({'status': 400,
+                                'message': f'cluster_name: {cluster_name} is taken'})
             if request.method == 'POST':
                 print('DEPLOY START')
                 deploy(template, template.name)

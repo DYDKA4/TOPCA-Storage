@@ -39,7 +39,7 @@ def yaml_add():
                 print('DEPLOY START')
                 deploy(template, template.name)
             print('DEPLOY FINISH')
-            return  jsonify({'status': 200,
+            return jsonify({'status': 200,
                             'message': f'cluster_name: {cluster_name} was deployed'})
     if request.method == 'GET':
         """
@@ -55,9 +55,6 @@ def yaml_add():
         logging.info(yaml.dump(result, default_flow_style=False))
         return jsonify({'status': 200,
                         'message': result})
-
-
-
 
     return '''
             400 Bad Request 
@@ -149,6 +146,7 @@ def find(varargs=None):
     requirement_name = request.args.get('requirement_name')
     result = find_vertex(cluster_name, vertex_type_system)
     return "200 OK"
+
 
 @app.route('/get_endpoint_of_service', methods=['GET'])
 def get_endpoint_of_service(find_free=False):

@@ -18,8 +18,8 @@ from parser.linker.tosca_v_1_3.main_linker import main_linker
 from parser.parser.tosca_v_1_3.definitions.ServiceTemplateDefinition import service_template_definition_parser
 
 
-@app.route('/yaml-template/', methods=['POST', 'PUT', 'GET'])
-# curl -X POST -F file=@nebula_communication/jupyter.yaml  http://127.0.0.1:5000/yaml-template/?cluster_name=Jupyter_3
+@app.route('/yaml-template', methods=['POST', 'PUT', 'GET'])
+# curl -X POST -F file=@nebula_communication/jupyter.yaml  http://127.0.0.1:5000/yaml-template?cluster_name=Jupyter_3
 def yaml_add():
     cluster_name = request.args.get('cluster_name')
     if request.method in ['POST', 'PUT']:
@@ -39,13 +39,25 @@ def yaml_add():
                 print('DEPLOY START')
                 deploy(template, template.name)
             print('DEPLOY FINISH')
-            return cluster_name
+            return  jsonify({'status': 200,
+                            'message': f'cluster_name: {cluster_name} was deployed'})
     if request.method == 'GET':
         """
-        curl -X GET 'http://127.0.0.1:5000/yaml-template/?cluster_name=cluster_tosca_59'
+         curl -X GET 'http://127.0.0.1:5000/yaml_template?cluster_name=Jupyter_3'
+        :return:
         """
+        cluster_name = request.args.get('cluster_name')
+        only = request.args.get('only')
+        if only not in {'attribute', 'property', None}:
+            return jsonify({'status': 400,
+                           'message': 'attribute "only" could be only attribute, property or None'})
+        result = construct_service_template_definition(cluster_name)
+        logging.info(yaml.dump(result, default_flow_style=False))
+        return jsonify({'status': 200,
+                        'message': result})
 
-        return f'{12}'
+
+
 
     return '''
             400 Bad Request 
@@ -137,19 +149,6 @@ def find(varargs=None):
     requirement_name = request.args.get('requirement_name')
     result = find_vertex(cluster_name, vertex_type_system)
     return "200 OK"
-
-
-@app.route('/get_yaml_template', methods=['GET'])
-def get_yaml_from_vertex():
-    """
-     curl -X GET 'http://127.0.0.1:5000/get_yaml_template?cluster_name=AssignmentVertex3'
-    :return:
-    """
-    cluster_name = request.args.get('cluster_name')
-    result = construct_service_template_definition(cluster_name)
-    logging.info(yaml.dump(result, default_flow_style=False))
-    return str(result)
-
 
 @app.route('/get_endpoint_of_service', methods=['GET'])
 def get_endpoint_of_service(find_free=False):

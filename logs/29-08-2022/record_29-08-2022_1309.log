@@ -1,0 +1,12 @@
+2022-08-29 13:09:06,594 INFO werkzeug MainThread :  * Running on all addresses (0.0.0.0)
+   WARNING: This is a development server. Do not use it in a production deployment.
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.10.10.235:5000 (Press CTRL+C to quit)
+2022-08-29 13:09:08,988 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-29 13:09:09,005 INFO root Thread-1 : LOOKUP ON ServiceTemplateDefinition  
+2022-08-29 13:09:09,013 INFO werkzeug Thread-1 : 127.0.0.1 - - [29/Aug/2022 13:09:09] "GET /cluster_names HTTP/1.1" 200 -
+2022-08-29 13:35:39,215 INFO werkzeug Thread-2 : 127.0.0.1 - - [29/Aug/2022 13:35:39] "POST /cluster_names HTTP/1.1" 200 -
+2022-08-29 13:35:46,762 INFO root Thread-3 : Get connection to ('10.100.151.128', 9669)
+2022-08-29 13:35:46,788 INFO root Thread-3 : LOOKUP ON ServiceTemplateDefinition  
+2022-08-29 13:35:46,789 INFO werkzeug Thread-3 : 127.0.0.1 - - [29/Aug/2022 13:35:46] "GET /cluster_names HTTP/1.1" 200 -
+2022-08-29 13:36:58,914 INFO werkzeug Thread-4 : 127.0.0.1 - - [29/Aug/2022 13:36:58] "[33mGET /cluster_names/Jupyter_1 HTTP/1.1[0m" 404 -

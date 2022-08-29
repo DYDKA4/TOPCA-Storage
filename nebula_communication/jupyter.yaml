@@ -1,422 +1,523 @@
-amazon.nodes.Group:
-    capabilities:
-      feature:
-        occurrences:
-        - 1
-        - 1
-        type: amazon.capabilities.Node
-    description: 'The TOSCA root node all other TOSCA base node types derive from.
-
-      '
-    interfaces:
-      Standard:
-        type: tosca.interfaces.node.lifecycle.Standard
+tosca_definitions_version: 1.3
+node_types:
+  michman.nodes.Jupyter.Jupyter-6-0-1:
+    derived_from: tosca.nodes.SoftwareComponent
+    description: "Jupyter version 6.0.1 (latest for pip install)"
+    metadata:
+      abstract: "false"
+      final: "false"
+      targetNamespace: "michman.nodes.Jupyter"
     properties:
-      description:
-        required: false
+      version:
         type: string
-      group_id:
-        required: false
+        default: 6.0.1
+        constraints:
+          - valid_values: [6.0.1]
+      spark_component_version:
         type: string
-      name:
         required: true
+        description: "Setup version required. Default version is 2.3.0. \
+Supported versions: >= 1.0.0, <= 2.3.0"
+        constraints:
+          - valid_values: [ "1.0.0", "1.0.1", "1.0.2", "1.1.0", "1.1.1", "1.2.0", "1.2.1", "1.2.2", "1.3.0", "1.3.1",
+          "1.4.0", "1.4.1", "1.5.0", "1.5.1", "1.5.2", "1.6.0", "1.6.1", "1.6.2", "2.0.0", "2.0.1", "2.0.2", "2.1.0",
+          "2.2.0", "2.2.1", "2.3.0"]
+      core:
         type: string
-      rules:
-        entry_schema:
-          type: amazon.datatypes.SecurityGroupRule
+        default: 4.5.0
+        constraints:
+          - valid_values: [4.5.0]
         required: false
-        type: list
-      rules_egress:
-        entry_schema:
-          type: amazon.datatypes.SecurityGroupRule
-        required: false
-        type: list
-      state:
-        description: "The state of the node instance. See section \u201CNode States\u201D\
-          \ for allowed values.\n"
-        required: false
+        description: default jupyter core version (now this config param is not supported)
+      qtconsole:
         type: string
-      tosca_id:
-        description: 'A unique identifier of the realized instance of a Node Template
-          that derives from any TOSCA normative type.
-
-          '
+        default: "-"
+        constraints:
+          - valid_values: ["-"]
         required: false
+        description: now qtconsole is not installed (now this config param is not supported)
+      ipython:
         type: string
-      tosca_name:
-        description: 'This attribute reflects the name of the Node Template as defined
-          in the TOSCA service template.
-
-          '
+        default: 7.8.0
         required: false
+        description: default ipython version (now this config param is not supported)
+      ipykernel:
         type: string
-    requirements:
-    - dependency:
-        capability: tosca.capabilities.Node
-        node: tosca.nodes.Root
-        occurrences:
-        - 0
-        - UNBOUNDED
-        relationship: tosca.relationships.DependsOn
-    - dependency:
-        capability: amazon.capabilities.Node
-        node: amazon.nodes.Root
-        occurrences:
-        - 0
-        - UNBOUNDED
-        relationship: amazon.relationships.DependsOn
-    - vpc_id:
-        capability: amazon.capabilities.Node
-        node: amazon.nodes.VpcNet
-        occurrences:
-        - 0
-        - 1
-        relationship: amazon.relationships.DependsOn
-  amazon.nodes.Instance:
+        default: 5.1.2
+        required: false
+        description: default ipykernel version (now this config param is not supported)
+      client:
+        type: string
+        default: 5.3.1
+        required: false
+        description: default jupyter client version (now this config param is not supported)
+      lab:
+        type: string
+        default: 1.1.1
+        required: false
+        description: default jupyter lab version (now this config param is not supported)
+      nbconvert:
+        type: string
+        default: 5.6.0
+        required: false
+        description: default nbconvert version (now this config param is not supported)
+      ipywidgets:
+        type: string
+        default: "-"
+        required: false
+        description:  now ipywidgets is not installed (now this config param is not supported)
+      nbformat:
+        type: string
+        default: 4.4.0
+        required: false
+        description: default nbformat version (now this config param is not supported)
+      traitlets:
+        type: string
+        default: 4.3.2
+        required: false
+        description: default traitlets version (now this config param is not supported)
     capabilities:
-      bind:
-        occurrences:
-        - 0
-        - UNBOUNDED
-        type: amazon.capabilities.network.Bindable
-      feature:
-        occurrences:
-        - 1
-        - 1
-        type: amazon.capabilities.Node
-    description: 'The TOSCA root node all other TOSCA base node types derive from.
-
-      '
-    interfaces:
-      Standard:
-        type: tosca.interfaces.node.lifecycle.Standard
-    properties:
-      image:
-        required: false
-        type: amazon.datatypes.Image
-      instance_id:
-        required: false
-        type: string
-      name:
-        required: false
-        type: string
-      network:
-        required: false
-        type: amazon.datatypes.ElasticNeworkInterface
-      public_ip_address:
-        required: false
-        type: string
-      state:
-        description: "The state of the node instance. See section \u201CNode States\u201D\
-          \ for allowed values.\n"
-        required: false
-        type: string
-      tags:
-        required: false
-        type: map
-      tosca_id:
-        description: 'A unique identifier of the realized instance of a Node Template
-          that derives from any TOSCA normative type.
-
-          '
-        required: false
-        type: string
-      tosca_name:
-        description: 'This attribute reflects the name of the Node Template as defined
-          in the TOSCA service template.
-
-          '
-        required: false
-        type: string
-      vpc_subnet_id:
-        required: false
-        type: string
+      dependence:
+        type: michman.capabilities.Jupyter
     requirements:
-    - dependency:
-        capability: tosca.capabilities.Node
-        node: tosca.nodes.Root
-        occurrences:
-        - 0
-        - UNBOUNDED
-        relationship: tosca.relationships.DependsOn
-    - dependency:
-        capability: amazon.capabilities.Node
-        node: amazon.nodes.Root
-        occurrences:
-        - 0
-        - UNBOUNDED
-        relationship: amazon.relationships.DependsOn
-    - key_name:
-        capability: amazon.capabilities.Node
-        node: amazon.nodes.Key
-        occurrences:
-        - 0
-        - 1
-        relationship: amazon.relationships.DependsOn
-    - instance_type:
-        capability: amazon.capabilities.Node
-        node: amazon.nodes.instanceType
-        occurrences:
-        - 1
-        - 1
-        relationship: amazon.relationships.DependsOn
-    - image_id:
-        capability: amazon.capabilities.Node
-        node: amazon.nodes.Ami
-        occurrences:
-        - 1
-        - 1
-        relationship: amazon.relationships.DependsOn
-    - network:
-        capability: amazon.capabilities.Node
-        node: amazon.nodes.Eni
-        occurrences:
-        - 0
-        - UNBOUNDED
-        relationship: amazon.relationships.DependsOn
-    - security_groups:
-        capability: amazon.capabilities.Node
-        node: amazon.nodes.Group
-        occurrences:
-        - 0
-        - UNBOUNDED
-        relationship: amazon.relationships.DependsOn
-    - vpc_subnet_id:
-        capability: amazon.capabilities.Node
-        node: amazon.nodes.VpcSubnet
-        occurrences:
-        - 0
-        - 1
-        relationship: amazon.relationships.DependsOn
-  amazon.nodes.Key:
-    capabilities:
-      feature:
-        occurrences:
-        - 1
-        - 1
-        type: amazon.capabilities.Node
-    description: 'The TOSCA root node all other TOSCA base node types derive from.
-
-      '
-    interfaces:
-      Standard:
-        type: tosca.interfaces.node.lifecycle.Standard
-    properties:
-      key_material:
-        required: false
-        type: string
-      key_type:
-        required: false
-        type: string
-      name:
-        required: true
-        type: string
-      profile:
-        required: false
-        type: string
-      state:
-        description: "The state of the node instance. See section \u201CNode States\u201D\
-          \ for allowed values.\n"
-        required: false
-        type: string
-      tosca_id:
-        description: 'A unique identifier of the realized instance of a Node Template
-          that derives from any TOSCA normative type.
-
-          '
-        required: false
-        type: string
-      tosca_name:
-        description: 'This attribute reflects the name of the Node Template as defined
-          in the TOSCA service template.
-
-          '
-        required: false
-        type: string
-    requirements:
-    - dependency:
-        capability: tosca.capabilities.Node
-        node: tosca.nodes.Root
-        occurrences:
-        - 0
-        - UNBOUNDED
-        relationship: tosca.relationships.DependsOn
-    - dependency:
-        capability: amazon.capabilities.Node
-        node: amazon.nodes.Root
-        occurrences:
-        - 0
-        - UNBOUNDED
-        relationship: amazon.relationships.DependsOn
+      - spark:
+          capability: michman.capabilities.Spark
+          relationship: tosca.relationships.DependsOn
+          occurrences: [0, 1]
   tosca.nodes.SoftwareComponent:
+    derived_from: tosca.nodes.Root
+    properties:
+      # domain-specific software component version
+      component_version:
+        type: version
+        required: false
+      admin_credential:
+        type: tosca.datatypes.Credential
+        required: false
+    requirements:
+      - host:
+          capability: tosca.capabilities.Compute
+          node: tosca.nodes.Compute
+          relationship: tosca.relationships.HostedOn
+  tosca.nodes.Abstract.Compute:
+    derived_from: tosca.nodes.Root
+    capabilities:
+      host:
+        type: tosca.capabilities.Compute
+        valid_source_types: [ ]
+  tosca.nodes.Compute:
+    derived_from: tosca.nodes.Abstract.Compute
+    attributes:
+      private_address:
+        type: string
+      public_address:
+        type: string
+      networks:
+        type: map
+        entry_schema:
+          type: tosca.datatypes.network.NetworkInfo
+      ports:
+        type: map
+        entry_schema:
+          type: tosca.datatypes.network.PortInfo
+    requirements:
+      - local_storage:
+          capability: tosca.capabilities.Attachment
+          node: tosca.nodes.Storage.BlockStorage
+          relationship: tosca.relationships.AttachesTo
+          occurrences: [ 0, UNBOUNDED ]
+    capabilities:
+      host:
+        type: tosca.capabilities.Compute
+        valid_source_types: [ tosca.nodes.SoftwareComponent ]
+      endpoint:
+        type: tosca.capabilities.Endpoint.Admin
+      os:
+        type: tosca.capabilities.OperatingSystem
+      scalable:
+        type: tosca.capabilities.Scalable
+      binding:
+        type: tosca.capabilities.network.Bindable
+  tosca.nodes.Root:
+    description: The TOSCA Node Type all other TOSCA base Node Types derive from
+    metadata:
+      abstract: "false"
+      final: "false"
+      targetNamespace: "tosca.nodes"
+    attributes:
+      tosca_name:
+        type: string
+      state:
+        type: string
+        default: "initial"
+      tosca_id:
+        type: string
+    requirements:
+      - dependency:
+          capability: tosca.capabilities.Node
+          node: tosca.nodes.Root
+          relationship: tosca.relationships.DependsOn
+          occurrences: [ 0, UNBOUNDED ]
     capabilities:
       feature:
+        occurrences: [ 1, UNBOUNDED ]
         type: tosca.capabilities.Node
-    description: 'The TOSCA SoftwareComponent node represents a generic software component
-      that can be managed and run by a TOSCA Compute Node Type.
-
-      '
     interfaces:
       Standard:
         type: tosca.interfaces.node.lifecycle.Standard
+  tosca.nodes.Storage.BlockStorage:
+    derived_from: tosca.nodes.Abstract.Storage
+    metadata:
+      abstract: "false"
+      final: "false"
+      targetNamespace: "tosca.nodes.Storage"
     properties:
-      admin_credential:
-        required: false
-        type: tosca.datatypes.Credential
-      component_version:
-        description: 'Software component version.
-
-          '
-        required: false
-        type: version
-      state:
-        description: "The state of the node instance. See section \u201CNode States\u201D\
-          \ for allowed values.\n"
-        required: false
+      volume_id:
         type: string
-      tosca_id:
-        description: 'A unique identifier of the realized instance of a Node Template
-          that derives from any TOSCA normative type.
-
-          '
         required: false
+        status: supported
+      snapshot_id:
+        type: string
+        required: false
+        status: supported
+    capabilities:
+      attachment:
+        occurrences: [ 1, UNBOUNDED ]
+        type: tosca.capabilities.Attachment
+  tosca.nodes.Abstract.Storage:
+    derived_from: tosca.nodes.Root
+    properties:
+      name:
+        type: string
+      size:
+        type: size
+        default: 0 MB
+        constraints:
+          - greater_or_equal: 0 MB
+capability_types:
+  tosca.capabilities.Endpoint.Admin:
+    derived_from: tosca.capabilities.Endpoint
+    # Change Endpoint secure indicator to true from its default of false
+    properties:
+      secure:
+        type: boolean
+        default: true
+        constraints:
+          - equal: true
+  tosca.capabilities.Scalable:
+    derived_from: tosca.capabilities.Root
+    properties:
+      min_instances:
+        type: integer
+        default: 1
+      max_instances:
+        type: integer
+        default: 1
+      default_instances:
+        type: integer
+  tosca.capabilities.Attachment:
+    derived_from: tosca.capabilities.Root
+    metadata:
+      abstract: "false"
+      final: "false"
+      targetNamespace: "tosca.capabilities"
+  tosca.capabilities.Compute:
+    derived_from: tosca.capabilities.Container
+    metadata:
+      abstract: "false"
+      final: "false"
+      targetNamespace: "tosca.capabilities"
+    properties:
+      num_cpus:
+        type: integer
+        required: false
+        status: supported
+        constraints:
+          - greater_or_equal: 1
+      name:
+        type: string
+        required: false
+        status: supported
+      disk_size:
+        type: size
+        required: false
+        status: supported
+        constraints:
+          - greater_or_equal: 0 MB
+      cpu_frequency:
+        type: frequency
+        required: false
+        status: supported
+        constraints:
+          - greater_or_equal: 0.1 GHz
+      mem_size:
+        type: size
+        required: false
+        status: supported
+        constraints:
+          - greater_or_equal: 0 MB
+  michman.capabilities.Spark:
+    derived_from: tosca.capabilities.Root
+    metadata:
+      abstract: "false"
+      final: "false"
+      targetNamespace: "michman.capabilities"
+  tosca.capabilities.Container:
+    derived_from: tosca.capabilities.Root
+    metadata:
+      abstract: "false"
+      final: "false"
+      targetNamespace: "tosca.capabilities"
+  tosca.capabilities.Root:
+    description: The TOSCA root Capability Type all other TOSCA Capability Types derive from
+  michman.capabilities.Jupyter:
+    derived_from: tosca.capabilities.Root
+    metadata:
+      abstract: "false"
+      final: "false"
+      targetNamespace: "michman.capabilities"
+  tosca.capabilities.Endpoint:
+    derived_from: tosca.capabilities.Root
+    properties:
+      protocol:
+        type: string
+        required: true
+        default: tcp
+      port:
+        type: tosca.datatypes.network.PortDef
+        required: false
+      secure:
+        type: boolean
+        required: false
+        default: false
+      url_path:
+        type: string
+        required: false
+      port_name:
+        type: string
+        required: false
+      network_name:
+        type: string
+        required: false
+        default: PRIVATE
+      initiator:
+        type: string
+        required: false
+        default: source
+        constraints:
+          - valid_values: [ source, target, peer ]
+      ports:
+        type: map
+        required: false
+        constraints:
+          - min_length: 1
+        entry_schema:
+          type: tosca.datatypes.network.PortSpec
+    attributes:
+      ip_address:
+        type: string
+  tosca.capabilities.OperatingSystem:
+    derived_from: tosca.capabilities.Root
+    properties:
+      architecture:
+        type: string
+        required: false
+      type:
+        type: string
+        required: false
+      distribution:
+        type: string
+        required: false
+      version:
+        type: version
+        required: false
+  tosca.capabilities.network.Bindable:
+    derived_from: tosca.capabilities.Node
+  tosca.capabilities.Node:
+    derived_from: tosca.capabilities.Root
+relationship_types:
+  tosca.relationships.HostedOn:
+    derived_from: tosca.relationships.Root
+    valid_target_types: [ tosca.capabilities.Container ]
+  tosca.relationships.DependsOn:
+    derived_from: tosca.relationships.Root
+    metadata:
+      abstract: "false"
+      final: "false"
+      targetNamespace: "tosca.relationships"
+    valid_target_types: [ tosca.capabilities.Container ]
+  tosca.relationships.Root:
+    description: The TOSCA root Relationship Type all other TOSCA base Relationship Types derive from
+    attributes:
+      tosca_id:
         type: string
       tosca_name:
-        description: 'This attribute reflects the name of the Node Template as defined
-          in the TOSCA service template.
-
-          '
-        required: false
         type: string
-    requirements:
-    - dependency:
-        capability: tosca.capabilities.Node
-        node: tosca.nodes.Root
-        occurrences:
-        - 0
-        - UNBOUNDED
-        relationship: tosca.relationships.DependsOn
-    - host:
-        capability: tosca.capabilities.Container
-        node: tosca.nodes.Compute
-        relationship: tosca.relationships.HostedOn
+    interfaces:
+      Configure:
+        type: tosca.interfaces.relationship.Configure
+  tosca.relationships.AttachesTo:
+    derived_from: tosca.relationships.Root
+    valid_target_types: [ tosca.capabilities.Attachment ]
+    properties:
+      location:
+        type: string
+        constraints:
+          - min_length: 1
+      device:
+        type: string
+        required: false
+interface_types:
+  tosca.interfaces.Root:
+    description: The TOSCA root Interface Type all other TOSCA Interface Types derive from
+  tosca.interfaces.relationship.Configure:
+    derived_from: tosca.interfaces.Root
+    pre_configure_source:
+      description: Operation to pre-configure the source endpoint.
+    pre_configure_target:
+      description: Operation to pre-configure the target endpoint.
+    post_configure_source:
+      description: Operation to post-configure the source endpoint.
+    post_configure_target:
+      description: Operation to post-configure the target endpoint.
+    add_target:
+      description: Operation to notify the source node of a target node being added via a relationship.
+    add_source:
+      description: Operation to notify the target node of a source node which is now available via a relationship.
+    target_changed:
+      description: Operation to notify source some property or attribute of the target changed
+    remove_target:
+      description: Operation to remove a target node.
+  tosca.interfaces.node.lifecycle.Standard:
+    derived_from: tosca.interfaces.Root
+    create:
+      description: Standard lifecycle create operation.
+    configure:
+      description: Standard lifecycle configure operation.
+    start:
+      description: Standard lifecycle start operation.
+    stop:
+      description: Standard lifecycle stop operation.
+    delete:
+      description: Standard lifecycle delete operation.
+
+data_types:
+  tosca.datatypes.Credential:
+    derived_from: tosca.datatypes.Root
+    properties:
+      protocol:
+        type: string
+        required: false
+      token_type:
+        type: string
+        default: password
+      token:
+        type: string
+      keys:
+        type: map
+        required: false
+        entry_schema:
+          type: string
+      user:
+        type: string
+        required: false
+  tosca.datatypes.network.PortInfo:
+    derived_from: tosca.datatypes.Root
+    properties:
+      port_name:
+        type: string
+      port_id:
+        type: string
+      network_id:
+        type: string
+      mac_address:
+        type: string
+      addresses:
+        type: list
+        entry_schema:
+          type: string
+  tosca.datatypes.network.PortSpec:
+    derived_from: tosca.datatypes.Root
+    properties:
+      protocol:
+        type: string
+        required: true
+        default: tcp
+        constraints:
+          - valid_values: [ udp, tcp, igmp ]
+      target:
+        type: tosca.datatypes.network.PortDef
+        required: false
+      target_range:
+        type: range
+        required: false
+        constraints:
+          - in_range: [ 1, 65535 ]
+      source:
+        type: tosca.datatypes.network.PortDef
+        required: false
+      source_range:
+        type: range
+        required: false
+        constraints:
+          - in_range: [ 1, 65535 ]
+  tosca.datatypes.network.PortDef:
+    derived_from: integer
+    constraints:
+      - in_range: [ 1, 65535 ]
+  tosca.datatypes.network.NetworkInfo:
+    derived_from: tosca.datatypes.Root
+    properties:
+      network_name:
+        type: string
+      network_id:
+        type: string
+      addresses:
+        type: list
+        entry_schema:
+          type: string
+  tosca.datatypes.Root:
+    description: The TOSCA root Data Type all other TOSCA base Data Types derive from
 topology_template:
+  inputs:
+    storage_snapshot_id:
+      type: string
+      description: >
+        Optional identifier for an existing snapshot to use when creating storage.
   node_templates:
-    software_for_cumulus_software_component:
-      interfaces:
-        Standard:
-          create:
-            implementation: ansible-operation-example.yaml
+    jupyter_1:
+      type: michman.nodes.Jupyter.Jupyter-6-0-1
+      properties:
+          version: 6.0.1
+          spark_component_version: 2.3.0
+          core: 4.5.0
       requirements:
-      - host:
-          node: testing_tosca_instance
-          node_filter:
-            properties:
-            - name: testing_tosca_{{ item }}
-            - network:
-                assign_public_ip: true
-            - tags:
-                metadata: cube_master=true
-            - id: '{{ testing_tosca_instance_delete }}'
-      - dependency:
-          node: testing_tosca_instance
-          node_filter:
-            properties:
-            - name: testing_tosca_{{ item }}
-            - network:
-                assign_public_ip: true
-            - tags:
-                metadata: cube_master=true
-            - id: '{{ testing_tosca_instance_delete }}'
-      - dependency:
-          node: testing_tosca_key
-          node_filter:
-            properties:
-            - key_material: '{{ lookup(''file'', ''~/.ssh/id_rsa.pub'') }}'
-            - name: testing_tosca_key
-            - id: '{{ testing_tosca_key_delete }}'
-      - dependency:
-          node: testing_tosca_group
-          node_filter:
-            properties:
-            - description: testing_tosca_group
-            - name: testing_tosca_group
-            - rules:
-              - cidr_ip: 0.0.0.0
-                ports:
-                - 22
-                proto: tcp
-              - cidr_ip: 0.0.0.0
-            - rules_egress:
-              - cidr_ip: 0.0.0.0
-            - id: '{{ testing_tosca_group_delete }}'
-      type: tosca.nodes.SoftwareComponent
-    testing_tosca_group:
-      properties:
-        description: testing_tosca_group
-        name: testing_tosca_group
-        rules:
-        - cidr_ip: 0.0.0.0
-          ports:
-          - 22
-          proto: tcp
-        - cidr_ip: 0.0.0.0
-        rules_egress:
-        - cidr_ip: 0.0.0.0
-      type: amazon.nodes.Group
-    testing_tosca_instance:
-      interfaces:
-        Standard:
-          create:
-            implementation: add_host.yaml
-            inputs:
-              ansible_user: xenial
-              group: testing_tosca_instance_public_address
-              host_ip: '{{ host_ip | default([]) + [[ "testing_tosca_public_address_"
-                + item, testing_tosca_instance.results[item | int - 1].instances[0].public_ip_address
-                ]] }}'
-      properties:
-        name: testing_tosca_{{ item }}
-        network:
-          assign_public_ip: true
-        tags:
-          metadata: cube_master=true
+        - host: compute_0
+    compute_0:
+      type: tosca.nodes.Compute
       requirements:
-      - key_name:
-          node: testing_tosca_key
-      - vpc_subnet_id:
-          node_filter:
-            properties:
-            - id: not implemented yet
-      - instance_type:
-          node_filter:
-            properties:
-            - vcpus: 1
-            - storage: 5.0
-            - memory: 1.0
-      - security_groups:
-          node: testing_tosca_group
-          node_filter:
-            properties:
-            - description: testing_tosca_group
-            - name: testing_tosca_group
-            - rules:
-              - cidr_ip: 0.0.0.0
-                ports:
-                - 22
-                proto: tcp
-              - cidr_ip: 0.0.0.0
-            - rules_egress:
-              - cidr_ip: 0.0.0.0
-            - id: '{{ testing_tosca_group_delete }}'
-      - image_id:
-          node_filter:
-            properties:
-            - image_id: not implemented yet
-      type: amazon.nodes.Instance
-    testing_tosca_key:
+        - local_storage: block_storage_0
+      capabilities:
+        host:
+          properties:
+            num_cpus: 1
+            name: jupyter_host
+            disk_size: 256 GB
+            cpu_frequency: 4.0 GHz
+            mem_size: 16 GB
+        endpoint:
+          properties:
+            protocol: tcp
+            port: 7777
+            secure: true
+        os:
+          properties:
+            architecture: x86_64
+            type: Linux
+            distribution: Fedora
+            version: 18.0
+    block_storage_0:
+      type: tosca.nodes.Storage.BlockStorage
       properties:
-        key_material: '{{ lookup(''file'', ''~/.ssh/id_rsa.pub'') }}'
-        name: testing_tosca_key
-      type: amazon.nodes.Key
-tosca_definitions_version: tosca_simple_yaml_1_3
+        size: 256 GB
+        snapshot_id: { get_input: [storage_snapshot_id] }

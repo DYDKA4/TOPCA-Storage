@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang=en>
+<title>Is cluster_name taken?</title>
+<body>
+<p>TEST</p>
+    {% if result %}
+    <p>Cluster_name: {{cluster_name}} - is taken</p>
+    {% else %}
+    <p>Cluster_name: {{cluster_name}} - vacant</p>
+    {% endif %}
+</body>

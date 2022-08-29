@@ -1,0 +1,100 @@
+2022-08-29 13:02:50,783 INFO werkzeug MainThread :  * Running on all addresses (0.0.0.0)
+   WARNING: This is a development server. Do not use it in a production deployment.
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.10.10.235:5000 (Press CTRL+C to quit)
+2022-08-29 13:02:52,426 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-29 13:02:52,450 INFO root Thread-1 : LOOKUP ON ServiceTemplateDefinition  
+2022-08-29 13:02:52,456 ERROR app Thread-1 : Exception on /cluster_names [GET]
+Traceback (most recent call last):
+  File "/home/dmitrytulin/PycharmProjects/API_COURSE/venv/lib/python3.9/site-packages/flask/app.py", line 2077, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/dmitrytulin/PycharmProjects/API_COURSE/venv/lib/python3.9/site-packages/flask/app.py", line 1525, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/dmitrytulin/PycharmProjects/API_COURSE/venv/lib/python3.9/site-packages/flask/app.py", line 1523, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/dmitrytulin/PycharmProjects/API_COURSE/venv/lib/python3.9/site-packages/flask/app.py", line 1509, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/dmitrytulin/PycharmProjects/API_COURSE/app/views.py", line 69, in cluster_names
+    return render_template("LIST_OF_cluster_names.html",
+  File "/home/dmitrytulin/PycharmProjects/API_COURSE/venv/lib/python3.9/site-packages/flask/templating.py", line 149, in render_template
+    ctx.app.jinja_env.get_or_select_template(template_name_or_list),
+  File "/home/dmitrytulin/PycharmProjects/API_COURSE/venv/lib/python3.9/site-packages/jinja2/environment.py", line 1081, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "/home/dmitrytulin/PycharmProjects/API_COURSE/venv/lib/python3.9/site-packages/jinja2/environment.py", line 1010, in get_template
+    return self._load_template(name, globals)
+  File "/home/dmitrytulin/PycharmProjects/API_COURSE/venv/lib/python3.9/site-packages/jinja2/environment.py", line 969, in _load_template
+    template = self.loader.load(self, name, self.make_globals(globals))
+  File "/home/dmitrytulin/PycharmProjects/API_COURSE/venv/lib/python3.9/site-packages/jinja2/loaders.py", line 138, in load
+    code = environment.compile(source, name, filename)
+  File "/home/dmitrytulin/PycharmProjects/API_COURSE/venv/lib/python3.9/site-packages/jinja2/environment.py", line 768, in compile
+    self.handle_exception(source=source_hint)
+  File "/home/dmitrytulin/PycharmProjects/API_COURSE/venv/lib/python3.9/site-packages/jinja2/environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/home/dmitrytulin/PycharmProjects/API_COURSE/app/templates/LIST_OF_cluster_names.html", line 8, in template
+    <!--    {% end for %}-->
+jinja2.exceptions.TemplateSyntaxError: Encountered unknown tag 'end'. Jinja was looking for the following tags: 'endfor' or 'else'. The innermost block that needs to be closed is 'for'.
+2022-08-29 13:02:52,459 INFO werkzeug Thread-1 : 127.0.0.1 - - [29/Aug/2022 13:02:52] "[35m[1mGET /cluster_names HTTP/1.1[0m" 500 -
+2022-08-29 13:03:02,172 INFO root Thread-2 : Get connection to ('10.100.151.128', 9669)
+2022-08-29 13:03:02,190 INFO root Thread-2 : LOOKUP ON ServiceTemplateDefinition  
+2022-08-29 13:03:02,191 ERROR app Thread-2 : Exception on /cluster_names [GET]
+Traceback (most recent call last):
+  File "/home/dmitrytulin/PycharmProjects/API_COURSE/venv/lib/python3.9/site-packages/flask/app.py", line 2077, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/dmitrytulin/PycharmProjects/API_COURSE/venv/lib/python3.9/site-packages/flask/app.py", line 1525, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/dmitrytulin/PycharmProjects/API_COURSE/venv/lib/python3.9/site-packages/flask/app.py", line 1523, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/dmitrytulin/PycharmProjects/API_COURSE/venv/lib/python3.9/site-packages/flask/app.py", line 1509, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/dmitrytulin/PycharmProjects/API_COURSE/app/views.py", line 69, in cluster_names
+    return render_template("LIST_OF_cluster_names.html",
+  File "/home/dmitrytulin/PycharmProjects/API_COURSE/venv/lib/python3.9/site-packages/flask/templating.py", line 149, in render_template
+    ctx.app.jinja_env.get_or_select_template(template_name_or_list),
+  File "/home/dmitrytulin/PycharmProjects/API_COURSE/venv/lib/python3.9/site-packages/jinja2/environment.py", line 1081, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "/home/dmitrytulin/PycharmProjects/API_COURSE/venv/lib/python3.9/site-packages/jinja2/environment.py", line 1010, in get_template
+    return self._load_template(name, globals)
+  File "/home/dmitrytulin/PycharmProjects/API_COURSE/venv/lib/python3.9/site-packages/jinja2/environment.py", line 969, in _load_template
+    template = self.loader.load(self, name, self.make_globals(globals))
+  File "/home/dmitrytulin/PycharmProjects/API_COURSE/venv/lib/python3.9/site-packages/jinja2/loaders.py", line 138, in load
+    code = environment.compile(source, name, filename)
+  File "/home/dmitrytulin/PycharmProjects/API_COURSE/venv/lib/python3.9/site-packages/jinja2/environment.py", line 768, in compile
+    self.handle_exception(source=source_hint)
+  File "/home/dmitrytulin/PycharmProjects/API_COURSE/venv/lib/python3.9/site-packages/jinja2/environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/home/dmitrytulin/PycharmProjects/API_COURSE/app/templates/LIST_OF_cluster_names.html", line 8, in template
+    <!--    {% end for %}-->
+jinja2.exceptions.TemplateSyntaxError: Encountered unknown tag 'end'. Jinja was looking for the following tags: 'endfor' or 'else'. The innermost block that needs to be closed is 'for'.
+2022-08-29 13:03:02,192 INFO werkzeug Thread-2 : 127.0.0.1 - - [29/Aug/2022 13:03:02] "[35m[1mGET /cluster_names HTTP/1.1[0m" 500 -
+2022-08-29 13:03:17,512 INFO root Thread-3 : Get connection to ('10.100.151.128', 9669)
+2022-08-29 13:03:17,528 INFO root Thread-3 : LOOKUP ON ServiceTemplateDefinition  
+2022-08-29 13:03:17,529 ERROR app Thread-3 : Exception on /cluster_names [GET]
+Traceback (most recent call last):
+  File "/home/dmitrytulin/PycharmProjects/API_COURSE/venv/lib/python3.9/site-packages/flask/app.py", line 2077, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/dmitrytulin/PycharmProjects/API_COURSE/venv/lib/python3.9/site-packages/flask/app.py", line 1525, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/dmitrytulin/PycharmProjects/API_COURSE/venv/lib/python3.9/site-packages/flask/app.py", line 1523, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/dmitrytulin/PycharmProjects/API_COURSE/venv/lib/python3.9/site-packages/flask/app.py", line 1509, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/dmitrytulin/PycharmProjects/API_COURSE/app/views.py", line 69, in cluster_names
+    return render_template("LIST_OF_cluster_names.html",
+  File "/home/dmitrytulin/PycharmProjects/API_COURSE/venv/lib/python3.9/site-packages/flask/templating.py", line 149, in render_template
+    ctx.app.jinja_env.get_or_select_template(template_name_or_list),
+  File "/home/dmitrytulin/PycharmProjects/API_COURSE/venv/lib/python3.9/site-packages/jinja2/environment.py", line 1081, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "/home/dmitrytulin/PycharmProjects/API_COURSE/venv/lib/python3.9/site-packages/jinja2/environment.py", line 1010, in get_template
+    return self._load_template(name, globals)
+  File "/home/dmitrytulin/PycharmProjects/API_COURSE/venv/lib/python3.9/site-packages/jinja2/environment.py", line 969, in _load_template
+    template = self.loader.load(self, name, self.make_globals(globals))
+  File "/home/dmitrytulin/PycharmProjects/API_COURSE/venv/lib/python3.9/site-packages/jinja2/loaders.py", line 138, in load
+    code = environment.compile(source, name, filename)
+  File "/home/dmitrytulin/PycharmProjects/API_COURSE/venv/lib/python3.9/site-packages/jinja2/environment.py", line 768, in compile
+    self.handle_exception(source=source_hint)
+  File "/home/dmitrytulin/PycharmProjects/API_COURSE/venv/lib/python3.9/site-packages/jinja2/environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/home/dmitrytulin/PycharmProjects/API_COURSE/app/templates/LIST_OF_cluster_names.html", line 8, in template
+    <!--    {% end for %}-->
+jinja2.exceptions.TemplateSyntaxError: Encountered unknown tag 'end'. Jinja was looking for the following tags: 'endfor' or 'else'. The innermost block that needs to be closed is 'for'.
+2022-08-29 13:03:17,530 INFO werkzeug Thread-3 : 127.0.0.1 - - [29/Aug/2022 13:03:17] "[35m[1mGET /cluster_names HTTP/1.1[0m" 500 -

@@ -1,0 +1,36 @@
+2022-08-29 13:43:19,121 INFO werkzeug MainThread :  * Running on all addresses (0.0.0.0)
+   WARNING: This is a development server. Do not use it in a production deployment.
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.10.10.235:5000 (Press CTRL+C to quit)
+2022-08-29 13:43:20,597 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-29 13:43:20,617 INFO root Thread-1 : LOOKUP ON ServiceTemplateDefinition  
+2022-08-29 13:43:20,617 ERROR app Thread-1 : Exception on /cluster_names/Jupyter_1 [GET]
+Traceback (most recent call last):
+  File "/home/dmitrytulin/PycharmProjects/API_COURSE/venv/lib/python3.9/site-packages/flask/app.py", line 2077, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/dmitrytulin/PycharmProjects/API_COURSE/venv/lib/python3.9/site-packages/flask/app.py", line 1526, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/dmitrytulin/PycharmProjects/API_COURSE/venv/lib/python3.9/site-packages/flask/app.py", line 1545, in finalize_request
+    response = self.make_response(rv)
+  File "/home/dmitrytulin/PycharmProjects/API_COURSE/venv/lib/python3.9/site-packages/flask/app.py", line 1734, in make_response
+    raise TypeError(
+TypeError: The view function did not return a valid response. The return type must be a string, dict, tuple, Response instance, or WSGI callable, but it was a bool.
+2022-08-29 13:43:20,619 INFO werkzeug Thread-1 : 127.0.0.1 - - [29/Aug/2022 13:43:20] "[35m[1mGET /cluster_names/Jupyter_1 HTTP/1.1[0m" 500 -
+2022-08-29 13:43:38,373 INFO werkzeug MainThread :  * Running on all addresses (0.0.0.0)
+   WARNING: This is a development server. Do not use it in a production deployment.
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.10.10.235:5000 (Press CTRL+C to quit)
+2022-08-29 13:43:43,669 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-29 13:43:43,690 INFO root Thread-1 : LOOKUP ON ServiceTemplateDefinition  
+2022-08-29 13:43:43,691 ERROR app Thread-1 : Exception on /cluster_names/Jupyter_1 [GET]
+Traceback (most recent call last):
+  File "/home/dmitrytulin/PycharmProjects/API_COURSE/venv/lib/python3.9/site-packages/flask/app.py", line 2077, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/dmitrytulin/PycharmProjects/API_COURSE/venv/lib/python3.9/site-packages/flask/app.py", line 1526, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/dmitrytulin/PycharmProjects/API_COURSE/venv/lib/python3.9/site-packages/flask/app.py", line 1545, in finalize_request
+    response = self.make_response(rv)
+  File "/home/dmitrytulin/PycharmProjects/API_COURSE/venv/lib/python3.9/site-packages/flask/app.py", line 1734, in make_response
+    raise TypeError(
+TypeError: The view function did not return a valid response. The return type must be a string, dict, tuple, Response instance, or WSGI callable, but it was a bool.
+2022-08-29 13:43:43,693 INFO werkzeug Thread-1 : 127.0.0.1 - - [29/Aug/2022 13:43:43] "[35m[1mGET /cluster_names/Jupyter_1 HTTP/1.1[0m" 500 -

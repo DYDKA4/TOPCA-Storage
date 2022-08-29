@@ -1,10 +1,10 @@
 import logging
 
-from flask import request, abort
+from flask import request, abort, render_template
 from app import app
 import yaml
 from nebula_communication.deploy import deploy
-from nebula_communication.nebula_functions import delete_all, delete_cluster
+from nebula_communication.nebula_functions import delete_all, delete_cluster, find_vertex_by_properties, fetch_vertex
 from nebula_communication.redis_communication import add_vid
 from nebula_communication.search.property_search import find_node_template_of_property
 from nebula_communication.search.search_of_endpoint import search_of_endpoint_from_son
@@ -33,7 +33,7 @@ def yaml_add():
             template = service_template_definition_parser(cluster_name, file)
             main_linker(template)
             if add_vid(template.name, template.name):
-                abort(400)
+                return render_template("ERROR_name_is_taken.html", name=cluster_name)
             if request.method == 'POST':
                 print('DEPLOY START')
                 deploy(template, template.name)
@@ -49,6 +49,22 @@ def yaml_add():
     return '''
             400 Bad Request 
             '''
+
+
+@app.route('/cluster_names', methods=['GET'])
+@app.route('/cluster_names/<path:varargs>', methods=['GET'])
+def cluster_names(varargs=None):
+    if varargs is None:
+        vid = find_vertex_by_properties("ServiceTemplateDefinition")
+        print(vid.column_values('id'))
+        return render_template("LIST_OF_cluster_names.html", cluster_names=vid.column_values('id'))
+    else:
+        varargs = varargs.split("/")
+        if len(varargs) > 1:
+            abort(400)
+        result = fetch_vertex('"'+varargs[0]+'"', "ServiceTemplateDefinition")
+        print(result)
+        return render_template("Cluster_name_is_taken.html", cluster_name=varargs[0], result=result)
 
 
 @app.route('/yaml-template/<path:varargs>', methods=['PATCH'])
@@ -196,7 +212,8 @@ def find_node_with_mutual_property():
             else:
                 dict_to_operate[digit[-1]] = {'_'.join(digit[:-1]): value}
                 if kwargs.get('cluster_name'):
-                    dict_to_operate[digit[-1]] = dict_to_operate[digit[-1]] | {'cluster_name': kwargs.get('cluster_name')}
+                    dict_to_operate[digit[-1]] = dict_to_operate[digit[-1]] | {
+                        'cluster_name': kwargs.get('cluster_name')}
             kwargs.get('cluster_name')
 
     print(yaml.dump(dict_to_operate, default_flow_style=False))
@@ -216,6 +233,3 @@ def find_node_with_mutual_property():
                     tmp_answer = tmp_answer | {key_2: tmp_result}
         result = tmp_answer
     return result
-
-
-

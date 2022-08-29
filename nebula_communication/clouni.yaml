@@ -1,4 +1,854 @@
+capability_types:
+  provider.capabilities.Node:
+    metadata:
+      status: plug
+  amazon.capabilities.Attachment:
+    description: 'This is the default TOSCA type that should be used or extended to
+      define an attachment capability of a (logical) infrastructure device node (e.g.,
+      BlockStorage node)
+
+      '
+  amazon.capabilities.Container:
+    description: 'The Container capability, when included on a Node Type or Template
+      definition, indicates that the node can act as a container for (or a host for)
+      one or more other declared Node Types.
+
+      '
+    properties:
+      cpu_frequency:
+        constraints:
+        - greater_or_equal: 0.1 GHz
+        required: false
+        type: scalar-unit.frequency
+      disk_size:
+        constraints:
+        - greater_or_equal: 0 MB
+        required: false
+        type: scalar-unit.size
+      mem_size:
+        constraints:
+        - greater_or_equal: 0 MB
+        required: false
+        type: scalar-unit.size
+      num_cpus:
+        constraints:
+        - greater_or_equal: 1
+        required: false
+        type: integer
+  amazon.capabilities.Node: {}
+  amazon.capabilities.Root:
+    description: 'The TOSCA root Capability Type all other TOSCA base Capability Types
+      derive from.
+
+      '
+  amazon.capabilities.network.Bindable:
+    description: The Node capability indicates the base capabilities of a TOSCA Node
+      Type.
+  amazon.capabilities.network.Linkable: {}
+  tosca.capabilities.Attachment:
+    description: 'This is the default TOSCA type that should be used or extended to
+      define an attachment capability of a (logical) infrastructure device node (e.g.,
+      BlockStorage node)
+
+      '
+  tosca.capabilities.Container:
+    description: 'The Container capability, when included on a Node Type or Template
+      definition, indicates that the node can act as a container for (or a host for)
+      one or more other declared Node Types.
+
+      '
+    properties:
+      cpu_frequency:
+        constraints:
+        - greater_or_equal: 0.1 GHz
+        required: false
+        type: scalar-unit.frequency
+      disk_size:
+        constraints:
+        - greater_or_equal: 0 MB
+        required: false
+        type: scalar-unit.size
+      mem_size:
+        constraints:
+        - greater_or_equal: 0 MB
+        required: false
+        type: scalar-unit.size
+      num_cpus:
+        constraints:
+        - greater_or_equal: 1
+        required: false
+        type: integer
+  tosca.capabilities.Endpoint:
+    description: 'This is the default TOSCA type that should be used or extended to
+      define a network endpoint capability. This includes the information to express
+      a basic endpoint with a single port or a complex endpoint with multiple ports.
+      By default the Endpoint is assumed to represent an address on a private network
+      unless otherwise specified.
+
+      '
+    properties:
+      initiator:
+        constraints:
+        - valid_values:
+          - source
+          - target
+          - peer
+        default: source
+        required: false
+        type: string
+      ip_address:
+        default: 0.0.0.0/0
+        type: string
+      network_name:
+        default: PRIVATE
+        required: false
+        type: string
+      port:
+        required: false
+        type: tosca.datatypes.network.PortDef
+      port_name:
+        required: false
+        type: string
+      ports:
+        constraints:
+        - min_length: 1
+        entry_schema:
+          type: tosca.datatypes.network.PortSpec
+        required: false
+        type: map
+      protocol:
+        default: tcp
+        required: true
+        type: string
+      secure:
+        default: false
+        required: false
+        type: boolean
+      url_path:
+        required: false
+        type: string
+  tosca.capabilities.Endpoint.Admin:
+    description: 'This is the default TOSCA type that should be used or extended to
+      define a specialized administrator endpoint capability.
+
+      '
+    properties:
+      initiator:
+        constraints:
+        - valid_values:
+          - source
+          - target
+          - peer
+        default: source
+        required: false
+        type: string
+      ip_address:
+        default: 0.0.0.0/0
+        type: string
+      network_name:
+        default: PRIVATE
+        required: false
+        type: string
+      port:
+        required: false
+        type: tosca.datatypes.network.PortDef
+      port_name:
+        required: false
+        type: string
+      ports:
+        constraints:
+        - min_length: 1
+        entry_schema:
+          type: tosca.datatypes.network.PortSpec
+        required: false
+        type: map
+      protocol:
+        default: tcp
+        required: true
+        type: string
+      secure:
+        constraints:
+        - equal: true
+        default: true
+        required: false
+        type: boolean
+      url_path:
+        required: false
+        type: string
+  tosca.capabilities.Endpoint.Database:
+    description: 'This is the default TOSCA type that should be used or extended to
+      define a network endpoint capability. This includes the information to express
+      a basic endpoint with a single port or a complex endpoint with multiple ports.
+      By default the Endpoint is assumed to represent an address on a private network
+      unless otherwise specified.
+
+      '
+    properties:
+      initiator:
+        constraints:
+        - valid_values:
+          - source
+          - target
+          - peer
+        default: source
+        required: false
+        type: string
+      ip_address:
+        default: 0.0.0.0/0
+        type: string
+      network_name:
+        default: PRIVATE
+        required: false
+        type: string
+      port:
+        required: false
+        type: tosca.datatypes.network.PortDef
+      port_name:
+        required: false
+        type: string
+      ports:
+        constraints:
+        - min_length: 1
+        entry_schema:
+          type: tosca.datatypes.network.PortSpec
+        required: false
+        type: map
+      protocol:
+        default: tcp
+        required: true
+        type: string
+      secure:
+        default: false
+        required: false
+        type: boolean
+      url_path:
+        required: false
+        type: string
+  tosca.capabilities.Endpoint.Public:
+    description: 'This capability represents a public endpoint which is accessible
+      to the general internet (and its public IP address ranges).
+
+      '
+    properties:
+      dns_name:
+        description: The optional name to register with DNS
+        required: false
+        status: experimental
+        type: string
+      floating:
+        default: false
+        description: 'Indicates that the public address should be allocated from a
+          pool of floating IPs that are associated with the network.
+
+          '
+        required: false
+        status: experimental
+        type: boolean
+      initiator:
+        constraints:
+        - valid_values:
+          - source
+          - target
+          - peer
+        default: source
+        required: false
+        type: string
+      ip_address:
+        default: 0.0.0.0/0
+        type: string
+      network_name:
+        constraints:
+        - equal: PUBLIC
+        default: PUBLIC
+        required: false
+        type: string
+      port:
+        required: false
+        type: tosca.datatypes.network.PortDef
+      port_name:
+        required: false
+        type: string
+      ports:
+        constraints:
+        - min_length: 1
+        entry_schema:
+          type: tosca.datatypes.network.PortSpec
+        required: false
+        type: map
+      protocol:
+        default: tcp
+        required: true
+        type: string
+      secure:
+        default: false
+        required: false
+        type: boolean
+      url_path:
+        required: false
+        type: string
+  tosca.capabilities.Node:
+    description: The Node capability indicates the base capabilities of a TOSCA Node
+      Type.
+  tosca.capabilities.OperatingSystem:
+    description: 'The TOSCA root Capability Type all other TOSCA base Capability Types
+      derive from.
+
+      '
+    properties:
+      architecture:
+        description: 'The host Operating System (OS) architecture.
+
+          '
+        required: false
+        type: string
+      distribution:
+        description: "The host Operating System (OS) distribution. Examples of valid\
+          \ values for an \u201Ctype\u201D of \u201CLinux\u201D would include: debian,\
+          \ fedora, rhel and ubuntu.\n"
+        required: false
+        type: string
+      type:
+        description: 'The host Operating System (OS) type.
+
+          '
+        required: false
+        type: string
+      version:
+        description: 'The host Operating System version.
+
+          '
+        required: false
+        type: version
+  tosca.capabilities.Root:
+    description: 'The TOSCA root Capability Type all other TOSCA base Capability Types
+      derive from.
+
+      '
+  tosca.capabilities.Scalable:
+    description: 'The TOSCA root Capability Type all other TOSCA base Capability Types
+      derive from.
+
+      '
+    properties:
+      default_instances:
+        description: 'An optional property that indicates the requested default number
+          of instances that should be the starting number of instances a TOSCA orchestrator
+          should attempt to allocate. The value for this property MUST be in the range
+          between the values set for min_instances and max_instances properties.
+
+          '
+        required: false
+        type: integer
+      max_instances:
+        default: 1
+        description: 'This property is used to indicate the maximum number of instances
+          that should be created for the associated TOSCA Node Template by a TOSCA
+          orchestrator.
+
+          '
+        required: true
+        type: integer
+      min_instances:
+        default: 1
+        description: 'This property is used to indicate the minimum number of instances
+          that should be created for the associated TOSCA Node Template by a TOSCA
+          orchestrator.
+
+          '
+        required: true
+        type: integer
+  tosca.capabilities.network.Bindable:
+    description: 'A node type that includes the Bindable capability indicates that
+      it can be pointed by tosca.relationships.network.BindsTo relationship type,
+      which represents a network association relationship between Port and Compute
+      node types.
+
+      '
+  tosca.capabilities.network.Linkable:
+    description: 'A node type that includes the Linkable capability indicates that
+      it can be pointed by tosca.relationships.network.LinksTo relationship type,
+      which represents an association relationship between Port and Network node types.
+
+      '
+data_types:
+  amazon.datatypes.ElasticNeworkInterface:
+    description: 'The TOSCA root Data Type all other TOSCA base Data Types derive
+      from
+
+      '
+    properties:
+      assign_public_ip:
+        required: false
+        type: boolean
+      delete_on_termination:
+        required: false
+        type: boolean
+      description:
+        required: false
+        type: string
+      device_index:
+        required: false
+        type: integer
+      groups:
+        required: false
+        type: list
+      interfaces:
+        required: false
+        type: list
+      ipv6_addresses:
+        entry_schema:
+          type: string
+        required: false
+        type: list
+      private_ip_address:
+        required: false
+        type: string
+      private_ip_addresses:
+        entry_schema:
+          type: string
+        required: false
+        type: list
+      source_dest_check:
+        required: false
+        type: boolean
+      subnet_id:
+        required: false
+        type: string
+  amazon.datatypes.Image:
+    description: 'The TOSCA root Data Type all other TOSCA base Data Types derive
+      from
+
+      '
+    properties:
+      id:
+        required: false
+        type: string
+      kernel:
+        required: false
+        type: string
+      ramdisk:
+        required: false
+        type: string
+  amazon.datatypes.Root:
+    description: 'The TOSCA root Data Type all other TOSCA base Data Types derive
+      from
+
+      '
+  amazon.datatypes.SecurityGroupRule:
+    description: 'The TOSCA root Data Type all other TOSCA base Data Types derive
+      from
+
+      '
+    properties:
+      cidr_ip:
+        required: false
+        type: string
+      from_port:
+        required: false
+        type: integer
+      ports:
+        required: false
+        type: list
+      proto:
+        required: false
+        type: string
+      to_port:
+        required: false
+        type: integer
+  tosca.datatypes.Credential:
+    description: 'The TOSCA root Data Type all other TOSCA base Data Types derive
+      from
+
+      '
+    properties:
+      keys:
+        entry_schema:
+          type: string
+        required: false
+        type: map
+      protocol:
+        required: false
+        type: string
+      token:
+        required: true
+        type: string
+      token_type:
+        default: password
+        required: true
+        type: string
+      user:
+        required: false
+        type: string
+  tosca.datatypes.Root:
+    description: 'The TOSCA root Data Type all other TOSCA base Data Types derive
+      from
+
+      '
+  tosca.datatypes.network.NetworkInfo:
+    description: 'The TOSCA root Data Type all other TOSCA base Data Types derive
+      from
+
+      '
+    properties:
+      addresses:
+        entry_schema:
+          type: string
+        required: false
+        type: list
+      network_id:
+        required: false
+        type: string
+      network_name:
+        required: false
+        type: string
+  tosca.datatypes.network.PortDef:
+    constraints:
+    - in_range:
+      - 1
+      - 65535
+    description: 'The TOSCA root Data Type all other TOSCA base Data Types derive
+      from
+
+      '
+    type: integer
+  tosca.datatypes.network.PortInfo:
+    description: 'The TOSCA root Data Type all other TOSCA base Data Types derive
+      from
+
+      '
+    properties:
+      addresses:
+        entry_schema:
+          type: string
+        required: false
+        type: list
+      mac_address:
+        required: false
+        type: string
+      network_id:
+        required: false
+        type: string
+      port_id:
+        required: false
+        type: string
+      port_name:
+        required: false
+        type: string
+  tosca.datatypes.network.PortSpec:
+    description: 'The TOSCA root Data Type all other TOSCA base Data Types derive
+      from
+
+      '
+    properties:
+      protocol:
+        constraints:
+        - valid_values:
+          - udp
+          - tcp
+          - igmp
+          - icmp
+        default: tcp
+        required: true
+        type: string
+      source:
+        required: false
+        type: tosca.datatypes.network.PortDef
+      source_range:
+        constraints:
+        - in_range:
+          - 1
+          - 65535
+        required: false
+        type: range
+      target:
+        required: false
+        type: tosca.datatypes.network.PortDef
+      target_range:
+        constraints:
+        - in_range:
+          - 1
+          - 65535
+        required: false
+        type: range
+interface_types:
+  provider.interfaces.relationships.Target:
+    choose:
+      description: Choose one object, use predefined artifacts from nodes.Root
+    description: 'The relationship to use scripts before target or source is created
+      in relationship
+
+      '
+    total:
+      description: Total objects
+  tosca.interfaces.Root:
+    description: 'The TOSCA root Interface Type all other TOSCA base Interface Types
+      derive from
+
+      '
+  tosca.interfaces.node.lifecycle.Standard:
+    configure:
+      description: Standard lifecycle configure operation.
+    create:
+      description: Standard lifecycle create operation.
+    delete:
+      description: Standard lifecycle delete operation.
+    description: This lifecycle interface defines the essential, normative operations
+      that TOSCA nodes may support.
+    start:
+      description: Standard lifecycle start operation.
+    stop:
+      description: Standard lifecycle stop operation.
+  tosca.interfaces.relationship.Configure:
+    add_source:
+      description: 'Operation to notify the target node of a source node which is
+        now available via a relationship.
+
+        '
+    add_target:
+      description: Operation to add a target node.
+    description: 'The lifecycle interfaces define the essential, normative operations
+      that each TOSCA Relationship Types may support.
+
+      '
+    post_configure_source:
+      description: Operation to post-configure the source endpoint.
+    post_configure_target:
+      description: Operation to post-configure the target endpoint.
+    pre_configure_source:
+      description: Operation to pre-configure the source endpoint.
+    pre_configure_target:
+      description: Operation to pre-configure the target endpoint.
+    remove_target:
+      description: Operation to remove a target node.
+    target_changed:
+      description: 'Operation to notify source some property or attribute of the target
+        changed
+
+        '
 node_types:
+  amazon.nodes.Ami:
+    capabilities:
+      feature:
+        occurrences:
+        - 1
+        - 1
+        type: amazon.capabilities.Node
+    description: 'The TOSCA root node all other TOSCA base node types derive from.
+
+      '
+    interfaces:
+      Standard:
+        type: tosca.interfaces.node.lifecycle.Standard
+    properties:
+      architecture:
+        required: false
+        type: string
+      creation_date:
+        required: false
+        type: string
+      description:
+        required: false
+        type: string
+      hypervisor:
+        required: false
+        type: string
+      image_id:
+        required: false
+        type: string
+      instance_id:
+        required: false
+        type: string
+      kernel_id:
+        required: false
+        type: string
+      name:
+        required: false
+        type: string
+      ramdisk_id:
+        required: false
+        type: string
+      root_device_name:
+        required: false
+        type: string
+      state:
+        description: "The state of the node instance. See section \u201CNode States\u201D\
+          \ for allowed values.\n"
+        required: false
+        type: string
+      tosca_id:
+        description: 'A unique identifier of the realized instance of a Node Template
+          that derives from any TOSCA normative type.
+
+          '
+        required: false
+        type: string
+      tosca_name:
+        description: 'This attribute reflects the name of the Node Template as defined
+          in the TOSCA service template.
+
+          '
+        required: false
+        type: string
+      virtualization_type:
+        required: false
+        type: string
+    requirements:
+    - dependency:
+        capability: tosca.capabilities.Node
+        node: tosca.nodes.Root
+        occurrences:
+        - 0
+        - UNBOUNDED
+        relationship: tosca.relationships.DependsOn
+    - dependency:
+        capability: amazon.capabilities.Node
+        node: amazon.nodes.Root
+        occurrences:
+        - 0
+        - UNBOUNDED
+        relationship: amazon.relationships.DependsOn
+  amazon.nodes.Eip:
+    capabilities:
+      feature:
+        occurrences:
+        - 1
+        - 1
+        type: amazon.capabilities.Node
+    description: 'The TOSCA root node all other TOSCA base node types derive from.
+
+      '
+    interfaces:
+      Standard:
+        type: tosca.interfaces.node.lifecycle.Standard
+    properties:
+      private_ip_address:
+        required: false
+        type: string
+      public_ip:
+        required: false
+        type: string
+      state:
+        description: "The state of the node instance. See section \u201CNode States\u201D\
+          \ for allowed values.\n"
+        required: false
+        type: string
+      tosca_id:
+        description: 'A unique identifier of the realized instance of a Node Template
+          that derives from any TOSCA normative type.
+
+          '
+        required: false
+        type: string
+      tosca_name:
+        description: 'This attribute reflects the name of the Node Template as defined
+          in the TOSCA service template.
+
+          '
+        required: false
+        type: string
+    requirements:
+    - dependency:
+        capability: tosca.capabilities.Node
+        node: tosca.nodes.Root
+        occurrences:
+        - 0
+        - UNBOUNDED
+        relationship: tosca.relationships.DependsOn
+    - dependency:
+        capability: amazon.capabilities.Node
+        node: amazon.nodes.Root
+        occurrences:
+        - 0
+        - UNBOUNDED
+        relationship: amazon.relationships.DependsOn
+    - device_id:
+        capability: amazon.capabilities.network.Bindable
+        node: amazon.nodes.Instance
+        occurrences:
+        - 0
+        - 1
+        relationship: amazon.relationships.network.BindsTo
+    - device_id:
+        capability: amazon.capabilities.network.Bindable
+        node: amazon.nodes.Eni
+        occurrences:
+        - 0
+        - 1
+        relationship: amazon.relationships.network.BindsTo
+  amazon.nodes.Eni:
+    capabilities:
+      bind:
+        occurrences:
+        - 0
+        - UNBOUNDED
+        type: amazon.capabilities.network.Bindable
+      feature:
+        occurrences:
+        - 1
+        - 1
+        type: amazon.capabilities.Node
+    description: 'The TOSCA root node all other TOSCA base node types derive from.
+
+      '
+    interfaces:
+      Standard:
+        type: tosca.interfaces.node.lifecycle.Standard
+    properties:
+      eni_id:
+        required: false
+        type: string
+      interfaces:
+        entry_schema:
+          type: string
+        required: false
+        type: list
+      mac_address:
+        required: false
+        type: string
+      private_ip_address:
+        required: false
+        type: string
+      state:
+        description: "The state of the node instance. See section \u201CNode States\u201D\
+          \ for allowed values.\n"
+        required: false
+        type: string
+      tosca_id:
+        description: 'A unique identifier of the realized instance of a Node Template
+          that derives from any TOSCA normative type.
+
+          '
+        required: false
+        type: string
+      tosca_name:
+        description: 'This attribute reflects the name of the Node Template as defined
+          in the TOSCA service template.
+
+          '
+        required: false
+        type: string
+    requirements:
+    - dependency:
+        capability: tosca.capabilities.Node
+        node: tosca.nodes.Root
+        occurrences:
+        - 0
+        - UNBOUNDED
+        relationship: tosca.relationships.DependsOn
+    - dependency:
+        capability: amazon.capabilities.Node
+        node: amazon.nodes.Root
+        occurrences:
+        - 0
+        - UNBOUNDED
+        relationship: amazon.relationships.DependsOn
+    - subnet_id:
+        capability: amazon.capabilities.Node
+        node: amazon.nodes.VpcSubnet
+        occurrences:
+        - 0
+        - 1
+        relationship: amazon.relationships.DependsOn
   amazon.nodes.Group:
     capabilities:
       feature:
@@ -249,6 +1099,824 @@ node_types:
         - 0
         - UNBOUNDED
         relationship: amazon.relationships.DependsOn
+  amazon.nodes.Root:
+    capabilities:
+      feature:
+        occurrences:
+        - 1
+        - 1
+        type: amazon.capabilities.Node
+    description: 'The TOSCA root node all other TOSCA base node types derive from.
+
+      '
+    interfaces:
+      Standard:
+        type: tosca.interfaces.node.lifecycle.Standard
+    properties:
+      state:
+        description: "The state of the node instance. See section \u201CNode States\u201D\
+          \ for allowed values.\n"
+        required: false
+        type: string
+      tosca_id:
+        description: 'A unique identifier of the realized instance of a Node Template
+          that derives from any TOSCA normative type.
+
+          '
+        required: false
+        type: string
+      tosca_name:
+        description: 'This attribute reflects the name of the Node Template as defined
+          in the TOSCA service template.
+
+          '
+        required: false
+        type: string
+    requirements:
+    - dependency:
+        capability: tosca.capabilities.Node
+        node: tosca.nodes.Root
+        occurrences:
+        - 0
+        - UNBOUNDED
+        relationship: tosca.relationships.DependsOn
+    - dependency:
+        capability: amazon.capabilities.Node
+        node: amazon.nodes.Root
+        occurrences:
+        - 0
+        - UNBOUNDED
+        relationship: amazon.relationships.DependsOn
+  amazon.nodes.VpcNet:
+    capabilities:
+      feature:
+        occurrences:
+        - 1
+        - 1
+        type: amazon.capabilities.Node
+    description: 'The TOSCA root node all other TOSCA base node types derive from.
+
+      '
+    interfaces:
+      Standard:
+        type: tosca.interfaces.node.lifecycle.Standard
+    properties:
+      cidr_block:
+        required: true
+        type: string
+      internet_gateway:
+        required: false
+        type: boolean
+      is_default:
+        required: false
+        type: boolean
+      name:
+        required: true
+        type: string
+      state:
+        description: "The state of the node instance. See section \u201CNode States\u201D\
+          \ for allowed values.\n"
+        required: false
+        type: string
+      tags:
+        required: false
+        type: map
+      tosca_id:
+        description: 'A unique identifier of the realized instance of a Node Template
+          that derives from any TOSCA normative type.
+
+          '
+        required: false
+        type: string
+      tosca_name:
+        description: 'This attribute reflects the name of the Node Template as defined
+          in the TOSCA service template.
+
+          '
+        required: false
+        type: string
+      vpc_id:
+        required: false
+        type: string
+    requirements:
+    - dependency:
+        capability: tosca.capabilities.Node
+        node: tosca.nodes.Root
+        occurrences:
+        - 0
+        - UNBOUNDED
+        relationship: tosca.relationships.DependsOn
+    - dependency:
+        capability: amazon.capabilities.Node
+        node: amazon.nodes.Root
+        occurrences:
+        - 0
+        - UNBOUNDED
+        relationship: amazon.relationships.DependsOn
+  amazon.nodes.VpcSubnet:
+    capabilities:
+      feature:
+        occurrences:
+        - 1
+        - 1
+        type: amazon.capabilities.Node
+    description: 'The TOSCA root node all other TOSCA base node types derive from.
+
+      '
+    interfaces:
+      Standard:
+        type: tosca.interfaces.node.lifecycle.Standard
+    properties:
+      cidr:
+        required: false
+        type: string
+      map_public:
+        required: false
+        type: boolean
+      state:
+        description: "The state of the node instance. See section \u201CNode States\u201D\
+          \ for allowed values.\n"
+        required: false
+        type: string
+      subnet_id:
+        required: false
+        type: string
+      tags:
+        required: false
+        type: map
+      tosca_id:
+        description: 'A unique identifier of the realized instance of a Node Template
+          that derives from any TOSCA normative type.
+
+          '
+        required: false
+        type: string
+      tosca_name:
+        description: 'This attribute reflects the name of the Node Template as defined
+          in the TOSCA service template.
+
+          '
+        required: false
+        type: string
+    requirements:
+    - dependency:
+        capability: tosca.capabilities.Node
+        node: tosca.nodes.Root
+        occurrences:
+        - 0
+        - UNBOUNDED
+        relationship: tosca.relationships.DependsOn
+    - dependency:
+        capability: amazon.capabilities.Node
+        node: amazon.nodes.Root
+        occurrences:
+        - 0
+        - UNBOUNDED
+        relationship: amazon.relationships.DependsOn
+    - vpc_id:
+        capability: amazon.capabilities.Node
+        node: amazon.nodes.VpcNet
+        occurrences:
+        - 1
+        - 1
+        relationship: amazon.relationships.DependsOn
+  amazon.nodes.instanceType:
+    capabilities:
+      feature:
+        occurrences:
+        - 1
+        - 1
+        type: amazon.capabilities.Node
+    description: 'The TOSCA root node all other TOSCA base node types derive from.
+
+      '
+    interfaces:
+      Standard:
+        type: tosca.interfaces.node.lifecycle.Standard
+    properties:
+      apiname:
+        required: true
+        type: string
+      memory:
+        required: false
+        type: scalar-unit.size
+      name:
+        required: false
+        type: string
+      state:
+        description: "The state of the node instance. See section \u201CNode States\u201D\
+          \ for allowed values.\n"
+        required: false
+        type: string
+      storage:
+        required: false
+        type: scalar-unit.size
+      tosca_id:
+        description: 'A unique identifier of the realized instance of a Node Template
+          that derives from any TOSCA normative type.
+
+          '
+        required: false
+        type: string
+      tosca_name:
+        description: 'This attribute reflects the name of the Node Template as defined
+          in the TOSCA service template.
+
+          '
+        required: false
+        type: string
+      vcpus:
+        required: false
+        type: integer
+    requirements:
+    - dependency:
+        capability: tosca.capabilities.Node
+        node: tosca.nodes.Root
+        occurrences:
+        - 0
+        - UNBOUNDED
+        relationship: tosca.relationships.DependsOn
+    - dependency:
+        capability: amazon.capabilities.Node
+        node: amazon.nodes.Root
+        occurrences:
+        - 0
+        - UNBOUNDED
+        relationship: amazon.relationships.DependsOn
+  provider.nodes.Root:
+    capabilities:
+      feature:
+        occurrences:
+        - 1
+        - 1
+        type: provider.capabilities.Node
+    description: 'The TOSCA root node all other TOSCA base node types derive from.
+
+      '
+    interfaces:
+      Standard:
+        type: tosca.interfaces.node.lifecycle.Standard
+    properties:
+      state:
+        description: "The state of the node instance. See section \u201CNode States\u201D\
+          \ for allowed values.\n"
+        required: false
+        type: string
+      tosca_id:
+        description: 'A unique identifier of the realized instance of a Node Template
+          that derives from any TOSCA normative type.
+
+          '
+        required: false
+        type: string
+      tosca_name:
+        description: 'This attribute reflects the name of the Node Template as defined
+          in the TOSCA service template.
+
+          '
+        required: false
+        type: string
+    requirements:
+    - dependency:
+        capability: tosca.capabilities.Node
+        node: tosca.nodes.Root
+        occurrences:
+        - 0
+        - UNBOUNDED
+        relationship: tosca.relationships.DependsOn
+    - dependency:
+        capability: provider.capabilities.Node
+        node: provider.nodes.Root
+        occurrences:
+        - 0
+        - UNBOUNDED
+        relationship: provider.relationships.DependsOn
+  tosca.nodes.BlockStorage:
+    capabilities:
+      attachment:
+        type: tosca.capabilities.Attachment
+      feature:
+        type: tosca.capabilities.Node
+    description: 'The TOSCA BlockStorage node currently represents a server-local
+      block storage device (i.e., not shared) offering evenly sized blocks of data
+      from which raw storage volumes can be created.
+
+      '
+    interfaces:
+      Standard:
+        type: tosca.interfaces.node.lifecycle.Standard
+    properties:
+      size:
+        constraints:
+        - greater_or_equal: 1 MB
+        type: scalar-unit.size
+      snapshot_id:
+        required: false
+        type: string
+      state:
+        description: "The state of the node instance. See section \u201CNode States\u201D\
+          \ for allowed values.\n"
+        required: false
+        type: string
+      tosca_id:
+        description: 'A unique identifier of the realized instance of a Node Template
+          that derives from any TOSCA normative type.
+
+          '
+        required: false
+        type: string
+      tosca_name:
+        description: 'This attribute reflects the name of the Node Template as defined
+          in the TOSCA service template.
+
+          '
+        required: false
+        type: string
+      volume_id:
+        required: false
+        type: string
+    requirements:
+    - dependency:
+        capability: tosca.capabilities.Node
+        node: tosca.nodes.Root
+        occurrences:
+        - 0
+        - UNBOUNDED
+        relationship: tosca.relationships.DependsOn
+  tosca.nodes.Compute:
+    capabilities:
+      binding:
+        type: tosca.capabilities.network.Bindable
+      endpoint:
+        type: tosca.capabilities.Endpoint.Admin
+      feature:
+        type: tosca.capabilities.Node
+      host:
+        type: tosca.capabilities.Container
+        valid_source_types:
+        - tosca.nodes.SoftwareComponent
+      os:
+        type: tosca.capabilities.OperatingSystem
+      scalable:
+        type: tosca.capabilities.Scalable
+    description: 'The TOSCA Compute node represents one or more real or virtual processors
+      of software applications or services along with other essential local resources.
+
+      '
+    interfaces:
+      Standard:
+        type: tosca.interfaces.node.lifecycle.Standard
+    properties:
+      meta:
+        required: false
+        type: string
+      networks:
+        entry_schema:
+          type: tosca.datatypes.network.NetworkInfo
+        required: false
+        type: map
+      ports:
+        entry_schema:
+          type: tosca.datatypes.network.PortInfo
+        required: false
+        type: map
+      private_address:
+        required: false
+        type: string
+      public_address:
+        required: false
+        type: string
+      state:
+        description: "The state of the node instance. See section \u201CNode States\u201D\
+          \ for allowed values.\n"
+        required: false
+        type: string
+      tosca_id:
+        description: 'A unique identifier of the realized instance of a Node Template
+          that derives from any TOSCA normative type.
+
+          '
+        required: false
+        type: string
+      tosca_name:
+        description: 'This attribute reflects the name of the Node Template as defined
+          in the TOSCA service template.
+
+          '
+        required: false
+        type: string
+    requirements:
+    - dependency:
+        capability: tosca.capabilities.Node
+        node: tosca.nodes.Root
+        occurrences:
+        - 0
+        - UNBOUNDED
+        relationship: tosca.relationships.DependsOn
+    - local_storage:
+        capability: tosca.capabilities.Attachment
+        node: tosca.nodes.BlockStorage
+        occurrences:
+        - 0
+        - UNBOUNDED
+        relationship: tosca.relationships.AttachesTo
+  tosca.nodes.Container.Application:
+    capabilities:
+      feature:
+        type: tosca.capabilities.Node
+    description: 'The TOSCA Container Application node represents an application that
+      requires Container-level virtualization technology.
+
+      '
+    interfaces:
+      Standard:
+        type: tosca.interfaces.node.lifecycle.Standard
+    properties:
+      state:
+        description: "The state of the node instance. See section \u201CNode States\u201D\
+          \ for allowed values.\n"
+        required: false
+        type: string
+      tosca_id:
+        description: 'A unique identifier of the realized instance of a Node Template
+          that derives from any TOSCA normative type.
+
+          '
+        required: false
+        type: string
+      tosca_name:
+        description: 'This attribute reflects the name of the Node Template as defined
+          in the TOSCA service template.
+
+          '
+        required: false
+        type: string
+    requirements:
+    - dependency:
+        capability: tosca.capabilities.Node
+        node: tosca.nodes.Root
+        occurrences:
+        - 0
+        - UNBOUNDED
+        relationship: tosca.relationships.DependsOn
+    - host:
+        capability: tosca.capabilities.Container
+        node: tosca.nodes.Container.Runtime
+        relationship: tosca.relationships.HostedOn
+  tosca.nodes.Container.Runtime:
+    capabilities:
+      feature:
+        type: tosca.capabilities.Node
+      host:
+        type: tosca.capabilities.Container
+      scalable:
+        type: tosca.capabilities.Scalable
+    description: 'The TOSCA Container Runtime node represents operating system-level
+      virtualization technology used to run multiple application services on a single
+      Compute host.
+
+      '
+    interfaces:
+      Standard:
+        type: tosca.interfaces.node.lifecycle.Standard
+    properties:
+      admin_credential:
+        required: false
+        type: tosca.datatypes.Credential
+      component_version:
+        description: 'Software component version.
+
+          '
+        required: false
+        type: version
+      state:
+        description: "The state of the node instance. See section \u201CNode States\u201D\
+          \ for allowed values.\n"
+        required: false
+        type: string
+      tosca_id:
+        description: 'A unique identifier of the realized instance of a Node Template
+          that derives from any TOSCA normative type.
+
+          '
+        required: false
+        type: string
+      tosca_name:
+        description: 'This attribute reflects the name of the Node Template as defined
+          in the TOSCA service template.
+
+          '
+        required: false
+        type: string
+    requirements:
+    - dependency:
+        capability: tosca.capabilities.Node
+        node: tosca.nodes.Root
+        occurrences:
+        - 0
+        - UNBOUNDED
+        relationship: tosca.relationships.DependsOn
+    - host:
+        capability: tosca.capabilities.Container
+        node: tosca.nodes.Compute
+        relationship: tosca.relationships.HostedOn
+  tosca.nodes.DBMS:
+    capabilities:
+      feature:
+        type: tosca.capabilities.Node
+      host:
+        type: tosca.capabilities.Container
+        valid_source_types:
+        - tosca.nodes.Database
+    description: 'The TOSCA DBMS node represents a typical relational, SQL Database
+      Management System software component or service.
+
+      '
+    interfaces:
+      Standard:
+        type: tosca.interfaces.node.lifecycle.Standard
+    properties:
+      admin_credential:
+        required: false
+        type: tosca.datatypes.Credential
+      component_version:
+        description: 'Software component version.
+
+          '
+        required: false
+        type: version
+      port:
+        description: 'The port the DBMS service will listen to for data and requests.
+
+          '
+        required: false
+        type: integer
+      root_password:
+        description: 'The root password for the DBMS service.
+
+          '
+        required: false
+        type: string
+      state:
+        description: "The state of the node instance. See section \u201CNode States\u201D\
+          \ for allowed values.\n"
+        required: false
+        type: string
+      tosca_id:
+        description: 'A unique identifier of the realized instance of a Node Template
+          that derives from any TOSCA normative type.
+
+          '
+        required: false
+        type: string
+      tosca_name:
+        description: 'This attribute reflects the name of the Node Template as defined
+          in the TOSCA service template.
+
+          '
+        required: false
+        type: string
+    requirements:
+    - dependency:
+        capability: tosca.capabilities.Node
+        node: tosca.nodes.Root
+        occurrences:
+        - 0
+        - UNBOUNDED
+        relationship: tosca.relationships.DependsOn
+    - host:
+        capability: tosca.capabilities.Container
+        node: tosca.nodes.Compute
+        relationship: tosca.relationships.HostedOn
+  tosca.nodes.Database:
+    capabilities:
+      database_endpoint:
+        type: tosca.capabilities.Endpoint.Database
+      feature:
+        type: tosca.capabilities.Node
+    description: 'The TOSCA Database node represents a logical database that can be
+      managed and hosted by a TOSCA DBMS node.
+
+      '
+    interfaces:
+      Standard:
+        type: tosca.interfaces.node.lifecycle.Standard
+    properties:
+      name:
+        description: 'The logical name of the database.
+
+          '
+        required: true
+        type: string
+      password:
+        description: 'The password for the DB user account
+
+          '
+        required: false
+        type: string
+      port:
+        description: 'The port the database service will use to listen for incoming
+          data and requests.
+
+          '
+        required: false
+        type: integer
+      state:
+        description: "The state of the node instance. See section \u201CNode States\u201D\
+          \ for allowed values.\n"
+        required: false
+        type: string
+      tosca_id:
+        description: 'A unique identifier of the realized instance of a Node Template
+          that derives from any TOSCA normative type.
+
+          '
+        required: false
+        type: string
+      tosca_name:
+        description: 'This attribute reflects the name of the Node Template as defined
+          in the TOSCA service template.
+
+          '
+        required: false
+        type: string
+      user:
+        description: 'User account name for DB administration
+
+          '
+        required: false
+        type: string
+    requirements:
+    - dependency:
+        capability: tosca.capabilities.Node
+        node: tosca.nodes.Root
+        occurrences:
+        - 0
+        - UNBOUNDED
+        relationship: tosca.relationships.DependsOn
+    - host:
+        capability: tosca.capabilities.Container
+        node: tosca.nodes.DBMS
+        relationship: tosca.relationships.HostedOn
+  tosca.nodes.LoadBalancer:
+    capabilities:
+      client:
+        description: "the Floating (IP) client\u2019s on the public network can connect\
+          \ to"
+        occurrences:
+        - 0
+        - UNBOUNDED
+        type: tosca.capabilities.Endpoint.Public
+      feature:
+        type: tosca.capabilities.Node
+    description: "The TOSCA Load Balancer node represents logical function that be\
+      \ used in conjunction with a Floating Address to distribute an application\u2019\
+      s traffic (load) across a number of instances of the application (e.g., for\
+      \ a clustered or scaled application).\n"
+    interfaces:
+      Standard:
+        type: tosca.interfaces.node.lifecycle.Standard
+    properties:
+      algorithm:
+        required: false
+        status: experimental
+        type: string
+      state:
+        description: "The state of the node instance. See section \u201CNode States\u201D\
+          \ for allowed values.\n"
+        required: false
+        type: string
+      tosca_id:
+        description: 'A unique identifier of the realized instance of a Node Template
+          that derives from any TOSCA normative type.
+
+          '
+        required: false
+        type: string
+      tosca_name:
+        description: 'This attribute reflects the name of the Node Template as defined
+          in the TOSCA service template.
+
+          '
+        required: false
+        type: string
+    requirements:
+    - dependency:
+        capability: tosca.capabilities.Node
+        node: tosca.nodes.Root
+        occurrences:
+        - 0
+        - UNBOUNDED
+        relationship: tosca.relationships.DependsOn
+    - application:
+        capability: tosca.capabilities.Endpoint
+        description: Connection to one or more load balanced applications
+        occurrences:
+        - 0
+        - UNBOUNDED
+        relationship: tosca.relationships.RoutesTo
+  tosca.nodes.ObjectStorage:
+    capabilities:
+      feature:
+        type: tosca.capabilities.Node
+      storage_endpoint:
+        type: tosca.capabilities.Endpoint
+    description: 'The TOSCA ObjectStorage node represents storage that provides the
+      ability to store data as objects (or BLOBs of data) without consideration for
+      the underlying filesystem or devices
+
+      '
+    interfaces:
+      Standard:
+        type: tosca.interfaces.node.lifecycle.Standard
+    properties:
+      maxsize:
+        constraints:
+        - greater_or_equal: 0 GB
+        description: 'The requested maximum storage size.
+
+          '
+        required: false
+        type: scalar-unit.size
+      name:
+        description: 'The logical name of the object store (or container).
+
+          '
+        required: true
+        type: string
+      size:
+        constraints:
+        - greater_or_equal: 0 GB
+        description: 'The requested initial storage size.
+
+          '
+        required: false
+        type: scalar-unit.size
+      state:
+        description: "The state of the node instance. See section \u201CNode States\u201D\
+          \ for allowed values.\n"
+        required: false
+        type: string
+      tosca_id:
+        description: 'A unique identifier of the realized instance of a Node Template
+          that derives from any TOSCA normative type.
+
+          '
+        required: false
+        type: string
+      tosca_name:
+        description: 'This attribute reflects the name of the Node Template as defined
+          in the TOSCA service template.
+
+          '
+        required: false
+        type: string
+    requirements:
+    - dependency:
+        capability: tosca.capabilities.Node
+        node: tosca.nodes.Root
+        occurrences:
+        - 0
+        - UNBOUNDED
+        relationship: tosca.relationships.DependsOn
+  tosca.nodes.Root:
+    capabilities:
+      feature:
+        type: tosca.capabilities.Node
+    description: 'The TOSCA root node all other TOSCA base node types derive from.
+
+      '
+    interfaces:
+      Standard:
+        type: tosca.interfaces.node.lifecycle.Standard
+    properties:
+      state:
+        description: "The state of the node instance. See section \u201CNode States\u201D\
+          \ for allowed values.\n"
+        required: false
+        type: string
+      tosca_id:
+        description: 'A unique identifier of the realized instance of a Node Template
+          that derives from any TOSCA normative type.
+
+          '
+        required: false
+        type: string
+      tosca_name:
+        description: 'This attribute reflects the name of the Node Template as defined
+          in the TOSCA service template.
+
+          '
+        required: false
+        type: string
+    requirements:
+    - dependency:
+        capability: tosca.capabilities.Node
+        node: tosca.nodes.Root
+        occurrences:
+        - 0
+        - UNBOUNDED
+        relationship: tosca.relationships.DependsOn
   tosca.nodes.SoftwareComponent:
     capabilities:
       feature:
@@ -301,6 +1969,577 @@ node_types:
         capability: tosca.capabilities.Container
         node: tosca.nodes.Compute
         relationship: tosca.relationships.HostedOn
+  tosca.nodes.WebApplication:
+    capabilities:
+      app_endpoint:
+        type: tosca.capabilities.Endpoint
+      feature:
+        type: tosca.capabilities.Node
+    description: 'The TOSCA WebApplication node represents a software application
+      that can be managed and run by a TOSCA WebServer node.
+
+      '
+    interfaces:
+      Standard:
+        type: tosca.interfaces.node.lifecycle.Standard
+    properties:
+      admin_credential:
+        required: false
+        type: tosca.datatypes.Credential
+      component_version:
+        description: 'Software component version.
+
+          '
+        required: false
+        type: version
+      context_root:
+        required: false
+        type: string
+      state:
+        description: "The state of the node instance. See section \u201CNode States\u201D\
+          \ for allowed values.\n"
+        required: false
+        type: string
+      tosca_id:
+        description: 'A unique identifier of the realized instance of a Node Template
+          that derives from any TOSCA normative type.
+
+          '
+        required: false
+        type: string
+      tosca_name:
+        description: 'This attribute reflects the name of the Node Template as defined
+          in the TOSCA service template.
+
+          '
+        required: false
+        type: string
+    requirements:
+    - dependency:
+        capability: tosca.capabilities.Node
+        node: tosca.nodes.Root
+        occurrences:
+        - 0
+        - UNBOUNDED
+        relationship: tosca.relationships.DependsOn
+    - host:
+        capability: tosca.capabilities.Container
+        node: tosca.nodes.Compute
+        relationship: tosca.relationships.HostedOn
+    - host:
+        capability: tosca.capabilities.Container
+        node: tosca.nodes.WebServer
+        relationship: tosca.relationships.HostedOn
+  tosca.nodes.WebServer:
+    capabilities:
+      admin_endpoint:
+        type: tosca.capabilities.Endpoint.Admin
+      data_endpoint:
+        type: tosca.capabilities.Endpoint
+      feature:
+        type: tosca.capabilities.Node
+      host:
+        type: tosca.capabilities.Container
+        valid_source_types:
+        - tosca.nodes.WebApplication
+    description: 'This TOSCA WebServer Node Type represents an abstract software component
+      or service that is capable of hosting and providing management operations for
+      one or more WebApplication nodes
+
+      '
+    interfaces:
+      Standard:
+        type: tosca.interfaces.node.lifecycle.Standard
+    properties:
+      admin_credential:
+        required: false
+        type: tosca.datatypes.Credential
+      component_version:
+        description: 'Software component version.
+
+          '
+        required: false
+        type: version
+      state:
+        description: "The state of the node instance. See section \u201CNode States\u201D\
+          \ for allowed values.\n"
+        required: false
+        type: string
+      tosca_id:
+        description: 'A unique identifier of the realized instance of a Node Template
+          that derives from any TOSCA normative type.
+
+          '
+        required: false
+        type: string
+      tosca_name:
+        description: 'This attribute reflects the name of the Node Template as defined
+          in the TOSCA service template.
+
+          '
+        required: false
+        type: string
+    requirements:
+    - dependency:
+        capability: tosca.capabilities.Node
+        node: tosca.nodes.Root
+        occurrences:
+        - 0
+        - UNBOUNDED
+        relationship: tosca.relationships.DependsOn
+    - host:
+        capability: tosca.capabilities.Container
+        node: tosca.nodes.Compute
+        relationship: tosca.relationships.HostedOn
+  tosca.nodes.network.Network:
+    capabilities:
+      feature:
+        type: tosca.capabilities.Node
+      link:
+        type: tosca.capabilities.network.Linkable
+    description: 'The TOSCA Network node represents a simple, logical network service.
+
+      '
+    interfaces:
+      Standard:
+        type: tosca.interfaces.node.lifecycle.Standard
+    properties:
+      cidr:
+        description: 'The cidr block of the requested network.
+
+          '
+        required: false
+        type: string
+      dhcp_enabled:
+        default: true
+        description: 'Indicates should DHCP service be enabled on the network or not.
+
+          '
+        required: false
+        type: boolean
+      end_ip:
+        description: 'The IP address to be used as the end of a pool of addresses
+          within the full IP range derived from the cidr block.
+
+          '
+        required: false
+        type: string
+      gateway_ip:
+        description: 'The gateway IP address.
+
+          '
+        required: false
+        type: string
+      ip_version:
+        constraints:
+        - valid_values:
+          - 4
+          - 6
+        default: 4
+        description: 'The IP version of the requested network. Valid values are 4
+          for ipv4 or 6 for ipv6.
+
+          '
+        required: false
+        type: integer
+      network_id:
+        description: 'An identifier that represents an existing Network instance in
+          the underlying cloud infrastructure. This property is mutually exclusive
+          with all other properties except network_name. This can be used alone or
+          together with network_name to identify an existing network.
+
+          '
+        required: false
+        type: string
+      network_name:
+        description: 'An identifier that represents an existing Network instance in
+          the underlying cloud infrastructure or can be used as the name of the newly
+          created network. If network_name is provided and no other properties are
+          provided (with exception of network_id), then an existing network instance
+          will be used. If network_name is provided alongside with more properties
+          then a new network with this name will be created.
+
+          '
+        required: false
+        type: string
+      network_type:
+        description: 'It specifies the nature of the physical network in the underlying
+          cloud infrastructure. Examples are flat, vlan, gre or vxlan. For flat and
+          vlan types, physical_network should be provided too.
+
+          '
+        required: false
+        type: string
+      physical_network:
+        description: 'It identifies the physical network on top of which the network
+          is implemented, e.g. physnet1. This property is required if network_type
+          is flat or vlan.
+
+          '
+        required: false
+        type: string
+      segmentation_id:
+        description: 'A segmentation identifier in the underlying cloud infrastructure.
+          E.g. VLAN ID, GRE tunnel ID, etc..
+
+          '
+        required: false
+        type: string
+      start_ip:
+        description: 'The IP address to be used as the start of a pool of addresses
+          within the full IP range derived from the cidr block.
+
+          '
+        required: false
+        type: string
+      state:
+        description: "The state of the node instance. See section \u201CNode States\u201D\
+          \ for allowed values.\n"
+        required: false
+        type: string
+      tosca_id:
+        description: 'A unique identifier of the realized instance of a Node Template
+          that derives from any TOSCA normative type.
+
+          '
+        required: false
+        type: string
+      tosca_name:
+        description: 'This attribute reflects the name of the Node Template as defined
+          in the TOSCA service template.
+
+          '
+        required: false
+        type: string
+    requirements:
+    - dependency:
+        capability: tosca.capabilities.Node
+        node: tosca.nodes.Root
+        occurrences:
+        - 0
+        - UNBOUNDED
+        relationship: tosca.relationships.DependsOn
+  tosca.nodes.network.Port:
+    capabilities:
+      feature:
+        type: tosca.capabilities.Node
+    description: 'The TOSCA Port node represents a logical entity that associates
+      between Compute and Network normative types. The Port node type effectively
+      represents a single virtual NIC on the Compute node instance.
+
+      '
+    interfaces:
+      Standard:
+        type: tosca.interfaces.node.lifecycle.Standard
+    properties:
+      ip_address:
+        description: 'Allow the user to set a static IP.
+
+          '
+        required: false
+        type: string
+      ip_range_end:
+        description: 'Defines the ending IP of a range to be allocated for the compute
+          instances that are associated with this Port.
+
+          '
+        required: false
+        type: string
+      ip_range_start:
+        description: 'Defines the starting IP of a range to be allocated for the compute
+          instances that are associated with this Port.
+
+          '
+        required: false
+        type: string
+      is_default:
+        default: false
+        description: 'If is_default=true this port will be used for the default gateway
+          route. Only one port that is associated to single compute node can set as
+          is_default=true.
+
+          '
+        required: false
+        type: boolean
+      order:
+        constraints:
+        - greater_or_equal: 0
+        default: 0
+        description: 'The order of the NIC on the compute instance (e.g. eth2).
+
+          '
+        required: false
+        type: integer
+      state:
+        description: "The state of the node instance. See section \u201CNode States\u201D\
+          \ for allowed values.\n"
+        required: false
+        type: string
+      tosca_id:
+        description: 'A unique identifier of the realized instance of a Node Template
+          that derives from any TOSCA normative type.
+
+          '
+        required: false
+        type: string
+      tosca_name:
+        description: 'This attribute reflects the name of the Node Template as defined
+          in the TOSCA service template.
+
+          '
+        required: false
+        type: string
+    requirements:
+    - dependency:
+        capability: tosca.capabilities.Node
+        node: tosca.nodes.Root
+        occurrences:
+        - 0
+        - UNBOUNDED
+        relationship: tosca.relationships.DependsOn
+    - binding:
+        capability: tosca.capabilities.network.Bindable
+        description: 'Binding requirement expresses the relationship between Port
+          and Compute nodes. Effectively it indicates that the Port will be attached
+          to specific Compute node instance
+
+          '
+        relationship: tosca.relationships.network.BindsTo
+    - link:
+        capability: tosca.capabilities.network.Linkable
+        description: 'Link requirement expresses the relationship between Port and
+          Network nodes. It indicates which network this port will connect to.
+
+          '
+        relationship: tosca.relationships.network.LinksTo
+relationship_types:
+  amazon.relationships.AttachesTo:
+    description: This type represents the attachment of volume to the server
+    interfaces:
+      Target:
+        type: provider.interfaces.relationships.Target
+    valid_target_types:
+    - amazon.capabilities.Attachment
+  amazon.relationships.ConnectsTo:
+    description: This type represents the network connection between to instances
+      or two software components.
+    interfaces:
+      Target:
+        type: provider.interfaces.relationships.Target
+  amazon.relationships.DependsOn:
+    attributes:
+      state:
+        required: false
+        type: string
+      tosca_id:
+        required: true
+        type: string
+    description: This type results in ordering of initializing objects.
+    interfaces:
+      Configure:
+        type: tosca.interfaces.relationship.Configure
+      Target:
+        type: provider.interfaces.relationships.Target
+    properties:
+      tosca_name:
+        required: true
+        type: string
+    valid_target_types:
+    - tosca.capabilities.Node
+    - amazon.capabilities.Node
+  amazon.relationships.HostedOn:
+    attributes:
+      state:
+        required: false
+        type: string
+      tosca_id:
+        required: true
+        type: string
+    description: This type represents the object to be the part of another object.
+    interfaces:
+      Configure:
+        type: tosca.interfaces.relationship.Configure
+    properties:
+      tosca_name:
+        required: true
+        type: string
+    valid_target_types:
+    - tosca.capabilities.Container
+  amazon.relationships.network.BindsTo:
+    description: This type appears between FloatingIp and Server
+    valid_target_types:
+    - tosca.capabilities.Node
+    - tosca.capabilities.network.Bindable
+    - amazon.capabilities.network.Bindable
+  amazon.relationships.network.LinksTo:
+    attributes:
+      state:
+        required: false
+        type: string
+      tosca_id:
+        required: true
+        type: string
+    description: This type appears between FloatingIp and Network
+    interfaces:
+      Configure:
+        type: tosca.interfaces.relationship.Configure
+    properties:
+      tosca_name:
+        required: true
+        type: string
+    valid_target_types:
+    - tosca.capabilities.Node
+    - tosca.capabilities.network.Linkable
+    - amazon.capabilities.network.Linkable
+  provider.relationships.AttachesTo:
+    description: This type represents the attachment of volume to the server
+    interfaces:
+      Target:
+        type: provider.interfaces.relationships.Target
+    properties:
+      device:
+        required: false
+        type: string
+    valid_target_types:
+    - tosca.capabilities.Attachment
+  provider.relationships.ConnectsTo:
+    description: This type represents the network connection between to instances
+      or two software components.
+    interfaces:
+      Target:
+        type: provider.interfaces.relationships.Target
+    valid_target_types:
+    - tosca.capabilities.Node
+  provider.relationships.DependsOn:
+    description: This type results in ordering of initializing objects.
+    valid_target_types:
+    - tosca.capabilities.Node
+  provider.relationships.HostedOn:
+    description: This type represents the object to be the part of another object.
+  provider.relationships.Root:
+    interfaces:
+      Target:
+        type: provider.interfaces.relationships.Target
+  provider.relationships.network.BindsTo:
+    description: This type appears between FloatingIp and Server
+    valid_target_types:
+    - tosca.capabilities.network.Bindable
+  provider.relationships.network.LinksTo:
+    description: This type appears between FloatingIp and Network
+    valid_target_types:
+    - tosca.capabilities.network.Linkable
+  tosca.relationships.AttachesTo:
+    attributes:
+      state:
+        required: false
+        type: string
+      tosca_id:
+        required: true
+        type: string
+    description: 'This type represents an attachment relationship between two nodes.
+      For example, an AttachesTo relationship type would be used for attaching a storage
+      node to a Compute node.
+
+      '
+    interfaces:
+      Configure:
+        type: tosca.interfaces.relationship.Configure
+    properties:
+      device:
+        required: false
+        type: string
+      location:
+        constraints:
+        - min_length: 1
+        required: true
+        type: string
+      tosca_name:
+        required: true
+        type: string
+    valid_target_types:
+    - tosca.capabilities.Attachment
+  tosca.relationships.ConnectsTo:
+    attributes:
+      state:
+        required: false
+        type: string
+      tosca_id:
+        required: true
+        type: string
+    description: This type represents a network connection relationship between two
+      nodes.
+    interfaces:
+      Configure:
+        type: tosca.interfaces.relationship.Configure
+    properties:
+      credential:
+        required: false
+        type: tosca.datatypes.Credential
+      tosca_name:
+        required: true
+        type: string
+    valid_target_types:
+    - tosca.capabilities.Endpoint
+  tosca.relationships.DependsOn:
+    description: This type represents a general dependency relationship between two
+      nodes.
+    valid_target_types:
+    - tosca.capabilities.Node
+  tosca.relationships.HostedOn:
+    description: This type represents a hosting relationship between two nodes.
+    valid_target_types:
+    - tosca.capabilities.Container
+  tosca.relationships.Root:
+    attributes:
+      state:
+        required: false
+        type: string
+      tosca_id:
+        required: true
+        type: string
+    description: 'The TOSCA root Relationship Type all other TOSCA base Relationship
+      Types derive from.
+
+      '
+    interfaces:
+      Configure:
+        type: tosca.interfaces.relationship.Configure
+    properties:
+      tosca_name:
+        required: true
+        type: string
+  tosca.relationships.RoutesTo:
+    attributes:
+      state:
+        required: false
+        type: string
+      tosca_id:
+        required: true
+        type: string
+    description: This type represents an intentional network routing between two Endpoints
+      in different networks.
+    interfaces:
+      Configure:
+        type: tosca.interfaces.relationship.Configure
+    properties:
+      credential:
+        required: false
+        type: tosca.datatypes.Credential
+      tosca_name:
+        required: true
+        type: string
+    valid_target_types:
+    - tosca.capabilities.Endpoint
+  tosca.relationships.network.BindsTo:
+    description: This type represents a network association relationship between Port
+      and Compute node types.
+    valid_target_types:
+    - tosca.capabilities.network.Bindable
+  tosca.relationships.network.LinksTo:
+    description: This relationship type represents an association relationship between
+      Port and Network node types.
+    valid_target_types:
+    - tosca.capabilities.network.Linkable
 topology_template:
   node_templates:
     software_for_cumulus_software_component:
@@ -330,13 +2569,6 @@ topology_template:
                 metadata: cube_master=true
             - id: '{{ testing_tosca_instance_delete }}'
       - dependency:
-          node: testing_tosca_key
-          node_filter:
-            properties:
-            - key_material: '{{ lookup(''file'', ''~/.ssh/id_rsa.pub'') }}'
-            - name: testing_tosca_key
-            - id: '{{ testing_tosca_key_delete }}'
-      - dependency:
           node: testing_tosca_group
           node_filter:
             properties:
@@ -351,6 +2583,13 @@ topology_template:
             - rules_egress:
               - cidr_ip: 0.0.0.0
             - id: '{{ testing_tosca_group_delete }}'
+      - dependency:
+          node: testing_tosca_key
+          node_filter:
+            properties:
+            - key_material: '{{ lookup(''file'', ''~/.ssh/id_rsa.pub'') }}'
+            - name: testing_tosca_key
+            - id: '{{ testing_tosca_key_delete }}'
       type: tosca.nodes.SoftwareComponent
     testing_tosca_group:
       properties:

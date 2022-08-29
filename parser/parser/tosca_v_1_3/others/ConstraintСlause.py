@@ -25,7 +25,6 @@ class ConstraintClause:
 
 def constraint_clause_parser(data: dict) -> ConstraintClause:
     constraint = ConstraintClause()
-    print(data)
     if type(data) != dict:
         constraint.set_operator('equal')
         constraint.set_value(str(data))

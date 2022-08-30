@@ -1,6 +1,8 @@
 import logging
 
 from flask import request, abort, render_template, Response, jsonify, make_response
+from werkzeug.exceptions import HTTPException
+
 from app import app, current_api_version as cav
 import yaml
 from nebula_communication.deploy import deploy
@@ -21,92 +23,105 @@ from parser.parser.tosca_v_1_3.definitions.ServiceTemplateDefinition import serv
 @app.route(f'/{cav}/yaml-template/<path:varargs>', methods=['POST'])
 # curl -X POST -F file=@nebula_communication/jupyter.yaml  http://127.0.0.1:5000/yaml-template?cluster_name=Jupyter_3
 def yaml_add(varargs=None):
-    if varargs is None:
-        return jsonify({'status': 400,
-                        'message': 'what type are you uploading?'})
-    varargs = varargs.split('/')
-    if len(varargs) > 1:
-        return jsonify({'status': 400,
-                        'message': 'wrong url address'})
-    if varargs[0] not in {'type', 'instance_model', 'template'}:
-        return jsonify({'status': 400,
-                        'message': 'was chosen incorrect type'})
-    cluster_name = request.args.get('cluster_name')
-    if request.method in ['POST', 'PUT']:
-        file = request.files['file']
-        if file:
-            file = file.read().decode("utf-8")
-            file = yaml.safe_load(file)
-        else:
-            abort(400)
-        if cluster_name:
-            template = service_template_definition_parser(cluster_name, file)
-            template.template_type = varargs[0]
-            main_linker(template)
-            if add_vid(template.name, template.name):
-                return jsonify({'status': 400,
-                                'message': f'cluster_name: {cluster_name} is taken'})
-            if request.method == 'POST':
-                print('DEPLOY START')
-                deploy(template, template.name)
-            print('DEPLOY FINISH')
-            return jsonify({'status': 200,
-                            'message': f'cluster_name: {cluster_name} was deployed'})
-    return '''
-            400 Bad Request 
-            '''
+    try:
+        if varargs is None:
+            return jsonify({'status': 400,
+                            'message': 'what type are you uploading?'})
+        varargs = varargs.split('/')
+        if len(varargs) > 1:
+            return jsonify({'status': 400,
+                            'message': 'wrong url address'})
+        if varargs[0] not in {'type', 'instance_model', 'template'}:
+            return jsonify({'status': 400,
+                            'message': 'was chosen incorrect type'})
+        cluster_name = request.args.get('cluster_name')
+        if request.method in ['POST', 'PUT']:
+            file = request.files['file']
+            if file:
+                file = file.read().decode("utf-8")
+                file = yaml.safe_load(file)
+            else:
+                abort(400)
+            if cluster_name:
+                template = service_template_definition_parser(cluster_name, file)
+                template.template_type = varargs[0]
+                main_linker(template)
+                if add_vid(template.name, template.name):
+                    return jsonify({'status': 400,
+                                    'message': f'cluster_name: {cluster_name} is taken'})
+                if request.method == 'POST':
+                    print('DEPLOY START')
+                    deploy(template, template.name)
+                print('DEPLOY FINISH')
+                return jsonify({'status': 200,
+                                'message': f'cluster_name: {cluster_name} was deployed'})
+        return '''
+                400 Bad Request 
+                '''
+    except HTTPException as e:
+        return jsonify({'status': e.code,
+                        'message': e.description})
 
 
 @app.route(f'/{cav}/yaml-template', methods=['GET'])
 def get_yaml():
-    """
-             curl -X GET 'http://127.0.0.1:5000/yaml-template?cluster_name=Jupyter_3'
-            :return:
-            """
-    cluster_name = request.args.get('cluster_name')
-    only = request.args.get('only')
-    if only not in {'attribute', 'property', None}:
-        return jsonify({'status': 400,
-                        'message': 'attribute "only" could be only attribute, property or None'})
-    result = construct_service_template_definition(cluster_name, only)
-    print(yaml.dump(result, default_flow_style=False))
-    logging.info(yaml.dump(result, default_flow_style=False))
-    return jsonify({'status': 200,
-                    'message': result})
+    try:
+
+        """
+                 curl -X GET 'http://127.0.0.1:5000/yaml-template?cluster_name=Jupyter_3'
+                :return:
+                """
+        cluster_name = request.args.get('cluster_name')
+        only = request.args.get('only')
+        if only not in {'attribute', 'property', None}:
+            return jsonify({'status': 400,
+                            'message': 'attribute "only" could be only attribute, property or None'})
+        result = construct_service_template_definition(cluster_name, only)
+        print(yaml.dump(result, default_flow_style=False))
+        logging.info(yaml.dump(result, default_flow_style=False))
+        return jsonify({'status': 200,
+                        'message': result})
+    except HTTPException as e:
+        return jsonify({'status': e.code,
+                        'message': e.description})
 
 
 @app.route(f'/{cav}/cluster_names', methods=['GET'])
 @app.route(f'/{cav}/cluster_names/<path:varargs>', methods=['GET', 'POST'])
 def cluster_names(varargs=None):
-    if varargs is None:
-        vid = find_vertex_by_properties("ServiceTemplateDefinition")
-        print(vid.column_values('id'))
-        message = []
-        for vid in vid.column_values('id'):
-            message.append(vid.as_string())
-        message = {'status': 200,
-                   'cluster_names': message}
-        message = jsonify(message)
-        return message
-        # return render_template("LIST_OF_cluster_names.html", cluster_names=vid.column_values('id'))
-    else:
-        varargs = varargs.split("/")
-        if len(varargs) > 1:
-            abort(400)
-        result = fetch_vertex('"' + varargs[0] + '"', "ServiceTemplateDefinition")
-        if result is None:
-            result = False
-        else:
-            result = True
-        if request.method == 'POST':
-            cluster_name = '"' + varargs[0] + '"'
-            delete_cluster(cluster_name)
-            return jsonify({'status': 200,
-                            'message': f'cluster: {cluster_name} was deleted'})
-        else:
-            message = jsonify({'status': 200,
-                               'message': result})
+    try:
+        if varargs is None:
+            vid = find_vertex_by_properties("ServiceTemplateDefinition")
+            print(vid.column_values('id'))
+            message = []
+            for vid in vid.column_values('id'):
+                message.append(vid.as_string())
+            message = {'status': 200,
+                       'cluster_names': message}
+            message = jsonify(message)
             return message
+            # return render_template("LIST_OF_cluster_names.html", cluster_names=vid.column_values('id'))
+        else:
+            varargs = varargs.split("/")
+            if len(varargs) > 1:
+                abort(400)
+            result = fetch_vertex('"' + varargs[0] + '"', "ServiceTemplateDefinition")
+            if result is None:
+                result = False
+            else:
+                result = True
+            if request.method == 'POST':
+                cluster_name = '"' + varargs[0] + '"'
+                delete_cluster(cluster_name)
+                return jsonify({'status': 200,
+                                'message': f'cluster: {cluster_name} was deleted'})
+            else:
+                message = jsonify({'status': 200,
+                                   'message': result})
+                return message
+    except HTTPException as e:
+        return jsonify({'status': e.code,
+                        'message': e.description})
 
 
 @app.route(f'/{cav}/yaml-template/<path:varargs>', methods=['PATCH'])

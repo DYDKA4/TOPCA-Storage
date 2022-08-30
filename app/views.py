@@ -76,7 +76,7 @@ def get_yaml():
 
 
 @app.route(f'/{cav}/cluster_names', methods=['GET'])
-@app.route(f'/{cav}/cluster_names/<path:varargs>', methods=['GET'])
+@app.route(f'/{cav}/cluster_names/<path:varargs>', methods=['GET', 'POST'])
 def cluster_names(varargs=None):
     if varargs is None:
         vid = find_vertex_by_properties("ServiceTemplateDefinition")
@@ -98,9 +98,15 @@ def cluster_names(varargs=None):
             result = False
         else:
             result = True
-        message = jsonify({'status': 200,
-                           'message': result})
-        return message
+        if request.method == 'POST':
+            cluster_name = '"' + varargs[0] + '"'
+            delete_cluster(cluster_name)
+            return jsonify({'status': 200,
+                            'message': f'cluster: {cluster_name} was deleted'})
+        else:
+            message = jsonify({'status': 200,
+                               'message': result})
+            return message
 
 
 @app.route(f'/{cav}/yaml-template/<path:varargs>', methods=['PATCH'])
@@ -133,20 +139,6 @@ def yaml_update(varargs=None):
 def yaml_delete_all():
     delete_all()
     return "200 OK"
-
-
-@app.route(f'/{cav}/yaml_delete_cluster', methods=['POST'])
-def yaml_delete_cluster():
-    """
-        curl -X POST http://127.0.0.1:5000/yaml_delete_cluster
-
-    :return:
-    """
-    cluster_name = request.args.get('cluster_name')
-    if not cluster_name:
-        abort(400)
-    delete_cluster(cluster_name)
-    return f'Deleted {cluster_name}'
 
 
 @app.route(f'/{cav}/find/<path:varargs>', methods=['GET'])

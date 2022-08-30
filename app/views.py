@@ -20,9 +20,15 @@ from parser.linker.tosca_v_1_3.main_linker import main_linker
 from parser.parser.tosca_v_1_3.definitions.ServiceTemplateDefinition import service_template_definition_parser
 
 
-@app.route(f'/{cav}/yaml-template/<path:varargs>', methods=['POST'])
-# curl -X POST -F file=@nebula_communication/jupyter.yaml  http://127.0.0.1:5000/yaml-template?cluster_name=Jupyter_3
+@app.route(f'/{cav}/yaml_template/<path:varargs>', methods=['POST'])
 def yaml_add(varargs=None):
+    """
+    curl -X POST -F file=@nebula_communication/jupyter.yaml
+    http://127.0.0.1:5000/v0.1/yaml_template/template/?cluster_name=Jupyter_3
+    :return:
+        json : {status : http status,
+                message: message to user}
+    """
     try:
         if varargs is None:
             return jsonify({'status': 400,
@@ -63,14 +69,15 @@ def yaml_add(varargs=None):
                         'message': e.description})
 
 
-@app.route(f'/{cav}/yaml-template', methods=['GET'])
+@app.route(f'/{cav}/yaml_template', methods=['GET'])
 def get_yaml():
+    """
+    curl -X GET 'http://127.0.0.1:5000/v0.1/yaml_template?cluster_name=Jupyter_3'
+    :return:
+        json : {status : http status,
+                message: message to user}
+    """
     try:
-
-        """
-                 curl -X GET 'http://127.0.0.1:5000/yaml-template?cluster_name=Jupyter_3'
-                :return:
-                """
         cluster_name = request.args.get('cluster_name')
         only = request.args.get('only')
         if only not in {'attribute', 'property', None}:
@@ -89,6 +96,24 @@ def get_yaml():
 @app.route(f'/{cav}/cluster_names', methods=['GET'])
 @app.route(f'/{cav}/cluster_names/<path:varargs>', methods=['GET', 'POST'])
 def cluster_names(varargs=None):
+    """
+    curl -X GET 'http://127.0.0.1:5000/v0.1/cluster_names'
+    :return:
+        json : {status : http status,
+                cluster_names: list of cluster name,
+                message: message to user}
+
+    curl -X GET 'http://127.0.0.1:5000/v0.1/cluster_names/Jupyter_1'
+    :return:
+        json : {status : http status,
+                name_is_taken: boolean value,
+                message: message to user}
+
+    curl -X POST 'http://127.0.0.1:5000/v0.1/cluster_names/Jupyter_1'
+    :return:
+        json : {status : http status,
+                message: message to user}
+    """
     try:
         if varargs is None:
             vid = find_vertex_by_properties("ServiceTemplateDefinition")
@@ -117,7 +142,7 @@ def cluster_names(varargs=None):
                                 'message': f'cluster: {cluster_name} was deleted'})
             else:
                 message = jsonify({'status': 200,
-                                   'message': result})
+                                   'name_is_taken': result})
                 return message
     except HTTPException as e:
         return jsonify({'status': e.code,

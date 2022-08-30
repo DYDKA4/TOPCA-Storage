@@ -8,7 +8,7 @@ from nebula_communication.template_builder.definition.ProperyDefinition import c
 from parser.parser.tosca_v_1_3.types.InterfaceType import InterfaceType
 
 
-def construct_interface_type(list_of_vid) -> dict:
+def construct_interface_type(list_of_vid, only) -> dict:
     result = {}
     data_type = InterfaceType('name').__dict__
 
@@ -36,7 +36,7 @@ def construct_interface_type(list_of_vid) -> dict:
             elif edge == 'notifications':
                 tmp_result['notifications'] = construct_notification_definition(destination)
             elif edge == 'operations':
-                tmp_result['operations'] = construct_operation_definition(destination)
+                tmp_result['operations'] = construct_operation_definition(destination, only)
             else:
                 print(edge)
                 abort(500)

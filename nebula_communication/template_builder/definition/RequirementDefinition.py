@@ -5,7 +5,7 @@ from nebula_communication.template_builder.definition.InterfaceDefinition import
 from parser.parser.tosca_v_1_3.definitions.RequirementDefinition import RequirementDefinition
 
 
-def construct_requirement_definition(list_of_vid) -> list:
+def construct_requirement_definition(list_of_vid, only) -> list:
     result = []
     requirement_definition = RequirementDefinition('name').__dict__
 
@@ -42,7 +42,7 @@ def construct_requirement_definition(list_of_vid) -> list:
                     elif relationship:
                         tmp_result['relationship'] = {'type': relationship}
             elif edge == 'interfaces':
-                interfaces = construct_interface_definition(destination)
+                interfaces = construct_interface_definition(destination, only)
                 if interfaces != {}:
                     if tmp_result.get('relationship'):
                         tmp_result['relationship'] += {'interfaces': interfaces}

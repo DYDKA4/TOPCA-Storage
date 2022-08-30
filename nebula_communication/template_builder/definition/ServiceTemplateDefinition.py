@@ -17,7 +17,7 @@ from nebula_communication.template_builder.type.RelationshipType import construc
 from parser.parser.tosca_v_1_3.definitions.ServiceTemplateDefinition import ServiceTemplateDefinition
 
 
-def construct_service_template_definition(name: str):
+def construct_service_template_definition(name: str, only):
     name = '"' + name + '"'
     vertex_value = fetch_vertex(name, 'ServiceTemplateDefinition')
     vertex_value = vertex_value.as_map()
@@ -50,17 +50,17 @@ def construct_service_template_definition(name: str):
             elif edge == 'capability_types':
                 template['capability_types'] = construct_capability_type(destination)
             elif edge == 'interface_types':
-                template['interface_types'] = construct_interface_type(destination)
+                template['interface_types'] = construct_interface_type(destination, only)
             elif edge == 'relationship_types':
-                template['relationship_types'] = construct_relationship_type(destination)
+                template['relationship_types'] = construct_relationship_type(destination, only)
             elif edge == 'node_types':
-                template['node_types'] = construct_node_type(destination)
+                template['node_types'] = construct_node_type(destination, only)
             elif edge == 'group_types':
                 template['group_types'] = construct_group_type(destination)
             elif edge == 'policy_types':
                 template['policy_types'] = construct_policy_type(destination)
             elif edge == 'topology_template':
-                template['topology_template'] = construct_topology_template_definition(destination)
+                template['topology_template'] = construct_topology_template_definition(destination, only)
             else:
                 abort(500)
     return template
@@ -68,6 +68,6 @@ def construct_service_template_definition(name: str):
 #     #     documents = yaml.dump(template, file)
 #
 #
-# cluster_name = "Jupyter_19"
-# result = construct_service_template_definition(cluster_name)
+# cluster_name = "Jupyter_3"
+# result = construct_service_template_definition(cluster_name, 'attributes')
 # print(yaml.dump(result, default_flow_style=False))

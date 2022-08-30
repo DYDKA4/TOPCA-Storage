@@ -11,7 +11,7 @@ from nebula_communication.template_builder.definition.WorkflowStepDefinition imp
 from parser.parser.tosca_v_1_3.definitions.ImperativeWorkflowDefinition import ImperativeWorkflowDefinition
 
 
-def construct_imperative_workflow_definition(list_of_vid) -> dict:
+def construct_imperative_workflow_definition(list_of_vid, only) -> dict:
     result = {}
     imperative_workflow_definition = ImperativeWorkflowDefinition('name').__dict__
 
@@ -37,7 +37,7 @@ def construct_imperative_workflow_definition(list_of_vid) -> dict:
             elif edge == 'steps_tosca':
                 tmp_result['steps'] = construct_workflow_step_definition(destination)
             elif edge == 'implementation':
-                tmp_result['implementation'] = construct_operation_implementation_definition(destination)
+                tmp_result['implementation'] = construct_operation_implementation_definition(destination, only)
             elif edge == 'outputs':
                 print(edge, destination)  # todo Make it Later
             else:

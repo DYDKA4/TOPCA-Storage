@@ -5,7 +5,7 @@ from nebula_communication.template_builder.definition.ArtifactDefinition import 
 from parser.parser.tosca_v_1_3.definitions.OperationImplementationDefinition import OperationImplementationDefinition
 
 
-def construct_operation_implementation_definition(list_of_vid) -> dict:
+def construct_operation_implementation_definition(list_of_vid, only) -> dict:
     result = {}
 
     operation_implementation = OperationImplementationDefinition().__dict__
@@ -27,7 +27,7 @@ def construct_operation_implementation_definition(list_of_vid) -> dict:
                         primary = primary['name'].as_string()
                         result['primary'] = primary
                     else:
-                        result['primary'] = construct_artifact_definition(destination)
+                        result['primary'] = construct_artifact_definition(destination, only)
             elif edge == 'dependencies':
                 dependencies = []
                 for dependency in destination:
@@ -38,7 +38,7 @@ def construct_operation_implementation_definition(list_of_vid) -> dict:
                         dependency = dependency['name'].as_string()
                         dependencies.append(dependency)
                     else:
-                        dependencies.append(construct_artifact_definition([dependency]))
+                        dependencies.append(construct_artifact_definition([dependency], only))
                 result['dependencies'] = dependencies
             else:
                 print(edge, vid)

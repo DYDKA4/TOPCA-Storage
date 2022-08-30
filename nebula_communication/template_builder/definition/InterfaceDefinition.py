@@ -8,7 +8,7 @@ from nebula_communication.template_builder.definition.ProperyDefinition import c
 from parser.parser.tosca_v_1_3.definitions.InterfaceDefinition import InterfaceDefinition
 
 
-def construct_interface_definition(list_of_vid) -> dict:
+def construct_interface_definition(list_of_vid, only) -> dict:
     result = {}
     data_type = InterfaceDefinition('name').__dict__
 
@@ -33,11 +33,11 @@ def construct_interface_definition(list_of_vid) -> dict:
                     if fetch_vertex(destination[0], 'PropertyDefinition'):
                         tmp_result['inputs'] = construct_property_definition(destination)
                     elif fetch_vertex(destination[0], 'PropertyAssignment'):
-                        tmp_result['inputs'] = construct_property_assignment(destination)
+                        tmp_result['inputs'] = construct_property_assignment(destination, only)
             elif edge == 'notifications':
                 tmp_result['notifications'] = construct_notification_definition(destination)
             elif edge == 'operations':
-                tmp_result['operations'] = construct_operation_definition(destination)
+                tmp_result['operations'] = construct_operation_definition(destination, only)
             else:
                 print(edge)
                 abort(500)

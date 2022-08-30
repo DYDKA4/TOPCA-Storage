@@ -11,7 +11,7 @@ from nebula_communication.template_builder.other.RelationshipTemplate import con
 from parser.parser.tosca_v_1_3.definitions.TemplateDefinition import TemplateDefinition
 
 
-def construct_topology_template_definition(list_of_vid) -> dict:
+def construct_topology_template_definition(list_of_vid, only) -> dict:
     result = {}
     topology_template_definition = TemplateDefinition().__dict__
 
@@ -34,15 +34,15 @@ def construct_topology_template_definition(list_of_vid) -> dict:
             elif edge == 'outputs':
                 tmp_result['outputs'] = construct_parameter_definition(destination)
             elif edge == 'node_templates':
-                tmp_result['node_templates'] = construct_node_template(destination)
+                tmp_result['node_templates'] = construct_node_template(destination, only)
             elif edge == 'relationship_templates':
-                tmp_result['relationship_templates'] = construct_relationship_template(destination)
+                tmp_result['relationship_templates'] = construct_relationship_template(destination, only)
             elif edge == 'groups':
-                tmp_result['groups'] = construct_group_definition(destination)
+                tmp_result['groups'] = construct_group_definition(destination, only)
             elif edge == 'policies':
-                tmp_result['policies'] = construct_policy_definition(destination)
+                tmp_result['policies'] = construct_policy_definition(destination, only)
             elif edge == 'workflows':
-                tmp_result['workflows'] = construct_imperative_workflow_definition(destination)
+                tmp_result['workflows'] = construct_imperative_workflow_definition(destination, only)
             elif edge == 'substitution_mappings':
                 print(edge, destination)  # todo Make it later
             else:

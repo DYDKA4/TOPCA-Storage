@@ -6,7 +6,7 @@ from nebula_communication.template_builder.assignment.PropertyAssignment import 
 from parser.parser.tosca_v_1_3.assignments.CapabilityAssignment import CapabilityAssignment
 
 
-def construct_capability_assignment(list_of_vid) -> dict:
+def construct_capability_assignment(list_of_vid, only) -> dict:
     result = {}
     capability_definition = CapabilityAssignment('name').__dict__
 
@@ -19,9 +19,9 @@ def construct_capability_assignment(list_of_vid) -> dict:
         for edge in edges:
             destination = find_destination(vid, edge)
             if edge == 'properties':
-                tmp_result['properties'] = construct_property_assignment(destination)
+                tmp_result['properties'] = construct_property_assignment(destination, only)
             elif edge == 'attributes':
-                tmp_result['attributes'] = construct_attribute_assignment(destination)
+                tmp_result['attributes'] = construct_attribute_assignment(destination, only)
             elif edge == 'occurrences':
                 if destination:
                     relationship = fetch_vertex(destination[0], 'Occurrences')

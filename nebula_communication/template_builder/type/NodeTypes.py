@@ -11,7 +11,7 @@ from nebula_communication.template_builder.definition.RequirementDefinition impo
 from parser.parser.tosca_v_1_3.types.NodeType import NodeType
 
 
-def construct_node_type(list_of_vid) -> dict:
+def construct_node_type(list_of_vid, only) -> dict:
     result = {}
     node_type = NodeType('name').__dict__
 
@@ -39,13 +39,13 @@ def construct_node_type(list_of_vid) -> dict:
             elif edge == 'attributes':
                 tmp_result['attributes'] = construct_attribute_definition(destination)
             elif edge == 'requirements':
-                tmp_result['requirements'] = construct_requirement_definition(destination)
+                tmp_result['requirements'] = construct_requirement_definition(destination, only)
             elif edge == 'interfaces':
-                tmp_result['interfaces'] = construct_interface_definition(destination)
+                tmp_result['interfaces'] = construct_interface_definition(destination, only)
             elif edge == 'capabilities':
                 tmp_result['capabilities'] = construct_capability_definition(destination)
             elif edge == 'artifacts':
-                tmp_result['artifacts'] = construct_artifact_definition(destination)
+                tmp_result['artifacts'] = construct_artifact_definition(destination, only)
             else:
                 print(edge)
                 abort(500)

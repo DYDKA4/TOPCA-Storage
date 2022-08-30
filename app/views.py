@@ -17,7 +17,6 @@ from nebula_communication.update_template.update_template import update_template
 from parser.linker.tosca_v_1_3.main_linker import main_linker
 from parser.parser.tosca_v_1_3.definitions.ServiceTemplateDefinition import service_template_definition_parser
 
-
 @app.route('/yaml-template', methods=['POST', 'PUT', 'GET'])
 # curl -X POST -F file=@nebula_communication/jupyter.yaml  http://127.0.0.1:5000/yaml-template?cluster_name=Jupyter_3
 def yaml_add():
@@ -43,7 +42,7 @@ def yaml_add():
                             'message': f'cluster_name: {cluster_name} was deployed'})
     if request.method == 'GET':
         """
-         curl -X GET 'http://127.0.0.1:5000/yaml_template?cluster_name=Jupyter_3'
+         curl -X GET 'http://127.0.0.1:5000/yaml-template?cluster_name=Jupyter_3'
         :return:
         """
         cluster_name = request.args.get('cluster_name')
@@ -51,7 +50,8 @@ def yaml_add():
         if only not in {'attribute', 'property', None}:
             return jsonify({'status': 400,
                            'message': 'attribute "only" could be only attribute, property or None'})
-        result = construct_service_template_definition(cluster_name)
+        result = construct_service_template_definition(cluster_name, only)
+        print(yaml.dump(result, default_flow_style=False))
         logging.info(yaml.dump(result, default_flow_style=False))
         return jsonify({'status': 200,
                         'message': result})

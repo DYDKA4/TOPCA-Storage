@@ -3,9 +3,10 @@ import json
 from nebula_communication.nebula_functions import fetch_vertex
 
 
-def construct_property_assignment(list_of_vid) -> dict:
+def construct_property_assignment(list_of_vid, only) -> dict:
     result = {}
-
+    if only == 'attributes':
+        return {}
     for vid in list_of_vid:
         vertex_value = fetch_vertex(vid, 'PropertyAssignment')
         vertex_value = vertex_value.as_map()

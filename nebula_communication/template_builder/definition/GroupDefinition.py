@@ -7,7 +7,7 @@ from nebula_communication.template_builder.definition.MetadataDefinition import 
 from parser.parser.tosca_v_1_3.definitions.GroupDefinition import GroupDefinition
 
 
-def construct_group_definition(list_of_vid) -> dict:
+def construct_group_definition(list_of_vid, only) -> dict:
     result = {}
     group_type = GroupDefinition('name').__dict__
 
@@ -30,9 +30,9 @@ def construct_group_definition(list_of_vid) -> dict:
             elif edge == 'metadata':
                 tmp_result['metadata'] = construct_metadata_definition(destination)
             elif edge == 'properties':
-                tmp_result['properties'] = construct_property_assignment(destination)
+                tmp_result['properties'] = construct_property_assignment(destination, only)
             elif edge == 'attributes':
-                tmp_result['attributes'] = construct_attribute_assignment(destination)
+                tmp_result['attributes'] = construct_attribute_assignment(destination, only)
             elif edge == 'members':  # todo only NodeTemplate support
                 members = []
                 for member in destination:

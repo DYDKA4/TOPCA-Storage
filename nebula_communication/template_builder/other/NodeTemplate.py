@@ -6,16 +6,13 @@ from nebula_communication.template_builder.assignment.CapabilityAssignment impor
 from nebula_communication.template_builder.assignment.PropertyAssignment import construct_property_assignment
 from nebula_communication.template_builder.assignment.RequirementAssignment import construct_requirement_assignment
 from nebula_communication.template_builder.definition.ArtifactDefinition import construct_artifact_definition
-from nebula_communication.template_builder.definition.AttributeDefinition import construct_attribute_definition
-from nebula_communication.template_builder.definition.CapabilityDefinition import construct_capability_definition
 from nebula_communication.template_builder.definition.InterfaceDefinition import construct_interface_definition
 from nebula_communication.template_builder.definition.MetadataDefinition import construct_metadata_definition
 from nebula_communication.template_builder.definition.NodeFilterDefinition import construct_node_filter_definition
-from nebula_communication.template_builder.definition.RequirementDefinition import construct_requirement_definition
 from parser.parser.tosca_v_1_3.others.NodeTemplate import NodeTemplate
 
 
-def construct_node_template(list_of_vid) -> dict:
+def construct_node_template(list_of_vid, only) -> dict:
     result = {}
     node_type = NodeTemplate('name').__dict__
 
@@ -46,17 +43,17 @@ def construct_node_template(list_of_vid) -> dict:
             elif edge == 'metadata':
                 tmp_result['metadata'] = construct_metadata_definition(destination)
             elif edge == 'properties':
-                tmp_result['properties'] = construct_property_assignment(destination)
+                tmp_result['properties'] = construct_property_assignment(destination, only)
             elif edge == 'attributes':
-                tmp_result['attributes'] = construct_attribute_assignment(destination)
+                tmp_result['attributes'] = construct_attribute_assignment(destination, only)
             elif edge == 'requirements':
-                tmp_result['requirements'] = construct_requirement_assignment(destination)
+                tmp_result['requirements'] = construct_requirement_assignment(destination, only)
             elif edge == 'interfaces':
-                tmp_result['interfaces'] = construct_interface_definition(destination)
+                tmp_result['interfaces'] = construct_interface_definition(destination, only)
             elif edge == 'capabilities':
-                tmp_result['capabilities'] = construct_capability_assignment(destination)
+                tmp_result['capabilities'] = construct_capability_assignment(destination, only)
             elif edge == 'artifacts':
-                tmp_result['artifacts'] = construct_artifact_definition(destination)
+                tmp_result['artifacts'] = construct_artifact_definition(destination, only)
             elif edge == 'node_filter':
                 tmp_result['node_filter'] = construct_node_filter_definition(destination)
             elif edge == 'copy':

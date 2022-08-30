@@ -1,11 +1,12 @@
 import json
 
 from nebula_communication.nebula_functions import fetch_vertex
-from parser.parser.tosca_v_1_3.assignments.AttributeAssignment import AttributeAssignment
 
 
-def construct_attribute_assignment(list_of_vid) -> dict:
+def construct_attribute_assignment(list_of_vid, only) -> dict:
     result = {}
+    if only == 'properties':
+        return {}
     for vid in list_of_vid:
         vertex_value = fetch_vertex(vid, 'AttributeAssignment')
         vertex_value = vertex_value.as_map()

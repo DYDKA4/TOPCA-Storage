@@ -8,7 +8,7 @@ from nebula_communication.template_builder.definition.ProperyDefinition import c
 from parser.parser.tosca_v_1_3.definitions.OperationDefinition import OperationDefinition
 
 
-def construct_operation_definition(list_of_vid) -> dict:
+def construct_operation_definition(list_of_vid, only) -> dict:
     result = {}
 
     property_definition = OperationDefinition('name').__dict__
@@ -29,7 +29,7 @@ def construct_operation_definition(list_of_vid) -> dict:
                 if destination:
                     data = fetch_vertex(destination[0], 'ArtifactDefinition')
                     if data is None:
-                        tmp_result['implementation'] = construct_operation_implementation_definition(destination)
+                        tmp_result['implementation'] = construct_operation_implementation_definition(destination, only)
                     else:
                         primary = fetch_vertex(destination[0], 'ArtifactDefinition')
                         primary = primary.as_map()
@@ -43,7 +43,7 @@ def construct_operation_definition(list_of_vid) -> dict:
                     if fetch_vertex(destination[0], 'PropertyDefinition'):
                         tmp_result['inputs'] = construct_property_definition(destination)
                     elif fetch_vertex(destination[0], 'PropertyAssignment'):
-                        tmp_result['inputs'] = construct_property_assignment(destination)
+                        tmp_result['inputs'] = construct_property_assignment(destination, only)
                     else:
                         abort(500)
             else:

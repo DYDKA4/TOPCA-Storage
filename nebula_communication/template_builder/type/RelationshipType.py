@@ -9,7 +9,7 @@ from nebula_communication.template_builder.definition.ProperyDefinition import c
 from parser.parser.tosca_v_1_3.types.RelationshipType import RelationshipType
 
 
-def construct_relationship_type(list_of_vid) -> dict:
+def construct_relationship_type(list_of_vid, only) -> dict:
     result = {}
     relationship_type = RelationshipType('name').__dict__
 
@@ -37,7 +37,7 @@ def construct_relationship_type(list_of_vid) -> dict:
             elif edge == 'attributes':
                 tmp_result['attributes'] = construct_attribute_definition(destination)
             elif edge == 'interfaces':
-                tmp_result['interfaces'] = construct_interface_definition(destination)
+                tmp_result['interfaces'] = construct_interface_definition(destination, only)
             elif edge == 'valid_target_types':
                 valid_target_types = []
                 for valid_target in destination:

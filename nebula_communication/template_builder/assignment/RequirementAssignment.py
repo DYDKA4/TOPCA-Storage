@@ -8,7 +8,7 @@ from nebula_communication.template_builder.definition.NodeFilterDefinition impor
 from parser.parser.tosca_v_1_3.assignments.RequirementAssignment import RequirementAssignment
 
 
-def construct_requirement_assignment(list_of_vid) -> list:
+def construct_requirement_assignment(list_of_vid, only) -> list:
     result = []
     requirement_assignment = RequirementAssignment('name').__dict__
 
@@ -64,13 +64,13 @@ def construct_requirement_assignment(list_of_vid) -> list:
                         tmp_result['relationship'] = {'type': relationship}
             elif edge == 'properties':
                 if destination:
-                    properties = construct_property_assignment(destination)
+                    properties = construct_property_assignment(destination, only)
                     if tmp_result.get('relationship'):
                         deep_update_dict(tmp_result['relationship'], {'properties': properties})
                     else:
                         tmp_result['relationship'] = {'properties': properties}
             elif edge == 'interfaces':
-                interfaces = construct_interface_definition(destination)
+                interfaces = construct_interface_definition(destination, only)
                 if tmp_result.get('relationship'):
                     deep_update_dict(tmp_result['relationship'], {'interfaces': interfaces})
                 else:

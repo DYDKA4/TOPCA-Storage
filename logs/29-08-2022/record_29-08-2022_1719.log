@@ -1,0 +1,7 @@
+2022-08-29 17:19:01,832 INFO werkzeug MainThread :  * Running on all addresses (0.0.0.0)
+   WARNING: This is a development server. Do not use it in a production deployment.
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.10.10.235:5000 (Press CTRL+C to quit)
+2022-08-29 17:19:04,591 INFO root Thread-1 : Get connection to ('10.100.151.128', 9669)
+2022-08-29 17:19:04,601 INFO root Thread-1 : LOOKUP ON ServiceTemplateDefinition  
+2022-08-29 17:19:04,603 INFO werkzeug Thread-1 : 127.0.0.1 - - [29/Aug/2022 17:19:04] "GET /cluster_names HTTP/1.1" 200 -

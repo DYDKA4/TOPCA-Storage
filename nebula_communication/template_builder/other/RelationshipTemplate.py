@@ -3,14 +3,12 @@ from werkzeug.exceptions import abort
 from nebula_communication.nebula_functions import fetch_vertex, find_destination
 from nebula_communication.template_builder.assignment.AttributeAssignment import construct_attribute_assignment
 from nebula_communication.template_builder.assignment.PropertyAssignment import construct_property_assignment
-from nebula_communication.template_builder.definition.AttributeDefinition import construct_attribute_definition
 from nebula_communication.template_builder.definition.InterfaceDefinition import construct_interface_definition
 from nebula_communication.template_builder.definition.MetadataDefinition import construct_metadata_definition
-from nebula_communication.template_builder.definition.ProperyDefinition import construct_property_definition
 from parser.parser.tosca_v_1_3.others.RelationshipTemplate import RelationshipTemplate
 
 
-def construct_relationship_template(list_of_vid) -> dict:
+def construct_relationship_template(list_of_vid, only) -> dict:
     result = {}
     relationship_type = RelationshipTemplate('name').__dict__
 
@@ -33,11 +31,11 @@ def construct_relationship_template(list_of_vid) -> dict:
             elif edge == 'metadata':
                 tmp_result['metadata'] = construct_metadata_definition(destination)
             elif edge == 'properties':
-                tmp_result['properties'] = construct_property_assignment(destination)
+                tmp_result['properties'] = construct_property_assignment(destination, only)
             elif edge == 'attributes':
-                tmp_result['attributes'] = construct_attribute_assignment(destination)
+                tmp_result['attributes'] = construct_attribute_assignment(destination, only)
             elif edge == 'interfaces':
-                tmp_result['interfaces'] = construct_interface_definition(destination)
+                tmp_result['interfaces'] = construct_interface_definition(destination, only)
             elif edge == 'copy':
                 if destination:
                     copy = fetch_vertex(destination[0], 'RelationshipTemplate')

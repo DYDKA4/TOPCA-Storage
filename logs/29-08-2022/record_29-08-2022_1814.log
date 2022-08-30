@@ -1,0 +1,8 @@
+2022-08-29 18:14:30,233 INFO werkzeug MainThread :  * Running on all addresses (0.0.0.0)
+   WARNING: This is a development server. Do not use it in a production deployment.
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.10.10.235:5000 (Press CTRL+C to quit)
+2022-08-29 18:14:31,855 INFO werkzeug Thread-1 : 127.0.0.1 - - [29/Aug/2022 18:14:31] "GET /yaml-template?cluster_name=Jupyter_3&only=abbb HTTP/1.1" 200 -
+2022-08-29 18:14:47,432 INFO root Thread-2 : {}
+
+2022-08-29 18:14:47,433 INFO werkzeug Thread-2 : 127.0.0.1 - - [29/Aug/2022 18:14:47] "GET /yaml-template?cluster_name=Jupyter_3 HTTP/1.1" 200 -

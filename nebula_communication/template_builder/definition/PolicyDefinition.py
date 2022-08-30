@@ -8,7 +8,7 @@ from nebula_communication.template_builder.definition.TriggerDefinition import c
 from parser.parser.tosca_v_1_3.definitions.PolicyDefinition import PolicyDefinition
 
 
-def construct_policy_definition(list_of_vid) -> list:
+def construct_policy_definition(list_of_vid, only) -> list:
     result = []
     policy_type = PolicyDefinition('name').__dict__
 
@@ -31,7 +31,7 @@ def construct_policy_definition(list_of_vid) -> list:
             elif edge == 'metadata':
                 tmp_result['metadata'] = construct_metadata_definition(destination)
             elif edge == 'properties':
-                tmp_result['properties'] = construct_property_assignment(destination)
+                tmp_result['properties'] = construct_property_assignment(destination, only)
             elif edge == 'targets':
                 targets = []
                 for target in destination:

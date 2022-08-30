@@ -1,7 +1,7 @@
 import logging
 
 from flask import request, abort, render_template, Response, jsonify, make_response
-from app import app
+from app import app, current_api_version as cav
 import yaml
 from nebula_communication.deploy import deploy
 from nebula_communication.nebula_functions import delete_all, delete_cluster, find_vertex_by_properties, fetch_vertex
@@ -17,7 +17,8 @@ from nebula_communication.update_template.update_template import update_template
 from parser.linker.tosca_v_1_3.main_linker import main_linker
 from parser.parser.tosca_v_1_3.definitions.ServiceTemplateDefinition import service_template_definition_parser
 
-@app.route('/yaml-template', methods=['POST', 'PUT', 'GET'])
+
+@app.route(f'{cav}/yaml-template', methods=['POST', 'PUT', 'GET'])
 # curl -X POST -F file=@nebula_communication/jupyter.yaml  http://127.0.0.1:5000/yaml-template?cluster_name=Jupyter_3
 def yaml_add():
     cluster_name = request.args.get('cluster_name')
@@ -61,8 +62,8 @@ def yaml_add():
             '''
 
 
-@app.route('/cluster_names', methods=['GET'])
-@app.route('/cluster_names/<path:varargs>', methods=['GET'])
+@app.route(f'/{cav}/cluster_names', methods=['GET'])
+@app.route(f'/{cav}/cluster_names/<path:varargs>', methods=['GET'])
 def cluster_names(varargs=None):
     if varargs is None:
         vid = find_vertex_by_properties("ServiceTemplateDefinition")
@@ -89,7 +90,7 @@ def cluster_names(varargs=None):
         return message
 
 
-@app.route('/yaml-template/<path:varargs>', methods=['PATCH'])
+@app.route(f'/{cav}/yaml-template/<path:varargs>', methods=['PATCH'])
 def yaml_update(varargs=None):
     """
     curl -X PATCH
@@ -114,14 +115,14 @@ def yaml_update(varargs=None):
     return f'{value_name} = {value} in cluster: {cluster_name}'
 
 
-@app.route('/yaml_delete_all', methods=['PATCH'])
+@app.route(f'/{cav}/yaml_delete_all', methods=['PATCH'])
 # curl -X PATCH http://127.0.0.1:5000/yaml-delete
 def yaml_delete_all():
     delete_all()
     return "200 OK"
 
 
-@app.route('/yaml_delete_cluster', methods=['POST'])
+@app.route(f'/{cav}/yaml_delete_cluster', methods=['POST'])
 def yaml_delete_cluster():
     """
         curl -X POST http://127.0.0.1:5000/yaml_delete_cluster
@@ -135,7 +136,7 @@ def yaml_delete_cluster():
     return f'Deleted {cluster_name}'
 
 
-@app.route('/find/<path:varargs>', methods=['GET'])
+@app.route(f'/{cav}/find/<path:varargs>', methods=['GET'])
 def find(varargs=None):
     search_by = request.args.get('search_by')
     search_by_value = request.args.get('search_by_value')
@@ -148,7 +149,7 @@ def find(varargs=None):
     return "200 OK"
 
 
-@app.route('/get_endpoint_of_service', methods=['GET'])
+@app.route(f'/{cav}/get_endpoint_of_service', methods=['GET'])
 def get_endpoint_of_service(find_free=False):
     """
          curl -X GET 'http://127.0.0.1:5000/get_endpoint_of_service?type_of_service=michman.nodes.Jupyter.Jupyter-6-0-1'
@@ -163,7 +164,7 @@ def get_endpoint_of_service(find_free=False):
     return result
 
 
-@app.route('/get_free_endpoint_of_service', methods=['GET'])
+@app.route(f'/{cav}/get_free_endpoint_of_service', methods=['GET'])
 def get_free_endpoint_of_service():
     """
          curl -X GET 'http://127.0.0.1:5000/get_free_endpoint_of_service?type_of_service=michman.nodes.Jupyter.Jupyter-6-0-1'
@@ -172,7 +173,7 @@ def get_free_endpoint_of_service():
     return get_endpoint_of_service(find_free=True)
 
 
-@app.route('/set_service_free', methods=['PATCH'])
+@app.route(f'/{cav}/set_service_free', methods=['PATCH'])
 def set_service_free(status='free'):
     """
         curl -X PATCH "http://127.0.0.1:5000/set_service_busy?cluster_name=Jupyter_1&service_name=jupyter_1"
@@ -190,12 +191,12 @@ def set_service_free(status='free'):
     return 'OK'
 
 
-@app.route('/set_service_busy', methods=['PATCH'])
+@app.route(f'/{cav}/set_service_busy', methods=['PATCH'])
 def set_service_busy():
     return set_service_free(status='busy')
 
 
-@app.route('/find_node_with_property', methods=['GET'])
+@app.route(f'/{cav}/find_node_with_property', methods=['GET'])
 def find_node_with_property():
     """
      curl -X GET "http://127.0.0.1:5000/find_node_with_property?values=256%20GB&cluster_name=Jupyter_1"
@@ -206,7 +207,7 @@ def find_node_with_property():
     return result
 
 
-@app.route('/find_node_with_mutual_properties', methods=['GET'])
+@app.route(f'/{cav}/find_node_with_mutual_properties', methods=['GET'])
 def find_node_with_mutual_property():
     kwargs = request.args
     """

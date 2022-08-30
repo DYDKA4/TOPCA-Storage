@@ -18,9 +18,19 @@ from parser.linker.tosca_v_1_3.main_linker import main_linker
 from parser.parser.tosca_v_1_3.definitions.ServiceTemplateDefinition import service_template_definition_parser
 
 
-@app.route(f'{cav}/yaml-template', methods=['POST', 'PUT', 'GET'])
+@app.route(f'/{cav}/yaml-template/<path:varargs>', methods=['POST'])
 # curl -X POST -F file=@nebula_communication/jupyter.yaml  http://127.0.0.1:5000/yaml-template?cluster_name=Jupyter_3
-def yaml_add():
+def yaml_add(varargs=None):
+    if varargs is None:
+        return jsonify({'status': 400,
+                        'message': 'what type are you uploading?'})
+    varargs = varargs.split('/')
+    if len(varargs) > 1:
+        return jsonify({'status': 400,
+                        'message': 'wrong url address'})
+    if varargs[0] not in {'type', 'instance_model', 'template'}:
+        return jsonify({'status': 400,
+                        'message': 'was chosen incorrect type'})
     cluster_name = request.args.get('cluster_name')
     if request.method in ['POST', 'PUT']:
         file = request.files['file']
@@ -31,6 +41,7 @@ def yaml_add():
             abort(400)
         if cluster_name:
             template = service_template_definition_parser(cluster_name, file)
+            template.template_type = varargs[0]
             main_linker(template)
             if add_vid(template.name, template.name):
                 return jsonify({'status': 400,
@@ -41,25 +52,27 @@ def yaml_add():
             print('DEPLOY FINISH')
             return jsonify({'status': 200,
                             'message': f'cluster_name: {cluster_name} was deployed'})
-    if request.method == 'GET':
-        """
-         curl -X GET 'http://127.0.0.1:5000/yaml-template?cluster_name=Jupyter_3'
-        :return:
-        """
-        cluster_name = request.args.get('cluster_name')
-        only = request.args.get('only')
-        if only not in {'attribute', 'property', None}:
-            return jsonify({'status': 400,
-                           'message': 'attribute "only" could be only attribute, property or None'})
-        result = construct_service_template_definition(cluster_name, only)
-        print(yaml.dump(result, default_flow_style=False))
-        logging.info(yaml.dump(result, default_flow_style=False))
-        return jsonify({'status': 200,
-                        'message': result})
-
     return '''
             400 Bad Request 
             '''
+
+
+@app.route(f'/{cav}/yaml-template', methods=['GET'])
+def get_yaml():
+    """
+             curl -X GET 'http://127.0.0.1:5000/yaml-template?cluster_name=Jupyter_3'
+            :return:
+            """
+    cluster_name = request.args.get('cluster_name')
+    only = request.args.get('only')
+    if only not in {'attribute', 'property', None}:
+        return jsonify({'status': 400,
+                        'message': 'attribute "only" could be only attribute, property or None'})
+    result = construct_service_template_definition(cluster_name, only)
+    print(yaml.dump(result, default_flow_style=False))
+    logging.info(yaml.dump(result, default_flow_style=False))
+    return jsonify({'status': 200,
+                    'message': result})
 
 
 @app.route(f'/{cav}/cluster_names', methods=['GET'])

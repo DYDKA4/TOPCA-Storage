@@ -25,7 +25,7 @@ def construct_service_template_definition(name: str, only):
     service_template_definition = ServiceTemplateDefinition('name').__dict__
     template = {}
     for vertex_key in vertex_keys:
-        if not vertex_value[vertex_key].is_null() and vertex_key not in {'vertex_type_system', 'name'}:
+        if not vertex_value[vertex_key].is_null() and vertex_key not in {'vertex_type_system', 'name', 'template_type'}:
             value = vertex_value[vertex_key].as_string()
             value: str
             if value.isnumeric():

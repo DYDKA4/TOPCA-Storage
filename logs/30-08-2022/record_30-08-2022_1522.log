@@ -1,0 +1,39 @@
+2022-08-30 15:22:54,987 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-30 15:22:55,056 INFO werkzeug MainThread :  * Running on all addresses (0.0.0.0)
+   WARNING: This is a development server. Do not use it in a production deployment.
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.10.10.235:5000 (Press CTRL+C to quit)
+2022-08-30 15:23:08,297 INFO root Thread-1 : LOOKUP ON ServiceTemplateDefinition  
+2022-08-30 15:23:08,297 ERROR app Thread-1 : Exception on /v0.1/cluster_names [GET]
+Traceback (most recent call last):
+  File "/home/dmitrytulin/PycharmProjects/API_COURSE/venv/lib/python3.9/site-packages/flask/app.py", line 2077, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/dmitrytulin/PycharmProjects/API_COURSE/venv/lib/python3.9/site-packages/flask/app.py", line 1525, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/dmitrytulin/PycharmProjects/API_COURSE/venv/lib/python3.9/site-packages/flask/app.py", line 1523, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/dmitrytulin/PycharmProjects/API_COURSE/venv/lib/python3.9/site-packages/flask/app.py", line 1509, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/dmitrytulin/PycharmProjects/API_COURSE/app/views.py", line 82, in cluster_names
+    vid = find_vertex_by_properties("ServiceTemplateDefinition")
+  File "/home/dmitrytulin/PycharmProjects/API_COURSE/nebula_communication/nebula_functions.py", line 227, in find_vertex_by_properties
+    assert result.is_succeeded(), result.error_msg()
+AssertionError: Storage Error: Invalid data, may be wrong value type.
+2022-08-30 15:23:08,299 INFO werkzeug Thread-1 : 127.0.0.1 - - [30/Aug/2022 15:23:08] "[35m[1mGET /v0.1/cluster_names HTTP/1.1[0m" 500 -
+2022-08-30 15:23:15,683 INFO root Thread-2 : LOOKUP ON ServiceTemplateDefinition  
+2022-08-30 15:23:15,684 ERROR app Thread-2 : Exception on /v0.1/cluster_names [GET]
+Traceback (most recent call last):
+  File "/home/dmitrytulin/PycharmProjects/API_COURSE/venv/lib/python3.9/site-packages/flask/app.py", line 2077, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/dmitrytulin/PycharmProjects/API_COURSE/venv/lib/python3.9/site-packages/flask/app.py", line 1525, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/dmitrytulin/PycharmProjects/API_COURSE/venv/lib/python3.9/site-packages/flask/app.py", line 1523, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/dmitrytulin/PycharmProjects/API_COURSE/venv/lib/python3.9/site-packages/flask/app.py", line 1509, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/dmitrytulin/PycharmProjects/API_COURSE/app/views.py", line 82, in cluster_names
+    vid = find_vertex_by_properties("ServiceTemplateDefinition")
+  File "/home/dmitrytulin/PycharmProjects/API_COURSE/nebula_communication/nebula_functions.py", line 227, in find_vertex_by_properties
+    assert result.is_succeeded(), result.error_msg()
+AssertionError: Storage Error: Invalid data, may be wrong value type.
+2022-08-30 15:23:15,684 INFO werkzeug Thread-2 : 127.0.0.1 - - [30/Aug/2022 15:23:15] "[35m[1mGET /v0.1/cluster_names HTTP/1.1[0m" 500 -

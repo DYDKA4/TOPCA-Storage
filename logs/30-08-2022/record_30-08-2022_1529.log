@@ -1,0 +1,589 @@
+2022-08-30 15:29:51,883 INFO root MainThread : Get connection to ('10.100.151.128', 9669)
+2022-08-30 15:29:51,952 INFO werkzeug MainThread :  * Running on all addresses (0.0.0.0)
+   WARNING: This is a development server. Do not use it in a production deployment.
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.10.10.235:5000 (Press CTRL+C to quit)
+2022-08-30 15:32:28,991 INFO werkzeug Thread-1 : 127.0.0.1 - - [30/Aug/2022 15:32:28] "[31m[1mPOST /v0.1/yaml-template?cluster_name=Jupyter_1 HTTP/1.1[0m" 405 -
+2022-08-30 15:32:45,052 INFO werkzeug Thread-2 : 127.0.0.1 - - [30/Aug/2022 15:32:45] "[33mPOST /v0.1/yaml-template/?cluster_name=Jupyter_1 HTTP/1.1[0m" 404 -
+2022-08-30 15:32:57,546 INFO werkzeug Thread-3 : 127.0.0.1 - - [30/Aug/2022 15:32:57] "POST /v0.1/yaml-template/test?cluster_name=Jupyter_1 HTTP/1.1" 200 -
+2022-08-30 15:33:11,984 INFO root Thread-4 : INSERT VERTEX ServiceTemplateDefinition (tosca_definitions_version, name, vertex_type_system, template_type) VALUES "Jupyter_1":('1.3', 'Jupyter_1', 'ServiceTemplateDefinition', 'template');
+2022-08-30 15:33:11,987 INFO root Thread-4 : INSERT VERTEX DataType (vertex_type_system, name) VALUES "40ff2af3-107c-4928-af6f-53f850f1b114":('DataType', 'string');
+2022-08-30 15:33:11,989 INFO root Thread-4 : INSERT EDGE data_types() VALUE "Jupyter_1"->"40ff2af3-107c-4928-af6f-53f850f1b114":()
+2022-08-30 15:33:11,992 INFO root Thread-4 : INSERT VERTEX DataType (vertex_type_system, name) VALUES "d5b2bbbc-3887-442c-b0c8-54d2e117f0d4":('DataType', 'boolean');
+2022-08-30 15:33:11,994 INFO root Thread-4 : INSERT EDGE data_types() VALUE "Jupyter_1"->"d5b2bbbc-3887-442c-b0c8-54d2e117f0d4":()
+2022-08-30 15:33:11,997 INFO root Thread-4 : INSERT VERTEX DataType (vertex_type_system, name) VALUES "575f9c9b-a064-4d68-a8ef-1f39317a47c6":('DataType', 'float');
+2022-08-30 15:33:11,998 INFO root Thread-4 : INSERT EDGE data_types() VALUE "Jupyter_1"->"575f9c9b-a064-4d68-a8ef-1f39317a47c6":()
+2022-08-30 15:33:12,001 INFO root Thread-4 : INSERT VERTEX DataType (vertex_type_system, name) VALUES "1c8a3830-ce40-4d05-8dfd-d762016036f6":('DataType', 'integer');
+2022-08-30 15:33:12,003 INFO root Thread-4 : INSERT EDGE data_types() VALUE "Jupyter_1"->"1c8a3830-ce40-4d05-8dfd-d762016036f6":()
+2022-08-30 15:33:12,005 INFO root Thread-4 : INSERT VERTEX DataType (vertex_type_system, name) VALUES "78b1d86e-a443-4939-9a5a-a047bf7ad9fc":('DataType', 'timestamp');
+2022-08-30 15:33:12,007 INFO root Thread-4 : INSERT EDGE data_types() VALUE "Jupyter_1"->"78b1d86e-a443-4939-9a5a-a047bf7ad9fc":()
+2022-08-30 15:33:12,010 INFO root Thread-4 : INSERT VERTEX DataType (vertex_type_system, name) VALUES "af76a6a0-c4a5-4a27-9e09-bc4220419bbe":('DataType', 'scalar-unit.size');
+2022-08-30 15:33:12,012 INFO root Thread-4 : INSERT EDGE data_types() VALUE "Jupyter_1"->"af76a6a0-c4a5-4a27-9e09-bc4220419bbe":()
+2022-08-30 15:33:12,014 INFO root Thread-4 : INSERT VERTEX DataType (vertex_type_system, name) VALUES "9d20dc18-8a4c-4213-ba26-ae3838a88d48":('DataType', 'scalar-unit.frequency');
+2022-08-30 15:33:12,016 INFO root Thread-4 : INSERT EDGE data_types() VALUE "Jupyter_1"->"9d20dc18-8a4c-4213-ba26-ae3838a88d48":()
+2022-08-30 15:33:12,019 INFO root Thread-4 : INSERT VERTEX DataType (vertex_type_system, name) VALUES "469508b5-59d5-4b57-99d5-5c2584a3ddb3":('DataType', 'map');
+2022-08-30 15:33:12,021 INFO root Thread-4 : INSERT EDGE data_types() VALUE "Jupyter_1"->"469508b5-59d5-4b57-99d5-5c2584a3ddb3":()
+2022-08-30 15:33:12,023 INFO root Thread-4 : INSERT VERTEX DataType (vertex_type_system, name) VALUES "b198cd8a-5d23-4f9c-b8ab-f3ffa28b6d3d":('DataType', 'list');
+2022-08-30 15:33:12,025 INFO root Thread-4 : INSERT EDGE data_types() VALUE "Jupyter_1"->"b198cd8a-5d23-4f9c-b8ab-f3ffa28b6d3d":()
+2022-08-30 15:33:12,028 INFO root Thread-4 : INSERT VERTEX DataType (vertex_type_system, name) VALUES "49b85101-8fb9-4d47-b2b4-488809410ad0":('DataType', 'range');
+2022-08-30 15:33:12,030 INFO root Thread-4 : INSERT EDGE data_types() VALUE "Jupyter_1"->"49b85101-8fb9-4d47-b2b4-488809410ad0":()
+2022-08-30 15:33:12,033 INFO root Thread-4 : INSERT VERTEX DataType (vertex_type_system, name) VALUES "41cb31b1-e696-458d-9dcc-cb56d60f8dd7":('DataType', 'version');
+2022-08-30 15:33:12,034 INFO root Thread-4 : INSERT EDGE data_types() VALUE "Jupyter_1"->"41cb31b1-e696-458d-9dcc-cb56d60f8dd7":()
+2022-08-30 15:33:12,037 INFO root Thread-4 : INSERT VERTEX DataType (vertex_type_system, name) VALUES "4c8d5e1f-30c2-4a3e-9e0b-a33ff5fb4d1b":('DataType', 'tosca.datatypes.Credential');
+2022-08-30 15:33:12,040 INFO root Thread-4 : INSERT VERTEX DataType (vertex_type_system, name, description) VALUES "5d4be3c4-0b7c-43d2-b9b4-be41de8b7e2c":('DataType', 'tosca.datatypes.Root', 'The TOSCA root Data Type all other TOSCA base Data Types derive from');
+2022-08-30 15:33:12,042 INFO root Thread-4 : INSERT EDGE derived_from() VALUE "4c8d5e1f-30c2-4a3e-9e0b-a33ff5fb4d1b"->"5d4be3c4-0b7c-43d2-b9b4-be41de8b7e2c":()
+2022-08-30 15:33:12,045 INFO root Thread-4 : INSERT VERTEX PropertyDefinition (name, vertex_type_system, required) VALUES "07983db7-8453-4158-af2b-94e56c6c72f0":('protocol', 'PropertyDefinition', 'False');
+2022-08-30 15:33:12,047 INFO root Thread-4 : INSERT EDGE type() VALUE "07983db7-8453-4158-af2b-94e56c6c72f0"->"40ff2af3-107c-4928-af6f-53f850f1b114":()
+2022-08-30 15:33:12,049 INFO root Thread-4 : INSERT EDGE properties() VALUE "4c8d5e1f-30c2-4a3e-9e0b-a33ff5fb4d1b"->"07983db7-8453-4158-af2b-94e56c6c72f0":()
+2022-08-30 15:33:12,053 INFO root Thread-4 : INSERT VERTEX PropertyDefinition (name, vertex_type_system, default) VALUES "6daa3997-54ad-4403-811d-983f1e04d61f":('token_type', 'PropertyDefinition', 'password');
+2022-08-30 15:33:12,055 INFO root Thread-4 : INSERT EDGE type() VALUE "6daa3997-54ad-4403-811d-983f1e04d61f"->"40ff2af3-107c-4928-af6f-53f850f1b114":()
+2022-08-30 15:33:12,057 INFO root Thread-4 : INSERT EDGE properties() VALUE "4c8d5e1f-30c2-4a3e-9e0b-a33ff5fb4d1b"->"6daa3997-54ad-4403-811d-983f1e04d61f":()
+2022-08-30 15:33:12,060 INFO root Thread-4 : INSERT VERTEX PropertyDefinition (name, vertex_type_system) VALUES "0fb56c5e-cc16-4e19-9f0b-0895c51659f9":('token', 'PropertyDefinition');
+2022-08-30 15:33:12,062 INFO root Thread-4 : INSERT EDGE type() VALUE "0fb56c5e-cc16-4e19-9f0b-0895c51659f9"->"40ff2af3-107c-4928-af6f-53f850f1b114":()
+2022-08-30 15:33:12,064 INFO root Thread-4 : INSERT EDGE properties() VALUE "4c8d5e1f-30c2-4a3e-9e0b-a33ff5fb4d1b"->"0fb56c5e-cc16-4e19-9f0b-0895c51659f9":()
+2022-08-30 15:33:12,068 INFO root Thread-4 : INSERT VERTEX PropertyDefinition (name, vertex_type_system, required) VALUES "4f75eb7f-fe82-4ac6-a672-5ed7e967a596":('keys', 'PropertyDefinition', 'False');
+2022-08-30 15:33:12,071 INFO root Thread-4 : INSERT VERTEX SchemaDefinition (vertex_type_system) VALUES "f0d664c5-4c34-40df-bd7f-b2026f2260f7":('SchemaDefinition');
+2022-08-30 15:33:12,073 INFO root Thread-4 : INSERT EDGE type() VALUE "f0d664c5-4c34-40df-bd7f-b2026f2260f7"->"40ff2af3-107c-4928-af6f-53f850f1b114":()
+2022-08-30 15:33:12,075 INFO root Thread-4 : INSERT EDGE entry_schema() VALUE "4f75eb7f-fe82-4ac6-a672-5ed7e967a596"->"f0d664c5-4c34-40df-bd7f-b2026f2260f7":()
+2022-08-30 15:33:12,077 INFO root Thread-4 : INSERT EDGE type() VALUE "4f75eb7f-fe82-4ac6-a672-5ed7e967a596"->"469508b5-59d5-4b57-99d5-5c2584a3ddb3":()
+2022-08-30 15:33:12,079 INFO root Thread-4 : INSERT EDGE properties() VALUE "4c8d5e1f-30c2-4a3e-9e0b-a33ff5fb4d1b"->"4f75eb7f-fe82-4ac6-a672-5ed7e967a596":()
+2022-08-30 15:33:12,083 INFO root Thread-4 : INSERT VERTEX PropertyDefinition (name, vertex_type_system, required) VALUES "71d4b92d-cf3b-436a-9c94-4541bcb2d2e3":('user', 'PropertyDefinition', 'False');
+2022-08-30 15:33:12,085 INFO root Thread-4 : INSERT EDGE type() VALUE "71d4b92d-cf3b-436a-9c94-4541bcb2d2e3"->"40ff2af3-107c-4928-af6f-53f850f1b114":()
+2022-08-30 15:33:12,087 INFO root Thread-4 : INSERT EDGE properties() VALUE "4c8d5e1f-30c2-4a3e-9e0b-a33ff5fb4d1b"->"71d4b92d-cf3b-436a-9c94-4541bcb2d2e3":()
+2022-08-30 15:33:12,089 INFO root Thread-4 : INSERT EDGE data_types() VALUE "Jupyter_1"->"4c8d5e1f-30c2-4a3e-9e0b-a33ff5fb4d1b":()
+2022-08-30 15:33:12,093 INFO root Thread-4 : INSERT VERTEX DataType (vertex_type_system, name) VALUES "18ce5ffa-05ca-42a5-ba6d-a417c3975766":('DataType', 'tosca.datatypes.network.PortInfo');
+2022-08-30 15:33:12,095 INFO root Thread-4 : INSERT EDGE derived_from() VALUE "18ce5ffa-05ca-42a5-ba6d-a417c3975766"->"5d4be3c4-0b7c-43d2-b9b4-be41de8b7e2c":()
+2022-08-30 15:33:12,099 INFO root Thread-4 : INSERT VERTEX PropertyDefinition (name, vertex_type_system) VALUES "6eaa65d0-ba33-4aea-a689-225a04aaba17":('port_name', 'PropertyDefinition');
+2022-08-30 15:33:12,101 INFO root Thread-4 : INSERT EDGE type() VALUE "6eaa65d0-ba33-4aea-a689-225a04aaba17"->"40ff2af3-107c-4928-af6f-53f850f1b114":()
+2022-08-30 15:33:12,103 INFO root Thread-4 : INSERT EDGE properties() VALUE "18ce5ffa-05ca-42a5-ba6d-a417c3975766"->"6eaa65d0-ba33-4aea-a689-225a04aaba17":()
+2022-08-30 15:33:12,107 INFO root Thread-4 : INSERT VERTEX PropertyDefinition (name, vertex_type_system) VALUES "45cf2b91-a1ca-465f-8dcf-80ac61b2c49c":('port_id', 'PropertyDefinition');
+2022-08-30 15:33:12,109 INFO root Thread-4 : INSERT EDGE type() VALUE "45cf2b91-a1ca-465f-8dcf-80ac61b2c49c"->"40ff2af3-107c-4928-af6f-53f850f1b114":()
+2022-08-30 15:33:12,111 INFO root Thread-4 : INSERT EDGE properties() VALUE "18ce5ffa-05ca-42a5-ba6d-a417c3975766"->"45cf2b91-a1ca-465f-8dcf-80ac61b2c49c":()
+2022-08-30 15:33:12,114 INFO root Thread-4 : INSERT VERTEX PropertyDefinition (name, vertex_type_system) VALUES "b4883211-f2e5-40ab-919e-d1172eb9b596":('network_id', 'PropertyDefinition');
+2022-08-30 15:33:12,116 INFO root Thread-4 : INSERT EDGE type() VALUE "b4883211-f2e5-40ab-919e-d1172eb9b596"->"40ff2af3-107c-4928-af6f-53f850f1b114":()
+2022-08-30 15:33:12,117 INFO root Thread-4 : INSERT EDGE properties() VALUE "18ce5ffa-05ca-42a5-ba6d-a417c3975766"->"b4883211-f2e5-40ab-919e-d1172eb9b596":()
+2022-08-30 15:33:12,120 INFO root Thread-4 : INSERT VERTEX PropertyDefinition (name, vertex_type_system) VALUES "edd06499-4abc-41c6-b640-513be4463d93":('mac_address', 'PropertyDefinition');
+2022-08-30 15:33:12,122 INFO root Thread-4 : INSERT EDGE type() VALUE "edd06499-4abc-41c6-b640-513be4463d93"->"40ff2af3-107c-4928-af6f-53f850f1b114":()
+2022-08-30 15:33:12,123 INFO root Thread-4 : INSERT EDGE properties() VALUE "18ce5ffa-05ca-42a5-ba6d-a417c3975766"->"edd06499-4abc-41c6-b640-513be4463d93":()
+2022-08-30 15:33:12,126 INFO root Thread-4 : INSERT VERTEX PropertyDefinition (name, vertex_type_system) VALUES "3caf9bce-ed42-4c87-b903-4481d700a127":('addresses', 'PropertyDefinition');
+2022-08-30 15:33:12,129 INFO root Thread-4 : INSERT VERTEX SchemaDefinition (vertex_type_system) VALUES "7d20c762-e190-41a5-82d1-9b78d4fd10c2":('SchemaDefinition');
+2022-08-30 15:33:12,131 INFO root Thread-4 : INSERT EDGE type() VALUE "7d20c762-e190-41a5-82d1-9b78d4fd10c2"->"40ff2af3-107c-4928-af6f-53f850f1b114":()
+2022-08-30 15:33:12,133 INFO root Thread-4 : INSERT EDGE entry_schema() VALUE "3caf9bce-ed42-4c87-b903-4481d700a127"->"7d20c762-e190-41a5-82d1-9b78d4fd10c2":()
+2022-08-30 15:33:12,135 INFO root Thread-4 : INSERT EDGE type() VALUE "3caf9bce-ed42-4c87-b903-4481d700a127"->"b198cd8a-5d23-4f9c-b8ab-f3ffa28b6d3d":()
+2022-08-30 15:33:12,136 INFO root Thread-4 : INSERT EDGE properties() VALUE "18ce5ffa-05ca-42a5-ba6d-a417c3975766"->"3caf9bce-ed42-4c87-b903-4481d700a127":()
+2022-08-30 15:33:12,138 INFO root Thread-4 : INSERT EDGE data_types() VALUE "Jupyter_1"->"18ce5ffa-05ca-42a5-ba6d-a417c3975766":()
+2022-08-30 15:33:12,142 INFO root Thread-4 : INSERT VERTEX DataType (vertex_type_system, name) VALUES "6cc56292-fbf8-414e-b0ed-f029ec0323e1":('DataType', 'tosca.datatypes.network.PortSpec');
+2022-08-30 15:33:12,144 INFO root Thread-4 : INSERT EDGE derived_from() VALUE "6cc56292-fbf8-414e-b0ed-f029ec0323e1"->"5d4be3c4-0b7c-43d2-b9b4-be41de8b7e2c":()
+2022-08-30 15:33:12,147 INFO root Thread-4 : INSERT VERTEX PropertyDefinition (name, vertex_type_system, required, default) VALUES "398874e8-9f3d-4d80-a574-4d039c065bdc":('protocol', 'PropertyDefinition', 'True', 'tcp');
+2022-08-30 15:33:12,149 INFO root Thread-4 : INSERT EDGE type() VALUE "398874e8-9f3d-4d80-a574-4d039c065bdc"->"40ff2af3-107c-4928-af6f-53f850f1b114":()
+2022-08-30 15:33:12,152 INFO root Thread-4 : INSERT VERTEX ConstraintClause (operator, vertex_type_system, value) VALUES "b914fea1-fc3a-4a2d-b458-54aa73d68905":('valid_values', 'ConstraintClause', "['udp', 'tcp', 'igmp']");
+2022-08-30 15:33:12,154 INFO root Thread-4 : INSERT EDGE constraints() VALUE "398874e8-9f3d-4d80-a574-4d039c065bdc"->"b914fea1-fc3a-4a2d-b458-54aa73d68905":()
+2022-08-30 15:33:12,156 INFO root Thread-4 : INSERT EDGE properties() VALUE "6cc56292-fbf8-414e-b0ed-f029ec0323e1"->"398874e8-9f3d-4d80-a574-4d039c065bdc":()
+2022-08-30 15:33:12,160 INFO root Thread-4 : INSERT VERTEX PropertyDefinition (name, vertex_type_system, required) VALUES "df3f5c1d-2368-4f3d-a064-c00afae1a566":('target', 'PropertyDefinition', 'False');
+2022-08-30 15:33:12,163 INFO root Thread-4 : INSERT VERTEX DataType (vertex_type_system, name) VALUES "ae9ba75a-e3b4-459f-8c52-e5ce4c9fd4e9":('DataType', 'tosca.datatypes.network.PortDef');
+2022-08-30 15:33:12,165 INFO root Thread-4 : INSERT EDGE derived_from() VALUE "ae9ba75a-e3b4-459f-8c52-e5ce4c9fd4e9"->"1c8a3830-ce40-4d05-8dfd-d762016036f6":()
+2022-08-30 15:33:12,169 INFO root Thread-4 : INSERT VERTEX ConstraintClause (operator, vertex_type_system, value) VALUES "3d00e831-1a6f-477d-b32a-7c85db645ac4":('in_range', 'ConstraintClause', '[1, 65535]');
+2022-08-30 15:33:12,171 INFO root Thread-4 : INSERT EDGE constraints() VALUE "ae9ba75a-e3b4-459f-8c52-e5ce4c9fd4e9"->"3d00e831-1a6f-477d-b32a-7c85db645ac4":()
+2022-08-30 15:33:12,173 INFO root Thread-4 : INSERT EDGE type() VALUE "df3f5c1d-2368-4f3d-a064-c00afae1a566"->"ae9ba75a-e3b4-459f-8c52-e5ce4c9fd4e9":()
+2022-08-30 15:33:12,176 INFO root Thread-4 : INSERT EDGE properties() VALUE "6cc56292-fbf8-414e-b0ed-f029ec0323e1"->"df3f5c1d-2368-4f3d-a064-c00afae1a566":()
+2022-08-30 15:33:12,179 INFO root Thread-4 : INSERT VERTEX PropertyDefinition (name, vertex_type_system, required) VALUES "f9514d7f-ed8a-421c-8831-fa0606b106c5":('target_range', 'PropertyDefinition', 'False');
+2022-08-30 15:33:12,181 INFO root Thread-4 : INSERT EDGE type() VALUE "f9514d7f-ed8a-421c-8831-fa0606b106c5"->"49b85101-8fb9-4d47-b2b4-488809410ad0":()
+2022-08-30 15:33:12,184 INFO root Thread-4 : INSERT VERTEX ConstraintClause (operator, vertex_type_system, value) VALUES "b448a7aa-c082-4ff6-99c9-5b8d10f31ceb":('in_range', 'ConstraintClause', '[1, 65535]');
+2022-08-30 15:33:12,186 INFO root Thread-4 : INSERT EDGE constraints() VALUE "f9514d7f-ed8a-421c-8831-fa0606b106c5"->"b448a7aa-c082-4ff6-99c9-5b8d10f31ceb":()
+2022-08-30 15:33:12,188 INFO root Thread-4 : INSERT EDGE properties() VALUE "6cc56292-fbf8-414e-b0ed-f029ec0323e1"->"f9514d7f-ed8a-421c-8831-fa0606b106c5":()
+2022-08-30 15:33:12,191 INFO root Thread-4 : INSERT VERTEX PropertyDefinition (name, vertex_type_system, required) VALUES "d07727dd-d5d3-4017-8af5-3e3ff9b79694":('source', 'PropertyDefinition', 'False');
+2022-08-30 15:33:12,193 INFO root Thread-4 : INSERT EDGE type() VALUE "d07727dd-d5d3-4017-8af5-3e3ff9b79694"->"ae9ba75a-e3b4-459f-8c52-e5ce4c9fd4e9":()
+2022-08-30 15:33:12,195 INFO root Thread-4 : INSERT EDGE properties() VALUE "6cc56292-fbf8-414e-b0ed-f029ec0323e1"->"d07727dd-d5d3-4017-8af5-3e3ff9b79694":()
+2022-08-30 15:33:12,198 INFO root Thread-4 : INSERT VERTEX PropertyDefinition (name, vertex_type_system, required) VALUES "35937ae2-3b1b-45fd-8326-49928fed2677":('source_range', 'PropertyDefinition', 'False');
+2022-08-30 15:33:12,200 INFO root Thread-4 : INSERT EDGE type() VALUE "35937ae2-3b1b-45fd-8326-49928fed2677"->"49b85101-8fb9-4d47-b2b4-488809410ad0":()
+2022-08-30 15:33:12,203 INFO root Thread-4 : INSERT VERTEX ConstraintClause (operator, vertex_type_system, value) VALUES "c1bf55f7-dccd-4820-918c-e829770c3c83":('in_range', 'ConstraintClause', '[1, 65535]');
+2022-08-30 15:33:12,205 INFO root Thread-4 : INSERT EDGE constraints() VALUE "35937ae2-3b1b-45fd-8326-49928fed2677"->"c1bf55f7-dccd-4820-918c-e829770c3c83":()
+2022-08-30 15:33:12,206 INFO root Thread-4 : INSERT EDGE properties() VALUE "6cc56292-fbf8-414e-b0ed-f029ec0323e1"->"35937ae2-3b1b-45fd-8326-49928fed2677":()
+2022-08-30 15:33:12,208 INFO root Thread-4 : INSERT EDGE data_types() VALUE "Jupyter_1"->"6cc56292-fbf8-414e-b0ed-f029ec0323e1":()
+2022-08-30 15:33:12,210 INFO root Thread-4 : INSERT EDGE data_types() VALUE "Jupyter_1"->"ae9ba75a-e3b4-459f-8c52-e5ce4c9fd4e9":()
+2022-08-30 15:33:12,213 INFO root Thread-4 : INSERT VERTEX DataType (vertex_type_system, name) VALUES "78ce4ea5-2659-44e4-9326-bd48103e01a1":('DataType', 'tosca.datatypes.network.NetworkInfo');
+2022-08-30 15:33:12,215 INFO root Thread-4 : INSERT EDGE derived_from() VALUE "78ce4ea5-2659-44e4-9326-bd48103e01a1"->"5d4be3c4-0b7c-43d2-b9b4-be41de8b7e2c":()
+2022-08-30 15:33:12,218 INFO root Thread-4 : INSERT VERTEX PropertyDefinition (name, vertex_type_system) VALUES "1d4316d3-d68a-4b5d-a541-e8c18fb2172c":('network_name', 'PropertyDefinition');
+2022-08-30 15:33:12,220 INFO root Thread-4 : INSERT EDGE type() VALUE "1d4316d3-d68a-4b5d-a541-e8c18fb2172c"->"40ff2af3-107c-4928-af6f-53f850f1b114":()
+2022-08-30 15:33:12,222 INFO root Thread-4 : INSERT EDGE properties() VALUE "78ce4ea5-2659-44e4-9326-bd48103e01a1"->"1d4316d3-d68a-4b5d-a541-e8c18fb2172c":()
+2022-08-30 15:33:12,226 INFO root Thread-4 : INSERT VERTEX PropertyDefinition (name, vertex_type_system) VALUES "8b1a2ec4-3bee-4653-b621-516fa28c339c":('network_id', 'PropertyDefinition');
+2022-08-30 15:33:12,228 INFO root Thread-4 : INSERT EDGE type() VALUE "8b1a2ec4-3bee-4653-b621-516fa28c339c"->"40ff2af3-107c-4928-af6f-53f850f1b114":()
+2022-08-30 15:33:12,230 INFO root Thread-4 : INSERT EDGE properties() VALUE "78ce4ea5-2659-44e4-9326-bd48103e01a1"->"8b1a2ec4-3bee-4653-b621-516fa28c339c":()
+2022-08-30 15:33:12,234 INFO root Thread-4 : INSERT VERTEX PropertyDefinition (name, vertex_type_system) VALUES "c1931a53-6857-4985-9869-38da0a0280c4":('addresses', 'PropertyDefinition');
+2022-08-30 15:33:12,237 INFO root Thread-4 : INSERT VERTEX SchemaDefinition (vertex_type_system) VALUES "ee8b9f58-c5f3-493e-ae96-b4e2494c21bd":('SchemaDefinition');
+2022-08-30 15:33:12,239 INFO root Thread-4 : INSERT EDGE type() VALUE "ee8b9f58-c5f3-493e-ae96-b4e2494c21bd"->"40ff2af3-107c-4928-af6f-53f850f1b114":()
+2022-08-30 15:33:12,241 INFO root Thread-4 : INSERT EDGE entry_schema() VALUE "c1931a53-6857-4985-9869-38da0a0280c4"->"ee8b9f58-c5f3-493e-ae96-b4e2494c21bd":()
+2022-08-30 15:33:12,243 INFO root Thread-4 : INSERT EDGE type() VALUE "c1931a53-6857-4985-9869-38da0a0280c4"->"b198cd8a-5d23-4f9c-b8ab-f3ffa28b6d3d":()
+2022-08-30 15:33:12,245 INFO root Thread-4 : INSERT EDGE properties() VALUE "78ce4ea5-2659-44e4-9326-bd48103e01a1"->"c1931a53-6857-4985-9869-38da0a0280c4":()
+2022-08-30 15:33:12,247 INFO root Thread-4 : INSERT EDGE data_types() VALUE "Jupyter_1"->"78ce4ea5-2659-44e4-9326-bd48103e01a1":()
+2022-08-30 15:33:12,249 INFO root Thread-4 : INSERT EDGE data_types() VALUE "Jupyter_1"->"5d4be3c4-0b7c-43d2-b9b4-be41de8b7e2c":()
+2022-08-30 15:33:12,253 INFO root Thread-4 : INSERT VERTEX CapabilityType (vertex_type_system, name) VALUES "46231e83-ec04-408d-8098-f23d6f8c05ab":('CapabilityType', 'tosca.capabilities.Endpoint.Admin');
+2022-08-30 15:33:12,256 INFO root Thread-4 : INSERT VERTEX CapabilityType (vertex_type_system, name) VALUES "f2459675-e3e3-4ca7-8d4c-02ed98cda3cd":('CapabilityType', 'tosca.capabilities.Endpoint');
+2022-08-30 15:33:12,260 INFO root Thread-4 : INSERT VERTEX CapabilityType (vertex_type_system, name, description) VALUES "f033a02e-82f3-4de4-bd25-29a70c5531dc":('CapabilityType', 'tosca.capabilities.Root', 'The TOSCA root Capability Type all other TOSCA Capability Types derive from');
+2022-08-30 15:33:12,262 INFO root Thread-4 : INSERT EDGE derived_from() VALUE "f2459675-e3e3-4ca7-8d4c-02ed98cda3cd"->"f033a02e-82f3-4de4-bd25-29a70c5531dc":()
+2022-08-30 15:33:12,266 INFO root Thread-4 : INSERT VERTEX PropertyDefinition (name, vertex_type_system, required, default) VALUES "4a3eeaf7-4f38-447b-ac6b-ddeff9954c58":('protocol', 'PropertyDefinition', 'True', 'tcp');
+2022-08-30 15:33:12,268 INFO root Thread-4 : INSERT EDGE type() VALUE "4a3eeaf7-4f38-447b-ac6b-ddeff9954c58"->"40ff2af3-107c-4928-af6f-53f850f1b114":()
+2022-08-30 15:33:12,270 INFO root Thread-4 : INSERT EDGE properties() VALUE "f2459675-e3e3-4ca7-8d4c-02ed98cda3cd"->"4a3eeaf7-4f38-447b-ac6b-ddeff9954c58":()
+2022-08-30 15:33:12,274 INFO root Thread-4 : INSERT VERTEX PropertyDefinition (name, vertex_type_system, required) VALUES "ff7063d2-5553-42ad-b18f-edbebd7eff81":('port', 'PropertyDefinition', 'False');
+2022-08-30 15:33:12,276 INFO root Thread-4 : INSERT EDGE type() VALUE "ff7063d2-5553-42ad-b18f-edbebd7eff81"->"ae9ba75a-e3b4-459f-8c52-e5ce4c9fd4e9":()
+2022-08-30 15:33:12,278 INFO root Thread-4 : INSERT EDGE properties() VALUE "f2459675-e3e3-4ca7-8d4c-02ed98cda3cd"->"ff7063d2-5553-42ad-b18f-edbebd7eff81":()
+2022-08-30 15:33:12,282 INFO root Thread-4 : INSERT VERTEX PropertyDefinition (name, vertex_type_system, required, default) VALUES "0e987f18-ec15-40ba-a54d-46564e6c3a86":('secure', 'PropertyDefinition', 'False', 'False');
+2022-08-30 15:33:12,285 INFO root Thread-4 : INSERT EDGE type() VALUE "0e987f18-ec15-40ba-a54d-46564e6c3a86"->"d5b2bbbc-3887-442c-b0c8-54d2e117f0d4":()
+2022-08-30 15:33:12,287 INFO root Thread-4 : INSERT EDGE properties() VALUE "f2459675-e3e3-4ca7-8d4c-02ed98cda3cd"->"0e987f18-ec15-40ba-a54d-46564e6c3a86":()
+2022-08-30 15:33:12,291 INFO root Thread-4 : INSERT VERTEX PropertyDefinition (name, vertex_type_system, required) VALUES "7bb8504e-e9e8-49bf-85ed-7808cb44b6c9":('url_path', 'PropertyDefinition', 'False');
+2022-08-30 15:33:12,293 INFO root Thread-4 : INSERT EDGE type() VALUE "7bb8504e-e9e8-49bf-85ed-7808cb44b6c9"->"40ff2af3-107c-4928-af6f-53f850f1b114":()
+2022-08-30 15:33:12,295 INFO root Thread-4 : INSERT EDGE properties() VALUE "f2459675-e3e3-4ca7-8d4c-02ed98cda3cd"->"7bb8504e-e9e8-49bf-85ed-7808cb44b6c9":()
+2022-08-30 15:33:12,299 INFO root Thread-4 : INSERT VERTEX PropertyDefinition (name, vertex_type_system, required) VALUES "49ed17c5-8490-4880-a7df-de922d29aba9":('port_name', 'PropertyDefinition', 'False');
+2022-08-30 15:33:12,301 INFO root Thread-4 : INSERT EDGE type() VALUE "49ed17c5-8490-4880-a7df-de922d29aba9"->"40ff2af3-107c-4928-af6f-53f850f1b114":()
+2022-08-30 15:33:12,303 INFO root Thread-4 : INSERT EDGE properties() VALUE "f2459675-e3e3-4ca7-8d4c-02ed98cda3cd"->"49ed17c5-8490-4880-a7df-de922d29aba9":()
+2022-08-30 15:33:12,307 INFO root Thread-4 : INSERT VERTEX PropertyDefinition (name, vertex_type_system, required, default) VALUES "689f2d1b-3ff2-430e-918b-33f24997f28d":('network_name', 'PropertyDefinition', 'False', 'PRIVATE');
+2022-08-30 15:33:12,309 INFO root Thread-4 : INSERT EDGE type() VALUE "689f2d1b-3ff2-430e-918b-33f24997f28d"->"40ff2af3-107c-4928-af6f-53f850f1b114":()
+2022-08-30 15:33:12,311 INFO root Thread-4 : INSERT EDGE properties() VALUE "f2459675-e3e3-4ca7-8d4c-02ed98cda3cd"->"689f2d1b-3ff2-430e-918b-33f24997f28d":()
+2022-08-30 15:33:12,315 INFO root Thread-4 : INSERT VERTEX PropertyDefinition (name, vertex_type_system, required, default) VALUES "290db969-c787-4c12-a299-a2788d64a7ae":('initiator', 'PropertyDefinition', 'False', 'source');
+2022-08-30 15:33:12,317 INFO root Thread-4 : INSERT EDGE type() VALUE "290db969-c787-4c12-a299-a2788d64a7ae"->"40ff2af3-107c-4928-af6f-53f850f1b114":()
+2022-08-30 15:33:12,321 INFO root Thread-4 : INSERT VERTEX ConstraintClause (operator, vertex_type_system, value) VALUES "965e3e80-16bc-48b4-acd6-c3d165be053f":('valid_values', 'ConstraintClause', "['source', 'target', 'peer']");
+2022-08-30 15:33:12,323 INFO root Thread-4 : INSERT EDGE constraints() VALUE "290db969-c787-4c12-a299-a2788d64a7ae"->"965e3e80-16bc-48b4-acd6-c3d165be053f":()
+2022-08-30 15:33:12,325 INFO root Thread-4 : INSERT EDGE properties() VALUE "f2459675-e3e3-4ca7-8d4c-02ed98cda3cd"->"290db969-c787-4c12-a299-a2788d64a7ae":()
+2022-08-30 15:33:12,329 INFO root Thread-4 : INSERT VERTEX PropertyDefinition (name, vertex_type_system, required) VALUES "3c52ca6a-0972-4aef-894d-c6c70cc145fa":('ports', 'PropertyDefinition', 'False');
+2022-08-30 15:33:12,333 INFO root Thread-4 : INSERT VERTEX SchemaDefinition (vertex_type_system) VALUES "e1b828d9-b266-41bf-8325-693bf9dcfcb1":('SchemaDefinition');
+2022-08-30 15:33:12,334 INFO root Thread-4 : INSERT EDGE type() VALUE "e1b828d9-b266-41bf-8325-693bf9dcfcb1"->"6cc56292-fbf8-414e-b0ed-f029ec0323e1":()
+2022-08-30 15:33:12,336 INFO root Thread-4 : INSERT EDGE entry_schema() VALUE "3c52ca6a-0972-4aef-894d-c6c70cc145fa"->"e1b828d9-b266-41bf-8325-693bf9dcfcb1":()
+2022-08-30 15:33:12,338 INFO root Thread-4 : INSERT EDGE type() VALUE "3c52ca6a-0972-4aef-894d-c6c70cc145fa"->"469508b5-59d5-4b57-99d5-5c2584a3ddb3":()
+2022-08-30 15:33:12,342 INFO root Thread-4 : INSERT VERTEX ConstraintClause (operator, vertex_type_system, value) VALUES "5eb6db30-c312-4ba9-913d-c307e14cc324":('min_length', 'ConstraintClause', '1');
+2022-08-30 15:33:12,344 INFO root Thread-4 : INSERT EDGE constraints() VALUE "3c52ca6a-0972-4aef-894d-c6c70cc145fa"->"5eb6db30-c312-4ba9-913d-c307e14cc324":()
+2022-08-30 15:33:12,347 INFO root Thread-4 : INSERT EDGE properties() VALUE "f2459675-e3e3-4ca7-8d4c-02ed98cda3cd"->"3c52ca6a-0972-4aef-894d-c6c70cc145fa":()
+2022-08-30 15:33:12,351 INFO root Thread-4 : INSERT VERTEX AttributeDefinition (vertex_type_system, name) VALUES "d01c1b99-9f31-46d9-a7b8-896865f32cdd":('AttributeDefinition', 'ip_address');
+2022-08-30 15:33:12,353 INFO root Thread-4 : INSERT EDGE type() VALUE "d01c1b99-9f31-46d9-a7b8-896865f32cdd"->"40ff2af3-107c-4928-af6f-53f850f1b114":()
+2022-08-30 15:33:12,355 INFO root Thread-4 : INSERT EDGE attributes() VALUE "f2459675-e3e3-4ca7-8d4c-02ed98cda3cd"->"d01c1b99-9f31-46d9-a7b8-896865f32cdd":()
+2022-08-30 15:33:12,357 INFO root Thread-4 : INSERT EDGE derived_from() VALUE "46231e83-ec04-408d-8098-f23d6f8c05ab"->"f2459675-e3e3-4ca7-8d4c-02ed98cda3cd":()
+2022-08-30 15:33:12,362 INFO root Thread-4 : INSERT VERTEX PropertyDefinition (name, vertex_type_system, default) VALUES "06ac0879-132e-4653-9001-9c2209852322":('secure', 'PropertyDefinition', 'True');
+2022-08-30 15:33:12,364 INFO root Thread-4 : INSERT EDGE type() VALUE "06ac0879-132e-4653-9001-9c2209852322"->"d5b2bbbc-3887-442c-b0c8-54d2e117f0d4":()
+2022-08-30 15:33:12,368 INFO root Thread-4 : INSERT VERTEX ConstraintClause (operator, vertex_type_system, value) VALUES "609b3ce0-63f6-4632-9e45-c6f59bb8bb8a":('equal', 'ConstraintClause', 'True');
+2022-08-30 15:33:12,370 INFO root Thread-4 : INSERT EDGE constraints() VALUE "06ac0879-132e-4653-9001-9c2209852322"->"609b3ce0-63f6-4632-9e45-c6f59bb8bb8a":()
+2022-08-30 15:33:12,372 INFO root Thread-4 : INSERT EDGE properties() VALUE "46231e83-ec04-408d-8098-f23d6f8c05ab"->"06ac0879-132e-4653-9001-9c2209852322":()
+2022-08-30 15:33:12,374 INFO root Thread-4 : INSERT EDGE capability_types() VALUE "Jupyter_1"->"46231e83-ec04-408d-8098-f23d6f8c05ab":()
+2022-08-30 15:33:12,377 INFO root Thread-4 : INSERT VERTEX CapabilityType (vertex_type_system, name) VALUES "89a141e7-afe2-440e-891c-a6b1ee47947a":('CapabilityType', 'tosca.capabilities.Scalable');
+2022-08-30 15:33:12,380 INFO root Thread-4 : INSERT EDGE derived_from() VALUE "89a141e7-afe2-440e-891c-a6b1ee47947a"->"f033a02e-82f3-4de4-bd25-29a70c5531dc":()
+2022-08-30 15:33:12,383 INFO root Thread-4 : INSERT VERTEX PropertyDefinition (name, vertex_type_system, default) VALUES "0d75562d-6fcb-4971-92f4-65e76d1679d7":('min_instances', 'PropertyDefinition', '1');
+2022-08-30 15:33:12,385 INFO root Thread-4 : INSERT EDGE type() VALUE "0d75562d-6fcb-4971-92f4-65e76d1679d7"->"1c8a3830-ce40-4d05-8dfd-d762016036f6":()
+2022-08-30 15:33:12,387 INFO root Thread-4 : INSERT EDGE properties() VALUE "89a141e7-afe2-440e-891c-a6b1ee47947a"->"0d75562d-6fcb-4971-92f4-65e76d1679d7":()
+2022-08-30 15:33:12,391 INFO root Thread-4 : INSERT VERTEX PropertyDefinition (name, vertex_type_system, default) VALUES "33950059-6cb0-4999-bc7c-4605a9e2185b":('max_instances', 'PropertyDefinition', '1');
+2022-08-30 15:33:12,392 INFO root Thread-4 : INSERT EDGE type() VALUE "33950059-6cb0-4999-bc7c-4605a9e2185b"->"1c8a3830-ce40-4d05-8dfd-d762016036f6":()
+2022-08-30 15:33:12,394 INFO root Thread-4 : INSERT EDGE properties() VALUE "89a141e7-afe2-440e-891c-a6b1ee47947a"->"33950059-6cb0-4999-bc7c-4605a9e2185b":()
+2022-08-30 15:33:12,398 INFO root Thread-4 : INSERT VERTEX PropertyDefinition (name, vertex_type_system) VALUES "5c600f02-2a96-44dc-a227-09d8fee835a6":('default_instances', 'PropertyDefinition');
+2022-08-30 15:33:12,400 INFO root Thread-4 : INSERT EDGE type() VALUE "5c600f02-2a96-44dc-a227-09d8fee835a6"->"1c8a3830-ce40-4d05-8dfd-d762016036f6":()
+2022-08-30 15:33:12,402 INFO root Thread-4 : INSERT EDGE properties() VALUE "89a141e7-afe2-440e-891c-a6b1ee47947a"->"5c600f02-2a96-44dc-a227-09d8fee835a6":()
+2022-08-30 15:33:12,403 INFO root Thread-4 : INSERT EDGE capability_types() VALUE "Jupyter_1"->"89a141e7-afe2-440e-891c-a6b1ee47947a":()
+2022-08-30 15:33:12,407 INFO root Thread-4 : INSERT VERTEX CapabilityType (vertex_type_system, name) VALUES "29f18110-5b55-40fa-8f9a-cffedc65769d":('CapabilityType', 'tosca.capabilities.Attachment');
+2022-08-30 15:33:12,411 INFO root Thread-4 : INSERT VERTEX Metadata (name, value, vertex_type_system) VALUES "2623a740-bed1-4c6c-b808-014dc286441c":('abstract', 'false', 'Metadata');
+2022-08-30 15:33:12,413 INFO root Thread-4 : INSERT EDGE metadata() VALUE "29f18110-5b55-40fa-8f9a-cffedc65769d"->"2623a740-bed1-4c6c-b808-014dc286441c":()
+2022-08-30 15:33:12,416 INFO root Thread-4 : INSERT VERTEX Metadata (name, value, vertex_type_system) VALUES "04ca1dc7-ca13-432d-92f3-f3c750a516aa":('final', 'false', 'Metadata');
+2022-08-30 15:33:12,418 INFO root Thread-4 : INSERT EDGE metadata() VALUE "29f18110-5b55-40fa-8f9a-cffedc65769d"->"04ca1dc7-ca13-432d-92f3-f3c750a516aa":()
+2022-08-30 15:33:12,422 INFO root Thread-4 : INSERT VERTEX Metadata (name, value, vertex_type_system) VALUES "c01dbaf5-5a14-49a1-8f6a-9b1eb0301b96":('targetNamespace', 'tosca.capabilities', 'Metadata');
+2022-08-30 15:33:12,425 INFO root Thread-4 : INSERT EDGE metadata() VALUE "29f18110-5b55-40fa-8f9a-cffedc65769d"->"c01dbaf5-5a14-49a1-8f6a-9b1eb0301b96":()
+2022-08-30 15:33:12,428 INFO root Thread-4 : INSERT EDGE derived_from() VALUE "29f18110-5b55-40fa-8f9a-cffedc65769d"->"f033a02e-82f3-4de4-bd25-29a70c5531dc":()
+2022-08-30 15:33:12,430 INFO root Thread-4 : INSERT EDGE capability_types() VALUE "Jupyter_1"->"29f18110-5b55-40fa-8f9a-cffedc65769d":()
+2022-08-30 15:33:12,435 INFO root Thread-4 : INSERT VERTEX CapabilityType (vertex_type_system, name) VALUES "b0348561-918a-4d40-bca6-a91c648526d4":('CapabilityType', 'tosca.capabilities.Compute');
+2022-08-30 15:33:12,439 INFO root Thread-4 : INSERT VERTEX Metadata (name, value, vertex_type_system) VALUES "ec7f6fe9-7297-4c6f-92b7-5f5c522c7f21":('abstract', 'false', 'Metadata');
+2022-08-30 15:33:12,442 INFO root Thread-4 : INSERT EDGE metadata() VALUE "b0348561-918a-4d40-bca6-a91c648526d4"->"ec7f6fe9-7297-4c6f-92b7-5f5c522c7f21":()
+2022-08-30 15:33:12,446 INFO root Thread-4 : INSERT VERTEX Metadata (name, value, vertex_type_system) VALUES "bd067ae4-28ba-4f8d-871f-03aee4b874da":('final', 'false', 'Metadata');
+2022-08-30 15:33:12,448 INFO root Thread-4 : INSERT EDGE metadata() VALUE "b0348561-918a-4d40-bca6-a91c648526d4"->"bd067ae4-28ba-4f8d-871f-03aee4b874da":()
+2022-08-30 15:33:12,451 INFO root Thread-4 : INSERT VERTEX Metadata (name, value, vertex_type_system) VALUES "5e842321-b3de-4d0e-9779-41f86b5dea4b":('targetNamespace', 'tosca.capabilities', 'Metadata');
+2022-08-30 15:33:12,453 INFO root Thread-4 : INSERT EDGE metadata() VALUE "b0348561-918a-4d40-bca6-a91c648526d4"->"5e842321-b3de-4d0e-9779-41f86b5dea4b":()
+2022-08-30 15:33:12,457 INFO root Thread-4 : INSERT VERTEX CapabilityType (vertex_type_system, name) VALUES "0db40edb-3ff4-4b2e-a0c0-c5c4a72ee646":('CapabilityType', 'tosca.capabilities.Container');
+2022-08-30 15:33:12,461 INFO root Thread-4 : INSERT VERTEX Metadata (name, value, vertex_type_system) VALUES "3b8ebc17-9258-4757-8d0f-8e0552874061":('abstract', 'false', 'Metadata');
+2022-08-30 15:33:12,463 INFO root Thread-4 : INSERT EDGE metadata() VALUE "0db40edb-3ff4-4b2e-a0c0-c5c4a72ee646"->"3b8ebc17-9258-4757-8d0f-8e0552874061":()
+2022-08-30 15:33:12,467 INFO root Thread-4 : INSERT VERTEX Metadata (name, value, vertex_type_system) VALUES "ace739cc-f07d-4d0a-a3dd-c05722d92e99":('final', 'false', 'Metadata');
+2022-08-30 15:33:12,469 INFO root Thread-4 : INSERT EDGE metadata() VALUE "0db40edb-3ff4-4b2e-a0c0-c5c4a72ee646"->"ace739cc-f07d-4d0a-a3dd-c05722d92e99":()
+2022-08-30 15:33:12,473 INFO root Thread-4 : INSERT VERTEX Metadata (name, value, vertex_type_system) VALUES "4e7fbc50-578d-4183-9cdc-e0f75fcb7b07":('targetNamespace', 'tosca.capabilities', 'Metadata');
+2022-08-30 15:33:12,475 INFO root Thread-4 : INSERT EDGE metadata() VALUE "0db40edb-3ff4-4b2e-a0c0-c5c4a72ee646"->"4e7fbc50-578d-4183-9cdc-e0f75fcb7b07":()
+2022-08-30 15:33:12,477 INFO root Thread-4 : INSERT EDGE derived_from() VALUE "0db40edb-3ff4-4b2e-a0c0-c5c4a72ee646"->"f033a02e-82f3-4de4-bd25-29a70c5531dc":()
+2022-08-30 15:33:12,479 INFO root Thread-4 : INSERT EDGE derived_from() VALUE "b0348561-918a-4d40-bca6-a91c648526d4"->"0db40edb-3ff4-4b2e-a0c0-c5c4a72ee646":()
+2022-08-30 15:33:12,483 INFO root Thread-4 : INSERT VERTEX PropertyDefinition (name, vertex_type_system, required, status) VALUES "f7bc59ab-89cb-4f08-a585-956afbb59e07":('num_cpus', 'PropertyDefinition', 'False', 'supported');
+2022-08-30 15:33:12,485 INFO root Thread-4 : INSERT EDGE type() VALUE "f7bc59ab-89cb-4f08-a585-956afbb59e07"->"1c8a3830-ce40-4d05-8dfd-d762016036f6":()
+2022-08-30 15:33:12,488 INFO root Thread-4 : INSERT VERTEX ConstraintClause (operator, vertex_type_system, value) VALUES "a1144380-56f8-4b48-838c-cc5fa13ad6a5":('greater_or_equal', 'ConstraintClause', '1');
+2022-08-30 15:33:12,490 INFO root Thread-4 : INSERT EDGE constraints() VALUE "f7bc59ab-89cb-4f08-a585-956afbb59e07"->"a1144380-56f8-4b48-838c-cc5fa13ad6a5":()
+2022-08-30 15:33:12,493 INFO root Thread-4 : INSERT EDGE properties() VALUE "b0348561-918a-4d40-bca6-a91c648526d4"->"f7bc59ab-89cb-4f08-a585-956afbb59e07":()
+2022-08-30 15:33:12,496 INFO root Thread-4 : INSERT VERTEX PropertyDefinition (name, vertex_type_system, required, status) VALUES "378e1c38-9e22-46cb-8a24-8f95a85a4883":('name', 'PropertyDefinition', 'False', 'supported');
+2022-08-30 15:33:12,498 INFO root Thread-4 : INSERT EDGE type() VALUE "378e1c38-9e22-46cb-8a24-8f95a85a4883"->"40ff2af3-107c-4928-af6f-53f850f1b114":()
+2022-08-30 15:33:12,500 INFO root Thread-4 : INSERT EDGE properties() VALUE "b0348561-918a-4d40-bca6-a91c648526d4"->"378e1c38-9e22-46cb-8a24-8f95a85a4883":()
+2022-08-30 15:33:12,504 INFO root Thread-4 : INSERT VERTEX PropertyDefinition (name, vertex_type_system, required, status) VALUES "0c8e14cd-313b-453a-bb38-b9854bd5b4d0":('disk_size', 'PropertyDefinition', 'False', 'supported');
+2022-08-30 15:33:12,507 INFO root Thread-4 : INSERT EDGE type() VALUE "0c8e14cd-313b-453a-bb38-b9854bd5b4d0"->"af76a6a0-c4a5-4a27-9e09-bc4220419bbe":()
+2022-08-30 15:33:12,511 INFO root Thread-4 : INSERT VERTEX ConstraintClause (operator, vertex_type_system, value) VALUES "ff7c9a31-1c7b-4b91-a412-333cfe9fc801":('greater_or_equal', 'ConstraintClause', '0 MB');
+2022-08-30 15:33:12,514 INFO root Thread-4 : INSERT EDGE constraints() VALUE "0c8e14cd-313b-453a-bb38-b9854bd5b4d0"->"ff7c9a31-1c7b-4b91-a412-333cfe9fc801":()
+2022-08-30 15:33:12,516 INFO root Thread-4 : INSERT EDGE properties() VALUE "b0348561-918a-4d40-bca6-a91c648526d4"->"0c8e14cd-313b-453a-bb38-b9854bd5b4d0":()
+2022-08-30 15:33:12,521 INFO root Thread-4 : INSERT VERTEX PropertyDefinition (name, vertex_type_system, required, status) VALUES "ec0de2b7-bcb1-498f-9280-6badf93b939f":('cpu_frequency', 'PropertyDefinition', 'False', 'supported');
+2022-08-30 15:33:12,523 INFO root Thread-4 : INSERT EDGE type() VALUE "ec0de2b7-bcb1-498f-9280-6badf93b939f"->"9d20dc18-8a4c-4213-ba26-ae3838a88d48":()
+2022-08-30 15:33:12,528 INFO root Thread-4 : INSERT VERTEX ConstraintClause (operator, vertex_type_system, value) VALUES "1f728971-2b74-4f93-b937-0c4fff8c1cdf":('greater_or_equal', 'ConstraintClause', '0.1 GHz');
+2022-08-30 15:33:12,530 INFO root Thread-4 : INSERT EDGE constraints() VALUE "ec0de2b7-bcb1-498f-9280-6badf93b939f"->"1f728971-2b74-4f93-b937-0c4fff8c1cdf":()
+2022-08-30 15:33:12,533 INFO root Thread-4 : INSERT EDGE properties() VALUE "b0348561-918a-4d40-bca6-a91c648526d4"->"ec0de2b7-bcb1-498f-9280-6badf93b939f":()
+2022-08-30 15:33:12,538 INFO root Thread-4 : INSERT VERTEX PropertyDefinition (name, vertex_type_system, required, status) VALUES "bbfe6b1b-a22b-43c9-b23c-966998705447":('mem_size', 'PropertyDefinition', 'False', 'supported');
+2022-08-30 15:33:12,540 INFO root Thread-4 : INSERT EDGE type() VALUE "bbfe6b1b-a22b-43c9-b23c-966998705447"->"af76a6a0-c4a5-4a27-9e09-bc4220419bbe":()
+2022-08-30 15:33:12,545 INFO root Thread-4 : INSERT VERTEX ConstraintClause (operator, vertex_type_system, value) VALUES "0bbbffa1-f292-43e8-a154-f06eb898a7ac":('greater_or_equal', 'ConstraintClause', '0 MB');
+2022-08-30 15:33:12,547 INFO root Thread-4 : INSERT EDGE constraints() VALUE "bbfe6b1b-a22b-43c9-b23c-966998705447"->"0bbbffa1-f292-43e8-a154-f06eb898a7ac":()
+2022-08-30 15:33:12,549 INFO root Thread-4 : INSERT EDGE properties() VALUE "b0348561-918a-4d40-bca6-a91c648526d4"->"bbfe6b1b-a22b-43c9-b23c-966998705447":()
+2022-08-30 15:33:12,551 INFO root Thread-4 : INSERT EDGE capability_types() VALUE "Jupyter_1"->"b0348561-918a-4d40-bca6-a91c648526d4":()
+2022-08-30 15:33:12,555 INFO root Thread-4 : INSERT VERTEX CapabilityType (vertex_type_system, name) VALUES "cbf44c33-44d6-453d-99f6-c5bb09eb6006":('CapabilityType', 'michman.capabilities.Spark');
+2022-08-30 15:33:12,560 INFO root Thread-4 : INSERT VERTEX Metadata (name, value, vertex_type_system) VALUES "d29cfed3-74cc-4f41-b3a8-e27225c72f92":('abstract', 'false', 'Metadata');
+2022-08-30 15:33:12,562 INFO root Thread-4 : INSERT EDGE metadata() VALUE "cbf44c33-44d6-453d-99f6-c5bb09eb6006"->"d29cfed3-74cc-4f41-b3a8-e27225c72f92":()
+2022-08-30 15:33:12,566 INFO root Thread-4 : INSERT VERTEX Metadata (name, value, vertex_type_system) VALUES "948cddd3-64ee-464d-a85d-cb49b82593e5":('final', 'false', 'Metadata');
+2022-08-30 15:33:12,569 INFO root Thread-4 : INSERT EDGE metadata() VALUE "cbf44c33-44d6-453d-99f6-c5bb09eb6006"->"948cddd3-64ee-464d-a85d-cb49b82593e5":()
+2022-08-30 15:33:12,573 INFO root Thread-4 : INSERT VERTEX Metadata (name, value, vertex_type_system) VALUES "3d682bb2-382e-4ac4-a0bf-f4806daeb67a":('targetNamespace', 'michman.capabilities', 'Metadata');
+2022-08-30 15:33:12,575 INFO root Thread-4 : INSERT EDGE metadata() VALUE "cbf44c33-44d6-453d-99f6-c5bb09eb6006"->"3d682bb2-382e-4ac4-a0bf-f4806daeb67a":()
+2022-08-30 15:33:12,578 INFO root Thread-4 : INSERT EDGE derived_from() VALUE "cbf44c33-44d6-453d-99f6-c5bb09eb6006"->"f033a02e-82f3-4de4-bd25-29a70c5531dc":()
+2022-08-30 15:33:12,580 INFO root Thread-4 : INSERT EDGE capability_types() VALUE "Jupyter_1"->"cbf44c33-44d6-453d-99f6-c5bb09eb6006":()
+2022-08-30 15:33:12,583 INFO root Thread-4 : INSERT EDGE capability_types() VALUE "Jupyter_1"->"0db40edb-3ff4-4b2e-a0c0-c5c4a72ee646":()
+2022-08-30 15:33:12,585 INFO root Thread-4 : INSERT EDGE capability_types() VALUE "Jupyter_1"->"f033a02e-82f3-4de4-bd25-29a70c5531dc":()
+2022-08-30 15:33:12,590 INFO root Thread-4 : INSERT VERTEX CapabilityType (vertex_type_system, name) VALUES "74c37899-f07b-4f58-9ea6-41f99a634680":('CapabilityType', 'michman.capabilities.Jupyter');
+2022-08-30 15:33:12,594 INFO root Thread-4 : INSERT VERTEX Metadata (name, value, vertex_type_system) VALUES "215ed973-e1a9-440b-94c9-99f9e3c52579":('abstract', 'false', 'Metadata');
+2022-08-30 15:33:12,597 INFO root Thread-4 : INSERT EDGE metadata() VALUE "74c37899-f07b-4f58-9ea6-41f99a634680"->"215ed973-e1a9-440b-94c9-99f9e3c52579":()
+2022-08-30 15:33:12,604 INFO root Thread-4 : INSERT VERTEX Metadata (name, value, vertex_type_system) VALUES "4a7238b8-0063-4b32-aefa-347f09c30852":('final', 'false', 'Metadata');
+2022-08-30 15:33:12,606 INFO root Thread-4 : INSERT EDGE metadata() VALUE "74c37899-f07b-4f58-9ea6-41f99a634680"->"4a7238b8-0063-4b32-aefa-347f09c30852":()
+2022-08-30 15:33:12,610 INFO root Thread-4 : INSERT VERTEX Metadata (name, value, vertex_type_system) VALUES "5da0209e-b3e2-41d9-906a-fdcb5d32b419":('targetNamespace', 'michman.capabilities', 'Metadata');
+2022-08-30 15:33:12,613 INFO root Thread-4 : INSERT EDGE metadata() VALUE "74c37899-f07b-4f58-9ea6-41f99a634680"->"5da0209e-b3e2-41d9-906a-fdcb5d32b419":()
+2022-08-30 15:33:12,615 INFO root Thread-4 : INSERT EDGE derived_from() VALUE "74c37899-f07b-4f58-9ea6-41f99a634680"->"f033a02e-82f3-4de4-bd25-29a70c5531dc":()
+2022-08-30 15:33:12,617 INFO root Thread-4 : INSERT EDGE capability_types() VALUE "Jupyter_1"->"74c37899-f07b-4f58-9ea6-41f99a634680":()
+2022-08-30 15:33:12,619 INFO root Thread-4 : INSERT EDGE capability_types() VALUE "Jupyter_1"->"f2459675-e3e3-4ca7-8d4c-02ed98cda3cd":()
+2022-08-30 15:33:12,623 INFO root Thread-4 : INSERT VERTEX CapabilityType (vertex_type_system, name) VALUES "45fe550f-c399-4bb1-a034-f4115ad7d4aa":('CapabilityType', 'tosca.capabilities.OperatingSystem');
+2022-08-30 15:33:12,625 INFO root Thread-4 : INSERT EDGE derived_from() VALUE "45fe550f-c399-4bb1-a034-f4115ad7d4aa"->"f033a02e-82f3-4de4-bd25-29a70c5531dc":()
+2022-08-30 15:33:12,629 INFO root Thread-4 : INSERT VERTEX PropertyDefinition (name, vertex_type_system, required) VALUES "42d08e05-2e01-48aa-8360-ef803e29fb6a":('architecture', 'PropertyDefinition', 'False');
+2022-08-30 15:33:12,631 INFO root Thread-4 : INSERT EDGE type() VALUE "42d08e05-2e01-48aa-8360-ef803e29fb6a"->"40ff2af3-107c-4928-af6f-53f850f1b114":()
+2022-08-30 15:33:12,633 INFO root Thread-4 : INSERT EDGE properties() VALUE "45fe550f-c399-4bb1-a034-f4115ad7d4aa"->"42d08e05-2e01-48aa-8360-ef803e29fb6a":()
+2022-08-30 15:33:12,637 INFO root Thread-4 : INSERT VERTEX PropertyDefinition (name, vertex_type_system, required) VALUES "79502a93-e6b5-46b4-b373-52c1dd0a1c80":('type', 'PropertyDefinition', 'False');
+2022-08-30 15:33:12,640 INFO root Thread-4 : INSERT EDGE type() VALUE "79502a93-e6b5-46b4-b373-52c1dd0a1c80"->"40ff2af3-107c-4928-af6f-53f850f1b114":()
+2022-08-30 15:33:12,642 INFO root Thread-4 : INSERT EDGE properties() VALUE "45fe550f-c399-4bb1-a034-f4115ad7d4aa"->"79502a93-e6b5-46b4-b373-52c1dd0a1c80":()
+2022-08-30 15:33:12,645 INFO root Thread-4 : INSERT VERTEX PropertyDefinition (name, vertex_type_system, required) VALUES "626d081b-eed1-4f3f-9ef5-5e2e46f19c0e":('distribution', 'PropertyDefinition', 'False');
+2022-08-30 15:33:12,647 INFO root Thread-4 : INSERT EDGE type() VALUE "626d081b-eed1-4f3f-9ef5-5e2e46f19c0e"->"40ff2af3-107c-4928-af6f-53f850f1b114":()
+2022-08-30 15:33:12,649 INFO root Thread-4 : INSERT EDGE properties() VALUE "45fe550f-c399-4bb1-a034-f4115ad7d4aa"->"626d081b-eed1-4f3f-9ef5-5e2e46f19c0e":()
+2022-08-30 15:33:12,653 INFO root Thread-4 : INSERT VERTEX PropertyDefinition (name, vertex_type_system, required) VALUES "2cadabba-4897-456f-9830-013158d84e98":('version', 'PropertyDefinition', 'False');
+2022-08-30 15:33:12,655 INFO root Thread-4 : INSERT EDGE type() VALUE "2cadabba-4897-456f-9830-013158d84e98"->"41cb31b1-e696-458d-9dcc-cb56d60f8dd7":()
+2022-08-30 15:33:12,657 INFO root Thread-4 : INSERT EDGE properties() VALUE "45fe550f-c399-4bb1-a034-f4115ad7d4aa"->"2cadabba-4897-456f-9830-013158d84e98":()
+2022-08-30 15:33:12,660 INFO root Thread-4 : INSERT EDGE capability_types() VALUE "Jupyter_1"->"45fe550f-c399-4bb1-a034-f4115ad7d4aa":()
+2022-08-30 15:33:12,663 INFO root Thread-4 : INSERT VERTEX CapabilityType (vertex_type_system, name) VALUES "6dae7c70-e88e-4348-aaa8-2e55604435b7":('CapabilityType', 'tosca.capabilities.network.Bindable');
+2022-08-30 15:33:12,667 INFO root Thread-4 : INSERT VERTEX CapabilityType (vertex_type_system, name) VALUES "6a736254-9e8d-4162-a6ad-33959a316f37":('CapabilityType', 'tosca.capabilities.Node');
+2022-08-30 15:33:12,669 INFO root Thread-4 : INSERT EDGE derived_from() VALUE "6a736254-9e8d-4162-a6ad-33959a316f37"->"f033a02e-82f3-4de4-bd25-29a70c5531dc":()
+2022-08-30 15:33:12,671 INFO root Thread-4 : INSERT EDGE derived_from() VALUE "6dae7c70-e88e-4348-aaa8-2e55604435b7"->"6a736254-9e8d-4162-a6ad-33959a316f37":()
+2022-08-30 15:33:12,673 INFO root Thread-4 : INSERT EDGE capability_types() VALUE "Jupyter_1"->"6dae7c70-e88e-4348-aaa8-2e55604435b7":()
+2022-08-30 15:33:12,676 INFO root Thread-4 : INSERT EDGE capability_types() VALUE "Jupyter_1"->"6a736254-9e8d-4162-a6ad-33959a316f37":()
+2022-08-30 15:33:12,680 INFO root Thread-4 : INSERT VERTEX InterfaceType (vertex_type_system, name, description) VALUES "f5897cd7-6356-450d-b4b6-601448b9e89d":('InterfaceType', 'tosca.interfaces.Root', 'The TOSCA root Interface Type all other TOSCA Interface Types derive from');
+2022-08-30 15:33:12,683 INFO root Thread-4 : INSERT EDGE interface_types() VALUE "Jupyter_1"->"f5897cd7-6356-450d-b4b6-601448b9e89d":()
+2022-08-30 15:33:12,687 INFO root Thread-4 : INSERT VERTEX InterfaceType (vertex_type_system, name) VALUES "d078f660-4bc1-4e5e-84ac-8af9db0ef3f5":('InterfaceType', 'tosca.interfaces.relationship.Configure');
+2022-08-30 15:33:12,689 INFO root Thread-4 : INSERT EDGE derived_from() VALUE "d078f660-4bc1-4e5e-84ac-8af9db0ef3f5"->"f5897cd7-6356-450d-b4b6-601448b9e89d":()
+2022-08-30 15:33:12,694 INFO root Thread-4 : INSERT VERTEX OperationDefinition (name, vertex_type_system, description) VALUES "fffc3dd3-5b79-45c5-8a69-a2b0ebaf097c":('pre_configure_source', 'OperationDefinition', 'Operation to pre-configure the source endpoint.');
+2022-08-30 15:33:12,696 INFO root Thread-4 : INSERT EDGE operations() VALUE "d078f660-4bc1-4e5e-84ac-8af9db0ef3f5"->"fffc3dd3-5b79-45c5-8a69-a2b0ebaf097c":()
+2022-08-30 15:33:12,701 INFO root Thread-4 : INSERT VERTEX OperationDefinition (name, vertex_type_system, description) VALUES "c9d9af2c-6458-4019-8e34-bea9408ad724":('pre_configure_target', 'OperationDefinition', 'Operation to pre-configure the target endpoint.');
+2022-08-30 15:33:12,703 INFO root Thread-4 : INSERT EDGE operations() VALUE "d078f660-4bc1-4e5e-84ac-8af9db0ef3f5"->"c9d9af2c-6458-4019-8e34-bea9408ad724":()
+2022-08-30 15:33:12,708 INFO root Thread-4 : INSERT VERTEX OperationDefinition (name, vertex_type_system, description) VALUES "92cb0be1-6a03-4ffd-bcb0-8d9bcbf33fbb":('post_configure_source', 'OperationDefinition', 'Operation to post-configure the source endpoint.');
+2022-08-30 15:33:12,711 INFO root Thread-4 : INSERT EDGE operations() VALUE "d078f660-4bc1-4e5e-84ac-8af9db0ef3f5"->"92cb0be1-6a03-4ffd-bcb0-8d9bcbf33fbb":()
+2022-08-30 15:33:12,716 INFO root Thread-4 : INSERT VERTEX OperationDefinition (name, vertex_type_system, description) VALUES "e8f45714-6293-456b-9736-0b3ea4a8e232":('post_configure_target', 'OperationDefinition', 'Operation to post-configure the target endpoint.');
+2022-08-30 15:33:12,718 INFO root Thread-4 : INSERT EDGE operations() VALUE "d078f660-4bc1-4e5e-84ac-8af9db0ef3f5"->"e8f45714-6293-456b-9736-0b3ea4a8e232":()
+2022-08-30 15:33:12,723 INFO root Thread-4 : INSERT VERTEX OperationDefinition (name, vertex_type_system, description) VALUES "89602a4d-93b0-4dda-8c82-26d691f54998":('add_target', 'OperationDefinition', 'Operation to notify the source node of a target node being added via a relationship.');
+2022-08-30 15:33:12,726 INFO root Thread-4 : INSERT EDGE operations() VALUE "d078f660-4bc1-4e5e-84ac-8af9db0ef3f5"->"89602a4d-93b0-4dda-8c82-26d691f54998":()
+2022-08-30 15:33:12,730 INFO root Thread-4 : INSERT VERTEX OperationDefinition (name, vertex_type_system, description) VALUES "8b93df72-88a7-4029-b35e-a9f0d227e202":('add_source', 'OperationDefinition', 'Operation to notify the target node of a source node which is now available via a relationship.');
+2022-08-30 15:33:12,732 INFO root Thread-4 : INSERT EDGE operations() VALUE "d078f660-4bc1-4e5e-84ac-8af9db0ef3f5"->"8b93df72-88a7-4029-b35e-a9f0d227e202":()
+2022-08-30 15:33:12,737 INFO root Thread-4 : INSERT VERTEX OperationDefinition (name, vertex_type_system, description) VALUES "ceb71f81-6519-4ac5-8e97-3b038d28d469":('target_changed', 'OperationDefinition', 'Operation to notify source some property or attribute of the target changed');
+2022-08-30 15:33:12,739 INFO root Thread-4 : INSERT EDGE operations() VALUE "d078f660-4bc1-4e5e-84ac-8af9db0ef3f5"->"ceb71f81-6519-4ac5-8e97-3b038d28d469":()
+2022-08-30 15:33:12,744 INFO root Thread-4 : INSERT VERTEX OperationDefinition (name, vertex_type_system, description) VALUES "d8aa810b-6e59-4f48-9bde-ca72356ad84a":('remove_target', 'OperationDefinition', 'Operation to remove a target node.');
+2022-08-30 15:33:12,747 INFO root Thread-4 : INSERT EDGE operations() VALUE "d078f660-4bc1-4e5e-84ac-8af9db0ef3f5"->"d8aa810b-6e59-4f48-9bde-ca72356ad84a":()
+2022-08-30 15:33:12,750 INFO root Thread-4 : INSERT EDGE interface_types() VALUE "Jupyter_1"->"d078f660-4bc1-4e5e-84ac-8af9db0ef3f5":()
+2022-08-30 15:33:12,755 INFO root Thread-4 : INSERT VERTEX InterfaceType (vertex_type_system, name) VALUES "228a2d26-519b-4b37-8929-a0ab5d24370f":('InterfaceType', 'tosca.interfaces.node.lifecycle.Standard');
+2022-08-30 15:33:12,758 INFO root Thread-4 : INSERT EDGE derived_from() VALUE "228a2d26-519b-4b37-8929-a0ab5d24370f"->"f5897cd7-6356-450d-b4b6-601448b9e89d":()
+2022-08-30 15:33:12,763 INFO root Thread-4 : INSERT VERTEX OperationDefinition (name, vertex_type_system, description) VALUES "17856745-2a0d-483f-b904-3fc898d8b251":('create', 'OperationDefinition', 'Standard lifecycle create operation.');
+2022-08-30 15:33:12,767 INFO root Thread-4 : INSERT EDGE operations() VALUE "228a2d26-519b-4b37-8929-a0ab5d24370f"->"17856745-2a0d-483f-b904-3fc898d8b251":()
+2022-08-30 15:33:12,772 INFO root Thread-4 : INSERT VERTEX OperationDefinition (name, vertex_type_system, description) VALUES "bcd4b90d-d3da-4f2d-abc1-c5a5b9d85bea":('configure', 'OperationDefinition', 'Standard lifecycle configure operation.');
+2022-08-30 15:33:12,775 INFO root Thread-4 : INSERT EDGE operations() VALUE "228a2d26-519b-4b37-8929-a0ab5d24370f"->"bcd4b90d-d3da-4f2d-abc1-c5a5b9d85bea":()
+2022-08-30 15:33:12,779 INFO root Thread-4 : INSERT VERTEX OperationDefinition (name, vertex_type_system, description) VALUES "4747d305-d97c-40c2-b221-af44af34a40a":('start', 'OperationDefinition', 'Standard lifecycle start operation.');
+2022-08-30 15:33:12,782 INFO root Thread-4 : INSERT EDGE operations() VALUE "228a2d26-519b-4b37-8929-a0ab5d24370f"->"4747d305-d97c-40c2-b221-af44af34a40a":()
+2022-08-30 15:33:12,787 INFO root Thread-4 : INSERT VERTEX OperationDefinition (name, vertex_type_system, description) VALUES "4155d349-7ce3-4e5a-80cd-48f325cf7583":('stop', 'OperationDefinition', 'Standard lifecycle stop operation.');
+2022-08-30 15:33:12,790 INFO root Thread-4 : INSERT EDGE operations() VALUE "228a2d26-519b-4b37-8929-a0ab5d24370f"->"4155d349-7ce3-4e5a-80cd-48f325cf7583":()
+2022-08-30 15:33:12,795 INFO root Thread-4 : INSERT VERTEX OperationDefinition (name, vertex_type_system, description) VALUES "b176c19f-6845-4445-a76c-420efab7c35f":('delete', 'OperationDefinition', 'Standard lifecycle delete operation.');
+2022-08-30 15:33:12,798 INFO root Thread-4 : INSERT EDGE operations() VALUE "228a2d26-519b-4b37-8929-a0ab5d24370f"->"b176c19f-6845-4445-a76c-420efab7c35f":()
+2022-08-30 15:33:12,801 INFO root Thread-4 : INSERT EDGE interface_types() VALUE "Jupyter_1"->"228a2d26-519b-4b37-8929-a0ab5d24370f":()
+2022-08-30 15:33:12,806 INFO root Thread-4 : INSERT VERTEX RelationshipType (vertex_type_system, name) VALUES "7d12161f-2c85-4269-9b65-1addfa7ec7fd":('RelationshipType', 'tosca.relationships.HostedOn');
+2022-08-30 15:33:12,811 INFO root Thread-4 : INSERT VERTEX RelationshipType (vertex_type_system, name, description) VALUES "0377b050-8a31-493a-8354-e7269e1c5c28":('RelationshipType', 'tosca.relationships.Root', 'The TOSCA root Relationship Type all other TOSCA base Relationship Types derive from');
+2022-08-30 15:33:12,816 INFO root Thread-4 : INSERT VERTEX AttributeDefinition (vertex_type_system, name) VALUES "499fa665-5fa1-4ca7-8500-174a40fa043b":('AttributeDefinition', 'tosca_id');
+2022-08-30 15:33:12,819 INFO root Thread-4 : INSERT EDGE type() VALUE "499fa665-5fa1-4ca7-8500-174a40fa043b"->"40ff2af3-107c-4928-af6f-53f850f1b114":()
+2022-08-30 15:33:12,821 INFO root Thread-4 : INSERT EDGE attributes() VALUE "0377b050-8a31-493a-8354-e7269e1c5c28"->"499fa665-5fa1-4ca7-8500-174a40fa043b":()
+2022-08-30 15:33:12,825 INFO root Thread-4 : INSERT VERTEX AttributeDefinition (vertex_type_system, name) VALUES "36680e3e-e3a0-4dc2-b691-89f36fae41b8":('AttributeDefinition', 'tosca_name');
+2022-08-30 15:33:12,828 INFO root Thread-4 : INSERT EDGE type() VALUE "36680e3e-e3a0-4dc2-b691-89f36fae41b8"->"40ff2af3-107c-4928-af6f-53f850f1b114":()
+2022-08-30 15:33:12,830 INFO root Thread-4 : INSERT EDGE attributes() VALUE "0377b050-8a31-493a-8354-e7269e1c5c28"->"36680e3e-e3a0-4dc2-b691-89f36fae41b8":()
+2022-08-30 15:33:12,834 INFO root Thread-4 : INSERT VERTEX InterfaceDefinition (name, vertex_type_system) VALUES "a514dd32-d646-4e7e-9bec-5e36698fc83e":('Configure', 'InterfaceDefinition');
+2022-08-30 15:33:12,837 INFO root Thread-4 : INSERT EDGE type() VALUE "a514dd32-d646-4e7e-9bec-5e36698fc83e"->"d078f660-4bc1-4e5e-84ac-8af9db0ef3f5":()
+2022-08-30 15:33:12,841 INFO root Thread-4 : INSERT EDGE interfaces() VALUE "0377b050-8a31-493a-8354-e7269e1c5c28"->"a514dd32-d646-4e7e-9bec-5e36698fc83e":()
+2022-08-30 15:33:12,843 INFO root Thread-4 : INSERT EDGE derived_from() VALUE "7d12161f-2c85-4269-9b65-1addfa7ec7fd"->"0377b050-8a31-493a-8354-e7269e1c5c28":()
+2022-08-30 15:33:12,846 INFO root Thread-4 : INSERT EDGE valid_target_types() VALUE "7d12161f-2c85-4269-9b65-1addfa7ec7fd"->"0db40edb-3ff4-4b2e-a0c0-c5c4a72ee646":()
+2022-08-30 15:33:12,849 INFO root Thread-4 : INSERT EDGE relationship_types() VALUE "Jupyter_1"->"7d12161f-2c85-4269-9b65-1addfa7ec7fd":()
+2022-08-30 15:33:12,854 INFO root Thread-4 : INSERT VERTEX RelationshipType (vertex_type_system, name) VALUES "90a2eecd-a0e4-42d8-aff9-13cb78ecbc26":('RelationshipType', 'tosca.relationships.DependsOn');
+2022-08-30 15:33:12,857 INFO root Thread-4 : INSERT EDGE derived_from() VALUE "90a2eecd-a0e4-42d8-aff9-13cb78ecbc26"->"0377b050-8a31-493a-8354-e7269e1c5c28":()
+2022-08-30 15:33:12,862 INFO root Thread-4 : INSERT VERTEX Metadata (name, value, vertex_type_system) VALUES "84b58053-181d-46b7-97b3-521e26c29233":('abstract', 'false', 'Metadata');
+2022-08-30 15:33:12,865 INFO root Thread-4 : INSERT EDGE metadata() VALUE "90a2eecd-a0e4-42d8-aff9-13cb78ecbc26"->"84b58053-181d-46b7-97b3-521e26c29233":()
+2022-08-30 15:33:12,870 INFO root Thread-4 : INSERT VERTEX Metadata (name, value, vertex_type_system) VALUES "44e265fd-4365-4b1b-ab04-96f215057276":('final', 'false', 'Metadata');
+2022-08-30 15:33:12,873 INFO root Thread-4 : INSERT EDGE metadata() VALUE "90a2eecd-a0e4-42d8-aff9-13cb78ecbc26"->"44e265fd-4365-4b1b-ab04-96f215057276":()
+2022-08-30 15:33:12,878 INFO root Thread-4 : INSERT VERTEX Metadata (name, value, vertex_type_system) VALUES "cc8262d7-800b-4181-ab81-1d85f4ba301e":('targetNamespace', 'tosca.relationships', 'Metadata');
+2022-08-30 15:33:12,881 INFO root Thread-4 : INSERT EDGE metadata() VALUE "90a2eecd-a0e4-42d8-aff9-13cb78ecbc26"->"cc8262d7-800b-4181-ab81-1d85f4ba301e":()
+2022-08-30 15:33:12,885 INFO root Thread-4 : INSERT EDGE valid_target_types() VALUE "90a2eecd-a0e4-42d8-aff9-13cb78ecbc26"->"0db40edb-3ff4-4b2e-a0c0-c5c4a72ee646":()
+2022-08-30 15:33:12,887 INFO root Thread-4 : INSERT EDGE relationship_types() VALUE "Jupyter_1"->"90a2eecd-a0e4-42d8-aff9-13cb78ecbc26":()
+2022-08-30 15:33:12,890 INFO root Thread-4 : INSERT EDGE relationship_types() VALUE "Jupyter_1"->"0377b050-8a31-493a-8354-e7269e1c5c28":()
+2022-08-30 15:33:12,895 INFO root Thread-4 : INSERT VERTEX RelationshipType (vertex_type_system, name) VALUES "f09d50b9-e0cb-42b9-add9-b45ae5ba6aa0":('RelationshipType', 'tosca.relationships.AttachesTo');
+2022-08-30 15:33:12,897 INFO root Thread-4 : INSERT EDGE derived_from() VALUE "f09d50b9-e0cb-42b9-add9-b45ae5ba6aa0"->"0377b050-8a31-493a-8354-e7269e1c5c28":()
+2022-08-30 15:33:12,902 INFO root Thread-4 : INSERT VERTEX PropertyDefinition (name, vertex_type_system) VALUES "5e561f4c-56ed-422b-8cea-03df0833937c":('location', 'PropertyDefinition');
+2022-08-30 15:33:12,904 INFO root Thread-4 : INSERT EDGE type() VALUE "5e561f4c-56ed-422b-8cea-03df0833937c"->"40ff2af3-107c-4928-af6f-53f850f1b114":()
+2022-08-30 15:33:12,909 INFO root Thread-4 : INSERT VERTEX ConstraintClause (operator, vertex_type_system, value) VALUES "05abfa6b-7f3a-4866-9d95-8f4d09184413":('min_length', 'ConstraintClause', '1');
+2022-08-30 15:33:12,912 INFO root Thread-4 : INSERT EDGE constraints() VALUE "5e561f4c-56ed-422b-8cea-03df0833937c"->"05abfa6b-7f3a-4866-9d95-8f4d09184413":()
+2022-08-30 15:33:12,914 INFO root Thread-4 : INSERT EDGE properties() VALUE "f09d50b9-e0cb-42b9-add9-b45ae5ba6aa0"->"5e561f4c-56ed-422b-8cea-03df0833937c":()
+2022-08-30 15:33:12,918 INFO root Thread-4 : INSERT VERTEX PropertyDefinition (name, vertex_type_system, required) VALUES "71c326cc-d740-461d-933d-4069d0e9b8fe":('device', 'PropertyDefinition', 'False');
+2022-08-30 15:33:12,921 INFO root Thread-4 : INSERT EDGE type() VALUE "71c326cc-d740-461d-933d-4069d0e9b8fe"->"40ff2af3-107c-4928-af6f-53f850f1b114":()
+2022-08-30 15:33:12,924 INFO root Thread-4 : INSERT EDGE properties() VALUE "f09d50b9-e0cb-42b9-add9-b45ae5ba6aa0"->"71c326cc-d740-461d-933d-4069d0e9b8fe":()
+2022-08-30 15:33:12,927 INFO root Thread-4 : INSERT EDGE valid_target_types() VALUE "f09d50b9-e0cb-42b9-add9-b45ae5ba6aa0"->"29f18110-5b55-40fa-8f9a-cffedc65769d":()
+2022-08-30 15:33:12,930 INFO root Thread-4 : INSERT EDGE relationship_types() VALUE "Jupyter_1"->"f09d50b9-e0cb-42b9-add9-b45ae5ba6aa0":()
+2022-08-30 15:33:12,935 INFO root Thread-4 : INSERT VERTEX NodeType (vertex_type_system, name, description) VALUES "f19833d5-2421-48b2-917f-53dde61048f8":('NodeType', 'michman.nodes.Jupyter.Jupyter-6-0-1', 'Jupyter version 6.0.1 (latest for pip install)');
+2022-08-30 15:33:12,940 INFO root Thread-4 : INSERT VERTEX NodeType (vertex_type_system, name) VALUES "d4eedb21-56e3-46d9-b060-748f46a58e93":('NodeType', 'tosca.nodes.SoftwareComponent');
+2022-08-30 15:33:12,944 INFO root Thread-4 : INSERT VERTEX NodeType (vertex_type_system, name, description) VALUES "0418bf19-db04-4902-8000-4829fe347823":('NodeType', 'tosca.nodes.Root', 'The TOSCA Node Type all other TOSCA base Node Types derive from');
+2022-08-30 15:33:12,949 INFO root Thread-4 : INSERT VERTEX Metadata (name, value, vertex_type_system) VALUES "d75366a7-d85d-4ea6-a0bd-6e3c6c8aed74":('abstract', 'false', 'Metadata');
+2022-08-30 15:33:12,952 INFO root Thread-4 : INSERT EDGE metadata() VALUE "0418bf19-db04-4902-8000-4829fe347823"->"d75366a7-d85d-4ea6-a0bd-6e3c6c8aed74":()
+2022-08-30 15:33:12,956 INFO root Thread-4 : INSERT VERTEX Metadata (name, value, vertex_type_system) VALUES "f86a1ae1-e1e2-4924-a77d-7210d4c1607e":('final', 'false', 'Metadata');
+2022-08-30 15:33:12,959 INFO root Thread-4 : INSERT EDGE metadata() VALUE "0418bf19-db04-4902-8000-4829fe347823"->"f86a1ae1-e1e2-4924-a77d-7210d4c1607e":()
+2022-08-30 15:33:12,964 INFO root Thread-4 : INSERT VERTEX Metadata (name, value, vertex_type_system) VALUES "3f2d1561-9ef2-482f-bc77-202cd8cd5283":('targetNamespace', 'tosca.nodes', 'Metadata');
+2022-08-30 15:33:12,966 INFO root Thread-4 : INSERT EDGE metadata() VALUE "0418bf19-db04-4902-8000-4829fe347823"->"3f2d1561-9ef2-482f-bc77-202cd8cd5283":()
+2022-08-30 15:33:12,971 INFO root Thread-4 : INSERT VERTEX AttributeDefinition (vertex_type_system, name) VALUES "921746bf-bfac-4f43-a7c7-93b72318ba23":('AttributeDefinition', 'tosca_name');
+2022-08-30 15:33:12,974 INFO root Thread-4 : INSERT EDGE type() VALUE "921746bf-bfac-4f43-a7c7-93b72318ba23"->"40ff2af3-107c-4928-af6f-53f850f1b114":()
+2022-08-30 15:33:12,977 INFO root Thread-4 : INSERT EDGE attributes() VALUE "0418bf19-db04-4902-8000-4829fe347823"->"921746bf-bfac-4f43-a7c7-93b72318ba23":()
+2022-08-30 15:33:12,981 INFO root Thread-4 : INSERT VERTEX AttributeDefinition (vertex_type_system, name, default) VALUES "01dc1b97-9857-4d0b-a5c8-da451e159444":('AttributeDefinition', 'state', 'initial');
+2022-08-30 15:33:12,985 INFO root Thread-4 : INSERT EDGE type() VALUE "01dc1b97-9857-4d0b-a5c8-da451e159444"->"40ff2af3-107c-4928-af6f-53f850f1b114":()
+2022-08-30 15:33:12,988 INFO root Thread-4 : INSERT EDGE attributes() VALUE "0418bf19-db04-4902-8000-4829fe347823"->"01dc1b97-9857-4d0b-a5c8-da451e159444":()
+2022-08-30 15:33:12,993 INFO root Thread-4 : INSERT VERTEX AttributeDefinition (vertex_type_system, name) VALUES "1e15f5d1-b5be-4c69-aa2e-7e4c6efea2b3":('AttributeDefinition', 'tosca_id');
+2022-08-30 15:33:12,996 INFO root Thread-4 : INSERT EDGE type() VALUE "1e15f5d1-b5be-4c69-aa2e-7e4c6efea2b3"->"40ff2af3-107c-4928-af6f-53f850f1b114":()
+2022-08-30 15:33:12,999 INFO root Thread-4 : INSERT EDGE attributes() VALUE "0418bf19-db04-4902-8000-4829fe347823"->"1e15f5d1-b5be-4c69-aa2e-7e4c6efea2b3":()
+2022-08-30 15:33:13,003 INFO root Thread-4 : INSERT VERTEX RequirementDefinition (vertex_type_system, name) VALUES "b6a6c076-e599-4f67-a117-9756846c0daf":('RequirementDefinition', 'dependency');
+2022-08-30 15:33:13,006 INFO root Thread-4 : INSERT EDGE capability() VALUE "b6a6c076-e599-4f67-a117-9756846c0daf"->"6a736254-9e8d-4162-a6ad-33959a316f37":()
+2022-08-30 15:33:13,009 INFO root Thread-4 : INSERT EDGE node() VALUE "b6a6c076-e599-4f67-a117-9756846c0daf"->"0418bf19-db04-4902-8000-4829fe347823":()
+2022-08-30 15:33:13,012 INFO root Thread-4 : INSERT EDGE relationship() VALUE "b6a6c076-e599-4f67-a117-9756846c0daf"->"90a2eecd-a0e4-42d8-aff9-13cb78ecbc26":()
+2022-08-30 15:33:13,017 INFO root Thread-4 : INSERT VERTEX Occurrences (vertex_type_system, minimum, maximum) VALUES "eed49f4b-c74f-4d9a-a7b7-2ebf4b29f047":('Occurrences', '0', 'UNBOUNDED');
+2022-08-30 15:33:13,020 INFO root Thread-4 : INSERT EDGE occurrences() VALUE "b6a6c076-e599-4f67-a117-9756846c0daf"->"eed49f4b-c74f-4d9a-a7b7-2ebf4b29f047":()
+2022-08-30 15:33:13,023 INFO root Thread-4 : INSERT EDGE requirements() VALUE "0418bf19-db04-4902-8000-4829fe347823"->"b6a6c076-e599-4f67-a117-9756846c0daf":()
+2022-08-30 15:33:13,028 INFO root Thread-4 : INSERT VERTEX InterfaceDefinition (name, vertex_type_system) VALUES "9d0cd490-5fac-4f3a-af89-e12e5bda7d78":('Standard', 'InterfaceDefinition');
+2022-08-30 15:33:13,032 INFO root Thread-4 : INSERT EDGE type() VALUE "9d0cd490-5fac-4f3a-af89-e12e5bda7d78"->"228a2d26-519b-4b37-8929-a0ab5d24370f":()
+2022-08-30 15:33:13,035 INFO root Thread-4 : INSERT EDGE interfaces() VALUE "0418bf19-db04-4902-8000-4829fe347823"->"9d0cd490-5fac-4f3a-af89-e12e5bda7d78":()
+2022-08-30 15:33:13,040 INFO root Thread-4 : INSERT VERTEX CapabilityDefinition (vertex_type_system, name) VALUES "c151989c-dcf7-4d07-8d78-d7e12ac4411e":('CapabilityDefinition', 'feature');
+2022-08-30 15:33:13,044 INFO root Thread-4 : INSERT EDGE type() VALUE "c151989c-dcf7-4d07-8d78-d7e12ac4411e"->"6a736254-9e8d-4162-a6ad-33959a316f37":()
+2022-08-30 15:33:13,048 INFO root Thread-4 : INSERT VERTEX Occurrences (vertex_type_system, minimum, maximum) VALUES "670cf055-606f-430e-bd65-976db83082d3":('Occurrences', '1', 'UNBOUNDED');
+2022-08-30 15:33:13,052 INFO root Thread-4 : INSERT EDGE occurrences() VALUE "c151989c-dcf7-4d07-8d78-d7e12ac4411e"->"670cf055-606f-430e-bd65-976db83082d3":()
+2022-08-30 15:33:13,055 INFO root Thread-4 : INSERT EDGE capabilities() VALUE "0418bf19-db04-4902-8000-4829fe347823"->"c151989c-dcf7-4d07-8d78-d7e12ac4411e":()
+2022-08-30 15:33:13,058 INFO root Thread-4 : INSERT EDGE derived_from() VALUE "d4eedb21-56e3-46d9-b060-748f46a58e93"->"0418bf19-db04-4902-8000-4829fe347823":()
+2022-08-30 15:33:13,062 INFO root Thread-4 : INSERT VERTEX PropertyDefinition (name, vertex_type_system, required) VALUES "b2fe096d-2f16-4805-a48d-cf47192d808c":('component_version', 'PropertyDefinition', 'False');
+2022-08-30 15:33:13,065 INFO root Thread-4 : INSERT EDGE type() VALUE "b2fe096d-2f16-4805-a48d-cf47192d808c"->"41cb31b1-e696-458d-9dcc-cb56d60f8dd7":()
+2022-08-30 15:33:13,068 INFO root Thread-4 : INSERT EDGE properties() VALUE "d4eedb21-56e3-46d9-b060-748f46a58e93"->"b2fe096d-2f16-4805-a48d-cf47192d808c":()
+2022-08-30 15:33:13,073 INFO root Thread-4 : INSERT VERTEX PropertyDefinition (name, vertex_type_system, required) VALUES "4af602f8-c713-41a6-81e6-8cf374766c61":('admin_credential', 'PropertyDefinition', 'False');
+2022-08-30 15:33:13,076 INFO root Thread-4 : INSERT EDGE type() VALUE "4af602f8-c713-41a6-81e6-8cf374766c61"->"4c8d5e1f-30c2-4a3e-9e0b-a33ff5fb4d1b":()
+2022-08-30 15:33:13,078 INFO root Thread-4 : INSERT EDGE properties() VALUE "d4eedb21-56e3-46d9-b060-748f46a58e93"->"4af602f8-c713-41a6-81e6-8cf374766c61":()
+2022-08-30 15:33:13,082 INFO root Thread-4 : INSERT VERTEX RequirementDefinition (vertex_type_system, name) VALUES "b4dda8f9-11bc-4060-85a0-4bdc1eda09e1":('RequirementDefinition', 'host');
+2022-08-30 15:33:13,084 INFO root Thread-4 : INSERT EDGE capability() VALUE "b4dda8f9-11bc-4060-85a0-4bdc1eda09e1"->"b0348561-918a-4d40-bca6-a91c648526d4":()
+2022-08-30 15:33:13,088 INFO root Thread-4 : INSERT VERTEX NodeType (vertex_type_system, name) VALUES "7a2e5b60-b211-4842-8097-e44ec016c88e":('NodeType', 'tosca.nodes.Compute');
+2022-08-30 15:33:13,093 INFO root Thread-4 : INSERT VERTEX NodeType (vertex_type_system, name) VALUES "b78fe1ee-5f59-45db-989e-297e7a4e9fe3":('NodeType', 'tosca.nodes.Abstract.Compute');
+2022-08-30 15:33:13,095 INFO root Thread-4 : INSERT EDGE derived_from() VALUE "b78fe1ee-5f59-45db-989e-297e7a4e9fe3"->"0418bf19-db04-4902-8000-4829fe347823":()
+2022-08-30 15:33:13,100 INFO root Thread-4 : INSERT VERTEX CapabilityDefinition (vertex_type_system, name) VALUES "65cd8dad-79a8-4b4a-8e35-b076b251a3c7":('CapabilityDefinition', 'host');
+2022-08-30 15:33:13,103 INFO root Thread-4 : INSERT EDGE type() VALUE "65cd8dad-79a8-4b4a-8e35-b076b251a3c7"->"b0348561-918a-4d40-bca6-a91c648526d4":()
+2022-08-30 15:33:13,105 INFO root Thread-4 : INSERT EDGE capabilities() VALUE "b78fe1ee-5f59-45db-989e-297e7a4e9fe3"->"65cd8dad-79a8-4b4a-8e35-b076b251a3c7":()
+2022-08-30 15:33:13,108 INFO root Thread-4 : INSERT EDGE derived_from() VALUE "7a2e5b60-b211-4842-8097-e44ec016c88e"->"b78fe1ee-5f59-45db-989e-297e7a4e9fe3":()
+2022-08-30 15:33:13,113 INFO root Thread-4 : INSERT VERTEX AttributeDefinition (vertex_type_system, name) VALUES "345ddb5f-039f-4411-95d4-fe773fec6406":('AttributeDefinition', 'private_address');
+2022-08-30 15:33:13,115 INFO root Thread-4 : INSERT EDGE type() VALUE "345ddb5f-039f-4411-95d4-fe773fec6406"->"40ff2af3-107c-4928-af6f-53f850f1b114":()
+2022-08-30 15:33:13,117 INFO root Thread-4 : INSERT EDGE attributes() VALUE "7a2e5b60-b211-4842-8097-e44ec016c88e"->"345ddb5f-039f-4411-95d4-fe773fec6406":()
+2022-08-30 15:33:13,121 INFO root Thread-4 : INSERT VERTEX AttributeDefinition (vertex_type_system, name) VALUES "71bfd47e-ba94-44b8-a76d-bdfa2eff1916":('AttributeDefinition', 'public_address');
+2022-08-30 15:33:13,124 INFO root Thread-4 : INSERT EDGE type() VALUE "71bfd47e-ba94-44b8-a76d-bdfa2eff1916"->"40ff2af3-107c-4928-af6f-53f850f1b114":()
+2022-08-30 15:33:13,126 INFO root Thread-4 : INSERT EDGE attributes() VALUE "7a2e5b60-b211-4842-8097-e44ec016c88e"->"71bfd47e-ba94-44b8-a76d-bdfa2eff1916":()
+2022-08-30 15:33:13,130 INFO root Thread-4 : INSERT VERTEX AttributeDefinition (vertex_type_system, name) VALUES "914edd46-f266-499e-ae82-45bcf91ea604":('AttributeDefinition', 'networks');
+2022-08-30 15:33:13,132 INFO root Thread-4 : INSERT EDGE type() VALUE "914edd46-f266-499e-ae82-45bcf91ea604"->"469508b5-59d5-4b57-99d5-5c2584a3ddb3":()
+2022-08-30 15:33:13,136 INFO root Thread-4 : INSERT VERTEX SchemaDefinition (vertex_type_system) VALUES "138f3d81-8c13-420b-8b40-39add5508aad":('SchemaDefinition');
+2022-08-30 15:33:13,139 INFO root Thread-4 : INSERT EDGE type() VALUE "138f3d81-8c13-420b-8b40-39add5508aad"->"78ce4ea5-2659-44e4-9326-bd48103e01a1":()
+2022-08-30 15:33:13,141 INFO root Thread-4 : INSERT EDGE entry_schema() VALUE "914edd46-f266-499e-ae82-45bcf91ea604"->"138f3d81-8c13-420b-8b40-39add5508aad":()
+2022-08-30 15:33:13,143 INFO root Thread-4 : INSERT EDGE attributes() VALUE "7a2e5b60-b211-4842-8097-e44ec016c88e"->"914edd46-f266-499e-ae82-45bcf91ea604":()
+2022-08-30 15:33:13,148 INFO root Thread-4 : INSERT VERTEX AttributeDefinition (vertex_type_system, name) VALUES "15c43bbe-65bf-47a5-8370-e0b0626a0cef":('AttributeDefinition', 'ports');
+2022-08-30 15:33:13,150 INFO root Thread-4 : INSERT EDGE type() VALUE "15c43bbe-65bf-47a5-8370-e0b0626a0cef"->"469508b5-59d5-4b57-99d5-5c2584a3ddb3":()
+2022-08-30 15:33:13,154 INFO root Thread-4 : INSERT VERTEX SchemaDefinition (vertex_type_system) VALUES "08e736f0-759f-4828-a1c3-4f4b5ae1d6b0":('SchemaDefinition');
+2022-08-30 15:33:13,157 INFO root Thread-4 : INSERT EDGE type() VALUE "08e736f0-759f-4828-a1c3-4f4b5ae1d6b0"->"18ce5ffa-05ca-42a5-ba6d-a417c3975766":()
+2022-08-30 15:33:13,159 INFO root Thread-4 : INSERT EDGE entry_schema() VALUE "15c43bbe-65bf-47a5-8370-e0b0626a0cef"->"08e736f0-759f-4828-a1c3-4f4b5ae1d6b0":()
+2022-08-30 15:33:13,161 INFO root Thread-4 : INSERT EDGE attributes() VALUE "7a2e5b60-b211-4842-8097-e44ec016c88e"->"15c43bbe-65bf-47a5-8370-e0b0626a0cef":()
+2022-08-30 15:33:13,165 INFO root Thread-4 : INSERT VERTEX RequirementDefinition (vertex_type_system, name) VALUES "52ca6604-5a2e-45ff-be37-e0c03b107120":('RequirementDefinition', 'local_storage');
+2022-08-30 15:33:13,167 INFO root Thread-4 : INSERT EDGE capability() VALUE "52ca6604-5a2e-45ff-be37-e0c03b107120"->"29f18110-5b55-40fa-8f9a-cffedc65769d":()
+2022-08-30 15:33:13,171 INFO root Thread-4 : INSERT VERTEX NodeType (vertex_type_system, name) VALUES "5a42faa2-592d-46bf-84ad-84262bed16d1":('NodeType', 'tosca.nodes.Storage.BlockStorage');
+2022-08-30 15:33:13,175 INFO root Thread-4 : INSERT VERTEX NodeType (vertex_type_system, name) VALUES "2773a573-722b-4e77-9be1-a7bf98ed5090":('NodeType', 'tosca.nodes.Abstract.Storage');
+2022-08-30 15:33:13,178 INFO root Thread-4 : INSERT EDGE derived_from() VALUE "2773a573-722b-4e77-9be1-a7bf98ed5090"->"0418bf19-db04-4902-8000-4829fe347823":()
+2022-08-30 15:33:13,181 INFO root Thread-4 : INSERT VERTEX PropertyDefinition (name, vertex_type_system) VALUES "c93bb10b-1259-44b5-b861-5291229fc056":('name', 'PropertyDefinition');
+2022-08-30 15:33:13,184 INFO root Thread-4 : INSERT EDGE type() VALUE "c93bb10b-1259-44b5-b861-5291229fc056"->"40ff2af3-107c-4928-af6f-53f850f1b114":()
+2022-08-30 15:33:13,186 INFO root Thread-4 : INSERT EDGE properties() VALUE "2773a573-722b-4e77-9be1-a7bf98ed5090"->"c93bb10b-1259-44b5-b861-5291229fc056":()
+2022-08-30 15:33:13,191 INFO root Thread-4 : INSERT VERTEX PropertyDefinition (name, vertex_type_system, default) VALUES "ab457fef-75e1-4220-9330-e64fe3b4b048":('size', 'PropertyDefinition', '0 MB');
+2022-08-30 15:33:13,194 INFO root Thread-4 : INSERT EDGE type() VALUE "ab457fef-75e1-4220-9330-e64fe3b4b048"->"af76a6a0-c4a5-4a27-9e09-bc4220419bbe":()
+2022-08-30 15:33:13,198 INFO root Thread-4 : INSERT VERTEX ConstraintClause (operator, vertex_type_system, value) VALUES "649bfd4d-cff5-47ba-8423-5d1525dd1c86":('greater_or_equal', 'ConstraintClause', '0 MB');
+2022-08-30 15:33:13,201 INFO root Thread-4 : INSERT EDGE constraints() VALUE "ab457fef-75e1-4220-9330-e64fe3b4b048"->"649bfd4d-cff5-47ba-8423-5d1525dd1c86":()
+2022-08-30 15:33:13,203 INFO root Thread-4 : INSERT EDGE properties() VALUE "2773a573-722b-4e77-9be1-a7bf98ed5090"->"ab457fef-75e1-4220-9330-e64fe3b4b048":()
+2022-08-30 15:33:13,205 INFO root Thread-4 : INSERT EDGE derived_from() VALUE "5a42faa2-592d-46bf-84ad-84262bed16d1"->"2773a573-722b-4e77-9be1-a7bf98ed5090":()
+2022-08-30 15:33:13,209 INFO root Thread-4 : INSERT VERTEX Metadata (name, value, vertex_type_system) VALUES "861cd179-53d9-4936-ad14-efd1750ba16a":('abstract', 'false', 'Metadata');
+2022-08-30 15:33:13,211 INFO root Thread-4 : INSERT EDGE metadata() VALUE "5a42faa2-592d-46bf-84ad-84262bed16d1"->"861cd179-53d9-4936-ad14-efd1750ba16a":()
+2022-08-30 15:33:13,215 INFO root Thread-4 : INSERT VERTEX Metadata (name, value, vertex_type_system) VALUES "f7a3a246-8e5c-4f76-9044-6d10303edb43":('final', 'false', 'Metadata');
+2022-08-30 15:33:13,217 INFO root Thread-4 : INSERT EDGE metadata() VALUE "5a42faa2-592d-46bf-84ad-84262bed16d1"->"f7a3a246-8e5c-4f76-9044-6d10303edb43":()
+2022-08-30 15:33:13,221 INFO root Thread-4 : INSERT VERTEX Metadata (name, value, vertex_type_system) VALUES "dbcfdd92-8f34-4065-9f13-942bfb4c65dc":('targetNamespace', 'tosca.nodes.Storage', 'Metadata');
+2022-08-30 15:33:13,223 INFO root Thread-4 : INSERT EDGE metadata() VALUE "5a42faa2-592d-46bf-84ad-84262bed16d1"->"dbcfdd92-8f34-4065-9f13-942bfb4c65dc":()
+2022-08-30 15:33:13,228 INFO root Thread-4 : INSERT VERTEX PropertyDefinition (name, vertex_type_system, required, status) VALUES "185bc37f-c301-40af-a57a-583dbc4ac366":('volume_id', 'PropertyDefinition', 'False', 'supported');
+2022-08-30 15:33:13,231 INFO root Thread-4 : INSERT EDGE type() VALUE "185bc37f-c301-40af-a57a-583dbc4ac366"->"40ff2af3-107c-4928-af6f-53f850f1b114":()
+2022-08-30 15:33:13,233 INFO root Thread-4 : INSERT EDGE properties() VALUE "5a42faa2-592d-46bf-84ad-84262bed16d1"->"185bc37f-c301-40af-a57a-583dbc4ac366":()
+2022-08-30 15:33:13,237 INFO root Thread-4 : INSERT VERTEX PropertyDefinition (name, vertex_type_system, required, status) VALUES "a26981a7-3314-4885-b486-6459ea247ce0":('snapshot_id', 'PropertyDefinition', 'False', 'supported');
+2022-08-30 15:33:13,240 INFO root Thread-4 : INSERT EDGE type() VALUE "a26981a7-3314-4885-b486-6459ea247ce0"->"40ff2af3-107c-4928-af6f-53f850f1b114":()
+2022-08-30 15:33:13,242 INFO root Thread-4 : INSERT EDGE properties() VALUE "5a42faa2-592d-46bf-84ad-84262bed16d1"->"a26981a7-3314-4885-b486-6459ea247ce0":()
+2022-08-30 15:33:13,247 INFO root Thread-4 : INSERT VERTEX CapabilityDefinition (vertex_type_system, name) VALUES "d1d2732a-afb7-48f4-926d-09312cdb8719":('CapabilityDefinition', 'attachment');
+2022-08-30 15:33:13,249 INFO root Thread-4 : INSERT EDGE type() VALUE "d1d2732a-afb7-48f4-926d-09312cdb8719"->"29f18110-5b55-40fa-8f9a-cffedc65769d":()
+2022-08-30 15:33:13,253 INFO root Thread-4 : INSERT VERTEX Occurrences (vertex_type_system, minimum, maximum) VALUES "1a0476d9-fc19-46c3-b13a-c6654cebe9c3":('Occurrences', '1', 'UNBOUNDED');
+2022-08-30 15:33:13,255 INFO root Thread-4 : INSERT EDGE occurrences() VALUE "d1d2732a-afb7-48f4-926d-09312cdb8719"->"1a0476d9-fc19-46c3-b13a-c6654cebe9c3":()
+2022-08-30 15:33:13,257 INFO root Thread-4 : INSERT EDGE capabilities() VALUE "5a42faa2-592d-46bf-84ad-84262bed16d1"->"d1d2732a-afb7-48f4-926d-09312cdb8719":()
+2022-08-30 15:33:13,259 INFO root Thread-4 : INSERT EDGE node() VALUE "52ca6604-5a2e-45ff-be37-e0c03b107120"->"5a42faa2-592d-46bf-84ad-84262bed16d1":()
+2022-08-30 15:33:13,261 INFO root Thread-4 : INSERT EDGE relationship() VALUE "52ca6604-5a2e-45ff-be37-e0c03b107120"->"f09d50b9-e0cb-42b9-add9-b45ae5ba6aa0":()
+2022-08-30 15:33:13,265 INFO root Thread-4 : INSERT VERTEX Occurrences (vertex_type_system, minimum, maximum) VALUES "045b7333-57c7-47bf-a48a-7c7494e3abe0":('Occurrences', '0', 'UNBOUNDED');
+2022-08-30 15:33:13,267 INFO root Thread-4 : INSERT EDGE occurrences() VALUE "52ca6604-5a2e-45ff-be37-e0c03b107120"->"045b7333-57c7-47bf-a48a-7c7494e3abe0":()
+2022-08-30 15:33:13,269 INFO root Thread-4 : INSERT EDGE requirements() VALUE "7a2e5b60-b211-4842-8097-e44ec016c88e"->"52ca6604-5a2e-45ff-be37-e0c03b107120":()
+2022-08-30 15:33:13,273 INFO root Thread-4 : INSERT VERTEX CapabilityDefinition (vertex_type_system, name) VALUES "89eb7564-5511-4264-a62a-67da264abd96":('CapabilityDefinition', 'host');
+2022-08-30 15:33:13,276 INFO root Thread-4 : INSERT EDGE type() VALUE "89eb7564-5511-4264-a62a-67da264abd96"->"b0348561-918a-4d40-bca6-a91c648526d4":()
+2022-08-30 15:33:13,279 INFO root Thread-4 : INSERT EDGE valid_source_types() VALUE "89eb7564-5511-4264-a62a-67da264abd96"->"d4eedb21-56e3-46d9-b060-748f46a58e93":()
+2022-08-30 15:33:13,281 INFO root Thread-4 : INSERT EDGE capabilities() VALUE "7a2e5b60-b211-4842-8097-e44ec016c88e"->"89eb7564-5511-4264-a62a-67da264abd96":()
+2022-08-30 15:33:13,285 INFO root Thread-4 : INSERT VERTEX CapabilityDefinition (vertex_type_system, name) VALUES "5054336b-5fd7-490e-9648-e6e16da63d06":('CapabilityDefinition', 'endpoint');
+2022-08-30 15:33:13,288 INFO root Thread-4 : INSERT EDGE type() VALUE "5054336b-5fd7-490e-9648-e6e16da63d06"->"46231e83-ec04-408d-8098-f23d6f8c05ab":()
+2022-08-30 15:33:13,290 INFO root Thread-4 : INSERT EDGE capabilities() VALUE "7a2e5b60-b211-4842-8097-e44ec016c88e"->"5054336b-5fd7-490e-9648-e6e16da63d06":()
+2022-08-30 15:33:13,294 INFO root Thread-4 : INSERT VERTEX CapabilityDefinition (vertex_type_system, name) VALUES "a0773252-c64c-4851-b621-94ce88053f70":('CapabilityDefinition', 'os');
+2022-08-30 15:33:13,296 INFO root Thread-4 : INSERT EDGE type() VALUE "a0773252-c64c-4851-b621-94ce88053f70"->"45fe550f-c399-4bb1-a034-f4115ad7d4aa":()
+2022-08-30 15:33:13,298 INFO root Thread-4 : INSERT EDGE capabilities() VALUE "7a2e5b60-b211-4842-8097-e44ec016c88e"->"a0773252-c64c-4851-b621-94ce88053f70":()
+2022-08-30 15:33:13,302 INFO root Thread-4 : INSERT VERTEX CapabilityDefinition (vertex_type_system, name) VALUES "f30982f7-14a0-4e7b-8068-9b098483f82c":('CapabilityDefinition', 'scalable');
+2022-08-30 15:33:13,304 INFO root Thread-4 : INSERT EDGE type() VALUE "f30982f7-14a0-4e7b-8068-9b098483f82c"->"89a141e7-afe2-440e-891c-a6b1ee47947a":()
+2022-08-30 15:33:13,306 INFO root Thread-4 : INSERT EDGE capabilities() VALUE "7a2e5b60-b211-4842-8097-e44ec016c88e"->"f30982f7-14a0-4e7b-8068-9b098483f82c":()
+2022-08-30 15:33:13,310 INFO root Thread-4 : INSERT VERTEX CapabilityDefinition (vertex_type_system, name) VALUES "6fc85148-1e1f-484e-85b2-2eaad720994f":('CapabilityDefinition', 'binding');
+2022-08-30 15:33:13,312 INFO root Thread-4 : INSERT EDGE type() VALUE "6fc85148-1e1f-484e-85b2-2eaad720994f"->"6dae7c70-e88e-4348-aaa8-2e55604435b7":()
+2022-08-30 15:33:13,314 INFO root Thread-4 : INSERT EDGE capabilities() VALUE "7a2e5b60-b211-4842-8097-e44ec016c88e"->"6fc85148-1e1f-484e-85b2-2eaad720994f":()
+2022-08-30 15:33:13,316 INFO root Thread-4 : INSERT EDGE node() VALUE "b4dda8f9-11bc-4060-85a0-4bdc1eda09e1"->"7a2e5b60-b211-4842-8097-e44ec016c88e":()
+2022-08-30 15:33:13,319 INFO root Thread-4 : INSERT EDGE relationship() VALUE "b4dda8f9-11bc-4060-85a0-4bdc1eda09e1"->"7d12161f-2c85-4269-9b65-1addfa7ec7fd":()
+2022-08-30 15:33:13,321 INFO root Thread-4 : INSERT EDGE requirements() VALUE "d4eedb21-56e3-46d9-b060-748f46a58e93"->"b4dda8f9-11bc-4060-85a0-4bdc1eda09e1":()
+2022-08-30 15:33:13,323 INFO root Thread-4 : INSERT EDGE derived_from() VALUE "f19833d5-2421-48b2-917f-53dde61048f8"->"d4eedb21-56e3-46d9-b060-748f46a58e93":()
+2022-08-30 15:33:13,328 INFO root Thread-4 : INSERT VERTEX Metadata (name, value, vertex_type_system) VALUES "fa8240ff-f18f-43a1-a828-42781a9f20ea":('abstract', 'false', 'Metadata');
+2022-08-30 15:33:13,330 INFO root Thread-4 : INSERT EDGE metadata() VALUE "f19833d5-2421-48b2-917f-53dde61048f8"->"fa8240ff-f18f-43a1-a828-42781a9f20ea":()
+2022-08-30 15:33:13,334 INFO root Thread-4 : INSERT VERTEX Metadata (name, value, vertex_type_system) VALUES "c77f0c06-9baf-4fa4-85fa-6d4b9b6e4768":('final', 'false', 'Metadata');
+2022-08-30 15:33:13,336 INFO root Thread-4 : INSERT EDGE metadata() VALUE "f19833d5-2421-48b2-917f-53dde61048f8"->"c77f0c06-9baf-4fa4-85fa-6d4b9b6e4768":()
+2022-08-30 15:33:13,340 INFO root Thread-4 : INSERT VERTEX Metadata (name, value, vertex_type_system) VALUES "5f6eafdd-da03-4416-9ee6-17cc924cebc2":('targetNamespace', 'michman.nodes.Jupyter', 'Metadata');
+2022-08-30 15:33:13,343 INFO root Thread-4 : INSERT EDGE metadata() VALUE "f19833d5-2421-48b2-917f-53dde61048f8"->"5f6eafdd-da03-4416-9ee6-17cc924cebc2":()
+2022-08-30 15:33:13,346 INFO root Thread-4 : INSERT VERTEX PropertyDefinition (name, vertex_type_system, default) VALUES "586be73d-963d-4049-8518-a015e90ac5db":('version', 'PropertyDefinition', '6.0.1');
+2022-08-30 15:33:13,348 INFO root Thread-4 : INSERT EDGE type() VALUE "586be73d-963d-4049-8518-a015e90ac5db"->"40ff2af3-107c-4928-af6f-53f850f1b114":()
+2022-08-30 15:33:13,351 INFO root Thread-4 : INSERT VERTEX ConstraintClause (operator, vertex_type_system, value) VALUES "428c5995-2e87-4180-8812-227b523a04bd":('valid_values', 'ConstraintClause', "['6.0.1']");
+2022-08-30 15:33:13,353 INFO root Thread-4 : INSERT EDGE constraints() VALUE "586be73d-963d-4049-8518-a015e90ac5db"->"428c5995-2e87-4180-8812-227b523a04bd":()
+2022-08-30 15:33:13,355 INFO root Thread-4 : INSERT EDGE properties() VALUE "f19833d5-2421-48b2-917f-53dde61048f8"->"586be73d-963d-4049-8518-a015e90ac5db":()
+2022-08-30 15:33:13,358 INFO root Thread-4 : INSERT VERTEX PropertyDefinition (name, vertex_type_system, description, required) VALUES "57873b76-2769-4dc9-b956-f5bc84eef3b3":('spark_component_version', 'PropertyDefinition', 'Setup version required. Default version is 2.3.0. Supported versions: >= 1.0.0, <= 2.3.0', 'True');
+2022-08-30 15:33:13,360 INFO root Thread-4 : INSERT EDGE type() VALUE "57873b76-2769-4dc9-b956-f5bc84eef3b3"->"40ff2af3-107c-4928-af6f-53f850f1b114":()
+2022-08-30 15:33:13,363 INFO root Thread-4 : INSERT VERTEX ConstraintClause (operator, vertex_type_system, value) VALUES "419fee5c-5fa8-4367-872f-5870c4f50dca":('valid_values', 'ConstraintClause', "['1.0.0', '1.0.1', '1.0.2', '1.1.0', '1.1.1', '1.2.0', '1.2.1', '1.2.2', '1.3.0', '1.3.1', '1.4.0', '1.4.1', '1.5.0', '1.5.1', '1.5.2', '1.6.0', '1.6.1', '1.6.2', '2.0.0', '2.0.1', '2.0.2', '2.1.0', '2.2.0', '2.2.1', '2.3.0']");
+2022-08-30 15:33:13,365 INFO root Thread-4 : INSERT EDGE constraints() VALUE "57873b76-2769-4dc9-b956-f5bc84eef3b3"->"419fee5c-5fa8-4367-872f-5870c4f50dca":()
+2022-08-30 15:33:13,367 INFO root Thread-4 : INSERT EDGE properties() VALUE "f19833d5-2421-48b2-917f-53dde61048f8"->"57873b76-2769-4dc9-b956-f5bc84eef3b3":()
+2022-08-30 15:33:13,371 INFO root Thread-4 : INSERT VERTEX PropertyDefinition (name, vertex_type_system, description, required, default) VALUES "6f9a699f-5334-4ec9-8580-6e7c0b5725c1":('core', 'PropertyDefinition', 'default jupyter core version (now this config param is not supported)', 'False', '4.5.0');
+2022-08-30 15:33:13,373 INFO root Thread-4 : INSERT EDGE type() VALUE "6f9a699f-5334-4ec9-8580-6e7c0b5725c1"->"40ff2af3-107c-4928-af6f-53f850f1b114":()
+2022-08-30 15:33:13,377 INFO root Thread-4 : INSERT VERTEX ConstraintClause (operator, vertex_type_system, value) VALUES "219cfa2c-9c43-458d-8599-1b294d766905":('valid_values', 'ConstraintClause', "['4.5.0']");
+2022-08-30 15:33:13,379 INFO root Thread-4 : INSERT EDGE constraints() VALUE "6f9a699f-5334-4ec9-8580-6e7c0b5725c1"->"219cfa2c-9c43-458d-8599-1b294d766905":()
+2022-08-30 15:33:13,381 INFO root Thread-4 : INSERT EDGE properties() VALUE "f19833d5-2421-48b2-917f-53dde61048f8"->"6f9a699f-5334-4ec9-8580-6e7c0b5725c1":()
+2022-08-30 15:33:13,385 INFO root Thread-4 : INSERT VERTEX PropertyDefinition (name, vertex_type_system, description, required, default) VALUES "dd77621e-9c16-45c2-86f9-d4a66066b27b":('qtconsole', 'PropertyDefinition', 'now qtconsole is not installed (now this config param is not supported)', 'False', '-');
+2022-08-30 15:33:13,387 INFO root Thread-4 : INSERT EDGE type() VALUE "dd77621e-9c16-45c2-86f9-d4a66066b27b"->"40ff2af3-107c-4928-af6f-53f850f1b114":()
+2022-08-30 15:33:13,391 INFO root Thread-4 : INSERT VERTEX ConstraintClause (operator, vertex_type_system, value) VALUES "f3702734-3bb5-40bb-adb9-e8b1724ae97c":('valid_values', 'ConstraintClause', "['-']");
+2022-08-30 15:33:13,393 INFO root Thread-4 : INSERT EDGE constraints() VALUE "dd77621e-9c16-45c2-86f9-d4a66066b27b"->"f3702734-3bb5-40bb-adb9-e8b1724ae97c":()
+2022-08-30 15:33:13,395 INFO root Thread-4 : INSERT EDGE properties() VALUE "f19833d5-2421-48b2-917f-53dde61048f8"->"dd77621e-9c16-45c2-86f9-d4a66066b27b":()
+2022-08-30 15:33:13,398 INFO root Thread-4 : INSERT VERTEX PropertyDefinition (name, vertex_type_system, description, required, default) VALUES "50008287-d95f-46ed-9314-ca019fb44771":('ipython', 'PropertyDefinition', 'default ipython version (now this config param is not supported)', 'False', '7.8.0');
+2022-08-30 15:33:13,400 INFO root Thread-4 : INSERT EDGE type() VALUE "50008287-d95f-46ed-9314-ca019fb44771"->"40ff2af3-107c-4928-af6f-53f850f1b114":()
+2022-08-30 15:33:13,402 INFO root Thread-4 : INSERT EDGE properties() VALUE "f19833d5-2421-48b2-917f-53dde61048f8"->"50008287-d95f-46ed-9314-ca019fb44771":()
+2022-08-30 15:33:13,405 INFO root Thread-4 : INSERT VERTEX PropertyDefinition (name, vertex_type_system, description, required, default) VALUES "d30e84ba-87f9-43fb-8950-5d0730b56654":('ipykernel', 'PropertyDefinition', 'default ipykernel version (now this config param is not supported)', 'False', '5.1.2');
+2022-08-30 15:33:13,406 INFO root Thread-4 : INSERT EDGE type() VALUE "d30e84ba-87f9-43fb-8950-5d0730b56654"->"40ff2af3-107c-4928-af6f-53f850f1b114":()
+2022-08-30 15:33:13,408 INFO root Thread-4 : INSERT EDGE properties() VALUE "f19833d5-2421-48b2-917f-53dde61048f8"->"d30e84ba-87f9-43fb-8950-5d0730b56654":()
+2022-08-30 15:33:13,411 INFO root Thread-4 : INSERT VERTEX PropertyDefinition (name, vertex_type_system, description, required, default) VALUES "867c6e9e-f119-4487-af17-0df630f56b7e":('client', 'PropertyDefinition', 'default jupyter client version (now this config param is not supported)', 'False', '5.3.1');
+2022-08-30 15:33:13,413 INFO root Thread-4 : INSERT EDGE type() VALUE "867c6e9e-f119-4487-af17-0df630f56b7e"->"40ff2af3-107c-4928-af6f-53f850f1b114":()
+2022-08-30 15:33:13,416 INFO root Thread-4 : INSERT EDGE properties() VALUE "f19833d5-2421-48b2-917f-53dde61048f8"->"867c6e9e-f119-4487-af17-0df630f56b7e":()
+2022-08-30 15:33:13,419 INFO root Thread-4 : INSERT VERTEX PropertyDefinition (name, vertex_type_system, description, required, default) VALUES "83adf656-c3c2-4720-ac8c-e98ca1cea29a":('lab', 'PropertyDefinition', 'default jupyter lab version (now this config param is not supported)', 'False', '1.1.1');
+2022-08-30 15:33:13,421 INFO root Thread-4 : INSERT EDGE type() VALUE "83adf656-c3c2-4720-ac8c-e98ca1cea29a"->"40ff2af3-107c-4928-af6f-53f850f1b114":()
+2022-08-30 15:33:13,423 INFO root Thread-4 : INSERT EDGE properties() VALUE "f19833d5-2421-48b2-917f-53dde61048f8"->"83adf656-c3c2-4720-ac8c-e98ca1cea29a":()
+2022-08-30 15:33:13,426 INFO root Thread-4 : INSERT VERTEX PropertyDefinition (name, vertex_type_system, description, required, default) VALUES "30bcba1f-1d50-4859-a997-1ec405e76aab":('nbconvert', 'PropertyDefinition', 'default nbconvert version (now this config param is not supported)', 'False', '5.6.0');
+2022-08-30 15:33:13,428 INFO root Thread-4 : INSERT EDGE type() VALUE "30bcba1f-1d50-4859-a997-1ec405e76aab"->"40ff2af3-107c-4928-af6f-53f850f1b114":()
+2022-08-30 15:33:13,430 INFO root Thread-4 : INSERT EDGE properties() VALUE "f19833d5-2421-48b2-917f-53dde61048f8"->"30bcba1f-1d50-4859-a997-1ec405e76aab":()
+2022-08-30 15:33:13,434 INFO root Thread-4 : INSERT VERTEX PropertyDefinition (name, vertex_type_system, description, required, default) VALUES "1215be2e-b720-45be-b116-d190aac21fb9":('ipywidgets', 'PropertyDefinition', 'now ipywidgets is not installed (now this config param is not supported)', 'False', '-');
+2022-08-30 15:33:13,436 INFO root Thread-4 : INSERT EDGE type() VALUE "1215be2e-b720-45be-b116-d190aac21fb9"->"40ff2af3-107c-4928-af6f-53f850f1b114":()
+2022-08-30 15:33:13,438 INFO root Thread-4 : INSERT EDGE properties() VALUE "f19833d5-2421-48b2-917f-53dde61048f8"->"1215be2e-b720-45be-b116-d190aac21fb9":()
+2022-08-30 15:33:13,442 INFO root Thread-4 : INSERT VERTEX PropertyDefinition (name, vertex_type_system, description, required, default) VALUES "12ee333f-cd47-47d6-b025-821712f47943":('nbformat', 'PropertyDefinition', 'default nbformat version (now this config param is not supported)', 'False', '4.4.0');
+2022-08-30 15:33:13,444 INFO root Thread-4 : INSERT EDGE type() VALUE "12ee333f-cd47-47d6-b025-821712f47943"->"40ff2af3-107c-4928-af6f-53f850f1b114":()
+2022-08-30 15:33:13,446 INFO root Thread-4 : INSERT EDGE properties() VALUE "f19833d5-2421-48b2-917f-53dde61048f8"->"12ee333f-cd47-47d6-b025-821712f47943":()
+2022-08-30 15:33:13,450 INFO root Thread-4 : INSERT VERTEX PropertyDefinition (name, vertex_type_system, description, required, default) VALUES "ce214ece-76ee-4dba-b8b3-b3e36cbd3720":('traitlets', 'PropertyDefinition', 'default traitlets version (now this config param is not supported)', 'False', '4.3.2');
+2022-08-30 15:33:13,451 INFO root Thread-4 : INSERT EDGE type() VALUE "ce214ece-76ee-4dba-b8b3-b3e36cbd3720"->"40ff2af3-107c-4928-af6f-53f850f1b114":()
+2022-08-30 15:33:13,453 INFO root Thread-4 : INSERT EDGE properties() VALUE "f19833d5-2421-48b2-917f-53dde61048f8"->"ce214ece-76ee-4dba-b8b3-b3e36cbd3720":()
+2022-08-30 15:33:13,457 INFO root Thread-4 : INSERT VERTEX RequirementDefinition (vertex_type_system, name) VALUES "8fd26a1d-894b-4d3b-90df-db01befc4b8f":('RequirementDefinition', 'spark');
+2022-08-30 15:33:13,459 INFO root Thread-4 : INSERT EDGE capability() VALUE "8fd26a1d-894b-4d3b-90df-db01befc4b8f"->"cbf44c33-44d6-453d-99f6-c5bb09eb6006":()
+2022-08-30 15:33:13,461 INFO root Thread-4 : INSERT EDGE relationship() VALUE "8fd26a1d-894b-4d3b-90df-db01befc4b8f"->"90a2eecd-a0e4-42d8-aff9-13cb78ecbc26":()
+2022-08-30 15:33:13,464 INFO root Thread-4 : INSERT VERTEX Occurrences (vertex_type_system, minimum, maximum) VALUES "0f912e8c-e3c1-47d5-9459-9b94d269ddcf":('Occurrences', '0', '1');
+2022-08-30 15:33:13,467 INFO root Thread-4 : INSERT EDGE occurrences() VALUE "8fd26a1d-894b-4d3b-90df-db01befc4b8f"->"0f912e8c-e3c1-47d5-9459-9b94d269ddcf":()
+2022-08-30 15:33:13,469 INFO root Thread-4 : INSERT EDGE requirements() VALUE "f19833d5-2421-48b2-917f-53dde61048f8"->"8fd26a1d-894b-4d3b-90df-db01befc4b8f":()
+2022-08-30 15:33:13,472 INFO root Thread-4 : INSERT VERTEX CapabilityDefinition (vertex_type_system, name) VALUES "f692fa42-53bb-4039-b3a0-7c048f292958":('CapabilityDefinition', 'dependence');
+2022-08-30 15:33:13,474 INFO root Thread-4 : INSERT EDGE type() VALUE "f692fa42-53bb-4039-b3a0-7c048f292958"->"74c37899-f07b-4f58-9ea6-41f99a634680":()
+2022-08-30 15:33:13,477 INFO root Thread-4 : INSERT EDGE capabilities() VALUE "f19833d5-2421-48b2-917f-53dde61048f8"->"f692fa42-53bb-4039-b3a0-7c048f292958":()
+2022-08-30 15:33:13,481 INFO root Thread-4 : INSERT EDGE node_types() VALUE "Jupyter_1"->"f19833d5-2421-48b2-917f-53dde61048f8":()
+2022-08-30 15:33:13,484 INFO root Thread-4 : INSERT EDGE node_types() VALUE "Jupyter_1"->"d4eedb21-56e3-46d9-b060-748f46a58e93":()
+2022-08-30 15:33:13,488 INFO root Thread-4 : INSERT EDGE node_types() VALUE "Jupyter_1"->"b78fe1ee-5f59-45db-989e-297e7a4e9fe3":()
+2022-08-30 15:33:13,492 INFO root Thread-4 : INSERT EDGE node_types() VALUE "Jupyter_1"->"7a2e5b60-b211-4842-8097-e44ec016c88e":()
+2022-08-30 15:33:13,496 INFO root Thread-4 : INSERT EDGE node_types() VALUE "Jupyter_1"->"0418bf19-db04-4902-8000-4829fe347823":()
+2022-08-30 15:33:13,499 INFO root Thread-4 : INSERT EDGE node_types() VALUE "Jupyter_1"->"5a42faa2-592d-46bf-84ad-84262bed16d1":()
+2022-08-30 15:33:13,502 INFO root Thread-4 : INSERT EDGE node_types() VALUE "Jupyter_1"->"2773a573-722b-4e77-9be1-a7bf98ed5090":()
+2022-08-30 15:33:13,508 INFO root Thread-4 : INSERT VERTEX TopologyTemplateDefinition (vertex_type_system) VALUES "50125ad8-a379-4e77-919d-6da798604fcb":('TopologyTemplateDefinition');
+2022-08-30 15:33:13,513 INFO root Thread-4 : INSERT VERTEX ParameterDefinition (name, vertex_type_system, description) VALUES "f55f5304-9572-44f1-bff6-9294a4fb5223":('storage_snapshot_id', 'ParameterDefinition', 'Optional identifier for an existing snapshot to use when creating storage. ');
+2022-08-30 15:33:13,517 INFO root Thread-4 : INSERT EDGE type() VALUE "f55f5304-9572-44f1-bff6-9294a4fb5223"->"40ff2af3-107c-4928-af6f-53f850f1b114":()
+2022-08-30 15:33:13,520 INFO root Thread-4 : INSERT EDGE inputs() VALUE "50125ad8-a379-4e77-919d-6da798604fcb"->"f55f5304-9572-44f1-bff6-9294a4fb5223":()
+2022-08-30 15:33:13,526 INFO root Thread-4 : INSERT VERTEX NodeTemplate (name, vertex_type_system) VALUES "666b0da5-1cac-4b9e-8c5b-f9f3b21d66ed":('jupyter_1', 'NodeTemplate');
+2022-08-30 15:33:13,529 INFO root Thread-4 : INSERT EDGE type() VALUE "666b0da5-1cac-4b9e-8c5b-f9f3b21d66ed"->"f19833d5-2421-48b2-917f-53dde61048f8":()
+2022-08-30 15:33:13,534 INFO root Thread-4 : INSERT VERTEX PropertyAssignment (name, value, vertex_type_system) VALUES "af0f02e6-68f5-47b7-ac89-bb98c16f0cb2":('version', '6.0.1', 'PropertyAssignment');
+2022-08-30 15:33:13,538 INFO root Thread-4 : INSERT EDGE properties() VALUE "666b0da5-1cac-4b9e-8c5b-f9f3b21d66ed"->"af0f02e6-68f5-47b7-ac89-bb98c16f0cb2":()
+2022-08-30 15:33:13,544 INFO root Thread-4 : INSERT VERTEX PropertyAssignment (name, value, vertex_type_system) VALUES "c56d6525-3e3f-4ab9-aac0-a933a7e16323":('spark_component_version', '2.3.0', 'PropertyAssignment');
+2022-08-30 15:33:13,547 INFO root Thread-4 : INSERT EDGE properties() VALUE "666b0da5-1cac-4b9e-8c5b-f9f3b21d66ed"->"c56d6525-3e3f-4ab9-aac0-a933a7e16323":()
+2022-08-30 15:33:13,552 INFO root Thread-4 : INSERT VERTEX PropertyAssignment (name, value, vertex_type_system) VALUES "3d2acaa8-b963-4d00-81e9-98e8f77cca9d":('core', '4.5.0', 'PropertyAssignment');
+2022-08-30 15:33:13,556 INFO root Thread-4 : INSERT EDGE properties() VALUE "666b0da5-1cac-4b9e-8c5b-f9f3b21d66ed"->"3d2acaa8-b963-4d00-81e9-98e8f77cca9d":()
+2022-08-30 15:33:13,562 INFO root Thread-4 : INSERT VERTEX RequirementAssignment (name, vertex_type_system) VALUES "9529e09c-8730-4bd8-bd5f-58ac55516a92":('host', 'RequirementAssignment');
+2022-08-30 15:33:13,567 INFO root Thread-4 : INSERT VERTEX NodeTemplate (name, vertex_type_system) VALUES "d2c9a951-474e-4fda-8b2e-3a2303e9a16e":('compute_0', 'NodeTemplate');
+2022-08-30 15:33:13,571 INFO root Thread-4 : INSERT EDGE type() VALUE "d2c9a951-474e-4fda-8b2e-3a2303e9a16e"->"7a2e5b60-b211-4842-8097-e44ec016c88e":()
+2022-08-30 15:33:13,576 INFO root Thread-4 : INSERT VERTEX RequirementAssignment (name, vertex_type_system) VALUES "8ba8720a-d9bd-4485-bcb4-1f3aef05bc90":('local_storage', 'RequirementAssignment');
+2022-08-30 15:33:13,582 INFO root Thread-4 : INSERT VERTEX NodeTemplate (name, vertex_type_system) VALUES "21c8f6f6-49b7-4b34-8e97-39556b6460f3":('block_storage_0', 'NodeTemplate');
+2022-08-30 15:33:13,586 INFO root Thread-4 : INSERT EDGE type() VALUE "21c8f6f6-49b7-4b34-8e97-39556b6460f3"->"5a42faa2-592d-46bf-84ad-84262bed16d1":()
+2022-08-30 15:33:13,600 INFO root Thread-4 : INSERT VERTEX PropertyAssignment (name, value, vertex_type_system) VALUES "e1acf4ab-47df-4eb9-a237-b4322ff10896":('size', '256 GB', 'PropertyAssignment');
+2022-08-30 15:33:13,604 INFO root Thread-4 : INSERT EDGE properties() VALUE "21c8f6f6-49b7-4b34-8e97-39556b6460f3"->"e1acf4ab-47df-4eb9-a237-b4322ff10896":()
+2022-08-30 15:33:13,610 INFO root Thread-4 : INSERT VERTEX PropertyAssignment (name, value, vertex_type_system) VALUES "62d77eae-5394-4204-821c-115f8256aef7":('snapshot_id', '{"get_input": ["storage_snapshot_id"]}', 'PropertyAssignment');
+2022-08-30 15:33:13,614 INFO root Thread-4 : INSERT EDGE get_input() VALUE "62d77eae-5394-4204-821c-115f8256aef7"->"f55f5304-9572-44f1-bff6-9294a4fb5223":()
+2022-08-30 15:33:13,617 INFO root Thread-4 : INSERT EDGE properties() VALUE "21c8f6f6-49b7-4b34-8e97-39556b6460f3"->"62d77eae-5394-4204-821c-115f8256aef7":()
+2022-08-30 15:33:13,621 INFO root Thread-4 : INSERT EDGE node() VALUE "8ba8720a-d9bd-4485-bcb4-1f3aef05bc90"->"21c8f6f6-49b7-4b34-8e97-39556b6460f3":()
+2022-08-30 15:33:13,625 INFO root Thread-4 : INSERT EDGE requirements() VALUE "d2c9a951-474e-4fda-8b2e-3a2303e9a16e"->"8ba8720a-d9bd-4485-bcb4-1f3aef05bc90":()
+2022-08-30 15:33:13,630 INFO root Thread-4 : INSERT VERTEX CapabilityAssignment (name, vertex_type_system) VALUES "b3cc373b-2bf5-4ff0-a19c-dbc5c16987f5":('host', 'CapabilityAssignment');
+2022-08-30 15:33:13,636 INFO root Thread-4 : INSERT VERTEX PropertyAssignment (name, value, vertex_type_system) VALUES "913992f4-603d-454b-b526-4fa51fa7a65a":('num_cpus', '1', 'PropertyAssignment');
+2022-08-30 15:33:13,640 INFO root Thread-4 : INSERT EDGE properties() VALUE "b3cc373b-2bf5-4ff0-a19c-dbc5c16987f5"->"913992f4-603d-454b-b526-4fa51fa7a65a":()
+2022-08-30 15:33:13,645 INFO root Thread-4 : INSERT VERTEX PropertyAssignment (name, value, vertex_type_system) VALUES "7ce1b39b-f9d0-4c9e-a249-acd43a695f33":('name', 'jupyter_host', 'PropertyAssignment');
+2022-08-30 15:33:13,649 INFO root Thread-4 : INSERT EDGE properties() VALUE "b3cc373b-2bf5-4ff0-a19c-dbc5c16987f5"->"7ce1b39b-f9d0-4c9e-a249-acd43a695f33":()
+2022-08-30 15:33:13,654 INFO root Thread-4 : INSERT VERTEX PropertyAssignment (name, value, vertex_type_system) VALUES "72c66cd5-2639-40bc-9ae3-51a76c2af003":('disk_size', '256 GB', 'PropertyAssignment');
+2022-08-30 15:33:13,658 INFO root Thread-4 : INSERT EDGE properties() VALUE "b3cc373b-2bf5-4ff0-a19c-dbc5c16987f5"->"72c66cd5-2639-40bc-9ae3-51a76c2af003":()
+2022-08-30 15:33:13,664 INFO root Thread-4 : INSERT VERTEX PropertyAssignment (name, value, vertex_type_system) VALUES "3f53fc52-bc31-47a3-9836-2c2729de3624":('cpu_frequency', '4.0 GHz', 'PropertyAssignment');
+2022-08-30 15:33:13,667 INFO root Thread-4 : INSERT EDGE properties() VALUE "b3cc373b-2bf5-4ff0-a19c-dbc5c16987f5"->"3f53fc52-bc31-47a3-9836-2c2729de3624":()
+2022-08-30 15:33:13,673 INFO root Thread-4 : INSERT VERTEX PropertyAssignment (name, value, vertex_type_system) VALUES "710089c2-d535-4fa0-8e51-e1bcd194311f":('mem_size', '16 GB', 'PropertyAssignment');
+2022-08-30 15:33:13,676 INFO root Thread-4 : INSERT EDGE properties() VALUE "b3cc373b-2bf5-4ff0-a19c-dbc5c16987f5"->"710089c2-d535-4fa0-8e51-e1bcd194311f":()
+2022-08-30 15:33:13,680 INFO root Thread-4 : INSERT EDGE capabilities() VALUE "d2c9a951-474e-4fda-8b2e-3a2303e9a16e"->"b3cc373b-2bf5-4ff0-a19c-dbc5c16987f5":()
+2022-08-30 15:33:13,686 INFO root Thread-4 : INSERT VERTEX CapabilityAssignment (name, vertex_type_system) VALUES "a6215308-4a09-4c13-aef1-0c2a265e5714":('endpoint', 'CapabilityAssignment');
+2022-08-30 15:33:13,692 INFO root Thread-4 : INSERT VERTEX PropertyAssignment (name, value, vertex_type_system) VALUES "c6de1e97-e1d4-4c4a-8e71-93a8b752614a":('protocol', 'tcp', 'PropertyAssignment');
+2022-08-30 15:33:13,696 INFO root Thread-4 : INSERT EDGE properties() VALUE "a6215308-4a09-4c13-aef1-0c2a265e5714"->"c6de1e97-e1d4-4c4a-8e71-93a8b752614a":()
+2022-08-30 15:33:13,701 INFO root Thread-4 : INSERT VERTEX PropertyAssignment (name, value, vertex_type_system) VALUES "f8babe7c-ecc6-4e66-9d85-d849ac1e81d8":('port', '7777', 'PropertyAssignment');
+2022-08-30 15:33:13,705 INFO root Thread-4 : INSERT EDGE properties() VALUE "a6215308-4a09-4c13-aef1-0c2a265e5714"->"f8babe7c-ecc6-4e66-9d85-d849ac1e81d8":()
+2022-08-30 15:33:13,711 INFO root Thread-4 : INSERT VERTEX PropertyAssignment (name, value, vertex_type_system) VALUES "8f3f6057-5e56-41c8-9c29-afe5518986c8":('secure', 'True', 'PropertyAssignment');
+2022-08-30 15:33:13,715 INFO root Thread-4 : INSERT EDGE properties() VALUE "a6215308-4a09-4c13-aef1-0c2a265e5714"->"8f3f6057-5e56-41c8-9c29-afe5518986c8":()
+2022-08-30 15:33:13,719 INFO root Thread-4 : INSERT EDGE capabilities() VALUE "d2c9a951-474e-4fda-8b2e-3a2303e9a16e"->"a6215308-4a09-4c13-aef1-0c2a265e5714":()
+2022-08-30 15:33:13,725 INFO root Thread-4 : INSERT VERTEX CapabilityAssignment (name, vertex_type_system) VALUES "cd05663e-fd2c-4b9a-9362-494aa877d95f":('os', 'CapabilityAssignment');
+2022-08-30 15:33:13,730 INFO root Thread-4 : INSERT VERTEX PropertyAssignment (name, value, vertex_type_system) VALUES "c4579ec5-4db0-4c64-94ba-d47e701886b9":('architecture', 'x86_64', 'PropertyAssignment');
+2022-08-30 15:33:13,734 INFO root Thread-4 : INSERT EDGE properties() VALUE "cd05663e-fd2c-4b9a-9362-494aa877d95f"->"c4579ec5-4db0-4c64-94ba-d47e701886b9":()
+2022-08-30 15:33:13,739 INFO root Thread-4 : INSERT VERTEX PropertyAssignment (name, value, vertex_type_system) VALUES "57800fac-3d4e-4cfc-bf8a-c796c2bf2455":('type', 'Linux', 'PropertyAssignment');
+2022-08-30 15:33:13,743 INFO root Thread-4 : INSERT EDGE properties() VALUE "cd05663e-fd2c-4b9a-9362-494aa877d95f"->"57800fac-3d4e-4cfc-bf8a-c796c2bf2455":()
+2022-08-30 15:33:13,750 INFO root Thread-4 : INSERT VERTEX PropertyAssignment (name, value, vertex_type_system) VALUES "efa63a23-0d89-40ba-92f4-2d5065fb9016":('distribution', 'Fedora', 'PropertyAssignment');
+2022-08-30 15:33:13,754 INFO root Thread-4 : INSERT EDGE properties() VALUE "cd05663e-fd2c-4b9a-9362-494aa877d95f"->"efa63a23-0d89-40ba-92f4-2d5065fb9016":()
+2022-08-30 15:33:13,759 INFO root Thread-4 : INSERT VERTEX PropertyAssignment (name, value, vertex_type_system) VALUES "f120552c-d954-45c2-babd-2d2261bfaf88":('version', '18.0', 'PropertyAssignment');
+2022-08-30 15:33:13,763 INFO root Thread-4 : INSERT EDGE properties() VALUE "cd05663e-fd2c-4b9a-9362-494aa877d95f"->"f120552c-d954-45c2-babd-2d2261bfaf88":()
+2022-08-30 15:33:13,767 INFO root Thread-4 : INSERT EDGE capabilities() VALUE "d2c9a951-474e-4fda-8b2e-3a2303e9a16e"->"cd05663e-fd2c-4b9a-9362-494aa877d95f":()
+2022-08-30 15:33:13,771 INFO root Thread-4 : INSERT EDGE node() VALUE "9529e09c-8730-4bd8-bd5f-58ac55516a92"->"d2c9a951-474e-4fda-8b2e-3a2303e9a16e":()
+2022-08-30 15:33:13,775 INFO root Thread-4 : INSERT EDGE requirements() VALUE "666b0da5-1cac-4b9e-8c5b-f9f3b21d66ed"->"9529e09c-8730-4bd8-bd5f-58ac55516a92":()
+2022-08-30 15:33:13,779 INFO root Thread-4 : INSERT EDGE node_templates() VALUE "50125ad8-a379-4e77-919d-6da798604fcb"->"666b0da5-1cac-4b9e-8c5b-f9f3b21d66ed":()
+2022-08-30 15:33:13,782 INFO root Thread-4 : INSERT EDGE node_templates() VALUE "50125ad8-a379-4e77-919d-6da798604fcb"->"d2c9a951-474e-4fda-8b2e-3a2303e9a16e":()
+2022-08-30 15:33:13,786 INFO root Thread-4 : INSERT EDGE node_templates() VALUE "50125ad8-a379-4e77-919d-6da798604fcb"->"21c8f6f6-49b7-4b34-8e97-39556b6460f3":()
+2022-08-30 15:33:13,790 INFO root Thread-4 : INSERT EDGE topology_template() VALUE "Jupyter_1"->"50125ad8-a379-4e77-919d-6da798604fcb":()
+2022-08-30 15:33:13,791 INFO werkzeug Thread-4 : 127.0.0.1 - - [30/Aug/2022 15:33:13] "POST /v0.1/yaml-template/template?cluster_name=Jupyter_1 HTTP/1.1" 200 -

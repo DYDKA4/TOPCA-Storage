@@ -74,6 +74,7 @@ class ServiceTemplateDefinition:
         self.group_types = []
         self.policy_types = []
         self.topology_template = None
+        self.template_type = None
 
     def set_tosca_definitions_version(self, tosca_definitions_version: str):
         self.tosca_definitions_version = tosca_definitions_version

@@ -223,6 +223,8 @@ def find_vertex_by_properties(vid_type, **params):
         else:
             condition += f"and {vid_type}.{name} == '{value}'"
     result = session.execute(f"LOOKUP ON {vid_type} {condition} YIELD properties(vertex) as props, id(vertex) as id")
-    logging.info(f"LOOKUP ON {vid_type} {condition} ")
+    logging.info(f"LOOKUP ON {vid_type} {condition} YIELD properties(vertex) as props, id(vertex) as id")
     assert result.is_succeeded(), result.error_msg()
     return result
+
+# find_vertex_by_properties("ServiceTemplateDefinition")

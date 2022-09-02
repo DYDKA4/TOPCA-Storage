@@ -1,7 +1,0 @@
-my_storage:
-  properties:
-    size:
-      get_input: storage_size
-    snapshot_id:
-      get_input: storage_snapshot_id
-  type: tosca.nodes.BlockStorage

@@ -1,11 +1,13 @@
 - name: My first play
   hosts: virtual_machines
-  tasks:
+  become: yes
 
+  tasks:
 
    - name: Install Nebula Graph
      ansible.builtin.apt:
        deb: https://oss-cdn.nebula-graph.io/package/3.2.0/nebula-graph-3.2.0.ubuntu2004.amd64.deb
+     become: yes
 
    - name: Install GO-Lang
      ansible.builtin.apt:

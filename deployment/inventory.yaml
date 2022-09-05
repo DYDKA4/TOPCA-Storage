@@ -1,6 +1,6 @@
 virtual_machines:
   hosts:
     vm01:
-      ansible_host: 10.100.151.46
+      ansible_host: 10.100.149.228
   vars:
     ansible_user: ubuntu

@@ -93,8 +93,8 @@ def get_all_tags():
 
 
 def delete_vertex(vertex):
-    result = session.execute(f'DELETE VERTEX {vertex}')
-    logging.info(f'DELETE VERTEX {vertex} ')
+    result = session.execute(f'DELETE VERTEX {vertex} WITH EDGE')
+    logging.info(f'DELETE VERTEX {vertex} WITH EDGE')
     assert result.is_succeeded(), result.error_msg()
     del_by_vid(vertex)
     return

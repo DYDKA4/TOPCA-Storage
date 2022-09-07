@@ -135,9 +135,8 @@ def deploy(template, cluster_name) -> None:
 # file.close()
 # data = yaml.safe_load(data)
 # # template = service_template_definition_parser(''.join(choice(ascii_uppercase) for i in range(12)), data)
-# template = service_template_definition_parser("Clouni", data)
+# template = service_template_definition_parser("Clouni_8", data)
 # main_linker(template)
-# print(template)
 # if add_vid(template.name, template.name):
 #     abort(400)
 # deploy(template, template.name)

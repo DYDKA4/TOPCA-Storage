@@ -40,28 +40,30 @@ def add_in_vertex(vertex_name, name_of_key_value, key_value, vid):
                              f':({key_value});')
     logging.info(f'INSERT VERTEX {vertex_name} ({name_of_key_value}) VALUES {vid}'
                  f':({key_value});')
-    # print(f'INSERT VERTEX {vertex_name} ({name_of_key_value}) VALUES {vid}'
-    #       f':({key_value});')
+    print(f'INSERT VERTEX {vertex_name} ({name_of_key_value}) VALUES {vid}'
+          f':({key_value});')
     assert result.is_succeeded(), result.error_msg()
     return
 
 
 def add_edge(edge_name, edge_params, source_vertex, destination_vertex, data):
     result = session.execute(f'INSERT EDGE {edge_name}({edge_params})'
-                             f' VALUE {source_vertex}->{destination_vertex}:({data})')
+                             f' VALUES {source_vertex}->{destination_vertex}:({data})')
     logging.info(f'INSERT EDGE {edge_name}({edge_params})'
-                 f' VALUE {source_vertex}->{destination_vertex}:({data})')
+                 f' VALUES {source_vertex}->{destination_vertex}:({data})')
     # print(f'INSERT EDGE {edge_name}({edge_params})'
-    #       f' VALUE {source_vertex}->{destination_vertex}:({interface})')
+    #                          f' VALUES {source_vertex}->{destination_vertex}:({data})')
     assert result.is_succeeded(), result.error_msg()
     return
 
 
 def fetch_vertex(vid, vertex_name):
     result = session.execute(f'FETCH PROP ON {vertex_name} {vid} YIELD properties(vertex)')
+    print(f'FETCH PROP ON {vertex_name} {vid} YIELD properties(vertex)')
     logging.info(f'FETCH PROP ON {vertex_name} {vid} YIELD properties(vertex)')
     assert result.is_succeeded(), result.error_msg()
-    if result.column_values('properties(VERTEX)'):
+
+    if result.column_values('properties(VERTEX)') and result.column_values('properties(VERTEX)')[0].as_map() != {}:
         return result.column_values('properties(VERTEX)')[0]
     return None
 

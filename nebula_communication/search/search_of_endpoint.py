@@ -1,5 +1,5 @@
 import yaml
-from nebula2.data.DataObject import ValueWrapper
+from nebula3.data.DataObject import ValueWrapper
 from werkzeug.exceptions import abort
 
 from nebula_communication.nebula_functions import get_all_vertex, go_from_over, \

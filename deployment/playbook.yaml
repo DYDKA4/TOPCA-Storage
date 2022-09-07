@@ -4,99 +4,109 @@
 
   tasks:
 
-   - name: Install Nebula Graph
-     ansible.builtin.apt:
-       deb: https://oss-cdn.nebula-graph.io/package/3.2.0/nebula-graph-3.2.0.ubuntu2004.amd64.deb
-     become: yes
+#   - name: Install Nebula Graph
+#     ansible.builtin.apt:
+#       deb: https://oss-cdn.nebula-graph.io/package/3.2.0/nebula-graph-3.2.0.ubuntu2004.amd64.deb
+#     become: yes
+#
+#   - name: Install GO-Lang
+#     ansible.builtin.apt:
+#       name: golang-go
+#       update_cache: yes
+#     become: yes
+#
+#   - name: Launch Nebula Graph
+#     ansible.builtin.shell: bash nebula.service start all
+#     args:
+#        chdir: /usr/local/nebula/scripts
+#     become: yes
+#
+#   - name: Install Make
+#     ansible.builtin.apt:
+#       name: make
+#       update_cache: yes
+#     become: yes
+#
+#   - name: Download Nebula Console
+#     ansible.builtin.git:
+#         repo: https://github.com/vesoft-inc/nebula-console
+#         clone: yes
+#         dest: nebula-console
+#
+#   - name: Install Nebula Console
+#     ansible.builtin.shell: make
+#     args:
+#         chdir: nebula-console/
+#
+#   - name: Set UP hosts
+#     ansible.builtin.shell: ./nebula-console -addr localhost -port 9669 -u root -p password -e 'add hosts 127.0.0.1:9779'
+#     args:
+#        chdir: nebula-console/
+#
+#   - name: Download nebula-http-gateway
+#     ansible.builtin.git:
+#         repo: https://github.com/vesoft-inc/nebula-http-gateway
+#         clone: yes
+#         dest: nebula-http-gateway
+#
+#   - name: Install nebula-http-gateway
+#     ansible.builtin.shell: make
+#     args:
+#         chdir: nebula-http-gateway/
+#
+#   - name: Run nebula-http-gateway
+#     ansible.builtin.shell: nohup ./nebula-httpd &
+#     args:
+#         chdir: nebula-http-gateway/
+#
+#
+#
+#   - name: Clone Nebula BR
+#     ansible.builtin.git:
+#       repo: https://github.com/vesoft-inc/nebula-br
+#       clone: yes
+#       dest: nebula-br/
+#
+#   - name: Make Nebula BR
+#     ansible.builtin.shell: make
+#     args:
+#       chdir: nebula-br/
+#     become: yes
+#
+#   - name: mkdir nebula-graph-studio
+#     ansible.builtin.shell: mkdir /home/ubuntu/nebula-graph-studio
+#
+#   - name: Install Graph Studio
+#     ansible.builtin.unarchive:
+#        src: https://oss-cdn.nebula-graph.io/nebula-graph-studio/3.4.1/nebula-graph-studio-3.4.1.tar.gz
+#        dest: /home/ubuntu/nebula-graph-studio
+#        remote_src: yes
+#
+#   - name: Install docker-compose
+#     ansible.builtin.apt:
+#        name: docker-compose
+#        update_cache: yes
+#     become: yes
+#
+#   - name: Pull Graph Studio
+#     community.docker.docker_compose:
+#        project_src: /home/ubuntu/nebula-graph-studio
+#        pull: yes
+#     register: pull
+#     become: yes
+#
+#   - name: UP Graph Studio
+#     community.docker.docker_compose:
+#        project_src: /home/ubuntu/nebula-graph-studio
+#     register: output
+#     become: yes
 
-   - name: Install GO-Lang
+   - name: Install Redis
      ansible.builtin.apt:
-       name: golang-go
+       name: redis
        update_cache: yes
      become: yes
 
-   - name: Launch Nebula Graph
-     ansible.builtin.shell: bash nebula.service start all
-     args:
-        chdir: /usr/local/nebula/scripts
-     become: yes
-
-   - name: Install Make
-     ansible.builtin.apt:
-       name: make
-       update_cache: yes
-     become: yes
-
-   - name: Download Nebula Console
-     ansible.builtin.git:
-         repo: https://github.com/vesoft-inc/nebula-console
-         clone: yes
-         dest: nebula-console
-
-   - name: Install Nebula Console
-     ansible.builtin.shell: make
-     args:
-         chdir: nebula-console/
-
-   - name: Set UP hosts
-     ansible.builtin.shell: ./nebula-console -addr localhost -port 9669 -u root -p password -e 'add hosts 127.0.0.1:9779'
-     args:
-        chdir: nebula-console/
-
-   - name: Download nebula-http-gateway
-     ansible.builtin.git:
-         repo: https://github.com/vesoft-inc/nebula-http-gateway
-         clone: yes
-         dest: nebula-http-gateway
-
-   - name: Install nebula-http-gateway
-     ansible.builtin.shell: make
-     args:
-         chdir: nebula-http-gateway/
-
-   - name: Run nebula-http-gateway
-     ansible.builtin.shell: nohup ./nebula-httpd &
-     args:
-         chdir: nebula-http-gateway/
-
-
-
-   - name: Clone Nebula BR
-     ansible.builtin.git:
-       repo: https://github.com/vesoft-inc/nebula-br
-       clone: yes
-       dest: nebula-br/
-
-   - name: Make Nebula BR
-     ansible.builtin.shell: make
-     args:
-       chdir: nebula-br/
-     become: yes
-
-   - name: mkdir nebula-graph-studio
-     ansible.builtin.shell: mkdir /home/ubuntu/nebula-graph-studio
-
-   - name: Install Graph Studio
-     ansible.builtin.unarchive:
-        src: https://oss-cdn.nebula-graph.io/nebula-graph-studio/3.4.1/nebula-graph-studio-3.4.1.tar.gz
-        dest: /home/ubuntu/nebula-graph-studio
-        remote_src: yes
-
-   - name: Install docker-compose
-     ansible.builtin.apt:
-        name: docker-compose
-        update_cache: yes
-     become: yes
-
-   - name: Pull Graph Studio
-     community.docker.docker_compose:
-        project_src: /home/ubuntu/nebula-graph-studio
-        pull: yes
-     register: pull
-     become: yes
-
-   - name: UP Graph Studio
-     community.docker.docker_compose:
-        project_src: /home/ubuntu/nebula-graph-studio
-     register: output
+   - name: Launch Redis
+     ansible.builtin.shell: nohup redis-server --port 6380 --protected-mode no &
      become: yes

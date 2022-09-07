@@ -68,6 +68,6 @@ def construct_service_template_definition(name: str, only):
 #     #     documents = yaml.dump(template, file)
 #
 #
-# cluster_name = "Jupyter_3"
-# result = construct_service_template_definition(cluster_name, 'attributes')
+# cluster_name = "Clouni_8"
+# result = construct_service_template_definition(cluster_name, None)
 # print(yaml.dump(result, default_flow_style=False))

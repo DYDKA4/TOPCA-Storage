@@ -26,7 +26,6 @@ class GroupDefinition:
         self.metadata = []
         self.attributes = []
         self.properties = []
-        self.attributes = []
         self.members = []
 
     def set_type(self, group_type: str):

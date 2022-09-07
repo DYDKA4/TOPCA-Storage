@@ -400,7 +400,6 @@ interface_types:
       description: Standard lifecycle stop operation.
     delete:
       description: Standard lifecycle delete operation.
-
 data_types:
   tosca.datatypes.Credential:
     derived_from: tosca.datatypes.Root

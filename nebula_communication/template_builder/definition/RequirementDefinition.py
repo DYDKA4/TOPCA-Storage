@@ -76,18 +76,19 @@ def construct_requirement_definition(list_of_vid, only) -> list:
     return result
 
 
-def find_requirement_definition_dependencies(list_of_vid) -> dict:
+def find_requirement_definition_dependencies(list_of_vid, result) -> dict:
     from nebula_communication.template_builder.type.NodeTypes import find_node_type_dependencies
-    result = {
-        'ArtifactType': set(),
-        'CapabilityType': set(),
-        'DataType': set(),
-        'GroupType': set(),
-        'InterfaceType': set(),
-        'NodeType': set(),
-        'PolicyType': set(),
-        'RelationshipType': set(),
-    }
+    if result is None:
+        result = {
+            'ArtifactType': set(),
+            'CapabilityType': set(),
+            'DataType': set(),
+            'GroupType': set(),
+            'InterfaceType': set(),
+            'NodeType': set(),
+            'PolicyType': set(),
+            'RelationshipType': set(),
+        }
     requirement_definition = RequirementDefinition('name').__dict__
 
     for vid in list_of_vid:
@@ -98,24 +99,27 @@ def find_requirement_definition_dependencies(list_of_vid) -> dict:
         for edge in edges:
             destination = find_destination(vid, edge)
             if edge == 'capability':
-                dependencies = find_capability_type_dependencies(destination)
-                for key, value in dependencies.items():
-                    result[key].union(value)
-                result['CapabilityType'].add(destination[0])
+                if destination[0] not in result['CapabilityType']:
+                    dependencies = find_capability_type_dependencies(destination, result)
+                    for key, value in dependencies.items():
+                        result[key].union(value)
+                    result['CapabilityType'].add(destination[0])
             elif edge == 'node':
                 if destination:
-                    dependencies = find_node_type_dependencies(destination)
-                    for key, value in dependencies.items():
-                        result[key].union(value)
-                    result['NodeType'].add(destination[0])
+                    if destination[0] not in result['NodeType']:
+                        dependencies = find_node_type_dependencies(destination, result)
+                        for key, value in dependencies.items():
+                            result[key].union(value)
+                        result['NodeType'].add(destination[0])
             elif edge == 'relationship':
                 if destination:
-                    dependencies = find_relationship_type_dependencies(destination)
-                    for key, value in dependencies.items():
-                        result[key].union(value)
-                    result['RelationshipType'].add(destination[0])
+                    if destination[0] not in result['RelationshipType']:
+                        dependencies = find_relationship_type_dependencies(destination, result)
+                        for key, value in dependencies.items():
+                            result[key].union(value)
+                        result['RelationshipType'].add(destination[0])
             elif edge == 'interfaces':
-                dependencies = find_interface_definition_dependencies(destination)
+                dependencies = find_interface_definition_dependencies(destination, result)
                 for key, value in dependencies.items():
                     result[key].union(value)
             elif edge == 'occurrences':

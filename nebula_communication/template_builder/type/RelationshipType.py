@@ -58,54 +58,56 @@ def construct_relationship_type(list_of_vid, only) -> dict:
     return result
 
 
-def find_relationship_type_dependencies(list_of_vid) -> dict:
-    result = {
-        'ArtifactType': set(),
-        'CapabilityType': set(),
-        'DataType': set(),
-        'GroupType': set(),
-        'InterfaceType': set(),
-        'NodeType': set(),
-        'PolicyType': set(),
-        'RelationshipType': set(),
-    }
+def find_relationship_type_dependencies(list_of_vid, result) -> dict:
+    if result is None:
+        result = {
+            'ArtifactType': set(),
+            'CapabilityType': set(),
+            'DataType': set(),
+            'GroupType': set(),
+            'InterfaceType': set(),
+            'NodeType': set(),
+            'PolicyType': set(),
+            'RelationshipType': set(),
+        }
     relationship_type = RelationshipType('name').__dict__
 
     for vid in list_of_vid:
-        vertex_value = fetch_vertex(vid, 'RelationshipType')
-        vertex_value = vertex_value.as_map()
-        vertex_keys = vertex_value.keys()
-        edges = set(relationship_type.keys()) - set(vertex_keys) - {'vid'}
-        for edge in edges:
-            destination = find_destination(vid, edge)
-            if edge == 'derived_from':
-                if destination:
-                    dependencies = find_relationship_type_dependencies(destination)
+        if vid not in result['RelationshipType']:
+            vertex_value = fetch_vertex(vid, 'RelationshipType')
+            vertex_value = vertex_value.as_map()
+            vertex_keys = vertex_value.keys()
+            edges = set(relationship_type.keys()) - set(vertex_keys) - {'vid'}
+            for edge in edges:
+                destination = find_destination(vid, edge)
+                if edge == 'derived_from':
+                    if destination:
+                        if destination[0] not in result['RelationshipType']:
+                            dependencies = find_relationship_type_dependencies(destination, result)
+                            for key, value in dependencies.items():
+                                result[key].union(value)
+                            result['RelationshipType'].add(destination[0])
+                elif edge == 'metadata':
+                    continue
+                elif edge == 'properties':
+                    dependencies = find_property_definition_dependencies(destination, result)
                     for key, value in dependencies.items():
                         result[key].union(value)
-                    result['RelationshipType'].add(destination[0])
-            elif edge == 'metadata':
-                continue
-            elif edge == 'properties':
-                dependencies = find_property_definition_dependencies(destination)
-                for key, value in dependencies.items():
-                    result[key].union(value)
-            elif edge == 'attributes':
-                dependencies = find_attribute_definition_dependencies(destination)
-                for key, value in dependencies.items():
-                    result[key].union(value)
-            elif edge == 'interfaces':
-                dependencies = find_interface_definition_dependencies(destination)
-                for key, value in dependencies.items():
-                    result[key].union(value)
-            elif edge == 'valid_target_types':
-                dependencies = find_capability_type_dependencies(destination)
-                for key, value in dependencies.items():
-                    result[key].union(value)
-                for vertex in destination:
-                    result['CapabilityType'].add(vertex)
-            else:
-                print(edge)
-                abort(500)
-
+                elif edge == 'attributes':
+                    dependencies = find_attribute_definition_dependencies(destination, result)
+                    for key, value in dependencies.items():
+                        result[key].union(value)
+                elif edge == 'interfaces':
+                    dependencies = find_interface_definition_dependencies(destination, result)
+                    for key, value in dependencies.items():
+                        result[key].union(value)
+                elif edge == 'valid_target_types':
+                    dependencies = find_capability_type_dependencies(destination, result)
+                    for key, value in dependencies.items():
+                        result[key].union(value)
+                    for vertex in destination:
+                        result['CapabilityType'].add(vertex)
+                else:
+                    print(edge)
+                    abort(500)
     return result

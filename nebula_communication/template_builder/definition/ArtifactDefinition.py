@@ -45,18 +45,18 @@ def construct_artifact_definition(list_of_vid, only) -> dict:
     return result
 
 
-def find_artifact_definition_dependencies(list_of_vid) -> dict:
-    result = {
-        'ArtifactType': set(),
-        'CapabilityType': set(),
-        'DataType': set(),
-        'GroupType': set(),
-        'InterfaceType': set(),
-        'NodeType': set(),
-        'PolicyType': set(),
-        'RelationshipType': set(),
-    }
-
+def find_artifact_definition_dependencies(list_of_vid, result) -> dict:
+    if result is None:
+        result = {
+            'ArtifactType': set(),
+            'CapabilityType': set(),
+            'DataType': set(),
+            'GroupType': set(),
+            'InterfaceType': set(),
+            'NodeType': set(),
+            'PolicyType': set(),
+            'RelationshipType': set(),
+        }
     artifact_definition = ArtifactDefinition('name').__dict__
 
     for vid in list_of_vid:
@@ -71,16 +71,17 @@ def find_artifact_definition_dependencies(list_of_vid) -> dict:
                 destination = find_destination(vid, edge)
                 if edge == 'type':
                     if destination:
-                        data_type = fetch_vertex(destination[0], 'DataType')
-                        data_type = data_type.as_map()
-                        data_type = data_type['name'].as_string()
-                        if data_type not in DefaultDataTypes:
-                            dependencies = find_data_type_dependencies(destination)
-                            for key, value in dependencies.items():
-                                result[key].union(value)
-                            result['DataType'].add(destination[0])
+                        if destination[0] not in result['DataType']:
+                            data_type = fetch_vertex(destination[0], 'DataType')
+                            data_type = data_type.as_map()
+                            data_type = data_type['name'].as_string()
+                            if data_type not in DefaultDataTypes:
+                                dependencies = find_data_type_dependencies(destination, result)
+                                for key, value in dependencies.items():
+                                    result[key].union(value)
+                                result['DataType'].add(destination[0])
                 elif edge == 'properties':
-                    dependencies = find_property_definition_dependencies(destination)
+                    dependencies = find_property_definition_dependencies(destination, result)
                     for key, value in dependencies.items():
                         result[key].union(value)
                 else:

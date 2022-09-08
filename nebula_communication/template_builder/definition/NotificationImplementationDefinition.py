@@ -40,17 +40,18 @@ def construct_notification_implementation_definition(list_of_vid) -> dict:
     return result
 
 
-def find_notification_implementation_definition_dependencies(list_of_vid) -> dict:
-    result = {
-        'ArtifactType': set(),
-        'CapabilityType': set(),
-        'DataType': set(),
-        'GroupType': set(),
-        'InterfaceType': set(),
-        'NodeType': set(),
-        'PolicyType': set(),
-        'RelationshipType': set(),
-    }
+def find_notification_implementation_definition_dependencies(list_of_vid, result) -> dict:
+    if result is None:
+        result = {
+            'ArtifactType': set(),
+            'CapabilityType': set(),
+            'DataType': set(),
+            'GroupType': set(),
+            'InterfaceType': set(),
+            'NodeType': set(),
+            'PolicyType': set(),
+            'RelationshipType': set(),
+        }
     constraint_clause = NotificationImplementationDefinition().__dict__
 
     for vid in list_of_vid:
@@ -62,11 +63,11 @@ def find_notification_implementation_definition_dependencies(list_of_vid) -> dic
             destination = find_destination(vid, edge)
             if edge == 'primary':
                 if destination:
-                    dependencies = find_artifact_definition_dependencies(destination)
+                    dependencies = find_artifact_definition_dependencies(destination, result)
                     for key, value in dependencies.items():
                         result[key].union(value)
             elif edge == 'dependencies':
-                dependencies = find_artifact_definition_dependencies(destination)
+                dependencies = find_artifact_definition_dependencies(destination, result)
                 for key, value in dependencies.items():
                     result[key].union(value)
             else:

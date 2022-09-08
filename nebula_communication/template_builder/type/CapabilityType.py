@@ -50,48 +50,52 @@ def construct_capability_type(list_of_vid) -> dict:
     return result
 
 
-def find_capability_type_dependencies(list_of_vid) -> dict:
+def find_capability_type_dependencies(list_of_vid, result) -> dict:
     from nebula_communication.template_builder.type.NodeTypes import find_node_type_dependencies
-    result = {
-        'ArtifactType': set(),
-        'CapabilityType': set(),
-        'DataType': set(),
-        'GroupType': set(),
-        'InterfaceType': set(),
-        'NodeType': set(),
-        'PolicyType': set(),
-        'RelationshipType': set(),
-    }
+    if result is None:
+        result = {
+            'ArtifactType': set(),
+            'CapabilityType': set(),
+            'DataType': set(),
+            'GroupType': set(),
+            'InterfaceType': set(),
+            'NodeType': set(),
+            'PolicyType': set(),
+            'RelationshipType': set(),
+        }
     capability_type = CapabilityType('name').__dict__
     for vid in list_of_vid:
-        vertex_value = fetch_vertex(vid, 'CapabilityType')
-        vertex_value = vertex_value.as_map()
-        vertex_keys = vertex_value.keys()
-        edges = set(capability_type.keys()) - set(vertex_keys) - {'vid'}
-        for edge in edges:
-            destination = find_destination(vid, edge)
-            if edge == 'derived_from':
-                if destination:
-                    dependencies = find_capability_type_dependencies(destination)
+        if vid not in result['CapabilityType']:
+            vertex_value = fetch_vertex(vid, 'CapabilityType')
+            vertex_value = vertex_value.as_map()
+            vertex_keys = vertex_value.keys()
+            edges = set(capability_type.keys()) - set(vertex_keys) - {'vid'}
+            for edge in edges:
+                destination = find_destination(vid, edge)
+                if edge == 'derived_from':
+                    if destination:
+                        if destination[0] not in result['CapabilityType']:
+                            dependencies = find_capability_type_dependencies(destination, result)
+                            for key, value in dependencies.items():
+                                result[key].union(value)
+                            result['CapabilityType'].add(destination[0])
+                elif edge == 'properties':
+                    dependencies = find_property_definition_dependencies(destination, result)
                     for key, value in dependencies.items():
                         result[key].union(value)
-                    result['CapabilityType'].add(destination[0])
-            elif edge == 'properties':
-                dependencies = find_property_definition_dependencies(destination)
-                for key, value in dependencies.items():
-                    result[key].union(value)
-            elif edge == 'attributes':
-                dependencies = find_attribute_definition_dependencies(destination)
-                for key, value in dependencies.items():
-                    result[key].union(value)
-            elif edge == 'valid_source_types':
-                dependencies = find_node_type_dependencies(destination)
-                for key, value in dependencies.items():
-                    result[key].union(value)
-                for vertex in destination:
-                    result['NodeType'].add(vertex)
-            elif edge == 'metadata':
-                continue
-            else:
-                abort(500)
+                elif edge == 'attributes':
+                    dependencies = find_attribute_definition_dependencies(destination, result)
+                    for key, value in dependencies.items():
+                        result[key].union(value)
+                elif edge == 'valid_source_types':
+                    if not set(destination).issubset(result['NodeType']):
+                        dependencies = find_node_type_dependencies(destination, result)
+                        for key, value in dependencies.items():
+                            result[key].union(value)
+                        for vertex in destination:
+                            result['NodeType'].add(vertex)
+                elif edge == 'metadata':
+                    continue
+                else:
+                    abort(500)
     return result

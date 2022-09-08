@@ -230,16 +230,31 @@ def find_vertex_by_properties(vid_type, **params):
     return result
 
 
-def find_all_edges(vid, **params):
+def find_all_edges(vid, steps: int, **params):
     condition = ''
     for name, value in params.items():
+        sub_condition = ''
+        if type(value) == list:
+            for item in value:
+                if sub_condition == '':
+                    sub_condition = f"properties($$).{name} == '{item}'"
+                else:
+                    sub_condition += f"or properties($$).{name} == '{item}'"
+            sub_condition = '(' + sub_condition + ')'
         if not condition:
-            condition = f"WHERE properties($$).{name} == '{value}'"
+            if sub_condition != '':
+                condition = f"WHERE {sub_condition}"
+            else:
+                condition = f"WHERE properties($$).{name} == '{value}'"
         else:
-            condition += f"and properties($$).{name} == '{value}'"
-
-    result = session.execute(f' GO 1 STEPS FROM f{vid} OVER *  {condition} YIELD dst(edge) as id, properties($$) as '
-                             f'props')
-    logging.info(f' GO 1 STEPS FROM f{vid} OVER *  {condition} YIELD dst(edge) as id, properties($$) as props')
+            if sub_condition != '':
+                condition += f"and {sub_condition}"
+            else:
+                condition += f"and properties($$).{name} == '{value}'"
+    result = session.execute(f' GO {steps} STEPS FROM {vid} OVER *  {condition}'
+                             f' YIELD dst(edge) as id, properties($$) as props')
+    logging.info(f' GO {steps} STEPS FROM {vid} OVER *  {condition} YIELD dst(edge) as id, properties($$) as props')
+    # print(f' GO {steps} STEPS FROM {vid} OVER *  {condition}'
+    #                          f' YIELD dst(edge) as id, properties($$) as props')
     assert result.is_succeeded(), result.error_msg()
     return result

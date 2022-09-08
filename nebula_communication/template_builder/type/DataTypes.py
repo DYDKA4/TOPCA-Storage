@@ -52,50 +52,53 @@ def construct_data_type(list_of_vid) -> dict:
     return result
 
 
-def find_data_type_dependencies(list_of_vid) -> dict:
-    result = {
-        'ArtifactType': set(),
-        'CapabilityType': set(),
-        'DataType': set(),
-        'GroupType': set(),
-        'InterfaceType': set(),
-        'NodeType': set(),
-        'PolicyType': set(),
-        'RelationshipType': set(),
-    }
+def find_data_type_dependencies(list_of_vid, result) -> dict:
+    if result is None:
+        result = {
+            'ArtifactType': set(),
+            'CapabilityType': set(),
+            'DataType': set(),
+            'GroupType': set(),
+            'InterfaceType': set(),
+            'NodeType': set(),
+            'PolicyType': set(),
+            'RelationshipType': set(),
+        }
     data_type = DataType('name').__dict__
     for vid in list_of_vid:
-        vertex_value = fetch_vertex(vid, 'DataType')
-        vertex_value = vertex_value.as_map()
-        tmp_result = {}
-        vertex_keys = vertex_value.keys()
-        edges = set(data_type.keys()) - set(vertex_keys) - {'vid'}
-        for edge in edges:
-            destination = find_destination(vid, edge)
-            if edge == 'derived_from':
-                if destination:
-                    dependencies = find_data_type_dependencies(destination)
-                    for key, value in dependencies.items():
-                        result[key].union(value)
-                    result['ArtifactType'].add(destination[0])
-            elif edge == 'metadata':
-                continue
-            elif edge == 'properties':
-                dependencies = find_property_definition_dependencies(destination)
-                for key, value in dependencies.items():
-                    result[key].union(value)
-            elif edge == 'constraints':
-                continue
-            elif edge == 'entry_schema':
-                dependencies = find_schema_definition_dependencies(destination)
-                for key, value in dependencies.items():
-                    result[key].union(value)
-            elif edge == 'key_schema':
-                dependencies = find_schema_definition_dependencies(destination)
-                for key, value in dependencies.items():
-                    result[key].union(value)
-            else:
-                abort(500)
-        if vertex_value['name'].as_string() not in DefaultDataTypes:
-            result[vertex_value['name'].as_string()] = tmp_result
+        if vid not in result['DataType']:
+            vertex_value = fetch_vertex(vid, 'DataType')
+            vertex_value = vertex_value.as_map()
+            vertex_keys = vertex_value.keys()
+            if vertex_value['name'].as_string() not in DefaultDataTypes:
+
+                edges = set(data_type.keys()) - set(vertex_keys) - {'vid'}
+                for edge in edges:
+                    destination = find_destination(vid, edge)
+                    if edge == 'derived_from':
+                        if destination:
+                            if destination[0] not in result['DataType']:
+                                dependencies = find_data_type_dependencies(destination, result)
+                                for key, value in dependencies.items():
+                                    print(key, value)
+                                    result[key].union(value)
+                                result['DataType'].add(destination[0])
+                    elif edge == 'metadata':
+                        continue
+                    elif edge == 'properties':
+                        dependencies = find_property_definition_dependencies(destination, result)
+                        for key, value in dependencies.items():
+                            result[key].union(value)
+                    elif edge == 'constraints':
+                        continue
+                    elif edge == 'entry_schema':
+                        dependencies = find_schema_definition_dependencies(destination, result)
+                        for key, value in dependencies.items():
+                            result[key].union(value)
+                    elif edge == 'key_schema':
+                        dependencies = find_schema_definition_dependencies(destination, result)
+                        for key, value in dependencies.items():
+                            result[key].union(value)
+                    else:
+                        abort(500)
     return result

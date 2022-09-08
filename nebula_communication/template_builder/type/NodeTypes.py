@@ -60,60 +60,63 @@ def construct_node_type(list_of_vid, only) -> dict:
     return result
 
 
-def find_node_type_dependencies(list_of_vid) -> dict:
-    result = {
-        'ArtifactType': set(),
-        'CapabilityType': set(),
-        'DataType': set(),
-        'GroupType': set(),
-        'InterfaceType': set(),
-        'NodeType': set(),
-        'PolicyType': set(),
-        'RelationshipType': set(),
-    }
+def find_node_type_dependencies(list_of_vid, result) -> dict:
+    if result is None:
+        result = {
+            'ArtifactType': set(),
+            'CapabilityType': set(),
+            'DataType': set(),
+            'GroupType': set(),
+            'InterfaceType': set(),
+            'NodeType': set(),
+            'PolicyType': set(),
+            'RelationshipType': set(),
+        }
     node_type = NodeType('name').__dict__
     for vid in list_of_vid:
-        vertex_value = fetch_vertex(vid, 'NodeType')
-        vertex_value = vertex_value.as_map()
-        vertex_keys = vertex_value.keys()
-        edges = set(node_type.keys()) - set(vertex_keys) - {'vid'}
-        for edge in edges:
-            destination = find_destination(vid, edge)
-            if edge == 'derived_from':
-                if destination:
-                    dependencies = find_node_type_dependencies(destination)
+        if vid not in result['NodeType']:
+            vertex_value = fetch_vertex(vid, 'NodeType')
+            vertex_value = vertex_value.as_map()
+            vertex_keys = vertex_value.keys()
+            edges = set(node_type.keys()) - set(vertex_keys) - {'vid'}
+            for edge in edges:
+                destination = find_destination(vid, edge)
+                if edge == 'derived_from':
+                    if destination:
+                        if destination[0] not in result['NodeType']:
+                            dependencies = find_node_type_dependencies(destination, result)
+                            for key, value in dependencies.items():
+                                result[key].union(value)
+                            result['NodeType'].add(destination[0])
+                elif edge == 'metadata':
+                    continue
+                elif edge == 'properties':
+                    dependencies = find_property_definition_dependencies(destination, result)
                     for key, value in dependencies.items():
                         result[key].union(value)
-                    result['NodeType'].add(destination[0])
-            elif edge == 'metadata':
-                continue
-            elif edge == 'properties':
-                dependencies = find_property_definition_dependencies(destination)
-                for key, value in dependencies.items():
-                    result[key].union(value)
-            elif edge == 'attributes':
-                dependencies = find_attribute_definition_dependencies(destination)
-                for key, value in dependencies.items():
-                    result[key].union(value)
-            elif edge == 'requirements':
-                dependencies = find_requirement_definition_dependencies(destination)
-                for key, value in dependencies.items():
-                    result[key].union(value)
-            elif edge == 'interfaces':
-                dependencies = find_interface_definition_dependencies(destination)
-                for key, value in dependencies.items():
-                    result[key].union(value)
-            elif edge == 'capabilities':
-                dependencies = find_capability_definition_dependencies(destination)
-                for key, value in dependencies.items():
-                    result[key].union(value)
-            elif edge == 'artifacts':
-                dependencies = find_artifact_definition_dependencies(destination)
-                for key, value in dependencies.items():
-                    result[key].union(value)
-            else:
-                print(edge)
-                abort(500)
+                elif edge == 'attributes':
+                    dependencies = find_attribute_definition_dependencies(destination, result)
+                    for key, value in dependencies.items():
+                        result[key].union(value)
+                elif edge == 'requirements':
+                    dependencies = find_requirement_definition_dependencies(destination, result)
+                    for key, value in dependencies.items():
+                        result[key].union(value)
+                elif edge == 'interfaces':
+                    dependencies = find_interface_definition_dependencies(destination, result)
+                    for key, value in dependencies.items():
+                        result[key].union(value)
+                elif edge == 'capabilities':
+                    dependencies = find_capability_definition_dependencies(destination, result)
+                    for key, value in dependencies.items():
+                        result[key].union(value)
+                elif edge == 'artifacts':
+                    dependencies = find_artifact_definition_dependencies(destination, result)
+                    for key, value in dependencies.items():
+                        result[key].union(value)
+                else:
+                    print(edge)
+                    abort(500)
 
     return result
 

@@ -48,48 +48,51 @@ def construct_interface_type(list_of_vid, only) -> dict:
     return result
 
 
-def find_interface_type_dependencies(list_of_vid) -> dict:
-    result = {
-        'ArtifactType': set(),
-        'CapabilityType': set(),
-        'DataType': set(),
-        'GroupType': set(),
-        'InterfaceType': set(),
-        'NodeType': set(),
-        'PolicyType': set(),
-        'RelationshipType': set(),
-    }
+def find_interface_type_dependencies(list_of_vid, result) -> dict:
+    if result is None:
+        result = {
+            'ArtifactType': set(),
+            'CapabilityType': set(),
+            'DataType': set(),
+            'GroupType': set(),
+            'InterfaceType': set(),
+            'NodeType': set(),
+            'PolicyType': set(),
+            'RelationshipType': set(),
+        }
     data_type = InterfaceType('name').__dict__
 
     for vid in list_of_vid:
-        vertex_value = fetch_vertex(vid, 'InterfaceType')
-        vertex_value = vertex_value.as_map()
-        vertex_keys = vertex_value.keys()
-        edges = set(data_type.keys()) - set(vertex_keys) - {'vid'}
-        for edge in edges:
-            destination = find_destination(vid, edge)
-            if edge == 'derived_from':
-                if destination:
-                    dependencies = find_interface_type_dependencies(destination)
+        if vid not in result['InterfaceType']:
+            vertex_value = fetch_vertex(vid, 'InterfaceType')
+            vertex_value = vertex_value.as_map()
+            vertex_keys = vertex_value.keys()
+            edges = set(data_type.keys()) - set(vertex_keys) - {'vid'}
+            for edge in edges:
+                destination = find_destination(vid, edge)
+                if edge == 'derived_from':
+                    if destination:
+                        if destination[0] not in result['InterfaceType']:
+                            dependencies = find_interface_type_dependencies(destination, result)
+                            for key, value in dependencies.items():
+                                result[key].union(value)
+                            result['InterfaceType'].add(destination[0])
+                elif edge == 'metadata':
+                    continue
+                elif edge == 'inputs':
+                    dependencies = find_property_definition_dependencies(destination, result)
                     for key, value in dependencies.items():
                         result[key].union(value)
-                    result['InterfaceType'].add(destination[0])
-            elif edge == 'metadata':
-                continue
-            elif edge == 'inputs':
-                dependencies = find_property_definition_dependencies(destination)
-                for key, value in dependencies.items():
-                    result[key].union(value)
-            elif edge == 'notifications':
-                dependencies = find_notification_definition_dependencies(destination)
-                for key, value in dependencies.items():
-                    result[key].union(value)
-            elif edge == 'operations':
-                dependencies = find_operation_definition_dependencies(destination)
-                for key, value in dependencies.items():
-                    result[key].union(value)
-            else:
-                print(edge)
-                abort(500)
+                elif edge == 'notifications':
+                    dependencies = find_notification_definition_dependencies(destination, result)
+                    for key, value in dependencies.items():
+                        result[key].union(value)
+                elif edge == 'operations':
+                    dependencies = find_operation_definition_dependencies(destination, result)
+                    for key, value in dependencies.items():
+                        result[key].union(value)
+                else:
+                    print(edge)
+                    abort(500)
 
     return result

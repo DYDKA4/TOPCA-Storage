@@ -41,40 +41,43 @@ def construct_artifact_type(list_of_vid) -> dict:
     return result
 
 
-def find_artifact_type_dependencies(list_of_vid) -> dict:
-    result = {
-        'ArtifactType': set(),
-        'CapabilityType': set(),
-        'DataType': set(),
-        'GroupType': set(),
-        'InterfaceType': set(),
-        'NodeType': set(),
-        'PolicyType': set(),
-        'RelationshipType': set(),
-    }
+def find_artifact_type_dependencies(list_of_vid, result) -> dict:
+    if result is None:
+        result = {
+            'ArtifactType': set(),
+            'CapabilityType': set(),
+            'DataType': set(),
+            'GroupType': set(),
+            'InterfaceType': set(),
+            'NodeType': set(),
+            'PolicyType': set(),
+            'RelationshipType': set(),
+        }
     artifact_type = ArtifactType('name').__dict__
 
     for vid in list_of_vid:
-        vertex_value = fetch_vertex(vid, 'ArtifactType')
-        vertex_value = vertex_value.as_map()
-        vertex_keys = vertex_value.keys()
-        edges = set(artifact_type.keys()) - set(vertex_keys) - {'vid'}
-        for edge in edges:
-            destination = find_destination(vid, edge)
-            if edge == 'derived_from':
-                if destination:
-                    dependencies = find_artifact_type_dependencies(destination)
+        if vid not in result['ArtifactType']:
+            vertex_value = fetch_vertex(vid, 'ArtifactType')
+            vertex_value = vertex_value.as_map()
+            vertex_keys = vertex_value.keys()
+            edges = set(artifact_type.keys()) - set(vertex_keys) - {'vid'}
+            for edge in edges:
+                destination = find_destination(vid, edge)
+                if edge == 'derived_from':
+                    if destination:
+                        if destination[0] not in result['ArtifactType']:
+                            dependencies = find_artifact_type_dependencies(destination, result)
+                            for key, value in dependencies.items():
+                                result[key].union(value)
+                            result['ArtifactType'].add(destination[0])
+                elif edge == 'metadata':
+                    continue
+                elif edge == 'properties':
+                    dependencies = find_property_definition_dependencies(destination, result)
                     for key, value in dependencies.items():
                         result[key].union(value)
-                    result['ArtifactType'].add(destination[0])
-            elif edge == 'metadata':
-                continue
-            elif edge == 'properties':
-                dependencies = find_property_definition_dependencies(destination)
-                for key, value in dependencies.items():
-                    result[key].union(value)
-            elif edge == 'file_ext':
-                continue
-            else:
-                abort(500)
+                elif edge == 'file_ext':
+                    continue
+                else:
+                    abort(500)
     return result

@@ -58,17 +58,18 @@ def construct_operation_definition(list_of_vid, only) -> dict:
     return result
 
 
-def find_operation_definition_dependencies(list_of_vid) -> dict:
-    result = {
-        'ArtifactType': set(),
-        'CapabilityType': set(),
-        'DataType': set(),
-        'GroupType': set(),
-        'InterfaceType': set(),
-        'NodeType': set(),
-        'PolicyType': set(),
-        'RelationshipType': set(),
-    }
+def find_operation_definition_dependencies(list_of_vid, result) -> dict:
+    if result is None:
+        result = {
+            'ArtifactType': set(),
+            'CapabilityType': set(),
+            'DataType': set(),
+            'GroupType': set(),
+            'InterfaceType': set(),
+            'NodeType': set(),
+            'PolicyType': set(),
+            'RelationshipType': set(),
+        }
     property_definition = OperationDefinition('name').__dict__
     for vid in list_of_vid:
         vertex_value = fetch_vertex(vid, 'OperationDefinition')
@@ -81,11 +82,11 @@ def find_operation_definition_dependencies(list_of_vid) -> dict:
                 if destination:
                     data = fetch_vertex(destination[0], 'ArtifactDefinition')
                     if data is None:
-                        dependencies = find_operation_implementation_definition_dependencies(destination)
+                        dependencies = find_operation_implementation_definition_dependencies(destination, result)
                         for key, value in dependencies.items():
                             result[key].union(value)
                     else:
-                        dependencies = find_artifact_definition_dependencies(destination)
+                        dependencies = find_artifact_definition_dependencies(destination, result)
                         for key, value in dependencies.items():
                             result[key].union(value)
             elif edge == 'outputs':
@@ -93,7 +94,7 @@ def find_operation_definition_dependencies(list_of_vid) -> dict:
             elif edge == 'inputs':
                 if destination:
                     if fetch_vertex(destination[0], 'PropertyDefinition'):
-                        dependencies = find_property_definition_dependencies(destination)
+                        dependencies = find_property_definition_dependencies(destination, result)
                         for key, value in dependencies.items():
                             result[key].union(value)
                     elif fetch_vertex(destination[0], 'PropertyAssignment'):

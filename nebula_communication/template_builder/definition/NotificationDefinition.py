@@ -32,17 +32,18 @@ def construct_notification_definition(list_of_vid) -> dict:
     return result
 
 
-def find_notification_definition_dependencies(list_of_vid) -> dict:
-    result = {
-        'ArtifactType': set(),
-        'CapabilityType': set(),
-        'DataType': set(),
-        'GroupType': set(),
-        'InterfaceType': set(),
-        'NodeType': set(),
-        'PolicyType': set(),
-        'RelationshipType': set(),
-    }
+def find_notification_definition_dependencies(list_of_vid, result) -> dict:
+    if result is None:
+        result = {
+            'ArtifactType': set(),
+            'CapabilityType': set(),
+            'DataType': set(),
+            'GroupType': set(),
+            'InterfaceType': set(),
+            'NodeType': set(),
+            'PolicyType': set(),
+            'RelationshipType': set(),
+        }
     property_definition = NotificationDefinition('name').__dict__
 
     for vid in list_of_vid:
@@ -53,7 +54,7 @@ def find_notification_definition_dependencies(list_of_vid) -> dict:
         for edge in edges:
             destination = find_destination(vid, edge)
             if edge == 'implementation':
-                dependencies = find_notification_implementation_definition_dependencies(destination)
+                dependencies = find_notification_implementation_definition_dependencies(destination, result)
                 for key, value in dependencies.items():
                     result[key].union(value)
             elif edge == 'outputs':

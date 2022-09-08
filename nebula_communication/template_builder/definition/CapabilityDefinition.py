@@ -1,8 +1,11 @@
 from werkzeug.exceptions import abort
 
 from nebula_communication.nebula_functions import fetch_vertex, find_destination
-from nebula_communication.template_builder.definition.AttributeDefinition import construct_attribute_definition
-from nebula_communication.template_builder.definition.ProperyDefinition import construct_property_definition
+from nebula_communication.template_builder.definition.AttributeDefinition import construct_attribute_definition, \
+    find_attribute_definition_dependencies
+from nebula_communication.template_builder.definition.ProperyDefinition import construct_property_definition, \
+    find_property_definition_dependencies
+from nebula_communication.template_builder.type.CapabilityType import find_capability_type_dependencies
 from parser.parser.tosca_v_1_3.definitions.CapabilityDefinition import CapabilityDefinition
 
 
@@ -57,4 +60,51 @@ def construct_capability_definition(list_of_vid) -> dict:
                 abort(500)
         result[vertex_value['name'].as_string()] = tmp_result
 
+    return result
+
+
+def find_capability_definition_dependencies(list_of_vid) -> dict:
+    from nebula_communication.template_builder.type.NodeTypes import find_node_type_dependencies
+    result = {
+        'ArtifactType': set(),
+        'CapabilityType': set(),
+        'DataType': set(),
+        'GroupType': set(),
+        'InterfaceType': set(),
+        'NodeType': set(),
+        'PolicyType': set(),
+        'RelationshipType': set(),
+    }
+    capability_definition = CapabilityDefinition('name').__dict__
+
+    for vid in list_of_vid:
+        vertex_value = fetch_vertex(vid, 'CapabilityDefinition')
+        vertex_value = vertex_value.as_map()
+        vertex_keys = vertex_value.keys()
+        edges = set(capability_definition.keys()) - set(vertex_keys) - {'vid'}
+        for edge in edges:
+            destination = find_destination(vid, edge)
+            if edge == 'type':
+                dependencies = find_capability_type_dependencies(destination)
+                for key, value in dependencies.items():
+                    result[key].union(value)
+                result['CapabilityType'].add(destination[0])
+            elif edge == 'properties':
+                dependencies = find_property_definition_dependencies(destination)
+                for key, value in dependencies.items():
+                    result[key].union(value)
+            elif edge == 'attributes':
+                dependencies = find_attribute_definition_dependencies(destination)
+                for key, value in dependencies.items():
+                    result[key].union(value)
+            elif edge == 'valid_source_types':
+                dependencies = find_node_type_dependencies(destination)
+                for key, value in dependencies.items():
+                    result[key].union(value)
+                for vertex in destination:
+                    result['NodeType'].add(vertex)
+            elif edge == 'occurrences':
+                continue
+            else:
+                abort(500)
     return result

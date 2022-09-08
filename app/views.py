@@ -6,7 +6,8 @@ from werkzeug.exceptions import HTTPException
 from app import app, current_api_version as cav
 import yaml
 from nebula_communication.deploy import deploy
-from nebula_communication.nebula_functions import delete_all, delete_cluster, find_vertex_by_properties, fetch_vertex
+from nebula_communication.nebula_functions import delete_all, delete_cluster, find_vertex_by_properties, fetch_vertex, \
+    find_path
 from nebula_communication.redis_communication import add_vid
 from nebula_communication.search.property_search import find_node_template_of_property
 from nebula_communication.search.search_of_endpoint import search_of_endpoint_from_son
@@ -289,3 +290,44 @@ def find_node_with_mutual_property():
                     tmp_answer = tmp_answer | {key_2: tmp_result}
         result = tmp_answer
     return result
+
+
+@app.route(f'/{cav}/all_dependencies/<path:varargs>')
+def get_all_dependencies(varargs=None):
+    """
+        curl -X GET 'http://127.0.0.1:5000/v0.1/all_dependencies/node_type/michman.nodes.Jupyter.Jupyter-6-0-1
+        :return:
+            json : {status : http status,
+                    message: message to user}
+    """
+    try:
+        if varargs is not None:
+            varargs = varargs.split('/')
+            if len(varargs) != 2:
+                return jsonify({'status: 400',
+                                'message: wrong url path'})
+            node_type = varargs[0]
+            node_name = varargs[1]
+            if node_type == 'artifact_type':
+                return jsonify({'status': 200})
+            elif node_type == 'capability_type':
+                return jsonify({'status': 200})
+            elif node_type == 'data_type':
+                return jsonify({'status': 200})
+            elif node_type == 'group_type':
+                return jsonify({'status': 200})
+            elif node_type == 'interface_type':
+                return jsonify({'status': 200})
+            elif node_type == 'node_type':
+
+            elif node_type == 'policy_type':
+                return jsonify({'status': 200})
+            elif node_type == 'relationship_type':
+                return jsonify({'status': 200})
+            return jsonify({'status': 400,
+                            'message': 'wrong node_type'})
+        return jsonify({'status: 400',
+                        'message: wrong url path'})
+    except HTTPException as e:
+        return jsonify({'status': e.code,
+                        'message': e.description})

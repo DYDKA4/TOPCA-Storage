@@ -34,3 +34,47 @@ def construct_schema_definition(list_of_vid) -> dict:
             else:
                 abort(500)
     return result
+
+
+def find_schema_definition_dependencies(list_of_vid) -> dict:
+    from nebula_communication.template_builder.type.DataTypes import DefaultDataTypes, find_data_type_dependencies
+    result = {
+        'ArtifactType': set(),
+        'CapabilityType': set(),
+        'DataType': set(),
+        'GroupType': set(),
+        'InterfaceType': set(),
+        'NodeType': set(),
+        'PolicyType': set(),
+        'RelationshipType': set(),
+    }
+    property_definition = SchemaDefinition().__dict__
+    for vid in list_of_vid:
+        vertex_value = fetch_vertex(vid, 'SchemaDefinition')
+        vertex_value = vertex_value.as_map()
+        vertex_keys = vertex_value.keys()
+        edges = set(property_definition.keys()) - set(vertex_keys) - {'vid'}
+        for edge in edges:
+            destination = find_destination(vid, edge)
+            if edge == 'entry_schema':
+                dependencies = find_schema_definition_dependencies(destination)
+                for key, value in dependencies.items():
+                    result[key].union(value)
+            elif edge == 'key_schema':
+                dependencies = find_schema_definition_dependencies(destination)
+                for key, value in dependencies.items():
+                    result[key].union(value)
+            elif edge == 'constraints':
+                continue
+            elif edge == 'type':
+                data_type = fetch_vertex(destination[0], 'DataType')
+                data_type = data_type.as_map()
+                data_type = data_type['name'].as_string()
+                if data_type not in DefaultDataTypes:
+                    dependencies = find_data_type_dependencies(destination)
+                    for key, value in dependencies.items():
+                        result[key].union(value)
+                    result['DataType'].add(destination[0])
+            else:
+                abort(500)
+    return result

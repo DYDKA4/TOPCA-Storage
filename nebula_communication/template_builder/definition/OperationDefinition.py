@@ -2,9 +2,11 @@ from werkzeug.exceptions import abort
 
 from nebula_communication.nebula_functions import fetch_vertex, find_destination
 from nebula_communication.template_builder.assignment.PropertyAssignment import construct_property_assignment
+from nebula_communication.template_builder.definition.ArtifactDefinition import find_artifact_definition_dependencies
 from nebula_communication.template_builder.definition.OperationImplementationDefinition import \
-    construct_operation_implementation_definition
-from nebula_communication.template_builder.definition.ProperyDefinition import construct_property_definition
+    construct_operation_implementation_definition, find_operation_implementation_definition_dependencies
+from nebula_communication.template_builder.definition.ProperyDefinition import construct_property_definition, \
+    find_property_definition_dependencies
 from parser.parser.tosca_v_1_3.definitions.OperationDefinition import OperationDefinition
 
 
@@ -53,4 +55,51 @@ def construct_operation_definition(list_of_vid, only) -> dict:
             result[vertex_value['name'].as_string()] = short_notation
         else:
             result[vertex_value['name'].as_string()] = tmp_result
+    return result
+
+
+def find_operation_definition_dependencies(list_of_vid) -> dict:
+    result = {
+        'ArtifactType': set(),
+        'CapabilityType': set(),
+        'DataType': set(),
+        'GroupType': set(),
+        'InterfaceType': set(),
+        'NodeType': set(),
+        'PolicyType': set(),
+        'RelationshipType': set(),
+    }
+    property_definition = OperationDefinition('name').__dict__
+    for vid in list_of_vid:
+        vertex_value = fetch_vertex(vid, 'OperationDefinition')
+        vertex_value = vertex_value.as_map()
+        vertex_keys = vertex_value.keys()
+        edges = set(property_definition.keys()) - set(vertex_keys) - {'vid'}
+        for edge in edges:
+            destination = find_destination(vid, edge)
+            if edge == 'implementation':
+                if destination:
+                    data = fetch_vertex(destination[0], 'ArtifactDefinition')
+                    if data is None:
+                        dependencies = find_operation_implementation_definition_dependencies(destination)
+                        for key, value in dependencies.items():
+                            result[key].union(value)
+                    else:
+                        dependencies = find_artifact_definition_dependencies(destination)
+                        for key, value in dependencies.items():
+                            result[key].union(value)
+            elif edge == 'outputs':
+                continue
+            elif edge == 'inputs':
+                if destination:
+                    if fetch_vertex(destination[0], 'PropertyDefinition'):
+                        dependencies = find_property_definition_dependencies(destination)
+                        for key, value in dependencies.items():
+                            result[key].union(value)
+                    elif fetch_vertex(destination[0], 'PropertyAssignment'):
+                        continue
+                    else:
+                        abort(500)
+            else:
+                abort(500)
     return result

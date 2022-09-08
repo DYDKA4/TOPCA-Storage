@@ -2,10 +2,15 @@ from werkzeug.exceptions import abort
 
 from nebula_communication.nebula_functions import fetch_vertex, find_destination
 from nebula_communication.template_builder.definition.MetadataDefinition import construct_metadata_definition
-from nebula_communication.template_builder.definition.ProperyDefinition import construct_property_definition
-from nebula_communication.template_builder.definition.SchemaDefinition import construct_schema_definition
+from nebula_communication.template_builder.definition.ProperyDefinition import construct_property_definition, \
+    find_property_definition_dependencies
+from nebula_communication.template_builder.definition.SchemaDefinition import construct_schema_definition, \
+    find_schema_definition_dependencies
 from nebula_communication.template_builder.other.ConstraintClause import construct_constraint_schema
 from parser.parser.tosca_v_1_3.types.DataType import DataType
+
+DefaultDataTypes = {'string', 'boolean', 'integer', 'float', 'timestamp', 'scalar-unit.size',
+                    'scalar-unit.frequency', 'map', 'list', 'range', 'version'}
 
 
 def construct_data_type(list_of_vid) -> dict:
@@ -41,8 +46,56 @@ def construct_data_type(list_of_vid) -> dict:
                 tmp_result['key_schema'] = construct_schema_definition(destination)
             else:
                 abort(500)
-        if vertex_value['name'].as_string() not in {'string', 'boolean', 'integer', 'float', 'timestamp', 'scalar-unit.size',
-                                                    'scalar-unit.frequency', 'map', 'list', 'range', 'version'}:
+        if vertex_value['name'].as_string() not in DefaultDataTypes:
             result[vertex_value['name'].as_string()] = tmp_result
 
+    return result
+
+
+def find_data_type_dependencies(list_of_vid) -> dict:
+    result = {
+        'ArtifactType': set(),
+        'CapabilityType': set(),
+        'DataType': set(),
+        'GroupType': set(),
+        'InterfaceType': set(),
+        'NodeType': set(),
+        'PolicyType': set(),
+        'RelationshipType': set(),
+    }
+    data_type = DataType('name').__dict__
+    for vid in list_of_vid:
+        vertex_value = fetch_vertex(vid, 'DataType')
+        vertex_value = vertex_value.as_map()
+        tmp_result = {}
+        vertex_keys = vertex_value.keys()
+        edges = set(data_type.keys()) - set(vertex_keys) - {'vid'}
+        for edge in edges:
+            destination = find_destination(vid, edge)
+            if edge == 'derived_from':
+                if destination:
+                    dependencies = find_data_type_dependencies(destination)
+                    for key, value in dependencies.items():
+                        result[key].union(value)
+                    result['ArtifactType'].add(destination[0])
+            elif edge == 'metadata':
+                continue
+            elif edge == 'properties':
+                dependencies = find_property_definition_dependencies(destination)
+                for key, value in dependencies.items():
+                    result[key].union(value)
+            elif edge == 'constraints':
+                continue
+            elif edge == 'entry_schema':
+                dependencies = find_schema_definition_dependencies(destination)
+                for key, value in dependencies.items():
+                    result[key].union(value)
+            elif edge == 'key_schema':
+                dependencies = find_schema_definition_dependencies(destination)
+                for key, value in dependencies.items():
+                    result[key].union(value)
+            else:
+                abort(500)
+        if vertex_value['name'].as_string() not in DefaultDataTypes:
+            result[vertex_value['name'].as_string()] = tmp_result
     return result

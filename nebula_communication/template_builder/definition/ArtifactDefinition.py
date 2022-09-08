@@ -2,6 +2,8 @@ from werkzeug.exceptions import abort
 
 from nebula_communication.nebula_functions import fetch_vertex, find_destination
 from nebula_communication.template_builder.assignment.PropertyAssignment import construct_property_assignment
+from nebula_communication.template_builder.definition.ProperyDefinition import find_property_definition_dependencies
+from nebula_communication.template_builder.type.DataTypes import DefaultDataTypes, find_data_type_dependencies
 from parser.parser.tosca_v_1_3.definitions.ArtifactDefinition import ArtifactDefinition
 
 
@@ -40,4 +42,47 @@ def construct_artifact_definition(list_of_vid, only) -> dict:
                 else:
                     abort(500)
             result[vertex_value['name'].as_string()] = tmp_result
+    return result
+
+
+def find_artifact_definition_dependencies(list_of_vid) -> dict:
+    result = {
+        'ArtifactType': set(),
+        'CapabilityType': set(),
+        'DataType': set(),
+        'GroupType': set(),
+        'InterfaceType': set(),
+        'NodeType': set(),
+        'PolicyType': set(),
+        'RelationshipType': set(),
+    }
+
+    artifact_definition = ArtifactDefinition('name').__dict__
+
+    for vid in list_of_vid:
+        vertex_value = fetch_vertex(vid, 'ArtifactDefinition')
+        vertex_value = vertex_value.as_map()
+        vertex_keys = vertex_value.keys()
+        edges = set(artifact_definition.keys()) - set(vertex_keys) - {'vid'}
+        if not find_destination(vid, 'type'):
+            continue
+        else:
+            for edge in edges:
+                destination = find_destination(vid, edge)
+                if edge == 'type':
+                    if destination:
+                        data_type = fetch_vertex(destination[0], 'DataType')
+                        data_type = data_type.as_map()
+                        data_type = data_type['name'].as_string()
+                        if data_type not in DefaultDataTypes:
+                            dependencies = find_data_type_dependencies(destination)
+                            for key, value in dependencies.items():
+                                result[key].union(value)
+                            result['DataType'].add(destination[0])
+                elif edge == 'properties':
+                    dependencies = find_property_definition_dependencies(destination)
+                    for key, value in dependencies.items():
+                        result[key].union(value)
+                else:
+                    abort(500)
     return result

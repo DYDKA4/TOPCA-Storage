@@ -211,8 +211,8 @@ def delete_cluster(cluster_name):
 
 
 def find_path(start_vid, end_vid, type_path=""):
-    result = session.execute(f"FIND SHORTEST PATH FROM {start_vid} to {end_vid}  over * {type_path}")
-    logging.info(f"FIND SHORTEST PATH FROM {start_vid} to {end_vid}  over * {type_path}")
+    result = session.execute(f"FIND SHORTEST PATH FROM {start_vid} to {end_vid}  over * {type_path} YIELD path as p")
+    logging.info(f"FIND SHORTEST PATH FROM {start_vid} to {end_vid}  over * {type_path} YIELD path as p")
     assert result.is_succeeded(), result.error_msg()
     return result
 
@@ -229,4 +229,17 @@ def find_vertex_by_properties(vid_type, **params):
     assert result.is_succeeded(), result.error_msg()
     return result
 
-# find_vertex_by_properties("ServiceTemplateDefinition")
+
+def find_all_edges(vid, **params):
+    condition = ''
+    for name, value in params.items():
+        if not condition:
+            condition = f"WHERE properties($$).{name} == '{value}'"
+        else:
+            condition += f"and properties($$).{name} == '{value}'"
+
+    result = session.execute(f' GO 1 STEPS FROM f{vid} OVER *  {condition} YIELD dst(edge) as id, properties($$) as '
+                             f'props')
+    logging.info(f' GO 1 STEPS FROM f{vid} OVER *  {condition} YIELD dst(edge) as id, properties($$) as props')
+    assert result.is_succeeded(), result.error_msg()
+    return result

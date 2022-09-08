@@ -1,7 +1,8 @@
 from werkzeug.exceptions import abort
 
 from nebula_communication.nebula_functions import fetch_vertex, find_destination, fetch_edge
-from nebula_communication.template_builder.definition.ArtifactDefinition import construct_artifact_definition
+from nebula_communication.template_builder.definition.ArtifactDefinition import construct_artifact_definition, \
+    find_artifact_definition_dependencies
 from parser.parser.tosca_v_1_3.definitions.OperationImplementationDefinition import OperationImplementationDefinition
 
 
@@ -44,4 +45,41 @@ def construct_operation_implementation_definition(list_of_vid, only) -> dict:
                 print(edge, vid)
                 abort(500)
 
+    return result
+
+
+def find_operation_implementation_definition_dependencies(list_of_vid) -> dict:
+    result = {
+        'ArtifactType': set(),
+        'CapabilityType': set(),
+        'DataType': set(),
+        'GroupType': set(),
+        'InterfaceType': set(),
+        'NodeType': set(),
+        'PolicyType': set(),
+        'RelationshipType': set(),
+    }
+
+    operation_implementation = OperationImplementationDefinition().__dict__
+
+    for vid in list_of_vid:
+        print(vid)
+        vertex_value = fetch_vertex(vid, 'OperationImplementationDefinition')
+        vertex_value = vertex_value.as_map()
+        vertex_keys = vertex_value.keys()
+        edges = set(operation_implementation.keys()) - set(vertex_keys) - {'vid'} - {'implementation'}
+        for edge in edges:
+            destination = find_destination(vid, edge)
+            if edge == 'primary':
+                if destination:
+                    dependencies = find_artifact_definition_dependencies(destination)
+                    for key, value in dependencies.items():
+                        result[key].union(value)
+            elif edge == 'dependencies':
+                dependencies = find_artifact_definition_dependencies(destination)
+                for key, value in dependencies.items():
+                    result[key].union(value)
+            else:
+                print(edge, vid)
+                abort(500)
     return result

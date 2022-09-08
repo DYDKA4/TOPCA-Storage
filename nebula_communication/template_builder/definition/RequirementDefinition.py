@@ -1,7 +1,10 @@
 from werkzeug.exceptions import abort
 
 from nebula_communication.nebula_functions import fetch_vertex, find_destination
-from nebula_communication.template_builder.definition.InterfaceDefinition import construct_interface_definition
+from nebula_communication.template_builder.definition.InterfaceDefinition import construct_interface_definition, \
+    find_interface_definition_dependencies
+from nebula_communication.template_builder.type.CapabilityType import find_capability_type_dependencies
+from nebula_communication.template_builder.type.RelationshipType import find_relationship_type_dependencies
 from parser.parser.tosca_v_1_3.definitions.RequirementDefinition import RequirementDefinition
 
 
@@ -70,4 +73,54 @@ def construct_requirement_definition(list_of_vid, only) -> list:
         requirement = {vertex_value['name'].as_string():  tmp_result}
         result.append(requirement)
 
+    return result
+
+
+def find_requirement_definition_dependencies(list_of_vid) -> dict:
+    from nebula_communication.template_builder.type.NodeTypes import find_node_type_dependencies
+    result = {
+        'ArtifactType': set(),
+        'CapabilityType': set(),
+        'DataType': set(),
+        'GroupType': set(),
+        'InterfaceType': set(),
+        'NodeType': set(),
+        'PolicyType': set(),
+        'RelationshipType': set(),
+    }
+    requirement_definition = RequirementDefinition('name').__dict__
+
+    for vid in list_of_vid:
+        vertex_value = fetch_vertex(vid, 'RequirementDefinition')
+        vertex_value = vertex_value.as_map()
+        vertex_keys = vertex_value.keys()
+        edges = set(requirement_definition.keys()) - set(vertex_keys) - {'vid'}
+        for edge in edges:
+            destination = find_destination(vid, edge)
+            if edge == 'capability':
+                dependencies = find_capability_type_dependencies(destination)
+                for key, value in dependencies.items():
+                    result[key].union(value)
+                result['CapabilityType'].add(destination[0])
+            elif edge == 'node':
+                if destination:
+                    dependencies = find_node_type_dependencies(destination)
+                    for key, value in dependencies.items():
+                        result[key].union(value)
+                    result['NodeType'].add(destination[0])
+            elif edge == 'relationship':
+                if destination:
+                    dependencies = find_relationship_type_dependencies(destination)
+                    for key, value in dependencies.items():
+                        result[key].union(value)
+                    result['RelationshipType'].add(destination[0])
+            elif edge == 'interfaces':
+                dependencies = find_interface_definition_dependencies(destination)
+                for key, value in dependencies.items():
+                    result[key].union(value)
+            elif edge == 'occurrences':
+                continue
+            else:
+                print(edge)
+                abort(500)
     return result

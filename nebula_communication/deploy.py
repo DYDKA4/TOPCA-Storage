@@ -1,16 +1,15 @@
 import uuid
 
-import yaml
-
 from werkzeug.exceptions import abort
-
-from random import choice
-from string import ascii_uppercase
 
 from nebula_communication.nebula_functions import add_in_vertex, add_edge
 from nebula_communication.redis_communication import add_vid
-from parser.linker.tosca_v_1_3.main_linker import main_linker
-from parser.parser.tosca_v_1_3.definitions.ServiceTemplateDefinition import service_template_definition_parser
+
+
+class DeployException(Exception):
+    def __init__(self, code, message):
+        self.code = code
+        self.message = message
 
 
 def edge_forming(vertexes):
@@ -77,7 +76,7 @@ def deploy(template, cluster_name) -> None:
             for type_edge, vertexes in attribute_value.items():
                 # edges.append([type_edge, '', vertexes[0], vertexes[1], ''])
                 if type(vertexes) == dict:
-                    abort(400)
+                    raise DeployException(400, 'unexpected dict in deploy.py')
                 elif type(vertexes) == list:
                     if len(vertexes) == 0:
                         print(vertexes)
@@ -128,7 +127,6 @@ def deploy(template, cluster_name) -> None:
             add_edge(attribute_name, '', template.vid, attribute_value.vid, '')
 
     return
-
 
 # file = open('jupyter.yaml')
 # data = file.read()

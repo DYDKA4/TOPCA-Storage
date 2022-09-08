@@ -7,10 +7,11 @@ from app import app, current_api_version as cav
 import yaml
 
 from app.subfunctions import find_all_dependencies
-from nebula_communication.deploy import deploy
+from nebula_communication.deploy import deploy, DeployException
 from nebula_communication.nebula_functions import delete_all, delete_cluster, find_vertex_by_properties, fetch_vertex, \
     find_path, NebulaException
 from nebula_communication.redis_communication import add_vid
+from nebula_communication.search import NebulaCommunicationSearchException
 from nebula_communication.search.property_search import find_node_template_of_property
 from nebula_communication.search.search_of_endpoint import search_of_endpoint_from_son
 from nebula_communication.template_builder.definition.ServiceTemplateDefinition import \
@@ -74,6 +75,12 @@ def yaml_add(varargs=None):
         return jsonify({'status': e.code,
                         'message': e.error_msg,
                         'query': e.query})
+    except DeployException as e:
+        return jsonify({'status': e.code,
+                        'message': e.message})
+    except NebulaCommunicationSearchException as e:
+        return jsonify({'status': e.code,
+                        'message': e.message})
 
 
 @app.route(f'/{cav}/yaml_template', methods=['GET'])
@@ -103,6 +110,13 @@ def get_yaml():
         return jsonify({'status': e.code,
                         'message': e.error_msg,
                         'query': e.query})
+    except DeployException as e:
+        return jsonify({'status': e.code,
+                        'message': e.message})
+    except NebulaCommunicationSearchException as e:
+        return jsonify({'status': e.code,
+                        'message': e.message})
+
 
 @app.route(f'/{cav}/cluster_names', methods=['GET'])
 @app.route(f'/{cav}/cluster_names/<path:varargs>', methods=['GET', 'POST'])
@@ -162,6 +176,12 @@ def cluster_names(varargs=None):
         return jsonify({'status': e.code,
                         'message': e.error_msg,
                         'query': e.query})
+    except DeployException as e:
+        return jsonify({'status': e.code,
+                        'message': e.message})
+    except NebulaCommunicationSearchException as e:
+        return jsonify({'status': e.code,
+                        'message': e.message})
 
 @app.route(f'/{cav}/yaml-template/<path:varargs>', methods=['PATCH'])
 def yaml_update(varargs=None):
@@ -374,3 +394,9 @@ def get_all_dependencies(varargs=None):
         return jsonify({'status': e.code,
                         'message': e.error_msg,
                         'query': e.query})
+    except DeployException as e:
+        return jsonify({'status': e.code,
+                        'message': e.message})
+    except NebulaCommunicationSearchException as e:
+        return jsonify({'status': e.code,
+                        'message': e.message})

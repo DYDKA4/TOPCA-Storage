@@ -5,6 +5,7 @@ from werkzeug.exceptions import abort
 from nebula_communication.nebula_functions import get_all_vertex, go_from_over, \
     complex_go_from_over_2dst_vertex_param, complex_go_from_over_1dst_vertex_param, go_from_over_dst_params
 from nebula_communication.redis_communication import get_cluster_name_from_redis
+from nebula_communication.search import NebulaCommunicationSearchException
 
 
 def find_in_target_list(target_vid, result):
@@ -32,7 +33,7 @@ def search_of_endpoint_from_son(type_of_template, cluster_name=None, find_free=N
         for cluster_vid in cluster_names:
             topology_template = go_from_over(cluster_vid, 'topology_template').column_values('id')
             if len(topology_template) > 1:
-                abort(500)
+                raise NebulaCommunicationSearchException(500, 'topology_template len > 1')
             if topology_template:
                 topology_template = topology_template[0]
                 target_vid = complex_go_from_over_2dst_vertex_param(topology_template, "node_templates",
@@ -41,7 +42,7 @@ def search_of_endpoint_from_son(type_of_template, cluster_name=None, find_free=N
     else:
         topology_template = go_from_over('"' + cluster_name + '"', 'topology_template').column_values('id')
         if len(topology_template) > 1:
-            abort(500)
+            raise NebulaCommunicationSearchException(500, 'topology_template len > 1')
         if topology_template:
             topology_template = topology_template[0]
             target_vid = complex_go_from_over_2dst_vertex_param(topology_template, "node_templates",

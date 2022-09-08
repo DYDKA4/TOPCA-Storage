@@ -5,6 +5,8 @@ from werkzeug.exceptions import HTTPException
 
 from app import app, current_api_version as cav
 import yaml
+
+from app.subfunctions import find_all_dependencies
 from nebula_communication.deploy import deploy
 from nebula_communication.nebula_functions import delete_all, delete_cluster, find_vertex_by_properties, fetch_vertex, \
     find_path
@@ -88,7 +90,8 @@ def get_yaml():
         print(yaml.dump(result, default_flow_style=False))
         logging.info(yaml.dump(result, default_flow_style=False))
         return jsonify({'status': 200,
-                        'message': result})
+                        'result': result,
+                        'message': 'Success'})
     except HTTPException as e:
         return jsonify({'status': e.code,
                         'message': e.description})
@@ -303,27 +306,52 @@ def get_all_dependencies(varargs=None):
     try:
         if varargs is not None:
             varargs = varargs.split('/')
-            if len(varargs) != 2:
+            if len(varargs) != 3:
                 return jsonify({'status: 400',
                                 'message: wrong url path'})
-            node_type = varargs[0]
-            node_name = varargs[1]
+            cluster_name = varargs[0]
+            node_type = varargs[1]
+            node_name = varargs[2]
             if node_type == 'artifact_type':
-                return jsonify({'status': 200})
+                result = find_all_dependencies(cluster_name, node_type, node_name)
+                return jsonify({'status': 200,
+                                'result': result,
+                                'message': 'Success'})
             elif node_type == 'capability_type':
-                return jsonify({'status': 200})
+                result = find_all_dependencies(cluster_name, node_type, node_name)
+                return jsonify({'status': 200,
+                                'result': result,
+                                'message': 'Success'})
             elif node_type == 'data_type':
-                return jsonify({'status': 200})
+                result = find_all_dependencies(cluster_name, node_type, node_name)
+                return jsonify({'status': 200,
+                                'result': result,
+                                'message': 'Success'})
             elif node_type == 'group_type':
-                return jsonify({'status': 200})
+                result = find_all_dependencies(cluster_name, node_type, node_name)
+                return jsonify({'status': 200,
+                                'result': result,
+                                'message': 'Success'})
             elif node_type == 'interface_type':
-                return jsonify({'status': 200})
+                result = find_all_dependencies(cluster_name, node_type, node_name)
+                return jsonify({'status': 200,
+                                'result': result,
+                                'message': 'Success'})
             elif node_type == 'node_type':
-
+                result = find_all_dependencies(cluster_name, node_type, node_name)
+                return jsonify({'status': 200,
+                                'result': result,
+                                'message': 'Success'})
             elif node_type == 'policy_type':
-                return jsonify({'status': 200})
+                result = find_all_dependencies(cluster_name, node_type, node_name)
+                return jsonify({'status': 200,
+                                'result': result,
+                                'message': 'Success'})
             elif node_type == 'relationship_type':
-                return jsonify({'status': 200})
+                result = find_all_dependencies(cluster_name, node_type, node_name)
+                return jsonify({'status': 200,
+                                'result': result,
+                                'message': 'Success'})
             return jsonify({'status': 400,
                             'message': 'wrong node_type'})
         return jsonify({'status: 400',

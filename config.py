@@ -1,11 +1,6 @@
-IP_address = '10.100.149.228'
-UserName = 'Administator'
-UserPassword = 'password'
-WorkSpace = 'Tosca_Templates'
-NameOfUserVertex = 'persons'
-NameOfKeyValueUser = 'name'
-NameOfServerVertex = 'server'
-NameOfKeyValueServer = 'cpu, ram, mem'
-NameOfOwnerEdge = 'owner'
-NameOfKeyValueOwner = 'date_of_creation'
-NameOfComputeVertex = 'Compute'
+IP_address = '10.100.149.228'  # IP address where Nebula Graph is deployed
+DataBasePort = 9669  # Port to connect to Nebula Graph. Default is 9669
+UserName = 'root'  # UserName in Nebula Graph. Default is "root"
+UserPassword = 'password'  # Password in Nebula Graph. Default is "password"
+WorkSpace = 'Tosca_Templates'  # Work Space in Nebula Graph
+RedisPort = 6380  # Port to connect to Nebula Graph. Default is 6379

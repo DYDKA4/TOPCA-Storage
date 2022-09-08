@@ -16,6 +16,7 @@ from nebula_communication.search.property_search import find_node_template_of_pr
 from nebula_communication.search.search_of_endpoint import search_of_endpoint_from_son
 from nebula_communication.template_builder.definition.ServiceTemplateDefinition import \
     construct_service_template_definition
+from nebula_communication.update_template import NebulaCommunicationUpdateTemplateException
 from nebula_communication.update_template.find_vertex import find_vertex
 from nebula_communication.update_template.update_functions import is_service_status_exist, add_service_status, \
     set_service_status
@@ -81,6 +82,9 @@ def yaml_add(varargs=None):
     except NebulaCommunicationSearchException as e:
         return jsonify({'status': e.code,
                         'message': e.message})
+    except NebulaCommunicationUpdateTemplateException as e:
+        return jsonify({'status': e.code,
+                        'message': e.message})
 
 
 @app.route(f'/{cav}/yaml_template', methods=['GET'])
@@ -116,7 +120,9 @@ def get_yaml():
     except NebulaCommunicationSearchException as e:
         return jsonify({'status': e.code,
                         'message': e.message})
-
+    except NebulaCommunicationUpdateTemplateException as e:
+        return jsonify({'status': e.code,
+                        'message': e.message})
 
 @app.route(f'/{cav}/cluster_names', methods=['GET'])
 @app.route(f'/{cav}/cluster_names/<path:varargs>', methods=['GET', 'POST'])
@@ -182,6 +188,10 @@ def cluster_names(varargs=None):
     except NebulaCommunicationSearchException as e:
         return jsonify({'status': e.code,
                         'message': e.message})
+    except NebulaCommunicationUpdateTemplateException as e:
+        return jsonify({'status': e.code,
+                        'message': e.message})
+
 
 @app.route(f'/{cav}/yaml-template/<path:varargs>', methods=['PATCH'])
 def yaml_update(varargs=None):
@@ -398,5 +408,8 @@ def get_all_dependencies(varargs=None):
         return jsonify({'status': e.code,
                         'message': e.message})
     except NebulaCommunicationSearchException as e:
+        return jsonify({'status': e.code,
+                        'message': e.message})
+    except NebulaCommunicationUpdateTemplateException as e:
         return jsonify({'status': e.code,
                         'message': e.message})

@@ -2,8 +2,8 @@
 
 Apt packages:
 - curl
-- software-properties-common
 - python, python-pip
+- ansible
 
 Python packages:
 - PyYAML==6.0

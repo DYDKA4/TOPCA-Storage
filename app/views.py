@@ -9,7 +9,7 @@ import yaml
 from app.subfunctions import find_all_dependencies
 from nebula_communication.deploy import deploy
 from nebula_communication.nebula_functions import delete_all, delete_cluster, find_vertex_by_properties, fetch_vertex, \
-    find_path
+    find_path, NebulaException
 from nebula_communication.redis_communication import add_vid
 from nebula_communication.search.property_search import find_node_template_of_property
 from nebula_communication.search.search_of_endpoint import search_of_endpoint_from_son
@@ -70,6 +70,10 @@ def yaml_add(varargs=None):
     except HTTPException as e:
         return jsonify({'status': e.code,
                         'message': e.description})
+    except NebulaException as e:
+        return jsonify({'status': e.code,
+                        'message': e.error_msg,
+                        'query': e.query})
 
 
 @app.route(f'/{cav}/yaml_template', methods=['GET'])
@@ -95,7 +99,10 @@ def get_yaml():
     except HTTPException as e:
         return jsonify({'status': e.code,
                         'message': e.description})
-
+    except NebulaException as e:
+        return jsonify({'status': e.code,
+                        'message': e.error_msg,
+                        'query': e.query})
 
 @app.route(f'/{cav}/cluster_names', methods=['GET'])
 @app.route(f'/{cav}/cluster_names/<path:varargs>', methods=['GET', 'POST'])
@@ -151,7 +158,10 @@ def cluster_names(varargs=None):
     except HTTPException as e:
         return jsonify({'status': e.code,
                         'message': e.description})
-
+    except NebulaException as e:
+        return jsonify({'status': e.code,
+                        'message': e.error_msg,
+                        'query': e.query})
 
 @app.route(f'/{cav}/yaml-template/<path:varargs>', methods=['PATCH'])
 def yaml_update(varargs=None):
@@ -298,9 +308,10 @@ def find_node_with_mutual_property():
 @app.route(f'/{cav}/all_dependencies/<path:varargs>')
 def get_all_dependencies(varargs=None):
     """
-        curl -X GET 'http://127.0.0.1:5000/v0.1/all_dependencies/node_type/michman.nodes.Jupyter.Jupyter-6-0-1
+        curl -X GET 'http://127.0.0.1:5000/v0.1/all_dependencies/Jupyter_1/node_type/michman.nodes.Jupyter.Jupyter-6-0-1'
         :return:
             json : {status : http status,
+                    result: json of template
                     message: message to user}
     """
     try:
@@ -313,42 +324,42 @@ def get_all_dependencies(varargs=None):
             node_type = varargs[1]
             node_name = varargs[2]
             if node_type == 'artifact_type':
-                result = find_all_dependencies(cluster_name, node_type, node_name)
+                result = find_all_dependencies(cluster_name, 'ArtifactType', node_name)
                 return jsonify({'status': 200,
                                 'result': result,
                                 'message': 'Success'})
             elif node_type == 'capability_type':
-                result = find_all_dependencies(cluster_name, node_type, node_name)
+                result = find_all_dependencies(cluster_name, 'CapabilityType', node_name)
                 return jsonify({'status': 200,
                                 'result': result,
                                 'message': 'Success'})
             elif node_type == 'data_type':
-                result = find_all_dependencies(cluster_name, node_type, node_name)
+                result = find_all_dependencies(cluster_name, 'DataType', node_name)
                 return jsonify({'status': 200,
                                 'result': result,
                                 'message': 'Success'})
             elif node_type == 'group_type':
-                result = find_all_dependencies(cluster_name, node_type, node_name)
+                result = find_all_dependencies(cluster_name, 'GroupType', node_name)
                 return jsonify({'status': 200,
                                 'result': result,
                                 'message': 'Success'})
             elif node_type == 'interface_type':
-                result = find_all_dependencies(cluster_name, node_type, node_name)
+                result = find_all_dependencies(cluster_name, 'InterfaceType', node_name)
                 return jsonify({'status': 200,
                                 'result': result,
                                 'message': 'Success'})
             elif node_type == 'node_type':
-                result = find_all_dependencies(cluster_name, node_type, node_name)
+                result = find_all_dependencies(cluster_name, 'NodeType', node_name)
                 return jsonify({'status': 200,
                                 'result': result,
                                 'message': 'Success'})
             elif node_type == 'policy_type':
-                result = find_all_dependencies(cluster_name, node_type, node_name)
+                result = find_all_dependencies(cluster_name, 'PolicyType', node_name)
                 return jsonify({'status': 200,
                                 'result': result,
                                 'message': 'Success'})
             elif node_type == 'relationship_type':
-                result = find_all_dependencies(cluster_name, node_type, node_name)
+                result = find_all_dependencies(cluster_name, 'RelationshipType', node_name)
                 return jsonify({'status': 200,
                                 'result': result,
                                 'message': 'Success'})
@@ -359,3 +370,7 @@ def get_all_dependencies(varargs=None):
     except HTTPException as e:
         return jsonify({'status': e.code,
                         'message': e.description})
+    except NebulaException as e:
+        return jsonify({'status': e.code,
+                        'message': e.error_msg,
+                        'query': e.query})

@@ -20,6 +20,8 @@ from parser.parser.tosca_v_1_3.definitions.ServiceTemplateDefinition import Serv
 def construct_service_template_definition(name: str, only):
     name = '"' + name + '"'
     vertex_value = fetch_vertex(name, 'ServiceTemplateDefinition')
+    if vertex_value is None:
+        return None
     vertex_value = vertex_value.as_map()
     vertex_keys = vertex_value.keys()
     service_template_definition = ServiceTemplateDefinition('name').__dict__

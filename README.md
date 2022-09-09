@@ -10,6 +10,7 @@ Python packages:
 - Flask==2.1.2
 - Werkzeug==2.1.2
 - redis==4.3.4
+- nebula3-python==3.1.0
 
 
 ## Configuration

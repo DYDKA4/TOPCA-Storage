@@ -66,6 +66,9 @@ def yaml_add(varargs=None):
                 print('DEPLOY FINISH')
                 return jsonify({'status': 200,
                                 'message': f'cluster_name: {cluster_name} was deployed'})
+            else:
+                return jsonify({'status': 400,
+                                'message': 'cluster_name is None'})
         return '''
                 400 Bad Request 
                 '''
@@ -101,6 +104,9 @@ def get_yaml():
         if only not in {'attribute', 'property', None}:
             return jsonify({'status': 400,
                             'message': 'attribute "only" could be only attribute, property or None'})
+        if cluster_name is None:
+            return jsonify({'status': 400,
+                            'message': 'cluster_name is None'})
         result = construct_service_template_definition(cluster_name, only)
         print(yaml.dump(result, default_flow_style=False))
         logging.info(yaml.dump(result, default_flow_style=False))
@@ -168,6 +174,9 @@ def cluster_names(varargs=None):
                 result = True
             if request.method == 'POST':
                 cluster_name = '"' + varargs[0] + '"'
+                if fetch_vertex(cluster_name, 'ServiceTemplateDefinition') is None:
+                    return jsonify({'status': 400,
+                                    'message': f'cluster: {cluster_name} is not taken'})
                 delete_cluster(cluster_name)
                 return jsonify({'status': 200,
                                 'message': f'cluster: {cluster_name} was deleted'})

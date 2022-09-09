@@ -33,6 +33,10 @@ def find_all_dependencies(cluster_name, node_type, node_name):
         return jsonify({'status': 500,
                         'message': 'find two path from this node_name',
                         'result': None})
+    if len(result.column_values('p')) < 1:
+        return jsonify({'status': 400,
+                        'message': 'find zero path from this node_name',
+                        'result': None})
     result = result.column_values('p')[0].as_path().start_node().get_id()
     print(result)
     result = find_dependencies_for_vertex(result)

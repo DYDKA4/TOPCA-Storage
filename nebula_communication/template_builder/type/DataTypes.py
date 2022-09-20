@@ -10,7 +10,7 @@ from nebula_communication.template_builder.other.ConstraintClause import constru
 from parser.parser.tosca_v_1_3.types.DataType import DataType
 
 DefaultDataTypes = {'string', 'boolean', 'integer', 'float', 'timestamp', 'scalar-unit.size',
-                    'scalar-unit.frequency', 'map', 'list', 'range', 'version'}
+                    'scalar-unit.frequency', 'map', 'list', 'range', 'version', 'scalar-unit.time'}
 
 
 def construct_data_type(list_of_vid) -> dict:

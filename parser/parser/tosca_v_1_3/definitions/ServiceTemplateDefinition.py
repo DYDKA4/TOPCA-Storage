@@ -66,7 +66,7 @@ class ServiceTemplateDefinition:
         self.artifact_types = []
         self.data_types = [DataType('string'), DataType('boolean'), DataType('float'), DataType('integer'),
                            DataType('timestamp'), DataType('scalar-unit.size'), DataType('scalar-unit.frequency'), DataType('map'),
-                           DataType('list'), DataType('range'), DataType('version')]
+                           DataType('list'), DataType('range'), DataType('version'), DataType('scalar-unit.time')]
         self.capability_types = []
         self.interface_types = []
         self.relationship_types = []

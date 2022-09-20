@@ -1,9 +1,13 @@
+from itertools import groupby
+
 from werkzeug.exceptions import abort
 
 
 def link_with_list(list_of_smt, current_template, name_of_connection):
+    list_of_smt = list(set(list_of_smt))
     if getattr(current_template, name_of_connection) is None:
         return
+    setattr(current_template, name_of_connection, list(set(getattr(current_template, name_of_connection))))
     target_structure = []
     for item in list_of_smt:
         for source in getattr(current_template, name_of_connection):

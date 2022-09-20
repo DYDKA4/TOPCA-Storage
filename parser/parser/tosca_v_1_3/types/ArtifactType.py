@@ -23,7 +23,7 @@ class ArtifactType:
         self.metadata = []
         self.description = None
         self.mime_type = None
-        self.file_ext = []
+        self.file_ext = None
         self.properties = []
 
     def set_derived_from(self, derived_from: str):
@@ -42,7 +42,7 @@ class ArtifactType:
         self.mime_type = mime_type
 
     def add_file_ext(self, file_ext: str):
-        self.file_ext.append(file_ext)
+        self.file_ext = str(file_ext)
 
     def add_property(self, properties: PropertyDefinition):
         self.properties.append(properties)
@@ -64,8 +64,7 @@ def artifact_type_parser(name: str, data: dict) -> ArtifactType:
     if data.get('mime_type'):
         artifact.set_mime_type(data.get('mime_type'))
     if data.get('file_ext'):
-        for file_ext in data.get('file_ext'):
-            artifact.add_file_ext(file_ext)
+        artifact.add_file_ext(data.get('file_ext'))
     if data.get('properties'):
         for property_name, property_value in data.get('properties').items():
             artifact.add_property(property_definition_parser(property_name, property_value))

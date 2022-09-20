@@ -216,7 +216,7 @@ CREATE tag `Occurrences` (`vertex_type_system` string NULL  , `minimum` string N
 CREATE TAG INDEX `IndexOccurrences` on `Occurrences`();
 CREATE tag `RelationshipTemplate` (`name` string NULL  , `vertex_type_system` string NULL  , `description` string NULL  );
 CREATE TAG INDEX `IndexRelationshipTemplate` on `RelationshipTemplate`();
-CREATE tag `ArtifactType` (`vertex_type_system` string NULL  , `name` string NULL  , `version` string NULL  , `description` string NULL  , `mime_type` string NULL  );
+CREATE tag `ArtifactType` (`vertex_type_system` string NULL  , `name` string NULL  , `version` string NULL  , `description` string NULL  , `mime_type` string NULL, `file_ext` string NULL  );
 CREATE TAG INDEX `IndexArtifactType` on `ArtifactType`();
 CREATE edge `derived_from` ();
 CREATE EDGE INDEX `index_derived_from` on `derived_from`();

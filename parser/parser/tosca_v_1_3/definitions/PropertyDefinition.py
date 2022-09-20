@@ -10,6 +10,8 @@
 #   entry_schema: <entry_schema_definition>
 #   metadata:
 #     <metadata_map>
+import json
+
 from werkzeug.exceptions import abort
 
 from parser.parser.tosca_v_1_3.others.ConstraintСlause import constraint_clause_parser, ConstraintClause
@@ -46,7 +48,7 @@ class PropertyDefinition:
             self.required = True
 
     def set_default(self, default: str):
-        self.default = default
+        self.default = str(json.dumps(default))
 
     def set_status(self, status: str):
         self.status = status

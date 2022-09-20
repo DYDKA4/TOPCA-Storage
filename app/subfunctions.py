@@ -37,9 +37,10 @@ def find_all_dependencies(cluster_name, node_type, node_name):
         return jsonify({'status': 400,
                         'message': 'find zero path from this node_name',
                         'result': None})
-    result = result.column_values('p')[0].as_path().start_node().get_id()
-    print(result)
-    result = find_dependencies_for_vertex(result)
+    vid = result.column_values('p')[0].as_path().start_node().get_id()
+    print(vid)
+    result = find_dependencies_for_vertex(vid)
+    result[node_type].add(vid)
     answer = {}
     for vertex_type, set_of_vid in result.items():
         builder = template_builder.get(vertex_type)
@@ -52,6 +53,3 @@ def find_all_dependencies(cluster_name, node_type, node_name):
     # print(yaml.dump(answer, default_flow_style=False))
 
     return answer
-
-
-# find_all_dependencies('Jupyter_1', 'NodeType', 'michman.nodes.Jupyter.Jupyter-6-0-1')

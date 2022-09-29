@@ -1,14 +1,64 @@
-artifact_types: {}
+artifact_types:
+  openstack.artifacts.Deployment.Image:
+    derived_from: tosca.artifacts.Deployment.Image
+    metadata: {}
+    properties: {}
+  openstack.artifacts.File:
+    derived_from: tosca.artifacts.File
+    metadata: {}
+    properties: {}
+  tosca.artifacts.Deployment:
+    derived_from: tosca.artifacts.Root
+    description: TOSCA base type for deployment artifacts
+    metadata: {}
+    properties: {}
+  tosca.artifacts.Deployment.Image:
+    derived_from: tosca.artifacts.Deployment
+    metadata: {}
+    properties: {}
+  tosca.artifacts.File:
+    derived_from: tosca.artifacts.Root
+    metadata: {}
+    properties: {}
+  tosca.artifacts.Root:
+    description: 'The TOSCA Artifact Type all other TOSCA Artifact Types derive from '
+    metadata: {}
+    properties:
+      version:
+        constraints: []
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        required: false
+        type: version
 capability_types:
-  amazon.capabilities.Node:
+  openstack.capabilities.Attachment:
+    attributes: {}
+    derived_from: tosca.capabilities.Attachment
+    metadata: {}
+    properties: {}
+    valid_source_types: []
+  openstack.capabilities.Container:
+    attributes: {}
+    derived_from: tosca.capabilities.Container
+    metadata: {}
+    properties: {}
+    valid_source_types: []
+  openstack.capabilities.Node:
     attributes: {}
     derived_from: tosca.capabilities.Node
     metadata: {}
     properties: {}
     valid_source_types: []
-  amazon.capabilities.network.Bindable:
+  openstack.capabilities.network.Bindable:
     attributes: {}
-    derived_from: amazon.capabilities.Node
+    derived_from: openstack.capabilities.Node
+    metadata: {}
+    properties: {}
+    valid_source_types: []
+  openstack.capabilities.network.Linkable:
+    attributes: {}
+    derived_from: openstack.capabilities.Node
     metadata: {}
     properties: {}
     valid_source_types: []
@@ -31,7 +81,16 @@ capability_types:
     properties:
       cpu_frequency:
         constraints:
-        - greater_or_equal: 0.1 GHz
+        - equal:
+            greater_or_equal: 0.1 GHz
+        - equal:
+            greater_or_equal: 0.1 GHz
+        - equal:
+            greater_or_equal: 0.1 GHz
+        - equal:
+            greater_or_equal: 0.1 GHz
+        - equal:
+            greater_or_equal: 0.1 GHz
         entry_schema: {}
         key_schema: {}
         metadata: {}
@@ -39,7 +98,16 @@ capability_types:
         type: scalar-unit.frequency
       disk_size:
         constraints:
-        - greater_or_equal: 0 MB
+        - equal:
+            greater_or_equal: 0 MB
+        - equal:
+            greater_or_equal: 0 MB
+        - equal:
+            greater_or_equal: 0 MB
+        - equal:
+            greater_or_equal: 0 MB
+        - equal:
+            greater_or_equal: 0 MB
         entry_schema: {}
         key_schema: {}
         metadata: {}
@@ -47,7 +115,16 @@ capability_types:
         type: scalar-unit.size
       mem_size:
         constraints:
-        - greater_or_equal: 0 MB
+        - equal:
+            greater_or_equal: 0 MB
+        - equal:
+            greater_or_equal: 0 MB
+        - equal:
+            greater_or_equal: 0 MB
+        - equal:
+            greater_or_equal: 0 MB
+        - equal:
+            greater_or_equal: 0 MB
         entry_schema: {}
         key_schema: {}
         metadata: {}
@@ -55,7 +132,16 @@ capability_types:
         type: scalar-unit.size
       num_cpus:
         constraints:
-        - greater_or_equal: 1
+        - equal:
+            greater_or_equal: 1
+        - equal:
+            greater_or_equal: 1
+        - equal:
+            greater_or_equal: 1
+        - equal:
+            greater_or_equal: 1
+        - equal:
+            greater_or_equal: 1
         entry_schema: {}
         key_schema: {}
         metadata: {}
@@ -74,10 +160,11 @@ capability_types:
     properties:
       initiator:
         constraints:
-        - valid_values:
-          - source
-          - target
-          - peer
+        - equal:
+            valid_values:
+            - source
+            - target
+            - peer
         default: source
         entry_schema: {}
         key_schema: {}
@@ -115,7 +202,8 @@ capability_types:
         type: string
       ports:
         constraints:
-        - min_length: 1
+        - equal:
+            min_length: 1
         entry_schema:
           constraints: []
           entry_schema: {}
@@ -158,7 +246,8 @@ capability_types:
     properties:
       secure:
         constraints:
-        - equal: 'True'
+        - equal:
+            equal: true
         default: true
         entry_schema: {}
         key_schema: {}
@@ -270,176 +359,16 @@ capability_types:
     metadata: {}
     properties: {}
     valid_source_types: []
-data_types:
-  amazon.datatypes.ElasticNeworkInterface:
-    constraints: []
-    derived_from: amazon.datatypes.Root
-    entry_schema: {}
-    key_schema: {}
-    metadata: {}
-    properties:
-      assign_public_ip:
-        constraints: []
-        entry_schema: {}
-        key_schema: {}
-        metadata: {}
-        required: false
-        type: boolean
-      delete_on_termination:
-        constraints: []
-        entry_schema: {}
-        key_schema: {}
-        metadata: {}
-        required: false
-        type: boolean
-      description:
-        constraints: []
-        entry_schema: {}
-        key_schema: {}
-        metadata: {}
-        required: false
-        type: string
-      device_index:
-        constraints: []
-        entry_schema: {}
-        key_schema: {}
-        metadata: {}
-        required: false
-        type: integer
-      groups:
-        constraints: []
-        entry_schema: {}
-        key_schema: {}
-        metadata: {}
-        required: false
-        type: list
-      interfaces:
-        constraints: []
-        entry_schema: {}
-        key_schema: {}
-        metadata: {}
-        required: false
-        type: list
-      ipv6_addresses:
-        constraints: []
-        entry_schema:
-          constraints: []
-          entry_schema: {}
-          key_schema: {}
-          type: string
-        key_schema: {}
-        metadata: {}
-        required: false
-        type: list
-      private_ip_address:
-        constraints: []
-        entry_schema: {}
-        key_schema: {}
-        metadata: {}
-        required: false
-        type: string
-      private_ip_addresses:
-        constraints: []
-        entry_schema:
-          constraints: []
-          entry_schema: {}
-          key_schema: {}
-          type: string
-        key_schema: {}
-        metadata: {}
-        required: false
-        type: list
-      source_dest_check:
-        constraints: []
-        entry_schema: {}
-        key_schema: {}
-        metadata: {}
-        required: false
-        type: boolean
-      subnet_id:
-        constraints: []
-        entry_schema: {}
-        key_schema: {}
-        metadata: {}
-        required: false
-        type: string
-  amazon.datatypes.Image:
-    constraints: []
-    derived_from: amazon.datatypes.Root
-    entry_schema: {}
-    key_schema: {}
-    metadata: {}
-    properties:
-      id:
-        constraints: []
-        entry_schema: {}
-        key_schema: {}
-        metadata: {}
-        required: false
-        type: string
-      kernel:
-        constraints: []
-        entry_schema: {}
-        key_schema: {}
-        metadata: {}
-        required: false
-        type: string
-      ramdisk:
-        constraints: []
-        entry_schema: {}
-        key_schema: {}
-        metadata: {}
-        required: false
-        type: string
-  amazon.datatypes.Root:
-    constraints: []
-    derived_from: tosca.datatypes.Root
-    entry_schema: {}
-    key_schema: {}
+  tosca.capabilities.network.Linkable:
+    attributes: {}
+    derived_from: tosca.capabilities.Node
+    description: 'A node type that includes the Linkable capability indicates that
+      it can be pointed by tosca.relationships.network.LinksTo relationship type,
+      which represents an association relationship between Port and Network node types. '
     metadata: {}
     properties: {}
-  amazon.datatypes.SecurityGroupRule:
-    constraints: []
-    derived_from: amazon.datatypes.Root
-    entry_schema: {}
-    key_schema: {}
-    metadata: {}
-    properties:
-      cidr_ip:
-        constraints: []
-        entry_schema: {}
-        key_schema: {}
-        metadata: {}
-        required: false
-        type: string
-      from_port:
-        constraints: []
-        entry_schema: {}
-        key_schema: {}
-        metadata: {}
-        required: false
-        type: integer
-      ports:
-        constraints: []
-        entry_schema: {}
-        key_schema: {}
-        metadata: {}
-        required: false
-        type: list
-      proto:
-        constraints: []
-        entry_schema: {}
-        key_schema: {}
-        metadata: {}
-        required: false
-        type: string
-      to_port:
-        constraints: []
-        entry_schema: {}
-        key_schema: {}
-        metadata: {}
-        required: false
-        type: integer
+    valid_source_types: []
+data_types:
   tosca.datatypes.Credential:
     constraints: []
     derived_from: tosca.datatypes.Root
@@ -529,9 +458,10 @@ data_types:
         type: string
   tosca.datatypes.network.PortDef:
     constraints:
-    - in_range:
-      - 1
-      - 65535
+    - equal:
+        in_range:
+        - 1
+        - 65535
     derived_from: tosca.datatypes.Root
     entry_schema: {}
     key_schema: {}
@@ -592,11 +522,12 @@ data_types:
     properties:
       protocol:
         constraints:
-        - valid_values:
-          - udp
-          - tcp
-          - igmp
-          - icmp
+        - equal:
+            valid_values:
+            - udp
+            - tcp
+            - igmp
+            - icmp
         default: tcp
         entry_schema: {}
         key_schema: {}
@@ -612,9 +543,10 @@ data_types:
         type: tosca.datatypes.network.PortDef
       source_range:
         constraints:
-        - in_range:
-          - 1
-          - 65535
+        - equal:
+            in_range:
+            - 1
+            - 65535
         entry_schema: {}
         key_schema: {}
         metadata: {}
@@ -629,9 +561,10 @@ data_types:
         type: tosca.datatypes.network.PortDef
       target_range:
         constraints:
-        - in_range:
-          - 1
-          - 65535
+        - equal:
+            in_range:
+            - 1
+            - 65535
         entry_schema: {}
         key_schema: {}
         metadata: {}
@@ -671,57 +604,322 @@ interface_types:
     notifications: {}
     operations: {}
 node_types:
-  amazon.nodes.Ami:
+  openstack.nodes.Flavor:
     artifacts: {}
     attributes: {}
     capabilities: {}
-    derived_from: amazon.nodes.Root
+    derived_from: openstack.nodes.Root
     interfaces: {}
     metadata: {}
     properties:
-      architecture:
+      disk:
+        constraints: []
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        required: false
+        type: scalar-unit.size
+      ephemeral:
+        constraints: []
+        default: 0 GiB
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        type: scalar-unit.size
+      extra_specs:
+        constraints: []
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        required: false
+        type: map
+      id:
         constraints: []
         entry_schema: {}
         key_schema: {}
         metadata: {}
         required: false
         type: string
-      creation_date:
+      is_public:
+        constraints: []
+        default: true
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        type: boolean
+      name:
+        constraints: []
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        required: true
+        type: string
+      ram:
+        constraints: []
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        required: false
+        type: scalar-unit.size
+      swap:
+        constraints: []
+        default: 0 MiB
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        type: scalar-unit.size
+      vcpus:
+        constraints: []
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        required: false
+        type: integer
+    requirements: []
+  openstack.nodes.FloatingIp:
+    artifacts: {}
+    attributes: {}
+    capabilities: {}
+    derived_from: openstack.nodes.Root
+    interfaces: {}
+    metadata: {}
+    properties:
+      fixed_address:
         constraints: []
         entry_schema: {}
         key_schema: {}
         metadata: {}
         required: false
         type: string
-      description:
+      floating_ip_address:
         constraints: []
         entry_schema: {}
         key_schema: {}
         metadata: {}
         required: false
         type: string
-      hypervisor:
+      nat_destination:
         constraints: []
         entry_schema: {}
         key_schema: {}
         metadata: {}
         required: false
         type: string
-      image_id:
+    requirements:
+    - network:
+        capability: openstack.capabilities.network.Linkable
+        node: openstack.nodes.Network
+        occurrences:
+        - 0
+        - 1
+        relationship:
+          type: openstack.relationships.network.LinksTo
+    - server:
+        capability: openstack.capabilities.network.Bindable
+        node: openstack.nodes.Server
+        occurrences:
+        - 1
+        - 1
+        relationship:
+          type: openstack.relationships.network.BindsTo
+  openstack.nodes.Image:
+    artifacts:
+      filename:
+        file: /tmp/image.img
+        properties: {}
+        type: openstack.artifacts.Deployment.Image
+    attributes: {}
+    capabilities: {}
+    derived_from: openstack.nodes.Root
+    interfaces: {}
+    metadata: {}
+    properties:
+      checksum:
         constraints: []
         entry_schema: {}
         key_schema: {}
         metadata: {}
         required: false
         type: string
-      instance_id:
+      container_format:
+        constraints: []
+        default: bare
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        type: string
+      created_at:
+        constraints: []
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        required: false
+        type: scalar-unit.time
+      disk_format:
         constraints: []
         entry_schema: {}
         key_schema: {}
         metadata: {}
         required: false
         type: string
-      kernel_id:
+      id:
+        constraints: []
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        required: false
+        type: string
+      is_public:
+        constraints: []
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        required: false
+        type: boolean
+      kernel:
+        constraints: []
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        required: false
+        type: string
+      min_disk:
+        constraints: []
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        required: false
+        type: scalar-unit.size
+      min_ram:
+        constraints: []
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        required: false
+        type: scalar-unit.size
+      name:
+        constraints: []
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        required: true
+        type: string
+      owner:
+        constraints: []
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        required: false
+        type: string
+      properties:
+        constraints: []
+        default: {}
+        entry_schema:
+          constraints: []
+          entry_schema: {}
+          key_schema: {}
+          type: string
+        key_schema: {}
+        metadata: {}
+        type: map
+      protected:
+        constraints: []
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        required: false
+        type: boolean
+      ramdisk:
+        constraints: []
+        description: 'The name of an existing ramdisk image that will be associated
+          with this image '
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        required: false
+        type: string
+      size:
+        constraints: []
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        required: false
+        type: scalar-unit.size
+      updated_at:
+        constraints: []
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        required: false
+        type: scalar-unit.time
+    requirements: []
+  openstack.nodes.Keypair:
+    artifacts:
+      public_key_file:
+        file: ~/.ssh/id_rsa.pub
+        properties: {}
+        type: openstack.artifacts.File
+    attributes: {}
+    capabilities: {}
+    derived_from: openstack.nodes.Root
+    interfaces: {}
+    metadata: {}
+    properties:
+      name:
+        constraints: []
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        required: true
+        type: string
+      private_key:
+        constraints: []
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        required: false
+        type: string
+      public_key:
+        constraints: []
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        required: false
+        type: string
+    requirements: []
+  openstack.nodes.Network:
+    artifacts: {}
+    attributes: {}
+    capabilities:
+      link:
+        attributes: {}
+        occurrences:
+        - 0
+        - UNBOUNDED
+        - 0
+        - UNBOUNDED
+        properties: {}
+        type: openstack.capabilities.network.Linkable
+        valid_source_types: []
+    derived_from: openstack.nodes.Root
+    interfaces: {}
+    metadata: {}
+    properties:
+      admin_state_up:
+        constraints: []
+        default: true
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        type: boolean
+      external:
+        constraints: []
+        default: false
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        type: boolean
+      id:
         constraints: []
         entry_schema: {}
         key_schema: {}
@@ -733,54 +931,60 @@ node_types:
         entry_schema: {}
         key_schema: {}
         metadata: {}
-        required: false
+        required: true
         type: string
-      ramdisk_id:
+      port_security_enabled:
+        constraints: []
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        required: false
+        type: boolean
+      provider_network_type:
         constraints: []
         entry_schema: {}
         key_schema: {}
         metadata: {}
         required: false
         type: string
-      root_device_name:
+      provider_physical_network:
         constraints: []
         entry_schema: {}
         key_schema: {}
         metadata: {}
         required: false
         type: string
-      virtualization_type:
+      provider_segmentation_id:
         constraints: []
         entry_schema: {}
         key_schema: {}
         metadata: {}
         required: false
         type: string
+      shared:
+        constraints: []
+        default: false
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        type: boolean
     requirements: []
-  amazon.nodes.Eni:
+  openstack.nodes.Port:
     artifacts: {}
     attributes: {}
-    capabilities:
-      bind:
-        attributes: {}
-        occurrences:
-        - 0
-        - UNBOUNDED
-        properties: {}
-        type: amazon.capabilities.network.Bindable
-        valid_source_types: []
-    derived_from: amazon.nodes.Root
+    capabilities: {}
+    derived_from: openstack.nodes.Root
     interfaces: {}
     metadata: {}
     properties:
-      eni_id:
+      admin_state_up:
         constraints: []
         entry_schema: {}
         key_schema: {}
         metadata: {}
         required: false
-        type: string
-      interfaces:
+        type: boolean
+      allowed_address_pairs:
         constraints: []
         entry_schema:
           constraints: []
@@ -791,6 +995,118 @@ node_types:
         metadata: {}
         required: false
         type: list
+      binding:host_id:
+        constraints: []
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        required: false
+        type: string
+      binding:profile:
+        constraints: []
+        entry_schema:
+          constraints: []
+          entry_schema: {}
+          key_schema: {}
+          type: string
+        key_schema: {}
+        metadata: {}
+        required: false
+        type: map
+      binding:vif_details:
+        constraints: []
+        entry_schema:
+          constraints: []
+          entry_schema: {}
+          key_schema: {}
+          type: string
+        key_schema: {}
+        metadata: {}
+        required: false
+        type: map
+      binding:vif_type:
+        constraints: []
+        entry_schema:
+          constraints: []
+          entry_schema: {}
+          key_schema: {}
+          type: string
+        key_schema: {}
+        metadata: {}
+        required: false
+        type: map
+      device_id:
+        constraints: []
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        required: false
+        type: string
+      device_owner:
+        constraints: []
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        required: false
+        type: string
+      dns_assignment:
+        constraints: []
+        entry_schema:
+          constraints: []
+          entry_schema: {}
+          key_schema: {}
+          type: string
+        key_schema: {}
+        metadata: {}
+        required: false
+        type: list
+      dns_name:
+        constraints: []
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        required: false
+        type: string
+      extra_dhcp_opts:
+        constraints: []
+        entry_schema:
+          constraints: []
+          entry_schema: {}
+          key_schema: {}
+          type: string
+        key_schema: {}
+        metadata: {}
+        required: false
+        type: list
+      fixed_ips:
+        constraints: []
+        entry_schema:
+          constraints: []
+          entry_schema:
+            constraints: []
+            entry_schema: {}
+            key_schema: {}
+            type: string
+          key_schema: {}
+          type: map
+        key_schema: {}
+        metadata: {}
+        required: false
+        type: list
+      id:
+        constraints: []
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        required: false
+        type: string
+      ip_address:
+        constraints: []
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        required: false
+        type: string
       mac_address:
         constraints: []
         entry_schema: {}
@@ -798,250 +1114,61 @@ node_types:
         metadata: {}
         required: false
         type: string
-      private_ip_address:
+      name:
         constraints: []
         entry_schema: {}
         key_schema: {}
         metadata: {}
         required: false
+        type: string
+      port_security_enabled:
+        constraints: []
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        required: false
+        type: boolean
+      vnic_type:
+        constraints: []
+        default: normal
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
         type: string
     requirements:
     - security_groups:
-        capability: amazon.capabilities.Node
-        node: amazon.nodes.Group
+        capability: openstack.capabilities.Container
+        node: openstack.nodes.SecurityGroup
         occurrences:
         - 0
         - UNBOUNDED
         relationship:
-          type: amazon.relationships.DependsOn
-    - subnet_id:
-        capability: amazon.capabilities.Node
-        node: amazon.nodes.VpcSubnet
-        occurrences:
-        - 0
-        - 1
-        relationship:
-          type: amazon.relationships.DependsOn
-  amazon.nodes.Group:
-    artifacts: {}
-    attributes: {}
-    capabilities: {}
-    derived_from: amazon.nodes.Root
-    interfaces: {}
-    metadata: {}
-    properties:
-      description:
-        constraints: []
-        entry_schema: {}
-        key_schema: {}
-        metadata: {}
-        required: false
-        type: string
-      group_id:
-        constraints: []
-        entry_schema: {}
-        key_schema: {}
-        metadata: {}
-        required: false
-        type: string
-      name:
-        constraints: []
-        entry_schema: {}
-        key_schema: {}
-        metadata: {}
-        required: true
-        type: string
-      rules:
-        constraints: []
-        entry_schema:
-          constraints: []
-          entry_schema: {}
-          key_schema: {}
-          type: amazon.datatypes.SecurityGroupRule
-        key_schema: {}
-        metadata: {}
-        required: false
-        type: list
-      rules_egress:
-        constraints: []
-        entry_schema:
-          constraints: []
-          entry_schema: {}
-          key_schema: {}
-          type: amazon.datatypes.SecurityGroupRule
-        key_schema: {}
-        metadata: {}
-        required: false
-        type: list
-    requirements:
-    - vpc_id:
-        capability: amazon.capabilities.Node
-        node: amazon.nodes.VpcNet
-        occurrences:
-        - 0
-        - 1
-        relationship:
-          type: amazon.relationships.DependsOn
-    - vpc_id:
-        capability: amazon.capabilities.Node
-        node: amazon.nodes.VpcNet
-        occurrences:
-        - 0
-        - 1
-        relationship:
-          type: amazon.relationships.DependsOn
-  amazon.nodes.Instance:
-    artifacts: {}
-    attributes: {}
-    capabilities:
-      bind:
-        attributes: {}
-        occurrences:
-        - 0
-        - UNBOUNDED
-        properties: {}
-        type: amazon.capabilities.network.Bindable
-        valid_source_types: []
-    derived_from: amazon.nodes.Root
-    interfaces: {}
-    metadata: {}
-    properties:
-      image:
-        constraints: []
-        entry_schema: {}
-        key_schema: {}
-        metadata: {}
-        required: false
-        type: amazon.datatypes.Image
-      instance_id:
-        constraints: []
-        entry_schema: {}
-        key_schema: {}
-        metadata: {}
-        required: false
-        type: string
-      name:
-        constraints: []
-        entry_schema: {}
-        key_schema: {}
-        metadata: {}
-        required: false
-        type: string
-      network:
-        constraints: []
-        entry_schema: {}
-        key_schema: {}
-        metadata: {}
-        required: false
-        type: amazon.datatypes.ElasticNeworkInterface
-      public_ip_address:
-        constraints: []
-        entry_schema: {}
-        key_schema: {}
-        metadata: {}
-        required: false
-        type: string
-      tags:
-        constraints: []
-        entry_schema: {}
-        key_schema: {}
-        metadata: {}
-        required: false
-        type: map
-      vpc_subnet_id:
-        constraints: []
-        entry_schema: {}
-        key_schema: {}
-        metadata: {}
-        required: false
-        type: string
-    requirements:
-    - vpc_subnet_id:
-        capability: amazon.capabilities.Node
-        node: amazon.nodes.VpcSubnet
-        occurrences:
-        - 0
-        - 1
-        relationship:
-          type: amazon.relationships.DependsOn
+          type: openstack.relationships.DependsOn
     - network:
-        capability: amazon.capabilities.Node
-        node: amazon.nodes.Eni
-        occurrences:
-        - 0
-        - UNBOUNDED
-        relationship:
-          type: amazon.relationships.DependsOn
-    - image_id:
-        capability: amazon.capabilities.Node
-        node: amazon.nodes.Ami
+        capability: openstack.capabilities.Node
+        node: openstack.nodes.Network
         occurrences:
         - 1
         - 1
         relationship:
-          type: amazon.relationships.DependsOn
-    - instance_type:
-        capability: amazon.capabilities.Node
-        node: amazon.nodes.instanceType
-        occurrences:
-        - 1
-        - 1
-        relationship:
-          type: amazon.relationships.DependsOn
-    - key_name:
-        capability: amazon.capabilities.Node
-        node: amazon.nodes.Key
-        occurrences:
-        - 0
-        - 1
-        relationship:
-          type: amazon.relationships.DependsOn
+          type: openstack.relationships.DependsOn
     - security_groups:
-        capability: amazon.capabilities.Node
-        node: amazon.nodes.Group
+        capability: openstack.capabilities.Container
+        node: openstack.nodes.SecurityGroup
         occurrences:
         - 0
         - UNBOUNDED
         relationship:
-          type: amazon.relationships.DependsOn
-  amazon.nodes.Key:
-    artifacts: {}
-    attributes: {}
-    capabilities: {}
-    derived_from: amazon.nodes.Root
-    interfaces: {}
-    metadata: {}
-    properties:
-      key_material:
-        constraints: []
-        entry_schema: {}
-        key_schema: {}
-        metadata: {}
-        required: false
-        type: string
-      key_type:
-        constraints: []
-        entry_schema: {}
-        key_schema: {}
-        metadata: {}
-        required: false
-        type: string
-      name:
-        constraints: []
-        entry_schema: {}
-        key_schema: {}
-        metadata: {}
-        required: true
-        type: string
-      profile:
-        constraints: []
-        entry_schema: {}
-        key_schema: {}
-        metadata: {}
-        required: false
-        type: string
-    requirements: []
-  amazon.nodes.Root:
+          type: openstack.relationships.DependsOn
+    - network:
+        capability: openstack.capabilities.Node
+        node: openstack.nodes.Network
+        occurrences:
+        - 1
+        - 1
+        relationship:
+          type: openstack.relationships.DependsOn
+  openstack.nodes.Root:
     artifacts: {}
     attributes: {}
     capabilities:
@@ -1054,67 +1181,91 @@ node_types:
         - 1
         - 1
         - 1
+        - 1
+        - 1
+        - 1
+        - 1
         properties: {}
-        type: amazon.capabilities.Node
+        type: openstack.capabilities.Node
         valid_source_types: []
     derived_from: tosca.nodes.Root
-    interfaces: {}
+    interfaces:
+      Standard:
+        notifications: {}
+        operations: {}
+        type: tosca.interfaces.node.lifecycle.Standard
     metadata: {}
     properties: {}
     requirements:
     - dependency:
-        capability: amazon.capabilities.Node
-        node: amazon.nodes.Root
+        capability: openstack.capabilities.Node
+        node: openstack.nodes.Root
         occurrences:
         - 0
         - UNBOUNDED
         relationship:
-          type: amazon.relationships.DependsOn
+          type: openstack.relationships.DependsOn
     - dependency:
-        capability: amazon.capabilities.Node
-        node: amazon.nodes.Root
+        capability: openstack.capabilities.Node
+        node: openstack.nodes.Root
         occurrences:
         - 0
         - UNBOUNDED
         relationship:
-          type: amazon.relationships.DependsOn
+          type: openstack.relationships.DependsOn
     - dependency:
-        capability: amazon.capabilities.Node
-        node: amazon.nodes.Root
+        capability: openstack.capabilities.Node
+        node: openstack.nodes.Root
         occurrences:
         - 0
         - UNBOUNDED
         relationship:
-          type: amazon.relationships.DependsOn
-  amazon.nodes.VpcNet:
+          type: openstack.relationships.DependsOn
+    - dependency:
+        capability: openstack.capabilities.Node
+        node: openstack.nodes.Root
+        occurrences:
+        - 0
+        - UNBOUNDED
+        relationship:
+          type: openstack.relationships.DependsOn
+    - dependency:
+        capability: openstack.capabilities.Node
+        node: openstack.nodes.Root
+        occurrences:
+        - 0
+        - UNBOUNDED
+        relationship:
+          type: openstack.relationships.DependsOn
+  openstack.nodes.SecurityGroup:
     artifacts: {}
     attributes: {}
-    capabilities: {}
-    derived_from: amazon.nodes.Root
+    capabilities:
+      host:
+        attributes: {}
+        occurrences:
+        - 0
+        - UNBOUNDED
+        - 0
+        - UNBOUNDED
+        - 0
+        - UNBOUNDED
+        - 0
+        - UNBOUNDED
+        properties: {}
+        type: openstack.capabilities.Container
+        valid_source_types: []
+    derived_from: openstack.nodes.Root
     interfaces: {}
     metadata: {}
     properties:
-      cidr_block:
+      description:
         constraints: []
         entry_schema: {}
         key_schema: {}
         metadata: {}
-        required: true
+        required: false
         type: string
-      internet_gateway:
-        constraints: []
-        entry_schema: {}
-        key_schema: {}
-        metadata: {}
-        required: false
-        type: boolean
-      is_default:
-        constraints: []
-        entry_schema: {}
-        key_schema: {}
-        metadata: {}
-        required: false
-        type: boolean
       name:
         constraints: []
         entry_schema: {}
@@ -1122,110 +1273,465 @@ node_types:
         metadata: {}
         required: true
         type: string
-      tags:
-        constraints: []
-        entry_schema: {}
-        key_schema: {}
-        metadata: {}
-        required: false
-        type: map
-      vpc_id:
-        constraints: []
-        entry_schema: {}
-        key_schema: {}
-        metadata: {}
-        required: false
-        type: string
     requirements: []
-  amazon.nodes.VpcSubnet:
+  openstack.nodes.SecurityGroupRule:
     artifacts: {}
     attributes: {}
     capabilities: {}
-    derived_from: amazon.nodes.Root
+    derived_from: openstack.nodes.Root
     interfaces: {}
     metadata: {}
     properties:
-      cidr:
+      direction:
+        constraints: []
+        default: ingress
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        type: string
+      ethertype:
+        constraints:
+        - equal:
+            valid_values:
+            - IPv4
+            - IPv6
+        default: IPv4
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        type: string
+      id:
         constraints: []
         entry_schema: {}
         key_schema: {}
         metadata: {}
         required: false
         type: string
-      map_public:
-        constraints: []
-        entry_schema: {}
-        key_schema: {}
-        metadata: {}
-        required: false
-        type: boolean
-      subnet_id:
+      port_range_max:
         constraints: []
         entry_schema: {}
         key_schema: {}
         metadata: {}
         required: false
         type: string
-      tags:
+      port_range_min:
         constraints: []
         entry_schema: {}
         key_schema: {}
         metadata: {}
         required: false
-        type: map
+        type: string
+      protocol:
+        constraints: []
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        required: false
+        type: string
+      remote_ip_prefix:
+        constraints: []
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        required: false
+        type: string
     requirements:
-    - vpc_id:
-        capability: amazon.capabilities.Node
-        node: amazon.nodes.VpcNet
+    - security_group:
+        capability: openstack.capabilities.Container
+        node: openstack.nodes.SecurityGroup
         occurrences:
         - 1
         - 1
         relationship:
-          type: amazon.relationships.DependsOn
-  amazon.nodes.instanceType:
+          type: openstack.relationships.DependsOn
+  openstack.nodes.Server:
     artifacts: {}
     attributes: {}
-    capabilities: {}
-    derived_from: amazon.nodes.Root
+    capabilities:
+      bind:
+        attributes: {}
+        occurrences:
+        - 0
+        - UNBOUNDED
+        - 0
+        - UNBOUNDED
+        properties: {}
+        type: openstack.capabilities.network.Bindable
+        valid_source_types: []
+      host:
+        attributes: {}
+        occurrences:
+        - 0
+        - UNBOUNDED
+        - 0
+        - UNBOUNDED
+        properties: {}
+        type: openstack.capabilities.Container
+        valid_source_types: []
+    derived_from: openstack.nodes.Root
     interfaces: {}
     metadata: {}
     properties:
-      apiname:
+      auto_ip:
+        constraints: []
+        default: false
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        type: boolean
+      boot_from_volume:
+        constraints: []
+        default: false
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        type: boolean
+      config_drive:
+        constraints: []
+        default: false
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        type: boolean
+      created_at:
+        constraints: []
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        required: false
+        type: string
+      floating_ip_pools:
+        constraints: []
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        required: false
+        type: string
+      floating_ips:
+        constraints: []
+        entry_schema:
+          constraints: []
+          entry_schema: {}
+          key_schema: {}
+          type: string
+        key_schema: {}
+        metadata: {}
+        required: false
+        type: list
+      id:
+        constraints: []
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        required: false
+        type: string
+      meta:
+        constraints: []
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        required: false
+        type: string
+      name:
         constraints: []
         entry_schema: {}
         key_schema: {}
         metadata: {}
         required: true
         type: string
-      memory:
+      nics:
         constraints: []
         entry_schema: {}
         key_schema: {}
         metadata: {}
         required: false
-        type: scalar-unit.size
-      name:
+        type: list
+      reuse_ips:
+        constraints: []
+        default: true
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        type: boolean
+      scheduler_hints:
+        constraints: []
+        entry_schema:
+          constraints: []
+          entry_schema: {}
+          key_schema: {}
+          type: string
+        key_schema: {}
+        metadata: {}
+        required: false
+        type: map
+      userdata:
         constraints: []
         entry_schema: {}
         key_schema: {}
         metadata: {}
         required: false
         type: string
-      storage:
+      vm_state:
+        constraints: []
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        required: false
+        type: string
+    requirements:
+    - nics:
+        capability: openstack.capabilities.Node
+        node: openstack.nodes.Network
+        occurrences:
+        - 0
+        - UNBOUNDED
+        relationship:
+          type: openstack.relationships.DependsOn
+    - volumes:
+        capability: openstack.capabilities.Attachment
+        node: openstack.nodes.Volume
+        occurrences:
+        - 0
+        - UNBOUNDED
+        relationship:
+          type: openstack.relationships.AttachesTo
+    - key_name:
+        capability: openstack.capabilities.Node
+        node: openstack.nodes.Keypair
+        occurrences:
+        - 0
+        - 1
+        relationship:
+          type: openstack.relationships.DependsOn
+    - security_groups:
+        capability: openstack.capabilities.Node
+        node: openstack.nodes.SecurityGroup
+        occurrences:
+        - 0
+        - UNBOUNDED
+        relationship:
+          type: openstack.relationships.DependsOn
+    - nics:
+        capability: openstack.capabilities.Node
+        node: openstack.nodes.Port
+        occurrences:
+        - 0
+        - UNBOUNDED
+        relationship:
+          type: openstack.relationships.DependsOn
+    - network:
+        capability: openstack.capabilities.Node
+        node: openstack.nodes.Network
+        occurrences:
+        - 1
+        - 1
+        relationship:
+          type: openstack.relationships.DependsOn
+    - flavor:
+        capability: openstack.capabilities.Node
+        node: openstack.nodes.Flavor
+        occurrences:
+        - 1
+        - 1
+        relationship:
+          type: openstack.relationships.DependsOn
+    - boot_volume:
+        capability: openstack.capabilities.Node
+        node: openstack.nodes.Volume
+        occurrences:
+        - 0
+        - 1
+        relationship:
+          type: openstack.relationships.DependsOn
+    - image:
+        capability: openstack.capabilities.Node
+        node: openstack.nodes.Image
+        occurrences:
+        - 1
+        - 1
+        relationship:
+          type: openstack.relationships.DependsOn
+    - nics:
+        capability: openstack.capabilities.Node
+        node: openstack.nodes.Network
+        occurrences:
+        - 0
+        - UNBOUNDED
+        relationship:
+          type: openstack.relationships.DependsOn
+    - volumes:
+        capability: openstack.capabilities.Attachment
+        node: openstack.nodes.Volume
+        occurrences:
+        - 0
+        - UNBOUNDED
+        relationship:
+          type: openstack.relationships.AttachesTo
+    - key_name:
+        capability: openstack.capabilities.Node
+        node: openstack.nodes.Keypair
+        occurrences:
+        - 0
+        - 1
+        relationship:
+          type: openstack.relationships.DependsOn
+    - security_groups:
+        capability: openstack.capabilities.Node
+        node: openstack.nodes.SecurityGroup
+        occurrences:
+        - 0
+        - UNBOUNDED
+        relationship:
+          type: openstack.relationships.DependsOn
+    - nics:
+        capability: openstack.capabilities.Node
+        node: openstack.nodes.Port
+        occurrences:
+        - 0
+        - UNBOUNDED
+        relationship:
+          type: openstack.relationships.DependsOn
+    - network:
+        capability: openstack.capabilities.Node
+        node: openstack.nodes.Network
+        occurrences:
+        - 1
+        - 1
+        relationship:
+          type: openstack.relationships.DependsOn
+    - flavor:
+        capability: openstack.capabilities.Node
+        node: openstack.nodes.Flavor
+        occurrences:
+        - 1
+        - 1
+        relationship:
+          type: openstack.relationships.DependsOn
+    - boot_volume:
+        capability: openstack.capabilities.Node
+        node: openstack.nodes.Volume
+        occurrences:
+        - 0
+        - 1
+        relationship:
+          type: openstack.relationships.DependsOn
+    - image:
+        capability: openstack.capabilities.Node
+        node: openstack.nodes.Image
+        occurrences:
+        - 1
+        - 1
+        relationship:
+          type: openstack.relationships.DependsOn
+  openstack.nodes.Volume:
+    artifacts: {}
+    attributes: {}
+    capabilities:
+      attachment:
+        attributes: {}
+        occurrences:
+        - 0
+        - 1
+        - 0
+        - 1
+        properties: {}
+        type: openstack.capabilities.Attachment
+        valid_source_types: []
+    derived_from: openstack.nodes.Root
+    interfaces: {}
+    metadata: {}
+    properties:
+      display_description:
+        constraints: []
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        required: false
+        type: string
+      display_name:
+        constraints: []
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        required: true
+        type: string
+      metadata:
+        constraints: []
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        required: false
+        type: list
+      scheduler_hints:
+        constraints: []
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        required: false
+        type: string
+      size:
         constraints: []
         entry_schema: {}
         key_schema: {}
         metadata: {}
         required: false
         type: scalar-unit.size
-      vcpus:
+      volume_type:
         constraints: []
         entry_schema: {}
         key_schema: {}
         metadata: {}
         required: false
-        type: integer
-    requirements: []
+        type: string
+    requirements:
+    - image:
+        capability: openstack.capabilities.Node
+        node: openstack.nodes.Image
+        occurrences:
+        - 0
+        - 1
+        relationship:
+          type: openstack.relationships.DependsOn
+    - snapshot_id:
+        capability: openstack.capabilities.Node
+        node: openstack.nodes.Volume
+        occurrences:
+        - 0
+        - 1
+        relationship:
+          type: openstack.relationships.DependsOn
+    - volume:
+        capability: openstack.capabilities.Node
+        node: openstack.nodes.Volume
+        occurrences:
+        - 0
+        - 1
+        relationship:
+          type: openstack.relationships.DependsOn
+    - image:
+        capability: openstack.capabilities.Node
+        node: openstack.nodes.Image
+        occurrences:
+        - 0
+        - 1
+        relationship:
+          type: openstack.relationships.DependsOn
+    - snapshot_id:
+        capability: openstack.capabilities.Node
+        node: openstack.nodes.Volume
+        occurrences:
+        - 0
+        - 1
+        relationship:
+          type: openstack.relationships.DependsOn
+    - volume:
+        capability: openstack.capabilities.Node
+        node: openstack.nodes.Volume
+        occurrences:
+        - 0
+        - 1
+        relationship:
+          type: openstack.relationships.DependsOn
   tosca.nodes.BlockStorage:
     artifacts: {}
     attributes: {}
@@ -1244,7 +1750,8 @@ node_types:
     properties:
       size:
         constraints:
-        - greater_or_equal: 1 MB
+        - equal:
+            greater_or_equal: 1 MB
         entry_schema: {}
         key_schema: {}
         metadata: {}
@@ -1429,6 +1936,22 @@ node_types:
         - UNBOUNDED
         relationship:
           type: tosca.relationships.DependsOn
+    - dependency:
+        capability: tosca.capabilities.Node
+        node: tosca.nodes.Root
+        occurrences:
+        - 0
+        - UNBOUNDED
+        relationship:
+          type: tosca.relationships.DependsOn
+    - dependency:
+        capability: tosca.capabilities.Node
+        node: tosca.nodes.Root
+        occurrences:
+        - 0
+        - UNBOUNDED
+        relationship:
+          type: tosca.relationships.DependsOn
   tosca.nodes.SoftwareComponent:
     artifacts: {}
     attributes: {}
@@ -1462,7 +1985,24 @@ node_types:
           type: tosca.relationships.HostedOn
 policy_types: {}
 relationship_types:
-  amazon.relationships.DependsOn:
+  openstack.relationships.AttachesTo:
+    attributes: {}
+    derived_from: provider.relationships.Root
+    description: This type represents the attachment of volume to the server
+    interfaces: {}
+    metadata: {}
+    properties:
+      device:
+        constraints: []
+        entry_schema: {}
+        key_schema: {}
+        metadata: {}
+        required: false
+        type: string
+    valid_target_types:
+    - openstack.capabilities.Attachment
+    - openstack.capabilities.Attachment
+  openstack.relationships.DependsOn:
     attributes: {}
     derived_from: provider.relationships.DependsOn
     description: This type results in ordering of initializing objects.
@@ -1470,9 +2010,29 @@ relationship_types:
     metadata: {}
     properties: {}
     valid_target_types:
-    - amazon.capabilities.Node
-    - amazon.capabilities.Node
-    - amazon.capabilities.Node
+    - openstack.capabilities.Node
+    - openstack.capabilities.Node
+    - openstack.capabilities.Node
+    - openstack.capabilities.Node
+    - openstack.capabilities.Node
+  openstack.relationships.network.BindsTo:
+    attributes: {}
+    derived_from: provider.relationships.network.BindsTo
+    description: This type appears between FloatingIp and Server
+    interfaces: {}
+    metadata: {}
+    properties: {}
+    valid_target_types:
+    - openstack.capabilities.network.Bindable
+  openstack.relationships.network.LinksTo:
+    attributes: {}
+    derived_from: provider.relationships.network.LinksTo
+    description: This type appears between FloatingIp and Network
+    interfaces: {}
+    metadata: {}
+    properties: {}
+    valid_target_types:
+    - openstack.capabilities.network.Linkable
   provider.relationships.DependsOn:
     attributes: {}
     derived_from: provider.relationships.Root
@@ -1481,6 +2041,8 @@ relationship_types:
     metadata: {}
     properties: {}
     valid_target_types:
+    - tosca.capabilities.Node
+    - tosca.capabilities.Node
     - tosca.capabilities.Node
     - tosca.capabilities.Node
     - tosca.capabilities.Node
@@ -1495,6 +2057,24 @@ relationship_types:
     metadata: {}
     properties: {}
     valid_target_types: []
+  provider.relationships.network.BindsTo:
+    attributes: {}
+    derived_from: tosca.relationships.network.BindsTo
+    description: This type appears between FloatingIp and Server
+    interfaces: {}
+    metadata: {}
+    properties: {}
+    valid_target_types:
+    - tosca.capabilities.network.Bindable
+  provider.relationships.network.LinksTo:
+    attributes: {}
+    derived_from: tosca.relationships.network.LinksTo
+    description: This type appears between FloatingIp and Network
+    interfaces: {}
+    metadata: {}
+    properties: {}
+    valid_target_types:
+    - tosca.capabilities.network.Linkable
   tosca.relationships.AttachesTo:
     attributes: {}
     derived_from: tosca.relationships.Root
@@ -1513,7 +2093,8 @@ relationship_types:
         type: string
       location:
         constraints:
-        - min_length: 1
+        - equal:
+            min_length: 1
         entry_schema: {}
         key_schema: {}
         metadata: {}
@@ -1530,6 +2111,8 @@ relationship_types:
     metadata: {}
     properties: {}
     valid_target_types:
+    - tosca.capabilities.Node
+    - tosca.capabilities.Node
     - tosca.capabilities.Node
     - tosca.capabilities.Node
     - tosca.capabilities.Node
@@ -1570,6 +2153,26 @@ relationship_types:
         required: true
         type: string
     valid_target_types: []
+  tosca.relationships.network.BindsTo:
+    attributes: {}
+    derived_from: tosca.relationships.DependsOn
+    description: This type represents a network association relationship between Port
+      and Compute node types.
+    interfaces: {}
+    metadata: {}
+    properties: {}
+    valid_target_types:
+    - tosca.capabilities.network.Bindable
+  tosca.relationships.network.LinksTo:
+    attributes: {}
+    derived_from: tosca.relationships.DependsOn
+    description: This relationship type represents an association relationship between
+      Port and Network node types.
+    interfaces: {}
+    metadata: {}
+    properties: {}
+    valid_target_types:
+    - tosca.capabilities.network.Linkable
 topology_template:
   node_templates:
     software_for_cumulus_software_component:
@@ -1579,121 +2182,154 @@ topology_template:
             implementation: ansible-operation-example.yaml
       requirements:
       - host:
-          node: testing_tosca_instance
+          node: testing_tosca_server
           node_filter:
             properties:
+            - auto_ip: false
+            - meta: cube_master=true
             - name: testing_tosca_{{ item }}
-            - network:
-                assign_public_ip: true
-            - tags:
-                metadata: cube_master=true
-            - id: '{{ testing_tosca_instance_delete }}'
+            - nics:
+              - net-name: test-two-routers
+            - id: '{{ testing_tosca_server_delete }}'
       - dependency:
-          node: testing_tosca_key
+          node: testing_tosca_keypair
           node_filter:
             properties:
-            - key_material: '{{ lookup(''file'', ''~/.ssh/id_rsa.pub'') }}'
-            - name: testing_tosca_key
-            - id: '{{ testing_tosca_key_delete }}'
+            - name: testing_tosca_keypair
+            - public_key: '{{ lookup(''file'', ''~/.ssh/id_rsa.pub'') }}'
+            - id: '{{ testing_tosca_keypair_delete }}'
       - dependency:
-          node: testing_tosca_group
+          node: testing_tosca_floating_ip
           node_filter:
             properties:
-            - description: testing_tosca_group
-            - name: testing_tosca_group
-            - rules:
-              - cidr_ip: 0.0.0.0
-                ports:
-                - 22
-                proto: tcp
-              - cidr_ip: 0.0.0.0
-            - rules_egress:
-              - cidr_ip: 0.0.0.0
-            - id: '{{ testing_tosca_group_delete }}'
+            - floating_ip_address: 10.10.10.10
+            - id: '{{ testing_tosca_floating_ip_delete }}'
       - dependency:
-          node: testing_tosca_instance
+          node: testing_tosca_server
           node_filter:
             properties:
+            - auto_ip: false
+            - meta: cube_master=true
             - name: testing_tosca_{{ item }}
-            - network:
-                assign_public_ip: true
-            - tags:
-                metadata: cube_master=true
-            - id: '{{ testing_tosca_instance_delete }}'
+            - nics:
+              - net-name: test-two-routers
+            - id: '{{ testing_tosca_server_delete }}'
+      - dependency:
+          node: testing_tosca_security_group
+          node_filter:
+            properties:
+            - name: testing_tosca_security_group
+            - id: '{{ testing_tosca_security_group_delete }}'
+      - dependency:
+          node: testing_tosca_security_group_rule
+          node_filter:
+            properties:
+            - direction: '{{ initiator[item | int] | default(omit) }}'
+            - port_range_max: '{{ port[item | int] | default(omit) }}'
+            - port_range_min: '{{ port[item | int] | default(omit) }}'
+            - protocol: '{{ protocol[item | int] | default(omit) }}'
+            - remote_ip_prefix: 0.0.0.0
+            - id: '{{ testing_tosca_security_group_rule_delete }}'
       type: tosca.nodes.SoftwareComponent
-    testing_tosca_group:
-      properties:
-        description: testing_tosca_group
-        name: testing_tosca_group
-        rules:
-        - cidr_ip: 0.0.0.0
-          ports:
-          - 22
-          proto: tcp
-        - cidr_ip: 0.0.0.0
-        rules_egress:
-        - cidr_ip: 0.0.0.0
-      type: amazon.nodes.Group
-    testing_tosca_instance:
+    testing_tosca_floating_ip:
       interfaces:
         Standard:
           create:
             implementation: add_host.yaml
             inputs:
               ansible_user: xenial
-              group: testing_tosca_instance_public_address
+              group: testing_tosca_server_public_address
               host_ip: '{{ host_ip | default([]) + [[ "testing_tosca_public_address_"
-                + item, testing_tosca_instance.results[item | int - 1].instances[0].public_ip_address
+                + item, testing_tosca_floating_ip.results[item | int - 1].floating_ip.floating_ip_address
                 ]] }}'
       properties:
+        floating_ip_address: 10.10.10.10
+      requirements:
+      - server:
+          node: testing_tosca_server
+          node_filter:
+            properties:
+            - auto_ip: false
+            - meta: cube_master=true
+            - name: testing_tosca_{{ item }}
+            - nics:
+              - net-name: test-two-routers
+            - id: '{{ testing_tosca_server_delete }}'
+      - network:
+          node_filter:
+            properties:
+            - parameter: name
+              value: null
+      type: openstack.nodes.FloatingIp
+    testing_tosca_keypair:
+      properties:
+        name: testing_tosca_keypair
+        public_key: '{{ lookup(''file'', ''~/.ssh/id_rsa.pub'') }}'
+      type: openstack.nodes.Keypair
+    testing_tosca_security_group:
+      properties:
+        name: testing_tosca_security_group
+      type: openstack.nodes.SecurityGroup
+    testing_tosca_security_group_rule:
+      properties:
+        direction: '{{ initiator[item | int] | default(omit) }}'
+        ethertype: IPv4
+        port_range_max: '{{ port[item | int] | default(omit) }}'
+        port_range_min: '{{ port[item | int] | default(omit) }}'
+        protocol: '{{ protocol[item | int] | default(omit) }}'
+        remote_ip_prefix: 0.0.0.0
+      requirements:
+      - security_group:
+          node: testing_tosca_security_group
+          node_filter:
+            properties:
+            - name: testing_tosca_security_group
+            - id: '{{ testing_tosca_security_group_delete }}'
+      type: openstack.nodes.SecurityGroupRule
+    testing_tosca_server:
+      interfaces:
+        Standard:
+          create:
+            implementation: add_host.yaml
+            inputs:
+              ansible_user: xenial
+              group: testing_tosca_server_private_address
+              host_ip: '{{ host_ip | default([]) + [[ "testing_tosca_private_address_"
+                + item, testing_tosca_server.results[item | int - 1].server.public_v4
+                ]] }}'
+      properties:
+        auto_ip: false
+        boot_from_volume: false
+        config_drive: false
+        meta: cube_master=true
         name: testing_tosca_{{ item }}
-        network:
-          assign_public_ip: true
-        tags:
-          metadata: cube_master=true
+        nics:
+        - net-name: test-two-routers
+        reuse_ips: true
       requirements:
       - key_name:
-          node: testing_tosca_key
+          node: testing_tosca_keypair
           node_filter:
             properties:
-            - key_material: '{{ lookup(''file'', ''~/.ssh/id_rsa.pub'') }}'
-            - name: testing_tosca_key
-            - id: '{{ testing_tosca_key_delete }}'
-      - vpc_subnet_id:
-          node_filter:
-            properties:
-            - parameter: id
-              value: null
-      - instance_type:
+            - name: testing_tosca_keypair
+            - public_key: '{{ lookup(''file'', ''~/.ssh/id_rsa.pub'') }}'
+            - id: '{{ testing_tosca_keypair_delete }}'
+      - flavor:
           node_filter:
             properties:
             - vcpus: 1
-            - storage: 5.0
-            - memory: 1.0
+            - disk: 5.0
+            - ram: 1024.0
       - security_groups:
-          node: testing_tosca_group
+          node: testing_tosca_security_group
           node_filter:
             properties:
-            - description: testing_tosca_group
-            - name: testing_tosca_group
-            - rules:
-              - cidr_ip: 0.0.0.0
-                ports:
-                - 22
-                proto: tcp
-              - cidr_ip: 0.0.0.0
-            - rules_egress:
-              - cidr_ip: 0.0.0.0
-            - id: '{{ testing_tosca_group_delete }}'
-      - image_id:
+            - name: testing_tosca_security_group
+            - id: '{{ testing_tosca_security_group_delete }}'
+      - image:
           node_filter:
             properties:
-            - parameter: image_id
+            - parameter: name
               value: null
-      type: amazon.nodes.Instance
-    testing_tosca_key:
-      properties:
-        key_material: '{{ lookup(''file'', ''~/.ssh/id_rsa.pub'') }}'
-        name: testing_tosca_key
-      type: amazon.nodes.Key
+      type: openstack.nodes.Server
 tosca_definitions_version: tosca_simple_yaml_1_0

@@ -1,5 +1,6 @@
 import json
 import logging
+import uuid
 
 from flask import request, abort, render_template, Response, jsonify, make_response
 from werkzeug.exceptions import HTTPException
@@ -54,22 +55,20 @@ def yaml_add(varargs=None):
                 file = yaml.safe_load(file)
             else:
                 abort(400)
-            if cluster_name:
-                template = service_template_definition_parser(cluster_name, file)
-                template.template_type = varargs[0]
-                main_linker(template)
-                if add_vid(template.name, template.name):
-                    return jsonify({'status': 400,
-                                    'message': f'cluster_name: {cluster_name} is taken'})
-                if request.method == 'POST':
-                    print('DEPLOY START')
-                    deploy(template, template.name)
-                print('DEPLOY FINISH')
-                return jsonify({'status': 200,
-                                'message': f'cluster_name: {cluster_name} was deployed'})
-            else:
+            if cluster_name is None:
+                cluster_name = str(uuid.uuid4())
+            template = service_template_definition_parser(cluster_name, file)
+            template.template_type = varargs[0]
+            main_linker(template)
+            if add_vid(template.name, template.name):
                 return jsonify({'status': 400,
-                                'message': 'cluster_name is None'})
+                                'message': f'cluster_name: {cluster_name} is taken'})
+            if request.method == 'POST':
+                print('DEPLOY START')
+                deploy(template, template.name)
+            print('DEPLOY FINISH')
+            return jsonify({'status': 200,
+                            'message': f'cluster_name: {cluster_name} was deployed'})
         return '''
                 400 Bad Request 
                 '''

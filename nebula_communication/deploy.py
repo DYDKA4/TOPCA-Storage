@@ -130,12 +130,12 @@ def deploy(template, cluster_name) -> None:
 
     return
 
-# file = open('jupyter.yaml')
+# file = open('template.yaml')
 # data = file.read()
 # file.close()
 # data = yaml.safe_load(data)
 # # template = service_template_definition_parser(''.join(choice(ascii_uppercase) for i in range(12)), data)
-# template = service_template_definition_parser("Jupyter_1", data)
+# template = service_template_definition_parser("test_11", data)
 # main_linker(template)
 # if add_vid(template.name, template.name):
 #     abort(400)

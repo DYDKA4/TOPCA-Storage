@@ -50,7 +50,7 @@ def find_all_dependencies(cluster_name, node_type, node_name):
             else:
                 json_of_vid = builder[0](list_of_vid=list(set_of_vid))
             answer[builder[1]] = json_of_vid
-    # print(yaml.dump(answer, default_flow_style=False))
+    print(yaml.dump(answer, default_flow_style=False))
 
     return answer
 

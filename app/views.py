@@ -1,3 +1,4 @@
+import json
 import logging
 
 from flask import request, abort, render_template, Response, jsonify, make_response
@@ -29,7 +30,7 @@ from parser.parser.tosca_v_1_3.definitions.ServiceTemplateDefinition import serv
 def yaml_add(varargs=None):
     """
     curl -X POST -F file=@nebula_communication/jupyter.yaml
-    http://127.0.0.1:5000/v0.1/yaml_template/template/?cluster_name=Jupyter_3
+    http://127.0.0.1:5000/v0.1/yaml_template/template?cluster_name=Jupyter_3
     :return:
         json : {status : http status,
                 message: message to user}
@@ -228,7 +229,7 @@ def yaml_update(varargs=None):
 
 
 @app.route(f'/{cav}/yaml_delete_all', methods=['PATCH'])
-# curl -X PATCH http://127.0.0.1:5000/yaml-delete
+# curl -X PATCH http://127.0.0.1:5000/v0.1/yaml_delete_all
 def yaml_delete_all():
     delete_all()
     return "200 OK"
@@ -389,6 +390,7 @@ def get_all_dependencies(varargs=None):
                                 'message': 'Success'})
             elif node_type == 'node_type':
                 result = find_all_dependencies(cluster_name, 'NodeType', node_name)
+                print(yaml.dump(result, default_flow_style=False))
                 return jsonify({'status': 200,
                                 'result': result,
                                 'message': 'Success'})

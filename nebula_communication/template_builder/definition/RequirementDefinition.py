@@ -39,7 +39,6 @@ def construct_requirement_definition(list_of_vid, only) -> list:
                     relationship = fetch_vertex(destination[0], 'RelationshipType')
                     relationship = relationship.as_map()
                     relationship = relationship['name'].as_string()
-                    tmp_result['node'] = relationship
                     if tmp_result.get('relationship'):
                         tmp_result['relationship'] += {'type': relationship}
                     elif relationship:

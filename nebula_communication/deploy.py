@@ -1,9 +1,12 @@
 import uuid
 
+import yaml
 from werkzeug.exceptions import abort
 
 from nebula_communication.nebula_functions import add_in_vertex, add_edge
 from nebula_communication.redis_communication import add_vid
+from parser.linker.tosca_v_1_3.main_linker import main_linker
+from parser.parser.tosca_v_1_3.definitions.ServiceTemplateDefinition import service_template_definition_parser
 
 
 class DeployException(Exception):
@@ -32,6 +35,7 @@ def deploy(template, cluster_name) -> None:
     complex_vertex = {}
     if type(template) == str:
         print(template)
+    print(template)
     if template.vid is None or template.vertex_type_system == 'ServiceTemplateDefinition':
         for attribute_name, attribute_value in template.__dict__.items():
             if type(attribute_value) in {int, float, str, bool} and attribute_name not in {'vid'}:
@@ -58,8 +62,6 @@ def deploy(template, cluster_name) -> None:
             template.vid = '"' + str(template.vid) + '"'
 
         # print(template.__dict__)
-        if key_value == "['udp', 'tcp', 'igmp']" or name_of_key_value == 'valid_values' or template.vertex_type_system == 'ConstraintClause':
-            a = 1
         add_in_vertex(template.vertex_type_system, name_of_key_value, key_value, template.vid)
     # for edge in edges:
     #     add_edge(edge[0], edge[1], edge[2].vid, edge[3].vid, edge[4]) # todo Thing about it

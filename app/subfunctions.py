@@ -53,3 +53,6 @@ def find_all_dependencies(cluster_name, node_type, node_name):
     # print(yaml.dump(answer, default_flow_style=False))
 
     return answer
+
+
+# result = find_all_dependencies("TOSCA_DEFINITIONS_1", 'NodeType', "tosca.nodes.SoftwareComponent")

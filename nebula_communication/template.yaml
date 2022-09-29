@@ -806,20 +806,20 @@ node_types:
         required: false
         type: string
     requirements:
-    - subnet_id:
-        capability: amazon.capabilities.Node
-        node: amazon.relationships.DependsOn
-        occurrences:
-        - 0
-        - 1
-        relationship:
-          type: amazon.relationships.DependsOn
     - security_groups:
         capability: amazon.capabilities.Node
-        node: amazon.relationships.DependsOn
+        node: amazon.nodes.Group
         occurrences:
         - 0
         - UNBOUNDED
+        relationship:
+          type: amazon.relationships.DependsOn
+    - subnet_id:
+        capability: amazon.capabilities.Node
+        node: amazon.nodes.VpcSubnet
+        occurrences:
+        - 0
+        - 1
         relationship:
           type: amazon.relationships.DependsOn
   amazon.nodes.Group:
@@ -876,7 +876,7 @@ node_types:
     requirements:
     - vpc_id:
         capability: amazon.capabilities.Node
-        node: amazon.relationships.DependsOn
+        node: amazon.nodes.VpcNet
         occurrences:
         - 0
         - 1
@@ -884,7 +884,7 @@ node_types:
           type: amazon.relationships.DependsOn
     - vpc_id:
         capability: amazon.capabilities.Node
-        node: amazon.relationships.DependsOn
+        node: amazon.nodes.VpcNet
         occurrences:
         - 0
         - 1
@@ -956,25 +956,25 @@ node_types:
         required: false
         type: string
     requirements:
-    - security_groups:
+    - vpc_subnet_id:
         capability: amazon.capabilities.Node
-        node: amazon.relationships.DependsOn
-        occurrences:
-        - 0
-        - UNBOUNDED
-        relationship:
-          type: amazon.relationships.DependsOn
-    - key_name:
-        capability: amazon.capabilities.Node
-        node: amazon.relationships.DependsOn
+        node: amazon.nodes.VpcSubnet
         occurrences:
         - 0
         - 1
         relationship:
           type: amazon.relationships.DependsOn
+    - network:
+        capability: amazon.capabilities.Node
+        node: amazon.nodes.Eni
+        occurrences:
+        - 0
+        - UNBOUNDED
+        relationship:
+          type: amazon.relationships.DependsOn
     - image_id:
         capability: amazon.capabilities.Node
-        node: amazon.relationships.DependsOn
+        node: amazon.nodes.Ami
         occurrences:
         - 1
         - 1
@@ -982,26 +982,26 @@ node_types:
           type: amazon.relationships.DependsOn
     - instance_type:
         capability: amazon.capabilities.Node
-        node: amazon.relationships.DependsOn
+        node: amazon.nodes.instanceType
         occurrences:
         - 1
         - 1
         relationship:
           type: amazon.relationships.DependsOn
-    - network:
+    - key_name:
         capability: amazon.capabilities.Node
-        node: amazon.relationships.DependsOn
+        node: amazon.nodes.Key
+        occurrences:
+        - 0
+        - 1
+        relationship:
+          type: amazon.relationships.DependsOn
+    - security_groups:
+        capability: amazon.capabilities.Node
+        node: amazon.nodes.Group
         occurrences:
         - 0
         - UNBOUNDED
-        relationship:
-          type: amazon.relationships.DependsOn
-    - vpc_subnet_id:
-        capability: amazon.capabilities.Node
-        node: amazon.relationships.DependsOn
-        occurrences:
-        - 0
-        - 1
         relationship:
           type: amazon.relationships.DependsOn
   amazon.nodes.Key:
@@ -1064,7 +1064,7 @@ node_types:
     requirements:
     - dependency:
         capability: amazon.capabilities.Node
-        node: amazon.relationships.DependsOn
+        node: amazon.nodes.Root
         occurrences:
         - 0
         - UNBOUNDED
@@ -1072,7 +1072,7 @@ node_types:
           type: amazon.relationships.DependsOn
     - dependency:
         capability: amazon.capabilities.Node
-        node: amazon.relationships.DependsOn
+        node: amazon.nodes.Root
         occurrences:
         - 0
         - UNBOUNDED
@@ -1080,7 +1080,7 @@ node_types:
           type: amazon.relationships.DependsOn
     - dependency:
         capability: amazon.capabilities.Node
-        node: amazon.relationships.DependsOn
+        node: amazon.nodes.Root
         occurrences:
         - 0
         - UNBOUNDED
@@ -1176,7 +1176,7 @@ node_types:
     requirements:
     - vpc_id:
         capability: amazon.capabilities.Node
-        node: amazon.relationships.DependsOn
+        node: amazon.nodes.VpcNet
         occurrences:
         - 1
         - 1
@@ -1346,7 +1346,7 @@ node_types:
     requirements:
     - local_storage:
         capability: tosca.capabilities.Attachment
-        node: tosca.relationships.AttachesTo
+        node: tosca.nodes.BlockStorage
         occurrences:
         - 0
         - UNBOUNDED
@@ -1399,7 +1399,7 @@ node_types:
     requirements:
     - dependency:
         capability: tosca.capabilities.Node
-        node: tosca.relationships.DependsOn
+        node: tosca.nodes.Root
         occurrences:
         - 0
         - UNBOUNDED
@@ -1407,7 +1407,7 @@ node_types:
           type: tosca.relationships.DependsOn
     - dependency:
         capability: tosca.capabilities.Node
-        node: tosca.relationships.DependsOn
+        node: tosca.nodes.Root
         occurrences:
         - 0
         - UNBOUNDED
@@ -1415,7 +1415,7 @@ node_types:
           type: tosca.relationships.DependsOn
     - dependency:
         capability: tosca.capabilities.Node
-        node: tosca.relationships.DependsOn
+        node: tosca.nodes.Root
         occurrences:
         - 0
         - UNBOUNDED
@@ -1423,7 +1423,7 @@ node_types:
           type: tosca.relationships.DependsOn
     - dependency:
         capability: tosca.capabilities.Node
-        node: tosca.relationships.DependsOn
+        node: tosca.nodes.Root
         occurrences:
         - 0
         - UNBOUNDED
@@ -1457,7 +1457,7 @@ node_types:
     requirements:
     - host:
         capability: tosca.capabilities.Container
-        node: tosca.relationships.HostedOn
+        node: tosca.nodes.Compute
         relationship:
           type: tosca.relationships.HostedOn
 policy_types: {}

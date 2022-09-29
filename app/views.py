@@ -68,7 +68,8 @@ def yaml_add(varargs=None):
                 deploy(template, template.name)
             print('DEPLOY FINISH')
             return jsonify({'status': 200,
-                            'message': f'cluster_name: {cluster_name} was deployed'})
+                            'message': f'cluster_name: {cluster_name} was deployed',
+                            'cluster_name': cluster_name})
         return '''
                 400 Bad Request 
                 '''

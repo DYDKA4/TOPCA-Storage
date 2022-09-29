@@ -1,3 +1,5 @@
+import json
+
 from werkzeug.exceptions import abort
 
 from nebula_communication.nebula_functions import fetch_vertex, find_destination
@@ -17,8 +19,11 @@ def construct_constraint_schema(list_of_vid) -> list:
         if edges:
             print(edges, vid)
             abort(500)
-        value = vertex_value['value'].as_string()
-        value: str
+        value: str = vertex_value['value'].as_string()
+        try:
+            value = json.loads(value)
+        except ValueError:
+            continue
         if value.isnumeric():
             value: int = int(value)
         elif value.replace('.', '', 1).isdigit():

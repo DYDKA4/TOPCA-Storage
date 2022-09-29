@@ -8,6 +8,8 @@
 # pattern: < regular_expression_value >
 # # Schema grammar
 # complete
+import json
+
 
 class ConstraintClause:
     def __init__(self):
@@ -35,12 +37,14 @@ def short_notation(constraint: ConstraintClause, data):
 def constraint_clause_parser(data: dict) -> ConstraintClause:
     constraint = ConstraintClause()
     if type(data) != dict:
-        short_notation(constraint, data)
+        if type(data) != str:
+            short_notation(constraint, json.dumps(data))
+        else:
+            short_notation(constraint, data)
     else:
         for operator, scalar_value in data.items():
             if operator not in operator_keynames:
                 short_notation(constraint, {operator: scalar_value})
             else:
-                constraint.set_operator(operator)
-                constraint.set_value(str(scalar_value))
+                short_notation(constraint, json.dumps(data))
     return constraint

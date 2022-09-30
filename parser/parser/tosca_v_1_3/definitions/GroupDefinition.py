@@ -8,8 +8,9 @@
 #   properties:
 #     <property_assignments>
 #   members: [ <list_of_node_templates> ]
-from werkzeug.exceptions import abort
+import inspect
 
+from parser.parser import ParserException
 from parser.parser.tosca_v_1_3.assignments.AttributeAssignment import AttributeAssignment, attribute_assignments_parser
 from parser.parser.tosca_v_1_3.definitions.DescriptionDefinition import description_parser
 from parser.parser.tosca_v_1_3.others.Metadata import Metadata
@@ -52,7 +53,7 @@ def group_definition_parser(name: str, data: dict) -> GroupDefinition:
     if data.get('type'):
         group.set_type(data.get('type'))
     else:
-        abort(400)
+        raise ParserException(400, inspect.stack()[0][3] + ': no_type')
     if data.get('description'):
         description = description_parser(data)
         group.set_description(description)

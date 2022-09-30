@@ -1,7 +1,8 @@
-from werkzeug.exceptions import abort
+import inspect
 
 from nebula_communication.nebula_functions import get_all_vertex, fetch_vertex
 from nebula_communication.redis_communication import get_all_vid_from_cluster
+from nebula_communication.update_template import NebulaCommunicationUpdateTemplateException
 from nebula_communication.update_template.Definition.ImportDefinitionUpdater import get_import_definition
 from nebula_communication.update_template.Definition.RepositoryDefinitionUpdater import get_repository_definition
 from nebula_communication.update_template.Definition.TopologyTemplateDefinitionUpdater import \
@@ -20,11 +21,13 @@ from nebula_communication.update_template.find_functions import get_names, get_a
 
 def find_vertex(cluster_name, vertex_type_system, search_by, search_by_value):
     if vertex_type_system is None:
-        abort(400)
+        raise NebulaCommunicationUpdateTemplateException(400, f'{inspect.stack()[0][3]}: vertex_type_system is None')
     elif search_by and search_by_value is None:
-        abort(400)
+        raise NebulaCommunicationUpdateTemplateException(400, f'{inspect.stack()[0][3]}: search_by is not None '
+                                                              f'and search_by_value is None')
     elif search_by is None and search_by_value:
-        abort(400)
+        raise NebulaCommunicationUpdateTemplateException(400, f'{inspect.stack()[0][3]}: search_by is None '
+                                                              f'and search_by_value not is None')
     if cluster_name is None:
         if search_by is None:
             vid = []
@@ -98,65 +101,5 @@ def find_template(cluster_name: str, value, value_name, vertex_type_system: str,
     elif varargs[0] == 'topology_template':  # todo Тестить
         result = get_topology_template_definition(cluster_vid, value, value_name, varargs)
     else:
-        abort(400)
+        raise NebulaCommunicationUpdateTemplateException(400, f'{inspect.stack()[0][3]}: wrong arguments')
     return result
-
-
-# res = find_template('Jupyter_0', None, None, 'NodeTemplate',
-#                     [])
-# # res = find_template('Jupyter_0', 'michman.nodes.Jupyter.Jupyter-6-0-1', 'type', 'NodeTemplate',
-# #                     ['topology_template', 'node_templates', 'jupyter_1'])
-# res = get_names(res, 'NodeTemplate')
-# res_type = find_template('Jupyter_0', 'michman.nodes.Jupyter.Jupyter-6-0-1', 'name', 'NodeType',
-#                          [])[0]
-# print(res_type)
-# print(res)
-# source_name = ''
-# for uuid, name in res.items():
-#     res_type_new = find_template('Jupyter_0', 'does not meter', 'type', 'NodeTemplate',
-#                                  ['topology_template', 'node_templates', name])
-#     # print(res_type_new, res_type)
-#     if res_type_new == res_type:
-#         print(name, uuid)
-#         source_name = name
-#         break
-# res = find_template('Jupyter_0', 'does not meter', 'node', 'NodeTemplate',
-#                                  ['topology_template', 'node_templates', source_name, 'requirements', 'host'])
-# res = get_attribute(res, 'NodeTemplate', 'name')
-# res = find_template('Jupyter_0', 'does not meter', '', 'NodeTemplate',
-#                     ['topology_template', 'node_templates', res, 'capabilities', 'endpoint', 'properties', 'port'])
-# print(res)
-# print(get_attribute(res, 'PropertyAssignment', 'value'))
-
-
-
-
-# res = find_template(None, None, None, 'NodeTemplate',
-#                     [])
-#
-# cluster_name = get_cluster_name(res)
-# res = get_names(res, 'NodeTemplate')
-#
-# for cluster in list(set(cluster_name.values())):
-#     res_type = find_template(cluster, 'michman.nodes.Jupyter.Jupyter-6-0-1', 'name', 'NodeType',
-#                              [])
-#     result = None
-#     if res_type:
-#         res_type = res_type[0]
-#         source_name = ''
-#         res_type_new = None
-#         for uuid, name in res.items():
-#             res_type_new = find_template(cluster, 'does not meter', 'type', 'NodeTemplate',
-#                                          ['topology_template', 'node_templates', name])
-#             if res_type_new == res_type:
-#                 source_name = name
-#                 break
-#         if res_type_new:
-#             result = find_template(cluster, 'does not meter', 'node', 'NodeTemplate',
-#                                    ['topology_template', 'node_templates', source_name, 'requirements', 'host'])
-#             result = get_attribute(result, 'NodeTemplate', 'name')
-#             result = find_template(cluster, 'does not meter', '', 'NodeTemplate',
-#                                    ['topology_template', 'node_templates', result, 'capabilities', 'endpoint',
-#                                     'properties',
-#                                     'port'])
-#     print(result)

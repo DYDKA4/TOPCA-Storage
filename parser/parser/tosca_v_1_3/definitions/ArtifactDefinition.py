@@ -12,8 +12,9 @@
 #   checksum: <artifact_checksum>
 #   checksum_algorithm: <artifact_checksum_algorithm>
 #   properties: <property assignments>
-from werkzeug.exceptions import abort
+import inspect
 
+from parser.parser import ParserException
 from parser.parser.tosca_v_1_3.definitions.DescriptionDefinition import description_parser
 from parser.parser.tosca_v_1_3.assignments.PropertyAssignment import PropertyAssignment
 
@@ -90,8 +91,8 @@ def artifact_definition_parser(name: str, data: dict) -> ArtifactDefinition:
         for property_name, property_value in data.get('properties').items():
             artifact.add_properties(PropertyAssignment(property_name, property_value))
     if artifact.type is None:
-        abort(400)
+        raise ParserException(400, inspect.stack()[0][3] + ': artifact.type is None')
     if artifact.file is None:
-        abort(400)
+        raise ParserException(400, inspect.stack()[0][3] + ': artifact.file is None')
 
     return artifact

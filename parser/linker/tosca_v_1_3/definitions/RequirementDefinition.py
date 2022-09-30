@@ -15,9 +15,10 @@
 #     type: # <relationship_type_name> Required
 #     interfaces:
 #       <interface_definitions>
-from werkzeug.exceptions import abort
+import inspect
 
 from parser.linker.LinkByName import link_by_type_name
+from parser.parser import ParserException
 from parser.parser.tosca_v_1_3.definitions.RequirementDefinition import RequirementDefinition
 from parser.parser.tosca_v_1_3.definitions.ServiceTemplateDefinition import ServiceTemplateDefinition
 
@@ -32,4 +33,6 @@ def link_requirement_definition(service_template: ServiceTemplateDefinition, req
     if type(requirement.relationship) == str:
         link_by_type_name(service_template.relationship_types, requirement, 'relationship')
     if str in {type(requirement.node), type(requirement.relationship), type(requirement.capability)}:
-        abort(400)
+        raise ParserException(400, inspect.stack()[0][3] + ': str in {type(requirement.node),'
+                                                           ' type(requirement.relationship),'
+                                                           ' type(requirement.capability)}')

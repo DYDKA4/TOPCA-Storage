@@ -15,8 +15,9 @@
 #     type: # <relationship_type_name> Required
 #     interfaces:
 #       <interface_definitions>
-from werkzeug.exceptions import abort
+import inspect
 
+from parser.parser import ParserException
 from parser.parser.tosca_v_1_3.definitions.InterfaceDefinition import InterfaceDefinition, interface_definition_parser
 from parser.parser.tosca_v_1_3.others.Occurrences import Occurrences
 
@@ -65,7 +66,7 @@ def requirement_definition_parser(name: str, data: dict) -> RequirementDefinitio
             if relationship.get('type'):
                 requirement.set_relationship_type_name(relationship.get('type'))
             else:
-                abort(400)
+                raise ParserException(400, inspect.stack()[0][3] + ': no_type')
             if relationship.get('interfaces'):
                 for interface_name, interface_value in relationship.get('interfaces').items():
                     requirement.add_interface(interface_definition_parser(interface_name, interface_value))
@@ -73,5 +74,5 @@ def requirement_definition_parser(name: str, data: dict) -> RequirementDefinitio
         occurrences = data.get('occurrences')
         requirement.set_occurrences(Occurrences(occurrences[0], occurrences[1]))
     if requirement.capability is None:
-        abort(400)
+        raise ParserException(400, inspect.stack()[0][3] + ': requirement.capability is None')
     return requirement

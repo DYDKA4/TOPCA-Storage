@@ -6,8 +6,9 @@
 #   description: <repository_description>
 #   url: <repository_address> Required
 #   credential: <authorization_credential> #todo Make support of tosca.datatypes.Credential?
-from werkzeug.exceptions import abort
+import inspect
 
+from parser.parser import ParserException
 from parser.parser.tosca_v_1_3.definitions.DescriptionDefinition import description_parser
 
 
@@ -38,7 +39,7 @@ def repository_definition_parser(name: str, data: dict) -> RepositoryDefinition:
     if data.get('url'):
         repository.set_url(data.get('url'))
     else:
-        abort(400)
+        raise ParserException(400, inspect.stack()[0][3] + ': no_url')
     if data.get('description'):
         if data.get('description'):
             description = description_parser(data)

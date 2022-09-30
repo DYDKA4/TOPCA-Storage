@@ -1,8 +1,9 @@
-from werkzeug.exceptions import abort
+import inspect
 
 from nebula_communication.generate_uuid import generate_uuid
 from nebula_communication.nebula_functions import find_destination, fetch_vertex, update_vertex, delete_edge, add_edge, \
     delete_vertex, add_in_vertex
+from nebula_communication.update_template import NebulaCommunicationUpdateTemplateException
 from nebula_communication.update_template.Assignment.AttributeAssignmentUpdater import update_attribute_assignment, \
     add_attribute_assignment
 from nebula_communication.update_template.Assignment.PropertyAssignmentUpdater import update_property_assignment, \
@@ -16,10 +17,10 @@ from parser.parser.tosca_v_1_3.definitions.GroupDefinition import GroupDefinitio
 
 def start_group_definition(father_node_vid, varargs):
     if len(varargs) < 2:
-        abort(400)
+        raise NebulaCommunicationUpdateTemplateException(400, f'{inspect.stack()[0][3]}: varargs is too short')
     destination = find_destination(father_node_vid, varargs[0])
     if destination is None:
-        abort(400)
+        raise NebulaCommunicationUpdateTemplateException(400, f'{inspect.stack()[0][3]}: destination is None')
     group_vid_to_update = None
     for group_vid in destination:
         group_value = fetch_vertex(group_vid, 'GroupDefinition')
@@ -28,7 +29,8 @@ def start_group_definition(father_node_vid, varargs):
             group_vid_to_update = group_vid
             break
     if group_vid_to_update is None:
-        abort(400)
+        raise NebulaCommunicationUpdateTemplateException(400, f'{inspect.stack()[0][3]}: group_vid_to_update '
+                                                              'is None')
     return group_vid_to_update
 
 
@@ -52,10 +54,14 @@ def update_group_definition(service_template_vid, father_node_vid, value, value_
                     new_type_vid = group_type_vid
                     break
             if new_type_vid is None:
-                abort(400)
+                raise NebulaCommunicationUpdateTemplateException(400,
+                                                                 f'{inspect.stack()[0][3]}: '
+                                                                 f'new_type_vid is None')
             if type_vertex is not None:
                 if len(type_vertex) > 1:
-                    abort(500)
+                    raise NebulaCommunicationUpdateTemplateException(500,
+                                                                     f'{inspect.stack()[0][3]}: '
+                                                                     f'type_vertex len != 1')
                 delete_edge(value_name, group_vid_to_update, type_vertex[0])
             add_edge(value_name, '', group_vid_to_update, new_type_vid, '')
         elif value_name == 'members':
@@ -75,7 +81,9 @@ def update_group_definition(service_template_vid, father_node_vid, value, value_
                     find_destination(service_template_vid, 'topology_template')[0],
                     'node_templates')
                 if node_template_vertexes is None:
-                    abort(500)
+                    raise NebulaCommunicationUpdateTemplateException(500,
+                                                                     f'{inspect.stack()[0][3]}: '
+                                                                     f'node_template_vertexes is None')
                 for node_types_vertex in node_template_vertexes:
                     node_types_value = fetch_vertex(node_types_vertex, 'NodeType')
                     node_types_value = node_types_value.as_map()
@@ -83,12 +91,14 @@ def update_group_definition(service_template_vid, father_node_vid, value, value_
                         add_vertex = node_types_vertex
                         break
                 if add_vertex is None:
-                    abort(400)
+                    raise NebulaCommunicationUpdateTemplateException(400,
+                                                                     f'{inspect.stack()[0][3]}: '
+                                                                     f'add_vertex is None')
                 add_edge(value_name, '', group_vid_to_update, add_vertex, '')
         elif value_name in vertex_value.keys():
             update_vertex('GroupDefinition', group_vid_to_update, value_name, value)
         else:
-            abort(501)
+            raise NebulaCommunicationUpdateTemplateException(501, f'{inspect.stack()[0][3]}: Not implemented')
     elif varargs[2] == 'metadata':
         if not add_metadata(type_update, varargs[2:], value, value_name, cluster_name, group_vid_to_update):
             update_metadata(group_vid_to_update, value, value_name, varargs[2:], type_update)
@@ -101,7 +111,7 @@ def update_group_definition(service_template_vid, father_node_vid, value, value_
             update_property_assignment(service_template_vid, group_vid_to_update, value, value_name, varargs[2:],
                                        type_update)
     else:
-        abort(400)
+        raise NebulaCommunicationUpdateTemplateException(400, f'{inspect.stack()[0][3]}: wrong arguments')
 
 
 def add_group_definition(type_update, varargs, cluster_name, parent_vid, edge_name):
@@ -139,7 +149,7 @@ def get_group_definition(father_node_vid, value, value_name, varargs: list):
             if value == vertex_value.get(value_name).as_string():
                 return group_vid_to_update.as_string()
         else:
-            abort(501)
+            raise NebulaCommunicationUpdateTemplateException(501, f'{inspect.stack()[0][3]}: Not implemented')
     elif varargs[2] == 'metadata':
         destination = find_destination(group_vid_to_update, value_name)
         result, flag = return_all(value, value_name, destination, varargs, 4)
@@ -159,4 +169,4 @@ def get_group_definition(father_node_vid, value, value_name, varargs: list):
             return result
         return get_property_definition(father_node_vid, value, value_name, varargs[2:])
     else:
-        abort(400)
+        raise NebulaCommunicationUpdateTemplateException(400, f'{inspect.stack()[0][3]}: wrong arguments')

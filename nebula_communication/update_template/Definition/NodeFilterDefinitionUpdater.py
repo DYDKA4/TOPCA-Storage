@@ -1,8 +1,9 @@
-from werkzeug.exceptions import abort
+import inspect
 
 from nebula_communication.generate_uuid import generate_uuid
 from nebula_communication.nebula_functions import find_destination, fetch_vertex, update_vertex, delete_edge, add_edge, \
     delete_vertex, add_in_vertex
+from nebula_communication.update_template import NebulaCommunicationUpdateTemplateException
 from nebula_communication.update_template.Definition.CapabilityFilterDefinition import \
     update_capability_filter_definition, add_capability_filter_definition, get_capability_filter_definition
 from nebula_communication.update_template.Definition.PropertyFilterDefinitionUpdater import \
@@ -14,20 +15,21 @@ from parser.parser.tosca_v_1_3.definitions.NodeFilterDefinition import NodeFilte
 def update_node_filter_definition(service_template_vid, father_node_vid, value, value_name, varargs: list,
                                   type_update, cluster_name):
     if len(varargs) < 2:
-        abort(400)
+        raise NebulaCommunicationUpdateTemplateException(400, f'{inspect.stack()[0][3]}: varargs is too short')
     destination = find_destination(father_node_vid, varargs[0])
     if destination is None:
-        abort(400)
+        raise NebulaCommunicationUpdateTemplateException(400, f'{inspect.stack()[0][3]}: destination is None')
     if len(destination) > 1:
         if type_update == 'delete':
             for destination_vid in destination:
                 delete_vertex('"' + destination_vid.as_string() + '"')
             return
         else:
-            abort(400)
+            raise NebulaCommunicationUpdateTemplateException(400, f'{inspect.stack()[0][3]}: len(destination) > 1')
     node_filter_vid_to_update = destination[0]
     if node_filter_vid_to_update is None:
-        abort(400)
+        raise NebulaCommunicationUpdateTemplateException(400, f'{inspect.stack()[0][3]}: node_filter_vid_to_update '
+                                                              'is None')
     if type_update == 'delete':
         delete_vertex('"' + node_filter_vid_to_update.as_string() + '"')
         return
@@ -42,7 +44,7 @@ def update_node_filter_definition(service_template_vid, father_node_vid, value, 
             update_capability_filter_definition(service_template_vid, node_filter_vid_to_update, value, value_name,
                                                 varargs[1:], type_update, cluster_name)
     else:
-        abort(400)
+        raise NebulaCommunicationUpdateTemplateException(400, f'{inspect.stack()[0][3]}: wrong arguments')
 
 
 def add_node_filter_definition(type_update, varargs, cluster_name, parent_vid, edge_name):
@@ -58,15 +60,16 @@ def add_node_filter_definition(type_update, varargs, cluster_name, parent_vid, e
 
 def get_node_filter_definition(father_node_vid, value, value_name, varargs: list):
     if len(varargs) < 2:
-        abort(400)
+        raise NebulaCommunicationUpdateTemplateException(400, f'{inspect.stack()[0][3]}: varargs is too short')
     destination = find_destination(father_node_vid, varargs[0])
     if destination is None:
-        abort(400)
+        raise NebulaCommunicationUpdateTemplateException(400, f'{inspect.stack()[0][3]}: destination is None')
     if len(destination) > 1:
-        abort(400)
+        raise NebulaCommunicationUpdateTemplateException(400, f'{inspect.stack()[0][3]}: len(destination) > 1')
     node_filter_vid_to_update = destination[0]
     if node_filter_vid_to_update is None:
-        abort(400)
+        raise NebulaCommunicationUpdateTemplateException(400, f'{inspect.stack()[0][3]}: node_filter_vid_to_update '
+                                                              'is None')
     if varargs[2] == 'properties':
         destination = find_destination(node_filter_vid_to_update, value_name)
         result, flag = return_all(value, value_name, destination, varargs, 4)
@@ -80,4 +83,4 @@ def get_node_filter_definition(father_node_vid, value, value_name, varargs: list
             return result
         return get_capability_filter_definition(father_node_vid, value, value_name, varargs[1:])
     else:
-        abort(400)
+        raise NebulaCommunicationUpdateTemplateException(400, f'{inspect.stack()[0][3]}: wrong arguments')

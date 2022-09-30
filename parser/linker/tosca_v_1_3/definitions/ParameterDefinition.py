@@ -18,9 +18,10 @@
 # Single line
 # <parameter_name>:
 #     value : <parameter_value> | { <parameter_value_expression> }
-from werkzeug.exceptions import abort
+import inspect
 
 from parser.linker.LinkByName import link_by_type_name
+from parser.parser import ParserException
 from parser.parser.tosca_v_1_3.definitions import ParameterDefinition
 from parser.parser.tosca_v_1_3.definitions.ServiceTemplateDefinition import ServiceTemplateDefinition
 
@@ -29,4 +30,4 @@ def link_parameter_definition(service_template: ServiceTemplateDefinition, param
     if type(parameter.type) == str:
         link_by_type_name(service_template.data_types, parameter, 'type')
     if str in {type(parameter.type)}:
-        abort(400)
+        raise ParserException(400, inspect.stack()[0][3] + ':  str in {type(parameter.type)}')

@@ -10,8 +10,9 @@
 #       - <target_step_name>
 #     on_failure:
 #       - <target_step_name>
-from werkzeug.exceptions import abort
+import inspect
 
+from parser.parser import ParserException
 from parser.parser.tosca_v_1_3.definitions.ActivityDefinition import activity_definition_parser
 from parser.parser.tosca_v_1_3.definitions.ConditionClauseDefinition import condition_clause_definition_parser, \
     ConditionClauseDefinition
@@ -57,7 +58,7 @@ def workflow_step_definition_parser(name: str, data: dict) -> WorkflowStepDefini
     if data.get('target'):
         step.set_target(data.get('target'))
     else:
-        abort(400)
+        raise ParserException(400, inspect.stack()[0][3] + ': no_target')
     if data.get('target_relationship'):
         step.set_target_relationship(data.get('target_relationship'))
     if data.get('operation_host'):
@@ -70,7 +71,7 @@ def workflow_step_definition_parser(name: str, data: dict) -> WorkflowStepDefini
         for activities in data.get('activities'):
             step.add_activities(activity_definition_parser(activities))
     else:
-        abort(400)
+        raise ParserException(400, inspect.stack()[0][3] + ': no_activities')
     if data.get('on_success'):
         for on_success in data.get('on_success'):
             step.add_on_success(on_success)

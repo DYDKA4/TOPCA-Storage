@@ -10,10 +10,10 @@
 #   entry_schema: <entry_schema_definition>
 #   metadata:
 #     <metadata_map>
+import inspect
 import json
 
-from werkzeug.exceptions import abort
-
+from parser.parser import ParserException
 from parser.parser.tosca_v_1_3.others.ConstraintСlause import constraint_clause_parser, ConstraintClause
 from parser.parser.tosca_v_1_3.definitions.DescriptionDefinition import description_parser
 from parser.parser.tosca_v_1_3.others.Metadata import Metadata
@@ -71,7 +71,7 @@ def property_definition_parser(name: str, data: dict) -> PropertyDefinition:
     if data.get('type'):
         property_definition.set_type(data.get('type'))
     else:
-        abort(400)
+        raise ParserException(400, inspect.stack()[0][3] + ': no_type')
     if data.get('description'):
         description = description_parser(data)
         property_definition.set_description(description)

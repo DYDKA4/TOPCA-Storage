@@ -1,18 +1,20 @@
-from werkzeug.exceptions import abort
+import inspect
+
 
 from nebula_communication.generate_uuid import generate_uuid
 from nebula_communication.nebula_functions import find_destination, fetch_vertex, update_vertex, delete_edge, add_edge, \
     get_all_vid_from_cluster_by_type, delete_vertex, add_in_vertex
+from nebula_communication.update_template import NebulaCommunicationUpdateTemplateException
 from nebula_communication.update_template.find_functions import form_result
 from parser.parser.tosca_v_1_3.definitions.WorkflowStepDefinition import WorkflowStepDefinition
 
 
 def start_workflow_step_definition(father_node_vid, varargs):
     if len(varargs) < 2:
-        abort(400)
+        raise NebulaCommunicationUpdateTemplateException(400, f'{inspect.stack()[0][3]}: varargs is too short')
     destination = find_destination(father_node_vid, varargs[0])
     if destination is None:
-        abort(400)
+        raise NebulaCommunicationUpdateTemplateException(400, f'{inspect.stack()[0][3]}: destination is None')
     workflow_step_vid_to_update = None
     for workflow_step_vid in destination:
         workflow_step_value = fetch_vertex(workflow_step_vid, 'WorkflowStepDefinition')
@@ -21,7 +23,8 @@ def start_workflow_step_definition(father_node_vid, varargs):
             workflow_step_vid_to_update = workflow_step_vid
             break
     if workflow_step_vid_to_update is None:
-        abort(400)
+        raise NebulaCommunicationUpdateTemplateException(400, f'{inspect.stack()[0][3]}: workflow_step_vid_to_update '
+                                                              'is None')
     return workflow_step_vid_to_update
 
 
@@ -46,10 +49,14 @@ def update_workflow_step_definition(service_template_vid, father_node_vid, value
                     new_target_relationship_vid = relationship_template_vid
                     break
             if new_target_relationship_vid is None:
-                abort(400)
+                raise NebulaCommunicationUpdateTemplateException(400,
+                                                                 f'{inspect.stack()[0][3]}: '
+                                                                 f'new_target_relationship_vid is None')
             if target_relationship_vertex is not None:
                 if len(target_relationship_vertex) > 1:
-                    abort(500)
+                    raise NebulaCommunicationUpdateTemplateException(500,
+                                                                     f'{inspect.stack()[0][3]}: '
+                                                                     f'target_relationship_vertex len != 1')
                 delete_edge(value_name, workflow_step_vid_to_update, target_relationship_vertex[0])
             add_edge(value_name, '', workflow_step_vid_to_update, new_target_relationship_vid, '')
         elif value_name == 'on_success' or value_name == 'on_failure':
@@ -63,22 +70,26 @@ def update_workflow_step_definition(service_template_vid, father_node_vid, value
                     new_step_vid = step_vid
                     break
             if new_step_vid is None:
-                abort(400)
+                raise NebulaCommunicationUpdateTemplateException(400,
+                                                                 f'{inspect.stack()[0][3]}: '
+                                                                 f'new_step_vid is None')
             if target_step_vertex is not None:
                 if len(target_step_vertex) > 1:
-                    abort(500)
+                    raise NebulaCommunicationUpdateTemplateException(500,
+                                                                     f'{inspect.stack()[0][3]}: '
+                                                                     f'new_step_vid len != 1')
                 delete_edge(value_name, workflow_step_vid_to_update, target_step_vertex[0])
             add_edge(value_name, '', workflow_step_vid_to_update, new_step_vid, '')
         elif value_name in vertex_value.keys():
             update_vertex('WorkflowStepDefinition', workflow_step_vid_to_update, value_name, value)
         else:
-            abort(501)
+            raise NebulaCommunicationUpdateTemplateException(501, f'{inspect.stack()[0][3]}: Not implemented')
     elif varargs[2] == 'filter':
-        abort(501)
+        raise NebulaCommunicationUpdateTemplateException(501, f'{inspect.stack()[0][3]}: filter Not implemented')
     elif varargs[2] == 'activities':
-        abort(501)
+        raise NebulaCommunicationUpdateTemplateException(501, f'{inspect.stack()[0][3]}: activities Not implemented')
     else:
-        abort(400)
+        raise NebulaCommunicationUpdateTemplateException(400, f'{inspect.stack()[0][3]}: wrong arguments')
 
 
 def add_workflow_step_definition(type_update, varargs, cluster_name, parent_vid, edge_name):
@@ -116,10 +127,11 @@ def get_workflow_step_definition(father_node_vid, value, value_name, varargs: li
             if value == vertex_value.get(value_name).as_string():
                 return workflow_step_vid_to_update.as_string()
         else:
-            abort(501)
+            raise NebulaCommunicationUpdateTemplateException(501, f'{inspect.stack()[0][3]}: Not implemented')
     elif varargs[2] == 'filter':
-        abort(501)
+        raise NebulaCommunicationUpdateTemplateException(501, f'{inspect.stack()[0][3]}: filter Not implemented')
     elif varargs[2] == 'activities':
-        abort(501)
+        raise NebulaCommunicationUpdateTemplateException(501, f'{inspect.stack()[0][3]}: activities Not implemented')
     else:
-        abort(400)
+        raise NebulaCommunicationUpdateTemplateException(400, f'{inspect.stack()[0][3]}: wrong arguments')
+

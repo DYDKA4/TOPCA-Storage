@@ -6,11 +6,12 @@
 #   primary: <primary_artifact_name>
 #   dependencies:
 #     - <list_of_dependent_artifact_names>
-from werkzeug.exceptions import abort
+import inspect
 
 from parser.linker.GetAllArtifactDefinition import get_all_artifact_definition
 from parser.linker.LinkByName import link_by_type_name
 from parser.linker.LinkerValidTypes import link_with_list
+from parser.parser import ParserException
 from parser.parser.tosca_v_1_3.definitions.NotificationImplementationDefinition import \
     NotificationImplementationDefinition
 from parser.parser.tosca_v_1_3.definitions.ServiceTemplateDefinition import ServiceTemplateDefinition
@@ -24,4 +25,4 @@ def link_notification_implementation_definition(service_template: ServiceTemplat
 
     link_with_list(list_of_artifact_definition, notification, 'dependencies')
     if str in {type(notification.primary)}:
-        abort(400)
+        raise ParserException(400, inspect.stack()[0][3] + ':  str in {type(notification.primary)}')

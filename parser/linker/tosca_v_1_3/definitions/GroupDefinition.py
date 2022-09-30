@@ -8,10 +8,11 @@
 #   properties:
 #     <property_assignments>
 #   members: [ <list_of_node_templates> ]
-from werkzeug.exceptions import abort
+import inspect
 
 from parser.linker.LinkByName import link_by_type_name
 from parser.linker.LinkerValidTypes import link_members
+from parser.parser import ParserException
 from parser.parser.tosca_v_1_3.assignments.AttributeAssignment import AttributeAssignment, attribute_assignments_parser
 from parser.parser.tosca_v_1_3.definitions.DescriptionDefinition import description_parser
 from parser.parser.tosca_v_1_3.definitions.GroupDefinition import GroupDefinition
@@ -25,5 +26,5 @@ def link_group_definition(service_template: ServiceTemplateDefinition, group: Gr
         link_by_type_name(service_template.group_types, group, 'type',)
     link_members(service_template.topology_template.node_templates, group)
     if str in {type(group.type)}:
-        abort(400)
+        raise ParserException(400, inspect.stack()[0][3] + ': str in {type(group.type)}')
 

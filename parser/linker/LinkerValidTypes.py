@@ -1,6 +1,7 @@
-from itertools import groupby
+import inspect
 
-from werkzeug.exceptions import abort
+
+from parser.parser import ParserException
 
 
 def link_with_list(list_of_smt, current_template, name_of_connection):
@@ -16,9 +17,8 @@ def link_with_list(list_of_smt, current_template, name_of_connection):
                 break
     if len(target_structure) != len(getattr(current_template, name_of_connection)):
         print(name_of_connection, getattr(current_template, name_of_connection))
-        # for item in getattr(current_template, name_of_connection):
-        #     print(item.name)
-        abort(400)
+        raise ParserException(400, f'{inspect.stack()[0][3]}: '
+                                   f'len(target_structure) != len(getattr(current_template, name_of_connection))')
     setattr(current_template, name_of_connection, {name_of_connection: [current_template, target_structure]})
 
 

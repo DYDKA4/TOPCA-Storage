@@ -19,8 +19,9 @@
 #   node_filter:
 #     <node_filter_definition>
 #   copy: <source_node_template_name>
-from werkzeug.exceptions import abort
+import inspect
 
+from parser.parser import ParserException
 from parser.parser.tosca_v_1_3.definitions.ArtifactDefinition import ArtifactDefinition, artifact_definition_parser
 from parser.parser.tosca_v_1_3.assignments.AttributeAssignment import attribute_assignments_parser, AttributeAssignment
 from parser.parser.tosca_v_1_3.assignments.CapabilityAssignment import CapabilityAssignment, capability_assignment_parser
@@ -93,7 +94,7 @@ def node_template_parser(name: str, data: dict) -> NodeTemplate:
     if data.get('type'):
         node_template.set_type(data.get('type'))
     else:
-        abort(400)
+        raise ParserException(400, inspect.stack()[0][3] + ':  no type')
     if data.get('description'):
         description = description_parser(data)
         node_template.set_description(description)

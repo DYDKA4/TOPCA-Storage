@@ -1,8 +1,8 @@
-from werkzeug.exceptions import abort
-
+import inspect
 from nebula_communication.generate_uuid import generate_uuid
 from nebula_communication.nebula_functions import find_destination, fetch_vertex, update_vertex, delete_edge, add_edge, \
     delete_vertex, add_in_vertex
+from nebula_communication.update_template import NebulaCommunicationUpdateTemplateException
 from nebula_communication.update_template.Definition.PropertyFilterDefinitionUpdater import \
     update_property_filter_definition, add_property_filter_definition, get_property_filter_definition
 from nebula_communication.update_template.find_functions import return_all
@@ -11,10 +11,10 @@ from parser.parser.tosca_v_1_3.definitions.CapabilityFilterDefinition import Cap
 
 def start_capability_filter_definition(father_node_vid, varargs):
     if len(varargs) < 2:
-        abort(400)
+        raise NebulaCommunicationUpdateTemplateException(400, f'{inspect.stack()[0][3]}: varargs is too long')
     destination = find_destination(father_node_vid, varargs[0])
     if destination is None or len(destination) > 1:
-        abort(400)
+        raise NebulaCommunicationUpdateTemplateException(400, f'{inspect.stack()[0][3]}: destination is None')
     capability_filter_vid_to_update = None
     for capability_vid in destination:
         capability_filter_value = fetch_vertex(capability_vid, 'CapabilityFilterDefinition')
@@ -23,7 +23,9 @@ def start_capability_filter_definition(father_node_vid, varargs):
             capability_filter_vid_to_update = capability_vid
             break
     if capability_filter_vid_to_update is None:
-        abort(400)
+        raise NebulaCommunicationUpdateTemplateException(400, f'{inspect.stack()[0][3]}: '
+                                                              f'capability_filter_vid_to_update '
+                                                              'is None')
     return capability_filter_vid_to_update
 
 
@@ -39,14 +41,14 @@ def update_capability_filter_definition(service_template_vid, father_node_vid, v
         if value_name in vertex_value.keys():
             update_vertex('CapabilityFilterDefinition', capability_filter_vid_to_update, value_name, value)
         else:
-            abort(501)
+            raise NebulaCommunicationUpdateTemplateException(501, f'{inspect.stack()[0][3]}: Not implemented')
     elif varargs[2] == 'properties':
         if not add_property_filter_definition(type_update, varargs[2:], cluster_name, capability_filter_vid_to_update,
                                               varargs[2]):
             update_property_filter_definition(service_template_vid, capability_filter_vid_to_update, value, value_name,
                                               varargs[2:], type_update, cluster_name)
     else:
-        abort(400)
+        raise NebulaCommunicationUpdateTemplateException(400, f'{inspect.stack()[0][3]}: wrong arguments')
 
 
 def add_capability_filter_definition(type_update, varargs, cluster_name, parent_vid, edge_name):
@@ -74,4 +76,4 @@ def get_capability_filter_definition(father_node_vid, value, value_name, varargs
             return result
         return get_property_filter_definition(father_node_vid, value, value_name, varargs[2:])
     else:
-        abort(400)
+        raise NebulaCommunicationUpdateTemplateException(400, f'{inspect.stack()[0][3]}: wrong arguments')

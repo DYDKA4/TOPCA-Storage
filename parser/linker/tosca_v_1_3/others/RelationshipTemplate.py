@@ -11,9 +11,10 @@
 #     <interface_definitions>
 #   copy:
 #     <source_relationship_template_name>
-from werkzeug.exceptions import abort
+import inspect
 
 from parser.linker.LinkByName import link_by_type_name
+from parser.parser import ParserException
 from parser.parser.tosca_v_1_3.definitions.ServiceTemplateDefinition import ServiceTemplateDefinition
 from parser.parser.tosca_v_1_3.definitions.TemplateDefinition import TemplateDefinition
 from parser.parser.tosca_v_1_3.others.NodeTemplate import NodeTemplate
@@ -26,4 +27,5 @@ def link_relationship_template(service_template: ServiceTemplateDefinition,
     link_by_type_name(service_template.relationship_types, relationship, 'type')
     link_by_type_name(topology_template.relationship_templates, relationship, 'copy')
     if str in {type(relationship.copy), type(relationship.type)}:
-        abort(400)
+        raise ParserException(400, inspect.stack()[0][3] + ':  str in {type(relationship.copy), type('
+                                                           'relationship.type)}')

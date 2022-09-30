@@ -11,8 +11,9 @@
 #     <interface_definitions>
 #   copy:
 #     <source_relationship_template_name>
-from werkzeug.exceptions import abort
+import inspect
 
+from parser.parser import ParserException
 from parser.parser.tosca_v_1_3.assignments.AttributeAssignment import AttributeAssignment, attribute_assignments_parser
 from parser.parser.tosca_v_1_3.definitions.DescriptionDefinition import description_parser
 from parser.parser.tosca_v_1_3.definitions.InterfaceDefinition import InterfaceDefinition, interface_definition_parser
@@ -60,7 +61,7 @@ def relationship_template_parser(name: str, data: dict) -> RelationshipTemplate:
     if data.get('type'):
         relationship.set_type(data.get('type'))
     else:
-        abort(400)
+        raise ParserException(400, inspect.stack()[0][3] + ': no_type')
     if data.get('description'):
         description = description_parser(data)
         relationship.set_description(description)

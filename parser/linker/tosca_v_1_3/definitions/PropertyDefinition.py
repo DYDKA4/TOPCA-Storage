@@ -10,9 +10,10 @@
 #   entry_schema: <entry_schema_definition>
 #   metadata:
 #     <metadata_map>
-from werkzeug.exceptions import abort
+import inspect
 
 from parser.linker.LinkByName import link_by_type_name
+from parser.parser import ParserException
 from parser.parser.tosca_v_1_3.definitions.PropertyDefinition import PropertyDefinition
 from parser.parser.tosca_v_1_3.definitions.ServiceTemplateDefinition import ServiceTemplateDefinition
 from parser.parser.tosca_v_1_3.others.ConstraintСlause import constraint_clause_parser, ConstraintClause
@@ -26,4 +27,4 @@ def link_property_definition(service_template: ServiceTemplateDefinition, proper
         link_by_type_name(service_template.data_types, property_vertex, 'type')
     if str in {type(property_vertex.type)}:
         print(property_vertex.type)
-        abort(400)
+        raise ParserException(400, inspect.stack()[0][3] + ':  str in {type(property_vertex.type)}')

@@ -24,8 +24,9 @@
 #     method: <string> # e.g., average
 #   action:
 #     - <list_of_activity_definition> #todo Remake if need it
-from werkzeug.exceptions import abort
+import inspect
 
+from parser.parser import ParserException
 from parser.parser.tosca_v_1_3.definitions.ActivityDefinition import activity_definition_parser
 from parser.parser.tosca_v_1_3.definitions.ConditionClauseDefinition import ConditionClauseDefinition, \
     condition_clause_definition_parser
@@ -86,7 +87,7 @@ def trigger_definition_parser(name: str, data: dict) -> TriggerDefinition:
     if data.get('event'):
         trigger.set_event(data.get('event'))
     else:
-        abort(400)
+        raise ParserException(400, inspect.stack()[0][3] + ': no_event')
     if data.get('schedule'):
         schedule = data.get('schedule')
         trigger.set_schedule(schedule['start_time'], schedule['end_time'])

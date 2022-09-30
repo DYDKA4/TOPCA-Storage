@@ -5,8 +5,9 @@
 #     - <schema_constraints>
 #   key_schema : <key_schema_definition>
 #   entry_schema: <entry_schema_definition>
-from werkzeug.exceptions import abort
+import inspect
 
+from parser.parser import ParserException
 from parser.parser.tosca_v_1_3.others.ConstraintСlause import constraint_clause_parser, ConstraintClause
 from parser.parser.tosca_v_1_3.definitions.DescriptionDefinition import description_parser
 
@@ -42,7 +43,7 @@ def schema_definition_parser(data: dict) -> SchemaDefinition:
     if data.get('type'):
         schema.set_type(data.get('type'))
     else:
-        abort(400)
+        raise ParserException(400, inspect.stack()[0][3] + ': no_type')
     if data.get('description'):
         description = description_parser(data)
         schema.set_description(description)

@@ -1,8 +1,9 @@
-from werkzeug.exceptions import abort
+import inspect
 
 from nebula_communication.generate_uuid import generate_uuid
 from nebula_communication.nebula_functions import find_destination, fetch_vertex, update_vertex, delete_edge, add_edge, \
     delete_vertex, add_in_vertex
+from nebula_communication.update_template import NebulaCommunicationUpdateTemplateException
 from nebula_communication.update_template.Assignment.PropertyAssignmentUpdater import add_property_assignment, \
     update_property_assignment, get_property_assignment
 from nebula_communication.update_template.Definition.InterfaceDefinitionUpdater import update_interface_definition, \
@@ -17,10 +18,10 @@ from parser.parser.tosca_v_1_3.assignments.RequirementAssignment import Requirem
 
 def start_requirement_assignment(father_node_vid, varargs):
     if len(varargs) < 2:
-        abort(400)
+        raise NebulaCommunicationUpdateTemplateException(400, f'{inspect.stack()[0][3]}: varargs is too short')
     destination = find_destination(father_node_vid, varargs[0])
     if destination is None:
-        abort(400)
+        raise NebulaCommunicationUpdateTemplateException(400, f'{inspect.stack()[0][3]}: destination is None')
     requirement_vid_to_update = None
     for requirement_vid in destination:
         requirement_value = fetch_vertex(requirement_vid, 'RequirementAssignment')
@@ -29,7 +30,8 @@ def start_requirement_assignment(father_node_vid, varargs):
             requirement_vid_to_update = requirement_vid
             break
     if requirement_vid_to_update is None:
-        abort(400)
+        raise NebulaCommunicationUpdateTemplateException(400, f'{inspect.stack()[0][3]}: requirement_vid_to_update '
+                                                              'is None')
     return requirement_vid_to_update
 
 
@@ -54,8 +56,13 @@ def update_requirement_assignment(service_template_vid, father_node_vid, value, 
                     break
             if new_type_vid is None:
                 destination = find_destination(service_template_vid, 'topology_template')
-                if destination is None or len(destination) > 1:
-                    abort(500)
+                if destination is None:
+                    raise NebulaCommunicationUpdateTemplateException(400,
+                                                                     f'{inspect.stack()[0][3]}: destination is None')
+                if len(destination) > 1:
+                    raise NebulaCommunicationUpdateTemplateException(400,
+                                                                     f'{inspect.stack()[0][3]}: destination len > 1')
+
                 topology_template_vid = destination[0]
                 destination = find_destination(topology_template_vid, 'relationship_templates')
                 for relationship_template_vid in destination:
@@ -65,10 +72,12 @@ def update_requirement_assignment(service_template_vid, father_node_vid, value, 
                         new_type_vid = relationship_template_vid
                         break
             if new_type_vid is None:
-                abort(400)
+                raise NebulaCommunicationUpdateTemplateException(400,
+                                                                 f'{inspect.stack()[0][3]}: new_type_vid is None')
             if type_vertex is not None:
                 if len(type_vertex) > 1:
-                    abort(500)
+                    raise NebulaCommunicationUpdateTemplateException(500,
+                                                                     f'{inspect.stack()[0][3]}: type_vertex > 1')
                 delete_edge(value_name, requirement_vid_to_update, type_vertex[0])
             add_edge(value_name, '', requirement_vid_to_update, new_type_vid, '')
         elif value_name == 'node':
@@ -83,8 +92,12 @@ def update_requirement_assignment(service_template_vid, father_node_vid, value, 
                     break
             if new_type_vid is None:
                 destination = find_destination(service_template_vid, 'topology_template')
-                if destination is None or len(destination) > 1:
-                    abort(500)
+                if destination is None:
+                    raise NebulaCommunicationUpdateTemplateException(400,
+                                                                     f'{inspect.stack()[0][3]}: destination is None')
+                if len(destination) > 1:
+                    raise NebulaCommunicationUpdateTemplateException(400,
+                                                                     f'{inspect.stack()[0][3]}: destination len > 1')
                 topology_template_vid = destination[0]
                 destination = find_destination(topology_template_vid, 'node_templates')
                 for relationship_template_vid in destination:
@@ -94,10 +107,12 @@ def update_requirement_assignment(service_template_vid, father_node_vid, value, 
                         new_type_vid = relationship_template_vid
                         break
             if new_type_vid is None:
-                abort(400)
+                raise NebulaCommunicationUpdateTemplateException(400,
+                                                                 f'{inspect.stack()[0][3]}: destination is None')
             if type_vertex is not None:
                 if len(type_vertex) > 1:
-                    abort(500)
+                    raise NebulaCommunicationUpdateTemplateException(500,
+                                                                     f'{inspect.stack()[0][3]}: type_vertex > 1')
                 delete_edge(value_name, requirement_vid_to_update, type_vertex[0])
             add_edge(value_name, '', requirement_vid_to_update, new_type_vid, '')
         elif value_name == 'capability':
@@ -113,13 +128,16 @@ def update_requirement_assignment(service_template_vid, father_node_vid, value, 
             if new_type_vid is None:
                 node_vid = find_destination(requirement_vid_to_update, 'node')
                 if node_vid is None:
-                    abort(400)
+                    raise NebulaCommunicationUpdateTemplateException(400,
+                                                                     f'{inspect.stack()[0][3]}: node_vid is None')
                 node_name = fetch_vertex(node_vid[0], 'NodeTemplate')
                 node_name = node_name.as_map().get('name').as_string()
 
                 destination = find_destination(service_template_vid, 'topology_template')
                 if destination is None or len(destination) > 1:
-                    abort(500)
+                    raise NebulaCommunicationUpdateTemplateException(500,
+                                                                     f'{inspect.stack()[0][3]}: destination is None '
+                                                                     f'or len(destination) > 1')
                 topology_template_vid = destination[0]
                 destination = find_destination(topology_template_vid, 'node_templates')
                 for node_template_vid in destination:
@@ -128,7 +146,9 @@ def update_requirement_assignment(service_template_vid, father_node_vid, value, 
                     if node_template_value.get('name').as_string() == node_name:
                         destination_capability = find_destination(node_template_vid, 'capabilities')
                         if destination_capability is None:
-                            abort(400)
+                            raise NebulaCommunicationUpdateTemplateException(400,
+                                                                             f'{inspect.stack()[0][3]}: '
+                                                                             f'destination_capability is None')
                         for capability_vid in destination_capability:
                             capability_value = fetch_vertex(capability_vid, 'CapabilityAssignment')
                             capability_value = capability_value.as_map()
@@ -139,13 +159,14 @@ def update_requirement_assignment(service_template_vid, father_node_vid, value, 
                             break
             if type_vertex is not None:
                 if len(type_vertex) > 1:
-                    abort(500)
+                    raise NebulaCommunicationUpdateTemplateException(500,
+                                                                     f'{inspect.stack()[0][3]}: type_vertex > 1')
                 delete_edge(value_name, requirement_vid_to_update, type_vertex[0])
             add_edge(value_name, '', requirement_vid_to_update, new_type_vid, '')
         elif value_name in vertex_value.keys():
             update_vertex('RequirementAssignment', requirement_vid_to_update, value_name, value)
         else:
-            abort(501)
+            raise NebulaCommunicationUpdateTemplateException(501, f'{inspect.stack()[0][3]}: Not implemented')
     elif varargs[2] == 'occurrences':
         if add_occurrences(type_update, varargs[2:], cluster_name, requirement_vid_to_update, varargs[2]):
             update_occurrences(requirement_vid_to_update, value, value_name, varargs[2:], type_update)
@@ -163,7 +184,7 @@ def update_requirement_assignment(service_template_vid, father_node_vid, value, 
             update_node_filter_definition(service_template_vid, requirement_vid_to_update, value, value_name,
                                           varargs[2:], type_update, cluster_name)
     else:
-        abort(400)
+        raise NebulaCommunicationUpdateTemplateException(400, f'{inspect.stack()[0][3]}: wrong arguments')
 
 
 def add_requirement_assignment(type_update, varargs, cluster_name, parent_vid, edge_name):
@@ -192,7 +213,7 @@ def get_requirement_assignment(father_node_vid, value, value_name, varargs: list
             if value == vertex_value.get(value_name).as_string():
                 return requirement_vid_to_update.as_string()
         else:
-            abort(501)
+            raise NebulaCommunicationUpdateTemplateException(501, f'{inspect.stack()[0][3]}: Not implemented')
     elif varargs[2] == 'occurrences':
         destination = find_destination(requirement_vid_to_update, value_name)
         result, flag = return_all(value, value_name, destination, varargs, 3)
@@ -218,4 +239,4 @@ def get_requirement_assignment(father_node_vid, value, value_name, varargs: list
             return result
         return get_node_filter_definition(father_node_vid, value, value_name, varargs[2:])
     else:
-        abort(400)
+        raise NebulaCommunicationUpdateTemplateException(400, f'{inspect.stack()[0][3]}: wrong arguments')

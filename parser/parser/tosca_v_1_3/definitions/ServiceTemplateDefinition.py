@@ -33,8 +33,9 @@
 # # map of policy type definitions
 # topology_template:
 # # topology template definition of the cloud application or service
-from werkzeug.exceptions import abort
+import inspect
 
+from parser.parser import ParserException
 from parser.parser.tosca_v_1_3.others.Metadata import Metadata
 from parser.parser.tosca_v_1_3.types.ArtifactType import ArtifactType, artifact_type_parser
 from parser.parser.tosca_v_1_3.types.CapabilityType import CapabilityType, capability_type_parser
@@ -130,7 +131,7 @@ def service_template_definition_parser(cluster_name: str, data: dict) -> Service
     if data.get('tosca_definitions_version'):
         service_template.set_tosca_definitions_version(data.get('tosca_definitions_version'))
     else:
-        abort(400)
+        raise ParserException(400, inspect.stack()[0][3] + ': no_tosca_definitions_version')
     if data.get('namespace'):
         service_template.set_namespace(data.get('namespace'))
     if data.get('metadata'):

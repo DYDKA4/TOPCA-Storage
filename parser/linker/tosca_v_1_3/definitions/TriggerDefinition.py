@@ -24,7 +24,6 @@
 #     method: <string> # e.g., average
 #   action:
 #     - <list_of_activity_definition> #todo Remake if need it
-from werkzeug.exceptions import abort
 
 from parser.parser.tosca_v_1_3.definitions.ConditionClauseDefinition import ConditionClauseDefinition, \
     condition_clause_definition_parser

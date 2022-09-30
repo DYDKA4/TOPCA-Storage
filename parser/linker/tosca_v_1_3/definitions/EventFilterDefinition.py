@@ -1,9 +1,11 @@
 # node: <node_type_name> | <node_template_name>
 # requirement: <requirement_name>
 # capability: <capability_name>
-from werkzeug.exceptions import abort
+import inspect
+
 
 from parser.linker.LinkByName import link_by_type_name
+from parser.parser import ParserException
 from parser.parser.tosca_v_1_3.definitions.EventFilterDefinition import EventFilterDefinition
 from parser.parser.tosca_v_1_3.definitions.ServiceTemplateDefinition import ServiceTemplateDefinition
 from parser.parser.tosca_v_1_3.definitions.TemplateDefinition import TemplateDefinition
@@ -28,4 +30,5 @@ def link_event_filter_definition(service_template: ServiceTemplateDefinition, ev
         link_by_type_name(node_template.capabilities, event, 'capability')
 
     if str in {type(event.node),type(event.requirement), type(event.capability)}:
-        abort(400)
+        raise ParserException(400, inspect.stack()[0][3] +
+                              'str in {type(event.node),type(event.requirement), type(event.capability)}')

@@ -24,11 +24,12 @@
 #     - <list_of_dependent_artifact definitions>
 #   operation_host: HOST
 #   timeout: 120
-from werkzeug.exceptions import abort
+import inspect
 
 from parser.linker.GetAllArtifactDefinition import get_all_artifact_definition
 from parser.linker.LinkByName import link_by_type_name
 from parser.linker.LinkerValidTypes import link_members, link_with_list
+from parser.parser import ParserException
 from parser.parser.tosca_v_1_3.definitions.OperationImplementationDefinition import OperationImplementationDefinition
 from parser.parser.tosca_v_1_3.definitions.ServiceTemplateDefinition import ServiceTemplateDefinition
 
@@ -45,4 +46,4 @@ def link_operation_implementation_definition(service_template: ServiceTemplateDe
     elif operation.dependencies:
         operation.dependencies = {'dependencies': [operation, operation.dependencies, {'type': 'definition'}]}
     if str in {type(operation.primary)}:
-        abort(400)
+        raise ParserException(400, inspect.stack()[0][3] + ':  str in {type(operation.primary)}')

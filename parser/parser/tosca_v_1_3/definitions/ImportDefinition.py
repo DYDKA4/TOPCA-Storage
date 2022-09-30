@@ -9,7 +9,9 @@
 #     repository: <repository_name>
 #     namespace_uri: <definition_namespace_uri>  # deprecated
 #     namespace_prefix: <definition_namespace_prefix>
-from werkzeug.exceptions import abort
+import inspect
+
+from parser.parser import ParserException
 
 
 class ImportDefinition:
@@ -42,7 +44,7 @@ def import_definition_parser(data) -> ImportDefinition:
     if data.get('file'):
         import_definition.set_file(data.get('file'))
     else:
-        abort(400)
+        raise ParserException(400, inspect.stack()[0][3] + ': no_file')
     if data.get('repository'):
         import_definition.set_repository(data.get('repository'))
     if data.get('namespace_uri'):

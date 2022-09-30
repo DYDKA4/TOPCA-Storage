@@ -16,9 +16,10 @@
 #     <operation_definitions>
 #   notifications:
 #     <notification_definitions>
-from werkzeug.exceptions import abort
+import inspect
 
 from parser.linker.LinkByName import link_by_type_name
+from parser.parser import ParserException
 from parser.parser.tosca_v_1_3.definitions.InterfaceDefinition import InterfaceDefinition
 from parser.parser.tosca_v_1_3.definitions.ServiceTemplateDefinition import ServiceTemplateDefinition
 
@@ -27,4 +28,4 @@ def link_interface_definition(service_template: ServiceTemplateDefinition, inter
     if type(interface.type) == str:
         link_by_type_name(service_template.interface_types, interface, 'type',)
     if str in {type(interface.type)}:
-        abort(400)
+        raise ParserException(400, inspect.stack()[0][3] + ': str in {type(interface.type)}')

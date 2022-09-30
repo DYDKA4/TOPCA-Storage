@@ -1,13 +1,14 @@
+import inspect
 import json
 import warnings
 
-from werkzeug.exceptions import abort
 
 from parser.linker.tosca_v_1_3.definitions.NotificationImplementationDefinition import \
     link_notification_implementation_definition
 from parser.linker.tosca_v_1_3.definitions.OperationDefinition import link_operation_definition
 from parser.linker.tosca_v_1_3.definitions.OperationImplementationDefinition import \
     link_operation_implementation_definition
+from parser.parser import ParserException
 from parser.parser.tosca_v_1_3.assignments.AttributeAssignment import AttributeAssignment
 from parser.parser.tosca_v_1_3.assignments.CapabilityAssignment import CapabilityAssignment
 from parser.parser.tosca_v_1_3.assignments.PropertyAssignment import PropertyAssignment
@@ -31,7 +32,8 @@ from parser.parser.tosca_v_1_3.others.RelationshipTemplate import RelationshipTe
 def set_get_smt(property_assignment: PropertyAssignment, destination_property_assignment: object,
                 get_type: str):
     if property_assignment.vertex_type_system != 'PropertyAssignment':
-        abort(400)
+        raise ParserException(400, inspect.stack()[0][3] + 'property_assignment.vertex_type_system != '
+                                                           '"PropertyAssignment"')
     if type(getattr(property_assignment, get_type)) == dict:
         vertexes = getattr(property_assignment, get_type).get(get_type)
         new_destination: list = vertexes[1]
@@ -91,7 +93,8 @@ def find_parent_template(template_definition: TemplateDefinition, property_assig
             for inputs_property_assignment in interface_definition.inputs:
                 inputs_property_assignment: PropertyAssignment
                 if inputs_property_assignment.vertex_type_system != "PropertyAssignment":
-                    abort(400)
+                    raise ParserException(400, inspect.stack()[0][3] + ': inputs_property_assignment'
+                                                                       '.vertex_type_system != "PropertyAssignment"')
                 if inputs_property_assignment == property_assignment:
                     return node_template
         for requirement_assignment in node_template.requirements:
@@ -104,7 +107,9 @@ def find_parent_template(template_definition: TemplateDefinition, property_assig
                 interface_definition: InterfaceDefinition
                 for inputs_property_assignment in interface_definition.inputs:
                     if inputs_property_assignment.vertex_type_system != "PropertyAssignment":
-                        abort(400)
+                        raise ParserException(400, inspect.stack()[0][3] + 'inputs_property_assignment'
+                                                                           '.vertex_type_system != '
+                                                                           '"PropertyAssignment"')
                     if inputs_property_assignment == property_assignment:
                         return node_template
     return None
@@ -122,7 +127,8 @@ def find_parent_relationship_template(template_definition: TemplateDefinition, p
             for inputs_property_assignment in interface_definition.inputs:
                 inputs_property_assignment: PropertyAssignment
                 if inputs_property_assignment.vertex_type_system != "PropertyAssignment":
-                    abort(400)
+                    raise ParserException(400, inspect.stack()[0][3] + 'inputs_property_assignment.vertex_type_system '
+                                                                       '!= "PropertyAssignment"')
                 if inputs_property_assignment == property_assignment:
                     return relationship_template
     return None
@@ -319,7 +325,7 @@ def link_property_assignment(service_template: ServiceTemplateDefinition,
             #     value = value[1:]
             #     target_name = parent_template.name
             else:
-                abort(400)
+                raise ParserException(400, inspect.stack()[0][3] + ':SELF wrong behaviour')
         elif value[0] == 'SOURCE':
             parent_relationship_template = find_parent_relationship_template(template_definition, property_assignment)
             for node_template in template_definition.node_templates:
@@ -371,7 +377,7 @@ def link_property_assignment(service_template: ServiceTemplateDefinition,
         elif value[0] == 'HOST':
             parent_template = find_parent_template(template_definition, property_assignment)
             if parent_template is None:
-                abort(400)
+                raise ParserException(400, inspect.stack()[0][3] + ':parent_template is None')
             for requirement_assignment in parent_template.requirements:
                 requirement_assignment: RequirementAssignment
                 if requirement_assignment.name == 'host':
@@ -401,7 +407,7 @@ def link_property_assignment(service_template: ServiceTemplateDefinition,
     elif value.get('get_input'):
         target_name = value.get('get_input')
         if type(target_name) == str:
-            abort(400)
+            raise ParserException(400, inspect.stack()[0][3] + ':type(target_name) == str')
         target_name = target_name[0]
         for inputs in template_definition.inputs:
             inputs: ParameterDefinition

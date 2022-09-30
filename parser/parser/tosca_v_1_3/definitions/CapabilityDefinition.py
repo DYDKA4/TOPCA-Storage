@@ -11,8 +11,9 @@
 #     <attribute_definitions>
 #   valid_source_types: [ <node type_names> ]
 #   occurrences : <range_of_occurrences>
-from werkzeug.exceptions import abort
+import inspect
 
+from parser.parser import ParserException
 from parser.parser.tosca_v_1_3.definitions.AttributeDefinition import AttributeDefinition, attribute_definition_parser
 from parser.parser.tosca_v_1_3.definitions.DescriptionDefinition import description_parser
 from parser.parser.tosca_v_1_3.definitions.PropertyDefinition import PropertyDefinition, property_definition_parser
@@ -73,6 +74,6 @@ def capability_definition_parser(name: str, data: dict) -> CapabilityDefinition:
         occurrences = data.get('occurrences')
         capability.set_occurrences(Occurrences(occurrences[0], occurrences[1]))
     if capability.type is None:
-        abort(400)
+        raise ParserException(400, inspect.stack()[0][3] + ':  capability.type is None')
     return capability
 

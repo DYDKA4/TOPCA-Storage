@@ -10,9 +10,10 @@
 #     <property_definitions>
 #   key_schema : <key_schema_definition>
 #   entry_schema: <entry_schema_definition>
-from werkzeug.exceptions import abort
+import inspect
 
 from parser.linker.LinkDerivedFrom import link_derived_from
+from parser.parser import ParserException
 from parser.parser.tosca_v_1_3.definitions.ServiceTemplateDefinition import ServiceTemplateDefinition
 from parser.parser.tosca_v_1_3.types.DataType import DataType
 
@@ -21,4 +22,4 @@ def link_data_type(service_template: ServiceTemplateDefinition,
                          data: DataType) -> None:
     link_derived_from(service_template.data_types, data)
     if str in {type(data.derived_from)}:
-        abort(400)
+        raise ParserException(400, inspect.stack()[0][3] + ': str in {type(data.derived_from)}')

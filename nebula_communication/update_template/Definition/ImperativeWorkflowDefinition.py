@@ -1,8 +1,11 @@
+import inspect
+
 from werkzeug.exceptions import abort
 
 from nebula_communication.generate_uuid import generate_uuid
 from nebula_communication.nebula_functions import find_destination, fetch_vertex, update_vertex, delete_edge, add_edge, \
     delete_vertex, add_in_vertex
+from nebula_communication.update_template import NebulaCommunicationUpdateTemplateException
 from nebula_communication.update_template.Assignment.PropertyAssignmentUpdater import update_property_assignment, \
     add_property_assignment, get_property_assignment
 from nebula_communication.update_template.Assignment.RequirementAssignment import return_all
@@ -22,10 +25,10 @@ from parser.parser.tosca_v_1_3.definitions.ImperativeWorkflowDefinition import I
 
 def start_imperative_workflow_definition(father_node_vid, varargs):
     if len(varargs) < 2:
-        abort(400)
+        raise NebulaCommunicationUpdateTemplateException(400, f'{inspect.stack()[0][3]}: varargs is too short')
     destination = find_destination(father_node_vid, varargs[0])
     if destination is None:
-        abort(400)
+        raise NebulaCommunicationUpdateTemplateException(400, f'{inspect.stack()[0][3]}: destination is None')
     imperative_workflow_vid_to_update = None
     for imperative_workflow_vid in destination:
         imperative_workflow_value = fetch_vertex(imperative_workflow_vid, 'ImperativeWorkflowDefinition')
@@ -34,7 +37,8 @@ def start_imperative_workflow_definition(father_node_vid, varargs):
             imperative_workflow_vid_to_update = imperative_workflow_vid
             break
     if imperative_workflow_vid_to_update is None:
-        abort(400)
+        raise NebulaCommunicationUpdateTemplateException(400, f'{inspect.stack()[0][3]}: '
+                                                              f'imperative_workflow_vid_to_update is None')
     return imperative_workflow_vid_to_update
 
 
@@ -50,7 +54,7 @@ def update_imperative_workflow_definition(service_template_vid, father_node_vid,
         if value_name in vertex_value.keys():
             update_vertex('ImperativeWorkflowDefinition', imperative_workflow_vid_to_update, value_name, value)
         else:
-            abort(501)
+            raise NebulaCommunicationUpdateTemplateException(501, f'{inspect.stack()[0][3]}: Not implemented')
     elif varargs[2] == 'metadata':
         if not add_metadata(type_update, varargs[2:], value, value_name, cluster_name,
                             imperative_workflow_vid_to_update):
@@ -77,7 +81,7 @@ def update_imperative_workflow_definition(service_template_vid, father_node_vid,
             update_operation_implementation_definition(service_template_vid, imperative_workflow_vid_to_update, value,
                                                        value_name, varargs[2:], type_update, cluster_name)
     else:
-        abort(400)
+        raise NebulaCommunicationUpdateTemplateException(400, f'{inspect.stack()[0][3]}: wrong arguments')
 
 
 def add_imperative_workflow_definition(type_update, varargs, cluster_name, parent_vid, edge_name):
@@ -100,7 +104,7 @@ def get_imperative_workflow_definition(father_node_vid, value, value_name, varar
             if value == vertex_value.get(value_name).as_string():
                 return imperative_workflow_vid_to_update.as_string()
         else:
-            abort(501)
+            raise NebulaCommunicationUpdateTemplateException(501, f'{inspect.stack()[0][3]}: Not implemented')
     elif varargs[2] == 'metadata':
         destination = find_destination(imperative_workflow_vid_to_update, value_name)
         result, flag = return_all(value, value_name, destination, varargs, 3)
@@ -132,4 +136,4 @@ def get_imperative_workflow_definition(father_node_vid, value, value_name, varar
             return result
         return get_operation_implementation_definition(father_node_vid, value, value_name, varargs[2:])
     else:
-        abort(400)
+        raise NebulaCommunicationUpdateTemplateException(400, f'{inspect.stack()[0][3]}: wrong arguments')

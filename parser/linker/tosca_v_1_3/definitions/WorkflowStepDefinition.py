@@ -10,10 +10,11 @@
 #       - <target_step_name>
 #     on_failure: linker
 #       - <target_step_name>
-from werkzeug.exceptions import abort
+import inspect
 
 from parser.linker.LinkByName import link_by_type_name
 from parser.linker.LinkerValidTypes import link_with_list
+from parser.parser import ParserException
 from parser.parser.tosca_v_1_3.definitions.ImperativeWorkflowDefinition import ImperativeWorkflowDefinition
 from parser.parser.tosca_v_1_3.definitions.ServiceTemplateDefinition import ServiceTemplateDefinition
 from parser.parser.tosca_v_1_3.definitions.TemplateDefinition import TemplateDefinition
@@ -39,4 +40,5 @@ def link_workflow_step_definition(service_template: ServiceTemplateDefinition,
     link_with_list(array_to_find_steps, workflow, 'on_success')
     link_with_list(array_to_find_steps, workflow, 'on_failure')
     if str in {type(workflow.target), type(workflow.target_relationship)}:
-        abort(400)
+        raise ParserException(400, inspect.stack()[0][3] + ': str in {type(workflow.target), type('
+                                                           'workflow.target_relationship)}')

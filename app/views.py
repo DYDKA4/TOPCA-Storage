@@ -24,6 +24,7 @@ from nebula_communication.update_template.update_functions import is_service_sta
     set_service_status
 from nebula_communication.update_template.update_template import update_template
 from parser.linker.tosca_v_1_3.main_linker import main_linker
+from parser.parser import ParserException
 from parser.parser.tosca_v_1_3.definitions.ServiceTemplateDefinition import service_template_definition_parser
 
 
@@ -54,7 +55,8 @@ def yaml_add(varargs=None):
                 file = file.read().decode("utf-8")
                 file = yaml.safe_load(file)
             else:
-                abort(400)
+                return jsonify({'status': 400,
+                                'message': 'file is None'})
             if cluster_name is None:
                 cluster_name = str(uuid.uuid4())
             template = service_template_definition_parser(cluster_name, file)
@@ -87,6 +89,9 @@ def yaml_add(varargs=None):
         return jsonify({'status': e.code,
                         'message': e.message})
     except NebulaCommunicationUpdateTemplateException as e:
+        return jsonify({'status': e.code,
+                        'message': e.message})
+    except ParserException as e:
         return jsonify({'status': e.code,
                         'message': e.message})
 
@@ -128,6 +133,9 @@ def get_yaml():
         return jsonify({'status': e.code,
                         'message': e.message})
     except NebulaCommunicationUpdateTemplateException as e:
+        return jsonify({'status': e.code,
+                        'message': e.message})
+    except ParserException as e:
         return jsonify({'status': e.code,
                         'message': e.message})
 
@@ -201,7 +209,9 @@ def cluster_names(varargs=None):
     except NebulaCommunicationUpdateTemplateException as e:
         return jsonify({'status': e.code,
                         'message': e.message})
-
+    except ParserException as e:
+        return jsonify({'status': e.code,
+                        'message': e.message})
 
 @app.route(f'/{cav}/yaml-template/<path:varargs>', methods=['PATCH'])
 def yaml_update(varargs=None):
@@ -422,5 +432,8 @@ def get_all_dependencies(varargs=None):
         return jsonify({'status': e.code,
                         'message': e.message})
     except NebulaCommunicationUpdateTemplateException as e:
+        return jsonify({'status': e.code,
+                        'message': e.message})
+    except ParserException as e:
         return jsonify({'status': e.code,
                         'message': e.message})

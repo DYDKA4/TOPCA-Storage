@@ -1,6 +1,6 @@
-from werkzeug.exceptions import abort
-
+import inspect
 from parser.linker.LinkByName import link_by_type_name
+from parser.parser import ParserException
 from parser.parser.tosca_v_1_3.assignments.RequirementAssignment import RequirementAssignment
 from parser.parser.tosca_v_1_3.definitions.ServiceTemplateDefinition import ServiceTemplateDefinition
 from parser.parser.tosca_v_1_3.definitions.TemplateDefinition import TemplateDefinition
@@ -21,4 +21,6 @@ def link_requirement_assignments(service_template: ServiceTemplateDefinition, re
             capabilities_list += node_type.capabilities
         link_by_type_name(service_template.capability_types + capabilities_list, requirement, 'capability')
     if str in {type(requirement.node), type(requirement.relationship), type(requirement.capability)}:
-        abort(400)
+        raise ParserException(400, inspect.stack()[0][3] +
+                              ':  str in {type(requirement.node), type(requirement.relationship),'
+                              ' type(requirement.capability)}')

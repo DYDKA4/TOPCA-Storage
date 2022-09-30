@@ -1,4 +1,3 @@
-from werkzeug.exceptions import abort
 
 from parser.linker.GetAllArtifactDefinition import get_all_artifact_definition
 from parser.linker.GetAllInterfaceDefinition import get_all_interface_definition

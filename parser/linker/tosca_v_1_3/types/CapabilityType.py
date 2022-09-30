@@ -7,10 +7,11 @@
 #   attributes:
 #     <attribute_definitions>
 #   valid_source_types: [ <node type_names> ] #todo Linker
-from werkzeug.exceptions import abort
+import inspect
 
 from parser.linker.LinkDerivedFrom import link_derived_from
 from parser.linker.LinkerValidTypes import link_valid_source_types
+from parser.parser import ParserException
 from parser.parser.tosca_v_1_3.definitions.ServiceTemplateDefinition import ServiceTemplateDefinition
 from parser.parser.tosca_v_1_3.types.CapabilityType import CapabilityType
 
@@ -20,4 +21,4 @@ def link_capability_type(service_template: ServiceTemplateDefinition,
     link_derived_from(service_template.capability_types, capability)
     link_valid_source_types(service_template.node_types, capability)
     if str in {type(capability.derived_from)}:
-        abort(400)
+        raise ParserException(400, inspect.stack()[0][3] + ':  str in {type(capability.derived_from)}')

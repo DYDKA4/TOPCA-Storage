@@ -18,8 +18,9 @@
 # Single line
 # <parameter_name>:
 #     value : <parameter_value> | { <parameter_value_expression> }
-from werkzeug.exceptions import abort
+import inspect
 
+from parser.parser import ParserException
 from parser.parser.tosca_v_1_3.others.ConstraintСlause import ConstraintClause, constraint_clause_parser
 from parser.parser.tosca_v_1_3.definitions.DescriptionDefinition import description_parser
 # complete
@@ -79,7 +80,7 @@ def parameter_definition_parser(parameter_name: str, data: dict) -> ParameterDef
         if data.get('value'):
             return ParameterDefinition(parameter_name, data.get('value'))
         else:
-            abort(400)
+            raise ParserException(400, inspect.stack()[0][3] + ': no_value')
     parameter = ParameterDefinition(parameter_name)
     if data.get('type'):
         parameter.set_type(data.get('type'))

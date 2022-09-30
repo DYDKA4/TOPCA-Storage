@@ -2,8 +2,9 @@
 # target_relationship: < target_requirement_name >\
 # condition:
 # < list_of_condition_clause_definition >
-from werkzeug.exceptions import abort
+import inspect
 
+from parser.parser import ParserException
 from parser.parser.tosca_v_1_3.definitions.ConditionClauseDefinition import ConditionClauseDefinition, \
     condition_clause_definition_parser
 
@@ -31,7 +32,7 @@ def workflow_precondition_definition_parser(data: dict) -> WorkflowPreconditionD
     if data.get('target'):
         precondition.set_target(data.get('target'))
     else:
-        abort(400)
+        raise ParserException(400, inspect.stack()[0][3] + ': no_target')
     if data.get('target_relationship'):
         precondition.set_target_relationship(data.get('target_relationship'))
     if data.get('condition'):

@@ -8,8 +8,9 @@
 #   targets: [<list_of_policy_targets>]
 #   triggers:
 #     <trigger_definitions>
-from werkzeug.exceptions import abort
+import inspect
 
+from parser.parser import ParserException
 from parser.parser.tosca_v_1_3.definitions.DescriptionDefinition import description_parser
 from parser.parser.tosca_v_1_3.others.Metadata import Metadata
 from parser.parser.tosca_v_1_3.assignments.PropertyAssignment import PropertyAssignment
@@ -52,7 +53,7 @@ def policy_definition_parser(name: str, data: dict) -> PolicyDefinition:
     if data.get('type'):
         policy.set_type(data.get('type'))
     else:
-        abort(400)
+        raise ParserException(400, inspect.stack()[0][3] + ': no_type')
     if data.get('description'):
         description = description_parser(data)
         policy.set_description(description)

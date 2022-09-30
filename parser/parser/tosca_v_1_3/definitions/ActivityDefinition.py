@@ -1,5 +1,6 @@
-from werkzeug.exceptions import abort
+import inspect
 
+from parser.parser import ParserException
 from parser.parser.tosca_v_1_3.definitions.ParameterDefinition import parameter_definition_parser
 
 
@@ -72,7 +73,7 @@ def activity_definition_parser(data: dict):
                 set_state.set_state = data[key_name]
                 return set_state
             else:
-                abort(400)
+                raise ParserException(400, inspect.stack()[0][3] + ': type(data[key_name]) != str')
         if key_name == 'inline':
             inline_workflow = InlineWorkflowActivityDefinition()
             if type(data[key_name]) == str:

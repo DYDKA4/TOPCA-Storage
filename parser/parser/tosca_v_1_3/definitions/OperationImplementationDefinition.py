@@ -24,7 +24,6 @@
 #     - <list_of_dependent_artifact definitions>
 #   operation_host: HOST
 #   timeout: 120
-from werkzeug.exceptions import abort
 
 from parser.parser.tosca_v_1_3.definitions.ArtifactDefinition import ArtifactDefinition, artifact_definition_parser
 

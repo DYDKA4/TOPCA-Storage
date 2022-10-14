@@ -49,7 +49,7 @@
         dest: /home/ubuntu/nebula-console/Nebula_Graph_script.txt
 
    - name: SET UP nebula space
-     ansible.builtin.shell: ./nebula-console -addr localhost -port 9669 -u root -p password -e 'CREATE SPACE `Tosca_Templates` (vid_type = FIXED_STRING(256));'
+     ansible.builtin.shell: ./nebula-console -addr localhost -port 9669 -u root -p password -e 'CREATE SPACE `Tosca_Templates` (partition_num = 5, vid_type = FIXED_STRING(256));'
      args:
        chdir: nebula-console/
 

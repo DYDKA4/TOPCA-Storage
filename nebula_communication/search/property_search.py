@@ -1,6 +1,6 @@
 import yaml
 from flask import abort
-from nebula2.fbthrift.util.randomizer import deep_dict_update
+from nebula3.fbthrift.util.randomizer import deep_dict_update
 
 from nebula_communication.nebula_functions import find_vertex_by_properties, go_from_over, fetch_vertex, find_path
 from nebula_communication.redis_communication import get_cluster_name_from_redis

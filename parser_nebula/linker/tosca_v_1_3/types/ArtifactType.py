@@ -1,0 +1,23 @@
+# <artifact_type_name>:
+#   derived_from: <parent_artifact_type_name>
+#   version: <version_number>
+#   metadata:
+#     <map of string>
+#   description: <artifact_description>
+#   mime_type: <mime_type_string>
+#   file_ext: [ <file_extensions> ]
+#   properties:
+#     <property_definitions>
+import inspect
+
+from parser_nebula.linker.LinkDerivedFrom import link_derived_from
+from parser_nebula.parser import ParserException
+from parser_nebula.parser.tosca_v_1_3.definitions.ServiceTemplateDefinition import ServiceTemplateDefinition
+from parser_nebula.parser.tosca_v_1_3.types.ArtifactType import ArtifactType
+
+
+def link_artifact_type(service_template: ServiceTemplateDefinition,
+                       artifact: ArtifactType) -> None:
+    link_derived_from(service_template.artifact_types, artifact, )
+    if str in {type(artifact.derived_from)}:
+        raise ParserException(400, inspect.stack()[0][3] + ':  str in {type(artifact.derived_from)}')

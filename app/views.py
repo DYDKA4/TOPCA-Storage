@@ -23,9 +23,9 @@ from nebula_communication.update_template.find_vertex import find_vertex
 from nebula_communication.update_template.update_functions import is_service_status_exist, add_service_status, \
     set_service_status
 from nebula_communication.update_template.update_template import update_template
-from parser.linker.tosca_v_1_3.main_linker import main_linker
-from parser.parser import ParserException
-from parser.parser.tosca_v_1_3.definitions.ServiceTemplateDefinition import service_template_definition_parser
+from parser_nebula.linker.tosca_v_1_3.main_linker import main_linker
+from parser_nebula.parser import ParserException
+from parser_nebula.parser.tosca_v_1_3.definitions.ServiceTemplateDefinition import service_template_definition_parser
 
 
 @app.route(f'/{cav}/yaml_template/<path:varargs>', methods=['POST'])

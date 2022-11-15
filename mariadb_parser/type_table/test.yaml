@@ -92,7 +92,7 @@ data_types:
       - in_range: [ 1, 65535 ]
 
   tosca.datatypes.network.PortSpec:
-    derived_from: tosca.datatypes.Root
+    derived_from: tosca.datatypes.network.PortDef
     properties:
       protocol:
         type: string

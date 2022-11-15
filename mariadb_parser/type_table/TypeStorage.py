@@ -19,7 +19,8 @@ class TOSCAType:
                                              'relationship_types': set(),
                                              'node_types': set(),
                                              'group_types': set(),
-                                             'policy_types': set()}
+                                             'policy_types': set(),
+                                             'artifacts': set()}
 
     def convert_data_to_json(self):
         self.data = json.dumps(self.data)
@@ -76,6 +77,13 @@ class RelationshipType(TOSCAType):
         super().__init__(identifier, name, data, 'relationship_type', version=version)
 
 
+class ArtifactDefinition:
+    def __init__(self, name: str, value: dict, father_node):
+        self.name = name
+        self.value = value
+        self.father_node = father_node
+
+
 class TypeStorage:
     """
     TypeStorage class parse part of yaml file with type definition and prepare it to submit it into SQL database
@@ -93,6 +101,7 @@ class TypeStorage:
         self.node_types: dict[str, NodeType] = {}
         self.group_types: dict[str, GroupType] = {}
         self.policy_types: dict[str, PolicyType] = {}
+        self.artifact_definition: dict[str, ArtifactDefinition] = {}
         if data.get('data_types'):
             self.data_types = self.prepare_data_types(data.get('data_types'))
             # TODO ADD DERIVED FROM FINDER
@@ -101,8 +110,12 @@ class TypeStorage:
             # TODO ADD DERIVED FROM FINDER
         if data.get('artifact_types'):
             self.artifact_types = self.prepare_artifact_types(data.get('artifact_types'))
+            # TODO ADD DERIVED FROM FINDER
         if data.get('interface_types'):
             self.interface_types = self.prepare_interface_types(data.get('interface_types'))
+            # TODO ADD DERIVED FROM FINDER
+        if data.get('relationship_types'):
+            self.relationship_types = self.prepare_relationship_types(data.get('relationship_types'))
 
     def identifier_generator(self) -> int:
         return len(self.data_types) + \
@@ -179,6 +192,152 @@ class TypeStorage:
                 interface_type.derived_from.add(derived_from)
             interface_types[name] = interface_type
         return interface_types
+
+    def prepare_relationship_types(self, data: dict) -> dict[str, RelationshipType]:
+        relationship_types = {}
+        for name, data in data.items():
+            derived_from = data.get('derived_from')
+            version = data.get('version')
+            relationship_type = RelationshipType(self.identifier_generator(), name, data, version)
+            relationship_type.dependencies['data_types'] = relationship_type.dependencies['data_types'].union(
+                self.check_property_in_entity(data, relationship_type.dependencies['data_types'])
+            )
+            relationship_type.dependencies['data_types'] = relationship_type.dependencies['data_types'].union(
+                self.check_property_in_entity(data, relationship_type.dependencies['data_types'], key_name='attributes')
+            )
+            interface_types, data_types, artifacts, artifacts_types = self.check_interface_in_entity(data,
+                                                                                                     relationship_type)
+            relationship_type.dependencies['interface_types'] = interface_types
+            relationship_type.dependencies['data_types'] = \
+                relationship_type.dependencies['data_types'].union(data_types)
+            valid_target_types = data.get('valid_target_types')
+            if valid_target_types:
+                if type(valid_target_types) != list:
+                    raise f"valid_target_types is not list in relationship_type, name:{name}"
+                relationship_type.dependencies['capability_types'].update(valid_target_types)
+            if derived_from:
+                relationship_type.derived_from.add(derived_from)
+            relationship_types[name] = relationship_type
+        return relationship_types
+
+    def check_interface_in_entity(self, data: dict, father_node) -> tuple[set[str], set[str], set[str], set[str]]:
+        interface_types = set()
+        data_types = set()
+        artifacts = set()
+        artifacts_types = set()
+        interfaces: dict = data.get('interfaces')
+        if interfaces:
+            for interface_name, interface_data in interfaces.items():
+                interface_type = interface_data.get('type')
+                if interface_type is None:
+                    raise Exception('In interface definition, name:' + interface_name + 'type is undefined')
+                interface_types.add(interface_type)
+                data_types = data_types.union(
+                    self.check_property_in_entity(interface_data, data_types, key_name='inputs'))
+                operation_artifacts, operation_artifact_types, operation_data_types = self.check_operation_in_entity(
+                    interface_data, father_node)
+                artifacts = artifacts.union(operation_artifacts)
+                artifacts_types = artifacts_types.union(operation_artifact_types)
+                data_types = data_types.union(operation_data_types)
+                artifacts = artifacts.union(self.check_notification_in_entity(interface_data))
+        return interface_types, data_types, artifacts, artifacts_types
+
+    @staticmethod
+    def check_notification_in_entity(data):
+        artifacts = set()
+        notifications: dict = data.get('notifications')
+        if notifications:
+            for notification_name, notification_data in notifications.items():
+                if len(notification_data.items()) == 1 and type(notification_data.__getitem__(0)) == str:
+                    artifacts.add(notification_data.__getitem__(0))
+                else:
+                    primary = notification_data.get('primary')
+                    if primary:
+                        artifacts.add(artifacts)
+                    dependencies = notification_data.get('dependencies')
+                    if dependencies:
+                        for artifact_name in dependencies:
+                            artifacts.add(artifact_name)
+        return artifacts
+
+    def check_operation_in_entity(self, data: dict, father_node) -> tuple[set[str], set[str], set[str]]:
+        artifacts = set()
+        artifact_types = set()
+        data_types = set()
+        operation: dict = data.get('operations')
+        if operation:
+            for operation_name, operation_data in operation.items():
+                if len(operation_data.items()) == 1 and type(operation_data.__getitem__(0)) == str:
+                    artifacts.add(operation_data.__getitem__(0))
+                else:
+                    data_types = data_types.union(self.check_parameter_in_entity(operation_data))
+                    implementation = operation_data.get('implementation')
+                    if implementation:
+                        # TODO check that primary and dependencies have same type
+                        if type(implementation) == str:
+                            artifacts.add(implementation)
+                        else:
+                            primary = implementation.get('primary')
+                            if primary:
+                                if type(primary) == str:
+                                    artifacts.add(primary)
+                                else:
+                                    primary: dict
+                                    if len(primary) > 1:
+                                        raise "Primary in operation_definition, name:" + operation_name + "is too long"
+                                    # TODO make artifact_definition_parser
+                                    for artifact_name, artifact_value in primary.items():
+                                        artifact_definition = ArtifactDefinition(artifact_name,
+                                                                                 artifact_value,
+                                                                                 father_node)
+                                        if self.artifact_definition.get(artifact_name):
+                                            raise "Such artifact_definition already exists, name:" + artifact_name
+                                        self.artifact_definition[artifact_name] = artifact_definition
+                                        if artifact_value.get('type'):
+                                            artifact_types.add(artifact_value.get('type'))
+                            dependencies = implementation.get('dependencies')
+                            if dependencies:
+                                if type(dependencies) != list:
+                                    raise "Dependencies in operation_definition, name:" + operation_name + "is not list"
+                                if len(dependencies) > 1:
+                                    if type(dependencies[0]) == str:
+                                        for artifact_name in dependencies:
+                                            if type(artifact_name) != str:
+                                                raise "Mixed type of artifact in dependencies of" \
+                                                      " operation_definition, name" + operation_name
+                                            artifacts.add(artifact_name)
+                                    else:
+                                        for artifact_data in dependencies:
+                                            # TODO make artifact_definition_parser
+                                            if type(artifact_data) != dict:
+                                                raise "Mixed type of artifact in dependencies of" \
+                                                      " operation_definition, name" + operation_name
+                                            if len(artifact_data) > 1:
+                                                raise "artifact_definition is too long in dependencies of " \
+                                                      "operation_definition, name" + operation_name
+                                            for artifact_name, artifact_value in artifact_data:
+                                                artifact_definition = ArtifactDefinition(artifact_name,
+                                                                                         artifact_value,
+                                                                                         father_node)
+                                                if self.artifact_definition.get(artifact_name):
+                                                    raise f"Such artifact_definition already exists," \
+                                                          f" name:{artifact_name} "
+                                                self.artifact_definition[artifact_name] = artifact_definition
+                                                if artifact_value.get('type'):
+                                                    artifact_types.add(artifact_value.get('type'))
+        return artifacts, artifact_types, data_types
+
+    def check_parameter_in_entity(self, data: dict) -> set[str]:
+        data_types = set()
+        parameters: dict = data.get('inputs')
+        if parameters:
+            for parameter_name, parameter_data in parameters.items():
+                data_type = parameters.get('type')
+                if data_type:
+                    data_types.add(data_type)
+                data_types = data_types.union(self.check_schema_in_entity(parameter_data, data_types))
+                # NOTE value expression parser?
+        return data_types
 
     def check_property_in_entity(self, data: dict, result: set[str], key_name='properties') -> set[str]:
         properties: dict = data.get(key_name)

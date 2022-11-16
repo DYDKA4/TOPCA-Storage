@@ -116,8 +116,15 @@ class TypeStorage:
             # TODO ADD DERIVED FROM FINDER
         if data.get('relationship_types'):
             self.relationship_types = self.prepare_relationship_types(data.get('relationship_types'))
+            # TODO ADD DERIVED FROM FINDER
         if data.get('node_types'):
             self.node_types = self.prepare_node_types(data.get('node_types'))
+            # TODO ADD DERIVED FROM FINDER
+        if data.get('group_types'):
+            self.group_types = self.prepare_group_types(data.get('group_types'))
+            # TODO ADD DERIVED FROM FINDER
+        if data.get('policy_types'):
+            self.policy_types = self.prepare_policy_types(data.get('policy_types'))
 
     def identifier_generator(self) -> int:
         return len(self.data_types) + \
@@ -233,7 +240,7 @@ class TypeStorage:
             node_type.dependencies['data_types'].update(
                 self.check_property_in_entity(data, node_type.dependencies['data_types']))
             node_type.dependencies['data_type'].update(
-                self.check_property_in_entity(data, node_type.dependencies['data_types']))
+                self.check_property_in_entity(data, node_type.dependencies['data_types'], key_name='attributes'))
             interface_types, data_types, artifacts, artifacts_types = self.check_interface_in_entity(data,
                                                                                                      node_type)
             node_type.dependencies['interface_types'].update(interface_types)
@@ -311,6 +318,53 @@ class TypeStorage:
                 node_type.derived_from.add(derived_from)
 
         return node_types
+
+    def prepare_group_types(self, data: dict) -> dict[str: GroupType]:
+        group_types = {}
+        for name, data in data.items():
+            derived_from = data.get('derived_from')
+            version = data.get('version')
+            group_type = GroupType(self.identifier_generator(), name, data, version)
+            group_type.dependencies['data_types'].update(
+                self.check_property_in_entity(data, group_type.dependencies['data_types']))
+            group_type.dependencies['data_type'].update(
+                self.check_property_in_entity(data, group_type.dependencies['data_types'], key_name='attributes'))
+            members = data.get('members')
+            if members:
+                group_type.dependencies['node_type'].update(members)
+            if derived_from:
+                group_type.derived_from.add(derived_from)
+        return group_types
+
+    def prepare_policy_types(self, data: dict) -> dict[str: PolicyType]:
+        policy_types = {}
+        for name, data in data.items():
+            derived_from = data.get('derived_from')
+            version = data.get('version')
+            policy_type = PolicyType(self.identifier_generator(), name, data, version)
+            policy_type.dependencies['data_types'].update(
+                self.check_property_in_entity(data, policy_type.dependencies['data_types']))
+            targets = data.get('targets')
+            if targets:
+                for target in targets:
+                    if self.node_types.get(target):
+                        policy_type.dependencies['node_types'].add(target)
+                    elif self.group_types.get(target):
+                        policy_type.dependencies['policy_types'].add(target)
+                    else:
+                        raise f"In policy_type {name} target type is missing {target}"
+            triggers = data.get('triggers')
+            if triggers:
+                for trigger_name, trigger_data in triggers.items():
+                    target_filter = trigger_data.get('target_filter')
+                    if target_filter:
+                        node = target_filter.get('node')
+                        if node is None:
+                            raise f"node in target_filter in trigger {trigger_name} in policy_type {name}"
+                        policy_type.dependencies['node_types'].add(node)
+            if derived_from:
+                policy_type.derived_from.add(derived_from)
+        return policy_types
 
     def check_interface_in_entity(self, data: dict, father_node) -> tuple[set[str], set[str], set[str], set[str]]:
         interface_types = set()

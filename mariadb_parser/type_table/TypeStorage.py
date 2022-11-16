@@ -12,7 +12,6 @@ class TOSCAType:
         self.data = data
         self.derived_from: set[str] = set()
         self.derived_from_finished: bool = False
-        self.derived_from_id: set[int] = set()
         self.dependencies: dict[str, set] = {'data_types': set(),
                                              'artifact_types': set(),
                                              'capability_types': set(),
@@ -127,8 +126,27 @@ class TypeStorage:
         if data.get('policy_types'):
             self.policy_types = self.prepare_policy_types(data.get('policy_types'))
             self.derived_from_constructor(self.policy_types)
+        self.union_dependencies(self.data_types)
+        self.union_dependencies(self.group_types)
+        self.union_dependencies(self.interface_types)
+        self.union_dependencies(self.capability_types)
+        self.union_dependencies(self.policy_types)
+        self.union_dependencies(self.artifact_types)
+        self.union_dependencies(self.relationship_types)
+        self.union_dependencies(self.node_types)
 
-    def derived_from_constructor(self, object_dict: dict):
+
+
+    @staticmethod
+    def union_dependencies(object_dict: dict) -> None:
+        for node in object_dict.values():
+            for derived_node in node.derived_from:
+                for dependency_name, dependency_set in node.dependencies.items():
+                    dependency_set.update(object_dict.get(derived_node).dependencies.get(dependency_name))
+        return
+
+    @staticmethod
+    def derived_from_constructor(object_dict: dict) -> None:
         def recursive_finder(current_object, result: set[str], dictionary: dict):
             if current_object.derived_from_finished:
                 result.update(current_object.derived_from)
@@ -152,7 +170,7 @@ class TypeStorage:
         for entity in object_dict.values():
             if not entity.derived_from_finished:
                 recursive_finder(entity, set(), object_dict)
-
+        return
 
     def identifier_generator(self) -> int:
         return len(self.data_types) + \
@@ -344,7 +362,7 @@ class TypeStorage:
 
             if derived_from:
                 node_type.derived_from.add(derived_from)
-
+            node_types[name] = node_type
         return node_types
 
     def prepare_group_types(self, data: dict) -> dict[str: GroupType]:
@@ -362,6 +380,7 @@ class TypeStorage:
                 group_type.dependencies['node_type'].update(members)
             if derived_from:
                 group_type.derived_from.add(derived_from)
+            group_types[name] = group_type
         return group_types
 
     def prepare_policy_types(self, data: dict) -> dict[str: PolicyType]:
@@ -392,6 +411,7 @@ class TypeStorage:
                         policy_type.dependencies['node_types'].add(node)
             if derived_from:
                 policy_type.derived_from.add(derived_from)
+            policy_types[name] = policy_type
         return policy_types
 
     def check_interface_in_entity(self, data: dict, father_node) -> tuple[set[str], set[str], set[str], set[str]]:
@@ -573,5 +593,7 @@ with open("test.yaml", 'r') as stream:
     t1 = set()
     t2 = set('asd')
     t1.union(t2)
-    print(t1)
-    print(test)
+    sum_1 = 0
+    sum_2 = 0
+
+

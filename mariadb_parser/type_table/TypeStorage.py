@@ -105,34 +105,54 @@ class TypeStorage:
         self.artifact_definition: dict[str, ArtifactDefinition] = {}
         if data.get('data_types'):
             self.data_types = self.prepare_data_types(data.get('data_types'))
-            # TODO ADD DERIVED FROM FINDER
+            self.derived_from_constructor(self.data_types)
         if data.get('capability_types'):
             self.capability_types = self.prepare_capability_types(data.get('capability_types'))
-            # TODO ADD DERIVED FROM FINDER
+            self.derived_from_constructor(self.capability_types)
         if data.get('artifact_types'):
             self.artifact_types = self.prepare_artifact_types(data.get('artifact_types'))
-            # TODO ADD DERIVED FROM FINDER
+            self.derived_from_constructor(self.artifact_types)
         if data.get('interface_types'):
             self.interface_types = self.prepare_interface_types(data.get('interface_types'))
-            # TODO ADD DERIVED FROM FINDER
+            self.derived_from_constructor(self.interface_types)
         if data.get('relationship_types'):
             self.relationship_types = self.prepare_relationship_types(data.get('relationship_types'))
-            # TODO ADD DERIVED FROM FINDER
+            self.derived_from_constructor(self.relationship_types)
         if data.get('node_types'):
             self.node_types = self.prepare_node_types(data.get('node_types'))
-            # TODO ADD DERIVED FROM FINDER
+            self.derived_from_constructor(self.node_types)
         if data.get('group_types'):
             self.group_types = self.prepare_group_types(data.get('group_types'))
-            # TODO ADD DERIVED FROM FINDER
+            self.derived_from_constructor(self.group_types)
         if data.get('policy_types'):
             self.policy_types = self.prepare_policy_types(data.get('policy_types'))
+            self.derived_from_constructor(self.policy_types)
 
-    # def derived_from_constructor(self):
-    #     def recursive_finder(derived_from, result):
-    #         return 0
-    #     for entity in self.data_types.values():
-    #         if not entity.derived_from_finished:
-    #
+    def derived_from_constructor(self, object_dict: dict):
+        def recursive_finder(current_object, result: set[str], dictionary: dict):
+            if current_object.derived_from_finished:
+                result.update(current_object.derived_from)
+                return result
+            elif len(current_object.derived_from) == 0:
+                current_object.derived_from_finished = True
+                result.update(current_object.derived_from)
+                return result
+            elif len(current_object.derived_from) == 1 and list(current_object.derived_from)[0] == current_object.name:
+                current_object.derived_from_finished = True
+                result.add(current_object.name)
+                return result
+            copy_derived_from = current_object.derived_from.copy()
+            for father_node in copy_derived_from:
+                recursive_result = recursive_finder(dictionary.get(father_node), result, dictionary)
+                if recursive_result is not None:
+                    current_object.derived_from.update(recursive_result)
+            current_object.derived_from_finished = True
+            return result
+
+        for entity in object_dict.values():
+            if not entity.derived_from_finished:
+                recursive_finder(entity, set(), object_dict)
+
 
     def identifier_generator(self) -> int:
         return len(self.data_types) + \
@@ -315,7 +335,7 @@ class TypeStorage:
                                         raise f"In relationship in requirement_definition {requirement_name} " \
                                               f"in node_type {name}"
                                     node_type.dependencies['relationship_types'].add(relationship.get('type'))
-                                    interface_types, data_types, artifacts, artifacts_types =\
+                                    interface_types, data_types, artifacts, artifacts_types = \
                                         self.check_interface_in_entity(relationship, node_type)
                                     node_type.dependencies['interface_types'].update(interface_types)
                                     node_type.dependencies['data_types'].update(data_types)

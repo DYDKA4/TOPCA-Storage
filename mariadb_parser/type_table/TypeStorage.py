@@ -11,6 +11,7 @@ class TOSCAType:
         self.version: str = version
         self.data = data
         self.derived_from: set[str] = set()
+        self.derived_from_finished: bool = False
         self.derived_from_id: set[int] = set()
         self.dependencies: dict[str, set] = {'data_types': set(),
                                              'artifact_types': set(),
@@ -126,6 +127,13 @@ class TypeStorage:
         if data.get('policy_types'):
             self.policy_types = self.prepare_policy_types(data.get('policy_types'))
 
+    # def derived_from_constructor(self):
+    #     def recursive_finder(derived_from, result):
+    #         return 0
+    #     for entity in self.data_types.values():
+    #         if not entity.derived_from_finished:
+    #
+
     def identifier_generator(self) -> int:
         return len(self.data_types) + \
                len(self.artifact_types) + \
@@ -220,7 +228,7 @@ class TypeStorage:
             relationship_type.dependencies['data_types'] = \
                 relationship_type.dependencies['data_types'].union(data_types)
             relationship_type.dependencies['artifacts'].update(artifacts)
-            relationship_type.dependencies['artifacts_types'].update(artifacts_types)
+            relationship_type.dependencies['artifact_types'].update(artifacts_types)
             valid_target_types = data.get('valid_target_types')
             if valid_target_types:
                 if type(valid_target_types) != list:
@@ -239,7 +247,7 @@ class TypeStorage:
             node_type = NodeType(self.identifier_generator(), name, data, version)
             node_type.dependencies['data_types'].update(
                 self.check_property_in_entity(data, node_type.dependencies['data_types']))
-            node_type.dependencies['data_type'].update(
+            node_type.dependencies['data_types'].update(
                 self.check_property_in_entity(data, node_type.dependencies['data_types'], key_name='attributes'))
             interface_types, data_types, artifacts, artifacts_types = self.check_interface_in_entity(data,
                                                                                                      node_type)
@@ -327,7 +335,7 @@ class TypeStorage:
             group_type = GroupType(self.identifier_generator(), name, data, version)
             group_type.dependencies['data_types'].update(
                 self.check_property_in_entity(data, group_type.dependencies['data_types']))
-            group_type.dependencies['data_type'].update(
+            group_type.dependencies['data_types'].update(
                 self.check_property_in_entity(data, group_type.dependencies['data_types'], key_name='attributes'))
             members = data.get('members')
             if members:

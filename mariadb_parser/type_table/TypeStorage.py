@@ -116,6 +116,8 @@ class TypeStorage:
             # TODO ADD DERIVED FROM FINDER
         if data.get('relationship_types'):
             self.relationship_types = self.prepare_relationship_types(data.get('relationship_types'))
+        if data.get('node_types'):
+            self.node_types = self.prepare_node_types(data.get('node_types'))
 
     def identifier_generator(self) -> int:
         return len(self.data_types) + \
@@ -210,6 +212,8 @@ class TypeStorage:
             relationship_type.dependencies['interface_types'] = interface_types
             relationship_type.dependencies['data_types'] = \
                 relationship_type.dependencies['data_types'].union(data_types)
+            relationship_type.dependencies['artifacts'].update(artifacts)
+            relationship_type.dependencies['artifacts_types'].update(artifacts_types)
             valid_target_types = data.get('valid_target_types')
             if valid_target_types:
                 if type(valid_target_types) != list:
@@ -219,6 +223,94 @@ class TypeStorage:
                 relationship_type.derived_from.add(derived_from)
             relationship_types[name] = relationship_type
         return relationship_types
+
+    def prepare_node_types(self, data: dict) -> dict[str, NodeType]:
+        node_types = {}
+        for name, data in data.items():
+            derived_from = data.get('derived_from')
+            version = data.get('version')
+            node_type = NodeType(self.identifier_generator(), name, data, version)
+            node_type.dependencies['data_types'].update(
+                self.check_property_in_entity(data, node_type.dependencies['data_types']))
+            node_type.dependencies['data_type'].update(
+                self.check_property_in_entity(data, node_type.dependencies['data_types']))
+            interface_types, data_types, artifacts, artifacts_types = self.check_interface_in_entity(data,
+                                                                                                     node_type)
+            node_type.dependencies['interface_types'].update(interface_types)
+            node_type.dependencies['data_types'].update(data_types)
+            node_type.dependencies['artifacts'].update(artifacts)
+            node_type.dependencies['artifact_types'].update(artifacts_types)
+            # NOTE CAPABILITY DEFINITION
+            capability_definition = data.get('capabilities')
+            if capability_definition:
+                for capability_name, capability_data in capability_definition.items():
+                    if type(capability_data) == str:
+                        node_type.dependencies['capability_types'].add(capability_data)
+                    else:
+                        capability_type = capability_data.get('type')
+                        if capability_type is None:
+                            raise f"In capability {capability_name} in node_type {name} no type"
+                        node_type.dependencies['capability_types'].add(capability_type)
+                        node_type.dependencies['data_types'].update(
+                            self.check_property_in_entity(capability_data, node_type.dependencies['data_types']))
+                        node_type.dependencies['data_types'].update(
+                            self.check_property_in_entity(capability_data, node_type.dependencies['data_types'],
+                                                          key_name='attributes'))
+                        valid_source_types = capability_data.get('valid_source_types')
+                        if valid_source_types:
+                            node_type.dependencies['node_types'].update(valid_source_types)
+            # NOTE ARTIFACT DEFINITION
+            artifact_definition = data.get('artifacts')
+            if artifact_definition:
+                for artifact_name, artifact_value in artifact_definition.items():
+                    if type(artifact_value) == str:
+                        artifact = ArtifactDefinition(artifact_name, artifact_value, node_type)
+                        self.artifact_definition[artifact_name] = artifact
+                    else:
+                        artifact_type = artifact_value.get('type')
+                        if artifact_type is None:
+                            raise f"In artifact definition {artifact_name}, " \
+                                  f"in node_type {name} artifact type is missing"
+                        node_type.dependencies['artifact_types'].add(artifact_type)
+                        artifact = ArtifactDefinition(artifact_name, artifact_value, node_type)
+                        self.artifact_definition[artifact_name] = artifact
+            # NOTE REQUIREMENT DEFINITION
+            requirement_definitions = data.get('requirements')
+            if requirement_definitions:
+                for requirement_definition in requirement_definitions:
+                    if type(requirement_definition) != dict:
+                        raise f"Wrong type of entity in requirements in node_type {name}"
+                    elif len(requirement_definition) > 1:
+                        raise f"Requirement definition dict is too long in node_type {name}"
+                    else:
+                        for requirement_name, requirement_data in requirement_definition.items():
+                            if type(requirement_data) == str:
+                                node_type.dependencies['capability_types'].add(requirement_data)
+                            else:
+                                capability = requirement_data.get('capability')
+                                if capability is None:
+                                    raise f"Capability in requirement definition {requirement_name} in data_type {name}"
+                                node_type.dependencies['capability_types'].add(capability)
+                                node_type.dependencies['node_types'].add(requirement_data.get('node'))
+                                relationship = requirement_data.get('relationship')
+                                if type(relationship) == str:
+                                    node_type.dependencies['relationship_types'].add(relationship)
+                                else:
+                                    if relationship.get('type') is None:
+                                        raise f"In relationship in requirement_definition {requirement_name} " \
+                                              f"in node_type {name}"
+                                    node_type.dependencies['relationship_types'].add(relationship.get('type'))
+                                    interface_types, data_types, artifacts, artifacts_types =\
+                                        self.check_interface_in_entity(relationship, node_type)
+                                    node_type.dependencies['interface_types'].update(interface_types)
+                                    node_type.dependencies['data_types'].update(data_types)
+                                    node_type.dependencies['artifacts'].update(artifacts)
+                                    node_type.dependencies['artifact_types'].update(artifacts_types)
+
+            if derived_from:
+                node_type.derived_from.add(derived_from)
+
+        return node_types
 
     def check_interface_in_entity(self, data: dict, father_node) -> tuple[set[str], set[str], set[str], set[str]]:
         interface_types = set()

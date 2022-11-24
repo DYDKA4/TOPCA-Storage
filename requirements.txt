@@ -3,3 +3,5 @@ Flask==2.1.2
 Werkzeug==2.1.2
 redis==4.3.4
 nebula3-python==3.1.0
+mariadb==1.1.5.post3
+python-dotenv==0.19.2

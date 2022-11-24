@@ -33,6 +33,12 @@ class TOSCAType:
                                              'group_types': set(),
                                              'policy_types': set(),
                                              'artifacts': set()}
+        self.requirements: dict[str, set] = {'data_types': set(),
+                                             'artifact_types': set(),
+                                             'capability_types': set(),
+                                             'node_types': set(),
+                                             'relationship_types': set(),
+                                             'artifacts': set()}
 
     def convert_data_to_json(self):
         """
@@ -231,6 +237,8 @@ class TypeStorage:
             for derived_node in node.derived_from:
                 for dependency_name, dependency_set in node.dependencies.items():
                     dependency_set.update(object_dict.get(derived_node).dependencies.get(dependency_name))
+                for requirement_name, requirement_set in node.requirements.items():
+                    requirement_set.update(object_dict.get(derived_node).dependencies.get(requirement_name))
         return
 
     @staticmethod
@@ -465,13 +473,13 @@ class TypeStorage:
                     else:
                         for requirement_name, requirement_data in requirement_definition.items():
                             if type(requirement_data) == str:
-                                node_type.dependencies['capability_types'].add(requirement_data)
+                                node_type.requirements['capability_types'].add(requirement_data)
                             else:
                                 capability = requirement_data.get('capability')
                                 if capability is None:
                                     raise f"Capability in requirement definition {requirement_name} in data_type {name}"
-                                node_type.dependencies['capability_types'].add(capability)
-                                node_type.dependencies['node_types'].add(requirement_data.get('node'))
+                                node_type.requirements['capability_types'].add(capability)
+                                node_type.requirements['node_types'].add(requirement_data.get('node'))
                                 relationship = requirement_data.get('relationship')
                                 if type(relationship) == str:
                                     node_type.dependencies['relationship_types'].add(relationship)
@@ -479,13 +487,13 @@ class TypeStorage:
                                     if relationship.get('type') is None:
                                         raise f"In relationship in requirement_definition {requirement_name} " \
                                               f"in node_type {name}"
-                                    node_type.dependencies['relationship_types'].add(relationship.get('type'))
+                                    node_type.requirements['relationship_types'].add(relationship.get('type'))
                                     interface_types, data_types, artifacts, artifacts_types = \
                                         self.check_interface_in_entity(relationship, node_type)
-                                    node_type.dependencies['interface_types'].update(interface_types)
-                                    node_type.dependencies['data_types'].update(data_types)
-                                    node_type.dependencies['artifacts'].update(artifacts)
-                                    node_type.dependencies['artifact_types'].update(artifacts_types)
+                                    node_type.requirements['interface_types'].update(interface_types)
+                                    node_type.requirements['data_types'].update(data_types)
+                                    node_type.requirements['artifacts'].update(artifacts)
+                                    node_type.requirements['artifact_types'].update(artifacts_types)
 
             if derived_from:
                 node_type.derived_from.add(derived_from)

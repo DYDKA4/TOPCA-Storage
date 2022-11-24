@@ -245,7 +245,6 @@ class TypeStorage:
 
         def recursive_finder(current_object, result: set[str], dictionary: dict):
             """
-
             :param current_object:
             :param result: set of all father_node names
             :param dictionary: dict of all types of this node

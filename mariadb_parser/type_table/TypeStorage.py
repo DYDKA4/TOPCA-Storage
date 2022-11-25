@@ -1,7 +1,5 @@
 import json
 
-import yaml
-
 
 class TOSCAType:
     """
@@ -46,20 +44,25 @@ class TOSCAType:
         """
         self.data = json.dumps(self.data)
 
+    def get_data_in_json(self):
+        return json.dumps(self.data)
+
 
 class DataType(TOSCAType):
     """
     Data Type Class storage parsed data of Data Type from yaml file.
     """
 
-    def __init__(self, identifier: int, name: str, data: dict, version: str = ''):
+    def __init__(self, identifier: int, name: str, data: dict, version: str):
         """
         :param identifier:     identifier storage id of Data Type in SQL database
         :param name:     name storage name of Data Type from yaml file
         :param data:        data storage parsed dict of Data Type
-        :param version:  version storage version of Data Type, by default it set to 1.0.0
+        :param version:  version storage version of Data Type, by default it set to 1.0
         if this version is not occupied by anyone
         """
+        if version is None:
+            version = '1.0'
         super().__init__(identifier, name, data, 'data_type', version=version)
 
 
@@ -68,100 +71,119 @@ class ArtifactType(TOSCAType):
     Artifact Type Class storage parsed data of Artifact Type from yaml file.
     """
 
-    def __init__(self, identifier: int, name: str, data: dict, version: str = ''):
+    def __init__(self, identifier: int, name: str, data: dict, version: str):
         """
         :param identifier:     identifier storage id of Artifact Type in SQL database
         :param name:     name storage name of Artifact Type from yaml file
         :param data:        data storage parsed dict of Data Type
-        :param version:  version storage version of Artifact Type, by default it set to 1.0.0
+        :param version:  version storage version of Artifact Type, by default it set to 1.0
         if this version is not occupied by anyone
         """
+        if version is None:
+            version = '1.0'
         super().__init__(identifier, name, data, 'artifact_type', version=version)
 
 
 class InterfaceType(TOSCAType):
 
-    def __init__(self, identifier: int, name: str, data: dict, version: str = ''):
+    def __init__(self, identifier: int, name: str, data: dict, version: str):
         """
         :param identifier:     identifier storage id of Interface Type in SQL database
         :param name:     name storage name of Interface Type from yaml file
         :param data:        data storage parsed dict of Interface Type
-        :param version:  version storage version of Interface Type, by default it set to 1.0.0
+        :param version:  version storage version of Interface Type, by default it set to 1.0
         if this version is not occupied by anyone
         """
+        if version is None:
+            version = '1.0'
         super().__init__(identifier, name, data, 'interface_type', version=version)
 
 
 class NodeType(TOSCAType):
-    def __init__(self, identifier: int, name: str, data: dict, version: str = ''):
+    def __init__(self, identifier: int, name: str, data: dict, version: str):
         """
         :param identifier:     identifier storage id of Node Type in SQL database
         :param name:     name storage name of Node Type from yaml file
         :param data:        data storage parsed dict of Node Type
-        :param version:  version storage version of Node Type, by default it set to 1.0.0
+        :param version:  version storage version of Node Type, by default it set to 1.0
         if this version is not occupied by anyone
         """
+        if version is None:
+            version = '1.0'
         super().__init__(identifier, name, data, 'node_type', version=version)
 
 
 class GroupType(TOSCAType):
-    def __init__(self, identifier: int, name: str, data: dict, version: str = ''):
+    def __init__(self, identifier: int, name: str, data: dict, version: str):
         """
         :param identifier:     identifier storage id of Group Type in SQL database
         :param name:     name storage name of Group Type from yaml file
         :param data:        data storage parsed dict of Group Type
-        :param version:  version storage version of Group Type, by default it set to 1.0.0
+        :param version:  version storage version of Group Type, by default it set to 1.0
         if this version is not occupied by anyone
         """
+        if version is None:
+            version = '1.0'
         super().__init__(identifier, name, data, 'group_type', version=version)
 
 
 class PolicyType(TOSCAType):
-    def __init__(self, identifier: int, name: str, data: dict, version: str = ''):
+    def __init__(self, identifier: int, name: str, data: dict, version: str):
         """
         :param identifier:     identifier storage id of Policy Type in SQL database
         :param name:     name storage name of Policy Type from yaml file
         :param data:        data storage parsed dict of Policy Type
-        :param version:  version storage version of Policy Type, by default it set to 1.0.0
+        :param version:  version storage version of Policy Type, by default it set to 1.0
         if this version is not occupied by anyone
         """
+        if version is None:
+            version = '1.0'
         super().__init__(identifier, name, data, 'policy_type', version=version)
 
 
 class CapabilityType(TOSCAType):
-    def __init__(self, identifier: int, name: str, data: dict, version: str = ''):
+    def __init__(self, identifier: int, name: str, data: dict, version: str):
         """
         :param identifier:     identifier storage id of Capability Type in SQL database
         :param name:     name storage name of Capability Type from yaml file
         :param data:        data storage parsed dict of Capability Type
-        :param version:  version storage version of Capability Type, by default it set to 1.0.0
+        :param version:  version storage version of Capability Type, by default it set to 1.0
         if this version is not occupied by anyone
         """
+        if version is None:
+            version = '1.0'
         super().__init__(identifier, name, data, 'capability_type', version=version)
 
 
 class RelationshipType(TOSCAType):
-    def __init__(self, identifier: int, name: str, data: dict, version: str = ''):
+    def __init__(self, identifier: int, name: str, data: dict, version: str):
         """
         :param identifier:     identifier storage id of Relationship Type in SQL database
         :param name:     name storage name of Relationship Type from yaml file
         :param data:        data storage parsed dict of Relationship Type
-        :param version:  version storage version of Relationship Type, by default it set to 1.0.0
+        :param version:  version storage version of Relationship Type, by default it set to 1.0
         if this version is not occupied by anyone
         """
+        if version is None:
+            version = '1.0'
         super().__init__(identifier, name, data, 'relationship_type', version=version)
 
 
 class ArtifactDefinition:
-    def __init__(self, name: str, data: dict, father_node):
+    def __init__(self, name: str, data: dict, father_node: object, identifier: int):
         """
+        :param identifier:  identifier storage id of Artifact Definition in SQL database
         :param name: name storage name of Artifact Definition from yaml file
         :param data: data storage parsed dict of Artifact Definition
         :param father_node: storage name of node where this Artifact Definition was declared
         """
         self.name = name
-        self.value = data
+        self.data = data
         self.father_node = father_node
+        self.identifier = identifier
+
+    def get_data_in_json(self):
+        return json.dumps(self.data)
 
 
 class TypeStorage:
@@ -193,28 +215,28 @@ class TypeStorage:
         self.policy_types: dict[str, PolicyType] = {}
         self.artifact_definition: dict[str, ArtifactDefinition] = {}
         if data.get('data_types'):
-            self.data_types = self.prepare_data_types(data.get('data_types'))
+            self.prepare_data_types(data.get('data_types'))
             self.derived_from_constructor(self.data_types)
         if data.get('capability_types'):
-            self.capability_types = self.prepare_capability_types(data.get('capability_types'))
+            self.prepare_capability_types(data.get('capability_types'))
             self.derived_from_constructor(self.capability_types)
         if data.get('artifact_types'):
-            self.artifact_types = self.prepare_artifact_types(data.get('artifact_types'))
+            self.prepare_artifact_types(data.get('artifact_types'))
             self.derived_from_constructor(self.artifact_types)
         if data.get('interface_types'):
-            self.interface_types = self.prepare_interface_types(data.get('interface_types'))
+            self.prepare_interface_types(data.get('interface_types'))
             self.derived_from_constructor(self.interface_types)
         if data.get('relationship_types'):
-            self.relationship_types = self.prepare_relationship_types(data.get('relationship_types'))
+            self.prepare_relationship_types(data.get('relationship_types'))
             self.derived_from_constructor(self.relationship_types)
         if data.get('node_types'):
-            self.node_types = self.prepare_node_types(data.get('node_types'))
+            self.prepare_node_types(data.get('node_types'))
             self.derived_from_constructor(self.node_types)
         if data.get('group_types'):
-            self.group_types = self.prepare_group_types(data.get('group_types'))
+            self.prepare_group_types(data.get('group_types'))
             self.derived_from_constructor(self.group_types)
         if data.get('policy_types'):
-            self.policy_types = self.prepare_policy_types(data.get('policy_types'))
+            self.prepare_policy_types(data.get('policy_types'))
             self.derived_from_constructor(self.policy_types)
         self.union_dependencies(self.data_types)
         self.union_dependencies(self.group_types)
@@ -282,15 +304,22 @@ class TypeStorage:
                 recursive_finder(entity, set(), object_dict)
         return
 
-    def identifier_generator(self) -> int:
+    def type_identifier_generator(self) -> int:
         """
         This function generate identifier for TOSCAType object
         :return: identifier of TOSCATypes in SQL database
         """
         identifier = len(self.data_types) + len(self.artifact_types) + len(self.capability_types) + \
                      len(self.interface_types) + len(self.relationship_types) + len(self.node_types) + \
-                     len(self.group_types) + len(self.policy_types)
+                     len(self.group_types) + len(self.policy_types) + 1
         return identifier
+
+    def artifact_identifier_generator(self) -> int:
+        """
+        This function generate identifier for  object
+        :return: identifier of TOSCATypes in SQL database
+        """
+        return len(self.artifact_definition)
 
     def prepare_data_types(self, data) -> dict[str, DataType]:
         """
@@ -298,20 +327,19 @@ class TypeStorage:
         :param data: data_types
         :return dict of str and DataType:
         """
-        data_types = {}
         # NOTE can be parallelized
         for name, data in data.items():
             derived_from = data.get('derived_from')
             version = data.get('version')
-            data_type = DataType(self.identifier_generator(), name, data, version)
+            data_type = DataType(self.type_identifier_generator(), name, data, version)
             data_type.dependencies['data_types'] = data_type.dependencies['data_types'].union(
                 self.check_schema_in_entity(data, data_type.dependencies['data_types']))
             data_type.dependencies['data_types'] = data_type.dependencies['data_types'].union(
                 self.check_property_in_entity(data, data_type.dependencies['data_types']))
             if derived_from:
                 data_type.derived_from.add(derived_from)
-            data_types[name] = data_type
-        return data_types
+            self.data_types[name] = data_type
+        return self.data_types
 
     def prepare_capability_types(self, data: dict) -> dict[str, CapabilityType]:
         """
@@ -323,7 +351,7 @@ class TypeStorage:
         for name, data in data.items():
             derived_from = data.get('derived_from')
             version = data.get('version')
-            capability_type = CapabilityType(self.identifier_generator(), name, data, version)
+            capability_type = CapabilityType(self.type_identifier_generator(), name, data, version)
             capability_type.dependencies['data_types'] = capability_type.dependencies['data_types'].union(
                 self.check_property_in_entity(data, capability_type.dependencies['data_types']))
             capability_type.dependencies['data_types'] = capability_type.dependencies['data_types'].union(
@@ -334,7 +362,7 @@ class TypeStorage:
                     capability_type.dependencies['node_types'].add(node_type_name)
             if derived_from:
                 capability_type.derived_from.add(derived_from)
-            capability_types[name] = capability_type
+            self.capability_types[name] = capability_type
         return capability_types
 
     def prepare_artifact_types(self, data: dict) -> dict[str, ArtifactType]:
@@ -343,17 +371,16 @@ class TypeStorage:
         :param data: artifact_types
         :return: dict of str and ArtifactType
         """
-        artifact_types = {}
         for name, data in data.items():
             derived_from = data.get('derived_from')
             version = data.get('version')
-            artifact_type = ArtifactType(self.identifier_generator(), name, data, version)
+            artifact_type = ArtifactType(self.type_identifier_generator(), name, data, version)
             artifact_type.dependencies['data_types'] = artifact_type.dependencies['data_types'].union(
                 self.check_property_in_entity(data, artifact_type.dependencies['data_types']))
             if derived_from:
                 artifact_type.derived_from.add(derived_from)
-            artifact_types[name] = artifact_type
-        return artifact_types
+            self.artifact_types[name] = artifact_type
+        return self.artifact_types
 
     def prepare_interface_types(self, data: dict) -> dict[str, InterfaceType]:
         """
@@ -361,17 +388,16 @@ class TypeStorage:
         :param data: interface_types
         :return: dict of str and InterfaceType
         """
-        interface_types = {}
         for name, data in data.items():
             derived_from = data.get('derived_from')
             version = data.get('version')
-            interface_type = InterfaceType(self.identifier_generator(), name, data, version)
+            interface_type = InterfaceType(self.type_identifier_generator(), name, data, version)
             interface_type.dependencies['data_types'] = interface_type.dependencies['data_types'].union(
                 self.check_property_in_entity(data, interface_type.dependencies['data_types']))
             if derived_from:
                 interface_type.derived_from.add(derived_from)
-            interface_types[name] = interface_type
-        return interface_types
+            self.interface_types[name] = interface_type
+        return self.interface_types
 
     def prepare_relationship_types(self, data: dict) -> dict[str, RelationshipType]:
         """
@@ -379,11 +405,10 @@ class TypeStorage:
         :param data: relationship_types
         :return: dict of str and RelationshipType
         """
-        relationship_types = {}
         for name, data in data.items():
             derived_from = data.get('derived_from')
             version = data.get('version')
-            relationship_type = RelationshipType(self.identifier_generator(), name, data, version)
+            relationship_type = RelationshipType(self.type_identifier_generator(), name, data, version)
             relationship_type.dependencies['data_types'] = relationship_type.dependencies['data_types'].union(
                 self.check_property_in_entity(data, relationship_type.dependencies['data_types'])
             )
@@ -404,8 +429,8 @@ class TypeStorage:
                 relationship_type.dependencies['capability_types'].update(valid_target_types)
             if derived_from:
                 relationship_type.derived_from.add(derived_from)
-            relationship_types[name] = relationship_type
-        return relationship_types
+            self.relationship_types[name] = relationship_type
+        return self.relationship_types
 
     def prepare_node_types(self, data: dict) -> dict[str, NodeType]:
         """
@@ -413,11 +438,10 @@ class TypeStorage:
         :param data: node_types
         :return: dict of str and NodeType
         """
-        node_types = {}
         for name, data in data.items():
             derived_from = data.get('derived_from')
             version = data.get('version')
-            node_type = NodeType(self.identifier_generator(), name, data, version)
+            node_type = NodeType(self.type_identifier_generator(), name, data, version)
             node_type.dependencies['data_types'].update(
                 self.check_property_in_entity(data, node_type.dependencies['data_types']))
             node_type.dependencies['data_types'].update(
@@ -452,7 +476,8 @@ class TypeStorage:
             if artifact_definition:
                 for artifact_name, artifact_value in artifact_definition.items():
                     if type(artifact_value) == str:
-                        artifact = ArtifactDefinition(artifact_name, artifact_value, node_type)
+                        artifact = ArtifactDefinition(artifact_name, artifact_value, node_type,
+                                                      self.artifact_identifier_generator())
                         self.artifact_definition[artifact_name] = artifact
                     else:
                         artifact_type = artifact_value.get('type')
@@ -460,7 +485,8 @@ class TypeStorage:
                             raise f"In artifact definition {artifact_name}, " \
                                   f"in node_type {name} artifact type is missing"
                         node_type.dependencies['artifact_types'].add(artifact_type)
-                        artifact = ArtifactDefinition(artifact_name, artifact_value, node_type)
+                        artifact = ArtifactDefinition(artifact_name, artifact_value, node_type,
+                                                      self.artifact_identifier_generator())
                         self.artifact_definition[artifact_name] = artifact
             # NOTE REQUIREMENT DEFINITION
             requirement_definitions = data.get('requirements')
@@ -497,8 +523,8 @@ class TypeStorage:
 
             if derived_from:
                 node_type.derived_from.add(derived_from)
-            node_types[name] = node_type
-        return node_types
+            self.node_types[name] = node_type
+        return self.node_types
 
     def prepare_group_types(self, data: dict) -> dict[str: GroupType]:
         """
@@ -510,7 +536,7 @@ class TypeStorage:
         for name, data in data.items():
             derived_from = data.get('derived_from')
             version = data.get('version')
-            group_type = GroupType(self.identifier_generator(), name, data, version)
+            group_type = GroupType(self.type_identifier_generator(), name, data, version)
             group_type.dependencies['data_types'].update(
                 self.check_property_in_entity(data, group_type.dependencies['data_types']))
             group_type.dependencies['data_types'].update(
@@ -529,11 +555,10 @@ class TypeStorage:
         :param data: policy_types
         :return: dict of str and PolicyType
         """
-        policy_types = {}
         for name, data in data.items():
             derived_from = data.get('derived_from')
             version = data.get('version')
-            policy_type = PolicyType(self.identifier_generator(), name, data, version)
+            policy_type = PolicyType(self.type_identifier_generator(), name, data, version)
             policy_type.dependencies['data_types'].update(
                 self.check_property_in_entity(data, policy_type.dependencies['data_types']))
             targets = data.get('targets')
@@ -556,8 +581,8 @@ class TypeStorage:
                         policy_type.dependencies['node_types'].add(node)
             if derived_from:
                 policy_type.derived_from.add(derived_from)
-            policy_types[name] = policy_type
-        return policy_types
+            self.policy_types[name] = policy_type
+        return self.policy_types
 
     def check_interface_in_entity(self, data: dict, father_node) -> tuple[set[str], set[str], set[str], set[str]]:
         """
@@ -644,7 +669,8 @@ class TypeStorage:
                                     # TODO make artifact_definition_parser
                                     for artifact_name, artifact_value in primary.items():
                                         artifact_definition = ArtifactDefinition(artifact_name, artifact_value,
-                                                                                 father_node)
+                                                                                 father_node,
+                                                                                 self.artifact_identifier_generator())
                                         if self.artifact_definition.get(artifact_name):
                                             raise "Such artifact_definition already exists, name:" + artifact_name
                                         self.artifact_definition[artifact_name] = artifact_definition
@@ -671,8 +697,9 @@ class TypeStorage:
                                                 raise "artifact_definition is too long in dependencies of " \
                                                       "operation_definition, name" + operation_name
                                             for artifact_name, artifact_value in artifact_data:
-                                                artifact_definition = ArtifactDefinition(artifact_name, artifact_value,
-                                                                                         father_node)
+                                                artifact_definition = \
+                                                    ArtifactDefinition(artifact_name, artifact_value, father_node,
+                                                                       self.artifact_identifier_generator())
                                                 if self.artifact_definition.get(artifact_name):
                                                     raise f"Such artifact_definition already exists," \
                                                           f" name:{artifact_name} "
@@ -759,13 +786,3 @@ class TypeStorage:
         result.add(data_type)
         result = result.union(self.check_schema_in_entity(data, result))
         return result
-
-
-with open("test.yaml", 'r') as stream:
-    data_loaded = yaml.safe_load(stream)
-    test = TypeStorage(data_loaded)
-    t1 = set()
-    t2 = set('asd')
-    t1.union(t2)
-    sum_1 = 0
-    sum_2 = 0

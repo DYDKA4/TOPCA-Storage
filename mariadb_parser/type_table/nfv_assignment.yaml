@@ -1,0 +1,1334 @@
+tosca_definitions_version: tosca_simple_yaml_1_0
+
+node_types:
+  nfv.nodes.VNFD.Firewall:
+    derived_from: nfv.nodes.VNFD
+    properties:
+      modifiableAttributes:
+        type: nfv.datatypes.VnfInfoModifiableAttributes.Firewall
+
+  nfv.nodes.VNFD.Nat:
+    derived_from: nfv.nodes.VNFD
+    properties:
+      modifiableAttributes:
+        type: nfv.datatypes.VnfInfoModifiableAttributes.Nat
+
+  nfv.nodes.VNFD.QoS:
+    derived_from: nfv.nodes.VNFD
+    properties:
+      modifiableAttributes:
+        type: nfv.datatypes.VnfInfoModifiableAttributes.QoS
+
+  nfv.nodes.VNFD.SpamVirus:
+    derived_from: nfv.nodes.VNFD
+    properties:
+      modifiableAttributes:
+        type: nfv.datatypes.VnfInfoModifiableAttributes.SpamVirus
+
+  nfv.nodes.VNFD.DHCP:
+    derived_from: nfv.nodes.VNFD
+    properties:
+      modifiableAttributes:
+        type: nfv.datatypes.VnfInfoModifiableAttributes.DHCP
+
+  nfv.nodes.VNFD.DNS:
+    derived_from: nfv.nodes.VNFD
+    properties:
+      modifiableAttributes:
+        type: nfv.datatypes.VnfInfoModifiableAttributes.DNS
+
+  nfv.nodes.VNFD.Tshark_analyze:
+    derived_from: nfv.nodes.VNFD
+    properties:
+      modifiableAttributes:
+        type: nfv.datatypes.VnfInfoModifiableAttributes.Tshark_analyze
+
+  nfv.nodes.VNFD.Routing:
+    derived_from: nfv.nodes.VNFD
+    properties:
+      modifiableAttributes:
+        type: nfv.datatypes.VnfInfoModifiableAttributes.Routing
+
+  nfv.nodes.VNFD.Ntop_analyze:
+    derived_from: nfv.nodes.VNFD
+    properties:
+      modifiableAttributes:
+        type: nfv.datatypes.VnfInfoModifiableAttributes.Ntop_analyze
+
+  nfv.nodes.VNFD:
+    derived_from: tosca.nodes.Root
+    properties:
+      vnfdId:
+        type: string
+        required: false
+      vnfProvider:
+        type: string
+        required: false
+      vnfProductName:
+        type: string
+        required: false
+      vnfSoftwareVersion:
+        type: string
+        required: false
+      vnfmInfo:
+        type: string
+        required: false
+      deploymentFlavour:
+        type: nfv.datatypes.VNFDf
+        required: false
+      modifiableAttributes:
+        type: nfv.datatypes.VnfInfoModifiableAttributes
+        required: false
+    requirements:
+      - vnfExtCpd:
+          capability: nfv.capabilities.vnfExtCpd
+          node: nfv.nodes.VnfExtCpd
+          relationship: nfv.relationships.vnfExtCpd
+          occurrences: [ 1, UNBOUNDED ]
+      - vdu:
+          capability: nfv.capabilities.vdu
+          node: nfv.nodes.VDU
+          relationship: nfv.relationships.vdu
+          occurrences: [ 1, UNBOUNDED ]
+
+  nfv.nodes.VDU:
+    derived_from: tosca.nodes.Root
+    properties:
+      vduId:
+        type: string
+        required: false
+      name:
+        type: string
+        required: false
+      description:
+        type: string
+        required: false
+      virtualComputeDesc:
+        type: nfv.datatypes.virtualComputeDesc
+        required: true
+      virtualStorageDesc:
+        type: nfv.datatypes.VirtualStorageDesc
+        required: true
+      swImageDesc:
+        type: nfv.datatypes.VirtualStorageDesc.swImageDesc
+        required: true
+    capabilities:
+      intCpd:
+        type: nfv.capabilities.intCpd
+      vduDep:
+        type: nfv.capabilities.vdu
+
+  nfv.nodes.Cpd:
+    derived_from: tosca.nodes.Root
+    properties:
+      cpdId:
+        type: string
+        required: false
+      layerProtocol:
+        type: string
+        default: IPV4
+        constraints:
+          - valid_values: [ Ethernet, MPLS, ODU2, IPV4, IPV6, Pseudo-Wire ]
+      description:
+        type: string
+        required: false
+      addressData:
+        type: nfv.datatypes.AddressData
+        required: false
+
+  nfv.nodes.VnfExtCpd:
+    derived_from: nfv.nodes.Cpd
+    capabilities:
+      vnfExtCpdDep:
+        type: nfv.capabilities.vnfExtCpd
+    requirements:
+      - VDUCpd:
+          capability: nfv.capabilities.intCpd
+          node: nfv.nodes.VDUCpd
+          relationship: nfv.relationships.intCpd
+          occurrences: [ 0, 1 ]
+      - intVirtualLinkDesc:
+          capability: nfv.capabilities.intVirtualLinkDesc
+          node: nfv.nodes.VnfVirtualLinkDesc
+          relationship: nfv.relationships.intVirtualLinkDesc
+          occurrences: [ 1, 1 ]
+
+  nfv.nodes.VDUCpd:
+    derived_from: nfv.nodes.Cpd
+    properties:
+      virtualNetworkInterfaceRequirements:
+        type: nfv.datatypes.VirtualNetworkInterfaceRequirements
+        required: false
+    requirements:
+      - intCpd:
+          capability: nfv.capabilities.intCpd
+          node: nfv.nodes.VDU
+          relationship: nfv.relationships.intCpd
+          occurrences: [ 1, 1 ]
+      - intVirtualLinkDesc:
+          capability: nfv.capabilities.intVirtualLinkDesc
+          node: nfv.nodes.VnfVirtualLinkDesc
+          relationship: nfv.relationships.intVirtualLinkDesc
+          occurrences: [ 1, 1 ]
+
+  nfv.nodes.VnfVirtualLinkDesc:
+    derived_from: tosca.nodes.Root
+    properties:
+      virtualLinkDescId:
+        type: string
+        required: false
+      connectivityType:
+        type: nfv.datatypes.VnfVirtualLinkDesc.ConnectivityType
+        required: false
+      virtualLinkDescFlavour:
+        type: nfv.datatypes.VnfVirtualLinkDesc.VirtualLinkDescFlavour
+        required: false
+      cidrData:
+        type: nfv.datatypes.CidrData
+        required: false
+      description:
+        type: string
+        required: false
+    capabilities:
+      intVirtualLinkDesc:
+        type: nfv.capabilities.intVirtualLinkDesc
+
+data_types:
+  nfv.datatypes.virtualComputeDesc.VirtualMemoryData:
+    derived_from: tosca.datatypes.Root
+    properties:
+      virtualMemSize:
+        type: scalar-unit.size
+        required: true
+
+  nfv.datatypes.virtualComputeDesc.VirtualCpuData:
+    derived_from: tosca.datatypes.Root
+    properties:
+      numVirtualCpu:
+        type: integer
+        required: true
+      cpuArchitecture:
+        type: string
+        required: true
+        constraints:
+          - valid_values: [ x86, x86_64, arm ]
+
+  nfv.datatypes.virtualComputeDesc:
+    derived_from: tosca.datatypes.Root
+    properties:
+      virtualComputeDescId:
+        type: string
+        required: false
+      virtualCpu:
+        type: nfv.datatypes.virtualComputeDesc.VirtualCpuData
+        required: true
+      virtualMemory:
+        type: nfv.datatypes.virtualComputeDesc.VirtualMemoryData
+        required: true
+
+  nfv.datatypes.VirtualStorageDesc.swImageDesc:
+    derived_from: tosca.datatypes.Root
+    properties:
+      id:
+        type: string
+        required: false
+      version:
+        type: string
+        required: false
+      checksum:
+        type: string
+        required: false
+      minDisk:
+        type: scalar-unit.size
+        default: 20 GiB
+      size:
+        type: scalar-unit.size
+        required: false
+      operatingSystem:
+        type: string
+        default: cumulus
+      swImage:
+        type: string
+        required: false
+      diskFormat:
+        type: string
+        default: qcow2
+        constraints:
+          - valid_values: [ aki, ami, ari, iso, qcow2, raw, vdi, vhd, vhdx, vmdk ]
+      containerFormat:
+        type: string
+        default: BARE
+
+  nfv.datatypes.VirtualStorageDesc:
+    derived_from: tosca.datatypes.Root
+    properties:
+      id:
+        type: string
+        required: false
+      typeOfStorage:
+        type: string
+        default: object
+        constraints:
+          - valid_values: [ object, volume ]
+      sizeOfStorage:
+        type: scalar-unit.size
+        required: true
+        constraints:
+           - in_range: [ 20 GiB, 200 GiB ]
+      swImageDesc:
+        type: nfv.datatypes.VirtualStorageDesc.swImageDesc
+        required: false
+
+  nfv.datatypes.AddressData.L3AddressData:
+    derived_from: tosca.datatypes.Root
+    properties:
+      iPAddressAssignment:
+        type: boolean
+        default: true
+      iPAddress:
+        type: string
+        required: false
+      floatingIpActivated:
+        type: boolean
+        default: false
+      iPAddressType:
+        type: string
+        default: IPV4
+        constraints:
+          - valid_values: [ IPV4, IPV6 ]
+      numberOfIpAddress:
+        type: integer
+        default: 1
+
+  nfv.datatypes.AddressData.L2AddressData:
+    properties:
+      macAddressAssignment:
+        type: boolean
+        default: true
+      macAddress:
+        type: string
+        required: false
+
+  nfv.datatypes.AddressData:
+    derived_from: tosca.datatypes.Root
+    properties:
+      addressType:
+        type: string
+        required: true
+        constraints:
+          - valid_values: [ IP, MAC ] # как сделать так чтобы при mac - l2 required true, при ip - l3?
+      l2AddressData:
+        type: nfv.datatypes.AddressData.L2AddressData
+        required: false
+      l3AddressData:
+        type: nfv.datatypes.AddressData.L3AddressData
+        required: false
+
+  nfv.datatypes.CidrData: # не каноничный тип, использовать не обязательно, если не указан, генерируем рандомно!!!
+    derived_from: tosca.datatypes.Root
+    properties:
+      networkName:
+        type: string
+        required: false
+      cidr:
+        type: string
+        required: false
+      startIp:
+        type: string
+        required: false
+      endIp:
+        type: string
+        required: false
+      gatewayIp:
+        type: string
+        required: false
+      networkType:
+        type: string
+        default: geneve
+        constraints:
+          - valid_values: [ geneve, VLAN ]
+
+  nfv.datatypes.VirtualNetworkInterfaceRequirements:
+    derived_from: tosca.datatypes.Root
+    properties:
+      name:
+        type: string
+        required: false
+      supportMandatory:
+        type: boolean
+        default: true
+      requirement:
+        type: string
+        required: true
+
+  nfv.datatypes.VnfInfoModifiableAttributes.extension:
+    derived_from: tosca.datatypes.Root
+
+  nfv.datatypes.VnfInfoModifiableAttributes.extension.DHCP:
+    derived_from: nfv.datatypes.VnfInfoModifiableAttributes.extension
+    properties:
+      defaultLeaseTime:
+        type: integer
+        default: 600
+      maxLeaseTime:
+        type: integer
+        default: 7200
+      interfaceName:
+        type: string
+        required: true
+      internalNetCidr:
+        type: string
+        required: true # можно и по имени? Как лучше?
+      gateway:
+        type: string
+        required: true
+      rangeStart:
+        type: string
+        required: true
+      rangeEnd:
+        type: string
+        required: true
+      staticHosts: # мап название: айпишник, мак адреса будем доставать программно
+        type: map
+        required: false
+        entry_schema:
+          type: string
+
+  nfv.datatypes.VnfInfoModifiableAttributes.extension.DNS:
+    derived_from: nfv.datatypes.VnfInfoModifiableAttributes.extension
+    properties:
+      internalNetAddr:
+        type: string
+        required: true # можно и по имени? Как лучше?
+      staticHosts:
+        type: map
+        required: false
+        entry_schema: # мап название: айпишник
+          type: string
+      domainName:
+        type: string
+        default: example.com
+      forwarders:
+        type: map
+        required: false
+        entry_schema: # мап название: айпишник
+          type: string
+      iPAddressType:
+        type: string
+        default: IPV4
+        constraints:
+          - valid_values: [ IPV4, IPV6 ]
+
+  nfv.datatypes.VnfInfoModifiableAttributes.extension.Ntop_analyze:
+    derived_from: nfv.datatypes.VnfInfoModifiableAttributes.extension
+    properties:
+      endpointPort:
+        type: integer
+        default: 3000
+      internalNetCidr:
+        type: list
+        required: false # можно и по имени? Как лучше?
+        entry_schema:
+          type: string
+      interfacesNames:
+        type: list
+        required: false
+        entry_schema: # список названий интерфейсов
+          type: string
+
+  nfv.datatypes.VnfInfoModifiableAttributes.extension.Tshark_analyze:
+    derived_from: nfv.datatypes.VnfInfoModifiableAttributes.extension
+    properties:
+      duration:
+        type: integer
+        default: 10000
+      files:
+        type: integer
+        default: 1
+      pathToPcap:
+        type: string
+        default: /tmp/dump.pcap
+      interfaceName:
+        type: string
+        required: true
+      captureFilter:
+        type: string
+        required: true
+
+  nfv.datatypes.VnfInfoModifiableAttributes.extension.QoS:
+    derived_from: nfv.datatypes.VnfInfoModifiableAttributes.extension
+
+  nfv.datatypes.VnfInfoModifiableAttributes.extension.SpamVirus:
+    derived_from: nfv.datatypes.VnfInfoModifiableAttributes.extension
+
+  nfv.datatypes.VnfInfoModifiableAttributes.extension.Routing:
+    derived_from: nfv.datatypes.VnfInfoModifiableAttributes.extension
+    properties:
+      rules:
+        type: list
+        required: true
+        entry_schema:
+          type: nfv.datatypes.VnfInfoModifiableAttributes.extension.Routing.Rule
+      routes:
+        type: list
+        required: true
+        entry_schema:
+          type: nfv.datatypes.VnfInfoModifiableAttributes.extension.Routing.Route
+
+  nfv.datatypes.VnfInfoModifiableAttributes.extension.Routing.Rule:
+    derived_from: tosca.datatypes.Root
+    properties:
+      sourceAddr:
+        type: string
+        required: false
+      destAddr:
+        type: string
+        required: false
+
+  nfv.datatypes.VnfInfoModifiableAttributes.extension.Routing.Route:
+    derived_from: tosca.datatypes.Root
+    properties:
+      destCidr:
+        type: string
+        required: true
+      gateway:
+        type: string
+        required: true
+      src:
+        type: string
+        required: false
+      dev:
+        type: string
+        required: true
+
+  nfv.datatypes.VnfInfoModifiableAttributes.extension.Nat:
+    derived_from: nfv.datatypes.VnfInfoModifiableAttributes.extension
+    properties:
+      rules:
+        type: list
+        required: true
+        entry_schema:
+          type: nfv.datatypes.VnfInfoModifiableAttributes.extension.Nat.Rule
+
+  nfv.datatypes.VnfInfoModifiableAttributes.extension.Nat.Rule:
+    derived_from: tosca.datatypes.Root
+    properties:
+      typeNat:
+        type: string
+        default: static
+        constraints:
+          - valid_values: [ static, dynamic ]
+      routingType:
+        type: string
+        required: true
+        constraints:
+          - valid_values: [ snat, dnat ]
+      sourceAddrPr:
+        type: string
+        required: true
+      destAddrPr:
+        type: string
+        required: true
+      protocol:
+        type: string
+        required: true
+        constraints:
+          - valid_values: [ tcp, udp, icmp ]
+
+  nfv.datatypes.VnfInfoModifiableAttributes.extension.Firewall:
+    derived_from: nfv.datatypes.VnfInfoModifiableAttributes.extension
+    properties:
+      standart_rules:
+        type: list
+        required: false
+        entry_schema:
+          type: nfv.datatypes.VnfInfoModifiableAttributes.extension.Firewall.StandartRule
+      dpi_rules:
+        type: list
+        required: false
+        entry_schema:
+          type: nfv.datatypes.VnfInfoModifiableAttributes.extension.Firewall.DpiRule
+
+  nfv.datatypes.VnfInfoModifiableAttributes.extension.Firewall.StandartRule:
+    derived_from: tosca.datatypes.Root
+    properties:
+      action:
+        type: string
+        required: true
+        constraints:
+          - valid_values: [ ACCEPT, DROP ]
+      protocol:
+        type: string
+        required: true
+        constraints:
+          - valid_values: [ tcp, udp, icmp ]
+      routingPath:
+        type: string
+        default: FORWARD
+        constraints:
+          - valid_values: [ FORWARD, OUTPUT, INPUT ]
+      sourceAddr:
+        type: string
+        required: false
+      destAddr:
+        type: string
+        required: false
+      sourcePort:
+        type: integer
+        required: false
+        constraints:
+          - in_range: [ 0, 65535 ]
+      destPort:
+        type: integer
+        required: false
+        constraints:
+          - in_range: [ 0, 65535 ]
+
+  nfv.datatypes.VnfInfoModifiableAttributes.extension.Firewall.DpiRule:
+    derived_from: tosca.datatypes.Root
+    properties:
+      action:
+        type: string
+        required: true
+        constraints:
+          - valid_values: [ ACCEPT, DROP ]
+      deepProtocol:
+        type: string
+        required: true
+      routingPath:
+        type: string
+        default: FORWARD
+        constraints:
+          - valid_values: [ FORWARD, OUTPUT, INPUT ]
+      sourceAddr:
+        type: string
+        required: false
+      destAddr:
+        type: string
+        required: false
+
+  nfv.datatypes.VnfInfoModifiableAttributes:
+    derived_from: tosca.datatypes.Root
+    properties:
+      metadata:
+        type: string
+        required: false
+
+  nfv.datatypes.VnfInfoModifiableAttributes.Nat:
+      derived_from: nfv.datatypes.VnfInfoModifiableAttributes
+      properties:
+        extension:
+          required: true
+          type: nfv.datatypes.VnfInfoModifiableAttributes.extension.Nat
+
+  nfv.datatypes.VnfInfoModifiableAttributes.Firewall:
+      derived_from: nfv.datatypes.VnfInfoModifiableAttributes
+      properties:
+        extension:
+          required: true
+          type: nfv.datatypes.VnfInfoModifiableAttributes.extension.Firewall
+
+  nfv.datatypes.VnfInfoModifiableAttributes.QoS:
+      derived_from: nfv.datatypes.VnfInfoModifiableAttributes
+      properties:
+        extension:
+          required: true
+          type: nfv.datatypes.VnfInfoModifiableAttributes.extension.QoS
+
+  nfv.datatypes.VnfInfoModifiableAttributes.DNS:
+      derived_from: nfv.datatypes.VnfInfoModifiableAttributes
+      properties:
+        extension:
+          required: true
+          type: nfv.datatypes.VnfInfoModifiableAttributes.extension.DNS
+
+  nfv.datatypes.VnfInfoModifiableAttributes.DHCP:
+      derived_from: nfv.datatypes.VnfInfoModifiableAttributes
+      properties:
+        extension:
+          required: true
+          type: nfv.datatypes.VnfInfoModifiableAttributes.extension.DHCP
+
+  nfv.datatypes.VnfInfoModifiableAttributes.Routing:
+      derived_from: nfv.datatypes.VnfInfoModifiableAttributes
+      properties:
+        extension:
+          required: true
+          type: nfv.datatypes.VnfInfoModifiableAttributes.extension.Routing
+
+  nfv.datatypes.VnfInfoModifiableAttributes.Tshark_analyze:
+      derived_from: nfv.datatypes.VnfInfoModifiableAttributes
+      properties:
+        extension:
+          required: true
+          type: nfv.datatypes.VnfInfoModifiableAttributes.extension.Tshark_analyze
+
+  nfv.datatypes.VnfInfoModifiableAttributes.Ntop_analyze:
+      derived_from: nfv.datatypes.VnfInfoModifiableAttributes
+      properties:
+        extension:
+          required: true
+          type: nfv.datatypes.VnfInfoModifiableAttributes.extension.Ntop_analyze
+
+  nfv.datatypes.VnfInfoModifiableAttributes.SpamVirus:
+      derived_from: nfv.datatypes.VnfInfoModifiableAttributes
+      properties:
+        extension:
+          required: true
+          type: nfv.datatypes.VnfInfoModifiableAttributes.extension.SpamVirus
+
+  nfv.datatypes.VnfVirtualLinkDesc.ConnectivityType:
+    derived_from: tosca.datatypes.Root
+    properties:
+      layerProtocol:
+        type: string
+        default: IPV4
+        constraints:
+          - valid_values: [ Ethernet, MPLS, ODU2, IPV4, IPV6, Pseudo-Wire ]
+
+  nfv.datatypes.VnfVirtualLinkDesc.VirtualLinkDescFlavour:
+    derived_from: tosca.datatypes.Root
+    properties:
+      flavourId:
+        type: string
+        required: false
+
+  nfv.datatypes.VNFDf.vduProfile:
+    derived_from: tosca.datatypes.Root
+    properties:
+      vduId:
+        type: string
+        required: false
+      minNumberOfInstances:
+        type: integer
+        default: 1
+      maxNumberOfInstances:
+        type: integer
+        default: 1
+
+  nfv.datatypes.VNFDf.instantiationLevel:
+    derived_from: tosca.datatypes.Root
+    properties:
+      levelId:
+        type: string
+        required: false
+      description:
+        type: string
+        required: false
+      numberOfInstances:
+        type: integer
+        default: 1
+
+  nfv.datatypes.VNFDf.vnfLcmOperationsConfiguration.instantiateVnfOpConfig:
+    derived_from: tosca.datatypes.Root
+    properties:
+      parameter:
+        type: string
+        required: false
+
+  nfv.datatypes.VNFDf.vnfLcmOperationsConfiguration.terminateVnfOpConfig:
+    derived_from: tosca.datatypes.Root
+    properties:
+      parameter:
+        type: string
+        required: false
+      minGracefulTerminationTimeout:
+        type: integer
+        default: 100
+      maxRecommendedGracefulTerminationTimeout:
+        type: integer
+        default: 100
+
+  nfv.datatypes.VNFDf.vnfLcmOperationsConfiguration.operateVnfOpConfig:
+    derived_from: tosca.datatypes.Root
+    properties:
+      parameter:
+        type: string
+        required: false
+      minGracefulStopTimeout:
+        type: integer
+        default: 100
+      maxRecommendedGracefulStopTimeout:
+        type: integer
+        default: 100
+
+  nfv.datatypes.VNFDf.vnfLcmOperationsConfiguration:
+    derived_from: tosca.datatypes.Root
+    properties:
+      instantiateVnfOpConfig:
+        type: nfv.datatypes.VNFDf.vnfLcmOperationsConfiguration.instantiateVnfOpConfig
+        required: false
+      terminateVnfOpConfig:
+        type: nfv.datatypes.VNFDf.vnfLcmOperationsConfiguration.terminateVnfOpConfig
+        required: false
+      operateVnfOpConfig:
+        type: nfv.datatypes.VNFDf.vnfLcmOperationsConfiguration.operateVnfOpConfig
+        required: false
+
+  nfv.datatypes.VNFDf: # нафиг он сдался не оч понятно, пусть будет как дататайп с required: false
+    derived_from: tosca.datatypes.Root
+    properties:
+      flavourId:
+        type: string
+        required: false
+      description:
+        type: string
+        required: false
+      vduProfile:
+        type: nfv.datatypes.VNFDf.vduProfile
+        required: true
+      instantiationLevel:
+        type: nfv.datatypes.VNFDf.instantiationLevel
+        required: true
+      vnfLcmOperationsConfiguration:
+        type: nfv.datatypes.VNFDf.vnfLcmOperationsConfiguration
+        required: true
+
+capability_types:
+  nfv.capabilities.intCpd:
+    derived_from: tosca.capabilities.network.Bindable
+
+  nfv.capabilities.intVirtualLinkDesc:
+    derived_from: tosca.capabilities.network.Linkable
+
+  nfv.capabilities.vdu:
+    derived_from: tosca.capabilities.Node
+
+  nfv.capabilities.vnfExtCpd:
+    derived_from: tosca.capabilities.Node
+
+relationship_types:
+  nfv.relationships.intCpd:
+    derived_from: tosca.relationships.network.BindsTo
+    valid_target_types: [ nfv.capabilities.intCpd ]
+
+  nfv.relationships.intVirtualLinkDesc:
+    derived_from: tosca.relationships.network.LinksTo
+    valid_target_types: [ nfv.capabilities.intVirtualLinkDesc ]
+
+  nfv.relationships.vdu:
+    derived_from: tosca.relationships.DependsOn # или HostedOn?
+    valid_target_types: [ nfv.capabilities.vdu ]
+
+  nfv.relationships.vnfExtCpd:
+    derived_from: tosca.relationships.DependsOn
+    valid_target_types: [ nfv.capabilities.vnfExtCpd ]
+
+topology_template:
+  node_templates:
+    my_vdu:
+      type: nfv.nodes.VDU
+      properties:
+        vduId: vdu_0
+        name: vdu_0
+        description: simple vdu
+        virtualComputeDesc:
+          virtualComputeDescId: vc_0
+          virtualCpu:
+            numVirtualCpu: 1
+            cpuArchitecture: x86
+          virtualMemory:
+            virtualMemSize: 1024 MiB
+        virtualStorageDesc:
+          id: sd_0
+          typeOfStorage: object
+          sizeOfStorage: 50 GiB
+          swImageDesc:
+            id: sw_0
+            version: v4.1
+            checksum: some checksum
+            minDisk: 20 GiB
+            size: 2.55 GiB
+            operatingSystem: cumulus
+            swImage: some url
+            diskFormat: qcow2
+            containerFormat: BARE
+        swImageDesc:
+          id: sw_0
+          version: v4.1
+          checksum: some checksum
+          minDisk: 20 GiB
+          size: 2.55 GiB
+          operatingSystem: cumulus
+          swImage: some url
+          diskFormat: qcow2
+          containerFormat: BARE
+
+    new_vdu:
+      type: nfv.nodes.VDU
+      properties:
+        vduId: vdu_0
+        name: vdu_0
+        description: simple vdu
+        virtualComputeDesc:
+          virtualComputeDescId: vc_0
+          virtualCpu:
+            numVirtualCpu: 1
+            cpuArchitecture: x86
+          virtualMemory:
+            virtualMemSize: 1024 MiB
+        virtualStorageDesc:
+          id: sd_0
+          typeOfStorage: object
+          sizeOfStorage: 50 GiB
+          swImageDesc:
+            id: sw_0
+            version: v4.1
+            checksum: some checksum
+            minDisk: 20 GiB
+            size: 2.55 GiB
+            operatingSystem: cumulus
+            swImage: some url
+            diskFormat: qcow2
+            containerFormat: BARE
+        swImageDesc:
+          id: sw_0
+          version: v4.1
+          checksum: some checksum
+          minDisk: 20 GiB
+          size: 2.55 GiB
+          operatingSystem: cumulus
+          swImage: some url
+          diskFormat: qcow2
+          containerFormat: BARE
+
+    my_vl:
+      type: nfv.nodes.VnfVirtualLinkDesc
+      properties:
+        virtualLinkDescId: vl_0
+        connectivityType:
+          layerProtocol: IPV4
+        virtualLinkDescFlavour:
+          flavourId: fl_vl_0
+        cidrData: # необязательный параметр, но проверить надо
+          networkName: my_net
+          cidr: 192.168.2.0/24
+          startIp: 192.168.2.10
+          endIp: 192.168.2.100
+          gatewayIp: 192.168.2.1
+          networkType: geneve
+        description: simple vl description
+
+    my_int_cpd:
+      type: nfv.nodes.VDUCpd
+      properties:
+        cpdId: cpd_0
+        layerProtocol: { get_property: [ my_vl, connectivityType, layerProtocol ] }
+        description: simple cpd description
+        addressData:
+          addressType: IP
+          l2AddressData:
+            macAddressAssignment: true
+            macAddress: 50:46:5D:6E:8C:20
+          l3AddressData:
+            iPAddressAssignment: true
+            iPAddress: 192.168.2.11
+            floatingIpActivated: false
+            iPAddressType: IPV4
+            numberOfIpAddress: 1
+        virtualNetworkInterfaceRequirements:
+          name: test_requirements
+          supportMandatory: true
+          requirement: requirements
+      requirements:
+        - intCpd: my_vdu
+        - intVirtualLinkDesc: my_vl
+
+    new_int_cpd:
+      type: nfv.nodes.VDUCpd
+      properties:
+        cpdId: cpd_0
+        layerProtocol: { get_property: [ my_vl, connectivityType, layerProtocol ] }
+        description: simple cpd description
+        addressData:
+          addressType: IP
+          l2AddressData:
+            macAddressAssignment: true
+            macAddress: 50:46:5D:6E:8C:21
+          l3AddressData:
+            iPAddressAssignment: true
+            iPAddress: 192.168.2.12
+            floatingIpActivated: false
+            iPAddressType: IPV4
+            numberOfIpAddress: 1
+        virtualNetworkInterfaceRequirements:
+          name: test_requirements
+          supportMandatory: true
+          requirement: requirements
+      requirements:
+        - intCpd: new_vdu
+        - intVirtualLinkDesc: my_vl
+
+    my_ext_cpd:
+      type: nfv.nodes.VnfExtCpd
+      properties:
+        cpdId: cpd_0
+      requirements:
+        - intVirtualLinkDesc: my_vl
+
+    new_ext_cpd:
+      type: nfv.nodes.VnfExtCpd
+      properties:
+        cpdId: cpd_0
+      requirements:
+        - intVirtualLinkDesc: my_vl
+
+    my_firewall:
+      type: nfv.nodes.VNFD.Firewall
+      properties:
+        vnfdId: vnfd_0
+        vnfProvider: clouni
+        vnfProductName: firewall
+        vnfSoftwareVersion: v1.0
+        vnfmInfo: some info
+        deploymentFlavour:
+          flavourId: df_0
+          description: simple deployment flavour
+          vduProfile:
+            vduId: { get_property: [ my_vdu, vduId ] }
+            minNumberOfInstances: 1
+            maxNumberOfInstances: 1
+          instantiationLevel:
+            levelId: lvl_0
+            description: simple level description
+            numberOfInstances: 1
+          vnfLcmOperationsConfiguration:
+            instantiateVnfOpConfig:
+              parameter: some_script.yaml
+            terminateVnfOpConfig:
+              parameter: some_script.yaml
+              minGracefulTerminationTimeout: 50
+              maxRecommendedGracefulTerminationTimeout: 100
+            operateVnfOpConfig:
+              parameter: some_script.yaml
+              minGracefulStopTimeout: 50
+              maxRecommendedGracefulStopTimeout: 100
+        modifiableAttributes:
+          extension:
+            standart_rules:
+              - action: ACCEPT
+                protocol: tcp
+                routingPath: FORWARD
+                sourceAddr: 10.10.10.10
+                destAddr: 8.8.8.8
+                sourcePort: 22
+                destPort: 2202
+            dpi_rules:
+              - action: DROP
+                deepProtocol: youtube
+                routingPath: FORWARD
+                sourceAddr: 10.10.10.10
+                destAddr: 8.8.8.8
+          metadata: some_script.yaml
+      requirements:
+       - vnfExtCpd: my_ext_cpd
+       - vdu: my_vdu
+
+    my_nat:
+      type: nfv.nodes.VNFD.Nat
+      properties:
+        vnfdId: vnfd_0
+        vnfProvider: clouni
+        vnfProductName: nat
+        vnfSoftwareVersion: v1.0
+        vnfmInfo: some info
+        deploymentFlavour:
+          flavourId: df_0
+          description: simple deployment flavour
+          vduProfile:
+            vduId: { get_property: [ my_vdu, vduId ] }
+            minNumberOfInstances: 1
+            maxNumberOfInstances: 1
+          instantiationLevel:
+            levelId: lvl_0
+            description: simple level description
+            numberOfInstances: 1
+          vnfLcmOperationsConfiguration:
+            instantiateVnfOpConfig:
+              parameter: some_script.yaml
+            terminateVnfOpConfig:
+              parameter: some_script.yaml
+              minGracefulTerminationTimeout: 50
+              maxRecommendedGracefulTerminationTimeout: 100
+            operateVnfOpConfig:
+              parameter: some_script.yaml
+              minGracefulStopTimeout: 50
+              maxRecommendedGracefulStopTimeout: 100
+        modifiableAttributes:
+          extension:
+            rules:
+              - typeNat: static
+                routingType: snat
+                sourceAddrPr: 10.10.10.10/24
+                destAddrPr: 8.8.8.8/24
+                protocol: tcp
+          metadata: some_script.yaml
+      requirements:
+       - vnfExtCpd: my_ext_cpd
+       - vdu: my_vdu
+
+    my_dhcp:
+      type: nfv.nodes.VNFD.DHCP
+      properties:
+        vnfdId: vnfd_0
+        vnfProvider: clouni
+        vnfProductName: DHCP
+        vnfSoftwareVersion: v1.0
+        vnfmInfo: some info
+        deploymentFlavour:
+          flavourId: df_0
+          description: simple deployment flavour
+          vduProfile:
+            vduId: { get_property: [ my_vdu, vduId ] }
+            minNumberOfInstances: 1
+            maxNumberOfInstances: 1
+          instantiationLevel:
+            levelId: lvl_0
+            description: simple level description
+            numberOfInstances: 1
+          vnfLcmOperationsConfiguration:
+            instantiateVnfOpConfig:
+              parameter: some_script.yaml
+            terminateVnfOpConfig:
+              parameter: some_script.yaml
+              minGracefulTerminationTimeout: 50
+              maxRecommendedGracefulTerminationTimeout: 100
+            operateVnfOpConfig:
+              parameter: some_script.yaml
+              minGracefulStopTimeout: 50
+              maxRecommendedGracefulStopTimeout: 100
+        modifiableAttributes:
+          extension:
+            defaultLeaseTime: 600
+            maxLeaseTime: 7200
+            interfaceName: swp1
+            gateway: { get_property: [ my_vl, cidrData, gatewayIp ] }
+            internalNetCidr: { get_property: [ my_vl, cidrData, cidr ] }
+            rangeStart: { get_property: [ my_vl, cidrData, startIp ] }
+            rangeEnd: { get_property: [ my_vl, cidrData, endIp ] }
+            staticHosts:
+              host1: 192.168.2.50
+              host2: 192.168.2.51
+          metadata: some_script.yaml
+      requirements:
+       - vnfExtCpd: my_ext_cpd
+       - vdu: my_vdu
+
+    my_dns:
+      type: nfv.nodes.VNFD.DNS
+      properties:
+        vnfdId: vnfd_0
+        vnfProvider: clouni
+        vnfProductName: DNS
+        vnfSoftwareVersion: v1.0
+        vnfmInfo: some info
+        deploymentFlavour:
+          flavourId: df_0
+          description: simple deployment flavour
+          vduProfile:
+            vduId: { get_property: [ my_vdu, vduId ] }
+            minNumberOfInstances: 1
+            maxNumberOfInstances: 1
+          instantiationLevel:
+            levelId: lvl_0
+            description: simple level description
+            numberOfInstances: 1
+          vnfLcmOperationsConfiguration:
+            instantiateVnfOpConfig:
+              parameter: some_script.yaml
+            terminateVnfOpConfig:
+              parameter: some_script.yaml
+              minGracefulTerminationTimeout: 50
+              maxRecommendedGracefulTerminationTimeout: 100
+            operateVnfOpConfig:
+              parameter: some_script.yaml
+              minGracefulStopTimeout: 50
+              maxRecommendedGracefulStopTimeout: 100
+        modifiableAttributes:
+          extension:
+            internalNetAddr: { get_property: [ my_vl, cidrData, gatewayIp ] }
+            staticHosts:
+              host1: 192.168.2.50
+              host2: 192.168.2.51
+            domainName: example.com
+            forwarders:
+              google1: 8.8.8.8
+            iPAddressType: IPV4
+          metadata: some_script.yaml
+      requirements:
+        - vnfExtCpd: my_ext_cpd
+        - vdu: my_vdu
+
+    my_tshark:
+      type: nfv.nodes.VNFD.Tshark_analyze
+      properties:
+        vnfdId: vnfd_0
+        vnfProvider: clouni
+        vnfProductName: Tshark_analyze
+        vnfSoftwareVersion: v1.0
+        vnfmInfo: some info
+        deploymentFlavour:
+          flavourId: df_0
+          description: simple deployment flavour
+          vduProfile:
+            vduId: { get_property: [ my_vdu, vduId ] }
+            minNumberOfInstances: 1
+            maxNumberOfInstances: 1
+          instantiationLevel:
+            levelId: lvl_0
+            description: simple level description
+            numberOfInstances: 1
+          vnfLcmOperationsConfiguration:
+            instantiateVnfOpConfig:
+              parameter: some_script.yaml
+            terminateVnfOpConfig:
+              parameter: some_script.yaml
+              minGracefulTerminationTimeout: 50
+              maxRecommendedGracefulTerminationTimeout: 100
+            operateVnfOpConfig:
+              parameter: some_script.yaml
+              minGracefulStopTimeout: 50
+              maxRecommendedGracefulStopTimeout: 100
+        modifiableAttributes:
+          extension:
+            duration: 10000
+            files: 1
+            pathToPcap: /tmp/dump.pcap
+            interfaceName: swp1
+            captureFilter: dst port 135 and tcp port 135 and ip[2:2]==48
+          metadata: some_script.yaml
+      requirements:
+        - vnfExtCpd: my_ext_cpd
+        - vdu: my_vdu
+
+    my_ntop:
+      type: nfv.nodes.VNFD.Ntop_analyze
+      properties:
+        vnfdId: vnfd_0
+        vnfProvider: clouni
+        vnfProductName: Ntop_analyze
+        vnfSoftwareVersion: v1.0
+        vnfmInfo: some info
+        deploymentFlavour:
+          flavourId: df_0
+          description: simple deployment flavour
+          vduProfile:
+            vduId: { get_property: [ my_vdu, vduId ] }
+            minNumberOfInstances: 1
+            maxNumberOfInstances: 1
+          instantiationLevel:
+            levelId: lvl_0
+            description: simple level description
+            numberOfInstances: 1
+          vnfLcmOperationsConfiguration:
+            instantiateVnfOpConfig:
+              parameter: some_script.yaml
+            terminateVnfOpConfig:
+              parameter: some_script.yaml
+              minGracefulTerminationTimeout: 50
+              maxRecommendedGracefulTerminationTimeout: 100
+            operateVnfOpConfig:
+              parameter: some_script.yaml
+              minGracefulStopTimeout: 50
+              maxRecommendedGracefulStopTimeout: 100
+        modifiableAttributes:
+          extension:
+            endpointPort: 3000
+            internalNetCidr:
+              - { get_property: [ my_vl, cidrData, cidr ] }
+            interfacesNames:
+              - eth0
+          metadata: some_script.yaml
+      requirements:
+        - vnfExtCpd: my_ext_cpd
+        - vdu: my_vdu
+
+    my_routing:
+      type: nfv.nodes.VNFD.Routing
+      properties:
+        vnfdId: vnfd_0
+        vnfProvider: clouni
+        vnfProductName: Routing
+        vnfSoftwareVersion: v1.0
+        vnfmInfo: some info
+        deploymentFlavour:
+          flavourId: df_0
+          description: simple deployment flavour
+          vduProfile:
+            vduId: { get_property: [ my_vdu, vduId ] }
+            minNumberOfInstances: 1
+            maxNumberOfInstances: 1
+          instantiationLevel:
+            levelId: lvl_0
+            description: simple level description
+            numberOfInstances: 1
+          vnfLcmOperationsConfiguration:
+            instantiateVnfOpConfig:
+              parameter: some_script.yaml
+            terminateVnfOpConfig:
+              parameter: some_script.yaml
+              minGracefulTerminationTimeout: 50
+              maxRecommendedGracefulTerminationTimeout: 100
+            operateVnfOpConfig:
+              parameter: some_script.yaml
+              minGracefulStopTimeout: 50
+              maxRecommendedGracefulStopTimeout: 100
+        modifiableAttributes:
+          extension:
+            rules:
+              - sourceAddr: 0.0.0.0
+                destAddr: 0.0.0.0
+            routes:
+              - destCidr: { get_property: [ my_vl, cidrData, cidr ] }
+                gateway: { get_property: [ my_vl, cidrData, gatewayIp ] }
+                src: 0.0.0.0/0
+                dev: eth0
+          metadata: some_script.yaml
+      requirements:
+        - vnfExtCpd: my_ext_cpd
+        - vdu: my_vdu
+
+    new_routing:
+      type: nfv.nodes.VNFD.Routing
+      properties:
+        vnfdId: vnfd_0
+        vnfProvider: clouni
+        vnfProductName: Routing
+        vnfSoftwareVersion: v1.0
+        vnfmInfo: some info
+        deploymentFlavour:
+          flavourId: df_0
+          description: simple deployment flavour
+          vduProfile:
+            vduId: { get_property: [ my_vdu, vduId ] }
+            minNumberOfInstances: 1
+            maxNumberOfInstances: 1
+          instantiationLevel:
+            levelId: lvl_0
+            description: simple level description
+            numberOfInstances: 1
+          vnfLcmOperationsConfiguration:
+            instantiateVnfOpConfig:
+              parameter: some_script.yaml
+            terminateVnfOpConfig:
+              parameter: some_script.yaml
+              minGracefulTerminationTimeout: 50
+              maxRecommendedGracefulTerminationTimeout: 100
+            operateVnfOpConfig:
+              parameter: some_script.yaml
+              minGracefulStopTimeout: 50
+              maxRecommendedGracefulStopTimeout: 100
+        modifiableAttributes:
+          extension:
+            rules:
+              - sourceAddr: 0.0.0.0
+                destAddr: 0.0.0.0
+            routes:
+              - destCidr: { get_property: [ my_vl, cidrData, cidr ] }
+                gateway: { get_property: [ my_vl, cidrData, gatewayIp ] }
+                src: 0.0.0.0/0
+                dev: eth0
+          metadata: some_script.yaml
+      requirements:
+        - vnfExtCpd: new_ext_cpd
+        - vdu: new_vdu

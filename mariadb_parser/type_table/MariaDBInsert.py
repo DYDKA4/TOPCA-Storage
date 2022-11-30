@@ -88,7 +88,7 @@ def insert_type_storage(type_storage: TypeStorage):
         insert_type(type_storage.policy_types, cur, max_identifier_type)
         insert_dependency_derived_from(type_storage.policy_types, cur)
 
-        for artifact_definition in type_storage.artifact_definition.values():
+        for artifact_definition in type_storage.artifacts.values():
             cur.execute("INSERT INTO type_templatesAPI.artifact_storage (id, data, name) "
                         "VALUES (?, ?, ?, ?, ?)",
                         (artifact_definition.identifier + max_identifier_type, artifact_definition.get_data_in_json(),

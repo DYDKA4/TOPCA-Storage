@@ -76,7 +76,6 @@ class ArtifactType(TOSCAType):
     """
     Artifact Type Class storage parsed data of Artifact Type from yaml file.
     """
-
     def __init__(self, identifier: int, name: str, data: dict, version: str):
         """
         :param identifier:     identifier storage id of Artifact Type in SQL database
@@ -253,19 +252,28 @@ class TypeStorage:
         # self.union_dependencies(self.relationship_types)
         # self.union_dependencies(self.node_types)
         self.union_dependencies()
-        print()
 
-    def recursive_union_dependencies(self, recipient_type, dependency_type, dependency_names, ):
+    def recursive_union_dependencies(self, recipient_type, dependency_type, dependency_names):
+        # print(recipient_type.name, dependency_type, dependency_names)
         node_dependency_type: dict = self.__getattribute__(dependency_type)
-        for dependency_name in dependency_names:
+        dependency_names_copy = dependency_names.copy()
+        for dependency_name in dependency_names_copy:
             entity = node_dependency_type.get(dependency_name)
-            if not entity.dependencies_finished:
-                print('f')
+            if entity.dependencies_finished:
+                for dependency_name_to_recipient, dependency_set in entity.dependencies.items():
+                    if dependency_set != set():
+                        recipient_type.dependencies[dependency_name_to_recipient].update(dependency_set)
+                for requirement_name_to_recipient, requirement_set in entity.requirements.items():
+                    if requirement_set != set():
+                        recipient_type.requirements[requirement_name_to_recipient].update(requirement_set)
             else:
-                for dependency_name_to_recipient, dependency_set in recipient_type.dependencies.items():
-                    entity.dependencies[dependency_name_to_recipient].update(dependency_set)
-                entity.dependencies_finished = True
-
+                for dependency_type, dependency_names in entity.dependencies.items():
+                    if dependency_names != set():
+                        self.recursive_union_dependencies(entity, dependency_type, dependency_names)
+                for requirement_type, requirement_names in entity.requirements.items():
+                    if requirement_names != set():
+                        self.recursive_union_dependencies(entity, requirement_type, requirement_names)
+        recipient_type.dependencies_finished = True
         return
 
     def union_dependencies(self) -> None:
@@ -295,18 +303,13 @@ class TypeStorage:
                 if len(dict(filter(lambda elem: len(elem[1]) != 0, dependencies.items()))) == 0 and \
                         len(dict(filter(lambda elem: len(elem[1]) != 0, requirements.items()))) == 0:
                     entity.dependencies_finished = True
-                    # print(name, 'set_finish')
                 else:
                     for dependency_type, dependency_names in dependencies.items():
-                        if dependency_type == 'artifacts':
-                            a = 1
-                        # print('call union on artifacts')
-                        else:
-                            # if entity.name == 'tosca.capabilities.Endpoint.Admin' or entity.name == 'tosca.datatypes.network.PortSpec':
-                            #     print('b')
+                        if dependency_names != set():
                             self.recursive_union_dependencies(entity, dependency_type, dependency_names)
-                    # print(name, 'continue')
-                # print(name, )
+                    for requirement_type, requirement_names in requirements.items():
+                        if requirement_names != set():
+                            self.recursive_union_dependencies(entity, requirement_type, requirement_names)
 
         return
 
@@ -561,7 +564,8 @@ class TypeStorage:
                                 if capability is None:
                                     raise f"Capability in requirement definition {requirement_name} in data_type {name}"
                                 node_type.requirements['capability_types'].add(capability)
-                                node_type.requirements['node_types'].add(requirement_data.get('node'))
+                                if requirement_data.get('node'):
+                                    node_type.requirements['node_types'].add(requirement_data.get('node'))
                                 relationship = requirement_data.get('relationship')
                                 if type(relationship) == str:
                                     node_type.dependencies['relationship_types'].add(relationship)
@@ -850,3 +854,5 @@ class TypeStorage:
 with open("test.yaml", 'r') as stream:
     data_loaded = yaml.safe_load(stream)
     test = TypeStorage(data_loaded)
+
+

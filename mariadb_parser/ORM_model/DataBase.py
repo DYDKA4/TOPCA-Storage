@@ -1,14 +1,7 @@
 import enum
 
-from sqlalchemy import create_engine, exc, Column, Integer, String, JSON, Enum, ForeignKey, Index
+from sqlalchemy import Column, Integer, String, JSON, Enum, ForeignKey, Index
 from sqlalchemy.ext.declarative import declarative_base
-
-try:
-    engine = create_engine(
-        "mariadb+mariadbconnector://root:password@localhost:3306/type_templatesAPI?charset=utf8mb4")
-    engine.connect()
-except exc.SQLAlchemyError as e:
-    print(f"Error connecting to Database: {e}")
 
 Base = declarative_base()
 

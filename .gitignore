@@ -1,3 +1,3 @@
 /mariadb_parser/type_table/.env
 /mariadb_parser/ORM_model/.env
-/mariadb_parser/ORM_model/alembic.ini
+/alembic.ini

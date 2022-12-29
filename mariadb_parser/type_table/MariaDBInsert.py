@@ -41,11 +41,12 @@ def get_max_identifier(table_name: str, cur) -> int:
 def insert_type(tosca_types: dict, cur, max_size: int) -> None:
     for tosca_type in tosca_types.values():
         tosca_type: TOSCAType
+        tosca_type.identifier += max_size
         cur.execute("INSERT INTO {os.environ.get('DATABASE')}.type (id, version, type_of_type, type_name, data) "
                     "VALUES (?, ?, ?, ?, ?)",
-                    (tosca_type.identifier + max_size, tosca_type.version,
+                    (tosca_type.identifier, tosca_type.version,
                      tosca_type.type_of_type, tosca_type.name, tosca_type.get_data_in_json()))
-        tosca_type.identifier += max_size
+
     return
 
 
@@ -55,6 +56,7 @@ def insert_dependency_derived_from(tosca_types: dict, cur):
             cur.execute("INSERT INTO {os.environ.get('DATABASE')}.dependency_types"
                         "(source_id, dependency_id, dependency_type) VALUES (?, ?, ?)",
                         (data_type.identifier, tosca_types[derived_from].identifier, 'derived_from'))
+            print(data_type.identifier, tosca_types[derived_from].identifier)
 
 
 def insert_type_storage(type_storage: TypeStorage):
@@ -100,7 +102,7 @@ def insert_type_storage(type_storage: TypeStorage):
     print()
 
 
-with open("test.yaml", 'r') as stream:
-    data_loaded = yaml.safe_load(stream)
-    test = TypeStorage(data_loaded)
-    # insert_type_storage(test)
+# with open("test.yaml", 'r') as stream:
+#     data_loaded = yaml.safe_load(stream)
+#     test = TypeStorage(data_loaded)
+#     # insert_type_storage(test)

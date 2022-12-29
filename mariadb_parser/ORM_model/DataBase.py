@@ -3,7 +3,11 @@ import enum
 from sqlalchemy import Column, Integer, String, JSON, Enum, ForeignKey, Index
 from sqlalchemy.ext.declarative import declarative_base
 
+from mariadb_parser.ORM_model.EngineInit import engine
+
 Base = declarative_base()
+
+engine.connect()
 
 
 class DependencyTypeEnum(enum.Enum):

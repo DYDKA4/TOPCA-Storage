@@ -850,9 +850,9 @@ class TypeStorage:
         result = result.union(self.check_schema_in_entity(data, result))
         return result
 
-
-with open("test.yaml", 'r') as stream:
-    data_loaded = yaml.safe_load(stream)
-    test = TypeStorage(data_loaded)
+#
+# with open("test.yaml", 'r') as stream:
+#     data_loaded = yaml.safe_load(stream)
+#     test = TypeStorage(data_loaded)
 
 

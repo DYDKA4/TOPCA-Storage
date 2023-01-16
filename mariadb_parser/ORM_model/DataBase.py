@@ -46,7 +46,7 @@ class DependencyTypes(Base):
 
     source_id = Column(Integer, ForeignKey("type.id"), primary_key=True, nullable=False)
     dependency_id = Column(Integer, ForeignKey("type.id"), primary_key=True, nullable=False)
-    dependency_type = Column(Enum(DependencyTypeEnum), nullable=False)
+    dependency_type = Column(Enum(DependencyTypeEnum), primary_key=True, nullable=False)
     Index("type_dependency_types_dependency_id_index", "dependency_id")
     Index("type_dependency_types_source_id_index", "source_id")
 

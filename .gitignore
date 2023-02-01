@@ -2,3 +2,4 @@
 /mariadb_parser/ORM_model/.env
 /mariadb_parser/type_table/MariaDBInsert.py
 /alembic.ini
+/tests/database_tests/.env

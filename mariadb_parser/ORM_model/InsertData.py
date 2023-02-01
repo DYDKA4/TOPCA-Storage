@@ -1,19 +1,17 @@
-import mariadb
-import os
-
-import yaml
 from sqlalchemy import func
-from sqlalchemy.orm import Session, DeclarativeMeta
+from sqlalchemy.orm import Session
 
 from mariadb_parser.ORM_model.DataBase import Type, ArtifactDefinition, DependencyTypes
+from mariadb_parser.ORM_model.EngineInit import init_engine
 from mariadb_parser.type_table.TypeStorage import TOSCAType, TypeStorage
-from EngineInit import engine
+from tests.database_tests.yaml_data import test_data
 
 
 class DataUploader:
-    engine.connect()
 
     def __init__(self):
+        self.engine = init_engine()
+        self.engine.connect()
         self.type_list = ['data_types',
                           'group_types',
                           'interface_types',
@@ -76,7 +74,7 @@ class DataUploader:
                         session.add(requirement)
 
     def insert_type_storage(self, type_storage: TypeStorage):
-        with Session(engine) as session:
+        with Session(self.engine) as session:
             session.begin()
             try:
                 max_identifier_type = session.query(func.max(Type.id))
@@ -105,8 +103,9 @@ class DataUploader:
             else:
                 session.commit()
 
-with open("../type_table/test.yaml", 'r') as stream:
-    data_loaded = yaml.safe_load(stream)
-    test = TypeStorage(data_loaded)
-    loader = DataUploader()
-    loader.insert_type_storage(test)
+
+# with open("../type_table/test.yaml", 'r') as stream:
+#     data_loaded = test_data
+#     test = TypeStorage(data_loaded)
+#     loader = DataUploader()
+#     loader.insert_type_storage(test)

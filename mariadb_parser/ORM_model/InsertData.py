@@ -65,15 +65,15 @@ class DataUploader:
                             dependency_id=destination_node.identifier,
                             dependency_type='dependency')
                         session.add(dependency)
-                # for requirement_type, requirement_set in requirements.items():
-                #     for requirement_name in requirement_set:
-                #         destination_node = type_storage.__getattribute__(requirement_type)
-                #         destination_node = destination_node[requirement_name]
-                #         requirement = DependencyTypes(
-                #             source_id=node.identifier,
-                #             dependency_id=destination_node.identifier,
-                #             dependency_type='requirement_dependency')
-                #         session.add(requirement)
+                for requirement_type, requirement_set in requirements.items():
+                    for requirement_name in requirement_set:
+                        destination_node = type_storage.__getattribute__(requirement_type)
+                        destination_node = destination_node[requirement_name]
+                        requirement = DependencyTypes(
+                            source_id=node.identifier,
+                            dependency_id=destination_node.identifier,
+                            dependency_type='requirement_dependency')
+                        session.add(requirement)
 
     def insert_type_storage(self, type_storage: TypeStorage):
         with Session(engine) as session:
@@ -105,10 +105,8 @@ class DataUploader:
             else:
                 session.commit()
 
-
-#
-# with open("../type_table/test.yaml", 'r') as stream:
-#     data_loaded = yaml.safe_load(stream)
-#     test = TypeStorage(data_loaded)
-#     loader = DataUploader()
-#     loader.insert_type_storage(test)
+with open("../type_table/test.yaml", 'r') as stream:
+    data_loaded = yaml.safe_load(stream)
+    test = TypeStorage(data_loaded)
+    loader = DataUploader()
+    loader.insert_type_storage(test)

@@ -1,9 +1,9 @@
-from mariadb_parser.ORM_model.DataBase import Type, TypeOfTypeEnum
+from mariadb_parser.ORM_model.DataBase import Type, TypeOfTypeEnum, DependencyTypes, DependencyTypeEnum
 from sqlalchemy.orm import Session
 
 import mariadb_parser.ORM_model.InsertData as InsertData
 from mariadb_parser.ORM_model.EngineInit import init_engine
-from mariadb_parser.type_table.TypeStorage import TypeStorage
+from mariadb_parser.type_table.TypeStorage import TypeStorage, TOSCAType
 from tests.database_tests.yaml_data import test_data
 
 
@@ -14,70 +14,108 @@ class TestInsertData:
         self.session = Session(init_engine())
         self.parsed_template = TypeStorage(test_data)
         self.loader = InsertData.DataUploader()
+        self.loader.insert_type_storage(self.parsed_template)
+        # todo get indexes of types
 
     def teardown_class(self):
         self.session.rollback()
         self.session.close()
 
     def test_tosca_datatypes_root(self):
-        self.loader.insert_type_storage(self.parsed_template)
-        # todo get indexes of types
-        self.session.commit()
         tosca_datatype_root = self.session.query(Type).filter_by(type_name='tosca.datatypes.Root').first()
         assert tosca_datatype_root.version == '1.0'
         assert tosca_datatype_root.type_of_type == TypeOfTypeEnum.data_type
-        assert tosca_datatype_root.data == "{\"description\": \"The TOSCA root Data Type all other TOSCA base Data " \
-                                           "Types derive from\\n\"}"
+        assert tosca_datatype_root.data == \
+               self.parsed_template.data_types['tosca.datatypes.Root'].convert_data_to_json()
 
-# Type(id=2,
-#      version='1.0',
-#      type_of_type='data_type',
-#      type_name='tosca.datatypes.Credential',
-#      data="{\"derived_from\": \"tosca.datatypes.Root\", \"properties\": {\"protocol\": {\"type\": \"string\", "
-#           "\"required\": false}, \"token_type\": {\"type\": \"string\", \"default\": \"password\", \"required\": "
-#           "true}, \"token\": {\"type\": \"string\", \"required\": true}, \"keys\": {\"type\": \"map\", "
-#           "\"entry_schema\": {\"type\": \"string\"}, \"required\": false}, \"user\": {\"type\": \"string\", "
-#           "\"required\": false}}}")
+    def test_tosca_datatypes_credential(self):
+        tosca_datatype_credential = self.session.query(Type).filter_by(type_name='tosca.datatypes.Credential').first()
+        assert tosca_datatype_credential.version == '1.0'
+        assert tosca_datatype_credential.type_of_type == TypeOfTypeEnum.data_type
+        assert tosca_datatype_credential.data == \
+               self.parsed_template.data_types['tosca.datatypes.Credential'].convert_data_to_json()
+        tosca_datatype_credential_dependency = self.session.query(DependencyTypes).filter_by(
+            source_id=tosca_datatype_credential.id)
+        # todo tosca_datatype_credential_dependency to list
+        assert len(tosca_datatype_credential_dependency) == 1
+        type_to_check = self.session.query(Type).filter_by(
+            id=tosca_datatype_credential_dependency[0].dependency_id).first()
+        assert type_to_check.type_name in self.parsed_template.data_types['tosca.datatypes.Credential'].derived_from
+
+    def test_tosca_datatypes_network_info(self):
+        tosca_datatype_network_info = self.session.query(Type).filter_by(
+            type_name='tosca.datatypes.network.NetworkInfo').first()
+        assert tosca_datatype_network_info.version == '1.0'
+        assert tosca_datatype_network_info.type_of_type == TypeOfTypeEnum.data_type
+        assert tosca_datatype_network_info.data == \
+               self.parsed_template.data_types['tosca.datatypes.network.NetworkInfo'].convert_data_to_json()
+        tosca_datatype_credential_dependency = self.session.query(DependencyTypes).filter_by(
+            source_id=tosca_datatype_network_info.id)
+        # todo tosca_datatype_credential_dependency to list sorted by dependency_id
+        assert len(tosca_datatype_credential_dependency) == 1
+        type_to_check = self.session.query(Type).filter_by(
+            id=tosca_datatype_credential_dependency[0].dependency_id).first()
+        assert type_to_check.type_name in self.parsed_template.data_types[
+            'tosca.datatypes.network.NetworkInfo'].derived_from
+
+    def test_tosca_datatypes_port_info(self):
+        tosca_datatype_port_info = self.session.query(Type).filter_by(
+            type_name='tosca.datatypes.network.PortInfo').first()
+        assert tosca_datatype_port_info.version == '1.0'
+        assert tosca_datatype_port_info.type_of_type == TypeOfTypeEnum.data_type
+        assert tosca_datatype_port_info.data == \
+               self.parsed_template.data_types['tosca.datatypes.network.PortInfo'].convert_data_to_json()
+        tosca_datatype_credential_dependency = self.session.query(DependencyTypes).filter_by(
+            source_id=tosca_datatype_port_info.id)
+        # todo tosca_datatype_credential_dependency to list sorted by dependency_id
+        assert len(tosca_datatype_credential_dependency) == 1
+        type_to_check = self.session.query(Type).filter_by(
+            id=tosca_datatype_credential_dependency[0].dependency_id).first()
+        assert type_to_check.type_name in self.parsed_template.data_types[
+            'tosca.datatypes.network.PortInfo'].derived_from
+
+    def test_tosca_datatypes_port_def(self):
+        tosca_datatype_port_def = self.session.query(Type).filter_by(
+            type_name='tosca.datatypes.network.PortDef').first()
+        assert tosca_datatype_port_def.version == '1.0'
+        assert tosca_datatype_port_def.type_of_type == TypeOfTypeEnum.data_type
+        assert tosca_datatype_port_def.data == \
+               self.parsed_template.data_types['tosca.datatypes.network.PortDef'].convert_data_to_json()
+        tosca_datatype_credential_dependency = self.session.query(DependencyTypes).filter_by(
+            source_id=tosca_datatype_port_def.id)
+        # todo tosca_datatype_credential_dependency to list sorted by dependency_id
+        assert len(tosca_datatype_credential_dependency) == 1
+        type_to_check = self.session.query(Type).filter_by(
+            id=tosca_datatype_credential_dependency[0].dependency_id).first()
+        assert type_to_check.type_name in self.parsed_template.data_types[
+            'tosca.datatypes.network.PortDef'].derived_from
+
+    def test_tosca_datatypes_port_spec(self):
+        tosca_datatype_port_spec = self.session.query(Type).filter_by(
+            type_name='tosca.datatypes.network.PortSpec').first()
+        assert tosca_datatype_port_spec.version == '1.0'
+        assert tosca_datatype_port_spec.type_of_type == TypeOfTypeEnum.data_type
+        assert tosca_datatype_port_spec.data == \
+               self.parsed_template.data_types['tosca.datatypes.network.PortSpec'].convert_data_to_json()
+        tosca_datatype_credential_derived_from = self.session.query(DependencyTypes).filter_by(
+            source_id=tosca_datatype_port_spec.id, dependency_type=DependencyTypeEnum.derived_from)
+        # todo tosca_datatype_credential_derived_from to list sorted by dependency_id
+        assert len(tosca_datatype_credential_derived_from) == 2
+        for elem in tosca_datatype_credential_derived_from:
+            type_to_check = self.session.query(Type).filter_by(id=elem.dependency_id).first()
+            assert type_to_check.type_name in self.parsed_template.data_types[
+                'tosca.datatypes.network.PortSpec'].derived_from
+            self.parsed_template.data_types['tosca.datatypes.network.PortSpec'].derived_from.remove(
+                type_to_check.type_name)
+        tosca_datatype_credential_dependency = self.session.query(DependencyTypes).filter_by(
+            source_id=tosca_datatype_port_spec.id, dependency_type=DependencyTypeEnum.dependency)
+        assert len(tosca_datatype_credential_derived_from) == 1
+        type_to_check = self.session.query(Type).filter_by(
+            id=tosca_datatype_credential_dependency[0].dependency_id).first()
+        assert self.parsed_template.data_types[]
+
 #
-# DependencyTypes(source_id=2,
-#                 dependency_id=1,
-#                 dependency_type='derived_from')
-#
-# Type(id=3,
-#      version='1.0',
-#      type_of_type='data_type',
-#      type_name='tosca.datatypes.network.NetworkInfo',
-#      data="{\"derived_from\": \"tosca.datatypes.Root\", \"properties\": {\"network_name\": {\"type\": \"string\", "
-#           "\"required\": false}, \"network_id\": {\"type\": \"string\", \"required\": false}, \"addresses\": {"
-#           "\"type\": \"list\", \"required\": false, \"entry_schema\": {\"type\": \"string\"}}}}")
-#
-# DependencyTypes(source_id=3,
-#                 dependency_id=1,
-#                 dependency_type='derived_from')
-#
-# Type(id=4,
-#      version='1.0',
-#      type_of_type='data_type',
-#      type_name='tosca.datatypes.network.PortInfo',
-#      data="{\"derived_from\": \"tosca.datatypes.Root\", \"properties\": {\"port_name\": {\"type\": \"string\", "
-#           "\"required\": false}, \"port_id\": {\"type\": \"string\", \"required\": false}, \"network_id\": {\"type\": "
-#           "\"string\", \"required\": false}, \"mac_address\": {\"type\": \"string\", \"required\": false}, "
-#           "\"addresses\": {\"type\": \"list\", \"required\": false, \"entry_schema\": {\"type\": \"string\"}}}}")
-#
-# DependencyTypes(source_id=4,
-#                 dependency_id=1,
-#                 dependency_type='derived_from')
-#
-# Type(id=5,
-#      version='1.0',
-#      type_of_type='data_type',
-#      type_name='tosca.datatypes.network.PortDef',
-#      data="{\"derived_from\": \"tosca.datatypes.Root\", \"constraints\": [{\"in_range\": [1, 65535]}]}")
-#
-# DependencyTypes(source_id=5,
-#                 dependency_id=1,
-#                 dependency_type='derived_from')
-#
+
 # Type(id=6,
 #      version='1.0',
 #      type_of_type='data_type',

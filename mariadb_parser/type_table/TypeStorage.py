@@ -53,6 +53,16 @@ class TOSCAType:
     def get_data_in_json(self):
         return json.dumps(self.data)
 
+    def check_dependency_in_type(self, value_to_check: str):
+        for set_of_types in self.dependencies.values():
+            if value_to_check in set_of_types:
+                return True
+
+    def pop_dependency_in_type(self, value_to_pop: str):
+        for name, set_of_types in self.dependencies.items():
+            if value_to_pop in set_of_types:
+                self.dependencies[name].remove(value_to_pop)
+                return
 
 class DataType(TOSCAType):
     """

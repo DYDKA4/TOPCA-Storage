@@ -255,8 +255,6 @@ class TypeStorage:
 
     def recursive_union_dependencies(self, recipient_type, dependency_type, dependency_names):
         # print(recipient_type.name, dependency_type, dependency_names)
-        if recipient_type.name == 'tosca.capabilities.Endpoint.Admin':
-            print('1')
         node_dependency_type: dict = self.__getattribute__(dependency_type)
         dependency_names_copy = dependency_names.copy()
         for dependency_name in dependency_names_copy:
@@ -293,8 +291,6 @@ class TypeStorage:
             type_dict = self.__getattribute__(type_name)
             # union of all derived_from dependency
             for node in type_dict.values():
-                if node.name == 'tosca.capabilities.Endpoint.Admin':
-                    print('1')
                 for derived_node in node.derived_from:
                     for dependency_name, dependency_set in node.dependencies.items():
                         dependency_set.update(type_dict.get(derived_node).dependencies.get(dependency_name))

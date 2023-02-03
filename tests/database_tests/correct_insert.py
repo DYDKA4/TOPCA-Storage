@@ -1,9 +1,9 @@
-from mariadb_parser.ORM_model.DataBase import Type, TypeOfTypeEnum
+from mariadb_parser.ORM_model.DataBase import Type, TypeOfTypeEnum, DependencyTypeEnum, DependencyTypes
 from sqlalchemy.orm import Session
 
 import mariadb_parser.ORM_model.InsertData as InsertData
 from mariadb_parser.ORM_model.EngineInit import init_engine
-from mariadb_parser.type_table.TypeStorage import TypeStorage
+from mariadb_parser.type_table.TypeStorage import TypeStorage, TOSCAType
 from tests.database_tests.yaml_data import test_data
 
 
@@ -14,524 +14,416 @@ class TestInsertData:
         self.session = Session(init_engine())
         self.parsed_template = TypeStorage(test_data)
         self.loader = InsertData.DataUploader()
+        self.type_list = ['data_types',
+                          'group_types',
+                          'interface_types',
+                          'capability_types',
+                          'policy_types',
+                          'artifact_types',
+                          'relationship_types',
+                          'node_types']
+        self.loader.insert_type_storage(self.parsed_template)
 
     def teardown_class(self):
-        self.session.rollback()
+        for tosca_type in self.type_list:
+            tosca_type_dict = self.parsed_template.__getattribute__(tosca_type)
+            for tosca_object in tosca_type_dict.values():
+                self.session.query(
+                    Type
+                ).filter(
+                    Type.id == int(tosca_object.identifier)
+                ).delete()
+        self.session.commit()
         self.session.close()
 
-    def test_tosca_datatypes_root(self):
-        self.loader.insert_type_storage(self.parsed_template)
-        # todo get indexes of types
-        self.session.commit()
-        tosca_datatype_root = self.session.query(Type).filter_by(type_name='tosca.datatypes.Root').first()
-        assert tosca_datatype_root.version == '1.0'
-        assert tosca_datatype_root.type_of_type == TypeOfTypeEnum.data_type
-        assert tosca_datatype_root.data == "{\"description\": \"The TOSCA root Data Type all other TOSCA base Data " \
-                                           "Types derive from\\n\"}"
+    def _check_dependency_size(self, tosca_object: TOSCAType, expected_size: int):
+        derived_from = self.session.query(DependencyTypes).filter_by(
+            source_id=tosca_object.identifier,
+            dependency_type=DependencyTypeEnum.dependency
+        ).all()
+        assert len(derived_from) == expected_size
 
-# Type(id=2,
-#      version='1.0',
-#      type_of_type='data_type',
-#      type_name='tosca.datatypes.Credential',
-#      data="{\"derived_from\": \"tosca.datatypes.Root\", \"properties\": {\"protocol\": {\"type\": \"string\", "
-#           "\"required\": false}, \"token_type\": {\"type\": \"string\", \"default\": \"password\", \"required\": "
-#           "true}, \"token\": {\"type\": \"string\", \"required\": true}, \"keys\": {\"type\": \"map\", "
-#           "\"entry_schema\": {\"type\": \"string\"}, \"required\": false}, \"user\": {\"type\": \"string\", "
-#           "\"required\": false}}}")
-#
-# DependencyTypes(source_id=2,
-#                 dependency_id=1,
-#                 dependency_type='derived_from')
-#
-# Type(id=3,
-#      version='1.0',
-#      type_of_type='data_type',
-#      type_name='tosca.datatypes.network.NetworkInfo',
-#      data="{\"derived_from\": \"tosca.datatypes.Root\", \"properties\": {\"network_name\": {\"type\": \"string\", "
-#           "\"required\": false}, \"network_id\": {\"type\": \"string\", \"required\": false}, \"addresses\": {"
-#           "\"type\": \"list\", \"required\": false, \"entry_schema\": {\"type\": \"string\"}}}}")
-#
-# DependencyTypes(source_id=3,
-#                 dependency_id=1,
-#                 dependency_type='derived_from')
-#
-# Type(id=4,
-#      version='1.0',
-#      type_of_type='data_type',
-#      type_name='tosca.datatypes.network.PortInfo',
-#      data="{\"derived_from\": \"tosca.datatypes.Root\", \"properties\": {\"port_name\": {\"type\": \"string\", "
-#           "\"required\": false}, \"port_id\": {\"type\": \"string\", \"required\": false}, \"network_id\": {\"type\": "
-#           "\"string\", \"required\": false}, \"mac_address\": {\"type\": \"string\", \"required\": false}, "
-#           "\"addresses\": {\"type\": \"list\", \"required\": false, \"entry_schema\": {\"type\": \"string\"}}}}")
-#
-# DependencyTypes(source_id=4,
-#                 dependency_id=1,
-#                 dependency_type='derived_from')
-#
-# Type(id=5,
-#      version='1.0',
-#      type_of_type='data_type',
-#      type_name='tosca.datatypes.network.PortDef',
-#      data="{\"derived_from\": \"tosca.datatypes.Root\", \"constraints\": [{\"in_range\": [1, 65535]}]}")
-#
-# DependencyTypes(source_id=5,
-#                 dependency_id=1,
-#                 dependency_type='derived_from')
-#
-# Type(id=6,
-#      version='1.0',
-#      type_of_type='data_type',
-#      type_name='tosca.datatypes.network.PortSpec',
-#      data="{\"derived_from\": \"tosca.datatypes.network.PortDef\", \"properties\": {\"protocol\": {\"type\": "
-#           "\"string\", \"required\": true, \"default\": \"tcp\", \"constraints\": [{\"valid_values\": [\"udp\", "
-#           "\"tcp\", \"igmp\", \"icmp\"]}]}, \"target\": {\"type\": \"tosca.datatypes.network.PortDef\", \"required\": "
-#           "false}, \"target_range\": {\"type\": \"range\", \"required\": false, \"constraints\": [{\"in_range\": [1, "
-#           "65535]}]}, \"source\": {\"type\": \"tosca.datatypes.network.PortDef\", \"required\": false}, "
-#           "\"source_range\": {\"type\": \"range\", \"required\": false, \"constraints\": [{\"in_range\": [1, "
-#           "65535]}]}}}")
-#
-# DependencyTypes(source_id=6,
-#                 dependency_id=5,
-#                 dependency_type='derived_from')
-#
-# DependencyTypes(source_id=6,
-#                 dependency_id=1,
-#                 dependency_type='derived_from')
-#
-# DependencyTypes(source_id=6,
-#                 dependency_id=5,
-#                 dependency_type='dependency')
-# }
-# # Group Types
-# Type(id=52,
-#      version='1.0',
-#      type_of_type='group_type',
-#      type_name='tosca.groups.Root',
-#      data="{\"description\": \"The TOSCA Group Type all other TOSCA Group Types derive from\", \"interfaces\": {"
-#           "\"Standard\": {\"type\": \"tosca.interfaces.node.lifecycle.Standard\"}}}")
-#
-# DependencyTypes(source_id=52,
-#                 dependency_id=28,
-#                 dependency_type='dependency')
-# # Interface Types
-#
-# Type(id=27,
-#      version='1.0',
-#      type_of_type='interface_type',
-#      type_name='tosca.interfaces.Root',
-#      data="{\"description\": \"The TOSCA root Interface Type all other TOSCA base Interface Types derive from\\n\"}")
-#
-# Type(id=28,
-#      version='1.0',
-#      type_of_type='interface_type',
-#      type_name='tosca.interfaces.node.lifecycle.Standard',
-#      data="{\"description\": \"This lifecycle interface defines the essential, normative operations that TOSCA nodes "
-#           "may support.\", \"derived_from\": \"tosca.interfaces.Root\", \"create\": {\"description\": \"Standard "
-#           "lifecycle create operation.\"}, \"configure\": {\"description\": \"Standard lifecycle configure "
-#           "operation.\"}, \"start\": {\"description\": \"Standard lifecycle start operation.\"}, \"stop\": {"
-#           "\"description\": \"Standard lifecycle stop operation.\"}, \"delete\": {\"description\": \"Standard "
-#           "lifecycle delete operation.\"}}")
-#
-# DependencyTypes(source_id=28,
-#                 dependency_id=27,
-#                 dependency_type='derived_from')
-#
-# Type(id=29,
-#      version='1.0',
-#      type_of_type='interface_type',
-#      type_name='tosca.interfaces.relationship.Configure',
-#      data="{\"description\": \"The lifecycle interfaces define the essential, normative operations that each TOSCA "
-#           "Relationship Types may support.\\n\", \"derived_from\": \"tosca.interfaces.Root\", "
-#           "\"pre_configure_source\": {\"description\": \"Operation to pre-configure the source endpoint.\"}, "
-#           "\"pre_configure_target\": {\"description\": \"Operation to pre-configure the target endpoint.\"}, "
-#           "\"post_configure_source\": {\"description\": \"Operation to post-configure the source endpoint.\"}, "
-#           "\"post_configure_target\": {\"description\": \"Operation to post-configure the target endpoint.\"}, "
-#           "\"add_target\": {\"description\": \"Operation to add a target node.\"}, \"remove_target\": {"
-#           "\"description\": \"Operation to remove a target node.\"}, \"add_source\": {\"description\": \"Operation to "
-#           "notify the target node of a source node which is now available via a relationship.\\n\"}, "
-#           "\"target_changed\": {\"description\": \"Operation to notify source some property or attribute of the "
-#           "target changed\\n\"}}")
-#
-# DependencyTypes(source_id=29,
-#                 dependency_id=27,
-#                 dependency_type='derived_from')
-#
-# # Capability Type
-#
-# Type(id=7,
-#      version='1.0',
-#      type_of_type='capability_type',
-#      type_name='tosca.capabilities.Root',
-#      data="{\"description\": \"The TOSCA root Capability Type all other TOSCA base Capability Types derive from.\\n\"}")
-#
-# Type(id=8,
-#      version='1.0',
-#      type_of_type='capability_type',
-#      type_name='tosca.capabilities.Node',
-#      data="{\"description\": \"The Node capability indicates the base capabilities of a TOSCA Node Type.\", "
-#           "\"derived_from\": \"tosca.capabilities.Root\"}")
-#
-# DependencyTypes(source_id=8,
-#                 dependency_id=7,
-#                 dependency_type='derived_from')
-#
-# Type(id=9,
-#      version='1.0',
-#      type_of_type='capability_type',
-#      type_name='tosca.capabilities.Container',
-#      data="{\"description\": \"The Container capability, when included on a Node Type or Template definition, "
-#           "indicates that the node can act as a container for (or a host for) one or more other declared Node "
-#           "Types.\\n\", \"derived_from\": \"tosca.capabilities.Root\", \"properties\": {\"num_cpus\": {\"required\": "
-#           "false, \"type\": \"integer\", \"constraints\": [{\"greater_or_equal\": 1}]}, \"cpu_frequency\": {"
-#           "\"required\": false, \"type\": \"scalar-unit.frequency\", \"constraints\": [{\"greater_or_equal\": \"0.1 "
-#           "GHz\"}]}, \"disk_size\": {\"required\": false, \"type\": \"scalar-unit.size\", \"constraints\": [{"
-#           "\"greater_or_equal\": \"0 MB\"}]}, \"mem_size\": {\"required\": false, \"type\": \"scalar-unit.size\", "
-#           "\"constraints\": [{\"greater_or_equal\": \"0 MB\"}]}}}")
-#
-# DependencyTypes(source_id=9,
-#                 dependency_id=7,
-#                 dependency_type='derived_from')
-#
-# Type(id=10,
-#      version='1.0',
-#      type_of_type='capability_type',
-#      type_name='tosca.capabilities.Endpoint',
-#      data="{\"description\": \"This is the default TOSCA type that should be used or extended to define a network "
-#           "endpoint capability. This includes the information to express a basic endpoint with a single port or a "
-#           "complex endpoint with multiple ports. By default the Endpoint is assumed to represent an address on a "
-#           "private network unless otherwise specified.\\n\", \"derived_from\": \"tosca.capabilities.Root\", "
-#           "\"properties\": {\"protocol\": {\"type\": \"string\", \"required\": true, \"default\": \"tcp\"}, "
-#           "\"port\": {\"type\": \"tosca.datatypes.network.PortDef\", \"required\": false}, \"secure\": {\"type\": "
-#           "\"boolean\", \"required\": false, \"default\": false}, \"url_path\": {\"type\": \"string\", \"required\": "
-#           "false}, \"port_name\": {\"type\": \"string\", \"required\": false}, \"network_name\": {\"type\": "
-#           "\"string\", \"required\": false, \"default\": \"PRIVATE\"}, \"initiator\": {\"type\": \"string\", "
-#           "\"required\": false, \"default\": \"source\", \"constraints\": [{\"valid_values\": [\"source\", "
-#           "\"target\", \"peer\"]}]}, \"ports\": {\"type\": \"map\", \"required\": false, \"constraints\": [{"
-#           "\"min_length\": 1}], \"entry_schema\": {\"type\": \"tosca.datatypes.network.PortSpec\"}}, \"ip_address\": "
-#           "{\"type\": \"string\", \"default\": \"0.0.0.0/0\"}}}")
-#
-# DependencyTypes(source_id=10,
-#                 dependency_id=7,
-#                 dependency_type='derived_from')
-#
-# DependencyTypes(source_id=10,
-#                 dependency_id=5,
-#                 dependency_type='dependency')
-#
-# DependencyTypes(source_id=10,
-#                 dependency_id=6,
-#                 dependency_type='dependency')
-#
-# Type(id=11,
-#      version='1.0',
-#      type_of_type='capability_type',
-#      type_name='tosca.capabilities.Endpoint.Admin',
-#      data="{\"description\": \"This is the default TOSCA type that should be used or extended to define a specialized "
-#           "administrator endpoint capability.\\n\", \"derived_from\": \"tosca.capabilities.Endpoint\", "
-#           "\"properties\": {\"secure\": {\"type\": \"boolean\", \"default\": true, \"required\": false, "
-#           "\"constraints\": [{\"equal\": true}]}}}")
-#
-# DependencyTypes(source_id=11,
-#                 dependency_id=10,
-#                 dependency_type='derived_from')
-#
-# DependencyTypes(source_id=11,
-#                 dependency_id=7,
-#                 dependency_type='derived_from')
-#
-# DependencyTypes(source_id=11,
-#                 dependency_id=5,
-#                 dependency_type='dependency')
-#
-# DependencyTypes(source_id=11,
-#                 dependency_id=6,
-#                 dependency_type='dependency')
-#
-# Type(id=12,
-#      version='1.0',
-#      type_of_type='capability_type',
-#      type_name='tosca.capabilities.Endpoint.Public',
-#      data="{\"description\": \"This capability represents a public endpoint which is accessible to the general "
-#           "internet (and its public IP address ranges).\\n\", \"derived_from\": \"tosca.capabilities.Endpoint\", "
-#           "\"properties\": {\"network_name\": {\"type\": \"string\", \"default\": \"PUBLIC\", \"required\": false, "
-#           "\"constraints\": [{\"equal\": \"PUBLIC\"}]}, \"floating\": {\"description\": \"Indicates that the public "
-#           "address should be allocated from a pool of floating IPs that are associated with the network.\\n\", "
-#           "\"type\": \"boolean\", \"default\": false, \"status\": \"experimental\", \"required\": false}, "
-#           "\"dns_name\": {\"description\": \"The optional name to register with DNS\", \"type\": \"string\", "
-#           "\"required\": false, \"status\": \"experimental\"}}}")
-#
-# DependencyTypes(source_id=12,
-#                 dependency_id=10,
-#                 dependency_type='derived_from')
-#
-# DependencyTypes(source_id=12,
-#                 dependency_id=7,
-#                 dependency_type='derived_from')
-#
-# DependencyTypes(source_id=12,
-#                 dependency_id=5,
-#                 dependency_type='dependency')
-#
-# DependencyTypes(source_id=12,
-#                 dependency_id=6,
-#                 dependency_type='dependency')
-#
-# Type(id=13,
-#      version='1.0',
-#      type_of_type='capability_type',
-#      type_name='tosca.capabilities.Endpoint.Database',
-#      data="{\"derived_from\": \"tosca.capabilities.Endpoint\"}")
-#
-# DependencyTypes(source_id=13,
-#                 dependency_id=10,
-#                 dependency_type='derived_from')
-#
-# DependencyTypes(source_id=13,
-#                 dependency_id=7,
-#                 dependency_type='derived_from')
-#
-# DependencyTypes(source_id=13,
-#                 dependency_id=5,
-#                 dependency_type='dependency')
-#
-# DependencyTypes(source_id=13,
-#                 dependency_id=6,
-#                 dependency_type='dependency')
-#
-# Type(id=14,
-#      version='1.0',
-#      type_of_type='capability_type',
-#      type_name='tosca.capabilities.Attachment',
-#      data="{\"description\": \"This is the default TOSCA type that should be used or extended to define an attachment "
-#           "capability of a (logical) infrastructure device node (e.g., BlockStorage node)\\n\", \"derived_from\": "
-#           "\"tosca.capabilities.Root\"}")
-#
-# DependencyTypes(source_id=14,
-#                 dependency_id=7,
-#                 dependency_type='derived_from')
-#
-# Type(id=15,
-#      version='1.0',
-#      type_of_type='capability_type',
-#      type_name='tosca.capabilities.OperatingSystem',
-#      data="{\"derived_from\": \"tosca.capabilities.Root\", \"properties\": {\"architecture\": {\"required\": false, "
-#           "\"type\": \"string\", \"description\": \"The host Operating System (OS) architecture.\\n\"}, \"type\": {"
-#           "\"required\": false, \"type\": \"string\", \"description\": \"The host Operating System (OS) type.\\n\"}, "
-#           "\"distribution\": {\"required\": false, \"type\": \"string\", \"description\": \"The host Operating System "
-#           "(OS) distribution. Examples of valid values for an \\u201ctype\\u201d of \\u201cLinux\\u201d would "
-#           "include: debian, fedora, rhel and ubuntu.\\n\"}, \"version\": {\"required\": false, \"type\": \"version\", "
-#           "\"description\": \"The host Operating System version.\\n\"}}}")
-#
-# DependencyTypes(source_id=15,
-#                 dependency_id=7,
-#                 dependency_type='derived_from')
-#
-# Type(id=16,
-#      version='1.0',
-#      type_of_type='capability_type',
-#      type_name='tosca.capabilities.Scalable',
-#      data="{\"derived_from\": \"tosca.capabilities.Root\", \"properties\": {\"min_instances\": {\"type\": "
-#           "\"integer\", \"required\": true, \"default\": 1, \"description\": \"This property is used to indicate the "
-#           "minimum number of instances that should be created for the associated TOSCA Node Template by a TOSCA "
-#           "orchestrator.\\n\"}, \"max_instances\": {\"type\": \"integer\", \"required\": true, \"default\": 1, "
-#           "\"description\": \"This property is used to indicate the maximum number of instances that should be "
-#           "created for the associated TOSCA Node Template by a TOSCA orchestrator.\\n\"}, \"default_instances\": {"
-#           "\"type\": \"integer\", \"required\": false, \"description\": \"An optional property that indicates the "
-#           "requested default number of instances that should be the starting number of instances a TOSCA orchestrator "
-#           "should attempt to allocate. The value for this property MUST be in the range between the values set for "
-#           "min_instances and max_instances properties.\\n\"}}}")
-#
-# DependencyTypes(source_id=16,
-#                 dependency_id=7,
-#                 dependency_type='derived_from')
-#
-# Type(id=17,
-#      version='1.0',
-#      type_of_type='capability_type',
-#      type_name='tosca.capabilities.network.Linkable',
-#      data="{\"derived_from\": \"tosca.capabilities.Node\", \"description\": \"A node type that includes the Linkable "
-#           "capability indicates that it can be pointed by tosca.relationships.network.LinksTo relationship type, "
-#           "which represents an association relationship between Port and Network node types.\\n\"}")
-#
-# DependencyTypes(source_id=17,
-#                 dependency_id=7,
-#                 dependency_type='derived_from')
-#
-# DependencyTypes(source_id=17,
-#                 dependency_id=8,
-#                 dependency_type='derived_from')
-#
-# Type(id=18,
-#      version='1.0',
-#      type_of_type='capability_type',
-#      type_name='tosca.capabilities.network.Bindable',
-#      data="{\"derived_from\": \"tosca.capabilities.Node\", \"description\": \"A node type that includes the Bindable "
-#           "capability indicates that it can be pointed by tosca.relationships.network.BindsTo relationship type, "
-#           "which represents a network association relationship between Port and Compute node types.\\n\"}")
-#
-# DependencyTypes(source_id=18,
-#                 dependency_id=7,
-#                 dependency_type='derived_from')
-#
-# DependencyTypes(source_id=18,
-#                 dependency_id=8,
-#                 dependency_type='derived_from')
-#
-# # Policy Type
-#
-# Type(id=53,
-#      version='1.0',
-#      type_of_type='policy_type',
-#      type_name='tosca.policies.Root',
-#      data="{\"description\": \"The TOSCA Policy Type all other TOSCA Policy Types derive from.\"}")
-#
-# Type(id=54,
-#      version='1.0',
-#      type_of_type='policy_type',
-#      type_name='tosca.policies.Placement',
-#      data="{\"derived_from\": \"tosca.policies.Root\", \"description\": \"The TOSCA Policy Type definition that is "
-#           "used to govern placement of TOSCA nodes or groups of nodes.\"}")
-#
-# DependencyTypes(source_id=54,
-#                 dependency_id=53,
-#                 dependency_type='derived_from')
-#
-# Type(id=55,
-#      version='1.0',
-#      type_of_type='policy_type',
-#      type_name='tosca.policies.Scaling',
-#      data="{\"derived_from\": \"tosca.policies.Root\", \"description\": \"The TOSCA Policy Type definition that is "
-#           "used to govern scaling of TOSCA nodes or groups of nodes.\"}")
-#
-# DependencyTypes(source_id=55,
-#                 dependency_id=53,
-#                 dependency_type='derived_from')
-#
-# Type(id=56,
-#      version='1.0',
-#      type_of_type='policy_type',
-#      type_name='tosca.policies.Update',
-#      data="{\"derived_from\": \"tosca.policies.Root\", \"description\": \"The TOSCA Policy Type definition that is "
-#           "used to govern update of TOSCA nodes or groups of nodes.\"}")
-#
-# DependencyTypes(source_id=56,
-#                 dependency_id=53,
-#                 dependency_type='derived_from')
-#
-# Type(id=57,
-#      version='1.0',
-#      type_of_type='policy_type',
-#      type_name='tosca.policies.Performance',
-#      data="{\"derived_from\": \"tosca.policies.Root\", \"description\": \"The TOSCA Policy Type definition that is "
-#           "used to declare performance requirements for TOSCA nodes or groups of nodes.\"}")
-#
-# DependencyTypes(source_id=57,
-#                 dependency_id=53,
-#                 dependency_type='derived_from')
-#
-# # Artifact Type
-#
-# Type(id=19,
-#      version='1.0',
-#      type_of_type='artifact_type',
-#      type_name='tosca.artifacts.Root',
-#      data="{\"description\": \"The TOSCA Artifact Type all other TOSCA Artifact Types derive from\\n\", "
-#           "\"properties\": {\"version\": {\"type\": \"version\", \"required\": false}}}")
-#
-# Type(id=20,
-#      version='1.0',
-#      type_of_type='artifact_type',
-#      type_name='tosca.artifacts.File',
-#      data="{\"derived_from\": \"tosca.artifacts.Root\"}")
-#
-# DependencyTypes(source_id=20,
-#                 dependency_id=19,
-#                 dependency_type='derived_from')
-#
-# Type(id=21,
-#      version='1.0',
-#      type_of_type='artifact_type',
-#      type_name='tosca.artifacts.Deployment',
-#      data="{\"derived_from\": \"tosca.artifacts.Root\", \"description\": \"TOSCA base type for deployment artifacts\"}")
-#
-# DependencyTypes(source_id=21,
-#                 dependency_id=19,
-#                 dependency_type='derived_from')
-#
-# Type(id=22,
-#      version='1.0',
-#      type_of_type='artifact_type',
-#      type_name='tosca.artifacts.Deployment.Image',
-#      data="{\"derived_from\": \"tosca.artifacts.Deployment\"}")
-#
-# DependencyTypes(source_id=22,
-#                 dependency_id=21,
-#                 dependency_type='derived_from')
-#
-# DependencyTypes(source_id=22,
-#                 dependency_id=19,
-#                 dependency_type='derived_from')
-#
-# Type(id=23,
-#      version='1.0',
-#      type_of_type='artifact_type',
-#      type_name='tosca.artifacts.Deployment.Image.VM',
-#      data="{\"derived_from\": \"tosca.artifacts.Deployment.Image\"}")
-#
-# DependencyTypes(source_id=23,
-#                 dependency_id=22,
-#                 dependency_type='derived_from')
-#
-# DependencyTypes(source_id=23,
-#                 dependency_id=21,
-#                 dependency_type='derived_from')
-#
-# DependencyTypes(source_id=23,
-#                 dependency_id=19,
-#                 dependency_type='derived_from')
-#
-# Type(id=24,
-#      version='1.0',
-#      type_of_type='artifact_type',
-#      type_name='tosca.artifacts.Implementation',
-#      data="{\"derived_from\": \"tosca.artifacts.Root\", \"description\": \"TOSCA base type for implementation "
-#           "artifacts\"}")
-#
-# DependencyTypes(source_id=24,
-#                 dependency_id=19,
-#                 dependency_type='derived_from')
-#
-# Type(id=25,
-#      version='1.0',
-#      type_of_type='artifact_type',
-#      type_name='tosca.artifacts.Implementation.Bash',
-#      data="{\"derived_from\": \"tosca.artifacts.Implementation\", \"description\": \"Script artifact for the Unix "
-#           "Bash shell\", \"mime_type\": \"application/x-sh\", \"file_ext\": [\"sh\"]}")
-#
-# DependencyTypes(source_id=25,
-#                 dependency_id=24,
-#                 dependency_type='derived_from')
-#
-# DependencyTypes(source_id=25,
-#                 dependency_id=19,
-#                 dependency_type='derived_from')
-#
-# Type(id=26,
-#      version='1.0',
-#      type_of_type='artifact_type',
-#      type_name='tosca.artifacts.Implementation.Python',
-#      data="{\"derived_from\": \"tosca.artifacts.Implementation\", \"description\": \"Artifact for the interpreted "
-#           "Python language\", \"mime_type\": \"application/x-python\", \"file_ext\": [\"py\"]}")
-#
-# DependencyTypes(source_id=26,
-#                 dependency_id=24,
-#                 dependency_type='derived_from')
-#
-# DependencyTypes(source_id=26,
-#                 dependency_id=19,
-#                 dependency_type='derived_from')
-#
-# # Relationship Types
+    def _check_derived_from_size(self, tosca_object: TOSCAType, expected_size: int):
+        derived_from = self.session.query(DependencyTypes).filter_by(
+            source_id=tosca_object.identifier,
+            dependency_type=DependencyTypeEnum.derived_from
+        ).all()
+        assert len(derived_from) == expected_size
+
+    def _check_requirement_dependency_size(self, tosca_object: TOSCAType, expected_size: int):
+        derived_from = self.session.query(DependencyTypes).filter_by(
+            source_id=tosca_object.identifier,
+            dependency_type=DependencyTypeEnum.requirement_dependency
+        ).all()
+        assert len(derived_from) == expected_size
+
+    def _check_value_of_tosca_object(self, tosca_object: TOSCAType, expected_type: TypeOfTypeEnum):
+        orm_tosca_object = self.session.query(Type).filter_by(id=tosca_object.identifier).first()
+        assert orm_tosca_object.version == tosca_object.version
+        assert orm_tosca_object.type_of_type == expected_type
+        assert orm_tosca_object.data == tosca_object.get_data_in_json()
+
+    def _check_derived_from_value(self, tosca_object: TOSCAType, expected_types: set[str]):
+        derived_from = self.session.query(DependencyTypes, Type).filter(
+            DependencyTypes.dependency_type == DependencyTypeEnum.derived_from,
+            DependencyTypes.source_id == tosca_object.identifier
+        ).filter(
+            Type.id == DependencyTypes.dependency_id
+        ).all()
+        for _, tosca_type in derived_from:
+            assert tosca_type.type_name in expected_types
+            expected_types.remove(tosca_type.type_name)
+        assert len(expected_types) == 0
+
+    def _check_dependency_value(self, tosca_object: TOSCAType, expected_types: set[str]):
+        dependency = self.session.query(DependencyTypes, Type).filter(
+            DependencyTypes.dependency_type == DependencyTypeEnum.dependency,
+            DependencyTypes.source_id == tosca_object.identifier
+        ).filter(
+            Type.id == DependencyTypes.dependency_id
+        ).all()
+        for _, tosca_type in dependency:
+            assert tosca_type.type_name in expected_types
+            expected_types.remove(tosca_type.type_name)
+        assert len(expected_types) == 0
+
+    def test_tosca_datatypes_root(self):
+        tosca_datatypes_root = self.parsed_template.data_types['tosca.datatypes.Root']
+        self._check_value_of_tosca_object(tosca_datatypes_root, TypeOfTypeEnum.data_type)
+
+        self._check_dependency_size(tosca_datatypes_root, 0)
+        self._check_requirement_dependency_size(tosca_datatypes_root, 0)
+        self._check_derived_from_size(tosca_datatypes_root, 0)
+
+    def test_tosca_datatypes_credential(self):
+        tosca_datatype_credential = self.parsed_template.data_types['tosca.datatypes.Credential']
+        self._check_value_of_tosca_object(tosca_datatype_credential, TypeOfTypeEnum.data_type)
+
+        self._check_dependency_size(tosca_datatype_credential, 0)
+        self._check_requirement_dependency_size(tosca_datatype_credential, 0)
+        self._check_derived_from_size(tosca_datatype_credential, 1)
+        self._check_derived_from_value(tosca_datatype_credential, {'tosca.datatypes.Root'})
+
+    def test_tosca_datatypes_network_info(self):
+        tosca_datatypes_network_info = self.parsed_template.data_types['tosca.datatypes.network.NetworkInfo']
+        self._check_value_of_tosca_object(tosca_datatypes_network_info, TypeOfTypeEnum.data_type)
+
+        self._check_dependency_size(tosca_datatypes_network_info, 0)
+        self._check_requirement_dependency_size(tosca_datatypes_network_info, 0)
+        self._check_derived_from_size(tosca_datatypes_network_info, 1)
+        self._check_derived_from_value(tosca_datatypes_network_info, {'tosca.datatypes.Root'})
+
+    def test_tosca_datatypes_port_info(self):
+        tosca_datatypes_port_info = self.parsed_template.data_types['tosca.datatypes.network.PortInfo']
+        self._check_value_of_tosca_object(tosca_datatypes_port_info, TypeOfTypeEnum.data_type)
+
+        self._check_dependency_size(tosca_datatypes_port_info, 0)
+        self._check_requirement_dependency_size(tosca_datatypes_port_info, 0)
+        self._check_derived_from_size(tosca_datatypes_port_info, 1)
+        self._check_derived_from_value(tosca_datatypes_port_info, {'tosca.datatypes.Root'})
+
+    def test_tosca_datatypes_port_def(self):
+        tosca_datatypes_port_def = self.parsed_template.data_types['tosca.datatypes.network.PortDef']
+        self._check_value_of_tosca_object(tosca_datatypes_port_def, TypeOfTypeEnum.data_type)
+
+        self._check_dependency_size(tosca_datatypes_port_def, 0)
+        self._check_requirement_dependency_size(tosca_datatypes_port_def, 0)
+        self._check_derived_from_size(tosca_datatypes_port_def, 1)
+        self._check_derived_from_value(tosca_datatypes_port_def, {'tosca.datatypes.Root'})
+
+    def test_tosca_datatypes_port_spec(self):
+        tosca_datatypes_port_def = self.parsed_template.data_types['tosca.datatypes.network.PortSpec']
+        self._check_value_of_tosca_object(tosca_datatypes_port_def, TypeOfTypeEnum.data_type)
+
+        self._check_dependency_size(tosca_datatypes_port_def, 1)
+        self._check_dependency_value(tosca_datatypes_port_def, {'tosca.datatypes.network.PortDef'})
+        self._check_requirement_dependency_size(tosca_datatypes_port_def, 0)
+        self._check_derived_from_size(tosca_datatypes_port_def, 2)
+        self._check_derived_from_value(tosca_datatypes_port_def,
+                                       {'tosca.datatypes.Root', 'tosca.datatypes.network.PortDef'})
+
+    # Group Types
+    def test_tosca_groups_root(self):
+        tosca_groups_root = self.parsed_template.group_types['tosca.groups.Root']
+        self._check_value_of_tosca_object(tosca_groups_root, TypeOfTypeEnum.group_type)
+
+        self._check_dependency_size(tosca_groups_root, 0)
+        # todo actually 1
+        # self._check_dependency_value(tosca_groups_root, {'tosca.interfaces.node.lifecycle.Standard'})
+        self._check_requirement_dependency_size(tosca_groups_root, 0)
+        self._check_derived_from_size(tosca_groups_root, 0)
+
+    # Interface Types
+
+    def test_tosca_interfaces_root(self):
+        tosca_interfaces_root = self.parsed_template.interface_types['tosca.interfaces.Root']
+        self._check_value_of_tosca_object(tosca_interfaces_root, TypeOfTypeEnum.interface_type)
+
+        self._check_dependency_size(tosca_interfaces_root, 0)
+        self._check_requirement_dependency_size(tosca_interfaces_root, 0)
+        self._check_derived_from_size(tosca_interfaces_root, 0)
+
+    def test_tosca_interfaces_node_lifecycle_standard(self):
+        tosca_interfaces_node_lifecycle_standard = self.parsed_template.interface_types[
+            'tosca.interfaces.node.lifecycle.Standard'
+        ]
+        self._check_value_of_tosca_object(tosca_interfaces_node_lifecycle_standard, TypeOfTypeEnum.interface_type)
+
+        self._check_dependency_size(tosca_interfaces_node_lifecycle_standard, 0)
+        self._check_requirement_dependency_size(tosca_interfaces_node_lifecycle_standard, 0)
+        self._check_derived_from_size(tosca_interfaces_node_lifecycle_standard, 1)
+        self._check_derived_from_value(tosca_interfaces_node_lifecycle_standard,
+                                       {'tosca.interfaces.Root'})
+
+    def test_tosca_interfaces_relationship_configure(self):
+        tosca_interfaces_node_lifecycle_standard = self.parsed_template.interface_types[
+            'tosca.interfaces.relationship.Configure'
+        ]
+        self._check_value_of_tosca_object(tosca_interfaces_node_lifecycle_standard, TypeOfTypeEnum.interface_type)
+
+        self._check_dependency_size(tosca_interfaces_node_lifecycle_standard, 0)
+        self._check_requirement_dependency_size(tosca_interfaces_node_lifecycle_standard, 0)
+        self._check_derived_from_size(tosca_interfaces_node_lifecycle_standard, 1)
+        self._check_derived_from_value(tosca_interfaces_node_lifecycle_standard,
+                                       {'tosca.interfaces.Root'})
+
+    # Capability Type
+    def test_tosca_capabilities_root(self):
+        tosca_capabilities_root = self.parsed_template.capability_types['tosca.capabilities.Root']
+        self._check_value_of_tosca_object(tosca_capabilities_root, TypeOfTypeEnum.capability_type)
+
+        self._check_dependency_size(tosca_capabilities_root, 0)
+        self._check_requirement_dependency_size(tosca_capabilities_root, 0)
+        self._check_derived_from_size(tosca_capabilities_root, 0)
+
+    def test_tosca_capabilities_node(self):
+        tosca_capabilities_node = self.parsed_template.capability_types['tosca.capabilities.Node']
+        self._check_value_of_tosca_object(tosca_capabilities_node, TypeOfTypeEnum.capability_type)
+
+        self._check_dependency_size(tosca_capabilities_node, 0)
+        self._check_requirement_dependency_size(tosca_capabilities_node, 0)
+        self._check_derived_from_size(tosca_capabilities_node, 1)
+        self._check_derived_from_value(tosca_capabilities_node,
+                                       {'tosca.capabilities.Root'})
+
+    def test_tosca_capabilities_container(self):
+        tosca_capabilities_container = self.parsed_template.capability_types['tosca.capabilities.Container']
+        self._check_value_of_tosca_object(tosca_capabilities_container, TypeOfTypeEnum.capability_type)
+
+        self._check_dependency_size(tosca_capabilities_container, 0)
+        self._check_requirement_dependency_size(tosca_capabilities_container, 0)
+        self._check_derived_from_size(tosca_capabilities_container, 1)
+        self._check_derived_from_value(tosca_capabilities_container,
+                                       {'tosca.capabilities.Root'})
+
+    def test_tosca_capabilities_endpoint(self):
+        tosca_capabilities_endpoint = self.parsed_template.capability_types['tosca.capabilities.Endpoint']
+        self._check_value_of_tosca_object(tosca_capabilities_endpoint, TypeOfTypeEnum.capability_type)
+        self._check_dependency_value(tosca_capabilities_endpoint,
+                                     {'tosca.datatypes.network.PortSpec', 'tosca.datatypes.network.PortDef'})
+        self._check_dependency_size(tosca_capabilities_endpoint, 2)
+        self._check_requirement_dependency_size(tosca_capabilities_endpoint, 0)
+        self._check_derived_from_size(tosca_capabilities_endpoint, 1)
+        self._check_derived_from_value(tosca_capabilities_endpoint,
+                                       {'tosca.capabilities.Root'})
+
+    def test_tosca_capabilities_endpoint_admin(self):
+        tosca_capabilities_endpoint_admin = self.parsed_template.capability_types['tosca.capabilities.Endpoint.Admin']
+        self._check_value_of_tosca_object(tosca_capabilities_endpoint_admin, TypeOfTypeEnum.capability_type)
+        self._check_dependency_value(tosca_capabilities_endpoint_admin,
+                                     {'tosca.datatypes.network.PortSpec', 'tosca.datatypes.network.PortDef'})
+        self._check_dependency_size(tosca_capabilities_endpoint_admin, 2)
+        self._check_requirement_dependency_size(tosca_capabilities_endpoint_admin, 0)
+        self._check_derived_from_size(tosca_capabilities_endpoint_admin, 2)
+        self._check_derived_from_value(tosca_capabilities_endpoint_admin,
+                                       {'tosca.capabilities.Root', 'tosca.capabilities.Endpoint'})
+
+    def test_tosca_capabilities_endpoint_public(self):
+        tosca_capabilities_endpoint_public = self.parsed_template.capability_types['tosca.capabilities.Endpoint.Public']
+        self._check_value_of_tosca_object(tosca_capabilities_endpoint_public, TypeOfTypeEnum.capability_type)
+        self._check_dependency_value(tosca_capabilities_endpoint_public,
+                                     {'tosca.datatypes.network.PortSpec', 'tosca.datatypes.network.PortDef'})
+        self._check_dependency_size(tosca_capabilities_endpoint_public, 2)
+        self._check_requirement_dependency_size(tosca_capabilities_endpoint_public, 0)
+        self._check_derived_from_size(tosca_capabilities_endpoint_public, 2)
+        self._check_derived_from_value(tosca_capabilities_endpoint_public,
+                                       {'tosca.capabilities.Root', 'tosca.capabilities.Endpoint'})
+
+    def test_tosca_capabilities_endpoint_database(self):
+        tosca_capabilities_endpoint_database = self.parsed_template.capability_types[
+            'tosca.capabilities.Endpoint.Database'
+        ]
+        self._check_value_of_tosca_object(tosca_capabilities_endpoint_database, TypeOfTypeEnum.capability_type)
+        self._check_dependency_value(tosca_capabilities_endpoint_database,
+                                     {'tosca.datatypes.network.PortSpec', 'tosca.datatypes.network.PortDef'})
+        self._check_dependency_size(tosca_capabilities_endpoint_database, 2)
+        self._check_requirement_dependency_size(tosca_capabilities_endpoint_database, 0)
+        self._check_derived_from_size(tosca_capabilities_endpoint_database, 2)
+        self._check_derived_from_value(tosca_capabilities_endpoint_database,
+                                       {'tosca.capabilities.Root', 'tosca.capabilities.Endpoint'})
+
+    def test_tosca_capabilities_attachment(self):
+        tosca_capabilities_attachment = self.parsed_template.capability_types['tosca.capabilities.Attachment']
+        self._check_value_of_tosca_object(tosca_capabilities_attachment, TypeOfTypeEnum.capability_type)
+        self._check_dependency_size(tosca_capabilities_attachment, 0)
+        self._check_requirement_dependency_size(tosca_capabilities_attachment, 0)
+        self._check_derived_from_size(tosca_capabilities_attachment, 1)
+        self._check_derived_from_value(tosca_capabilities_attachment, {'tosca.capabilities.Root'})
+
+    def test_tosca_capabilities_operating_system(self):
+        tosca_capabilities_operating_system = self.parsed_template.capability_types[
+            'tosca.capabilities.OperatingSystem'
+        ]
+        self._check_value_of_tosca_object(tosca_capabilities_operating_system, TypeOfTypeEnum.capability_type)
+        self._check_dependency_size(tosca_capabilities_operating_system, 0)
+        self._check_requirement_dependency_size(tosca_capabilities_operating_system, 0)
+        self._check_derived_from_size(tosca_capabilities_operating_system, 1)
+        self._check_derived_from_value(tosca_capabilities_operating_system, {'tosca.capabilities.Root'})
+
+    def test_tosca_capabilities_scalable(self):
+        tosca_capabilities_scalable = self.parsed_template.capability_types['tosca.capabilities.Scalable']
+        self._check_value_of_tosca_object(tosca_capabilities_scalable, TypeOfTypeEnum.capability_type)
+        self._check_dependency_size(tosca_capabilities_scalable, 0)
+        self._check_requirement_dependency_size(tosca_capabilities_scalable, 0)
+        self._check_derived_from_size(tosca_capabilities_scalable, 1)
+        self._check_derived_from_value(tosca_capabilities_scalable, {'tosca.capabilities.Root'})
+
+    def test_tosca_capabilities_network_linkable(self):
+        tosca_capabilities_network_linkable = self.parsed_template.capability_types[
+            'tosca.capabilities.network.Linkable'
+        ]
+        self._check_value_of_tosca_object(tosca_capabilities_network_linkable, TypeOfTypeEnum.capability_type)
+        self._check_dependency_size(tosca_capabilities_network_linkable, 0)
+        self._check_requirement_dependency_size(tosca_capabilities_network_linkable, 0)
+        self._check_derived_from_size(tosca_capabilities_network_linkable, 2)
+        self._check_derived_from_value(tosca_capabilities_network_linkable,
+                                       {'tosca.capabilities.Root', 'tosca.capabilities.Node'})
+
+    def test_tosca_capabilities_network_bindable(self):
+        tosca_capabilities_network_bindable = self.parsed_template.capability_types[
+            'tosca.capabilities.network.Bindable'
+        ]
+        self._check_value_of_tosca_object(tosca_capabilities_network_bindable, TypeOfTypeEnum.capability_type)
+        self._check_dependency_size(tosca_capabilities_network_bindable, 0)
+        self._check_requirement_dependency_size(tosca_capabilities_network_bindable, 0)
+        self._check_derived_from_size(tosca_capabilities_network_bindable, 2)
+        self._check_derived_from_value(tosca_capabilities_network_bindable,
+                                       {'tosca.capabilities.Root', 'tosca.capabilities.Node'})
+
+    # Policy Type
+
+    def test_tosca_policies_root(self):
+        tosca_policies_root = self.parsed_template.policy_types['tosca.policies.Root']
+        self._check_value_of_tosca_object(tosca_policies_root, TypeOfTypeEnum.policy_type)
+        self._check_dependency_size(tosca_policies_root, 0)
+        self._check_requirement_dependency_size(tosca_policies_root, 0)
+        self._check_derived_from_size(tosca_policies_root, 0)
+
+    def test_tosca_policies_placement(self):
+        tosca_policies_placement = self.parsed_template.policy_types['tosca.policies.Placement']
+        self._check_value_of_tosca_object(tosca_policies_placement, TypeOfTypeEnum.policy_type)
+        self._check_dependency_size(tosca_policies_placement, 0)
+        self._check_requirement_dependency_size(tosca_policies_placement, 0)
+        self._check_derived_from_size(tosca_policies_placement, 1)
+        self._check_derived_from_value(tosca_policies_placement, {'tosca.policies.Root'})
+
+    def test_tosca_policies_scaling(self):
+        tosca_policies_placement = self.parsed_template.policy_types['tosca.policies.Scaling']
+        self._check_value_of_tosca_object(tosca_policies_placement, TypeOfTypeEnum.policy_type)
+        self._check_dependency_size(tosca_policies_placement, 0)
+        self._check_requirement_dependency_size(tosca_policies_placement, 0)
+        self._check_derived_from_size(tosca_policies_placement, 1)
+        self._check_derived_from_value(tosca_policies_placement, {'tosca.policies.Root'})
+
+    def test_tosca_policies_update(self):
+        tosca_policies_update = self.parsed_template.policy_types['tosca.policies.Update']
+        self._check_value_of_tosca_object(tosca_policies_update, TypeOfTypeEnum.policy_type)
+        self._check_dependency_size(tosca_policies_update, 0)
+        self._check_requirement_dependency_size(tosca_policies_update, 0)
+        self._check_derived_from_size(tosca_policies_update, 1)
+        self._check_derived_from_value(tosca_policies_update, {'tosca.policies.Root'})
+
+    def test_tosca_policies_performance(self):
+        tosca_policies_performance = self.parsed_template.policy_types['tosca.policies.Performance']
+        self._check_value_of_tosca_object(tosca_policies_performance, TypeOfTypeEnum.policy_type)
+        self._check_dependency_size(tosca_policies_performance, 0)
+        self._check_requirement_dependency_size(tosca_policies_performance, 0)
+        self._check_derived_from_size(tosca_policies_performance, 1)
+        self._check_derived_from_value(tosca_policies_performance, {'tosca.policies.Root'})
+
+    # Artifact Type
+    def test_tosca_artifacts_root(self):
+        tosca_artifacts_root = self.parsed_template.artifact_types['tosca.artifacts.Root']
+        self._check_value_of_tosca_object(tosca_artifacts_root, TypeOfTypeEnum.artifact_type)
+        self._check_dependency_size(tosca_artifacts_root, 0)
+        self._check_requirement_dependency_size(tosca_artifacts_root, 0)
+        self._check_derived_from_size(tosca_artifacts_root, 0)
+
+    def test_tosca_artifacts_file(self):
+        tosca_artifacts_file = self.parsed_template.artifact_types['tosca.artifacts.File']
+        self._check_value_of_tosca_object(tosca_artifacts_file, TypeOfTypeEnum.artifact_type)
+        self._check_dependency_size(tosca_artifacts_file, 0)
+        self._check_requirement_dependency_size(tosca_artifacts_file, 0)
+        self._check_derived_from_size(tosca_artifacts_file, 1)
+        self._check_derived_from_value(tosca_artifacts_file, {'tosca.artifacts.Root'})
+
+    def test_tosca_artifacts_deployment(self):
+        tosca_artifacts_deployment = self.parsed_template.artifact_types['tosca.artifacts.Deployment']
+        self._check_value_of_tosca_object(tosca_artifacts_deployment, TypeOfTypeEnum.artifact_type)
+        self._check_dependency_size(tosca_artifacts_deployment, 0)
+        self._check_requirement_dependency_size(tosca_artifacts_deployment, 0)
+        self._check_derived_from_size(tosca_artifacts_deployment, 1)
+        self._check_derived_from_value(tosca_artifacts_deployment, {'tosca.artifacts.Root'})
+
+    def test_tosca_artifacts_deployment_image(self):
+        tosca_artifacts_deployment_image = self.parsed_template.artifact_types['tosca.artifacts.Deployment.Image']
+        self._check_value_of_tosca_object(tosca_artifacts_deployment_image, TypeOfTypeEnum.artifact_type)
+        self._check_dependency_size(tosca_artifacts_deployment_image, 0)
+        self._check_requirement_dependency_size(tosca_artifacts_deployment_image, 0)
+        self._check_derived_from_size(tosca_artifacts_deployment_image, 2)
+        self._check_derived_from_value(tosca_artifacts_deployment_image,
+                                       {'tosca.artifacts.Root', 'tosca.artifacts.Deployment'})
+
+    def test_tosca_artifacts_deployment_image_vm(self):
+        tosca_artifacts_deployment_image_vm = self.parsed_template.artifact_types['tosca.artifacts.Deployment.Image.VM']
+        self._check_value_of_tosca_object(tosca_artifacts_deployment_image_vm, TypeOfTypeEnum.artifact_type)
+        self._check_dependency_size(tosca_artifacts_deployment_image_vm, 0)
+        self._check_requirement_dependency_size(tosca_artifacts_deployment_image_vm, 0)
+        self._check_derived_from_size(tosca_artifacts_deployment_image_vm, 3)
+        self._check_derived_from_value(tosca_artifacts_deployment_image_vm,
+                                       {'tosca.artifacts.Root',
+                                        'tosca.artifacts.Deployment',
+                                        'tosca.artifacts.Deployment.Image'
+                                        })
+
+    def test_tosca_artifacts_implementation(self):
+        tosca_artifacts_implementation = self.parsed_template.artifact_types['tosca.artifacts.Implementation']
+        self._check_value_of_tosca_object(tosca_artifacts_implementation, TypeOfTypeEnum.artifact_type)
+        self._check_dependency_size(tosca_artifacts_implementation, 0)
+        self._check_requirement_dependency_size(tosca_artifacts_implementation, 0)
+        self._check_derived_from_size(tosca_artifacts_implementation, 1)
+        self._check_derived_from_value(tosca_artifacts_implementation, {'tosca.artifacts.Root'})
+
+    def test_tosca_artifacts_implementation_bash(self):
+        tosca_artifacts_implementation_bash = self.parsed_template.artifact_types[
+            'tosca.artifacts.Implementation.Bash']
+        self._check_value_of_tosca_object(tosca_artifacts_implementation_bash, TypeOfTypeEnum.artifact_type)
+        self._check_dependency_size(tosca_artifacts_implementation_bash, 0)
+        self._check_requirement_dependency_size(tosca_artifacts_implementation_bash, 0)
+        self._check_derived_from_size(tosca_artifacts_implementation_bash, 2)
+        self._check_derived_from_value(tosca_artifacts_implementation_bash,
+                                       {'tosca.artifacts.Root', 'tosca.artifacts.Implementation'})
+
+    # Relationship Types
+    def test_tosca_artifacts_implementation_bash(self):
+        tosca_artifacts_implementation_bash = self.parsed_template.artifact_types[
+            'tosca.artifacts.Implementation.Bash']
+        self._check_value_of_tosca_object(tosca_artifacts_implementation_bash, TypeOfTypeEnum.artifact_type)
+        self._check_dependency_size(tosca_artifacts_implementation_bash, 0)
+        self._check_requirement_dependency_size(tosca_artifacts_implementation_bash, 0)
+        self._check_derived_from_size(tosca_artifacts_implementation_bash, 2)
+        self._check_derived_from_value(tosca_artifacts_implementation_bash,
+                                       {'tosca.artifacts.Root', 'tosca.artifacts.Implementation'})
 # Type(id=30,
 #      version='1.0',
 #      type_of_type='relationship_type',

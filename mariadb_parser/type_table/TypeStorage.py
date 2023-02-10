@@ -76,6 +76,7 @@ class ArtifactType(TOSCAType):
     """
     Artifact Type Class storage parsed data of Artifact Type from yaml file.
     """
+
     def __init__(self, identifier: int, name: str, data: dict, version: str):
         """
         :param identifier:     identifier storage id of Artifact Type in SQL database
@@ -116,6 +117,8 @@ class NodeType(TOSCAType):
         if version is None:
             version = '1.0'
         super().__init__(identifier, name, data, 'node_type', version=version)
+        self.set_of_node_dependency = set()
+        self.set_of_node_requirement = set()
 
 
 class GroupType(TOSCAType):
@@ -252,6 +255,27 @@ class TypeStorage:
         # self.union_dependencies(self.relationship_types)
         # self.union_dependencies(self.node_types)
         self.union_dependencies()
+        self.union_dependencies_of_node_types()
+
+    def union_dependencies_of_node_types(self):
+        for node_type in self.node_types.values():
+            for dependency_node in node_type.set_of_node_dependency:
+                for dependency_name, dependency_set in dependency_node.dependencies.items():
+                    if dependency_set != set():
+                        node_type.dependencies[dependency_name].update(dependency_set)
+                for requirement_name, requirement_set in dependency_node.requirements.items():
+                    if requirement_set != set():
+                        node_type.dependencies[requirement_name].update(requirement_set)
+            for requirement_node in node_type.set_of_node_requirement:
+                for dependency_name, dependency_set in requirement_node.dependencies.items():
+                    if dependency_set != set():
+                        node_type.dependencies[dependency_name].update(dependency_set)
+                for requirement_name, requirement_set in requirement_node.requirements.items():
+                    if requirement_set != set():
+                        if requirement_node.name in node_type.derived_from:
+                            node_type.requirements[requirement_name].update(requirement_set)
+                        else:
+                            node_type.dependencies[requirement_name].update(requirement_set)
 
     def recursive_union_dependencies(self, recipient_type, dependency_type, dependency_names):
         # print(recipient_type.name, dependency_type, dependency_names)
@@ -277,7 +301,7 @@ class TypeStorage:
                 for requirement_type, requirement_names in entity.requirements.items():
                     if requirement_names != set():
                         self.recursive_union_dependencies(entity, requirement_type, requirement_names)
-        recipient_type.dependencies_finished = True
+                entity.dependencies_finished = True
         return
 
     def union_dependencies(self) -> None:
@@ -302,19 +326,30 @@ class TypeStorage:
                         requirement_set.update(type_dict.get(derived_node).requirements.get(requirement_name))
             # union of all dependency
             for name, entity in type_dict.items():
+
                 dependencies: dict = entity.__getattribute__('dependencies')
                 requirements: dict = entity.__getattribute__('requirements')
                 if len(dict(filter(lambda elem: len(elem[1]) != 0, dependencies.items()))) == 0 and \
                         len(dict(filter(lambda elem: len(elem[1]) != 0, requirements.items()))) == 0:
                     entity.dependencies_finished = True
                 else:
+                    # if name == 'tosca.nodes.Root':
+                    #     print(1)
                     for dependency_type, dependency_names in dependencies.items():
-                        if dependency_names != set():
+                        if dependency_type == 'node_types':
+                            entity: NodeType
+                            for dependency_name in dependency_names:
+                                entity.set_of_node_dependency.add(self.node_types[dependency_name])
+                        elif dependency_names != set():
                             self.recursive_union_dependencies(entity, dependency_type, dependency_names)
                     for requirement_type, requirement_names in requirements.items():
-                        if requirement_names != set():
+                        if requirement_type == 'node_types':
+                            entity: NodeType
+                            for requirement_name in requirement_names:
+                                entity.set_of_node_requirement.add(self.node_types[requirement_name])
+                        elif requirement_names != set():
                             self.recursive_union_dependencies(entity, requirement_type, requirement_names)
-
+                    entity.dependencies_finished = True
         return
 
     @staticmethod
@@ -858,5 +893,3 @@ class TypeStorage:
 # with open("test.yaml", 'r') as stream:
 #     data_loaded = yaml.safe_load(stream)
 #     test = TypeStorage(data_loaded)
-
-

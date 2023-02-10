@@ -260,12 +260,16 @@ class TypeStorage:
         for dependency_name in dependency_names_copy:
             entity = node_dependency_type.get(dependency_name)
             if entity.dependencies_finished:
+                entity: TOSCAType
                 for dependency_name_to_recipient, dependency_set in entity.dependencies.items():
                     if dependency_set != set():
                         recipient_type.dependencies[dependency_name_to_recipient].update(dependency_set)
                 for requirement_name_to_recipient, requirement_set in entity.requirements.items():
                     if requirement_set != set():
                         recipient_type.requirements[requirement_name_to_recipient].update(requirement_set)
+                # todo discuss about this realisation
+                if entity.derived_from != set() and entity.type_of_type != recipient_type.type_of_type:
+                    recipient_type.dependencies[entity.type_of_type + 's'].update(entity.derived_from)
             else:
                 for dependency_type, dependency_names in entity.dependencies.items():
                     if dependency_names != set():
@@ -498,6 +502,8 @@ class TypeStorage:
         :return: dict of str and NodeType
         """
         for name, data in data.items():
+            if name == 'tosca.nodes.Root':
+                print(1)
             derived_from = data.get('derived_from')
             version = data.get('version')
             node_type = NodeType(self.type_identifier_generator(), name, data, version)
@@ -568,7 +574,7 @@ class TypeStorage:
                                     node_type.requirements['node_types'].add(requirement_data.get('node'))
                                 relationship = requirement_data.get('relationship')
                                 if type(relationship) == str:
-                                    node_type.dependencies['relationship_types'].add(relationship)
+                                    node_type.requirements['relationship_types'].add(relationship)
                                 else:
                                     if relationship.get('type') is None:
                                         raise f"In relationship in requirement_definition {requirement_name} " \

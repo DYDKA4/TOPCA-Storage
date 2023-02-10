@@ -502,8 +502,6 @@ class TypeStorage:
         :return: dict of str and NodeType
         """
         for name, data in data.items():
-            if name == 'tosca.nodes.Root':
-                print(1)
             derived_from = data.get('derived_from')
             version = data.get('version')
             node_type = NodeType(self.type_identifier_generator(), name, data, version)

@@ -27,7 +27,7 @@ class DataUploader:
         for tosca_type in tosca_types.values():
             tosca_type: TOSCAType
             tosca_type.identifier += max_size
-            print(tosca_type.name, tosca_type.identifier)
+            # print(tosca_type.name, tosca_type.identifier)
             tosca_object = Type(
                 id=tosca_type.identifier,
                 version=tosca_type.version,

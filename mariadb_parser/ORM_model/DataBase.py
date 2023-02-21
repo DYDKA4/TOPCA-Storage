@@ -175,6 +175,7 @@ class Node(Base):
     description = Column(Text)
     metadata = Column(JSON)
     copy = Column(Integer, ForeignKey('node.id', ondelete='CASCADE'))
+    substitute = Column(Integer, ForeignKey('instance_model.id'))
 
 
 class NodeToArtifactStorage(Base):

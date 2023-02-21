@@ -1,7 +1,7 @@
 from sqlalchemy import func
 from sqlalchemy.orm import Session
 
-from mariadb_parser.ORM_model.DataBase import Type, ArtifactDefinition, DependencyTypes
+from mariadb_parser.ORM_model.DataBase import Type, ArtifactStorage, DependencyTypes
 from mariadb_parser.ORM_model.EngineInit import init_engine
 from mariadb_parser.type_table.TypeStorage import TOSCAType, TypeStorage
 from tests.database_tests.yaml_data import test_data
@@ -78,7 +78,7 @@ class DataUploader:
             session.begin()
             try:
                 max_identifier_type = session.query(func.max(Type.id))
-                max_identifier_artifact = session.query(func.max(ArtifactDefinition.id))
+                max_identifier_artifact = session.query(func.max(ArtifactStorage.id))
                 max_identifier_type = max_identifier_type[0][0] if max_identifier_type[0][0] is not None else 0
                 max_identifier_artifact = max_identifier_artifact[0][0] if max_identifier_artifact[0][
                                                                                0] is not None else 0
@@ -90,7 +90,7 @@ class DataUploader:
                 for artifact_definition in type_storage.artifacts.values():
                     artifact_definition.identifier += max_identifier_artifact
                     session.add(
-                        ArtifactDefinition(
+                        ArtifactStorage(
                             artifact_definition.identifier,
                             artifact_definition.name,
                             artifact_definition.get_data_in_json()

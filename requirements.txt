@@ -7,3 +7,5 @@ mariadb==1.1.5.post3
 python-dotenv==0.19.2
 SQLAlchemy==1.4.44
 alembic==1.9.1
+puccini==0.19.1
+ard==0.0.10

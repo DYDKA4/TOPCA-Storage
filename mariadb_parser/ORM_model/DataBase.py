@@ -145,7 +145,7 @@ class InstanceModel(Base):
 
     id = Column(Integer, primary_key=True, nullable=False)
     description = Column(Text)
-    metadata = Column(JSON)
+    metadata_value = Column(JSON)
 
 
 class InterfaceFromNodeTemplate(Base):
@@ -173,7 +173,7 @@ class Node(Base):
     name = Column(String(length=32), nullable=False)
     type_id = Column(Integer, ForeignKey('type.id', ondelete='CASCADE'), nullable=False)
     description = Column(Text)
-    metadata = Column(JSON)
+    metadata_value = Column(JSON)
     copy = Column(Integer, ForeignKey('node.id', ondelete='CASCADE'))
     substitute = Column(Integer, ForeignKey('instance_model.id'))
 
@@ -193,7 +193,7 @@ class Relationship(Base):
     name = Column(String(length=32), nullable=False)
     instance_model_id = Column(Integer, ForeignKey('instance_model.id', ondelete='CASCADE'), nullable=False)
     description = Column(Text)
-    metadata = Column(JSON)
+    metadata_value = Column(JSON)
     copy = Column(Integer, ForeignKey('relationship.id', ondelete='CASCADE'))
     type_id = Column(Integer, ForeignKey('type.id', ondelete='CASCADE'), nullable=False)
 
@@ -235,6 +235,8 @@ class Type(Base):
     type_of_type = Column(Enum(TypeOfTypeEnum), nullable=False)
     type_name = Column(String(length=32), nullable=False)
     data = Column(JSON, nullable=False)
+    path_to_type = Column(String(255), nullable=False)
+
 
 
 class TypeStorageToArtifactStorage(Base):

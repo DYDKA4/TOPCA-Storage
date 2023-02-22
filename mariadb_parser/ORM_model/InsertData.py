@@ -22,7 +22,7 @@ class DataUploader:
                           'node_types']
 
     @staticmethod
-    def __insert_type(tosca_types: dict, session: Session, max_size: int) -> None:
+    def __insert_type(tosca_types: dict, session: Session, max_size: int, path_to_type: str) -> None:
         tosca_objects = []
         for tosca_type in tosca_types.values():
             tosca_type: TOSCAType
@@ -33,7 +33,8 @@ class DataUploader:
                 version=tosca_type.version,
                 type_of_type=tosca_type.type_of_type,
                 type_name=tosca_type.name,
-                data=tosca_type.get_data_in_json())
+                data=tosca_type.get_data_in_json(),
+                path_to_type=path_to_type)
             tosca_objects.append(tosca_object)
         session.bulk_save_objects(tosca_objects)
         return
@@ -73,10 +74,11 @@ class DataUploader:
                             dependency_type='requirement_dependency')
                         session.add(requirement)
 
-    def insert_type_storage(self, type_storage: TypeStorage):
+    def insert_type_storage(self, type_storage: TypeStorage, path_to_type: str):
         with Session(self.engine) as session:
             session.begin()
             try:
+
                 max_identifier_type = session.query(func.max(Type.id))
                 max_identifier_artifact = session.query(func.max(ArtifactStorage.id))
                 max_identifier_type = max_identifier_type[0][0] if max_identifier_type[0][0] is not None else 0
@@ -84,7 +86,7 @@ class DataUploader:
                                                                                0] is not None else 0
                 for type_name in self.type_list:
                     type_dict: dict = type_storage.__getattribute__(type_name)
-                    self.__insert_type(type_dict, session, max_identifier_type)
+                    self.__insert_type(type_dict, session, max_identifier_type, path_to_type)
                     self.__insert_dependency_derived_from(type_dict, session)
 
                 for artifact_definition in type_storage.artifacts.values():
@@ -108,4 +110,4 @@ class DataUploader:
 #     data_loaded = test_data
 #     test = TypeStorage(data_loaded)
 #     loader = DataUploader()
-#     loader.insert_type_storage(test)
+#     loader.insert_type_storage(test, 'test_path')

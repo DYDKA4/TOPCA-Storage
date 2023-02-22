@@ -22,7 +22,7 @@ class TestInsertData:
                           'artifact_types',
                           'relationship_types',
                           'node_types']
-        self.loader.insert_type_storage(self.parsed_template)
+        self.loader.insert_type_storage(self.parsed_template, 'python_test')
 
     def teardown_class(self):
         for tosca_type in self.type_list:

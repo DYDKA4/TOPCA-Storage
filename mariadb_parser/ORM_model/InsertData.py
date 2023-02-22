@@ -1,3 +1,6 @@
+import json
+
+import yaml
 from sqlalchemy import func
 from sqlalchemy.orm import Session
 
@@ -9,9 +12,11 @@ from tests.database_tests.yaml_data import test_data
 
 class DataUploader:
 
-    def __init__(self):
+    def __init__(self, tosca_definitions_version: str, path_to_type: str):
         self.engine = init_engine()
         self.engine.connect()
+        self.path_to_type = path_to_type
+        self.tosca_definitions_version = tosca_definitions_version
         self.type_list = ['data_types',
                           'group_types',
                           'interface_types',
@@ -21,8 +26,7 @@ class DataUploader:
                           'relationship_types',
                           'node_types']
 
-    @staticmethod
-    def __insert_type(tosca_types: dict, session: Session, max_size: int, path_to_type: str) -> None:
+    def __insert_type(self, tosca_types: dict, session: Session, max_size: int) -> None:
         tosca_objects = []
         for tosca_type in tosca_types.values():
             tosca_type: TOSCAType
@@ -34,7 +38,8 @@ class DataUploader:
                 type_of_type=tosca_type.type_of_type,
                 type_name=tosca_type.name,
                 data=tosca_type.get_data_in_json(),
-                path_to_type=path_to_type)
+                path_to_type=self.path_to_type,
+                tosca_definitions_version=self.tosca_definitions_version)
             tosca_objects.append(tosca_object)
         session.bulk_save_objects(tosca_objects)
         return
@@ -74,7 +79,7 @@ class DataUploader:
                             dependency_type='requirement_dependency')
                         session.add(requirement)
 
-    def insert_type_storage(self, type_storage: TypeStorage, path_to_type: str):
+    def insert_type_storage(self, type_storage: TypeStorage):
         with Session(self.engine) as session:
             session.begin()
             try:
@@ -86,7 +91,7 @@ class DataUploader:
                                                                                0] is not None else 0
                 for type_name in self.type_list:
                     type_dict: dict = type_storage.__getattribute__(type_name)
-                    self.__insert_type(type_dict, session, max_identifier_type, path_to_type)
+                    self.__insert_type(type_dict, session, max_identifier_type)
                     self.__insert_dependency_derived_from(type_dict, session)
 
                 for artifact_definition in type_storage.artifacts.values():
@@ -106,8 +111,41 @@ class DataUploader:
                 session.commit()
 
 
+class DataGetter:
+    def __init__(self, path):
+        self.path = path
+        self.engine = init_engine()
+        self.engine.connect()
+        self.result = {'artifact_types': {},
+                       'data_types': {},
+                       'capability_types': {},
+                       'interface_types': {},
+                       'relationship_types': {},
+                       'node_types': {},
+                       'group_types': {},
+                       'policy_types': {}}
+
+    def get_types(self):
+        with Session(self.engine) as session:
+            session.begin()
+            try:
+                for tosca_type in session.query(Type).filter_by(path_to_type=self.path):
+                    # print(tosca_type.type_name, tosca_type.type_of_type._value_, tosca_type.data)
+                    self.result[tosca_type.type_of_type._value_+'s'][tosca_type.type_name] = json.loads(tosca_type.data)
+            except:
+                session.rollback()
+                raise
+            else:
+                session.commit()
+
+
+t = DataGetter('test_path2')
+t.get_types()
+
+print(yaml.dump(t.result, allow_unicode=True))
+
 # with open("../type_table/test.yaml", 'r') as stream:
 #     data_loaded = test_data
 #     test = TypeStorage(data_loaded)
-#     loader = DataUploader()
-#     loader.insert_type_storage(test, 'test_path')
+#     loader = DataUploader('1.3', 'test_path2')
+#     loader.insert_type_storage(test)

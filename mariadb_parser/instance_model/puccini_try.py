@@ -15,3 +15,4 @@ def puccini_parse(path, phases=5):
         raise RuntimeError(res[1].decode())
 
     return yaml.safe_load(res[0])
+

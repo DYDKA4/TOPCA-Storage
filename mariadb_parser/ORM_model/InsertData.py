@@ -130,8 +130,9 @@ class DataGetter:
             session.begin()
             try:
                 for tosca_type in session.query(Type).filter_by(path_to_type=self.path):
-                    # print(tosca_type.type_name, tosca_type.type_of_type._value_, tosca_type.data)
-                    self.result[tosca_type.type_of_type._value_+'s'][tosca_type.type_name] = json.loads(tosca_type.data)
+                    self.result[
+                        tosca_type.type_of_type._value_+'s'][
+                        tosca_type.type_name] = json.loads(tosca_type.data)
             except:
                 session.rollback()
                 raise

@@ -140,13 +140,13 @@ class DataGetter:
                 session.commit()
 
 
-t = DataGetter('test_path2')
-t.get_types()
-
-print(yaml.dump(t.result, allow_unicode=True))
+# t = DataGetter('test_path2')
+# t.get_types()
+#
+# print(yaml.dump(t.result, allow_unicode=True))
 
 # with open("../type_table/test.yaml", 'r') as stream:
 #     data_loaded = test_data
 #     test = TypeStorage(data_loaded)
-#     loader = DataUploader('1.3', 'test_path2')
+#     loader = DataUploader('1.3', 'ust/test')
 #     loader.insert_type_storage(test)

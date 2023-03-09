@@ -24,6 +24,7 @@ class TestInsertData:
                           'node_types']
         self.loader.insert_type_storage(self.parsed_template, 'python_test')
 
+
     def teardown_class(self):
         for tosca_type in self.type_list:
             tosca_type_dict = self.parsed_template.__getattribute__(tosca_type)

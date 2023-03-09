@@ -2,6 +2,8 @@ import json
 
 import yaml
 
+from mariadb_parser.ORM_model.DataGetter import DataGetter
+
 tosca_types = {'string', 'integer', 'float', 'boolean', 'timestamp', 'null', 'version', 'map', 'list', 'range',
                'scalar-unit.size', 'scalar-unit.frequency'}
 
@@ -223,6 +225,7 @@ class TypeStorage:
         self.artifacts: dict[str, ArtifactDefinition]: storage all Artifact Definitions from yaml file
         """
         self.data = data
+        self.imports: list[str] = []
         self.data_types: dict[str, DataType] = {}
         self.artifact_types: dict[str, ArtifactType] = {}
         self.capability_types: dict[str, CapabilityType] = {}
@@ -232,6 +235,43 @@ class TypeStorage:
         self.group_types: dict[str, GroupType] = {}
         self.policy_types: dict[str, PolicyType] = {}
         self.artifacts: dict[str, ArtifactDefinition] = {}
+        if data.get('imports'):
+            self.imports = data.get('imports')
+            for import_tosca in self.imports:
+                imported_tosca = DataGetter(import_tosca)
+                imported_tosca.get_types()
+                if data.get('data_types'):
+                    data.get('data_types').update(imported_tosca.result['data_types'])
+                else:
+                    data['data_types'] = imported_tosca.result['data_types']
+                if data.get('capability_types'):
+                    data.get('capability_types').update(imported_tosca.result['capability_types'])
+                else:
+                    data['capability_types'] = imported_tosca.result['capability_types']
+                if data.get('artifact_types'):
+                    data.get('artifact_types').update(imported_tosca.result['artifact_types'])
+                else:
+                    data['artifact_types'] = imported_tosca.result['artifact_types']
+                if data.get('interface_types'):
+                    data.get('interface_types').update(imported_tosca.result['interface_types'])
+                else:
+                    data['interface_types'] = imported_tosca.result['interface_types']
+                if data.get('relationship_types'):
+                    data.get('relationship_types').update(imported_tosca.result['relationship_types'])
+                else:
+                    data['relationship_types'] = imported_tosca.result['relationship_types']
+                if data.get('node_types'):
+                    data.get('node_types').update(imported_tosca.result['node_types'])
+                else:
+                    data['node_types'] = imported_tosca.result['node_types']
+                if data.get('group_types'):
+                    data.get('group_types').update(imported_tosca.result['group_types'])
+                else:
+                    data['group_types'] = imported_tosca.result['group_types']
+                if data.get('policy_types'):
+                    data.get('policy_types').update(imported_tosca.result['policy_types'])
+                else:
+                    data['policy_types'] = imported_tosca.result['policy_types']
         if data.get('data_types'):
             self.prepare_data_types(data.get('data_types'))
             self.derived_from_constructor(self.data_types)
@@ -256,14 +296,6 @@ class TypeStorage:
         if data.get('policy_types'):
             self.prepare_policy_types(data.get('policy_types'))
             self.derived_from_constructor(self.policy_types)
-        # self.union_dependencies(self.data_types)
-        # self.union_dependencies(self.group_types)
-        # self.union_dependencies(self.interface_types)
-        # self.union_dependencies(self.capability_types)
-        # self.union_dependencies(self.policy_types)
-        # self.union_dependencies(self.artifact_types)
-        # self.union_dependencies(self.relationship_types)
-        # self.union_dependencies(self.node_types)
         self.union_dependencies()
         self.union_dependencies_of_node_types()
 

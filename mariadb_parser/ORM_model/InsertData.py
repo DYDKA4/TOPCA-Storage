@@ -111,40 +111,14 @@ class DataUploader:
                 session.commit()
 
 
-class DataGetter:
-    def __init__(self, path):
-        self.path = path
-        self.engine = init_engine()
-        self.engine.connect()
-        self.result = {'artifact_types': {},
-                       'data_types': {},
-                       'capability_types': {},
-                       'interface_types': {},
-                       'relationship_types': {},
-                       'node_types': {},
-                       'group_types': {},
-                       'policy_types': {}}
 
-    def get_types(self):
-        with Session(self.engine) as session:
-            session.begin()
-            try:
-                for tosca_type in session.query(Type).filter_by(path_to_type=self.path):
-                    self.result[
-                        tosca_type.type_of_type._value_+'s'][
-                        tosca_type.type_name] = json.loads(tosca_type.data)
-            except:
-                session.rollback()
-                raise
-            else:
-                session.commit()
 
 
 # t = DataGetter('test_path2')
 # t.get_types()
 #
 # print(yaml.dump(t.result, allow_unicode=True))
-
+#
 # with open("../type_table/test.yaml", 'r') as stream:
 #     data_loaded = test_data
 #     test = TypeStorage(data_loaded)

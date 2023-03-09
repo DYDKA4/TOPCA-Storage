@@ -1,6 +1,7 @@
-# from __future__ import annotations
+from __future__ import annotations
 from typing import Any, Match, Union
-from pydantic import BaseModel, constr
+from pydantic import BaseModel, constr, conlist
+from collections import OrderedDict
 import re
 
 
@@ -27,8 +28,8 @@ class SchemaDefinition(BaseModel):
     description: str | None = None
     constraints: list[Any] | None = None
 
-    key_schema: 'SchemaDefinition'  # NOTE UPDATE LATER
-    entry_schema: 'SchemaDefinition'  # NOTE UPDATE LATER
+    key_schema: SchemaDefinition | None = None
+    entry_schema: SchemaDefinition | None = None
 
 
 class PropertyDefinition(BaseModel):
@@ -44,7 +45,7 @@ class PropertyDefinition(BaseModel):
 
 
 class ArtifactType(BaseModel):
-    derived_from: str
+    derived_from: str | None = None
     version: constr(regex=r"^[0-9]+\.[0-9]+(\.[0-9]+(\.[a-zA-Z]+(-[0-9]+)?)?)?$") | None = None
     metadata: dict[str, str] | None = None
     description: str | None = None
@@ -54,7 +55,7 @@ class ArtifactType(BaseModel):
 
 
 class DataType(BaseModel):
-    derived_from: str
+    derived_from: str | None = None
     version: constr(regex=r"^[0-9]+\.[0-9]+(\.[0-9]+(\.[a-zA-Z]+(-[0-9]+)?)?)?$") | None = None
     metadata: dict[str, str] | None = None
     description: str | None = None
@@ -74,7 +75,7 @@ class AttributeDefinition(BaseModel):
 
 
 class CapabilityType(BaseModel):
-    derived_from: str
+    derived_from: str | None = None
     version: constr(regex=r"^[0-9]+\.[0-9]+(\.[0-9]+(\.[a-zA-Z]+(-[0-9]+)?)?)?$") | None = None
     metadata: dict[str, str] | None = None
     description: str | None = None
@@ -122,7 +123,7 @@ class OperationDefinition(BaseModel):
 
 
 class InterfaceType(BaseModel):
-    derived_from: str
+    derived_from: str | None = None
     version: constr(regex=r"^[0-9]+\.[0-9]+(\.[0-9]+(\.[a-zA-Z]+(-[0-9]+)?)?)?$") | None = None
     metadata: dict[str, str] | None = None
     description: str | None = None
@@ -134,12 +135,12 @@ class InterfaceType(BaseModel):
 class InterfaceDefinition(BaseModel):
     type: str
     description: str | None = None
-    inputs: dict[str, Union[ParameterDefinition, Any]]
-    operations: dict[str, Union[OperationDefinition, str]]
+    inputs: dict[str, Union[ParameterDefinition, Any]] | None = None
+    operations: dict[str, Union[OperationDefinition, str]] | None = None
 
 
 class RelationshipType(BaseModel):
-    derived_from: str
+    derived_from: str | None = None
     version: constr(regex=r"^[0-9]+\.[0-9]+(\.[0-9]+(\.[a-zA-Z]+(-[0-9]+)?)?)?$") | None = None
     metadata: dict[str, str] | None = None
     description: str | None = None
@@ -155,7 +156,7 @@ class RequirementDefinition(BaseModel):
     node: str | None = None
     relationship: str | None = None
     # node_filter NS
-    occurrences: constr(regex=r"^\[(\d+|UNBOUNDED),(\d+|UNBOUNDED)\]$")
+    occurrences: conlist(constr(regex=r"^(\d+|UNBOUNDED)$"), min_items=2, max_items=2) | None = None
 
 
 class CapabilityDefinition(BaseModel):
@@ -164,17 +165,17 @@ class CapabilityDefinition(BaseModel):
     properties: dict[str, PropertyDefinition] | None = None
     attributes: dict[str, AttributeDefinition] | None = None
     valid_source_types: list[str] | None = None
-    occurrences: constr(regex=r"^\[(\d+|UNBOUNDED),(\d+|UNBOUNDED)\]$")
+    occurrences: conlist(constr(regex=r"^(\d+|UNBOUNDED)$"), min_items=2, max_items=2) | None = None
 
 
 class NodeType(BaseModel):
-    derived_from: str
+    derived_from: str | None = None
     version: constr(regex=r"^[0-9]+\.[0-9]+(\.[0-9]+(\.[a-zA-Z]+(-[0-9]+)?)?)?$") | None = None
     metadata: dict[str, str] | None = None
     description: str | None = None
     attributes: dict[str, AttributeDefinition] | None = None
     properties: dict[str, PropertyDefinition] | None = None
-    requirements: list[RequirementDefinition] | None = None
+    requirements: list[dict[str, RequirementDefinition]] | None = None
     capabilities: dict[str, Union[CapabilityDefinition, str]] | None = None
     interfaces: dict[str, InterfaceDefinition] | None = None
     artifacts: dict[str, ArtifactDefinition] | None = None
@@ -209,13 +210,13 @@ class RequirementAssignment(BaseModel):
     node: str | None = None
     relationship: str | RequirementAssignmentRelationship | None = None
     # node_filter NS
-    occurrences: constr(regex=r"^\[(\d+|UNBOUNDED),(\d+|UNBOUNDED)\]$") | None = None
+    occurrences: conlist(constr(regex=r"^(\d+|UNBOUNDED)$"), min_items=2, max_items=2) | None = None
 
 
 class CapabilityAssignment(BaseModel):
     properties: dict[str, Any] | None = None
     attributes: dict[str, Union[AttributeAssignment, Any]] | None = None
-    occurrences: constr(regex=r"^\[(\d+|UNBOUNDED),(\d+|UNBOUNDED)\]$") | None = None
+    occurrences: conlist(constr(regex=r"^(\d+|UNBOUNDED)$"), min_items=2, max_items=2) | None = None
 
 
 class NodeTemplate(BaseModel):

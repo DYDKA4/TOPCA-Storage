@@ -237,7 +237,7 @@ class Type(Base):
     type_name = Column(String(length=32), nullable=False)
     data = Column(JSON, nullable=False)
     path_to_type = Column(String(length=255), nullable=False)
-    tosca_definitions_version = Column(String(length=10), nullable=False)
+    tosca_definitions_version = Column(String(length=32), nullable=False)
 
 
 

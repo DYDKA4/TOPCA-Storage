@@ -22,7 +22,7 @@ class TOSCAType:
         :param type_of_type: represents type of object in TOSCA classification
         :param version: represents version of this type
         """
-        self.identifier = str(uuid.uuid4()).encode("utf-8")
+        self.identifier = str(uuid.uuid4())
         self.name = name
         self.type_of_type: str = type_of_type
         self.version: str = version
@@ -192,7 +192,7 @@ class ArtifactDefinition:
         self.name = name
         self.data = data
         self.father_node = father_node
-        self.identifier = str(uuid.uuid4()).encode("utf-8")
+        self.identifier = str(uuid.uuid4())
 
     def get_data_in_json(self):
         return json.dumps(self.data)

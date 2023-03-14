@@ -1,6 +1,6 @@
 import enum
 
-from sqlalchemy import Column, Integer, String, JSON, Enum, ForeignKey, Index, Text
+from sqlalchemy import Column, Integer, String, JSON, Enum, ForeignKey, Index, Text, Boolean
 from sqlalchemy.ext.declarative import declarative_base
 
 from mariadb_parser.ORM_model.EngineInit import init_engine
@@ -131,6 +131,11 @@ class InputAndOutputFromInstanceModel(Base):
     instance_model_id = Column(Integer, ForeignKey("instance_model.id", ondelete='CASCADE'), nullable=False)
     type = Column(Enum(InputAndOutput), nullable=False)
     value_storage_id = Column(Integer, ForeignKey("value_storage.id", ondelete='CASCADE'), nullable=False)
+    mapping = Column(JSON)
+    required = Column(Boolean)
+    default = Column(JSON)
+    key_schema = Column(JSON)
+    entry_schema = Column(JSON)
 
 
 class InputFromInterfaceInNode(Base):

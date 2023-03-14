@@ -187,14 +187,14 @@ class AttributeAssignment(BaseModel):
 
 
 class OperationAssignment(BaseModel):
-    implementation: OperationImplementationDefinition | None = None
+    implementation: Union[OperationImplementationDefinition, str] | None = None
     inputs: dict[str, Any] | None = None
     # outputs NS
 
 
 class InterfaceAssignment(BaseModel):
     inputs: dict[str, Any] | None = None
-    operations: dict[str, OperationAssignment] | None = None
+    operations: dict[str, Union[OperationAssignment, str]] | None = None
     # notifications: NS
 
 
@@ -226,7 +226,7 @@ class NodeTemplate(BaseModel):
     # directives NS | None = None
     properties: dict[str, Any] | None = None
     attributes: dict[str, Union[AttributeAssignment, Any]] | None = None
-    requirements: list[RequirementAssignment] | None = None
+    requirements: list[dict[str, Union[RequirementAssignment, str]]] | None = None
     capabilities: dict[str, CapabilityAssignment] | None = None
     interfaces: dict[str, InterfaceAssignment] | None = None
     artifacts: dict[str, ArtifactDefinition] | None = None

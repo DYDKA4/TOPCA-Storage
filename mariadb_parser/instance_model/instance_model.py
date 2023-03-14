@@ -1,12 +1,19 @@
 import json
+import uuid
 from typing import Union
+
+
+# import yaml
+#
+# from mariadb_parser.instance_model.parse_puccini import TopologyTemplateInstance
+# from mariadb_parser.instance_model.puccini_try import puccini_parse
 
 
 class ToscaTemplateObject:
 
     def __init__(self, name: str):
         self.name = name
-        self.database_id: int
+        self.database_id: str = str(uuid.uuid4())
 
 
 class ParameterDefinition(ToscaTemplateObject):
@@ -106,9 +113,9 @@ class Requirement(ToscaTemplateObject):
         self.relationship: Relationship
 
 
-class Relationship:
-    def __init__(self, requirement: Requirement):
-        self.database_id: int
+class Relationship(ToscaTemplateObject):
+    def __init__(self, requirement: Requirement, name=None):
+        super().__init__(name)
         self.requirement: Requirement = requirement
         self.attributes: dict[str, AttributeAndPropertyFromRelationship] = {}
         self.properties: dict[str, AttributeAndPropertyFromRelationship] = {}
@@ -150,7 +157,8 @@ class RelationshipInterfaceOperationInputOutputs(ToscaTemplateObject):
 class ValueStorage:
 
     def __init__(self, data: Union[str, dict]):
-        self.database_id: int
+        self.database_id: str = str(uuid.uuid4())
+
         self.data: Union[str, dict] = data
 
     def get_data_in_json(self):
@@ -160,11 +168,11 @@ class ValueStorage:
 class InstanceModel:
 
     def __init__(self, data: dict):
-        self.database_id: int
+        self.database_id: str = str(uuid.uuid4())
         self.description: str = data.get('description')
         self.inputs: dict[str, ParameterDefinition] = {}
         self.value_storage: list[ValueStorage] = []
-        self.node_templates: dict[str, NodeTemplate]
+        self.node_templates: dict[str, NodeTemplate] = {}
 
         if data.get('inputs'):
             for name, value in data.get('inputs').items():
@@ -177,7 +185,7 @@ class InstanceModel:
         if data.get('nodes'):
             for name, node_value in data.get('nodes').items():
                 node_template = NodeTemplate(name)
-
+                self.node_templates[name] = node_template
                 if node_value.get('attributes'):
                     for attribute_name, attribute_value in node_value.get('attributes').items():
                         attribute = AttributeAndPropertyFromNode(attribute_name, "attribute")
@@ -221,7 +229,7 @@ class InstanceModel:
                         interface.node = node_template
                         node_template.interfaces[interface_name] = interface
                         if interface_value.get('operations'):
-                            for operation_name, operation_value in interface_value.get('operations'):
+                            for operation_name, operation_value in interface_value.get('operations').items():
                                 operation = NodeInterfaceOperation(operation_name)
                                 operation.interface = interface
                                 interface.operations[operation_name] = operation
@@ -248,62 +256,75 @@ class InstanceModel:
                 if node_value.get('metadata'):
                     node_template.metadata_value = node_value.get('metadata')
                 if node_value.get('requirements'):
-                    for requirement_name, requirement_value in node_value.get('requirement'):
-                        requirement = Requirement(requirement_name, node_template)
-                        if requirement_value.get('capability'):
-                            requirement.capability = requirement_value.get('capability')
-                        if requirement_value.get('node'):
-                            requirement.node = requirement_value.get('node')
-                        node_template.requirements.append(requirement)
-                        if requirement_value.get('relationship'):
-                            relationship = Relationship(requirement)
-                            relationship_value = requirement_value.get('relationship')
-                            requirement.relationship = relationship
+                    for requirement_element in node_value.get('requirements'):
+                        for requirement_name, requirement_value in requirement_element.items():
+                            requirement = Requirement(requirement_name, node_template)
+                            if requirement_value.get('capability'):
+                                requirement.capability = requirement_value.get('capability')
+                            if requirement_value.get('node'):
+                                requirement.node = requirement_value.get('node')
+                            node_template.requirements.append(requirement)
+                            if requirement_value.get('relationship'):
+                                relationship = Relationship(requirement)
+                                relationship_value = requirement_value.get('relationship')
+                                requirement.relationship = relationship
 
-                            if relationship_value.get('attributes'):
-                                for attribute_name, attribute_value in relationship_value.value('attributes'):
-                                    attribute = AttributeAndPropertyFromRelationship(attribute_name,
-                                                                                     relationship,
-                                                                                     "attribute")
-                                    value_object = ValueStorage(attribute_value)
-                                    attribute.value_storage = value_object
-                                    relationship.attributes[attribute_name] = attribute
-                                    self.value_storage.append(value_object)
-                            if relationship_value.get('properties'):
-                                for property_name, property_value in relationship_value.value('properties'):
-                                    property_object = AttributeAndPropertyFromRelationship(property_name,
-                                                                                           relationship,
-                                                                                           "property")
-                                    value_object = ValueStorage(property_value)
-                                    property_object.value_storage = value_object
-                                    relationship.properties[property_name] = property_object
-                                    self.value_storage.append(value_object)
-                            if requirement_value.get('interfaces'):
+                                if relationship_value.get('attributes'):
+                                    for attribute_name, attribute_value in relationship_value.get('attributes').items():
+                                        attribute = AttributeAndPropertyFromRelationship(attribute_name,
+                                                                                         relationship,
+                                                                                         "attribute")
+                                        value_object = ValueStorage(attribute_value)
+                                        attribute.value_storage = value_object
+                                        relationship.attributes[attribute_name] = attribute
+                                        self.value_storage.append(value_object)
+                                if relationship_value.get('properties'):
+                                    for property_name, property_value in relationship_value.get('properties').items():
+                                        property_object = AttributeAndPropertyFromRelationship(property_name,
+                                                                                               relationship,
+                                                                                               "property")
+                                        value_object = ValueStorage(property_value)
+                                        property_object.value_storage = value_object
+                                        relationship.properties[property_name] = property_object
+                                        self.value_storage.append(value_object)
+                                if requirement_value.get('interfaces'):
 
-                                for interface_name, interface_value in requirement_value.get('interfaces').items():
-                                    interface = RelationshipInterface(interface_name, relationship)
-                                    interface.node = node_template
-                                    relationship.interfaces[interface_name] = interface
+                                    for interface_name, interface_value in requirement_value.get('interfaces').items():
+                                        interface = RelationshipInterface(interface_name, relationship)
+                                        interface.node = node_template
+                                        relationship.interfaces[interface_name] = interface
 
-                                    if interface_value.get('operations'):
-                                        for operation_name, operation_value in interface_value.get('operations'):
-                                            operation = RelationshipInterfaceOperation(operation_name, interface)
-                                            interface.operations[operation_name] = operation
-                                            if operation_value.get('implementation'):
-                                                operation.implementation = operation_value.get('implementation')
-                                            if operation_value.get('inputs'):
-                                                for input_name, input_value in data.get('inputs').items():
-                                                    input_assignments = RelationshipInterfaceOperationInputOutputs(
-                                                        input_name, 'input', operation)
-                                                    value_object = ValueStorage(input_value)
-                                                    input_assignments.value_storage = value_object
-                                                    self.value_storage.append(value_object)
-                                                    operation.inputs[input_name] = input_assignments
-                                            if operation_value.get('outputs'):
-                                                for output_name, output_value in data.get('outputs').items():
-                                                    output_assignments = RelationshipInterfaceOperationInputOutputs(
-                                                        output_name, 'output', operation)
-                                                    value_object = ValueStorage(output_value)
-                                                    output_assignments.value_storage = value_object
-                                                    self.value_storage.append(value_object)
-                                                    operation.outputs[output_name] = output_assignments
+                                        if interface_value.get('operations'):
+                                            for operation_name, operation_value in interface_value.get('operations'):
+                                                operation = RelationshipInterfaceOperation(operation_name, interface)
+                                                interface.operations[operation_name] = operation
+                                                if operation_value.get('implementation'):
+                                                    operation.implementation = operation_value.get('implementation')
+                                                if operation_value.get('inputs'):
+                                                    for input_name, input_value in data.get('inputs').items():
+                                                        input_assignments = RelationshipInterfaceOperationInputOutputs(
+                                                            input_name, 'input', operation)
+                                                        value_object = ValueStorage(input_value)
+                                                        input_assignments.value_storage = value_object
+                                                        self.value_storage.append(value_object)
+                                                        operation.inputs[input_name] = input_assignments
+                                                if operation_value.get('outputs'):
+                                                    for output_name, output_value in data.get('outputs').items():
+                                                        output_assignments = RelationshipInterfaceOperationInputOutputs(
+                                                            output_name, 'output', operation)
+                                                        value_object = ValueStorage(output_value)
+                                                        output_assignments.value_storage = value_object
+                                                        self.value_storage.append(value_object)
+                                                        operation.outputs[output_name] = output_assignments
+
+# with open("template.yaml", 'r') as stream:
+#     data = yaml.safe_load(stream)
+#     topology = puccini_parse(str(data).encode("utf-8"))
+#     # topology = InstanceModel("None", topology)
+#     topology = TopologyTemplateInstance("None", topology)
+#     data = InstanceModel(topology.render())
+#     data
+#     # data_loaded = test_data
+#     # test = TypeStorage(data_loaded)
+#     # loader = DataUploader('1.3', 'ust/test')
+#     # loader.insert_type_storage(test)

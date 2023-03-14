@@ -1,4 +1,4 @@
-import json
+# import json
 
 import yaml
 from sqlalchemy import func
@@ -6,8 +6,13 @@ from sqlalchemy.orm import Session
 
 from mariadb_parser.ORM_model.DataBase import Type, ArtifactStorage, DependencyTypes
 from mariadb_parser.ORM_model.EngineInit import init_engine
+from mariadb_parser.instance_model.instance_model import InstanceModel
+from mariadb_parser.instance_model.parse_puccini import TopologyTemplateInstance
+from mariadb_parser.instance_model.puccini_try import puccini_parse
 from mariadb_parser.type_table.TypeStorage import TOSCAType, TypeStorage
-from tests.database_tests.yaml_data import test_data
+
+
+# from tests.database_tests.yaml_data import test_data
 
 
 class DataUploader:
@@ -26,12 +31,11 @@ class DataUploader:
                           'relationship_types',
                           'node_types']
 
-    def __insert_type(self, tosca_types: dict, session: Session, max_size: int) -> None:
+    def __insert_type(self, tosca_types: dict, session: Session) -> None:
         tosca_objects = []
         for tosca_type in tosca_types.values():
+            print(len(tosca_type.identifier))
             tosca_type: TOSCAType
-            tosca_type.identifier += max_size
-            # print(tosca_type.name, tosca_type.identifier)
             tosca_object = Type(
                 id=tosca_type.identifier,
                 version=tosca_type.version,
@@ -84,18 +88,12 @@ class DataUploader:
             session.begin()
             try:
 
-                max_identifier_type = session.query(func.max(Type.id))
-                max_identifier_artifact = session.query(func.max(ArtifactStorage.id))
-                max_identifier_type = max_identifier_type[0][0] if max_identifier_type[0][0] is not None else 0
-                max_identifier_artifact = max_identifier_artifact[0][0] if max_identifier_artifact[0][
-                                                                               0] is not None else 0
                 for type_name in self.type_list:
                     type_dict: dict = type_storage.__getattribute__(type_name)
-                    self.__insert_type(type_dict, session, max_identifier_type)
+                    self.__insert_type(type_dict, session)
                     self.__insert_dependency_derived_from(type_dict, session)
 
                 for artifact_definition in type_storage.artifacts.values():
-                    artifact_definition.identifier += max_identifier_artifact
                     session.add(
                         ArtifactStorage(
                             artifact_definition.identifier,
@@ -111,16 +109,32 @@ class DataUploader:
                 session.commit()
 
 
+class InstanceModelUploader:
+    def __init__(self, instance_model: InstanceModel):
+        self.engine = init_engine()
+        self.engine.connect()
+        self.instance_model = instance_model
+
+        def insert_instance_model():
+            with Session(self.engine) as session:
+                session.begin()
+                try:
+                    print('try')
+                except:
+                    session.rollback()
+                    raise
+                else:
+                    session.commit()
 
 
-
-# t = DataGetter('test_path2')
-# t.get_types()
-#
-# print(yaml.dump(t.result, allow_unicode=True))
-#
-# with open("../type_table/test.yaml", 'r') as stream:
-#     data_loaded = test_data
-#     test = TypeStorage(data_loaded)
-#     loader = DataUploader('1.3', 'ust/test')
-#     loader.insert_type_storage(test)
+# with open("../instance_model/template.yaml", 'r') as stream:
+#     data = yaml.safe_load(stream)
+#     topology = puccini_parse(str(data).encode("utf-8"))
+#     # topology = InstanceModel("None", topology)
+#     topology = TopologyTemplateInstance("None", topology)
+#     data = InstanceModel(topology.render())
+#     data
+#     # data_loaded = test_data
+#     # test = TypeStorage(data_loaded)
+#     # loader = DataUploader('1.3', 'ust/test')
+#     # loader.insert_type_storage(test)

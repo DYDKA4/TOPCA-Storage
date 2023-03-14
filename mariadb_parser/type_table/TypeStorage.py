@@ -1,6 +1,7 @@
 import json
+import uuid
 
-import yaml
+# import yaml
 
 from mariadb_parser.ORM_model.DataGetter import DataGetter
 
@@ -13,16 +14,15 @@ class TOSCAType:
     This is abstract class which represents all types of OASIS TOSCA standard
     """
 
-    def __init__(self, identifier: int, name: str, data: dict, type_of_type: str, version: str = None):
+    def __init__(self, name: str, data: dict, type_of_type: str, version: str = None):
         """
         Default object which represent all of TOSCA TYPES
-        :param identifier: identifier in database
         :param name: name of type
         :param data: raw data which was extracted from yaml dict
         :param type_of_type: represents type of object in TOSCA classification
         :param version: represents version of this type
         """
-        self.identifier = identifier
+        self.identifier = str(uuid.uuid4()).encode("utf-8")
         self.name = name
         self.type_of_type: str = type_of_type
         self.version: str = version
@@ -66,14 +66,14 @@ class TOSCAType:
                 self.dependencies[name].remove(value_to_pop)
                 return
 
+
 class DataType(TOSCAType):
     """
     Data Type Class storage parsed data of Data Type from yaml file.
     """
 
-    def __init__(self, identifier: int, name: str, data: dict, version: str):
+    def __init__(self, name: str, data: dict, version: str):
         """
-        :param identifier:     identifier storage id of Data Type in SQL database
         :param name:     name storage name of Data Type from yaml file
         :param data:        data storage parsed dict of Data Type
         :param version:  version storage version of Data Type, by default it set to 1.0
@@ -81,7 +81,7 @@ class DataType(TOSCAType):
         """
         if version is None:
             version = '1.0'
-        super().__init__(identifier, name, data, 'data_type', version=version)
+        super().__init__(name, data, 'data_type', version=version)
 
 
 class ArtifactType(TOSCAType):
@@ -89,9 +89,8 @@ class ArtifactType(TOSCAType):
     Artifact Type Class storage parsed data of Artifact Type from yaml file.
     """
 
-    def __init__(self, identifier: int, name: str, data: dict, version: str):
+    def __init__(self, name: str, data: dict, version: str):
         """
-        :param identifier:     identifier storage id of Artifact Type in SQL database
         :param name:     name storage name of Artifact Type from yaml file
         :param data:        data storage parsed dict of Data Type
         :param version:  version storage version of Artifact Type, by default it set to 1.0
@@ -99,14 +98,13 @@ class ArtifactType(TOSCAType):
         """
         if version is None:
             version = '1.0'
-        super().__init__(identifier, name, data, 'artifact_type', version=version)
+        super().__init__(name, data, 'artifact_type', version=version)
 
 
 class InterfaceType(TOSCAType):
 
-    def __init__(self, identifier: int, name: str, data: dict, version: str):
+    def __init__(self, name: str, data: dict, version: str):
         """
-        :param identifier:     identifier storage id of Interface Type in SQL database
         :param name:     name storage name of Interface Type from yaml file
         :param data:        data storage parsed dict of Interface Type
         :param version:  version storage version of Interface Type, by default it set to 1.0
@@ -114,13 +112,12 @@ class InterfaceType(TOSCAType):
         """
         if version is None:
             version = '1.0'
-        super().__init__(identifier, name, data, 'interface_type', version=version)
+        super().__init__(name, data, 'interface_type', version=version)
 
 
 class NodeType(TOSCAType):
-    def __init__(self, identifier: int, name: str, data: dict, version: str):
+    def __init__(self, name: str, data: dict, version: str):
         """
-        :param identifier:     identifier storage id of Node Type in SQL database
         :param name:     name storage name of Node Type from yaml file
         :param data:        data storage parsed dict of Node Type
         :param version:  version storage version of Node Type, by default it set to 1.0
@@ -128,15 +125,14 @@ class NodeType(TOSCAType):
         """
         if version is None:
             version = '1.0'
-        super().__init__(identifier, name, data, 'node_type', version=version)
+        super().__init__(name, data, 'node_type', version=version)
         self.set_of_node_dependency = set()
         self.set_of_node_requirement = set()
 
 
 class GroupType(TOSCAType):
-    def __init__(self, identifier: int, name: str, data: dict, version: str):
+    def __init__(self, name: str, data: dict, version: str):
         """
-        :param identifier:     identifier storage id of Group Type in SQL database
         :param name:     name storage name of Group Type from yaml file
         :param data:        data storage parsed dict of Group Type
         :param version:  version storage version of Group Type, by default it set to 1.0
@@ -144,13 +140,12 @@ class GroupType(TOSCAType):
         """
         if version is None:
             version = '1.0'
-        super().__init__(identifier, name, data, 'group_type', version=version)
+        super().__init__(name, data, 'group_type', version=version)
 
 
 class PolicyType(TOSCAType):
-    def __init__(self, identifier: int, name: str, data: dict, version: str):
+    def __init__(self, name: str, data: dict, version: str):
         """
-        :param identifier:     identifier storage id of Policy Type in SQL database
         :param name:     name storage name of Policy Type from yaml file
         :param data:        data storage parsed dict of Policy Type
         :param version:  version storage version of Policy Type, by default it set to 1.0
@@ -158,13 +153,12 @@ class PolicyType(TOSCAType):
         """
         if version is None:
             version = '1.0'
-        super().__init__(identifier, name, data, 'policy_type', version=version)
+        super().__init__(name, data, 'policy_type', version=version)
 
 
 class CapabilityType(TOSCAType):
-    def __init__(self, identifier: int, name: str, data: dict, version: str):
+    def __init__(self, name: str, data: dict, version: str):
         """
-        :param identifier:     identifier storage id of Capability Type in SQL database
         :param name:     name storage name of Capability Type from yaml file
         :param data:        data storage parsed dict of Capability Type
         :param version:  version storage version of Capability Type, by default it set to 1.0
@@ -172,13 +166,12 @@ class CapabilityType(TOSCAType):
         """
         if version is None:
             version = '1.0'
-        super().__init__(identifier, name, data, 'capability_type', version=version)
+        super().__init__(name, data, 'capability_type', version=version)
 
 
 class RelationshipType(TOSCAType):
-    def __init__(self, identifier: int, name: str, data: dict, version: str):
+    def __init__(self, name: str, data: dict, version: str):
         """
-        :param identifier:     identifier storage id of Relationship Type in SQL database
         :param name:     name storage name of Relationship Type from yaml file
         :param data:        data storage parsed dict of Relationship Type
         :param version:  version storage version of Relationship Type, by default it set to 1.0
@@ -186,13 +179,12 @@ class RelationshipType(TOSCAType):
         """
         if version is None:
             version = '1.0'
-        super().__init__(identifier, name, data, 'relationship_type', version=version)
+        super().__init__(name, data, 'relationship_type', version=version)
 
 
 class ArtifactDefinition:
-    def __init__(self, name: str, data: dict, father_node: object, identifier: int):
+    def __init__(self, name: str, data: dict, father_node: object):
         """
-        :param identifier:  identifier storage id of Artifact Definition in SQL database
         :param name: name storage name of Artifact Definition from yaml file
         :param data: data storage parsed dict of Artifact Definition
         :param father_node: storage name of node where this Artifact Definition was declared
@@ -200,7 +192,7 @@ class ArtifactDefinition:
         self.name = name
         self.data = data
         self.father_node = father_node
-        self.identifier = identifier
+        self.identifier = str(uuid.uuid4()).encode("utf-8")
 
     def get_data_in_json(self):
         return json.dumps(self.data)
@@ -350,7 +342,6 @@ class TypeStorage:
         # NOTE may be adding some code of success?
         """
         This method union dependencies of father nodes in child node
-        :param object_dict: of TOSCAType object, all values of dict HAVE TO be same type
         :return: None
         """
 
@@ -435,23 +426,6 @@ class TypeStorage:
                 recursive_finder(entity, set(), object_dict)
         return
 
-    def type_identifier_generator(self) -> int:
-        """
-        This function generate identifier for TOSCAType object
-        :return: identifier of TOSCATypes in SQL database
-        """
-        identifier = len(self.data_types) + len(self.artifact_types) + len(self.capability_types) + \
-                     len(self.interface_types) + len(self.relationship_types) + len(self.node_types) + \
-                     len(self.group_types) + len(self.policy_types) + 1
-        return identifier
-
-    def artifact_identifier_generator(self) -> int:
-        """
-        This function generate identifier for  object
-        :return: identifier of TOSCATypes in SQL database
-        """
-        return len(self.artifacts)
-
     def prepare_data_types(self, data) -> dict[str, DataType]:
         """
         This function make first representation of DataTypes
@@ -462,7 +436,7 @@ class TypeStorage:
         for name, data in data.items():
             derived_from = data.get('derived_from')
             version = data.get('version')
-            data_type = DataType(self.type_identifier_generator(), name, data, version)
+            data_type = DataType(name, data, version)
             data_type.dependencies['data_types'] = data_type.dependencies['data_types'].union(
                 self.check_schema_in_entity(data, data_type.dependencies['data_types']))
             data_type.dependencies['data_types'] = data_type.dependencies['data_types'].union(
@@ -483,7 +457,7 @@ class TypeStorage:
         for name, data in data.items():
             derived_from = data.get('derived_from')
             version = data.get('version')
-            capability_type = CapabilityType(self.type_identifier_generator(), name, data, version)
+            capability_type = CapabilityType(name, data, version)
             capability_type.dependencies['data_types'] = capability_type.dependencies['data_types'].union(
                 self.check_property_in_entity(data, capability_type.dependencies['data_types']))
             capability_type.dependencies['data_types'] = capability_type.dependencies['data_types'].union(
@@ -508,7 +482,7 @@ class TypeStorage:
         for name, data in data.items():
             derived_from = data.get('derived_from')
             version = data.get('version')
-            artifact_type = ArtifactType(self.type_identifier_generator(), name, data, version)
+            artifact_type = ArtifactType(name, data, version)
             artifact_type.dependencies['data_types'] = artifact_type.dependencies['data_types'].union(
                 self.check_property_in_entity(data, artifact_type.dependencies['data_types']))
             if derived_from:
@@ -527,7 +501,7 @@ class TypeStorage:
         for name, data in data.items():
             derived_from = data.get('derived_from')
             version = data.get('version')
-            interface_type = InterfaceType(self.type_identifier_generator(), name, data, version)
+            interface_type = InterfaceType(name, data, version)
             interface_type.dependencies['data_types'] = interface_type.dependencies['data_types'].union(
                 self.check_property_in_entity(data, interface_type.dependencies['data_types']))
             if derived_from:
@@ -546,7 +520,7 @@ class TypeStorage:
         for name, data in data.items():
             derived_from = data.get('derived_from')
             version = data.get('version')
-            relationship_type = RelationshipType(self.type_identifier_generator(), name, data, version)
+            relationship_type = RelationshipType(name, data, version)
             relationship_type.dependencies['data_types'] = relationship_type.dependencies['data_types'].union(
                 self.check_property_in_entity(data, relationship_type.dependencies['data_types'])
             )
@@ -581,7 +555,7 @@ class TypeStorage:
         for name, data in data.items():
             derived_from = data.get('derived_from')
             version = data.get('version')
-            node_type = NodeType(self.type_identifier_generator(), name, data, version)
+            node_type = NodeType(name, data, version)
             node_type.dependencies['data_types'].update(
                 self.check_property_in_entity(data, node_type.dependencies['data_types']))
             node_type.dependencies['data_types'].update(
@@ -616,8 +590,7 @@ class TypeStorage:
             if artifact_definition:
                 for artifact_name, artifact_value in artifact_definition.items():
                     if type(artifact_value) == str:
-                        artifact = ArtifactDefinition(artifact_name, artifact_value, node_type,
-                                                      self.artifact_identifier_generator())
+                        artifact = ArtifactDefinition(artifact_name, artifact_value, node_type)
                         self.artifacts[artifact_name] = artifact
                     else:
                         artifact_type = artifact_value.get('type')
@@ -625,8 +598,7 @@ class TypeStorage:
                             raise f"In artifact definition {artifact_name}, " \
                                   f"in node_type {name} artifact type is missing"
                         node_type.dependencies['artifact_types'].add(artifact_type)
-                        artifact = ArtifactDefinition(artifact_name, artifact_value, node_type,
-                                                      self.artifact_identifier_generator())
+                        artifact = ArtifactDefinition(artifact_name, artifact_value, node_type)
                         self.artifacts[artifact_name] = artifact
             # NOTE REQUIREMENT DEFINITION
             requirement_definitions = data.get('requirements')
@@ -678,7 +650,7 @@ class TypeStorage:
         for name, data in data.items():
             derived_from = data.get('derived_from')
             version = data.get('version')
-            group_type = GroupType(self.type_identifier_generator(), name, data, version)
+            group_type = GroupType(name, data, version)
             group_type.dependencies['data_types'].update(
                 self.check_property_in_entity(data, group_type.dependencies['data_types']))
             group_type.dependencies['data_types'].update(
@@ -701,7 +673,7 @@ class TypeStorage:
         for name, data in data.items():
             derived_from = data.get('derived_from')
             version = data.get('version')
-            policy_type = PolicyType(self.type_identifier_generator(), name, data, version)
+            policy_type = PolicyType(name, data, version)
             policy_type.dependencies['data_types'].update(
                 self.check_property_in_entity(data, policy_type.dependencies['data_types']))
             targets = data.get('targets')
@@ -813,8 +785,7 @@ class TypeStorage:
                                     # TODO make artifact_definition_parser
                                     for artifact_name, artifact_value in primary.items():
                                         artifact_definition = ArtifactDefinition(artifact_name, artifact_value,
-                                                                                 father_node,
-                                                                                 self.artifact_identifier_generator())
+                                                                                 father_node)
                                         if self.artifacts.get(artifact_name):
                                             raise "Such artifacts already exists, name:" + artifact_name
                                         self.artifacts[artifact_name] = artifact_definition
@@ -842,8 +813,7 @@ class TypeStorage:
                                                       "operation_definition, name" + operation_name
                                             for artifact_name, artifact_value in artifact_data:
                                                 artifact_definition = \
-                                                    ArtifactDefinition(artifact_name, artifact_value, father_node,
-                                                                       self.artifact_identifier_generator())
+                                                    ArtifactDefinition(artifact_name, artifact_value, father_node)
                                                 if self.artifacts.get(artifact_name):
                                                     raise f"Such artifacts already exists," \
                                                           f" name:{artifact_name} "

@@ -156,8 +156,8 @@ class Map(ValueInstance):
             return
 
         self.values = dict()
-        for e in definition['$map']:
-            key = e['$key']['$value']
+        for e in primitive:
+            key = e['$key']['$primitive']
             self.values[key] = create_value(node, e['$information']['type'], e)
 
     def render(self):

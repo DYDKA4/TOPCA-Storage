@@ -29,8 +29,8 @@ class TypeOfTypeEnum(enum.Enum):
 
 
 class AttributeAndProperty(enum.Enum):
-    type_attribute = 'attribute'
-    type_property = 'property'
+    attribute = 'attribute'
+    property = 'property'
 
 
 class InputAndOutput(enum.Enum):
@@ -52,7 +52,7 @@ class ArtifactStorage(Base):
         )
 
 
-class Capability(Base):
+class DBCapability(Base):
     __tablename__ = "capability"
 
     id = Column(String(length=36), primary_key=True, nullable=False)
@@ -67,7 +67,7 @@ class Capability(Base):
         )
 
 
-class CapabilityAttributeAndProperty(Base):
+class DBCapabilityAttributeAndProperty(Base):
     __tablename__ = "capability_attribute_and_property"
 
     id = Column(String(length=36), primary_key=True, nullable=False)
@@ -94,12 +94,12 @@ class DependencyTypes(Base):
     Index("type_dependency_types_source_id_index", "source_id")
 
 
-class InstanceModel(Base):
+class DBInstanceModel(Base):
     __tablename__ = "instance_model"
 
     id = Column(String(length=36), primary_key=True, nullable=False)
     description = Column(Text)
-    metadata_value = Column(JSON)
+    metadata_value = Column("metadata", JSON)
 
 
 # class GetFunctions(Base):
@@ -110,7 +110,7 @@ class InstanceModel(Base):
 
 
 class InstanceModelInputAndOutput(Base):
-    __tablename__ = "instance_model_input_and_output_from"
+    __tablename__ = "instance_model_input_and_output"
 
     id = Column(String(length=36), primary_key=True, nullable=False)
     instance_model_id = Column(String(length=36), ForeignKey("instance_model.id", ondelete='CASCADE'), nullable=False)
@@ -127,7 +127,7 @@ class InstanceModelInputAndOutput(Base):
     entry_schema = Column(JSON)
 
 
-class NodeAttributeAndProperty(Base):
+class DBNodeAttributeAndProperty(Base):
     __tablename__ = "node_attribute_and_property"
 
     id = Column(String(length=36), primary_key=True, nullable=False)
@@ -143,7 +143,7 @@ class NodeAttributeAndProperty(Base):
         )
 
 
-class NodeInterface(Base):
+class DBNodeInterface(Base):
     __tablename__ = "node_interface"
 
     id = Column(String(length=36), primary_key=True, nullable=False)
@@ -151,16 +151,16 @@ class NodeInterface(Base):
     name = Column(String(length=255), nullable=False)
 
 
-class NodeInterfaceOperation(Base):
+class DBNodeInterfaceOperation(Base):
     __tablename__ = "node_interface_operation"
 
     id = Column(String(length=36), primary_key=True, nullable=False)
     node_interface_id = Column(String(length=36), ForeignKey('node_interface.id', ondelete='CASCADE'), nullable=False)
     name = Column(String(length=255), nullable=False)
-    implementation = Column(JSON, nullable=False)
+    implementation = Column(String(length=255))
 
 
-class NodeInterfaceOperationInputOutput(Base):
+class DBNodeInterfaceOperationInputOutput(Base):
     __tablename__ = "node_interface_operation_input_output"
 
     id = Column(String(length=36), primary_key=True, nullable=False)
@@ -172,62 +172,62 @@ class NodeInterfaceOperationInputOutput(Base):
     value_storage_id = Column(String(length=36), ForeignKey('value_storage.id', ondelete='CASCADE'), nullable=False)
 
 
-class NodeTemplate(Base):
+class DBNodeTemplate(Base):
     __tablename__ = "node_template"
 
     id = Column(String(length=36), primary_key=True, nullable=False)
     instance_model_id = Column(String(length=36), ForeignKey('instance_model.id', ondelete='CASCADE'), nullable=False)
     name = Column(String(length=255), nullable=False)
-    type_name = Column(String(length=255), nullable=False)
+    type_name = Column(String(length=255), )  # todo nullable=False)
     type_id = Column(String(length=36), ForeignKey('type.id', ondelete='CASCADE'))
     description = Column(Text)
-    metadata_value = Column(JSON)
+    metadata_value = Column("metadata", JSON)
     copy_name = Column(String(length=255))
-    copy_id = Column(String(length=36), ForeignKey('node.id', ondelete='CASCADE'))
+    copy_id = Column(String(length=36), ForeignKey('node_template.id', ondelete='CASCADE'))
     # substitute = Column(String(length=36), ForeignKey('instance_model.id'))
 
 
-class RelationshipsAttributeAndProperty(Base):
-    __tablename__ = 'relationships_property_and_attribute'
+class DBRelationshipsAttributeAndProperty(Base):
+    __tablename__ = 'relationship_attribute_and_property'
 
     id = Column(String(length=36), primary_key=True, nullable=False)
     type = Column(Enum(AttributeAndProperty), nullable=False)
-    relationship_id = Column(String(length=36), ForeignKey('relationship.id', ondelete='CASCADE'), nullable=False)
+    requirement_id = Column(String(length=36), ForeignKey('requirement.id', ondelete='CASCADE'), nullable=False)
     value_storage_id = Column(String(length=36), ForeignKey('value_storage.id', ondelete='CASCADE'), nullable=False)
     name = Column(String(length=255), nullable=False)
 
 
-class RelationshipsInterface(Base):
-    __tablename__ = 'relationships_interface'
+class DBRelationshipInterface(Base):
+    __tablename__ = 'relationship_interface'
 
     id = Column(String(length=36), primary_key=True, nullable=False)
-    relationship_id = Column(String(length=36), ForeignKey('relationship.id', ondelete='CASCADE'), nullable=False)
+    requirement_id = Column(String(length=36), ForeignKey('requirement.id', ondelete='CASCADE'), nullable=False)
     name = Column(String(length=255), nullable=False)
 
 
-class RelationshipsInterfaceOperation(Base):
-    __tablename__ = 'relationships_interface_operation'
+class DBRelationshipInterfaceOperation(Base):
+    __tablename__ = 'relationship_interface_operation'
 
     id = Column(String(length=36), primary_key=True, nullable=False)
-    relationship_id = Column(String(length=36), ForeignKey('relationships_interface.id',
-                                                           ondelete='CASCADE'), nullable=False)
+    relationship_interface_id = Column(String(length=36), ForeignKey('relationship_interface.id',
+                                                                     ondelete='CASCADE'), nullable=False)
     name = Column(String(length=255), nullable=False)
-    implementation = Column(String(length=255), nullable=False)
+    implementation = Column(String(length=255))
 
 
-class RelationshipsInterfaceOperationInputOutput(Base):
+class DBRelationshipInterfaceOperationInputOutput(Base):
     __tablename__ = "relationship_interface_operation_input_output"
 
     id = Column(String(length=36), primary_key=True, nullable=False)
     name = Column(String(length=255), nullable=False)
     operation_id = Column(String(length=36),
-                          ForeignKey('relationships_interface_operation.id', ondelete='CASCADE'),
+                          ForeignKey('relationship_interface_operation.id', ondelete='CASCADE'),
                           nullable=False)
     type = Column(Enum(InputAndOutput), nullable=False)
     value_storage_id = Column(String(length=36), ForeignKey('value_storage.id', ondelete='CASCADE'), nullable=False)
 
 
-class Requirement(Base):
+class DBRequirement(Base):
     __tablename__ = 'requirement'
 
     id = Column(String(length=36), primary_key=True, nullable=False)
@@ -235,7 +235,6 @@ class Requirement(Base):
     node_link = Column(String(length=36), ForeignKey('node_template.id', ondelete='CASCADE'), nullable=False)
     node = Column(String(length=255), nullable=False)
     node_id = Column(String(length=36), ForeignKey('node_template.id', ondelete='CASCADE'), nullable=False)
-    value = Column(JSON)
     capability = Column(String(length=255))
 
 
@@ -261,5 +260,5 @@ class TypeStorageToArtifactStorage(Base):
 class ValueStorage(Base):
     __tablename__ = "value_storage"
 
-    id = Column(Integer, primary_key=True, nullable=False)
-    data = Column(JSON)
+    id = Column(String(length=36), primary_key=True, nullable=False)
+    value = Column(JSON)

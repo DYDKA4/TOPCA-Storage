@@ -18,33 +18,33 @@ class ToscaTemplateObject:
 
 class ParameterDefinition(ToscaTemplateObject):
 
-    def __init__(self, name: str, type_of_parameter):
+    def __init__(self, name: str, type_of_parameter, instance_model: "InstanceModel", value_storage: "ValueStorage"):
         super().__init__(name)
-        self.instance_model: InstanceModel
-        self.type_name: str
-        self.type_link: object
+        self.instance_model: InstanceModel = instance_model
+        self.type_name: str = ""
+        self.type_link: str = ""
         # todo realisation of data_type_linking
-        self.description: str
-        self.required: bool
-        self.default: dict
-        self.key_schema: dict
-        self.entry_schema: dict
+        self.description: str = ""
+        self.required: bool = True
+        self.default: dict = {}
+        self.key_schema: dict = {}
+        self.entry_schema: dict = {}
         self.type_of_parameter: str = type_of_parameter
-        self.value_storage: ValueStorage
-        self.mapping: dict
+        self.value_storage: ValueStorage = value_storage
+        self.mapping: dict = {}
 
 
 class NodeTemplate(ToscaTemplateObject):
 
-    def __init__(self, name: str):
+    def __init__(self, name: str, instance_model: "InstanceModel", type_name: str):
         super().__init__(name)
-        self.instance_model: InstanceModel
-        self.type_name: str
-        self.type_link: object
-        self.description: str
-        self.metadata_value: dict
-        self.copy_name: str
-        self.copy_link: object
+        self.instance_model: InstanceModel = instance_model
+        self.type_name: str = type_name
+        self.type_link: str = ""
+        self.description: str = ""
+        self.metadata_value: dict = {}
+        self.copy_name: str = ""
+        self.copy_link: object = None
         self.properties: dict[str, AttributeAndPropertyFromNode] = {}
         self.attributes: dict[str, AttributeAndPropertyFromNode] = {}
         self.capabilities: dict[str, Capability] = {}
@@ -54,68 +54,72 @@ class NodeTemplate(ToscaTemplateObject):
 
 class AttributeAndPropertyFromNode(ToscaTemplateObject):
 
-    def __init__(self, name: str, type_of_parameter: str):
+    def __init__(self, name: str, type_of_parameter: str, node: NodeTemplate, value_storage: "ValueStorage"):
         super().__init__(name)
-        self.node: NodeTemplate
-        self.value_storage: ValueStorage
+        self.node: NodeTemplate = node
+        self.value_storage: ValueStorage = value_storage
         self.type_of_parameter = type_of_parameter
 
 
 class Capability(ToscaTemplateObject):
 
-    def __init__(self, name: str):
+    def __init__(self, name: str, node: NodeTemplate):
         super().__init__(name)
-        self.node: NodeTemplate
-        self.value: dict
+        self.node: NodeTemplate = node
+        self.value: dict = {}
         self.attributes: dict[str, AttributeAndPropertyFromCapability] = {}
         self.properties: dict[str, AttributeAndPropertyFromCapability] = {}
 
 
 class AttributeAndPropertyFromCapability(ToscaTemplateObject):
-    def __init__(self, name: str, type_of_parameter: str):
+    def __init__(self, name: str, type_of_parameter: str, capability: Capability, value_storage: "ValueStorage"):
         super().__init__(name)
-        self.capability_object: Capability
-        self.value_storage: ValueStorage
+        self.capability_object: Capability = capability
+        self.value_storage: ValueStorage = value_storage
         self.type_of_parameter = type_of_parameter
 
 
 class NodeInterface(ToscaTemplateObject):
-    def __init__(self, name: str):
+    def __init__(self, name: str, node: NodeTemplate):
         super().__init__(name)
-        self.node: NodeTemplate
+        self.node: NodeTemplate = node
         self.operations: dict[str, NodeInterfaceOperation] = {}
 
 
 class NodeInterfaceOperation(ToscaTemplateObject):
-    def __init__(self, name: str):
+    def __init__(self, name: str, interface: NodeInterface, implementation: str):
         super().__init__(name)
-        self.interface: NodeInterface
-        self.implementation: str
+        self.interface: NodeInterface = interface
+        self.implementation: str = implementation
         self.inputs: dict[str, NodeInterfaceOperationInputOutput] = {}
         self.outputs: dict[str, NodeInterfaceOperationInputOutput] = {}
 
 
 class NodeInterfaceOperationInputOutput(ToscaTemplateObject):
-    def __init__(self, name: str, type_of_parameter: str, operation: NodeInterfaceOperation):
+    def __init__(self, name: str,
+                 type_of_parameter: str,
+                 operation: NodeInterfaceOperation,
+                 value_storage: "ValueStorage"):
         super().__init__(name)
         self.operation: NodeInterfaceOperation = operation
         self.type_of_parameter: str = type_of_parameter
-        self.value_storage: ValueStorage
+        self.value_storage: ValueStorage = value_storage
 
 
 class Requirement(ToscaTemplateObject):
-    def __init__(self, name: str, node: NodeTemplate):
+    def __init__(self, name: str, node: NodeTemplate, node_name: str, capability: str):
         super().__init__(name)
-        self.capability: str
+        self.capability: str | None = capability
         self.father_node: NodeTemplate = node
-        self.node: str
-        self.node_link: NodeTemplate
-        self.relationship: Relationship
+        self.node: str | None = node_name
+        self.node_link: NodeTemplate | None = None
+        self.relationship: Relationship | None = None
 
 
 class Relationship(ToscaTemplateObject):
     def __init__(self, requirement: Requirement, name=None):
         super().__init__(name)
+        self.database_id: str = requirement.database_id
         self.requirement: Requirement = requirement
         self.attributes: dict[str, AttributeAndPropertyFromRelationship] = {}
         self.properties: dict[str, AttributeAndPropertyFromRelationship] = {}
@@ -123,10 +127,10 @@ class Relationship(ToscaTemplateObject):
 
 
 class AttributeAndPropertyFromRelationship(ToscaTemplateObject):
-    def __init__(self, name: str, relationship: Relationship, type_of_parameter: str):
+    def __init__(self, name: str, relationship: Relationship, type_of_parameter: str, value_storage: "ValueStorage"):
         super().__init__(name)
         self.relationship: Relationship = relationship
-        self.value_storage: ValueStorage
+        self.value_storage: ValueStorage = value_storage
         self.type_of_parameter = type_of_parameter
 
 
@@ -138,20 +142,21 @@ class RelationshipInterface(ToscaTemplateObject):
 
 
 class RelationshipInterfaceOperation(ToscaTemplateObject):
-    def __init__(self, name: str, interface: RelationshipInterface):
+    def __init__(self, name: str, interface: RelationshipInterface, implementation: str | None):
         super().__init__(name)
         self.interface: RelationshipInterface = interface
-        self.implementation: str
+        self.implementation: str | None = implementation
         self.inputs: dict[str, RelationshipInterfaceOperationInputOutputs] = {}
         self.outputs: dict[str, RelationshipInterfaceOperationInputOutputs] = {}
 
 
 class RelationshipInterfaceOperationInputOutputs(ToscaTemplateObject):
-    def __init__(self, name: str, type_of_parameter: str, operation: RelationshipInterfaceOperation):
+    def __init__(self, name: str, type_of_parameter: str, operation: RelationshipInterfaceOperation,
+                 value_storage: "ValueStorage"):
         super().__init__(name)
         self.operation: RelationshipInterfaceOperation = operation
         self.type_of_parameter: str = type_of_parameter
-        self.value_storage: ValueStorage
+        self.value_storage: ValueStorage = value_storage
 
 
 class ValueStorage:
@@ -173,84 +178,86 @@ class InstanceModel:
         self.inputs: dict[str, ParameterDefinition] = {}
         self.value_storage: list[ValueStorage] = []
         self.node_templates: dict[str, NodeTemplate] = {}
+        self.metadata = {}
 
         if data.get('inputs'):
             for name, value in data.get('inputs').items():
-                input_definition = ParameterDefinition(name, 'input')
-                input_definition.instance_model = self
                 value_object = ValueStorage(value)
+                input_definition = ParameterDefinition(name, 'input', self, value_object)
+                input_definition.instance_model = self
                 input_definition.value_storage = value_object
                 self.value_storage.append(value_object)
                 self.inputs[name] = input_definition
         if data.get('nodes'):
             for name, node_value in data.get('nodes').items():
-                node_template = NodeTemplate(name)
+                node_template = NodeTemplate(name, self, node_value.get('type'))
                 self.node_templates[name] = node_template
                 if node_value.get('attributes'):
                     for attribute_name, attribute_value in node_value.get('attributes').items():
-                        attribute = AttributeAndPropertyFromNode(attribute_name, "attribute")
                         value_object = ValueStorage(attribute_value)
-                        attribute.value_storage = value_object
-                        attribute.node = node_template
+                        attribute = AttributeAndPropertyFromNode(attribute_name,
+                                                                 "attribute",
+                                                                 node_template,
+                                                                 value_object)
                         node_template.attributes[attribute_name] = attribute
                         self.value_storage.append(value_object)
                 if node_value.get('properties'):
                     for property_name, property_value in node_value.get('properties').items():
-                        property_object = AttributeAndPropertyFromNode(property_name, "property")
                         value_object = ValueStorage(property_value)
-                        property_object.value_storage = value_object
-                        property_object.node = node_template
+                        property_object = AttributeAndPropertyFromNode(property_name,
+                                                                       "property",
+                                                                       node_template,
+                                                                       value_object)
                         node_template.properties[property_name] = property_object
                         self.value_storage.append(value_object)
                 if node_value.get('capabilities'):
                     for capability_name, capability_value in node_value.get('capabilities').items():
-                        capability_object = Capability(capability_name)
-                        capability_object.node = node_template
+                        capability_object = Capability(capability_name, node_template)
                         node_template.capabilities[capability_name] = capability_object
                         if capability_value.get('attributes'):
                             for attribute_name, attribute_value in node_value.get('attributes').items():
-                                attribute = AttributeAndPropertyFromCapability(attribute_name, "attribute")
                                 value_object = ValueStorage(attribute_value)
-                                attribute.value_storage = value_object
-                                attribute.capability_object = capability_object
+                                attribute = AttributeAndPropertyFromCapability(attribute_name,
+                                                                               "attribute",
+                                                                               capability_object,
+                                                                               value_object)
                                 capability_object.attributes[attribute_name] = attribute
                                 self.value_storage.append(value_object)
                         if capability_value.get('properties'):
                             for property_name, property_value in node_value.get('properties').items():
-                                property_object = AttributeAndPropertyFromCapability(property_name, "property")
                                 value_object = ValueStorage(property_value)
-                                property_object.value_storage = value_object
-                                property_object.capability_object = capability_object
+                                property_object = AttributeAndPropertyFromCapability(property_name,
+                                                                                     "property",
+                                                                                     capability_object,
+                                                                                     value_object)
                                 capability_object.properties[property_name] = property_object
                                 self.value_storage.append(value_object)
                 if node_value.get('interfaces'):
                     for interface_name, interface_value in node_value.get('interfaces').items():
-                        interface = NodeInterface(interface_name)
-                        interface.node = node_template
+                        interface = NodeInterface(interface_name, node_template)
                         node_template.interfaces[interface_name] = interface
                         if interface_value.get('operations'):
                             for operation_name, operation_value in interface_value.get('operations').items():
-                                operation = NodeInterfaceOperation(operation_name)
-                                operation.interface = interface
+                                operation = NodeInterfaceOperation(operation_name,
+                                                                   interface,
+                                                                   operation_value.get('implementation'))
                                 interface.operations[operation_name] = operation
-                                if operation_value.get('implementation'):
-                                    operation.implementation = operation_value.get('implementation')
                                 if operation_value.get('inputs'):
                                     for input_name, input_value in data.get('inputs').items():
+                                        value_object = ValueStorage(input_value)
                                         input_assignments = NodeInterfaceOperationInputOutput(input_name,
                                                                                               'input',
-                                                                                              operation)
-                                        value_object = ValueStorage(input_value)
-                                        input_assignments.value_storage = value_object
+                                                                                              operation,
+                                                                                              value_object)
                                         self.value_storage.append(value_object)
                                         operation.inputs[input_name] = input_assignments
                                 if operation_value.get('outputs'):
                                     for output_name, output_value in data.get('outputs').items():
+                                        value_object = ValueStorage(output_value)
                                         output_assignments = NodeInterfaceOperationInputOutput(output_name,
                                                                                                'output',
-                                                                                               operation)
-                                        value_object = ValueStorage(output_value)
-                                        output_assignments.value_storage = value_object
+                                                                                               operation,
+                                                                                               value_object)
                                         self.value_storage.append(value_object)
                                         operation.outputs[output_name] = output_assignments
                 if node_value.get('metadata'):
@@ -258,11 +265,10 @@ class InstanceModel:
                 if node_value.get('requirements'):
                     for requirement_element in node_value.get('requirements'):
                         for requirement_name, requirement_value in requirement_element.items():
-                            requirement = Requirement(requirement_name, node_template)
-                            if requirement_value.get('capability'):
-                                requirement.capability = requirement_value.get('capability')
-                            if requirement_value.get('node'):
-                                requirement.node = requirement_value.get('node')
+                            requirement = Requirement(requirement_name,
+                                                      node_template,
+                                                      requirement_value.get('node'),
+                                                      requirement_value.get('capability'))
                             node_template.requirements.append(requirement)
                             if requirement_value.get('relationship'):
                                 relationship = Relationship(requirement)
@@ -271,51 +277,53 @@ class InstanceModel:
 
                                 if relationship_value.get('attributes'):
                                     for attribute_name, attribute_value in relationship_value.get('attributes').items():
+                                        value_object = ValueStorage(attribute_value)
                                         attribute = AttributeAndPropertyFromRelationship(attribute_name,
                                                                                          relationship,
-                                                                                         "attribute")
-                                        value_object = ValueStorage(attribute_value)
-                                        attribute.value_storage = value_object
+                                                                                         "attribute",
+                                                                                         value_object)
                                         relationship.attributes[attribute_name] = attribute
                                         self.value_storage.append(value_object)
                                 if relationship_value.get('properties'):
                                     for property_name, property_value in relationship_value.get('properties').items():
+                                        value_object = ValueStorage(property_value)
                                         property_object = AttributeAndPropertyFromRelationship(property_name,
                                                                                                relationship,
-                                                                                               "property")
-                                        value_object = ValueStorage(property_value)
-                                        property_object.value_storage = value_object
+                                                                                               "property",
+                                                                                               value_object)
                                         relationship.properties[property_name] = property_object
                                         self.value_storage.append(value_object)
-                                if requirement_value.get('interfaces'):
-
-                                    for interface_name, interface_value in requirement_value.get('interfaces').items():
+                                if relationship_value.get('interfaces'):
+                                    for interface_name, interface_value in relationship_value.get('interfaces').items():
                                         interface = RelationshipInterface(interface_name, relationship)
                                         interface.node = node_template
                                         relationship.interfaces[interface_name] = interface
 
                                         if interface_value.get('operations'):
-                                            for operation_name, operation_value in interface_value.get('operations'):
-                                                operation = RelationshipInterfaceOperation(operation_name, interface)
+                                            for operation_name, operation_value in interface_value.get('operations').items():
+                                                operation = RelationshipInterfaceOperation(operation_name,
+                                                                                           interface,
+                                                                                           operation_value.get(
+                                                                                               'implementation')
+                                                                                           )
                                                 interface.operations[operation_name] = operation
-                                                if operation_value.get('implementation'):
-                                                    operation.implementation = operation_value.get('implementation')
                                                 if operation_value.get('inputs'):
-                                                    for input_name, input_value in data.get('inputs').items():
-                                                        input_assignments = RelationshipInterfaceOperationInputOutputs(
-                                                            input_name, 'input', operation)
+                                                    for input_name, input_value in operation_value.get('inputs').items():
                                                         value_object = ValueStorage(input_value)
-                                                        input_assignments.value_storage = value_object
+                                                        input_assignments = RelationshipInterfaceOperationInputOutputs(
+                                                            input_name, 'input', operation, value_object)
                                                         self.value_storage.append(value_object)
                                                         operation.inputs[input_name] = input_assignments
                                                 if operation_value.get('outputs'):
-                                                    for output_name, output_value in data.get('outputs').items():
-                                                        output_assignments = RelationshipInterfaceOperationInputOutputs(
-                                                            output_name, 'output', operation)
+                                                    for output_name, output_value in operation_value.get('outputs').items():
                                                         value_object = ValueStorage(output_value)
-                                                        output_assignments.value_storage = value_object
+                                                        output_assignments = RelationshipInterfaceOperationInputOutputs(
+                                                            output_name, 'output', operation, value_object)
                                                         self.value_storage.append(value_object)
                                                         operation.outputs[output_name] = output_assignments
+        for node_template in self.node_templates.values():
+            for requirement in node_template.requirements:
+                requirement.node_link = self.node_templates.get(requirement.node)
 
 # with open("template.yaml", 'r') as stream:
 #     data = yaml.safe_load(stream)

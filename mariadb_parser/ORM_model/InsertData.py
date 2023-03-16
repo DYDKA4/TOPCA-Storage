@@ -5,16 +5,46 @@ from sqlalchemy import func
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 
-from mariadb_parser.ORM_model.DataBase import Type, ArtifactStorage, DependencyTypes, ValueStorage, DBInstanceModel, \
-    InstanceModelInputAndOutput, InputAndOutput, DBNodeTemplate, AttributeAndProperty, DBNodeAttributeAndProperty, \
-    DBCapability, DBCapabilityAttributeAndProperty, DBNodeInterface, DBNodeInterfaceOperation, \
-    DBNodeInterfaceOperationInputOutput, DBRequirement, DBRelationshipsAttributeAndProperty, DBRelationshipInterface, \
-    DBRelationshipInterfaceOperation, DBRelationshipInterfaceOperationInputOutput
+from mariadb_parser.ORM_model.DataBase import (
+    Type,
+    ArtifactStorage,
+    DependencyTypes,
+    ValueStorage,
+    DBInstanceModel,
+    InstanceModelInputAndOutput,
+    InputAndOutput,
+    DBNodeTemplate,
+    AttributeAndProperty,
+    DBNodeAttributeAndProperty,
+    DBCapability,
+    DBCapabilityAttributeAndProperty,
+    DBNodeInterface,
+    DBNodeInterfaceOperation,
+    DBNodeInterfaceOperationInputOutput,
+    DBRequirement,
+    DBRelationshipsAttributeAndProperty,
+    DBRelationshipInterface,
+    DBRelationshipInterfaceOperation,
+    DBRelationshipInterfaceOperationInputOutput,
+)
 from mariadb_parser.ORM_model.EngineInit import init_engine
-from mariadb_parser.instance_model.instance_model import InstanceModel, ParameterDefinition, NodeTemplate, \
-    AttributeAndPropertyFromNode, Capability, AttributeAndPropertyFromCapability, NodeInterface, NodeInterfaceOperation, \
-    NodeInterfaceOperationInputOutput, Requirement, Relationship, AttributeAndPropertyFromRelationship, \
-    RelationshipInterface, RelationshipInterfaceOperation, RelationshipInterfaceOperationInputOutputs
+from mariadb_parser.instance_model.instance_model import (
+    InstanceModel,
+    ParameterDefinition,
+    NodeTemplate,
+    AttributeAndPropertyFromNode,
+    Capability,
+    AttributeAndPropertyFromCapability,
+    NodeInterface,
+    NodeInterfaceOperation,
+    NodeInterfaceOperationInputOutput,
+    Requirement,
+    Relationship,
+    AttributeAndPropertyFromRelationship,
+    RelationshipInterface,
+    RelationshipInterfaceOperation,
+    RelationshipInterfaceOperationInputOutputs,
+)
 from mariadb_parser.instance_model.parse_puccini import TopologyTemplateInstance
 from mariadb_parser.instance_model.puccini_try import puccini_parse
 from mariadb_parser.type_table.TypeStorage import TOSCAType, TypeStorage
@@ -24,20 +54,21 @@ from mariadb_parser.type_table.TypeStorage import TOSCAType, TypeStorage
 
 
 class DataUploader:
-
     def __init__(self, tosca_definitions_version: str, path_to_type: str):
         self.engine = init_engine()
         self.engine.connect()
         self.path_to_type = path_to_type
         self.tosca_definitions_version = tosca_definitions_version
-        self.type_list = ['data_types',
-                          'group_types',
-                          'interface_types',
-                          'capability_types',
-                          'policy_types',
-                          'artifact_types',
-                          'relationship_types',
-                          'node_types']
+        self.type_list = [
+            "data_types",
+            "group_types",
+            "interface_types",
+            "capability_types",
+            "policy_types",
+            "artifact_types",
+            "relationship_types",
+            "node_types",
+        ]
 
     def __insert_type(self, tosca_types: dict, session: Session) -> None:
         tosca_objects = []
@@ -50,7 +81,8 @@ class DataUploader:
                 type_name=tosca_type.name,
                 data=tosca_type.get_data_in_json(),
                 path_to_type=self.path_to_type,
-                tosca_definitions_version=self.tosca_definitions_version)
+                tosca_definitions_version=self.tosca_definitions_version,
+            )
             tosca_objects.append(tosca_object)
         session.bulk_save_objects(tosca_objects)
         return
@@ -62,32 +94,39 @@ class DataUploader:
                 dependency = DependencyTypes(
                     source_id=data_type.identifier,
                     dependency_id=tosca_types[derived_from].identifier,
-                    dependency_type='derived_from')
+                    dependency_type="derived_from",
+                )
                 session.add(dependency)
 
     def __insert_dependency(self, type_storage: TypeStorage, session: Session):
         for type_name in self.type_list:
             type_dict: dict = type_storage.__getattribute__(type_name)
             for node in type_dict.values():
-                dependencies: dict = node.__getattribute__('dependencies')
-                requirements: dict = node.__getattribute__('requirements')
+                dependencies: dict = node.__getattribute__("dependencies")
+                requirements: dict = node.__getattribute__("requirements")
                 for dependency_type, dependency_set in dependencies.items():
                     for dependency_name in dependency_set:
-                        destination_node = type_storage.__getattribute__(dependency_type)
+                        destination_node = type_storage.__getattribute__(
+                            dependency_type
+                        )
                         destination_node = destination_node[dependency_name]
                         dependency = DependencyTypes(
                             source_id=node.identifier,
                             dependency_id=destination_node.identifier,
-                            dependency_type='dependency')
+                            dependency_type="dependency",
+                        )
                         session.add(dependency)
                 for requirement_type, requirement_set in requirements.items():
                     for requirement_name in requirement_set:
-                        destination_node = type_storage.__getattribute__(requirement_type)
+                        destination_node = type_storage.__getattribute__(
+                            requirement_type
+                        )
                         destination_node = destination_node[requirement_name]
                         requirement = DependencyTypes(
                             source_id=node.identifier,
                             dependency_id=destination_node.identifier,
-                            dependency_type='requirement_dependency')
+                            dependency_type="requirement_dependency",
+                        )
                         session.add(requirement)
 
     def insert_type_storage(self, type_storage: TypeStorage):
@@ -105,8 +144,9 @@ class DataUploader:
                         ArtifactStorage(
                             artifact_definition.identifier,
                             artifact_definition.name,
-                            artifact_definition.get_data_in_json()
-                        ))
+                            artifact_definition.get_data_in_json(),
+                        )
+                    )
 
                 self.__insert_dependency(type_storage, session)
             except Exception:
@@ -130,15 +170,14 @@ class InstanceModelUploader:
                 objects = []
                 for value_object in self.instance_model.value_storage:
                     value_model = ValueStorage(
-                        id=value_object.database_id,
-                        value=value_object.data
+                        id=value_object.database_id, value=value_object.data
                     )
                     objects.append(value_model)
                     # session.add(value_model)
                 instance_model = DBInstanceModel(
                     id=self.instance_model.database_id,
                     description=self.instance_model.description,
-                    metadata_value=self.instance_model.metadata
+                    metadata_value=self.instance_model.metadata,
                 )
                 objects.append(instance_model)
                 # session.add(instance_model)
@@ -150,29 +189,55 @@ class InstanceModelUploader:
                         type=InputAndOutput.input,
                         value_storage_id=input_value.value_storage.database_id,
                         name=None if input_value.name == "" else input_value.name,
-                        type_name=None if input_value.type_name == "" else input_value.type_name,
-                        type_id=None if input_value.type_link == "" else input_value.type_link,
-                        description=None if input_value.description == "" else input_value.description,
-                        mapping=None if input_value.mapping == {} else input_value.mapping,
+                        type_name=None
+                        if input_value.type_name == ""
+                        else input_value.type_name,
+                        type_id=None
+                        if input_value.type_link == ""
+                        else input_value.type_link,
+                        description=None
+                        if input_value.description == ""
+                        else input_value.description,
+                        mapping=None
+                        if input_value.mapping == {}
+                        else input_value.mapping,
                         required=input_value.required,
-                        default=None if input_value.default == {} else input_value.default,
-                        key_schema=None if input_value.key_schema == {} else input_value.key_schema,
-                        entry_schema=None if input_value.entry_schema == {} else input_value.entry_schema
+                        default=None
+                        if input_value.default == {}
+                        else input_value.default,
+                        key_schema=None
+                        if input_value.key_schema == {}
+                        else input_value.key_schema,
+                        entry_schema=None
+                        if input_value.entry_schema == {}
+                        else input_value.entry_schema,
                     )
                     objects.append(input_object)
                     # session.add(input_object)
-                node_templates: dict[str, NodeTemplate] = self.instance_model.node_templates
+                node_templates: dict[
+                    str, NodeTemplate
+                ] = self.instance_model.node_templates
                 for node_template in node_templates.values():
                     node_template: NodeTemplate
                     node_object = DBNodeTemplate(
                         id=node_template.database_id,
                         instance_model_id=node_template.instance_model.database_id,
                         name=node_template.name,
-                        type_name=None if node_template.type_name == "" else node_template.type_name,
-                        type_id=None if node_template.type_link == "" else node_template.type_link,
-                        description=None if node_template.type_name == "" else node_template.type_name,
-                        metadata_value=None if node_template.metadata_value == {} else node_template.metadata_value,
-                        copy_name=None if node_template.copy_name == "" else node_template.copy_name,
+                        type_name=None
+                        if node_template.type_name == ""
+                        else node_template.type_name,
+                        type_id=None
+                        if node_template.type_link == ""
+                        else node_template.type_link,
+                        description=None
+                        if node_template.type_name == ""
+                        else node_template.type_name,
+                        metadata_value=None
+                        if node_template.metadata_value == {}
+                        else node_template.metadata_value,
+                        copy_name=None
+                        if node_template.copy_name == ""
+                        else node_template.copy_name,
                         # copy_id=None #todo NoteImplemented
                     )
                     objects.append(node_object)
@@ -183,7 +248,7 @@ class InstanceModelUploader:
                             name=property_value.name,
                             type=AttributeAndProperty.property,
                             node_id=property_value.node.database_id,
-                            value_storage_id=property_value.value_storage.database_id
+                            value_storage_id=property_value.value_storage.database_id,
                         )
                         objects.append(property_object)
                     for attribute_value in node_template.attributes.values():
@@ -193,7 +258,7 @@ class InstanceModelUploader:
                             name=attribute_value.name,
                             type=AttributeAndProperty.attribute,
                             node_id=attribute_value.node.database_id,
-                            value_storage_id=attribute_value.value_storage.database_id
+                            value_storage_id=attribute_value.value_storage.database_id,
                         )
                         objects.append(attribute_object)
                     for capability_value in node_template.capabilities.values():
@@ -202,7 +267,10 @@ class InstanceModelUploader:
                             id=capability_value.database_id,
                             name=capability_value.name,
                             node_id=capability_value.node.database_id,
-                            value=None if capability_value.value == {} else capability_value.value
+                            value=None
+                            if capability_value.value == {}
+                            else capability_value.value,
+                            type=capability_value.type_name,
                         )
                         objects.append(capability_entity)
                         for property_value in capability_value.properties.values():
@@ -212,7 +280,7 @@ class InstanceModelUploader:
                                 name=property_value.name,
                                 type=AttributeAndProperty.property,
                                 capability_id=property_value.capability_object.database_id,
-                                value_storage_id=property_value.value_storage.database_id
+                                value_storage_id=property_value.value_storage.database_id,
                             )
                             objects.append(property_object)
                         for attribute_value in capability_value.attributes.values():
@@ -222,7 +290,7 @@ class InstanceModelUploader:
                                 name=attribute_value.name,
                                 type=AttributeAndProperty.attribute,
                                 capability_id=attribute_value.capability_object.database_id,
-                                value_storage_id=attribute_value.value_storage.database_id
+                                value_storage_id=attribute_value.value_storage.database_id,
                             )
                             objects.append(attribute_object)
                     for node_interface in node_template.interfaces.values():
@@ -230,7 +298,7 @@ class InstanceModelUploader:
                         interface_object = DBNodeInterface(
                             id=node_interface.database_id,
                             node_id=node_interface.node.database_id,
-                            name=node_interface.name
+                            name=node_interface.name,
                         )
                         objects.append(interface_object)
                         for operation in node_interface.operations.values():
@@ -239,7 +307,7 @@ class InstanceModelUploader:
                                 id=operation.database_id,
                                 node_interface_id=operation.interface.database_id,
                                 name=operation.name,
-                                implementation=operation.implementation
+                                implementation=operation.implementation,
                             )
                             objects.append(operation_object)
                             for input_value in operation.inputs.values():
@@ -249,7 +317,7 @@ class InstanceModelUploader:
                                     name=input_value.name,
                                     operation_id=input_value.operation.database_id,
                                     type=InputAndOutput.input,
-                                    value_storage_id=input_value.value_storage.database_id
+                                    value_storage_id=input_value.value_storage.database_id,
                                 )
                                 objects.append(input_object)
                             for output_value in operation.outputs.values():
@@ -259,7 +327,7 @@ class InstanceModelUploader:
                                     name=output_value.name,
                                     operation_id=output_value.operation.database_id,
                                     type=InputAndOutput.output,
-                                    value_storage_id=output_value.value_storage.database_id
+                                    value_storage_id=output_value.value_storage.database_id,
                                 )
                                 objects.append(output_object)
                 for node_template in node_templates.values():
@@ -271,7 +339,7 @@ class InstanceModelUploader:
                             node_link=requirement.node_link.database_id,
                             node=requirement.node,
                             node_id=requirement.father_node.database_id,
-                            capability=requirement.capability
+                            capability=requirement.capability,
                         )
                         objects.append(requirement_object)
                         relationship: Relationship = requirement.relationship
@@ -282,7 +350,7 @@ class InstanceModelUploader:
                                 name=property_value.name,
                                 type=AttributeAndProperty.property,
                                 requirement_id=property_value.relationship.database_id,
-                                value_storage_id=property_value.value_storage.database_id
+                                value_storage_id=property_value.value_storage.database_id,
                             )
                             objects.append(property_object)
                         for attribute_value in relationship.attributes.values():
@@ -292,7 +360,7 @@ class InstanceModelUploader:
                                 name=attribute_value.name,
                                 type=AttributeAndProperty.attribute,
                                 requirement_id=attribute_value.relationship.database_id,
-                                value_storage_id=attribute_value.value_storage.database_id
+                                value_storage_id=attribute_value.value_storage.database_id,
                             )
                             objects.append(attribute_object)
                         for relationship_interface in relationship.interfaces.values():
@@ -300,7 +368,7 @@ class InstanceModelUploader:
                             interface_object = DBRelationshipInterface(
                                 id=relationship_interface.database_id,
                                 requirement_id=relationship_interface.relationship.database_id,
-                                name=relationship_interface.name
+                                name=relationship_interface.name,
                             )
                             objects.append(interface_object)
                             for operation in relationship_interface.operations.values():
@@ -309,7 +377,7 @@ class InstanceModelUploader:
                                     id=operation.database_id,
                                     relationship_interface_id=operation.interface.database_id,
                                     name=operation.name,
-                                    implementation=operation.implementation
+                                    implementation=operation.implementation,
                                 )
                                 objects.append(operation_object)
                                 for input_value in operation.inputs.values():
@@ -319,7 +387,7 @@ class InstanceModelUploader:
                                         name=input_value.name,
                                         operation_id=input_value.operation.database_id,
                                         type=InputAndOutput.input,
-                                        value_storage_id=input_value.value_storage.database_id
+                                        value_storage_id=input_value.value_storage.database_id,
                                     )
                                     objects.append(input_object)
                                 for output_value in operation.outputs.values():
@@ -329,10 +397,9 @@ class InstanceModelUploader:
                                         name=output_value.name,
                                         operation_id=output_value.operation.database_id,
                                         type=InputAndOutput.output,
-                                        value_storage_id=output_value.value_storage.database_id
+                                        value_storage_id=output_value.value_storage.database_id,
                                     )
                                     objects.append(output_object)
-                print('try')
                 session.bulk_save_objects(objects)
             except Exception:
                 session.rollback()
@@ -341,12 +408,11 @@ class InstanceModelUploader:
                 session.commit()
 
 
-with open("../instance_model/template.yaml", 'r') as stream:
-    data = yaml.safe_load(stream)
-    topology = puccini_parse(str(data).encode("utf-8"))
-    # topology = InstanceModel("None", topology)
-    topology = TopologyTemplateInstance("None", topology)
-    data = InstanceModel(topology.render())
-    uploader = InstanceModelUploader(data)
-    uploader.insert_instance_model()
-
+# with open("../instance_model/template.yaml", 'r') as stream:
+#     data = yaml.safe_load(stream)
+#     topology = puccini_parse(str(data).encode("utf-8"))
+#     # topology = InstanceModel("None", topology)
+#     topology = TopologyTemplateInstance("None", topology)
+#     data = InstanceModel(topology.render())
+#     uploader = InstanceModelUploader(data)
+#     uploader.insert_instance_model()

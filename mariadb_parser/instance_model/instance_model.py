@@ -63,12 +63,13 @@ class AttributeAndPropertyFromNode(ToscaTemplateObject):
 
 class Capability(ToscaTemplateObject):
 
-    def __init__(self, name: str, node: NodeTemplate):
+    def __init__(self, name: str, node: NodeTemplate, type_name: str):
         super().__init__(name)
         self.node: NodeTemplate = node
         self.value: dict = {}
         self.attributes: dict[str, AttributeAndPropertyFromCapability] = {}
         self.properties: dict[str, AttributeAndPropertyFromCapability] = {}
+        self.type_name: str | None = type_name
 
 
 class AttributeAndPropertyFromCapability(ToscaTemplateObject):
@@ -212,7 +213,7 @@ class InstanceModel:
                         self.value_storage.append(value_object)
                 if node_value.get('capabilities'):
                     for capability_name, capability_value in node_value.get('capabilities').items():
-                        capability_object = Capability(capability_name, node_template)
+                        capability_object = Capability(capability_name, node_template, capability_value.get('type'))
                         node_template.capabilities[capability_name] = capability_object
                         if capability_value.get('attributes'):
                             for attribute_name, attribute_value in node_value.get('attributes').items():

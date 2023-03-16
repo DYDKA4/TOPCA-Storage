@@ -82,6 +82,7 @@ create table capability
     value   longtext collate utf8mb4_bin null,
     node_id char(36)                     not null,
     name    char(255)                    not null,
+    type    char(255)                    null,
     constraint node_id
         foreign key (node_id) references node_template (id)
             on update cascade on delete cascade,

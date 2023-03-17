@@ -250,6 +250,7 @@ class DBNodeTemplate(Base):
     copy_id = Column(
         String(length=36), ForeignKey("node_template.id", ondelete="CASCADE")
     )
+    directives = Column(JSON)
     # substitute = Column(String(length=36), ForeignKey('instance_model.id'))
 
 
@@ -323,9 +324,8 @@ class DBRequirement(Base):
     node_link = Column(
         String(length=36),
         ForeignKey("node_template.id", ondelete="CASCADE"),
-        nullable=False,
     )
-    node = Column(String(length=255), nullable=False)
+    node = Column(String(length=255))
     node_id = Column(
         String(length=36),
         ForeignKey("node_template.id", ondelete="CASCADE"),

@@ -64,6 +64,7 @@ create table node_template
     copy_id           char(36)                     null,
     instance_model_id char(36)                     not null,
     name              char(255)                    not null,
+    directives        longtext collate utf8mb4_bin null,
     constraint copy_fk
         foreign key (copy_id) references node_template (id),
     constraint instace_mode_if
@@ -71,6 +72,8 @@ create table node_template
             on update cascade on delete cascade,
     constraint node_type_fk
         foreign key (type_id) references type (id),
+    constraint directives
+        check (json_valid(`directives`)),
     constraint metadata
         check (json_valid(`metadata`))
 );
@@ -123,8 +126,8 @@ create table requirement
     capability        char(255) null,
     name              char(255) not null,
     node_id           char(36)  not null,
-    node              char(255) not null,
-    node_link         char(36)  not null,
+    node              char(255) null,
+    node_link         char(36)  null,
     relationship_type char(255) not null,
     `order`           int       not null,
     constraint requirement_node_template_id_fk_2

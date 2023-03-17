@@ -313,6 +313,8 @@ class InstanceModelGetter:
                         node.requirements.append({requirement_object.name: requirement})
                     if node_object.metadata_value:
                         node.metadata = node_object.metadata_value
+                    if node_object.directives:
+                        node.directives = node_object.directives
                     node.type = node_object.type_name
                     self.instance_model.nodes[node_object.name] = node
             except Exception:
@@ -322,7 +324,7 @@ class InstanceModelGetter:
                 session.commit()
 
 
-im = InstanceModelGetter("5d5bb6c8-e5ef-474b-9aef-dcc28c14c4ad")
+im = InstanceModelGetter("fc912b15-193a-4df3-a8c5-880928b53aa4")
 im.construct_instance_model()
 im
 with open("output.yaml", 'w') as stream:

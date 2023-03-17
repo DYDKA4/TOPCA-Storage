@@ -41,7 +41,7 @@ class ParameterDefinition(ToscaTemplateObject):
 
 class NodeTemplate(ToscaTemplateObject):
 
-    def __init__(self, name: str, instance_model: "InstanceModel", type_name: str):
+    def __init__(self, name: str, instance_model: "InstanceModel", type_name: str, directives: list[str]):
         super().__init__(name)
         self.instance_model: InstanceModel = instance_model
         self.type_name: str = type_name
@@ -55,6 +55,7 @@ class NodeTemplate(ToscaTemplateObject):
         self.capabilities: dict[str, Capability] = {}
         self.interfaces: dict[str, NodeInterface] = {}
         self.requirements: list[Requirement] = []
+        self.directives: list[str] = directives
 
 
 class AttributeAndPropertyFromNode(ToscaTemplateObject):
@@ -201,7 +202,7 @@ class InstanceModel:
         self.metadata = data.get("metadata")
         if data.get('nodes'):
             for name, node_value in data.get('nodes').items():
-                node_template = NodeTemplate(name, self, node_value.get('type'))
+                node_template = NodeTemplate(name, self, node_value.get('type'), node_value.get('directives'))
                 self.node_templates[name] = node_template
                 if node_value.get('attributes'):
                     for attribute_name, attribute_value in node_value.get('attributes').items():
@@ -313,7 +314,8 @@ class InstanceModel:
                                         relationship.interfaces[interface_name] = interface
 
                                         if interface_value.get('operations'):
-                                            for operation_name, operation_value in interface_value.get('operations').items():
+                                            for operation_name, operation_value in interface_value.get(
+                                                    'operations').items():
                                                 operation = RelationshipInterfaceOperation(operation_name,
                                                                                            interface,
                                                                                            operation_value.get(
@@ -321,14 +323,16 @@ class InstanceModel:
                                                                                            )
                                                 interface.operations[operation_name] = operation
                                                 if operation_value.get('inputs'):
-                                                    for input_name, input_value in operation_value.get('inputs').items():
+                                                    for input_name, input_value in operation_value.get(
+                                                            'inputs').items():
                                                         value_object = ValueStorage(input_value)
                                                         input_assignments = RelationshipInterfaceOperationInputOutputs(
                                                             input_name, 'input', operation, value_object)
                                                         self.value_storage.append(value_object)
                                                         operation.inputs[input_name] = input_assignments
                                                 if operation_value.get('outputs'):
-                                                    for output_name, output_value in operation_value.get('outputs').items():
+                                                    for output_name, output_value in operation_value.get(
+                                                            'outputs').items():
                                                         value_object = ValueStorage(output_value)
                                                         output_assignments = RelationshipInterfaceOperationInputOutputs(
                                                             output_name, 'output', operation, value_object)
@@ -337,8 +341,10 @@ class InstanceModel:
         for node_template in self.node_templates.values():
             for requirement in node_template.requirements:
                 requirement.node_link = self.node_templates.get(requirement.node)
+
+
 #
-# with open("template.yaml", 'r') as stream:
+# with open("tosca-service-templates/templates/ray/ray-master.yaml", 'r') as stream:
 #     data = yaml.safe_load(stream)
 #     topology = puccini_parse(str(data).encode("utf-8"))
 #     # topology = InstanceModel("None", topology)

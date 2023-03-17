@@ -239,6 +239,7 @@ class InstanceModelUploader:
                         if node_template.copy_name == ""
                         else node_template.copy_name,
                         # copy_id=None #todo NoteImplemented
+                        directives=node_template.directives if node_template.directives else None
                     )
                     objects.append(node_object)
                     for property_value in node_template.properties.values():
@@ -337,7 +338,7 @@ class InstanceModelUploader:
                         requirement_object = DBRequirement(
                             id=requirement.database_id,
                             name=requirement.name,
-                            node_link=requirement.node_link.database_id,
+                            node_link=requirement.node_link.database_id if requirement.node_link else None,
                             node=requirement.node,
                             node_id=requirement.father_node.database_id,
                             capability=requirement.capability,
@@ -412,12 +413,14 @@ class InstanceModelUploader:
                 session.commit()
 
 
-# with open("../instance_model/template.yaml", 'r') as stream:
+# with open("../instance_model/tosca-service-templates/templates/mlflow_ray_demo.yaml", 'r') as stream:
 #     data = yaml.safe_load(stream)
 #     topology = puccini_parse(str(data).encode("utf-8"))
 #     # topology = InstanceModel("None", topology)
 #     topology = TopologyTemplateInstance("None", topology)
 #     topology_render = topology.render()
+#     with open("input.yaml", 'w') as f:
+#         f.write(yaml.dump(topology_render))
 #     data = InstanceModel(topology_render)
 #     uploader = InstanceModelUploader(data)
 #     uploader

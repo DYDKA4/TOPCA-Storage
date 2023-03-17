@@ -29,7 +29,7 @@ from mariadb_parser.ORM_model.DataBase import (
 )
 from mariadb_parser.ORM_model.EngineInit import init_engine
 from mariadb_parser.instance_model.instance_model import (
-    InstanceModel,
+    InstanceModelInternal,
     ParameterDefinition,
     NodeTemplate,
     AttributeAndPropertyFromNode,
@@ -157,7 +157,7 @@ class DataUploader:
 
 
 class InstanceModelUploader:
-    def __init__(self, instance_model: InstanceModel):
+    def __init__(self, instance_model: InstanceModelInternal):
         self.engine = init_engine()
         self.engine.connect()
         self.instance_model = instance_model
@@ -416,12 +416,12 @@ class InstanceModelUploader:
 # with open("../instance_model/tosca-service-templates/templates/mlflow_ray_demo.yaml", 'r') as stream:
 #     data = yaml.safe_load(stream)
 #     topology = puccini_parse(str(data).encode("utf-8"))
-#     # topology = InstanceModel("None", topology)
+#     # topology = InstanceModelInternal("None", topology)
 #     topology = TopologyTemplateInstance("None", topology)
 #     topology_render = topology.render()
 #     with open("input.yaml", 'w') as f:
 #         f.write(yaml.dump(topology_render))
-#     data = InstanceModel(topology_render)
+#     data = InstanceModelInternal(topology_render)
 #     uploader = InstanceModelUploader(data)
 #     uploader
 #     uploader.insert_instance_model()

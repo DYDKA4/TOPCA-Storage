@@ -4,7 +4,7 @@ import yaml
 
 
 def puccini_parse(file, phases=5):
-    PUCCINI_CMD = '/home/tulin/go/bin/puccini-tosca compile --resolve=False  --quirk imports.implicit.disable'
+    PUCCINI_CMD = '/home/tulin/go/bin/puccini-tosca compile --resolve=False ' #  --quirk imports.implicit.disable
     pipe = sp.Popen(
         f'{PUCCINI_CMD} -x namespace.normative.shortcuts.disable',
         shell=True,

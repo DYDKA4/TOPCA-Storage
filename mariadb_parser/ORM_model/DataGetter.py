@@ -323,15 +323,15 @@ class InstanceModelGetter:
             else:
                 session.commit()
 
-
-im = InstanceModelGetter("fc912b15-193a-4df3-a8c5-880928b53aa4")
-im.construct_instance_model()
-im
-with open("output.yaml", 'w') as stream:
-    stream.write(yaml.dump(im.instance_model.dict()))
-# with open("../instance_model/output.yaml", 'r') as stream:
-#     data = yaml.safe_load(stream)
-#     topology = puccini_parse(str(data).encode("utf-8"))
-#     topology = TopologyTemplateInstance("None", topology)
-#     with open("input.yaml", "w") as file:
-#         file.write(yaml.dump(topology.render()))
+#
+# im = InstanceModelGetter("fc912b15-193a-4df3-a8c5-880928b53aa4")
+# im.construct_instance_model()
+# im
+# with open("output.yaml", 'w') as stream:
+#     stream.write(yaml.dump(im.instance_model.dict()))
+# # with open("../instance_model/output.yaml", 'r') as stream:
+# #     data = yaml.safe_load(stream)
+# #     topology = puccini_parse(str(data).encode("utf-8"))
+# #     topology = TopologyTemplateInstance("None", topology)
+# #     with open("input.yaml", "w") as file:
+# #         file.write(yaml.dump(topology.render()))

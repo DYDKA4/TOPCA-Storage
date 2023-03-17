@@ -3,3 +3,4 @@
 /mariadb_parser/type_table/MariaDBInsert.py
 /alembic.ini
 /tests/database_tests/.env
+/mariadb_parser/instance_model/tosca-service-templates/

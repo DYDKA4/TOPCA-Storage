@@ -1,9 +1,13 @@
+from uuid import UUID
+
 import yaml
 from fastapi import FastAPI, File, HTTPException
 
 from app.BodyTypes import TypeStorageAnswer, ServiceTemplateDefinition
-from mariadb_parser.ORM_model.DataGetter import DataGetter
-from mariadb_parser.ORM_model.InsertData import DataUploader
+from mariadb_parser.ORM_model.DataGetter import DataGetter, InstanceModelGetter
+from mariadb_parser.ORM_model.InsertData import DataUploader, InstanceModelUploader
+from mariadb_parser.instance_model.NormalizedTOSCA import InstanceModel
+from mariadb_parser.instance_model.instance_model import InstanceModelInternal
 from mariadb_parser.instance_model.parse_puccini import TopologyTemplateInstance
 from mariadb_parser.instance_model.puccini_try import puccini_parse
 from mariadb_parser.type_table.TypeStorage import TypeStorage
@@ -63,12 +67,29 @@ async def post_type_storage_file(user_name: str, dir_name: str, file_name: str,
     return None
 
 
-@app.post("/instance-model-storage")
-async def post_type_storage_file(tosca_types: ServiceTemplateDefinition) -> None:
+@app.post("/instance-model-storage/")
+async def post_type_storage_file(tosca_types: ServiceTemplateDefinition) -> UUID:
     template: str = yaml.dump(tosca_types.dict(exclude_none=True))
-    with open("template.yaml", "w") as file:
-        file.write(template)
     topology = puccini_parse(template.encode("utf-8"))
     topology = TopologyTemplateInstance("None", topology)
-    print(yaml.dump(topology.render()))
-    return
+    data = InstanceModelInternal(topology.render())
+    uploader = InstanceModelUploader(data)
+    uploader.insert_instance_model()
+    return UUID(data.database_id)
+
+
+@app.post("/instance-model-storage/normalized-tosca")
+async def post_type_storage_file(tosca_types: InstanceModel) -> UUID:
+    data = InstanceModelInternal(tosca_types.dict())
+    uploader = InstanceModelUploader(data)
+    uploader.insert_instance_model()
+    return UUID(data.database_id)
+
+@app.get("/instance-model-storage/{uuid}")
+async def post_type_storage_file(uuid: str) -> InstanceModel:
+    instance_model = InstanceModelGetter(uuid)
+    instance_model.construct_instance_model()
+    print(instance_model.instance_model)
+    with open("output.yaml", 'w') as stream:
+        stream.write(yaml.dump(instance_model.instance_model.dict()))
+    return instance_model.instance_model

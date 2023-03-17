@@ -1,11 +1,11 @@
-from typing import Union
+from typing import Union, Any
 
 from pydantic import BaseModel
 
 
 class Capability(BaseModel):
-    attributes: dict[str, Union[str, None]] | None = {}
-    properties: dict[str, Union[str, None]] | None = {}
+    attributes: dict[str, Any] | None = {}
+    properties: dict[str, Any] | None = {}
     type: str | None = None
 
 
@@ -41,12 +41,12 @@ class Requirement(BaseModel):
 
 
 class Node(BaseModel):
-    attributes: dict[str, Union[str, None]] | None = {}
+    attributes: dict[str, Any] | None = {}
     capabilities: dict[str, Capability] | None = {}
     directives: list[Union[str, None]] | None = []
     interfaces: dict[str, Interface] | None = {}
     metadata: dict[str, str] = {}
-    properties: dict[str, Union[str, None]] | None = {}
+    properties: dict[str, Any] | None = {}
     requirements: list[dict[str, Requirement]] | None = []
     artifacts: dict = {}
     type: str | None = None

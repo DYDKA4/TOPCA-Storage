@@ -23,9 +23,9 @@ class ToscaTemplateObject:
 
 class ParameterDefinition(ToscaTemplateObject):
 
-    def __init__(self, name: str, type_of_parameter, instance_model: "InstanceModel", value_storage: "ValueStorage"):
+    def __init__(self, name: str, type_of_parameter, instance_model: "InstanceModelInternal", value_storage: "ValueStorage"):
         super().__init__(name)
-        self.instance_model: InstanceModel = instance_model
+        self.instance_model: InstanceModelInternal = instance_model
         self.type_name: str = ""
         self.type_link: str = ""
         # todo realisation of data_type_linking
@@ -41,9 +41,9 @@ class ParameterDefinition(ToscaTemplateObject):
 
 class NodeTemplate(ToscaTemplateObject):
 
-    def __init__(self, name: str, instance_model: "InstanceModel", type_name: str, directives: list[str]):
+    def __init__(self, name: str, instance_model: "InstanceModelInternal", type_name: str, directives: list[str]):
         super().__init__(name)
-        self.instance_model: InstanceModel = instance_model
+        self.instance_model: InstanceModelInternal = instance_model
         self.type_name: str = type_name
         self.type_link: str = ""
         self.description: str = ""
@@ -181,7 +181,7 @@ class ValueStorage:
         return json.dumps(self.data)
 
 
-class InstanceModel:
+class InstanceModelInternal:
 
     def __init__(self, data: dict):
         self.database_id: str = str(uuid.uuid4())
@@ -347,7 +347,7 @@ class InstanceModel:
 # with open("tosca-service-templates/templates/ray/ray-master.yaml", 'r') as stream:
 #     data = yaml.safe_load(stream)
 #     topology = puccini_parse(str(data).encode("utf-8"))
-#     # topology = InstanceModel("None", topology)
+#     # topology = InstanceModelInternal("None", topology)
 #     topology = TopologyTemplateInstance("None", topology)
 #     with open("input.yaml", 'w') as f:
 #         f.write(yaml.dump(topology.render()))

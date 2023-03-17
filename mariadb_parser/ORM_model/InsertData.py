@@ -299,6 +299,7 @@ class InstanceModelUploader:
                             id=node_interface.database_id,
                             node_id=node_interface.node.database_id,
                             name=node_interface.name,
+                            type_name=node_interface.type_name
                         )
                         objects.append(interface_object)
                         for operation in node_interface.operations.values():
@@ -340,6 +341,8 @@ class InstanceModelUploader:
                             node=requirement.node,
                             node_id=requirement.father_node.database_id,
                             capability=requirement.capability,
+                            relationship_type=requirement.relationship.type_name,
+                            order=requirement.order
                         )
                         objects.append(requirement_object)
                         relationship: Relationship = requirement.relationship
@@ -369,6 +372,7 @@ class InstanceModelUploader:
                                 id=relationship_interface.database_id,
                                 requirement_id=relationship_interface.relationship.database_id,
                                 name=relationship_interface.name,
+                                type_name=relationship_interface.type_name
                             )
                             objects.append(interface_object)
                             for operation in relationship_interface.operations.values():

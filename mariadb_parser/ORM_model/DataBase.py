@@ -195,6 +195,8 @@ class DBNodeInterface(Base):
         nullable=False,
     )
     name = Column(String(length=255), nullable=False)
+    type_name = Column('type', String(length=255), nullable=False)
+
 
 
 class DBNodeInterfaceOperation(Base):
@@ -279,6 +281,7 @@ class DBRelationshipInterface(Base):
         nullable=False,
     )
     name = Column(String(length=255), nullable=False)
+    type_name = Column('type', String(length=255), nullable=False)
 
 
 class DBRelationshipInterfaceOperation(Base):
@@ -329,6 +332,8 @@ class DBRequirement(Base):
         nullable=False,
     )
     capability = Column(String(length=255))
+    relationship_type = Column(String(length=255), nullable=False)
+    order = Column(Integer, nullable=False)
 
 
 class Type(Base):

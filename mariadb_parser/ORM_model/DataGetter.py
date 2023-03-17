@@ -33,6 +33,8 @@ from mariadb_parser.instance_model.NormalizedTOSCA import (
     Requirement,
     Relationship,
 )
+from mariadb_parser.instance_model.parse_puccini import TopologyTemplateInstance
+from mariadb_parser.instance_model.puccini_try import puccini_parse
 
 
 class DataGetter:
@@ -200,10 +202,11 @@ class InstanceModelGetter:
                                     ] = value.value
                             operation.implementation = operation_object.implementation
                             interface.operations[operation_object.name] = operation
+                            interface.type = interface_object.type_name
                         node.interfaces[interface_object.name] = interface
                     for requirement_object in (
                         session.query(DBRequirement)
-                        .filter(DBRequirement.node_id == node_object.id)
+                        .filter(DBRequirement.node_id == node_object.id).order_by(DBRequirement.order)
                         .all()
                     ):
                         requirement_object: DBRequirement
@@ -293,8 +296,10 @@ class InstanceModelGetter:
                                 operation.implementation = (
                                     operation_object.implementation
                                 )
+                                interface.type = interface_object.type_name
                                 interface.operations[operation_object.name] = operation
                             relationship.interfaces[interface_object.name] = interface
+                        relationship.type = requirement_object.relationship_type
                         requirement.relationship = relationship
                         node.requirements.append({requirement_object.name: requirement})
                     node.metadata = node_object.metadata_value
@@ -307,12 +312,14 @@ class InstanceModelGetter:
                 session.commit()
 
 
-# im = InstanceModelGetter("384bc8d9-fc0e-4dc9-9eb6-95a8ea840dc3")
+# im = InstanceModelGetter("95452752-d5f9-4e92-bf9d-873fc055ad41")
 # im.construct_instance_model()
 # im
 # with open("output.yaml", 'w') as stream:
 #     stream.write(yaml.dump(im.instance_model.dict()))
 # with open("../instance_model/output.yaml", 'r') as stream:
+#     data = yaml.safe_load(stream)
+#     topology = puccini_parse(str(data).encode("utf-8"))
+#     topology = TopologyTemplateInstance("None", topology)
 #     with open("input.yaml", "w") as file:
-#         doc = yaml.safe_load(stream)
-#         file.write(yaml.dump(im.instance_model.dict()))
+#         file.write(yaml.dump(topology.render()))

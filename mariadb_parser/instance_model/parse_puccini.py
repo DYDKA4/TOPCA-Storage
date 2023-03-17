@@ -1,5 +1,6 @@
 import copy
 
+
 def create_value_atom(node, definition):
     # print(definition)
 
@@ -35,16 +36,6 @@ def create_value_atom(node, definition):
 
 
 def create_value(node, meta, primitive):
-    # print(definition)
-    # print(meta)
-    # print(primitive)
-
-    # if '$functionCall' in definition.keys():
-    #   return create_function(node, type_def, definition)
-
-    # if '$list' in definition or type_def['name'] == 'list':
-    #   return List(node, type_def, definition)
-
     if meta is None:
         return Primitive(node, {}, primitive)
 
@@ -58,13 +49,9 @@ def create_value(node, meta, primitive):
         return Primitive(node, meta, primitive)
 
     raise RuntimeError('unknown primitive')
-    # return String(node, type_def, definition['$value'])
 
 
 def create_function(node, meta, function_call):
-    # print(meta)
-    # print(function_call)
-
     if function_call['name'] == 'tosca.function.get_input':
         return GetInput(node, meta, function_call['arguments'])
 
@@ -76,6 +63,9 @@ def create_function(node, meta, function_call):
 
     if function_call['name'] == 'tosca.function.concat':
         return Concat(node, meta, function_call['arguments'])
+
+    if function_call['name'] == 'tosca.function.join':
+        return Join(node, meta, function_call['arguments'])
 
     raise RuntimeError(f'unknown function {function_call}')
 
@@ -111,7 +101,21 @@ class Primitive(ValueInstance):
 class Version(ValueInstance):
     def __init__(self, node, meta, primitive):
         super().__init__(node, meta)
+        self.major = primitive['major']
+        self.minor = primitive['minor']
+        self.fix = primitive['fix']
+        self.build = primitive['build']
+        self.qualifier = primitive['qualifier']
         self.value = primitive['$string']
+
+    def render(self):
+        return {
+            'major_version': self.major,
+            'minor_version': self.minor,
+            'fix_version': self.fix if self.fix != 0 else None,
+            'qualifier': self.qualifier if self.qualifier != "" else None,
+            'build_version': self.build if self.build != 0 else None,
+        }
 
     def get(self):
         return self.value
@@ -157,7 +161,7 @@ class Map(ValueInstance):
 
         self.values = dict()
         for e in primitive:
-            key = e['$key']['$primitive']
+            key = e['$key']['$value']
             self.values[key] = create_value(node, e['$information']['type'], e)
 
     def render(self):
@@ -180,7 +184,10 @@ class Map(ValueInstance):
 class GetInput(ValueInstance):
     def __init__(self, node, meta, args):
         super().__init__(node, meta)
-        self.input_name = args[0]['$primitive']
+        if isinstance(args[0], str):
+            self.input_name = args[0]
+        else:
+            self.input_name = args[0]['$primitive']
 
     def render(self):
         return {
@@ -194,7 +201,10 @@ class GetInput(ValueInstance):
 class GetProperty(ValueInstance):
     def __init__(self, node, meta, args):
         super().__init__(node, meta)
-        self.args = [e['$primitive'] for e in args]
+        if isinstance(args[0], str):
+            self.args = copy.deepcopy(args)
+        else:
+            self.args = [a['$primitive'] for a in args]
 
     def render(self):
         return {
@@ -228,7 +238,10 @@ class GetProperty(ValueInstance):
 class GetAttribute(ValueInstance):
     def __init__(self, node, meta, args):
         super().__init__(node, meta)
-        self.args = [e['$primitive'] for e in args]
+        if isinstance(args[0], str):
+            self.args = copy.deepcopy(args)
+        else:
+            self.args = [a['$primitive'] for a in args]
 
     def render(self):
         return {
@@ -308,7 +321,30 @@ class Concat(ValueInstance):
                 self.args.append(create_function(node, {}, arg['$functionCall']))
 
     def render(self):
-        return [a.render() for a in self.args]
+        return {'concat': [a.render() for a in self.args]}
+
+    def get(self):
+        strings = [a.get() for a in self.args]
+        return ''.join(strings)
+
+
+class Join(ValueInstance):
+    def __init__(self, node, type_def, args):
+        super().__init__(node, type_def)
+
+        join_args = args[0]['$primitive']
+        self.args = []
+        for arg in join_args:
+            if isinstance(arg, str):
+                self.args.append(Primitive(node, {}, arg))
+            else:
+                self.args.append(create_function(node, {}, arg))
+        self.delimiter = None
+        if len(args) > 0:
+            self.delimiter = args[1]['$primitive']
+
+    def render(self):
+        return {'join': [[a.render() for a in self.args]] + ([self.delimiter] if self.delimiter is not None else [])}
 
     def get(self):
         strings = [a.get() for a in self.args]
@@ -325,7 +361,7 @@ class AttributeInstance:
         self.value = create_value_atom(node, self.definition)
 
     def render(self):
-        return self.get()
+        return self.value.render()
         # if self.mapping is None:
         #   return {
         #     'value': self.get(),
@@ -441,10 +477,12 @@ class CapabilityInstance:
             if 'parent' in type_body.keys():
                 seen.remove(type_body['parent'])
         self.type = seen.pop()
+        if 'tosca::' in self.type:
+            self.type = f'tosca.capabilities.{self.type[7:]}'
 
     def find_property(self, args):
         path = args[0]
-        print(f'CAP ATTRIBUTES: {self.attributes.keys()}')
+        # print(f'CAP ATTRIBUTES: {self.attributes.keys()}')
         if path in self.attributes.keys():
             attr = self.attributes[path]
             if not attr.is_property:
@@ -491,7 +529,11 @@ class OperationInstance:
             render_outputs[output_name] = output_body.render()
 
         return {
-            'implementation': self.implementation,
+            'implementation': {
+                'primary': self.implementation,
+                'dependencies': self.definition['dependencies'],
+                'operation_host': self.definition.get('host', 'SELF'),
+            } if self.implementation is not None else None,
             'inputs': render_inputs,
             'outputs': render_outputs
         }
@@ -526,6 +568,11 @@ class InterfaceInstance:
             if 'parent' in type_body.keys():
                 seen.remove(type_body['parent'])
         self.type = seen.pop()
+        if 'tosca::' in self.type:
+            if self.type == 'tosca::Standard':
+                self.type = 'tosca.interfaces.node.lifecycle.Standard'
+            elif self.type == 'tosca::Configure':
+                self.type = 'tosca.interfaces.relationship.Configure'
 
     def render(self):
         return {
@@ -540,6 +587,8 @@ class RelationshipInstance:
         self.source = source
         self.target = target
         self.definition = copy.deepcopy(definition)
+
+        self.directives = []
 
         self.types = copy.deepcopy(self.definition['types'])
         self.find_type()
@@ -595,6 +644,8 @@ class RelationshipInstance:
             if 'parent' in type_body.keys():
                 seen.remove(type_body['parent'])
         self.type = seen.pop()
+        if 'tosca::' in self.type:
+            self.type = f'tosca.relationships.{self.type[7:]}'
 
 
 class NodeInstance:
@@ -609,10 +660,7 @@ class NodeInstance:
         self.find_type()
 
         self.directives = copy.deepcopy(self.definition['directives'])
-        self.metadata = {
-            'substitution': None,
-            'selection': None,
-        }
+        self.metadata = {}
 
         self.attributes = {}
 
@@ -673,9 +721,17 @@ class NodeInstance:
                         'node': req.target.name if req.target is not None else None,
                         'capability': None,
                         'relationship': req.render(),
+                        'directives': req.directives,
                     }
                 } for req in self.requirements
-            ]
+            ],
+            'artifacts': {
+                art_name: {
+                    'type': 'tosca.artifacts.File',  # FIXME: @shishqa
+                    'file': art['sourcePath'],
+                    'deploy_path': art['targetPath'],
+                } for art_name, art in self.definition['artifacts'].items()
+            }
         }
 
     def find_type(self):
@@ -684,6 +740,8 @@ class NodeInstance:
             if 'parent' in type_body.keys():
                 seen.remove(type_body['parent'])
         self.type = seen.pop()
+        if 'tosca::' in self.type:
+            self.type = f'tosca.nodes.{self.type[7:]}'
 
     def find_property(self, args):
         path = args[0]
@@ -724,11 +782,15 @@ class NodeInstance:
 
 class TopologyTemplateInstance:
     def __init__(self, name, definition):
+        # print(definition['vertexes'].keys())
+
         self.name = copy.deepcopy(name)
         self.definition = copy.deepcopy(definition)
 
+        self.metadata = definition['properties']['tosca']['metadata']
+
         self.inputs = {}
-        for input_name, input_def in self.definition['inputs'].items():
+        for input_name, input_def in definition['properties']['tosca']['inputs'].items():
             self.inputs[input_name] = AttributeInstance(
                 self,
                 [input_name],
@@ -736,10 +798,58 @@ class TopologyTemplateInstance:
                 is_property=True
             )
 
+        self.substitution_mappings = {
+            'capabilities': {},
+            'properties': {},
+            'attributes': {},
+            'requirements': {},
+        }
+        has_substitution = False
+        for vertex_id, vertex in self.definition['vertexes'].items():
+            if vertex['metadata']['puccini']['kind'] != 'Substitution':
+                continue
+
+            has_substitution = True
+
+            substitution_type = vertex['properties']['type']
+            if 'tosca::' in substitution_type:
+                substitution_type = f'tosca.nodes.{substitution_type[7:]}'
+
+            self.substitution_mappings['node_type'] = substitution_type
+            for prop_name, input_name in vertex['properties']['inputs'].items():
+                self.substitution_mappings['properties'][prop_name] = [input_name]
+
+            for edge in vertex['edgesOut']:
+                if edge['metadata']['puccini']['kind'] == 'CapabilityPointer':
+                    name = edge['properties']['name']
+                    target = edge['properties']['target']
+                    self.substitution_mappings['capabilities'][name] = [
+                        self.definition['vertexes'][edge['targetID']]['properties']['name'],
+                        target
+                    ]
+                if edge['metadata']['puccini']['kind'] == 'RequirementPointer':
+                    name = edge['properties']['name']
+                    target = edge['properties']['target']
+                    self.substitution_mappings['requirements'][name] = [
+                        self.definition['vertexes'][edge['targetID']]['properties']['name'],
+                        target
+                    ]
+                if edge['metadata']['puccini']['kind'] == 'AttributePointer':
+                    name = edge['properties']['name']
+                    target = edge['properties']['target']
+                    self.substitution_mappings['attributes'][name] = [
+                        self.definition['vertexes'][edge['targetID']]['properties']['name'],
+                        target
+                    ]
+
+        if not has_substitution:
+            self.substitution_mappings = None
+
         self.nodes = {}
-        for node_name, node_def in self.definition["nodeTemplates"].items():
-            node = NodeInstance(node_name, self, node_def)
-            self.nodes[node_name] = node
+        for vertex_id, vertex in self.definition['vertexes'].items():
+            if vertex['metadata']['puccini']['kind'] == 'NodeTemplate':
+                node_def = vertex['properties']
+                self.nodes[node_def['name']] = NodeInstance(node_def['name'], self, node_def)
 
         for node_name, node in self.nodes.items():
             for req_def in node.definition['requirements']:
@@ -757,20 +867,23 @@ class TopologyTemplateInstance:
     def render(self):
         render_inputs = {}
         for input_name, input_body in self.inputs.items():
-            render_inputs[input_name] = input_body.render()
+            render_inputs[input_name] = input_body.get()
         return {
             'inputs': render_inputs,
+            'metadata': self.metadata,
             'nodes': {node_name: node.render() for node_name, node in self.nodes.items()},
-            'substitution_mappings': self.definition['substitution'],
+            'substitution_mappings': self.substitution_mappings,
         }
 
     def update(self, diff):
-        if 'topology' not in diff.keys():
-            return
-        elif 'nodes' not in diff['topology'].keys():
+        if 'metadata' in diff.keys():
+            for key_name in diff['metadata'].keys():
+                self.metadata[key_name] = diff['metadata'][key_name]
+
+        if 'nodes' not in diff.keys():
             return
 
-        for node_name, node_diff in diff['topology']['nodes'].items():
+        for node_name, node_diff in diff['nodes'].items():
             self.nodes[node_name].update(node_diff)
 
     def find_input(self, input_name):

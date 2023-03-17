@@ -96,6 +96,7 @@ create table node_interface
         primary key,
     name    char(255) not null,
     node_id char(36)  not null,
+    type    char(255) not null,
     constraint node_interface_node_template_null_fk
         foreign key (node_id) references node_template (id)
             on update cascade on delete cascade
@@ -103,25 +104,29 @@ create table node_interface
 
 create table node_interface_operation
 (
-    id                char(36)     not null
+    id                char(36)                     not null
         primary key,
-    name              varchar(255) not null,
-    implementation    varchar(255) null,
-    node_interface_id char(36)     not null,
+    name              varchar(255)                 not null,
+    implementation    longtext collate utf8mb4_bin null,
+    node_interface_id char(36)                     not null,
     constraint node_interface_operation_node_interface_null_fk
         foreign key (node_interface_id) references node_interface (id)
-            on update cascade on delete cascade
+            on update cascade on delete cascade,
+    constraint implementation
+        check (json_valid(`implementation`))
 );
 
 create table requirement
 (
-    id         char(36)  not null
+    id                char(36)  not null
         primary key,
-    capability char(255) null,
-    name       char(255) not null,
-    node_id    char(36)  not null,
-    node       char(255) not null,
-    node_link  char(36)  not null,
+    capability        char(255) null,
+    name              char(255) not null,
+    node_id           char(36)  not null,
+    node              char(255) not null,
+    node_link         char(36)  not null,
+    relationship_type char(255) not null,
+    `order`           int       not null,
     constraint requirement_node_template_id_fk_2
         foreign key (node_link) references node_template (id)
             on update cascade on delete cascade,
@@ -136,6 +141,7 @@ create table relationship_interface
         primary key,
     name           char(255) not null,
     requirement_id char(36)  not null,
+    type           char(255) not null,
     constraint relationship_interface_requirement_fk
         foreign key (requirement_id) references requirement (id)
             on update cascade on delete cascade

@@ -417,6 +417,8 @@ class InstanceModelUploader:
 #     topology = puccini_parse(str(data).encode("utf-8"))
 #     # topology = InstanceModel("None", topology)
 #     topology = TopologyTemplateInstance("None", topology)
-#     data = InstanceModel(topology.render())
+#     topology_render = topology.render()
+#     data = InstanceModel(topology_render)
 #     uploader = InstanceModelUploader(data)
+#     uploader
 #     uploader.insert_instance_model()

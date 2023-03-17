@@ -94,10 +94,10 @@ class NodeInterface(ToscaTemplateObject):
 
 
 class NodeInterfaceOperation(ToscaTemplateObject):
-    def __init__(self, name: str, interface: NodeInterface, implementation: str):
+    def __init__(self, name: str, interface: NodeInterface, implementation: dict):
         super().__init__(name)
         self.interface: NodeInterface = interface
-        self.implementation: str = implementation
+        self.implementation: dict = implementation
         self.inputs: dict[str, NodeInterfaceOperationInputOutput] = {}
         self.outputs: dict[str, NodeInterfaceOperationInputOutput] = {}
 
@@ -198,6 +198,7 @@ class InstanceModel:
                 input_definition.value_storage = value_object
                 self.value_storage.append(value_object)
                 self.inputs[name] = input_definition
+        self.metadata = data.get("metadata")
         if data.get('nodes'):
             for name, node_value in data.get('nodes').items():
                 node_template = NodeTemplate(name, self, node_value.get('type'))

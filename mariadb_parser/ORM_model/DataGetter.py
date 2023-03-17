@@ -31,7 +31,7 @@ from mariadb_parser.instance_model.NormalizedTOSCA import (
     Interface,
     Operation,
     Requirement,
-    Relationship,
+    Relationship, ImplementationDefinition,
 )
 from mariadb_parser.instance_model.parse_puccini import TopologyTemplateInstance
 from mariadb_parser.instance_model.puccini_try import puccini_parse
@@ -79,6 +79,9 @@ class InstanceModelGetter:
         with Session(self.engine) as session:
             session: Session
             try:
+                instance_model: DBInstanceModel = session.query(DBInstanceModel).filter(DBInstanceModel.id == self.uuid).one()
+                if instance_model.metadata_value:
+                    self.instance_model.metadata = instance_model.metadata_value
                 for input_object in (
                     session.query(InstanceModelInputAndOutput, ValueStorage)
                     .filter(
@@ -200,7 +203,13 @@ class InstanceModelGetter:
                                     operation.outputs[
                                         input_output_header.name
                                     ] = value.value
-                            operation.implementation = operation_object.implementation
+                            if operation_object.implementation:
+                                implementation = ImplementationDefinition(primary=operation_object.implementation.get('primary'))
+                                implementation.operation_host = operation_object.implementation.get('operation_host')
+                                implementation.dependencies = operation_object.implementation.get('dependencies')
+                                operation.implementation = implementation
+                            else:
+                                operation.implementation = None
                             interface.operations[operation_object.name] = operation
                             interface.type = interface_object.type_name
                         node.interfaces[interface_object.name] = interface
@@ -302,7 +311,8 @@ class InstanceModelGetter:
                         relationship.type = requirement_object.relationship_type
                         requirement.relationship = relationship
                         node.requirements.append({requirement_object.name: requirement})
-                    node.metadata = node_object.metadata_value
+                    if node_object.metadata_value:
+                        node.metadata = node_object.metadata_value
                     node.type = node_object.type_name
                     self.instance_model.nodes[node_object.name] = node
             except Exception:
@@ -312,11 +322,11 @@ class InstanceModelGetter:
                 session.commit()
 
 
-# im = InstanceModelGetter("95452752-d5f9-4e92-bf9d-873fc055ad41")
-# im.construct_instance_model()
-# im
-# with open("output.yaml", 'w') as stream:
-#     stream.write(yaml.dump(im.instance_model.dict()))
+im = InstanceModelGetter("5d5bb6c8-e5ef-474b-9aef-dcc28c14c4ad")
+im.construct_instance_model()
+im
+with open("output.yaml", 'w') as stream:
+    stream.write(yaml.dump(im.instance_model.dict()))
 # with open("../instance_model/output.yaml", 'r') as stream:
 #     data = yaml.safe_load(stream)
 #     topology = puccini_parse(str(data).encode("utf-8"))

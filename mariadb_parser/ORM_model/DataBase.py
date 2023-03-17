@@ -209,7 +209,7 @@ class DBNodeInterfaceOperation(Base):
         nullable=False,
     )
     name = Column(String(length=255), nullable=False)
-    implementation = Column(String(length=255))
+    implementation = Column(JSON)
 
 
 class DBNodeInterfaceOperationInputOutput(Base):

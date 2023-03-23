@@ -71,41 +71,42 @@ async def post_type_storage_file(user_name: str, dir_name: str, file_name: str,
 async def post_type_storage_file(service_template_definition: ServiceTemplateDefinition) -> UUID:
     service_template_definition = service_template_definition.dict(exclude_none=True)
     #todo спрятать в класс
-    for import_tosca in service_template_definition.get('inputs'):
-        imported_tosca = DataGetter(import_tosca)
-        imported_tosca.get_types()
-        if service_template_definition.get('data_types'):
-            service_template_definition.get('data_types').update(imported_tosca.result['data_types'])
-        else:
-            service_template_definition['data_types'] = imported_tosca.result['data_types']
-        if service_template_definition.get('capability_types'):
-            service_template_definition.get('capability_types').update(imported_tosca.result['capability_types'])
-        else:
-            service_template_definition['capability_types'] = imported_tosca.result['capability_types']
-        if service_template_definition.get('artifact_types'):
-            service_template_definition.get('artifact_types').update(imported_tosca.result['artifact_types'])
-        else:
-            service_template_definition['artifact_types'] = imported_tosca.result['artifact_types']
-        if service_template_definition.get('interface_types'):
-            service_template_definition.get('interface_types').update(imported_tosca.result['interface_types'])
-        else:
-            service_template_definition['interface_types'] = imported_tosca.result['interface_types']
-        if service_template_definition.get('relationship_types'):
-            service_template_definition.get('relationship_types').update(imported_tosca.result['relationship_types'])
-        else:
-            service_template_definition['relationship_types'] = imported_tosca.result['relationship_types']
-        if service_template_definition.get('node_types'):
-            service_template_definition.get('node_types').update(imported_tosca.result['node_types'])
-        else:
-            service_template_definition['node_types'] = imported_tosca.result['node_types']
-        if service_template_definition.get('group_types'):
-            service_template_definition.get('group_types').update(imported_tosca.result['group_types'])
-        else:
-            service_template_definition['group_types'] = imported_tosca.result['group_types']
-        if service_template_definition.get('policy_types'):
-            service_template_definition.get('policy_types').update(imported_tosca.result['policy_types'])
-        else:
-            service_template_definition['policy_types'] = imported_tosca.result['policy_types']
+    if service_template_definition.get('inputs'):
+        for import_tosca in service_template_definition.get('inputs'):
+            imported_tosca = DataGetter(import_tosca)
+            imported_tosca.get_types()
+            if service_template_definition.get('data_types'):
+                service_template_definition.get('data_types').update(imported_tosca.result['data_types'])
+            else:
+                service_template_definition['data_types'] = imported_tosca.result['data_types']
+            if service_template_definition.get('capability_types'):
+                service_template_definition.get('capability_types').update(imported_tosca.result['capability_types'])
+            else:
+                service_template_definition['capability_types'] = imported_tosca.result['capability_types']
+            if service_template_definition.get('artifact_types'):
+                service_template_definition.get('artifact_types').update(imported_tosca.result['artifact_types'])
+            else:
+                service_template_definition['artifact_types'] = imported_tosca.result['artifact_types']
+            if service_template_definition.get('interface_types'):
+                service_template_definition.get('interface_types').update(imported_tosca.result['interface_types'])
+            else:
+                service_template_definition['interface_types'] = imported_tosca.result['interface_types']
+            if service_template_definition.get('relationship_types'):
+                service_template_definition.get('relationship_types').update(imported_tosca.result['relationship_types'])
+            else:
+                service_template_definition['relationship_types'] = imported_tosca.result['relationship_types']
+            if service_template_definition.get('node_types'):
+                service_template_definition.get('node_types').update(imported_tosca.result['node_types'])
+            else:
+                service_template_definition['node_types'] = imported_tosca.result['node_types']
+            if service_template_definition.get('group_types'):
+                service_template_definition.get('group_types').update(imported_tosca.result['group_types'])
+            else:
+                service_template_definition['group_types'] = imported_tosca.result['group_types']
+            if service_template_definition.get('policy_types'):
+                service_template_definition.get('policy_types').update(imported_tosca.result['policy_types'])
+            else:
+                service_template_definition['policy_types'] = imported_tosca.result['policy_types']
     template: str = yaml.dump(service_template_definition)
     topology = puccini_parse(template.encode("utf-8"))
     topology = TopologyTemplateInstance("None", topology)

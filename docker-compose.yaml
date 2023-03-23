@@ -1,0 +1,40 @@
+# Use root/example as user/password credentials
+version: '3.1'
+
+services:
+
+  DataBase:
+    image: mariadb
+    restart: always
+    container_name: maria_db_container
+    environment:
+      MARIADB_DATABASE: TOPCA_storage
+      MARIADB_MYSQL_LOCALHOST_USER: example
+      MARIADB_ROOT_PASSWORD: example
+      MYSQL_TCP_PORT: 32000
+    volumes:
+      - ./deployment/DataBaseInit.sql:/docker-entrypoint-initdb.d/DataBaseInit.sql
+    ports:
+      - "32000:32000"
+
+
+  DatabaseUI:
+    image: adminer
+    restart: always
+    ports:
+      - "8080:8080"
+    depends_on:
+      - DataBase
+
+  topca_storage:
+    build:
+      context: .
+      dockerfile: deployment/fast-api.dockerfile
+    ports:
+      - "4000:4000"
+    depends_on:
+      - DataBase
+      - DatabaseUI
+
+
+

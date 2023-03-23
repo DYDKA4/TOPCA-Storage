@@ -17,8 +17,8 @@ from mariadb_parser.ORM_model.EngineInit import init_engine
 
 Base = declarative_base()
 
-engine = init_engine()
-engine.connect()
+# engine = init_engine()
+# engine.connect()
 
 
 class DependencyTypeEnum(enum.Enum):

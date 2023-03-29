@@ -9,13 +9,14 @@ from sqlalchemy import (
     ForeignKey,
     Index,
     Text,
-    Boolean,
+    Boolean, UniqueConstraint,
 )
 from sqlalchemy.ext.declarative import declarative_base
 
 from mariadb_parser.ORM_model.EngineInit import init_engine
 
 Base = declarative_base()
+
 
 # engine = init_engine()
 # engine.connect()
@@ -198,7 +199,6 @@ class DBNodeInterface(Base):
     type_name = Column('type', String(length=255), nullable=False)
 
 
-
 class DBNodeInterfaceOperation(Base):
     __tablename__ = "node_interface_operation"
 
@@ -344,8 +344,21 @@ class Type(Base):
     type_of_type = Column(Enum(TypeOfTypeEnum), nullable=False)
     type_name = Column(String(length=32), nullable=False)
     data = Column(JSON, nullable=False)
-    path_to_type = Column(String(length=255), nullable=False)
-    tosca_definitions_version = Column(String(length=32), nullable=False)
+    header_id = Column(String(length=36), ForeignKey("type_header.id", ondelete="CASCADE"), nullable=False)
+
+
+class TypeHeader(Base):
+    __tablename__ = "type_header"
+
+    id = Column(String(length=36), primary_key=True, nullable=False)
+    template_author = Column(String(length=255), nullable=False)
+    template_name = Column(String(length=255), nullable=False)
+    template_version = Column(String(length=255), nullable=False)
+    tosca_definitions_version = Column(String(length=255), nullable=False)
+    metadata_value = Column('metadata', JSON)
+    imports = Column(JSON)
+    __table_args__ = tuple(
+        UniqueConstraint('template_author', 'template_name', 'tosca_definitions_version', 'template_version'))
 
 
 class TypeStorageToArtifactStorage(Base):

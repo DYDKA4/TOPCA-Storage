@@ -25,7 +25,7 @@ from mariadb_parser.ORM_model.DataBase import (
     DBRelationshipsAttributeAndProperty,
     DBRelationshipInterface,
     DBRelationshipInterfaceOperation,
-    DBRelationshipInterfaceOperationInputOutput,
+    DBRelationshipInterfaceOperationInputOutput, TypeHeader,
 )
 from mariadb_parser.ORM_model.EngineInit import init_engine
 from mariadb_parser.instance_model.instance_model import (
@@ -54,11 +54,9 @@ from mariadb_parser.type_table.TypeStorage import TOSCAType, TypeStorage
 
 
 class DataUploader:
-    def __init__(self, tosca_definitions_version: str, path_to_type: str):
+    def __init__(self):
         self.engine = init_engine()
         self.engine.connect()
-        self.path_to_type = path_to_type
-        self.tosca_definitions_version = tosca_definitions_version
         self.type_list = [
             "data_types",
             "group_types",
@@ -80,8 +78,7 @@ class DataUploader:
                 type_of_type=tosca_type.type_of_type,
                 type_name=tosca_type.name,
                 data=tosca_type.get_data_in_json(),
-                path_to_type=self.path_to_type,
-                tosca_definitions_version=self.tosca_definitions_version,
+                header_id=tosca_type.header_id
             )
             tosca_objects.append(tosca_object)
         session.bulk_save_objects(tosca_objects)
@@ -133,7 +130,14 @@ class DataUploader:
         with Session(self.engine) as session:
             session.begin()
             try:
-
+                type_header = TypeHeader(
+                    id=type_storage.database_id,
+                    template_author=type_storage.template_author,
+                    template_name=type_storage.template_name,
+                    template_version=type_storage.template_version,
+                    tosca_definitions_version=type_storage.tosca_definitions_version,
+                    metadata_value=type_storage.metadata)
+                session.bulk_save_objects([type_header])
                 for type_name in self.type_list:
                     type_dict: dict = type_storage.__getattribute__(type_name)
                     self.__insert_type(type_dict, session)
@@ -411,7 +415,6 @@ class InstanceModelUploader:
                 raise
             else:
                 session.commit()
-
 
 # with open("../instance_model/tosca-service-templates/templates/mlflow_ray_demo.yaml", 'r') as stream:
 #     data = yaml.safe_load(stream)

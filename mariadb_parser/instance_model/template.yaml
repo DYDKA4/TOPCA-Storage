@@ -4,24 +4,8 @@ description: >
   TOSCA simple profile with WordPress, a web server, a MySQL DBMS hosting the
   application’s database content on the same server. Does not have input
   defaults or constraints.
-node_types:
-  tosca.nodes.WebApplication.WordPress:
-    derived_from: tosca.nodes.WebApplication
-    properties:
-      admin_user:
-        type: string
-        required: false
-      admin_password:
-        type: string
-        required: false
-      db_host:
-        type: string
-        required: false
-    requirements:
-      - database_endpoint:
-          capability: tosca.capabilities.Endpoint.Database
-          node: tosca.nodes.Database
-          relationship: tosca.relationships.ConnectsTo
+imports:
+  - public/wordpress
 metadata:
   abra: KADABRA
 topology_template:

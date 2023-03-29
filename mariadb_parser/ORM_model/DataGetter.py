@@ -38,8 +38,8 @@ from mariadb_parser.instance_model.puccini_try import puccini_parse
 
 
 class DataGetter:
-    def __init__(self, path):
-        self.path = path
+    def __init__(self, uuid:str):
+        self.database_id = uuid
         self.engine = init_engine()
         self.engine.connect()
         self.result = {
@@ -57,7 +57,7 @@ class DataGetter:
         with Session(self.engine) as session:
             session.begin()
             try:
-                for tosca_type in session.query(Type).filter_by(path_to_type=self.path):
+                for tosca_type in session.query(Type).filter_by(header_id=self.database_id):
                     self.result[tosca_type.type_of_type._value_ + "s"][
                         tosca_type.type_name
                     ] = json.loads(tosca_type.data)

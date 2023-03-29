@@ -10,9 +10,9 @@ from dotenv import load_dotenv
 def puccini_parse(file, phases=5):
     load_dotenv()
     if str(os.environ.get("DOCKER")) == "TRUE":
-        PUCCINI_CMD = 'code/puccini-tosca compile --resolve=False '  # LOCAL MODE --quirk imports.implicit.disable
+        PUCCINI_CMD = 'code/puccini-tosca compile --resolve=False -x imports.implicit.disable'  # LOCAL MODE --quirk imports.implicit.disable
     else:
-        PUCCINI_CMD = '/home/tulin/go/bin/puccini-tosca compile --resolve=False '  # DOCKER MODE
+        PUCCINI_CMD = '/home/tulin/go/bin/puccini-tosca compile --resolve=False -x imports.implicit.disable'  # DOCKER MODE
     pipe = sp.Popen(
         f'{PUCCINI_CMD} -x namespace.normative.shortcuts.disable',
         shell=True,

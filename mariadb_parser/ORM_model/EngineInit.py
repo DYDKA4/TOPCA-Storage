@@ -12,10 +12,11 @@ def init_engine():
             "mysql+pymysql",
             username="root",
             password="example",
-            host="DataBase",
+            # host="DataBase",
+            host="localhost",
             database="TOPCA_storage",
             port=32000)
-        print(url)
+        # print(url)
         engine = create_engine(url)
     except exc.SQLAlchemyError as e:
         print(f"Error connecting to Database: {e}")

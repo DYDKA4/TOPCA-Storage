@@ -6,7 +6,7 @@ import uuid
 from mariadb_parser.ORM_model.DataGetter import DataGetter
 
 tosca_types = {'string', 'integer', 'float', 'boolean', 'timestamp', 'null', 'version', 'map', 'list', 'range',
-               'scalar-unit.size', 'scalar-unit.frequency'}
+               'scalar-unit.size', 'scalar-unit.frequency', 'scalar-unit.bitrate', 'scalar-unit.time'}
 
 
 class TOSCAType:
@@ -14,7 +14,7 @@ class TOSCAType:
     This is abstract class which represents all types of OASIS TOSCA standard
     """
 
-    def __init__(self, name: str, data: dict, type_of_type: str, version: str = None):
+    def __init__(self, name: str, data: dict, type_of_type: str, header_id: str, version: str = None):
         """
         Default object which represent all of TOSCA TYPES
         :param name: name of type
@@ -22,6 +22,7 @@ class TOSCAType:
         :param type_of_type: represents type of object in TOSCA classification
         :param version: represents version of this type
         """
+        self.header_id = header_id
         self.identifier = str(uuid.uuid4())
         self.name = name
         self.type_of_type: str = type_of_type
@@ -72,7 +73,7 @@ class DataType(TOSCAType):
     Data Type Class storage parsed data of Data Type from yaml file.
     """
 
-    def __init__(self, name: str, data: dict, version: str):
+    def __init__(self, name: str, data: dict, version: str, header_id: str):
         """
         :param name:     name storage name of Data Type from yaml file
         :param data:        data storage parsed dict of Data Type
@@ -81,7 +82,7 @@ class DataType(TOSCAType):
         """
         if version is None:
             version = '1.0'
-        super().__init__(name, data, 'data_type', version=version)
+        super().__init__(name, data, 'data_type', header_id, version=version)
 
 
 class ArtifactType(TOSCAType):
@@ -89,7 +90,7 @@ class ArtifactType(TOSCAType):
     Artifact Type Class storage parsed data of Artifact Type from yaml file.
     """
 
-    def __init__(self, name: str, data: dict, version: str):
+    def __init__(self, name: str, data: dict, version: str, header_id: str):
         """
         :param name:     name storage name of Artifact Type from yaml file
         :param data:        data storage parsed dict of Data Type
@@ -98,12 +99,12 @@ class ArtifactType(TOSCAType):
         """
         if version is None:
             version = '1.0'
-        super().__init__(name, data, 'artifact_type', version=version)
+        super().__init__(name, data, 'artifact_type', header_id, version=version)
 
 
 class InterfaceType(TOSCAType):
 
-    def __init__(self, name: str, data: dict, version: str):
+    def __init__(self, name: str, data: dict, version: str, header_id: str):
         """
         :param name:     name storage name of Interface Type from yaml file
         :param data:        data storage parsed dict of Interface Type
@@ -112,11 +113,11 @@ class InterfaceType(TOSCAType):
         """
         if version is None:
             version = '1.0'
-        super().__init__(name, data, 'interface_type', version=version)
+        super().__init__(name, data, 'interface_type', header_id, version=version)
 
 
 class NodeType(TOSCAType):
-    def __init__(self, name: str, data: dict, version: str):
+    def __init__(self, name: str, data: dict, version: str, header_id: str):
         """
         :param name:     name storage name of Node Type from yaml file
         :param data:        data storage parsed dict of Node Type
@@ -125,13 +126,13 @@ class NodeType(TOSCAType):
         """
         if version is None:
             version = '1.0'
-        super().__init__(name, data, 'node_type', version=version)
+        super().__init__(name, data, 'node_type', header_id, version=version)
         self.set_of_node_dependency = set()
         self.set_of_node_requirement = set()
 
 
 class GroupType(TOSCAType):
-    def __init__(self, name: str, data: dict, version: str):
+    def __init__(self, name: str, data: dict, version: str, header_id: str):
         """
         :param name:     name storage name of Group Type from yaml file
         :param data:        data storage parsed dict of Group Type
@@ -140,11 +141,11 @@ class GroupType(TOSCAType):
         """
         if version is None:
             version = '1.0'
-        super().__init__(name, data, 'group_type', version=version)
+        super().__init__(name, data, 'group_type', header_id, version=version)
 
 
 class PolicyType(TOSCAType):
-    def __init__(self, name: str, data: dict, version: str):
+    def __init__(self, name: str, data: dict, version: str, header_id: str):
         """
         :param name:     name storage name of Policy Type from yaml file
         :param data:        data storage parsed dict of Policy Type
@@ -153,11 +154,11 @@ class PolicyType(TOSCAType):
         """
         if version is None:
             version = '1.0'
-        super().__init__(name, data, 'policy_type', version=version)
+        super().__init__(name, data, 'policy_type', header_id, version=version)
 
 
 class CapabilityType(TOSCAType):
-    def __init__(self, name: str, data: dict, version: str):
+    def __init__(self, name: str, data: dict, version: str, header_id: str):
         """
         :param name:     name storage name of Capability Type from yaml file
         :param data:        data storage parsed dict of Capability Type
@@ -166,11 +167,11 @@ class CapabilityType(TOSCAType):
         """
         if version is None:
             version = '1.0'
-        super().__init__(name, data, 'capability_type', version=version)
+        super().__init__(name, data, 'capability_type', header_id, version=version)
 
 
 class RelationshipType(TOSCAType):
-    def __init__(self, name: str, data: dict, version: str):
+    def __init__(self, name: str, data: dict, version: str, header_id: str):
         """
         :param name:     name storage name of Relationship Type from yaml file
         :param data:        data storage parsed dict of Relationship Type
@@ -179,7 +180,7 @@ class RelationshipType(TOSCAType):
         """
         if version is None:
             version = '1.0'
-        super().__init__(name, data, 'relationship_type', version=version)
+        super().__init__(name, data, 'relationship_type', header_id, version=version)
 
 
 class ArtifactDefinition:
@@ -216,6 +217,7 @@ class TypeStorage:
         self.policy_types: dict[str, PolicyType]: storage all Policy Types from yaml file
         self.artifacts: dict[str, ArtifactDefinition]: storage all Artifact Definitions from yaml file
         """
+        self.database_id: str = str(uuid.uuid4())
         self.data = data
         self.imports: list[str] = []
         self.data_types: dict[str, DataType] = {}
@@ -227,6 +229,11 @@ class TypeStorage:
         self.group_types: dict[str, GroupType] = {}
         self.policy_types: dict[str, PolicyType] = {}
         self.artifacts: dict[str, ArtifactDefinition] = {}
+        self.tosca_definitions_version: str = data.get('tosca_definitions_version')
+        self.metadata: dict[str, str] = data.get('metadata')
+        self.template_name = self.metadata.pop('template_name')
+        self.template_author = self.metadata.pop('template_author')
+        self.template_version = self.metadata.pop('template_version')
         if data.get('imports'):
             self.imports = data.get('imports')
             for import_tosca in self.imports:
@@ -422,6 +429,8 @@ class TypeStorage:
             return result
 
         for entity in object_dict.values():
+            if entity.derived_from in tosca_types:
+                entity.derived_from_finished = True
             if not entity.derived_from_finished:
                 recursive_finder(entity, set(), object_dict)
         return
@@ -436,7 +445,7 @@ class TypeStorage:
         for name, data in data.items():
             derived_from = data.get('derived_from')
             version = data.get('version')
-            data_type = DataType(name, data, version)
+            data_type = DataType(name, data, version, self.database_id)
             data_type.dependencies['data_types'] = data_type.dependencies['data_types'].union(
                 self.check_schema_in_entity(data, data_type.dependencies['data_types']))
             data_type.dependencies['data_types'] = data_type.dependencies['data_types'].union(
@@ -457,7 +466,7 @@ class TypeStorage:
         for name, data in data.items():
             derived_from = data.get('derived_from')
             version = data.get('version')
-            capability_type = CapabilityType(name, data, version)
+            capability_type = CapabilityType(name, data, version, self.database_id)
             capability_type.dependencies['data_types'] = capability_type.dependencies['data_types'].union(
                 self.check_property_in_entity(data, capability_type.dependencies['data_types']))
             capability_type.dependencies['data_types'] = capability_type.dependencies['data_types'].union(
@@ -482,7 +491,7 @@ class TypeStorage:
         for name, data in data.items():
             derived_from = data.get('derived_from')
             version = data.get('version')
-            artifact_type = ArtifactType(name, data, version)
+            artifact_type = ArtifactType(name, data, version, self.database_id)
             artifact_type.dependencies['data_types'] = artifact_type.dependencies['data_types'].union(
                 self.check_property_in_entity(data, artifact_type.dependencies['data_types']))
             if derived_from:
@@ -501,7 +510,7 @@ class TypeStorage:
         for name, data in data.items():
             derived_from = data.get('derived_from')
             version = data.get('version')
-            interface_type = InterfaceType(name, data, version)
+            interface_type = InterfaceType(name, data, version, self.database_id)
             interface_type.dependencies['data_types'] = interface_type.dependencies['data_types'].union(
                 self.check_property_in_entity(data, interface_type.dependencies['data_types']))
             if derived_from:
@@ -520,7 +529,7 @@ class TypeStorage:
         for name, data in data.items():
             derived_from = data.get('derived_from')
             version = data.get('version')
-            relationship_type = RelationshipType(name, data, version)
+            relationship_type = RelationshipType(name, data, version, self.database_id)
             relationship_type.dependencies['data_types'] = relationship_type.dependencies['data_types'].union(
                 self.check_property_in_entity(data, relationship_type.dependencies['data_types'])
             )
@@ -555,7 +564,7 @@ class TypeStorage:
         for name, data in data.items():
             derived_from = data.get('derived_from')
             version = data.get('version')
-            node_type = NodeType(name, data, version)
+            node_type = NodeType(name, data, version, self.database_id)
             node_type.dependencies['data_types'].update(
                 self.check_property_in_entity(data, node_type.dependencies['data_types']))
             node_type.dependencies['data_types'].update(
@@ -650,7 +659,7 @@ class TypeStorage:
         for name, data in data.items():
             derived_from = data.get('derived_from')
             version = data.get('version')
-            group_type = GroupType(name, data, version)
+            group_type = GroupType(name, data, version, self.database_id)
             group_type.dependencies['data_types'].update(
                 self.check_property_in_entity(data, group_type.dependencies['data_types']))
             group_type.dependencies['data_types'].update(
@@ -673,7 +682,7 @@ class TypeStorage:
         for name, data in data.items():
             derived_from = data.get('derived_from')
             version = data.get('version')
-            policy_type = PolicyType(name, data, version)
+            policy_type = PolicyType(name, data, version, self.database_id)
             policy_type.dependencies['data_types'].update(
                 self.check_property_in_entity(data, policy_type.dependencies['data_types']))
             targets = data.get('targets')

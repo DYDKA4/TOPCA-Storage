@@ -157,6 +157,24 @@ node_types:
       Standard:
         type: tosca.interfaces.node.lifecycle.Standard
 
+  tosca.nodes.WebApplication.WordPress:
+    derived_from: tosca.nodes.WebApplication
+    properties:
+      admin_user:
+        type: string
+        required: false
+      admin_password:
+        type: string
+        required: false
+      db_host:
+        type: string
+        required: false
+    requirements:
+      - database_endpoint:
+          capability: tosca.capabilities.Endpoint.Database
+          node: tosca.nodes.Database
+          relationship: tosca.relationships.ConnectsTo
+
   tosca.nodes.Compute:
     description: >
       The TOSCA Compute node represents one or more real or virtual processors of software applications or services

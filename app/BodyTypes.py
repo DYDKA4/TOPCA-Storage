@@ -1,5 +1,5 @@
 from __future__ import annotations
-from typing import Any, Match, Union
+from typing import Any, Match, Union, Literal
 from pydantic import BaseModel, constr, conlist
 from collections import OrderedDict
 import re
@@ -156,7 +156,7 @@ class RequirementDefinition(BaseModel):
     node: str | None = None
     relationship: str | None = None
     # node_filter NS
-    occurrences: conlist(constr(regex=r"^(\d+|UNBOUNDED)$"), min_items=2, max_items=2) | None = None
+    occurrences: conlist(Union[int, Literal['UNBOUNDED']], min_items=2, max_items=2) | None = None
 
 
 class CapabilityDefinition(BaseModel):
@@ -165,7 +165,7 @@ class CapabilityDefinition(BaseModel):
     properties: dict[str, PropertyDefinition] | None = None
     attributes: dict[str, AttributeDefinition] | None = None
     valid_source_types: list[str] | None = None
-    occurrences: conlist(constr(regex=r"^(\d+|UNBOUNDED)$"), min_items=2, max_items=2) | None = None
+    occurrences: conlist(Union[int, Literal['UNBOUNDED']], min_items=2, max_items=2) | None = None
 
 
 class NodeType(BaseModel):
@@ -210,13 +210,13 @@ class RequirementAssignment(BaseModel):
     node: str | None = None
     relationship: str | RequirementAssignmentRelationship | None = None
     # node_filter NS
-    occurrences: conlist(constr(regex=r"^(\d+|UNBOUNDED)$"), min_items=2, max_items=2) | None = None
+    occurrences: conlist(Union[int, Literal['UNBOUNDED']], min_items=2, max_items=2) | None = None
 
 
 class CapabilityAssignment(BaseModel):
     properties: dict[str, Any] | None = None
     attributes: dict[str, Union[AttributeAssignment, Any]] | None = None
-    occurrences: conlist(constr(regex=r"^(\d+|UNBOUNDED)$"), min_items=2, max_items=2) | None = None
+    occurrences: conlist(Union[int, Literal['UNBOUNDED']], min_items=2, max_items=2) | None = None
 
 
 class NodeTemplate(BaseModel):

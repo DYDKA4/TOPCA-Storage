@@ -1,11 +1,18 @@
+import os
 import subprocess as sp
 import yaml
+from dotenv import load_dotenv
+
+
 # from parse_puccini import *
 
 
 def puccini_parse(file, phases=5):
-    # PUCCINI_CMD = '../../puccini-tosca compile --resolve=False ' #  LOCAL MODE --quirk imports.implicit.disable
-    PUCCINI_CMD = '/code/puccini-tosca compile --resolve=False '# DOCKER MODE
+    load_dotenv()
+    if str(os.environ.get("DOCKER")) == "TRUE":
+        PUCCINI_CMD = 'code/puccini-tosca compile --resolve=False '  # LOCAL MODE --quirk imports.implicit.disable
+    else:
+        PUCCINI_CMD = '/home/tulin/go/bin/puccini-tosca compile --resolve=False '  # DOCKER MODE
     pipe = sp.Popen(
         f'{PUCCINI_CMD} -x namespace.normative.shortcuts.disable',
         shell=True,

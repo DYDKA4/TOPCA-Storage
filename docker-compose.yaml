@@ -35,6 +35,7 @@ services:
     depends_on:
       - DataBase
       - DatabaseUI
-
+    environment:
+      - DOCKER=TRUE
 
 

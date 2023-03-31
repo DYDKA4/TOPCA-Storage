@@ -13,7 +13,11 @@ services:
       MARIADB_ROOT_PASSWORD: example
       MYSQL_TCP_PORT: 32000
     volumes:
-      - ./deployment/DataBaseInit.sql:/docker-entrypoint-initdb.d/DataBaseInit.sql
+#      - ./deployment/DataBaseInit.sql:/docker-entrypoint-initdb.d/DataBaseInit.sql
+      - ./deployment/DataBaseInit.sql:/docker-entrypoint-initdb.d/data-dump.sql
+#      - ./deployment/InitData/type.csv:/docker-entrypoint-initdb.d/DataBaseInit/type.csv
+#      - ./deployment/InitData/type_header.csv:/docker-entrypoint-initdb.d/DataBaseInit/type_header.csv
+
     ports:
       - "32000:32000"
 

@@ -1,10 +1,12 @@
+from io import BytesIO, StringIO
 from uuid import UUID
 
 import yaml
 from fastapi import FastAPI, File, HTTPException
+from fastapi.responses import PlainTextResponse
 
 from app.BodyTypes import TypeStorageAnswer, ServiceTemplateDefinition
-from mariadb_parser.ORM_model.DataGetter import DataGetter, InstanceModelGetter
+from mariadb_parser.ORM_model.GetData import TypeStorageGetter, InstanceModelGetter
 from mariadb_parser.ORM_model.InsertData import DataUploader, InstanceModelUploader
 from mariadb_parser.instance_model.NormalizedTOSCA import InstanceModel
 from mariadb_parser.instance_model.instance_model import InstanceModelInternal
@@ -14,6 +16,7 @@ from mariadb_parser.type_table.TypeStorage import TypeStorage
 from pydantic.utils import deep_update
 from app.base_types import base_types
 import collections
+
 app = FastAPI()
 
 
@@ -23,59 +26,52 @@ async def root():
 
 
 @app.get("/type-storage/{uuid}")
-async def get_type_storage_file(uuid: str) -> TypeStorageAnswer:
+async def get_type_storage_file(uuid: str) -> ServiceTemplateDefinition:
     try:
-        data_getter = DataGetter(uuid)
+        data_getter = TypeStorageGetter(uuid)
         data_getter.get_types()
-        answer = TypeStorageAnswer()
-        # answer.user = user_name
-        # answer.file_name = file_name
-        answer.result = data_getter.result
     except Exception:
         raise HTTPException(status_code=500, detail="internal error")
-    return answer
+    return data_getter.result
 
 
-@app.post("/type-storage/")
-async def post_type_storage_file(tosca_types: ServiceTemplateDefinition) -> None:
-    # print(tosca_types.dict(), "\n", type(tosca_types))
+@app.get("/type-storage/{tosca_definitions_version}/{template_author}/{template_name}/{template_version}/raw",
+         response_class=PlainTextResponse)
+@app.head("/type-storage/{tosca_definitions_version}/{template_author}/{template_name}/{template_version}/raw",
+          response_class=PlainTextResponse)
+async def get_type_storage_file(tosca_definitions_version: str,
+                                template_name: str,
+                                template_version: str,
+                                template_author: str):
+    try:
+        data_getter = TypeStorageGetter(tosca_definitions_version=tosca_definitions_version,
+                                        template_name=template_name,
+                                        template_version=template_version,
+                                        template_author=template_author)
+        data_getter.get_types()
+        # answer.user = user_name
+        # answer.file_name = file_name
+    except Exception:
+        raise HTTPException(status_code=500, detail="internal error")
+    return str(yaml.dump(data_getter.result)).encode("utf-8")
+
+
+@app.post("/type-storage")
+async def post_type_storage_file(tosca_types: ServiceTemplateDefinition) -> UUID:
+    print(tosca_types.dict(), "\n", type(tosca_types))
     parsed_template = TypeStorage(tosca_types.dict(exclude_none=True))
     loader = DataUploader()
     loader.insert_type_storage(parsed_template)
-    return None
-
-
-@app.get("/type-storage/{user_name}/{dir_name}/{file_name}")
-async def get_type_storage_file(user_name: str, dir_name: str, file_name: str) -> TypeStorageAnswer:
-    try:
-        data_getter = DataGetter(user_name + "/" + dir_name + "/" + file_name)
-        data_getter.get_types()
-        answer = TypeStorageAnswer()
-        answer.user = user_name
-        answer.file_name = file_name
-        answer.result = data_getter.result
-    except Exception:
-        raise HTTPException(status_code=500)
-    return answer
-
-
-@app.post("/type-storage/{user_name}/{dir_name}/{file_name}")
-async def post_type_storage_file(user_name: str, dir_name: str, file_name: str,
-                                 tosca_types: ServiceTemplateDefinition) -> None:
-    # print(tosca_types.dict(), "\n", type(tosca_types))
-    parsed_template = TypeStorage(tosca_types.dict(exclude_none=True))
-    loader = DataUploader('tosca_simple_yaml_1_3', f'{user_name}/{dir_name}/{file_name}')
-    loader.insert_type_storage(parsed_template)
-    return None
+    return UUID(parsed_template.database_id)
 
 
 @app.post("/instance-model-storage/")
 async def post_type_storage_file(service_template_definition: ServiceTemplateDefinition) -> UUID:
     service_template_definition: dict = service_template_definition.dict(exclude_none=True)
-    #todo спрятать в класс
+    # todo спрятать в класс
     if service_template_definition.get('imports'):
         for import_tosca in service_template_definition.get('imports'):
-            imported_tosca = DataGetter(import_tosca)
+            imported_tosca = TypeStorageGetter(import_tosca)
             imported_tosca.get_types()
             service_template_definition = deep_update(service_template_definition, imported_tosca.result)
         service_template_definition.pop("imports")
@@ -97,6 +93,7 @@ async def post_type_storage_file(tosca_types: InstanceModel) -> UUID:
     uploader = InstanceModelUploader(data)
     uploader.insert_instance_model()
     return UUID(data.database_id)
+
 
 @app.get("/instance-model-storage/{uuid}")
 async def post_type_storage_file(uuid: str) -> InstanceModel:

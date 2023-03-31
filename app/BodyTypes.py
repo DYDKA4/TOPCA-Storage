@@ -245,13 +245,13 @@ class RelationshipTemplate(BaseModel):
 
 
 class TopologyTemplate(BaseModel):
-    description: str | None = None
-    inputs: dict[str, Union[ParameterDefinition, Any]] | None = None
-    node_templates: dict[str, NodeTemplate] | None = None
-    relationship_templates: dict[str, RelationshipTemplate] | None = None
+    description: str = ""
+    inputs: dict[str, Union[ParameterDefinition, Any]] = {}
+    node_templates: dict[str, NodeTemplate] = {}
+    relationship_templates: dict[str, RelationshipTemplate] = {}
     # groups NS
     # policies NS
-    outputs: dict[str, Union[ParameterDefinition, Any]] | None = None
+    outputs: dict[str, Union[ParameterDefinition, Any]] = {}
     # substitution_mappings NS
     # workflows NS
 
@@ -260,15 +260,18 @@ class ServiceTemplateDefinition(BaseModel):
     tosca_definitions_version = "tosca_simple_yaml_1_3"
     # namespace NS
     # dsl_definitions NS
-    metadata: ServiceTemplateDefinitionMetadata | None = None
-    description: str | None = None
-    imports: list[Union[ImportDefinition | str]] | None = None
-    artifact_types: dict[str, ArtifactType] | None = None
-    data_types: dict[str, DataType] | None = None
-    capability_types: dict[str, CapabilityType] | None = None
-    interface_types: dict[str, InterfaceType] | None = None
-    relationship_types: dict[str, RelationshipType] | None = None
+    metadata: ServiceTemplateDefinitionMetadata = {}
+    description: str = ""
+    imports: list[Union[ImportDefinition | str]] = []
+    artifact_types: dict[str, ArtifactType] = {}
+    data_types: dict[str, DataType] = {}
+    capability_types: dict[str, CapabilityType] = {}
+    interface_types: dict[str, InterfaceType] = {}
+    relationship_types: dict[str, RelationshipType] = {}
     # group_types NS
     # policy_types NS
-    node_types: dict[str, NodeType] | None = None
-    topology_template: TopologyTemplate | None = None
+    node_types: dict[str, NodeType] = {}
+    topology_template: TopologyTemplate = {}
+
+
+

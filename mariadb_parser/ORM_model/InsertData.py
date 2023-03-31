@@ -136,23 +136,24 @@ class DataUploader:
                     template_name=type_storage.template_name,
                     template_version=type_storage.template_version,
                     tosca_definitions_version=type_storage.tosca_definitions_version,
-                    metadata_value=type_storage.metadata)
+                    metadata_value=type_storage.metadata,
+                    imports=type_storage.imports)
                 session.bulk_save_objects([type_header])
                 for type_name in self.type_list:
                     type_dict: dict = type_storage.__getattribute__(type_name)
                     self.__insert_type(type_dict, session)
-                    self.__insert_dependency_derived_from(type_dict, session)
-
-                for artifact_definition in type_storage.artifacts.values():
-                    session.add(
-                        ArtifactStorage(
-                            artifact_definition.identifier,
-                            artifact_definition.name,
-                            artifact_definition.get_data_in_json(),
-                        )
-                    )
-
-                self.__insert_dependency(type_storage, session)
+                #     self.__insert_dependency_derived_from(type_dict, session)
+                #
+                # for artifact_definition in type_storage.artifacts.values():
+                #     session.add(
+                #         ArtifactStorage(
+                #             artifact_definition.identifier,
+                #             artifact_definition.name,
+                #             artifact_definition.get_data_in_json(),
+                #         )
+                #     )
+                #
+                # self.__insert_dependency(type_storage, session)
             except Exception:
                 session.rollback()
                 raise

@@ -1,9 +1,13 @@
 import json
 import uuid
 
+import yaml
+from pydantic.utils import deep_update
+
 # import yaml
 
-from mariadb_parser.ORM_model.DataGetter import DataGetter
+from mariadb_parser.ORM_model.GetData import TypeStorageGetter
+from mariadb_parser.instance_model.puccini_try import puccini_parse
 
 tosca_types = {'string', 'integer', 'float', 'boolean', 'timestamp', 'null', 'version', 'map', 'list', 'range',
                'scalar-unit.size', 'scalar-unit.frequency', 'scalar-unit.bitrate', 'scalar-unit.time'}
@@ -46,6 +50,7 @@ class TOSCAType:
                                              'node_types': set(),
                                              'relationship_types': set(),
                                              'artifacts': set()}
+        self.imported: bool = False
 
     def convert_data_to_json(self):
         """
@@ -236,204 +241,188 @@ class TypeStorage:
         self.template_version = self.metadata.pop('template_version')
         if data.get('imports'):
             self.imports = data.get('imports')
-            for import_tosca in self.imports:
-                imported_tosca = DataGetter(import_tosca)
-                imported_tosca.get_types()
-                if data.get('data_types'):
-                    data.get('data_types').update(imported_tosca.result['data_types'])
-                else:
-                    data['data_types'] = imported_tosca.result['data_types']
-                if data.get('capability_types'):
-                    data.get('capability_types').update(imported_tosca.result['capability_types'])
-                else:
-                    data['capability_types'] = imported_tosca.result['capability_types']
-                if data.get('artifact_types'):
-                    data.get('artifact_types').update(imported_tosca.result['artifact_types'])
-                else:
-                    data['artifact_types'] = imported_tosca.result['artifact_types']
-                if data.get('interface_types'):
-                    data.get('interface_types').update(imported_tosca.result['interface_types'])
-                else:
-                    data['interface_types'] = imported_tosca.result['interface_types']
-                if data.get('relationship_types'):
-                    data.get('relationship_types').update(imported_tosca.result['relationship_types'])
-                else:
-                    data['relationship_types'] = imported_tosca.result['relationship_types']
-                if data.get('node_types'):
-                    data.get('node_types').update(imported_tosca.result['node_types'])
-                else:
-                    data['node_types'] = imported_tosca.result['node_types']
-                if data.get('group_types'):
-                    data.get('group_types').update(imported_tosca.result['group_types'])
-                else:
-                    data['group_types'] = imported_tosca.result['group_types']
-                if data.get('policy_types'):
-                    data.get('policy_types').update(imported_tosca.result['policy_types'])
-                else:
-                    data['policy_types'] = imported_tosca.result['policy_types']
+            for index, import_tosca in enumerate(self.imports):
+                if not ("/type-storage/" in import_tosca):
+                    self.imports[index]: str = "http://localhost:4000/type-storage/" + import_tosca + "/raw"
+                    data.get('imports')[index] = "http://localhost:4000/type-storage/" + import_tosca + "/raw"
+                # tosca_definitions_version, template_author, template_name, template_version = \
+                #     self.imports[index].split('/')[-4:]
+                # print(tosca_definitions_version, template_author, template_name, template_version)
+                # imports = TypeStorageGetter(tosca_definitions_version=tosca_definitions_version,
+                #                             template_author=template_author,
+                #                             template_name=template_name,
+                #                             template_version=template_version)
+                # imports.get_types()
+                # imports.inline_imports()
+                # self.data = deep_update(self.data, imports.result)
+        with open("2.yaml", "w") as f:
+            f.write(yaml.dump(data))
+        puccini_parse(str(yaml.dump(data)).encode("utf-8"))
         if data.get('data_types'):
             self.prepare_data_types(data.get('data_types'))
-            self.derived_from_constructor(self.data_types)
+            # self.derived_from_constructor(self.data_types)
         if data.get('capability_types'):
             self.prepare_capability_types(data.get('capability_types'))
-            self.derived_from_constructor(self.capability_types)
+            # self.derived_from_constructor(self.capability_types)
         if data.get('artifact_types'):
             self.prepare_artifact_types(data.get('artifact_types'))
-            self.derived_from_constructor(self.artifact_types)
+            # self.derived_from_constructor(self.artifact_types)
         if data.get('interface_types'):
             self.prepare_interface_types(data.get('interface_types'))
-            self.derived_from_constructor(self.interface_types)
+            # self.derived_from_constructor(self.interface_types)
         if data.get('relationship_types'):
             self.prepare_relationship_types(data.get('relationship_types'))
-            self.derived_from_constructor(self.relationship_types)
+            # self.derived_from_constructor(self.relationship_types)
         if data.get('node_types'):
             self.prepare_node_types(data.get('node_types'))
-            self.derived_from_constructor(self.node_types)
+            # self.derived_from_constructor(self.node_types)
         if data.get('group_types'):
             self.prepare_group_types(data.get('group_types'))
-            self.derived_from_constructor(self.group_types)
+            # self.derived_from_constructor(self.group_types)
         if data.get('policy_types'):
             self.prepare_policy_types(data.get('policy_types'))
-            self.derived_from_constructor(self.policy_types)
-        self.union_dependencies()
-        self.union_dependencies_of_node_types()
+        #     self.derived_from_constructor(self.policy_types)
+        # self.union_dependencies()
+        # self.union_dependencies_of_node_types()
 
-    def union_dependencies_of_node_types(self):
-        for node_type in self.node_types.values():
-            for dependency_node in node_type.set_of_node_dependency:
-                for dependency_name, dependency_set in dependency_node.dependencies.items():
-                    if dependency_set != set():
-                        node_type.dependencies[dependency_name].update(dependency_set)
-                for requirement_name, requirement_set in dependency_node.requirements.items():
-                    if requirement_set != set():
-                        node_type.dependencies[requirement_name].update(requirement_set)
-            for requirement_node in node_type.set_of_node_requirement:
-                for dependency_name, dependency_set in requirement_node.dependencies.items():
-                    if dependency_set != set():
-                        node_type.dependencies[dependency_name].update(dependency_set)
-                for requirement_name, requirement_set in requirement_node.requirements.items():
-                    if requirement_set != set():
-                        if requirement_node.name in node_type.derived_from:
-                            node_type.requirements[requirement_name].update(requirement_set)
-                        else:
-                            node_type.dependencies[requirement_name].update(requirement_set)
-
-    def recursive_union_dependencies(self, recipient_type, dependency_type, dependency_names):
-        # print(recipient_type.name, dependency_type, dependency_names)
-        node_dependency_type: dict = self.__getattribute__(dependency_type)
-        dependency_names_copy = dependency_names.copy()
-        for dependency_name in dependency_names_copy:
-            entity = node_dependency_type.get(dependency_name)
-            if entity.dependencies_finished:
-                entity: TOSCAType
-                for dependency_name_to_recipient, dependency_set in entity.dependencies.items():
-                    if dependency_set != set():
-                        recipient_type.dependencies[dependency_name_to_recipient].update(dependency_set)
-                for requirement_name_to_recipient, requirement_set in entity.requirements.items():
-                    if requirement_set != set():
-                        recipient_type.requirements[requirement_name_to_recipient].update(requirement_set)
-                # todo discuss about this realisation
-                if entity.derived_from != set() and entity.type_of_type != recipient_type.type_of_type:
-                    recipient_type.dependencies[entity.type_of_type + 's'].update(entity.derived_from)
-            else:
-                for dependency_type, dependency_names in entity.dependencies.items():
-                    if dependency_names != set():
-                        self.recursive_union_dependencies(entity, dependency_type, dependency_names)
-                for requirement_type, requirement_names in entity.requirements.items():
-                    if requirement_names != set():
-                        self.recursive_union_dependencies(entity, requirement_type, requirement_names)
-                entity.dependencies_finished = True
-        return
-
-    def union_dependencies(self) -> None:
-        # NOTE may be adding some code of success?
-        """
-        This method union dependencies of father nodes in child node
-        :return: None
-        """
-
-        # union of all dependency of other dependencies
-        order_list = ['data_types', 'group_types', 'interface_types', 'capability_types', 'policy_types',
-                      'artifact_types', 'relationship_types', 'node_types']
-        for type_name in order_list:
-            type_dict = self.__getattribute__(type_name)
-            # union of all derived_from dependency
-            for node in type_dict.values():
-                for derived_node in node.derived_from:
-                    for dependency_name, dependency_set in node.dependencies.items():
-                        dependency_set.update(type_dict.get(derived_node).dependencies.get(dependency_name))
-                    for requirement_name, requirement_set in node.requirements.items():
-                        requirement_set.update(type_dict.get(derived_node).requirements.get(requirement_name))
-            # union of all dependency
-            for name, entity in type_dict.items():
-
-                dependencies: dict = entity.__getattribute__('dependencies')
-                requirements: dict = entity.__getattribute__('requirements')
-                if len(dict(filter(lambda elem: len(elem[1]) != 0, dependencies.items()))) == 0 and \
-                        len(dict(filter(lambda elem: len(elem[1]) != 0, requirements.items()))) == 0:
-                    entity.dependencies_finished = True
-                else:
-                    # if name == 'tosca.nodes.Root':
-                    #     print(1)
-                    for dependency_type, dependency_names in dependencies.items():
-                        if dependency_type == 'node_types':
-                            entity: NodeType
-                            for dependency_name in dependency_names:
-                                entity.set_of_node_dependency.add(self.node_types[dependency_name])
-                        elif dependency_names != set():
-                            self.recursive_union_dependencies(entity, dependency_type, dependency_names)
-                    for requirement_type, requirement_names in requirements.items():
-                        if requirement_type == 'node_types':
-                            entity: NodeType
-                            for requirement_name in requirement_names:
-                                entity.set_of_node_requirement.add(self.node_types[requirement_name])
-                        elif requirement_names != set():
-                            self.recursive_union_dependencies(entity, requirement_type, requirement_names)
-                    entity.dependencies_finished = True
-        return
-
-    @staticmethod
-    def derived_from_constructor(object_dict: dict) -> None:
-        # NOTE may be added some code of success?
-        """
-        This method union all father node names in child node. And if method was implemented on object set true in
-        field derived_from_finished
-        :param object_dict: of TOSCAType object, all values of dict HAVE TO be same type
-        :return: None
-        """
-
-        def recursive_finder(current_object, result: set[str], dictionary: dict):
-            """
-            :param current_object:
-            :param result: set of all father_node names
-            :param dictionary: dict of all types of this node
-            :return:
-            """
-            if current_object.derived_from_finished:
-                result.update(current_object.derived_from)
-                return result
-            elif len(current_object.derived_from) == 0:
-                current_object.derived_from_finished = True
-                result.update(current_object.derived_from)
-                return result
-            elif len(current_object.derived_from) == 1 and list(current_object.derived_from)[0] == current_object.name:
-                current_object.derived_from_finished = True
-                result.add(current_object.name)
-                return result
-            copy_derived_from = current_object.derived_from.copy()
-            for father_node in copy_derived_from:
-                recursive_result = recursive_finder(dictionary.get(father_node), result, dictionary)
-                if recursive_result is not None:
-                    current_object.derived_from.update(recursive_result)
-            current_object.derived_from_finished = True
-            return result
-
-        for entity in object_dict.values():
-            if entity.derived_from in tosca_types:
-                entity.derived_from_finished = True
-            if not entity.derived_from_finished:
-                recursive_finder(entity, set(), object_dict)
-        return
+    # def union_dependencies_of_node_types(self):
+    #     for node_type in self.node_types.values():
+    #         for dependency_node in node_type.set_of_node_dependency:
+    #             for dependency_name, dependency_set in dependency_node.dependencies.items():
+    #                 if dependency_set != set():
+    #                     node_type.dependencies[dependency_name].update(dependency_set)
+    #             for requirement_name, requirement_set in dependency_node.requirements.items():
+    #                 if requirement_set != set():
+    #                     node_type.dependencies[requirement_name].update(requirement_set)
+    #         for requirement_node in node_type.set_of_node_requirement:
+    #             for dependency_name, dependency_set in requirement_node.dependencies.items():
+    #                 if dependency_set != set():
+    #                     node_type.dependencies[dependency_name].update(dependency_set)
+    #             for requirement_name, requirement_set in requirement_node.requirements.items():
+    #                 if requirement_set != set():
+    #                     if requirement_node.name in node_type.derived_from:
+    #                         node_type.requirements[requirement_name].update(requirement_set)
+    #                     else:
+    #                         node_type.dependencies[requirement_name].update(requirement_set)
+    #
+    # def recursive_union_dependencies(self, recipient_type, dependency_type, dependency_names):
+    #     # print(recipient_type.name, dependency_type, dependency_names)
+    #     node_dependency_type: dict = self.__getattribute__(dependency_type)
+    #     dependency_names_copy = dependency_names.copy()
+    #     for dependency_name in dependency_names_copy:
+    #         entity = node_dependency_type.get(dependency_name)
+    #         if entity.dependencies_finished:
+    #             entity: TOSCAType
+    #             for dependency_name_to_recipient, dependency_set in entity.dependencies.items():
+    #                 if dependency_set != set():
+    #                     recipient_type.dependencies[dependency_name_to_recipient].update(dependency_set)
+    #             for requirement_name_to_recipient, requirement_set in entity.requirements.items():
+    #                 if requirement_set != set():
+    #                     recipient_type.requirements[requirement_name_to_recipient].update(requirement_set)
+    #             # todo discuss about this realisation
+    #             if entity.derived_from != set() and entity.type_of_type != recipient_type.type_of_type:
+    #                 recipient_type.dependencies[entity.type_of_type + 's'].update(entity.derived_from)
+    #         else:
+    #             for dependency_type, dependency_names in entity.dependencies.items():
+    #                 if dependency_names != set():
+    #                     self.recursive_union_dependencies(entity, dependency_type, dependency_names)
+    #             for requirement_type, requirement_names in entity.requirements.items():
+    #                 if requirement_names != set():
+    #                     self.recursive_union_dependencies(entity, requirement_type, requirement_names)
+    #             entity.dependencies_finished = True
+    #     return
+    #
+    # def union_dependencies(self) -> None:
+    #     # NOTE may be adding some code of success?
+    #     """
+    #     This method union dependencies of father nodes in child node
+    #     :return: None
+    #     """
+    #
+    #     # union of all dependency of other dependencies
+    #     order_list = ['data_types', 'group_types', 'interface_types', 'capability_types', 'policy_types',
+    #                   'artifact_types', 'relationship_types', 'node_types']
+    #     for type_name in order_list:
+    #         type_dict = self.__getattribute__(type_name)
+    #         # union of all derived_from dependency
+    #         for node in type_dict.values():
+    #             for derived_node in node.derived_from:
+    #                 for dependency_name, dependency_set in node.dependencies.items():
+    #                     dependency_set.update(type_dict.get(derived_node).dependencies.get(dependency_name))
+    #                 for requirement_name, requirement_set in node.requirements.items():
+    #                     requirement_set.update(type_dict.get(derived_node).requirements.get(requirement_name))
+    #         # union of all dependency
+    #         for name, entity in type_dict.items():
+    #
+    #             dependencies: dict = entity.__getattribute__('dependencies')
+    #             requirements: dict = entity.__getattribute__('requirements')
+    #             if len(dict(filter(lambda elem: len(elem[1]) != 0, dependencies.items()))) == 0 and \
+    #                     len(dict(filter(lambda elem: len(elem[1]) != 0, requirements.items()))) == 0:
+    #                 entity.dependencies_finished = True
+    #             else:
+    #                 # if name == 'tosca.nodes.Root':
+    #                 #     print(1)
+    #                 for dependency_type, dependency_names in dependencies.items():
+    #                     if dependency_type == 'node_types':
+    #                         entity: NodeType
+    #                         for dependency_name in dependency_names:
+    #                             entity.set_of_node_dependency.add(self.node_types[dependency_name])
+    #                     elif dependency_names != set():
+    #                         self.recursive_union_dependencies(entity, dependency_type, dependency_names)
+    #                 for requirement_type, requirement_names in requirements.items():
+    #                     if requirement_type == 'node_types':
+    #                         entity: NodeType
+    #                         for requirement_name in requirement_names:
+    #                             entity.set_of_node_requirement.add(self.node_types[requirement_name])
+    #                     elif requirement_names != set():
+    #                         self.recursive_union_dependencies(entity, requirement_type, requirement_names)
+    #                 entity.dependencies_finished = True
+    #     return
+    #
+    # @staticmethod
+    # def derived_from_constructor(object_dict: dict) -> None:
+    #     # NOTE may be added some code of success?
+    #     """
+    #     This method union all father node names in child node. And if method was implemented on object set true in
+    #     field derived_from_finished
+    #     :param object_dict: of TOSCAType object, all values of dict HAVE TO be same type
+    #     :return: None
+    #     """
+    #
+    #     def recursive_finder(current_object, result: set[str], dictionary: dict):
+    #         """
+    #         :param current_object:
+    #         :param result: set of all father_node names
+    #         :param dictionary: dict of all types of this node
+    #         :return:
+    #         """
+    #         if current_object.derived_from_finished:
+    #             result.update(current_object.derived_from)
+    #             return result
+    #         elif len(current_object.derived_from) == 0:
+    #             current_object.derived_from_finished = True
+    #             result.update(current_object.derived_from)
+    #             return result
+    #         elif len(current_object.derived_from) == 1 and list(current_object.derived_from)[0] == current_object.name:
+    #             current_object.derived_from_finished = True
+    #             result.add(current_object.name)
+    #             return result
+    #         copy_derived_from = current_object.derived_from.copy()
+    #         for father_node in copy_derived_from:
+    #             recursive_result = recursive_finder(dictionary.get(father_node), result, dictionary)
+    #             if recursive_result is not None:
+    #                 current_object.derived_from.update(recursive_result)
+    #         current_object.derived_from_finished = True
+    #         return result
+    #
+    #     for entity in object_dict.values():
+    #         print(entity.derived_from)
+    #         if entity.derived_from in tosca_types:
+    #             entity.derived_from = set()
+    #             entity.derived_from_finished = True
+    #         if not entity.derived_from_finished:
+    #             recursive_finder(entity, set(), object_dict)
+    #     return
 
     def prepare_data_types(self, data) -> dict[str, DataType]:
         """
@@ -631,7 +620,7 @@ class TypeStorage:
                                 relationship = requirement_data.get('relationship')
                                 if type(relationship) == str:
                                     node_type.requirements['relationship_types'].add(relationship)
-                                else:
+                                elif relationship:
                                     if relationship.get('type') is None:
                                         raise f"In relationship in requirement_definition {requirement_name} " \
                                               f"in node_type {name}"
